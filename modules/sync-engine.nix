@@ -55,7 +55,7 @@ in {
         done
 
         # 1. Ensure mailsync role exists with a password and keep it rotated.
-        psql <<SQL
+        psql <<'SQL'
         DO $do$
         BEGIN
           IF NOT EXISTS (SELECT FROM pg_catalog.pg_roles WHERE rolname = 'mailsync') THEN

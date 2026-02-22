@@ -344,6 +344,7 @@ HETZNER_REUSE_EXISTING_SERVER=${HETZNER_REUSE_EXISTING_SERVER:-"true"}
 SEED_INBOX=${SEED_INBOX:-"false"}
 SEED_INBOX_COUNT=${SEED_INBOX_COUNT:-"12"}
 SEED_INBOX_INCLUDE_CATEGORIES=${SEED_INBOX_INCLUDE_CATEGORIES:-"false"}
+SKIP_NPM_DEPS_HASH_VERIFICATION=${SKIP_NPM_DEPS_HASH_VERIFICATION:-"false"}
 DEPLOY_SSH_PRIVATE_KEY_PATH_SET="${DEPLOY_SSH_PRIVATE_KEY_PATH+x}"
 DEPLOY_SSH_PUBLIC_KEY_PATH_SET="${DEPLOY_SSH_PUBLIC_KEY_PATH+x}"
 DEPLOY_SSH_PRIVATE_KEY_PATH=${DEPLOY_SSH_PRIVATE_KEY_PATH:-""}
@@ -436,6 +437,14 @@ case "${SEED_INBOX_INCLUDE_CATEGORIES}" in
         ;;
 esac
 
+case "${SKIP_NPM_DEPS_HASH_VERIFICATION}" in
+    true|false)
+        ;;
+    *)
+        error "Invalid SKIP_NPM_DEPS_HASH_VERIFICATION='${SKIP_NPM_DEPS_HASH_VERIFICATION}'. Use 'true' or 'false'."
+        ;;
+esac
+
 USE_USER_MANAGED_SSH_KEY=false
 if [ -n "${DEPLOY_SSH_PRIVATE_KEY_PATH_SET}" ] || [ -n "${DEPLOY_SSH_PUBLIC_KEY_PATH_SET}" ]; then
     USE_USER_MANAGED_SSH_KEY=true
@@ -455,6 +464,8 @@ else
     log "ACME environment: production (trusted Let's Encrypt certificates)."
 fi
 
+WORKSPACE_SSH_PUBLIC_KEY_PATH="$(pwd)/infra/id_ed25519.pub"
+
 if [ -n "${SSH_PRIVATE_KEY}" ]; then
     if [ "${USE_USER_MANAGED_SSH_KEY}" = "true" ]; then
         log "SSH_PRIVATE_KEY is set; ignoring DEPLOY_SSH_*_PATH values for this run."
@@ -462,13 +473,10 @@ if [ -n "${SSH_PRIVATE_KEY}" ]; then
 
     TEMP_DEPLOY_SSH_PRIVATE_KEY="$(mktemp)"
     TEMP_DEPLOY_SSH_PUBLIC_KEY="${TEMP_DEPLOY_SSH_PRIVATE_KEY}.pub"
-    WORKSPACE_SSH_PUBLIC_KEY_PATH="$(pwd)/infra/id_ed25519.pub"
     printf '%s\n' "${SSH_PRIVATE_KEY}" > "${TEMP_DEPLOY_SSH_PRIVATE_KEY}"
     ssh-keygen -y -f "${TEMP_DEPLOY_SSH_PRIVATE_KEY}" > "${TEMP_DEPLOY_SSH_PUBLIC_KEY}"
-    mkdir -p "$(dirname "${WORKSPACE_SSH_PUBLIC_KEY_PATH}")"
-    cp "${TEMP_DEPLOY_SSH_PUBLIC_KEY}" "${WORKSPACE_SSH_PUBLIC_KEY_PATH}"
     DEPLOY_SSH_PRIVATE_KEY_PATH="${TEMP_DEPLOY_SSH_PRIVATE_KEY}"
-    DEPLOY_SSH_PUBLIC_KEY_PATH="${WORKSPACE_SSH_PUBLIC_KEY_PATH}"
+    DEPLOY_SSH_PUBLIC_KEY_PATH="${TEMP_DEPLOY_SSH_PUBLIC_KEY}"
 elif [ "${USE_USER_MANAGED_SSH_KEY}" = "true" ]; then
     if [ -z "${DEPLOY_SSH_PRIVATE_KEY_PATH}" ]; then
         error "DEPLOY_SSH_PRIVATE_KEY_PATH is set but empty. Set it to an existing private key path."
@@ -486,6 +494,9 @@ else
 fi
 chmod 600 "${DEPLOY_SSH_PRIVATE_KEY_PATH}"
 chmod 644 "${DEPLOY_SSH_PUBLIC_KEY_PATH}"
+mkdir -p "$(dirname "${WORKSPACE_SSH_PUBLIC_KEY_PATH}")"
+cp "${DEPLOY_SSH_PUBLIC_KEY_PATH}" "${WORKSPACE_SSH_PUBLIC_KEY_PATH}"
+SSH_AUTHORIZED_KEY="$(cat "${WORKSPACE_SSH_PUBLIC_KEY_PATH}")"
 
 log "Generating Password Hash..."
 EXISTING_HASH=$(extract_existing_hash || true)
@@ -503,6 +514,9 @@ cat > modules/settings.nix <<EOF
   email = "${EMAIL}";
   hashedPassword = "${HASHED_PASS}";
   imapPassword = "${MAIL_PASSWORD}"; # Added for automated internal service login
+  sshAuthorizedKey = ''
+${SSH_AUTHORIZED_KEY}
+'';
   hostName = "mail";
   acmeEnvironment = "${ACME_ENV}";
   webmailSubdomain = "${WEBMAIL_SUBDOMAIN}";
@@ -617,8 +631,12 @@ bucket_name = "${TF_STATE_BUCKET_NAME}"
 EOF
 fi
 
-log "Refreshing Nix npm dependency hashes..."
-./scripts/refresh-npm-deps-hashes.sh
+if [ "${SKIP_NPM_DEPS_HASH_VERIFICATION}" = "true" ]; then
+    log "Skipping Nix npm dependency hash refresh/verification (SKIP_NPM_DEPS_HASH_VERIFICATION=true)."
+else
+    log "Refreshing Nix npm dependency hashes..."
+    ./scripts/refresh-npm-deps-hashes.sh
+fi
 
 log "Preparing filtered deploy source..."
 TEMP_FLAKE=$(mktemp -d)
