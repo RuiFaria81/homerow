@@ -685,14 +685,26 @@ export default function FolderView() {
     }
     setPendingSnoozeSeqs([]);
   };
+  const openSnoozeMenuAtElement = (anchor: HTMLElement | null, seqs: number[]) => {
+    if (!anchor || !seqs.length) return;
+    setPendingSnoozeSeqs(seqs);
+    const rect = anchor.getBoundingClientRect();
+    setSnoozeMenuPosition({ x: rect.left, y: rect.bottom + 8 });
+  };
   const openSnoozeMenu = (e: MouseEvent) => {
     const seqs = getActionSeqs();
-    if (!seqs.length) return;
-    setPendingSnoozeSeqs(seqs);
     const button = e.currentTarget as HTMLElement | null;
-    if (!button) return;
-    const rect = button.getBoundingClientRect();
-    setSnoozeMenuPosition({ x: rect.left, y: rect.bottom + 8 });
+    openSnoozeMenuAtElement(button, seqs);
+  };
+  const handlePaneSnooze = (seq: number, e: MouseEvent) => {
+    const button = e.currentTarget as HTMLElement | null;
+    openSnoozeMenuAtElement(button, [seq]);
+  };
+  const handleMoveToSpamFromPane = async (seq: number) => {
+    await moveToFolder(String(seq), params.name, "Spam");
+    if (selectedEmail() === seq) setSelectedEmail(null);
+    await silentRefresh();
+    refreshCounts();
   };
   const handleBatchMoveToInbox = async () => {
     const seqs = getActionSeqs();
@@ -981,14 +993,14 @@ export default function FolderView() {
                 <span class="text-xs text-[var(--primary)] font-medium mr-1">{actionSelectionCount()} selected</span>
               </Show>
               <Show when={!isDraftFolder() && !isSentFolder() && !isTrashFolder() && !isScheduledFolder()}>
-                <button class="w-9 h-9 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center hover:bg-[var(--hover-bg)] text-[var(--primary)]" title="Archive" onClick={handleBatchArchive}><IconArchive size={18} /></button>
+                <button class="w-9 h-9 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-muted)] hover:bg-[var(--hover-bg)] hover:text-[var(--primary)] transition-colors" title="Archive" onClick={handleBatchArchive}><IconArchive size={18} /></button>
               </Show>
               <Show when={!isDraftFolder() && !isSentFolder() && !isTrashFolder() && !isSnoozedFolder() && !isScheduledFolder()}>
-                <button class="w-9 h-9 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center hover:bg-[var(--hover-bg)] text-[var(--primary)]" title="Snooze" onClick={openSnoozeMenu}><IconClock size={18} /></button>
+                <button class="w-9 h-9 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-muted)] hover:bg-[var(--hover-bg)] hover:text-[var(--primary)] transition-colors" title="Snooze" onClick={openSnoozeMenu}><IconClock size={18} /></button>
               </Show>
               <Show when={isTrashFolder()}>
                 <button
-                  class="w-9 h-9 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center hover:bg-[var(--hover-bg)] text-[var(--primary)]"
+                  class="w-9 h-9 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-muted)] hover:bg-[var(--hover-bg)] hover:text-[var(--primary)] transition-colors"
                   title="Restore"
                   onClick={async () => {
                     const seqs = getActionSeqs();
@@ -1003,17 +1015,17 @@ export default function FolderView() {
                 </button>
               </Show>
               <Show when={!isScheduledFolder()}>
-                <button class="w-9 h-9 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center hover:bg-[var(--hover-bg)] text-[var(--destructive)]" title={isTrashFolder() ? "Delete permanently" : "Delete"} onClick={handleBatchDelete}><IconTrash size={18} /></button>
+                <button class="w-9 h-9 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-muted)] hover:bg-[var(--hover-bg)] hover:text-[var(--destructive)] transition-colors" title={isTrashFolder() ? "Delete permanently" : "Delete"} onClick={handleBatchDelete}><IconTrash size={18} /></button>
               </Show>
               <Show when={isScheduledFolder()}>
-                <button class="w-9 h-9 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center hover:bg-[var(--hover-bg)] text-[var(--destructive)]" title="Cancel schedule" onClick={handleBatchDelete}><IconTrash size={18} /></button>
+                <button class="w-9 h-9 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-muted)] hover:bg-[var(--hover-bg)] hover:text-[var(--destructive)] transition-colors" title="Cancel schedule" onClick={handleBatchDelete}><IconTrash size={18} /></button>
               </Show>
               <Show when={params.name !== "Spam" && !isDraftFolder() && !isSentFolder() && !isTrashFolder() && !isScheduledFolder()}>
-                <button class="w-9 h-9 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center hover:bg-[var(--hover-bg)] text-[var(--primary)]" title="Mark as spam" onClick={handleBatchMoveToSpam}><IconSpam size={18} /></button>
+                <button class="w-9 h-9 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-muted)] hover:bg-[var(--hover-bg)] hover:text-[var(--primary)] transition-colors" title="Mark as spam" onClick={handleBatchMoveToSpam}><IconSpam size={18} /></button>
               </Show>
               <Show when={!isDraftFolder() && !isSentFolder() && !isTrashFolder() && !isScheduledFolder()}>
-                <button class="w-9 h-9 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center hover:bg-[var(--hover-bg)] text-[var(--primary)]" title="Mark as read" onClick={() => handleBatchMarkRead(true)}><IconEnvelopeOpen size={18} /></button>
-                <button class="w-9 h-9 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center hover:bg-[var(--hover-bg)] text-[var(--primary)]" title="Mark as unread" onClick={() => handleBatchMarkRead(false)}><IconEnvelope size={18} /></button>
+                <button class="w-9 h-9 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-muted)] hover:bg-[var(--hover-bg)] hover:text-[var(--primary)] transition-colors" title="Mark as read" onClick={() => handleBatchMarkRead(true)}><IconEnvelopeOpen size={18} /></button>
+                <button class="w-9 h-9 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-muted)] hover:bg-[var(--hover-bg)] hover:text-[var(--primary)] transition-colors" title="Mark as unread" onClick={() => handleBatchMarkRead(false)}><IconEnvelope size={18} /></button>
               </Show>
             </div>
           </Show>
@@ -1122,6 +1134,9 @@ export default function FolderView() {
             onPrevious={hasPrevious() ? goToPrevious : undefined}
             currentIndex={currentIndex() + 1}
             totalCount={filteredEmails().length}
+            onSnooze={!isTrashFolder() && !isSnoozedFolder() && !isScheduledFolder() && !isDraftFolder() && !isSentFolder() ? handlePaneSnooze : undefined}
+            onMoveToSpam={params.name !== "Spam" && !isTrashFolder() && !isScheduledFolder() && !isDraftFolder() && !isSentFolder() ? handleMoveToSpamFromPane : undefined}
+            onToggleRead={!isTrashFolder() && !isScheduledFolder() && !isDraftFolder() && !isSentFolder() ? handleToggleRead : undefined}
           />
         </div>
       </Show>

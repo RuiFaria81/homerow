@@ -323,7 +323,7 @@ export default function EmailRow(props: EmailRowProps) {
         <div class="hover-actions absolute right-4 top-1/2 -translate-y-1/2 gap-0.5 bg-[var(--hover-bg)] rounded-lg p-0.5">
           <Show when={props.onArchive}>
             <button
-              class="w-8 h-8 rounded-lg border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-secondary)] transition-colors hover:bg-[var(--active-bg)] hover:text-[var(--primary)]"
+              class="w-8 h-8 rounded-lg border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-muted)] transition-colors hover:bg-[var(--active-bg)] hover:text-[var(--primary)]"
               title="Archive"
               onClick={(e) => {
                 e.stopPropagation();
@@ -335,7 +335,7 @@ export default function EmailRow(props: EmailRowProps) {
           </Show>
           <Show when={props.onToggleRead}>
             <button
-              class="w-8 h-8 rounded-lg border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-secondary)] transition-colors hover:bg-[var(--active-bg)] hover:text-[var(--foreground)]"
+              class="w-8 h-8 rounded-lg border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-muted)] transition-colors hover:bg-[var(--active-bg)] hover:text-[var(--foreground)]"
               title={isUnread() ? "Mark as read" : "Mark as unread"}
               onClick={(e) => {
                 e.stopPropagation();
@@ -349,7 +349,7 @@ export default function EmailRow(props: EmailRowProps) {
           </Show>
           <Show when={props.onDelete}>
             <button
-              class="w-8 h-8 rounded-lg border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-secondary)] transition-colors hover:bg-[var(--active-bg)] hover:text-[var(--destructive)]"
+              class="w-8 h-8 rounded-lg border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-muted)] transition-colors hover:bg-[var(--active-bg)] hover:text-[var(--destructive)]"
               title="Delete"
               onClick={(e) => {
                 e.stopPropagation();
@@ -362,7 +362,7 @@ export default function EmailRow(props: EmailRowProps) {
           <Show when={props.onLabelAdd || props.onLabelRemove}>
             <button
               ref={labelBtnRef}
-              class="w-8 h-8 rounded-lg border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-secondary)] transition-colors hover:bg-[var(--active-bg)] hover:text-[var(--primary)]"
+              class="w-8 h-8 rounded-lg border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-muted)] transition-colors hover:bg-[var(--active-bg)] hover:text-[var(--primary)]"
               title="Label"
               onClick={openLabelMenu}
             >

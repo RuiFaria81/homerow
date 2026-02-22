@@ -8,7 +8,7 @@ import { isCurrentUserSender } from "~/lib/sender-utils";
 import { linkifyPlainText } from "~/lib/plain-text-links";
 import { getActionShortcutHint } from "~/lib/keyboard-shortcuts-store";
 import InlineComposer from "~/components/InlineComposer";
-import { IconClose, IconArchive, IconTrash, IconChevronLeft, IconChevronRight, IconExpand, IconCollapse, IconChevronDown, IconChevronUp, IconClock, IconSpam, IconBlock, IconPaperclip } from "./Icons";
+import { IconClose, IconArchive, IconTrash, IconChevronLeft, IconChevronRight, IconExpand, IconCollapse, IconChevronDown, IconChevronUp, IconClock, IconSpam, IconBlock, IconPaperclip, IconEnvelope, IconEnvelopeOpen } from "./Icons";
 
 interface ReadingPaneProps {
   emailSeq: number | null;
@@ -23,6 +23,9 @@ interface ReadingPaneProps {
   isFullSpace?: boolean;
   onToggleFullSpace?: () => void;
   onBlockSender?: (seq: number) => void;
+  onSnooze?: (seq: number, e: MouseEvent) => void;
+  onMoveToSpam?: (seq: number) => void;
+  onToggleRead?: (seq: number, makeRead: boolean) => void;
 }
 
 const ReadingPane = (props: ReadingPaneProps) => {
@@ -210,6 +213,11 @@ const ReadingPane = (props: ReadingPaneProps) => {
 
   const canGoPrevious = () => !!props.onPrevious;
   const canGoNext = () => !!props.onNext;
+  const selectedIsUnread = () => {
+    const email = safeSingleEmail();
+    const flags = Array.isArray(email?.flags) ? email!.flags : [];
+    return !flags.includes("\\Seen");
+  };
 
   const emailLabels = (email?: FullEmail | null) => {
     const flags = Array.isArray(email?.flags) ? email.flags : [];
@@ -296,6 +304,35 @@ const ReadingPane = (props: ReadingPaneProps) => {
           <button onClick={handleArchive} class="w-8 h-8 rounded-lg border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-secondary)] hover:bg-[var(--hover-bg)] hover:text-[var(--foreground)] transition-colors" title={`Archive${getActionShortcutHint("archiveConversation")}`}>
             <IconArchive size={18} />
           </button>
+          <Show when={props.onSnooze && props.emailSeq && props.folder !== "Trash" && props.folder !== "Spam"}>
+            <button
+              onClick={(e) => props.emailSeq && props.onSnooze?.(props.emailSeq, e)}
+              class="w-8 h-8 rounded-lg border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-secondary)] hover:bg-[var(--hover-bg)] hover:text-[var(--primary)] transition-colors"
+              title={`Snooze${getActionShortcutHint("openSnoozeMenu")}`}
+            >
+              <IconClock size={18} />
+            </button>
+          </Show>
+          <Show when={props.onMoveToSpam && props.emailSeq && props.folder !== "Trash" && props.folder !== "Spam"}>
+            <button
+              onClick={() => props.emailSeq && props.onMoveToSpam?.(props.emailSeq)}
+              class="w-8 h-8 rounded-lg border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-secondary)] hover:bg-[var(--hover-bg)] hover:text-[var(--primary)] transition-colors"
+              title={`Mark as spam${getActionShortcutHint("reportSpam")}`}
+            >
+              <IconSpam size={18} />
+            </button>
+          </Show>
+          <Show when={props.onToggleRead && props.emailSeq && props.folder !== "Trash"}>
+            <button
+              onClick={() => props.emailSeq && props.onToggleRead?.(props.emailSeq, selectedIsUnread())}
+              class="w-8 h-8 rounded-lg border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-secondary)] hover:bg-[var(--hover-bg)] hover:text-[var(--foreground)] transition-colors"
+              title={selectedIsUnread() ? "Mark as read" : `Mark as unread${getActionShortcutHint("markUnread")}`}
+            >
+              <Show when={selectedIsUnread()} fallback={<IconEnvelope size={18} />}>
+                <IconEnvelopeOpen size={18} />
+              </Show>
+            </button>
+          </Show>
           <Show when={props.folder !== "Trash"}>
             <button onClick={handleDelete} disabled={deleting()} class="w-8 h-8 rounded-lg border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-secondary)] hover:bg-[var(--hover-bg)] hover:text-[var(--destructive)] disabled:opacity-50 transition-colors" title={`Delete${getActionShortcutHint("deleteConversation")}`}>
               <IconTrash size={18} />

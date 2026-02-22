@@ -1429,14 +1429,33 @@ export default function Home() {
     }
     setPendingSnoozeTargets([]);
   };
+  const openSnoozeMenuAtElement = (
+    anchor: HTMLElement | null,
+    targets: Array<{ seq: number; folder: string }>,
+  ) => {
+    if (!anchor || !targets.length) return;
+    setPendingSnoozeTargets(targets);
+    const rect = anchor.getBoundingClientRect();
+    setSnoozeMenuPosition({ x: rect.left, y: rect.bottom + 8 });
+  };
   const openSnoozeMenu = (e: MouseEvent) => {
     const seqs = getActionSeqs();
     if (!seqs.length) return;
-    setPendingSnoozeTargets(seqs.map((seq) => ({ seq, folder: folderForSeq(seq) })));
     const button = e.currentTarget as HTMLElement | null;
-    if (!button) return;
-    const rect = button.getBoundingClientRect();
-    setSnoozeMenuPosition({ x: rect.left, y: rect.bottom + 8 });
+    openSnoozeMenuAtElement(
+      button,
+      seqs.map((seq) => ({ seq, folder: folderForSeq(seq) })),
+    );
+  };
+  const handlePaneSnooze = (seq: number, e: MouseEvent) => {
+    const button = e.currentTarget as HTMLElement | null;
+    openSnoozeMenuAtElement(button, [{ seq, folder: folderForSeq(seq) }]);
+  };
+  const handleMoveToSpamFromPane = async (seq: number) => {
+    await moveToFolder(String(seq), folderForSeq(seq), "Spam");
+    if (selectedEmail() === seq) setSelectedEmail(null);
+    await silentRefresh();
+    refreshCounts();
   };
   const handleDeletedFromPane = () => { setSelectedEmail(null); setSelectedThreadId(null); void silentRefresh(); refreshCounts(); };
   const draggedEmailCount = () => draggedEmailSeqs().length;
@@ -2024,13 +2043,13 @@ export default function Home() {
               <Show when={actionSelectionCount() > 1}>
                 <span class="text-xs text-[var(--primary)] font-medium mr-1">{actionSelectionCount()} selected</span>
               </Show>
-              <button class="w-9 h-9 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center hover:bg-[var(--hover-bg)] text-[var(--primary)]" title={`Archive${getActionShortcutHint("archiveConversation")}`} onClick={handleBatchArchive}><IconArchive size={18} /></button>
-              <button class="w-9 h-9 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center hover:bg-[var(--hover-bg)] text-[var(--primary)]" title={`Snooze${getActionShortcutHint("openSnoozeMenu")}`} onClick={openSnoozeMenu}><IconClock size={18} /></button>
-              <button class="w-9 h-9 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center hover:bg-[var(--hover-bg)] text-[var(--destructive)]" title={`Delete${getActionShortcutHint("deleteConversation")}`} onClick={handleBatchDelete}><IconTrash size={18} /></button>
-              <button class="w-9 h-9 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center hover:bg-[var(--hover-bg)] text-[var(--primary)]" title={`Mark as spam${getActionShortcutHint("reportSpam")}`} onClick={handleBatchMoveToSpam}><IconSpam size={18} /></button>
-              <button class="w-9 h-9 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center hover:bg-[var(--hover-bg)] text-[var(--destructive)]" title="Block sender(s)" onClick={handleBatchBlockSenders}><IconBlock size={18} /></button>
-              <button class="w-9 h-9 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center hover:bg-[var(--hover-bg)] text-[var(--primary)]" title="Mark as read" onClick={() => handleBatchMarkRead(true)}><IconEnvelopeOpen size={18} /></button>
-              <button class="w-9 h-9 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center hover:bg-[var(--hover-bg)] text-[var(--primary)]" title={`Mark as unread${getActionShortcutHint("markUnread")}`} onClick={() => handleBatchMarkRead(false)}><IconEnvelope size={18} /></button>
+              <button class="w-9 h-9 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-muted)] hover:bg-[var(--hover-bg)] hover:text-[var(--primary)] transition-colors" title={`Archive${getActionShortcutHint("archiveConversation")}`} onClick={handleBatchArchive}><IconArchive size={18} /></button>
+              <button class="w-9 h-9 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-muted)] hover:bg-[var(--hover-bg)] hover:text-[var(--primary)] transition-colors" title={`Snooze${getActionShortcutHint("openSnoozeMenu")}`} onClick={openSnoozeMenu}><IconClock size={18} /></button>
+              <button class="w-9 h-9 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-muted)] hover:bg-[var(--hover-bg)] hover:text-[var(--destructive)] transition-colors" title={`Delete${getActionShortcutHint("deleteConversation")}`} onClick={handleBatchDelete}><IconTrash size={18} /></button>
+              <button class="w-9 h-9 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-muted)] hover:bg-[var(--hover-bg)] hover:text-[var(--primary)] transition-colors" title={`Mark as spam${getActionShortcutHint("reportSpam")}`} onClick={handleBatchMoveToSpam}><IconSpam size={18} /></button>
+              <button class="w-9 h-9 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-muted)] hover:bg-[var(--hover-bg)] hover:text-[var(--destructive)] transition-colors" title="Block sender(s)" onClick={handleBatchBlockSenders}><IconBlock size={18} /></button>
+              <button class="w-9 h-9 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-muted)] hover:bg-[var(--hover-bg)] hover:text-[var(--primary)] transition-colors" title="Mark as read" onClick={() => handleBatchMarkRead(true)}><IconEnvelopeOpen size={18} /></button>
+              <button class="w-9 h-9 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-muted)] hover:bg-[var(--hover-bg)] hover:text-[var(--primary)] transition-colors" title={`Mark as unread${getActionShortcutHint("markUnread")}`} onClick={() => handleBatchMarkRead(false)}><IconEnvelope size={18} /></button>
             </div>
           </Show>
           <div class="ml-auto flex items-center gap-1">
@@ -2155,6 +2174,9 @@ export default function Home() {
             isFullSpace={isFullSpace()}
             onToggleFullSpace={() => setFullSpacePane(!fullSpacePane())}
             onBlockSender={handleBlockSender}
+            onSnooze={handlePaneSnooze}
+            onMoveToSpam={handleMoveToSpamFromPane}
+            onToggleRead={handleToggleRead}
           />
         </div>
       </Show>

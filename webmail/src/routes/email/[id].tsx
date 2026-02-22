@@ -1,10 +1,11 @@
 import { createResource, Show, Suspense, createSignal, createMemo, For } from "solid-js";
 import { useParams, A, useNavigate, useSearchParams } from "@solidjs/router";
-import { getEmail, deleteEmail, archiveEmails, markAsRead } from "~/lib/mail-client";
+import { getEmail, deleteEmail, archiveEmails, markAsRead, markAsUnread, moveToFolder, snoozeEmails, blockSender } from "~/lib/mail-client";
 import { sanitizeEmailHtml } from "~/lib/sanitize-html";
 import { linkifyPlainText } from "~/lib/plain-text-links";
-import { IconBack, IconTrash, IconArchive, IconPaperclip } from "~/components/Icons";
+import { IconBack, IconTrash, IconArchive, IconPaperclip, IconClock, IconSpam, IconBlock, IconEnvelope, IconEnvelopeOpen } from "~/components/Icons";
 import InlineComposer from "~/components/InlineComposer";
+import SnoozeMenu from "~/components/SnoozeMenu";
 import { showToast } from "~/lib/toast-store";
 import { refreshCounts } from "~/lib/sidebar-store";
 import { authClient } from "~/lib/auth-client";
@@ -57,6 +58,7 @@ export default function EmailView() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const [deleting, setDeleting] = createSignal(false);
+  const [snoozeMenuPosition, setSnoozeMenuPosition] = createSignal<{ x: number; y: number } | null>(null);
   const session = authClient.useSession();
 
   const folder = () => {
@@ -64,7 +66,7 @@ export default function EmailView() {
     return Array.isArray(f) ? f[0] : f || "INBOX";
   };
 
-  const [email] = createResource(() => ({ id: params.id, f: folder() }), async ({ id, f }) => {
+  const [email, { refetch: refetchEmail }] = createResource(() => ({ id: params.id, f: folder() }), async ({ id, f }) => {
     const data = await getEmail(id || "", f);
     if (data && !data.flags?.includes("\\Seen")) {
       void markAsRead(id || "", f).then(() => {
@@ -94,6 +96,65 @@ export default function EmailView() {
       navigate(folder() === "INBOX" ? "/" : `/folder/${folder()}`);
     } catch (err) {
       showToast("Could not archive email", "error");
+    }
+  };
+  const handleSnooze = (e: MouseEvent) => {
+    const anchor = e.currentTarget as HTMLElement | null;
+    if (!anchor) return;
+    const rect = anchor.getBoundingClientRect();
+    setSnoozeMenuPosition({ x: rect.left, y: rect.bottom + 8 });
+  };
+  const handleSnoozeSelect = async (until: Date) => {
+    try {
+      await snoozeEmails([params.id || ""], folder(), until.toISOString());
+      setSnoozeMenuPosition(null);
+      navigate(folder() === "INBOX" ? "/" : `/folder/${folder()}`);
+      refreshCounts();
+      showToast("Email snoozed", "success");
+    } catch (err) {
+      console.error("[UI Error] snooze failed:", err);
+      showToast("Could not snooze email", "error");
+    }
+  };
+  const handleMoveToSpam = async () => {
+    try {
+      await moveToFolder(params.id || "", folder(), "Spam");
+      navigate("/folder/Spam");
+      refreshCounts();
+    } catch (err) {
+      showToast("Could not move email to spam", "error");
+    }
+  };
+  const handleBlockSender = async () => {
+    const current = email();
+    if (!current?.fromAddress) {
+      showToast("Cannot block: sender address unknown", "error");
+      return;
+    }
+    try {
+      await blockSender(current.fromAddress, current.from || "");
+      await moveToFolder(params.id || "", folder(), "Trash");
+      navigate("/folder/Trash");
+      refreshCounts();
+      showToast(`Blocked ${current.fromAddress}`, "success");
+    } catch (err) {
+      showToast("Could not block sender", "error");
+    }
+  };
+  const handleToggleRead = async () => {
+    const current = email();
+    if (!current) return;
+    const seen = Boolean(current.flags?.includes("\\Seen"));
+    try {
+      if (seen) {
+        await markAsUnread(params.id || "", folder());
+      } else {
+        await markAsRead(params.id || "", folder());
+      }
+      refreshCounts();
+      await refetchEmail();
+    } catch (err) {
+      showToast("Could not update read status", "error");
     }
   };
 
@@ -129,6 +190,18 @@ export default function EmailView() {
         <A href={backPath()} class="w-9 h-9 rounded-lg border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-secondary)] transition-colors hover:bg-[var(--hover-bg)] hover:text-[var(--foreground)] no-underline"><IconBack size={18} /></A>
         <div class="w-[1px] h-5 bg-[var(--border-light)] mx-1" />
         <button onClick={handleArchive} disabled={email.loading} class="w-9 h-9 rounded-lg border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-secondary)] transition-colors hover:bg-[var(--hover-bg)] hover:text-[var(--foreground)] disabled:opacity-50"><IconArchive size={18} /></button>
+        <Show when={folder() !== "Trash" && folder() !== "Spam"}>
+          <button onClick={handleSnooze} disabled={email.loading} class="w-9 h-9 rounded-lg border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-secondary)] transition-colors hover:bg-[var(--hover-bg)] hover:text-[var(--primary)] disabled:opacity-50" title="Snooze"><IconClock size={18} /></button>
+          <button onClick={handleMoveToSpam} disabled={email.loading} class="w-9 h-9 rounded-lg border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-secondary)] transition-colors hover:bg-[var(--hover-bg)] hover:text-[var(--primary)] disabled:opacity-50" title="Mark as spam"><IconSpam size={18} /></button>
+          <button onClick={handleBlockSender} disabled={email.loading} class="w-9 h-9 rounded-lg border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-secondary)] transition-colors hover:bg-[var(--hover-bg)] hover:text-[var(--destructive)] disabled:opacity-50" title="Block sender"><IconBlock size={18} /></button>
+        </Show>
+        <Show when={folder() !== "Trash"}>
+          <button onClick={handleToggleRead} disabled={email.loading} class="w-9 h-9 rounded-lg border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-secondary)] transition-colors hover:bg-[var(--hover-bg)] hover:text-[var(--foreground)] disabled:opacity-50" title={email()?.flags?.includes("\\Seen") ? "Mark as unread" : "Mark as read"}>
+            <Show when={email()?.flags?.includes("\\Seen")} fallback={<IconEnvelopeOpen size={18} />}>
+              <IconEnvelope size={18} />
+            </Show>
+          </button>
+        </Show>
         <Show when={folder() !== "Trash"}>
           <button onClick={handleDelete} disabled={deleting() || email.loading} class="w-9 h-9 rounded-lg border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-secondary)] transition-colors hover:bg-[var(--hover-bg)] hover:text-[var(--destructive)] disabled:opacity-50"><IconTrash size={18} /></button>
         </Show>
@@ -230,6 +303,13 @@ export default function EmailView() {
           </Show>
         </Suspense>
       </div>
+      <SnoozeMenu
+        position={snoozeMenuPosition()}
+        onClose={() => setSnoozeMenuPosition(null)}
+        onSelect={(until) => {
+          void handleSnoozeSelect(until);
+        }}
+      />
     </div>
   );
 }
