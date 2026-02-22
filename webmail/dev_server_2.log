@@ -1,0 +1,527 @@
+
+> dev
+> vinxi dev
+
+vinxi v0.5.11
+vinxi starting dev server
+
+  ➜ Local:    http://localhost:3000/
+  ➜ Network:  use --host to expose
+
+[vite:css][postcss] @import must precede all other statements (besides @charset or empty @layer)
+1698|    initial-value: 0;
+1699|  }
+1700|  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1701|  :root {
+1702|    --radius: 0.625rem;
+[vite:css][postcss] @import must precede all other statements (besides @charset or empty @layer)
+1698|    initial-value: 0;
+1699|  }
+1700|  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1701|  :root {
+1702|    --radius: 0.625rem;
+[vite:css][postcss] @import must precede all other statements (besides @charset or empty @layer)
+1698|    initial-value: 0;
+1699|  }
+1700|  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1701|  :root {
+1702|    --radius: 0.625rem;
+Error getting status for Sent: Error: Mailbox doesn't exist: Sent
+    at module.exports (/app/webmail/node_modules/imapflow/lib/commands/status.js:145:29)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async ImapFlow.run (/app/webmail/node_modules/imapflow/lib/imap-flow.js:3433:22)
+    at async ImapFlow.status (/app/webmail/node_modules/imapflow/lib/imap-flow.js:2207:16)
+    at async getFolderCounts2 (/app/webmail/src/lib/mail-client.ts:122:28)
+    at async Sidebar.initialValue (/app/webmail/src/components/Sidebar.tsx:23:12) {
+  code: 'NotFound',
+  response: Error: Command failed
+      at ImapFlow.reader (/app/webmail/node_modules/imapflow/lib/imap-flow.js:720:35)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    response: { tag: 'A', command: 'NO', attributes: [Array] },
+    responseStatus: 'NO',
+    executedCommand: 'A STATUS Sent (MESSAGES)',
+    responseText: 'STATUS failed. No such mailbox'
+  }
+}
+Error getting status for Archive: Error: Mailbox doesn't exist: Archive
+    at module.exports (/app/webmail/node_modules/imapflow/lib/commands/status.js:145:29)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async ImapFlow.run (/app/webmail/node_modules/imapflow/lib/imap-flow.js:3433:22)
+    at async ImapFlow.status (/app/webmail/node_modules/imapflow/lib/imap-flow.js:2207:16)
+    at async getFolderCounts2 (/app/webmail/src/lib/mail-client.ts:122:28)
+    at async Sidebar.initialValue (/app/webmail/src/components/Sidebar.tsx:23:12) {
+  code: 'NotFound',
+  response: Error: Command failed
+      at ImapFlow.reader (/app/webmail/node_modules/imapflow/lib/imap-flow.js:720:35)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    response: { tag: 'E', command: 'NO', attributes: [Array] },
+    responseStatus: 'NO',
+    executedCommand: 'E STATUS Archive (MESSAGES)',
+    responseText: 'STATUS failed. No such mailbox'
+  }
+}
+Error getting status for Trash: Error: Mailbox doesn't exist: Trash
+    at module.exports (/app/webmail/node_modules/imapflow/lib/commands/status.js:145:29)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async ImapFlow.run (/app/webmail/node_modules/imapflow/lib/imap-flow.js:3433:22)
+    at async ImapFlow.status (/app/webmail/node_modules/imapflow/lib/imap-flow.js:2207:16)
+    at async getFolderCounts2 (/app/webmail/src/lib/mail-client.ts:122:28)
+    at async Sidebar.initialValue (/app/webmail/src/components/Sidebar.tsx:23:12) {
+  code: 'NotFound',
+  response: Error: Command failed
+      at ImapFlow.reader (/app/webmail/node_modules/imapflow/lib/imap-flow.js:720:35)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    response: { tag: '12', command: 'NO', attributes: [Array] },
+    responseStatus: 'NO',
+    executedCommand: '12 STATUS Trash (MESSAGES)',
+    responseText: 'STATUS failed. No such mailbox'
+  }
+}
+Error getting status for Spam: Error: Mailbox doesn't exist: Spam
+    at module.exports (/app/webmail/node_modules/imapflow/lib/commands/status.js:145:29)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async ImapFlow.run (/app/webmail/node_modules/imapflow/lib/imap-flow.js:3433:22)
+    at async ImapFlow.status (/app/webmail/node_modules/imapflow/lib/imap-flow.js:2207:16)
+    at async getFolderCounts2 (/app/webmail/src/lib/mail-client.ts:122:28)
+    at async Sidebar.initialValue (/app/webmail/src/components/Sidebar.tsx:23:12) {
+  code: 'NotFound',
+  response: Error: Command failed
+      at ImapFlow.reader (/app/webmail/node_modules/imapflow/lib/imap-flow.js:720:35)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    response: { tag: '16', command: 'NO', attributes: [Array] },
+    responseStatus: 'NO',
+    executedCommand: '16 STATUS Spam (MESSAGES)',
+    responseText: 'STATUS failed. No such mailbox'
+  }
+}
+7:33:55 AM [vite] (client) ✨ new dependencies optimized: @tiptap/core, @tiptap/starter-kit, @tiptap/extension-link, @tiptap/extension-placeholder, @tiptap/extension-underline, @tanstack/solid-virtual, dompurify
+7:33:55 AM [vite] (client) ✨ optimized dependencies changed. reloading
+[BABEL] Note: The code generator has deoptimised the styling of /app/webmail/node_modules/.vinxi/client/deps/chunk-WRTPXJNE.js as it exceeds the max of 500KB.
+[vite:css][postcss] @import must precede all other statements (besides @charset or empty @layer)
+1698|    initial-value: 0;
+1699|  }
+1700|  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1701|  :root {
+1702|    --radius: 0.625rem;
+Error getting status for Sent: Error: Mailbox doesn't exist: Sent
+    at module.exports (/app/webmail/node_modules/imapflow/lib/commands/status.js:145:29)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async ImapFlow.run (/app/webmail/node_modules/imapflow/lib/imap-flow.js:3433:22)
+    at async ImapFlow.status (/app/webmail/node_modules/imapflow/lib/imap-flow.js:2207:16)
+    at async getFolderCounts (/app/webmail/src/lib/mail-client.ts?tsr-directive-use-server=:119:28)
+    at async handleServerFunction (/app/webmail/node_modules/@solidjs/start/dist/runtime/server-handler.js:116:18)
+    at async _callHandler (file:///app/webmail/node_modules/h3/dist/index.mjs:1862:16)
+    at async file:///app/webmail/node_modules/h3/dist/index.mjs:2003:19
+    at async Object.callAsync (file:///app/webmail/node_modules/unctx/dist/index.mjs:72:16)
+    at async Server.toNodeHandle (file:///app/webmail/node_modules/h3/dist/index.mjs:2295:7) {
+  code: 'NotFound',
+  response: Error: Command failed
+      at ImapFlow.reader (/app/webmail/node_modules/imapflow/lib/imap-flow.js:720:35)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    response: { tag: 'A', command: 'NO', attributes: [Array] },
+    responseStatus: 'NO',
+    executedCommand: 'A STATUS Sent (MESSAGES)',
+    responseText: 'STATUS failed. No such mailbox'
+  }
+}
+Error getting status for Archive: Error: Mailbox doesn't exist: Archive
+    at module.exports (/app/webmail/node_modules/imapflow/lib/commands/status.js:145:29)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async ImapFlow.run (/app/webmail/node_modules/imapflow/lib/imap-flow.js:3433:22)
+    at async ImapFlow.status (/app/webmail/node_modules/imapflow/lib/imap-flow.js:2207:16)
+    at async getFolderCounts (/app/webmail/src/lib/mail-client.ts?tsr-directive-use-server=:119:28)
+    at async handleServerFunction (/app/webmail/node_modules/@solidjs/start/dist/runtime/server-handler.js:116:18)
+    at async _callHandler (file:///app/webmail/node_modules/h3/dist/index.mjs:1862:16)
+    at async file:///app/webmail/node_modules/h3/dist/index.mjs:2003:19
+    at async Object.callAsync (file:///app/webmail/node_modules/unctx/dist/index.mjs:72:16)
+    at async Server.toNodeHandle (file:///app/webmail/node_modules/h3/dist/index.mjs:2295:7) {
+  code: 'NotFound',
+  response: Error: Command failed
+      at ImapFlow.reader (/app/webmail/node_modules/imapflow/lib/imap-flow.js:720:35)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    response: { tag: 'E', command: 'NO', attributes: [Array] },
+    responseStatus: 'NO',
+    executedCommand: 'E STATUS Archive (MESSAGES)',
+    responseText: 'STATUS failed. No such mailbox'
+  }
+}
+Error getting status for Trash: Error: Mailbox doesn't exist: Trash
+    at module.exports (/app/webmail/node_modules/imapflow/lib/commands/status.js:145:29)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async ImapFlow.run (/app/webmail/node_modules/imapflow/lib/imap-flow.js:3433:22)
+    at async ImapFlow.status (/app/webmail/node_modules/imapflow/lib/imap-flow.js:2207:16)
+    at async getFolderCounts (/app/webmail/src/lib/mail-client.ts?tsr-directive-use-server=:119:28)
+    at async handleServerFunction (/app/webmail/node_modules/@solidjs/start/dist/runtime/server-handler.js:116:18)
+    at async _callHandler (file:///app/webmail/node_modules/h3/dist/index.mjs:1862:16)
+    at async file:///app/webmail/node_modules/h3/dist/index.mjs:2003:19
+    at async Object.callAsync (file:///app/webmail/node_modules/unctx/dist/index.mjs:72:16)
+    at async Server.toNodeHandle (file:///app/webmail/node_modules/h3/dist/index.mjs:2295:7) {
+  code: 'NotFound',
+  response: Error: Command failed
+      at ImapFlow.reader (/app/webmail/node_modules/imapflow/lib/imap-flow.js:720:35)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    response: { tag: '12', command: 'NO', attributes: [Array] },
+    responseStatus: 'NO',
+    executedCommand: '12 STATUS Trash (MESSAGES)',
+    responseText: 'STATUS failed. No such mailbox'
+  }
+}
+Error getting status for Spam: Error: Mailbox doesn't exist: Spam
+    at module.exports (/app/webmail/node_modules/imapflow/lib/commands/status.js:145:29)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async ImapFlow.run (/app/webmail/node_modules/imapflow/lib/imap-flow.js:3433:22)
+    at async ImapFlow.status (/app/webmail/node_modules/imapflow/lib/imap-flow.js:2207:16)
+    at async getFolderCounts (/app/webmail/src/lib/mail-client.ts?tsr-directive-use-server=:119:28)
+    at async handleServerFunction (/app/webmail/node_modules/@solidjs/start/dist/runtime/server-handler.js:116:18)
+    at async _callHandler (file:///app/webmail/node_modules/h3/dist/index.mjs:1862:16)
+    at async file:///app/webmail/node_modules/h3/dist/index.mjs:2003:19
+    at async Object.callAsync (file:///app/webmail/node_modules/unctx/dist/index.mjs:72:16)
+    at async Server.toNodeHandle (file:///app/webmail/node_modules/h3/dist/index.mjs:2295:7) {
+  code: 'NotFound',
+  response: Error: Command failed
+      at ImapFlow.reader (/app/webmail/node_modules/imapflow/lib/imap-flow.js:720:35)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    response: { tag: '16', command: 'NO', attributes: [Array] },
+    responseStatus: 'NO',
+    executedCommand: '16 STATUS Spam (MESSAGES)',
+    responseText: 'STATUS failed. No such mailbox'
+  }
+}
+Error getting status for Sent: Error: Mailbox doesn't exist: Sent
+    at module.exports (/app/webmail/node_modules/imapflow/lib/commands/status.js:145:29)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async ImapFlow.run (/app/webmail/node_modules/imapflow/lib/imap-flow.js:3433:22)
+    at async ImapFlow.status (/app/webmail/node_modules/imapflow/lib/imap-flow.js:2207:16)
+    at async getFolderCounts2 (/app/webmail/src/lib/mail-client.ts:122:28)
+    at async Sidebar.initialValue (/app/webmail/src/components/Sidebar.tsx:23:12) {
+  code: 'NotFound',
+  response: Error: Command failed
+      at ImapFlow.reader (/app/webmail/node_modules/imapflow/lib/imap-flow.js:720:35)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    response: { tag: 'A', command: 'NO', attributes: [Array] },
+    responseStatus: 'NO',
+    executedCommand: 'A STATUS Sent (MESSAGES)',
+    responseText: 'STATUS failed. No such mailbox'
+  }
+}
+Error getting status for Archive: Error: Mailbox doesn't exist: Archive
+    at module.exports (/app/webmail/node_modules/imapflow/lib/commands/status.js:145:29)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async ImapFlow.run (/app/webmail/node_modules/imapflow/lib/imap-flow.js:3433:22)
+    at async ImapFlow.status (/app/webmail/node_modules/imapflow/lib/imap-flow.js:2207:16)
+    at async getFolderCounts2 (/app/webmail/src/lib/mail-client.ts:122:28)
+    at async Sidebar.initialValue (/app/webmail/src/components/Sidebar.tsx:23:12) {
+  code: 'NotFound',
+  response: Error: Command failed
+      at ImapFlow.reader (/app/webmail/node_modules/imapflow/lib/imap-flow.js:720:35)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    response: { tag: 'E', command: 'NO', attributes: [Array] },
+    responseStatus: 'NO',
+    executedCommand: 'E STATUS Archive (MESSAGES)',
+    responseText: 'STATUS failed. No such mailbox'
+  }
+}
+Error getting status for Trash: Error: Mailbox doesn't exist: Trash
+    at module.exports (/app/webmail/node_modules/imapflow/lib/commands/status.js:145:29)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async ImapFlow.run (/app/webmail/node_modules/imapflow/lib/imap-flow.js:3433:22)
+    at async ImapFlow.status (/app/webmail/node_modules/imapflow/lib/imap-flow.js:2207:16)
+    at async getFolderCounts2 (/app/webmail/src/lib/mail-client.ts:122:28)
+    at async Sidebar.initialValue (/app/webmail/src/components/Sidebar.tsx:23:12) {
+  code: 'NotFound',
+  response: Error: Command failed
+      at ImapFlow.reader (/app/webmail/node_modules/imapflow/lib/imap-flow.js:720:35)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    response: { tag: '12', command: 'NO', attributes: [Array] },
+    responseStatus: 'NO',
+    executedCommand: '12 STATUS Trash (MESSAGES)',
+    responseText: 'STATUS failed. No such mailbox'
+  }
+}
+Error getting status for Spam: Error: Mailbox doesn't exist: Spam
+    at module.exports (/app/webmail/node_modules/imapflow/lib/commands/status.js:145:29)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async ImapFlow.run (/app/webmail/node_modules/imapflow/lib/imap-flow.js:3433:22)
+    at async ImapFlow.status (/app/webmail/node_modules/imapflow/lib/imap-flow.js:2207:16)
+    at async getFolderCounts2 (/app/webmail/src/lib/mail-client.ts:122:28)
+    at async Sidebar.initialValue (/app/webmail/src/components/Sidebar.tsx:23:12) {
+  code: 'NotFound',
+  response: Error: Command failed
+      at ImapFlow.reader (/app/webmail/node_modules/imapflow/lib/imap-flow.js:720:35)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    response: { tag: '16', command: 'NO', attributes: [Array] },
+    responseStatus: 'NO',
+    executedCommand: '16 STATUS Spam (MESSAGES)',
+    responseText: 'STATUS failed. No such mailbox'
+  }
+}
+Error getting status for Sent: Error: Mailbox doesn't exist: Sent
+    at module.exports (/app/webmail/node_modules/imapflow/lib/commands/status.js:145:29)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async ImapFlow.run (/app/webmail/node_modules/imapflow/lib/imap-flow.js:3433:22)
+    at async ImapFlow.status (/app/webmail/node_modules/imapflow/lib/imap-flow.js:2207:16)
+    at async getFolderCounts2 (/app/webmail/src/lib/mail-client.ts:122:28)
+    at async Sidebar.initialValue (/app/webmail/src/components/Sidebar.tsx:23:12) {
+  code: 'NotFound',
+  response: Error: Command failed
+      at ImapFlow.reader (/app/webmail/node_modules/imapflow/lib/imap-flow.js:720:35)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    response: { tag: 'A', command: 'NO', attributes: [Array] },
+    responseStatus: 'NO',
+    executedCommand: 'A STATUS Sent (MESSAGES)',
+    responseText: 'STATUS failed. No such mailbox'
+  }
+}
+Error getting status for Archive: Error: Mailbox doesn't exist: Archive
+    at module.exports (/app/webmail/node_modules/imapflow/lib/commands/status.js:145:29)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async ImapFlow.run (/app/webmail/node_modules/imapflow/lib/imap-flow.js:3433:22)
+    at async ImapFlow.status (/app/webmail/node_modules/imapflow/lib/imap-flow.js:2207:16)
+    at async getFolderCounts2 (/app/webmail/src/lib/mail-client.ts:122:28)
+    at async Sidebar.initialValue (/app/webmail/src/components/Sidebar.tsx:23:12) {
+  code: 'NotFound',
+  response: Error: Command failed
+      at ImapFlow.reader (/app/webmail/node_modules/imapflow/lib/imap-flow.js:720:35)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    response: { tag: 'E', command: 'NO', attributes: [Array] },
+    responseStatus: 'NO',
+    executedCommand: 'E STATUS Archive (MESSAGES)',
+    responseText: 'STATUS failed. No such mailbox'
+  }
+}
+Error getting status for Trash: Error: Mailbox doesn't exist: Trash
+    at module.exports (/app/webmail/node_modules/imapflow/lib/commands/status.js:145:29)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async ImapFlow.run (/app/webmail/node_modules/imapflow/lib/imap-flow.js:3433:22)
+    at async ImapFlow.status (/app/webmail/node_modules/imapflow/lib/imap-flow.js:2207:16)
+    at async getFolderCounts2 (/app/webmail/src/lib/mail-client.ts:122:28)
+    at async Sidebar.initialValue (/app/webmail/src/components/Sidebar.tsx:23:12) {
+  code: 'NotFound',
+  response: Error: Command failed
+      at ImapFlow.reader (/app/webmail/node_modules/imapflow/lib/imap-flow.js:720:35)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    response: { tag: '12', command: 'NO', attributes: [Array] },
+    responseStatus: 'NO',
+    executedCommand: '12 STATUS Trash (MESSAGES)',
+    responseText: 'STATUS failed. No such mailbox'
+  }
+}
+Error getting status for Spam: Error: Mailbox doesn't exist: Spam
+    at module.exports (/app/webmail/node_modules/imapflow/lib/commands/status.js:145:29)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async ImapFlow.run (/app/webmail/node_modules/imapflow/lib/imap-flow.js:3433:22)
+    at async ImapFlow.status (/app/webmail/node_modules/imapflow/lib/imap-flow.js:2207:16)
+    at async getFolderCounts2 (/app/webmail/src/lib/mail-client.ts:122:28)
+    at async Sidebar.initialValue (/app/webmail/src/components/Sidebar.tsx:23:12) {
+  code: 'NotFound',
+  response: Error: Command failed
+      at ImapFlow.reader (/app/webmail/node_modules/imapflow/lib/imap-flow.js:720:35)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    response: { tag: '16', command: 'NO', attributes: [Array] },
+    responseStatus: 'NO',
+    executedCommand: '16 STATUS Spam (MESSAGES)',
+    responseText: 'STATUS failed. No such mailbox'
+  }
+}
+7:36:43 AM [vite] (ssr) page reload src/app.tsx
+7:36:43 AM [vite] (client) hmr update /app/webmail/src/app.tsx, /src/app.css
+7:36:43 AM [vite] (ssr) page reload src/app.tsx
+[vite:css][postcss] @import must precede all other statements (besides @charset or empty @layer)
+1698|    initial-value: 0;
+1699|  }
+1700|  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1701|  :root {
+1702|    --radius: 0.625rem;
+[vite:css][postcss] @import must precede all other statements (besides @charset or empty @layer)
+1698|    initial-value: 0;
+1699|  }
+1700|  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1701|  :root {
+1702|    --radius: 0.625rem;
+[vite:css][postcss] @import must precede all other statements (besides @charset or empty @layer)
+1698|    initial-value: 0;
+1699|  }
+1700|  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1701|  :root {
+1702|    --radius: 0.625rem;
+[vite:css][postcss] @import must precede all other statements (besides @charset or empty @layer)
+1698|    initial-value: 0;
+1699|  }
+1700|  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1701|  :root {
+1702|    --radius: 0.625rem;
+Error getting status for Sent: Error: Mailbox doesn't exist: Sent
+    at module.exports (/app/webmail/node_modules/imapflow/lib/commands/status.js:145:29)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async ImapFlow.run (/app/webmail/node_modules/imapflow/lib/imap-flow.js:3433:22)
+    at async ImapFlow.status (/app/webmail/node_modules/imapflow/lib/imap-flow.js:2207:16)
+    at async getFolderCounts2 (/app/webmail/src/lib/mail-client.ts:122:28)
+    at async Sidebar.initialValue (/app/webmail/src/components/Sidebar.tsx:23:12) {
+  code: 'NotFound',
+  response: Error: Command failed
+      at ImapFlow.reader (/app/webmail/node_modules/imapflow/lib/imap-flow.js:720:35)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    response: { tag: 'A', command: 'NO', attributes: [Array] },
+    responseStatus: 'NO',
+    executedCommand: 'A STATUS Sent (MESSAGES)',
+    responseText: 'STATUS failed. No such mailbox'
+  }
+}
+Error getting status for Archive: Error: Mailbox doesn't exist: Archive
+    at module.exports (/app/webmail/node_modules/imapflow/lib/commands/status.js:145:29)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async ImapFlow.run (/app/webmail/node_modules/imapflow/lib/imap-flow.js:3433:22)
+    at async ImapFlow.status (/app/webmail/node_modules/imapflow/lib/imap-flow.js:2207:16)
+    at async getFolderCounts2 (/app/webmail/src/lib/mail-client.ts:122:28)
+    at async Sidebar.initialValue (/app/webmail/src/components/Sidebar.tsx:23:12) {
+  code: 'NotFound',
+  response: Error: Command failed
+      at ImapFlow.reader (/app/webmail/node_modules/imapflow/lib/imap-flow.js:720:35)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    response: { tag: 'E', command: 'NO', attributes: [Array] },
+    responseStatus: 'NO',
+    executedCommand: 'E STATUS Archive (MESSAGES)',
+    responseText: 'STATUS failed. No such mailbox'
+  }
+}
+Error getting status for Trash: Error: Mailbox doesn't exist: Trash
+    at module.exports (/app/webmail/node_modules/imapflow/lib/commands/status.js:145:29)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async ImapFlow.run (/app/webmail/node_modules/imapflow/lib/imap-flow.js:3433:22)
+    at async ImapFlow.status (/app/webmail/node_modules/imapflow/lib/imap-flow.js:2207:16)
+    at async getFolderCounts2 (/app/webmail/src/lib/mail-client.ts:122:28)
+    at async Sidebar.initialValue (/app/webmail/src/components/Sidebar.tsx:23:12) {
+  code: 'NotFound',
+  response: Error: Command failed
+      at ImapFlow.reader (/app/webmail/node_modules/imapflow/lib/imap-flow.js:720:35)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    response: { tag: '12', command: 'NO', attributes: [Array] },
+    responseStatus: 'NO',
+    executedCommand: '12 STATUS Trash (MESSAGES)',
+    responseText: 'STATUS failed. No such mailbox'
+  }
+}
+Error getting status for Spam: Error: Mailbox doesn't exist: Spam
+    at module.exports (/app/webmail/node_modules/imapflow/lib/commands/status.js:145:29)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async ImapFlow.run (/app/webmail/node_modules/imapflow/lib/imap-flow.js:3433:22)
+    at async ImapFlow.status (/app/webmail/node_modules/imapflow/lib/imap-flow.js:2207:16)
+    at async getFolderCounts2 (/app/webmail/src/lib/mail-client.ts:122:28)
+    at async Sidebar.initialValue (/app/webmail/src/components/Sidebar.tsx:23:12) {
+  code: 'NotFound',
+  response: Error: Command failed
+      at ImapFlow.reader (/app/webmail/node_modules/imapflow/lib/imap-flow.js:720:35)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    response: { tag: '16', command: 'NO', attributes: [Array] },
+    responseStatus: 'NO',
+    executedCommand: '16 STATUS Spam (MESSAGES)',
+    responseText: 'STATUS failed. No such mailbox'
+  }
+}
+7:37:26 AM [vite] (ssr) page reload src/app.tsx
+7:37:26 AM [vite] (client) hmr update /app/webmail/src/app.tsx, /src/app.css
+7:37:26 AM [vite] (ssr) page reload src/app.tsx
+[vite:css][postcss] @import must precede all other statements (besides @charset or empty @layer)
+1701|    initial-value: 0;
+1702|  }
+1703|  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1704|  :root {
+1705|    --radius: 0.625rem;
+[vite:css][postcss] @import must precede all other statements (besides @charset or empty @layer)
+1701|    initial-value: 0;
+1702|  }
+1703|  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1704|  :root {
+1705|    --radius: 0.625rem;
+[vite:css][postcss] @import must precede all other statements (besides @charset or empty @layer)
+1701|    initial-value: 0;
+1702|  }
+1703|  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1704|  :root {
+1705|    --radius: 0.625rem;
+[vite:css][postcss] @import must precede all other statements (besides @charset or empty @layer)
+1701|    initial-value: 0;
+1702|  }
+1703|  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1704|  :root {
+1705|    --radius: 0.625rem;
+Error getting status for Sent: Error: Mailbox doesn't exist: Sent
+    at module.exports (/app/webmail/node_modules/imapflow/lib/commands/status.js:145:29)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async ImapFlow.run (/app/webmail/node_modules/imapflow/lib/imap-flow.js:3433:22)
+    at async ImapFlow.status (/app/webmail/node_modules/imapflow/lib/imap-flow.js:2207:16)
+    at async getFolderCounts2 (/app/webmail/src/lib/mail-client.ts:122:28)
+    at async Sidebar.initialValue (/app/webmail/src/components/Sidebar.tsx:23:12) {
+  code: 'NotFound',
+  response: Error: Command failed
+      at ImapFlow.reader (/app/webmail/node_modules/imapflow/lib/imap-flow.js:720:35)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    response: { tag: 'A', command: 'NO', attributes: [Array] },
+    responseStatus: 'NO',
+    executedCommand: 'A STATUS Sent (MESSAGES)',
+    responseText: 'STATUS failed. No such mailbox'
+  }
+}
+Error getting status for Archive: Error: Mailbox doesn't exist: Archive
+    at module.exports (/app/webmail/node_modules/imapflow/lib/commands/status.js:145:29)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async ImapFlow.run (/app/webmail/node_modules/imapflow/lib/imap-flow.js:3433:22)
+    at async ImapFlow.status (/app/webmail/node_modules/imapflow/lib/imap-flow.js:2207:16)
+    at async getFolderCounts2 (/app/webmail/src/lib/mail-client.ts:122:28)
+    at async Sidebar.initialValue (/app/webmail/src/components/Sidebar.tsx:23:12) {
+  code: 'NotFound',
+  response: Error: Command failed
+      at ImapFlow.reader (/app/webmail/node_modules/imapflow/lib/imap-flow.js:720:35)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    response: { tag: 'E', command: 'NO', attributes: [Array] },
+    responseStatus: 'NO',
+    executedCommand: 'E STATUS Archive (MESSAGES)',
+    responseText: 'STATUS failed. No such mailbox'
+  }
+}
+Error getting status for Trash: Error: Mailbox doesn't exist: Trash
+    at module.exports (/app/webmail/node_modules/imapflow/lib/commands/status.js:145:29)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async ImapFlow.run (/app/webmail/node_modules/imapflow/lib/imap-flow.js:3433:22)
+    at async ImapFlow.status (/app/webmail/node_modules/imapflow/lib/imap-flow.js:2207:16)
+    at async getFolderCounts2 (/app/webmail/src/lib/mail-client.ts:122:28)
+    at async Sidebar.initialValue (/app/webmail/src/components/Sidebar.tsx:23:12) {
+  code: 'NotFound',
+  response: Error: Command failed
+      at ImapFlow.reader (/app/webmail/node_modules/imapflow/lib/imap-flow.js:720:35)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    response: { tag: '12', command: 'NO', attributes: [Array] },
+    responseStatus: 'NO',
+    executedCommand: '12 STATUS Trash (MESSAGES)',
+    responseText: 'STATUS failed. No such mailbox'
+  }
+}
+Error getting status for Spam: Error: Mailbox doesn't exist: Spam
+    at module.exports (/app/webmail/node_modules/imapflow/lib/commands/status.js:145:29)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async ImapFlow.run (/app/webmail/node_modules/imapflow/lib/imap-flow.js:3433:22)
+    at async ImapFlow.status (/app/webmail/node_modules/imapflow/lib/imap-flow.js:2207:16)
+    at async getFolderCounts2 (/app/webmail/src/lib/mail-client.ts:122:28)
+    at async Sidebar.initialValue (/app/webmail/src/components/Sidebar.tsx:23:12) {
+  code: 'NotFound',
+  response: Error: Command failed
+      at ImapFlow.reader (/app/webmail/node_modules/imapflow/lib/imap-flow.js:720:35)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    response: { tag: '16', command: 'NO', attributes: [Array] },
+    responseStatus: 'NO',
+    executedCommand: '16 STATUS Spam (MESSAGES)',
+    responseText: 'STATUS failed. No such mailbox'
+  }
+}

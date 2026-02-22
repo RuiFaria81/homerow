@@ -1,0 +1,45 @@
+---
+title: Homerow Email
+description: Self-hosted email with full control and a modern mail experience.
+template: splash
+hero:
+  tagline: A practical deployment path for running your own mail stack with a custom web interface, keeping infrastructure explicit and reproducible.
+  actions:
+    - text: Get Started
+      link: /getting-started/quick-start/
+      icon: right-arrow
+      variant: primary
+    - text: View on GitHub
+      link: https://github.com/guilhermeprokisch/homerow
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## What You Get
+
+<CardGrid stagger>
+  <Card title="Complete Mail Stack" icon="email">
+    Postfix, Dovecot, Rspamd, ACME/TLS — deployed and configured as a single NixOS system.
+  </Card>
+  <Card title="Modern Webmail" icon="laptop">
+    Threaded conversations, labels, keyboard shortcuts, 2FA, compose with rich text, and Gmail import.
+  </Card>
+  <Card title="One-Command Deploy" icon="rocket">
+    Provision VPS, DNS, and storage with Terraform, then configure everything with NixOS — all in one flow.
+  </Card>
+  <Card title="Encrypted Backups" icon="approve-check-circle">
+    Daily restic backups to S3-compatible storage with automatic retention policies.
+  </Card>
+</CardGrid>
+
+## How It Works
+
+The project has five parts working together:
+
+1. **Infrastructure provisioning** (`infra/`) — creates VPS, DNS records, and backup storage using Terraform.
+2. **Server configuration** (`flake.nix`, `modules/`) — turns the VPS into a NixOS mail host.
+3. **Sync layer** (`sync-engine/`) — keeps mailbox data synchronized into PostgreSQL for fast UI queries.
+4. **Web interface** (`webmail/`) — custom frontend/backend for daily email workflows.
+5. **Deploy orchestration** (`scripts/`) — connects everything into one repeatable flow.

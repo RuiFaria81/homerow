@@ -1,0 +1,47 @@
+---
+title: Quick Start
+description: Choose your deployment method and get a mail server running.
+---
+
+import { Tabs, TabItem, Steps } from '@astrojs/starlight/components';
+
+There are three ways to deploy. Pick the one that fits your setup.
+
+| Method | Requires | Best for |
+|--------|----------|----------|
+| [GitHub Actions](/deploy/github-actions/) | GitHub account | Hands-off, CI-driven deploys |
+| [Docker / Podman](/deploy/docker/) | Docker or Podman | No local Nix installation needed |
+| [Local Nix](/deploy/local-nix/) | Nix installed | Most direct, full control |
+
+## Prerequisites
+
+All methods require:
+
+- A domain you control (for DNS records)
+- A [Hetzner Cloud](https://www.hetzner.com/cloud) account (VPS provider)
+- A [Cloudflare](https://www.cloudflare.com/) account (DNS provider)
+- An SSH key pair for server access
+
+## Steps Overview
+
+<Steps>
+1. **Clone the repository** and create your `config.env` with domain, credentials, and provider tokens. See [Configuration](/getting-started/configuration/) for all variables.
+
+2. **Generate or reuse an SSH key** for deploy and server access:
+   ```bash
+   ssh-keygen -t ed25519 -f ~/.ssh/homerow_ed25519 -N ""
+   ```
+
+3. **Run deploy** using your chosen method. The deploy will:
+   - Set up remote Terraform state
+   - Provision VPS, DNS records, and backup storage
+   - Bootstrap NixOS on the server
+   - Configure mail services, webmail, sync engine, and backups
+
+4. **Access your services** after deploy completes:
+   - Webmail: `https://webmail.<your-domain>`
+   - Rspamd UI: `https://rspamd.<your-domain>`
+   - IMAP/SMTP: `mail.<your-domain>`
+</Steps>
+
+Choose a deploy method from the sidebar to continue with detailed instructions.

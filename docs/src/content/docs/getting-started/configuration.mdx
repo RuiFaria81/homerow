@@ -1,0 +1,81 @@
+---
+title: Configuration
+description: Reference for all config.env variables.
+---
+
+All configuration lives in `config.env` at the repository root. This file is never committed to git.
+
+## User Inputs
+
+| Variable | Required | Purpose | Default |
+|----------|----------|---------|---------|
+| `DOMAIN` | Yes | Base domain for mail/webmail/rspamd DNS and certificates | — |
+| `EMAIL` | No | Admin mailbox/login email | `admin@<DOMAIN>` |
+| `MAIL_PASSWORD` | Yes | Mail admin password for mailbox/auth bootstrap | — |
+| `RESTIC_PASSWORD` | Yes | Encryption password for backups | — |
+| `SSH_PRIVATE_KEY` | No | SSH private key content (preferred for CI) | — |
+| `ACME_ENV` | No | Certificate environment | `production` |
+| `WEBMAIL_SUBDOMAIN` | No | Webmail host subdomain (must not be `mail`) | `webmail` |
+| `VPS_STACK` | No | VPS provider stack selector | `hetzner` |
+| `DNS_STACK` | No | DNS provider stack selector | `cloudflare` |
+| `STORAGE_STACK` | No | Storage provider stack selector | `hetzner-object-storage` |
+| `TF_STATE_BUCKET_NAME` | No | Bucket name for Terraform remote state | `mail-tfstate-<domain>` |
+| `TF_STATE_PREFIX` | No | Key prefix inside the state bucket | `<domain>` |
+
+## Provider Variables
+
+These are required only for the selected provider stacks.
+
+### VPS (`hetzner`)
+
+| Variable | Required | Purpose | Default |
+|----------|----------|---------|---------|
+| `HCLOUD_TOKEN` | Yes | Hetzner Cloud API token | — |
+| `HETZNER_SERVER_TYPE` | No | Server plan/type | `cx23` |
+| `HETZNER_LOCATION` | No | Datacenter region | `nbg1` |
+| `HETZNER_REUSE_EXISTING_SERVER` | No | Reuse existing `mail-server` | `true` |
+
+### DNS (`cloudflare`)
+
+| Variable | Required | Purpose |
+|----------|----------|---------|
+| `CLOUDFLARE_TOKEN` | Yes | Cloudflare API token |
+| `CLOUDFLARE_ZONE_ID` | Yes | Zone ID for your domain |
+
+### Storage (`hetzner-object-storage`)
+
+| Variable | Required | Purpose | Default |
+|----------|----------|---------|---------|
+| `S3_ACCESS_KEY` | Yes | Object storage access key | — |
+| `S3_SECRET_KEY` | Yes | Object storage secret key | — |
+| `HETZNER_OBJECT_STORAGE_LOCATION` | No | Storage region | `nbg1` |
+
+## Example config.env
+
+```bash
+DOMAIN=example.com
+EMAIL=admin@example.com
+MAIL_PASSWORD=change-me
+RESTIC_PASSWORD=change-me
+
+HCLOUD_TOKEN=...
+CLOUDFLARE_TOKEN=...
+CLOUDFLARE_ZONE_ID=...
+S3_ACCESS_KEY=...
+S3_SECRET_KEY=...
+
+VPS_STACK=hetzner
+DNS_STACK=cloudflare
+STORAGE_STACK=hetzner-object-storage
+
+ACME_ENV=production
+WEBMAIL_SUBDOMAIN=webmail
+HETZNER_SERVER_TYPE=cx23
+HETZNER_LOCATION=nbg1
+HETZNER_REUSE_EXISTING_SERVER=true
+HETZNER_OBJECT_STORAGE_LOCATION=nbg1
+```
+
+:::caution
+Never commit `config.env` or private keys to version control.
+:::

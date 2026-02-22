@@ -1,0 +1,45 @@
+---
+title: Sync Engine
+description: How the IMAP-to-PostgreSQL sync layer works.
+---
+
+## Why a Sync Layer
+
+The webmail frontend does not read directly from IMAP for every screen. Instead, a sync engine keeps a synchronized PostgreSQL copy of mailbox data.
+
+Why this matters:
+
+- IMAP is great as a protocol boundary, but not great as a low-latency UI query backend.
+- Direct IMAP-driven UIs become slow on large folders and repeated navigation.
+- Features like fast counts, threaded views, category-style views, and filtering are much easier with a real database.
+
+The model is similar to modern email providers: IMAP remains the source protocol, while the product experience is served from a local indexed data store that stays in sync.
+
+## How It Works
+
+The sync engine (`sync-engine/`) is a Node.js/TypeScript service that:
+
+1. **Connects to local Dovecot** via IMAP on localhost.
+2. **Backfills** the entire mailbox history on first run (`backfill.ts`).
+3. **Listens for changes** in real-time via IMAP IDLE (`idle-listener.ts`).
+4. **Parses and sanitizes** email content, extracting HTML/plain text and attachment metadata (`parser.ts`).
+5. **Groups messages into threads** using In-Reply-To and References headers (`threading.ts`).
+6. **Writes to PostgreSQL** with indexed columns for fast queries (`db.ts`).
+
+## Database Schema
+
+The PostgreSQL database has four core tables:
+
+- **`accounts`** — IMAP/SMTP credentials and settings.
+- **`folders`** — Mailbox structure (INBOX, Sent, Drafts, etc.) with UIDVALIDITY tracking and sync state.
+- **`messages`** — Individual emails with parsed content, flags, labels, spam scores, and attachment metadata.
+- **`threads`** — Conversation grouping with unread counts, snippets, and participant lists.
+
+Search uses trigram indexes for fast `ILIKE` text queries.
+
+## Sync Modes
+
+- **Initial backfill** — imports entire mailbox history when the service first starts.
+- **Incremental sync** — only fetches new or changed messages using IMAP UIDs.
+- **Real-time updates** — IMAP IDLE listener triggers immediate sync on new mail arrival.
+- **UID validity tracking** — handles IMAP UID resets gracefully (`uid-validity.ts`).

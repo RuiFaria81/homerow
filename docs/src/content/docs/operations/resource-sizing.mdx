@@ -1,0 +1,31 @@
+---
+title: Resource Sizing
+description: Practical sizing guidelines for your mail server deployment.
+---
+
+## Server Profiles
+
+For a single-account deployment, these are practical starting points:
+
+| Profile | vCPU | RAM | Disk | Notes |
+|---------|------|-----|------|-------|
+| Minimum (test/small mailbox) | 2 | 4 GB | 40-60 GB SSD | Works for low traffic and light imports |
+| Recommended (daily personal use) | 2-4 | 8 GB | 80-160 GB SSD | Smoother indexing, sync, and webmail |
+| Heavy import / large history | 4+ | 8-16 GB | 200+ GB SSD | Big Gmail Takeout imports and long retention |
+
+## Storage Planning
+
+- **Local VPS disk** stores mailboxes, database, attachments, and runtime state.
+- **Backup storage** is separate object storage; size it at least to your expected mailbox footprint, with headroom for retention snapshots.
+
+If you are unsure, start with the recommended profile and increase disk first as mailbox history grows.
+
+## Customizing Resources
+
+You can customize sizing directly in the provider stack modules:
+
+| Setting | File |
+|---------|------|
+| VPS sizing | `infra/vps/hetzner/main.tf` |
+| DNS records | `infra/dns/cloudflare/main.tf` |
+| Backup storage | `infra/storage/hetzner-object-storage/main.tf` |

@@ -1,0 +1,46 @@
+---
+title: Adding Providers
+description: How to add support for new VPS, DNS, or storage providers.
+---
+
+Provider pull requests are welcome. Each infrastructure category (VPS, DNS, Storage) can have multiple provider stacks.
+
+## Steps to Add a Provider
+
+1. **Create the stack** under the appropriate category folder:
+   ```
+   infra/vps/<provider-name>/main.tf
+   infra/dns/<provider-name>/main.tf
+   infra/storage/<provider-name>/main.tf
+   ```
+
+2. **Implement resources** directly in that stack root. Follow the same output conventions:
+   - VPS stacks must output `server_ip` (public IPv4 address)
+   - Storage stacks must output `s3_bucket_url` (backup repo URL)
+   - DNS stacks receive `mail_server_ipv4` as input
+
+3. **Extend `scripts/install.sh`**:
+   - Add stack to the selector validation `case` block
+   - Add variable prompts/validation for the new provider
+   - Add per-stack `terraform.tfvars` generation
+
+4. **Add tests** in `infra/tests/provider-selection-test.sh` with positive and negative plan checks for the new stack.
+
+5. **Update documentation**:
+   - Add the stack name, required secrets, and optional variables to the [Providers Reference](/infrastructure/providers/)
+
+## Design Principles
+
+- Growth is **additive**: new VPS + new DNS + new storage, not combinatorial.
+- Each stack only initializes the providers it needs.
+- Stacks are self-contained under their category folder.
+
+## Testing
+
+Run the existing test suite to verify your changes don't break other stacks:
+
+```bash
+bash infra/tests/provider-selection-test.sh
+bash infra/tests/deploy-from-config-test.sh
+bash infra/tests/project-cli-test.sh
+```

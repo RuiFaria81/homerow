@@ -1,0 +1,35 @@
+---
+title: Terraform State
+description: How Terraform state is managed across deploy methods.
+---
+
+## How State Works
+
+This project keeps Terraform state in remote object storage for every deploy method (local Nix, Docker/Podman, and GitHub Actions).
+
+Terraform state is the source of truth for what was created, so it must persist between runs to keep plans, updates, and destroy operations reliable.
+
+## State Setup
+
+At deploy start, `scripts/install.sh` runs the `infra/terraform-state/<stack>` setup and creates the state bucket if needed (or reuses it if it already exists).
+
+After that, the VPS, DNS, and storage stacks initialize Terraform with that remote backend.
+
+## State Location
+
+By default, state is stored in bucket `mail-tfstate-<domain>`, with separate keys per stack under `TF_STATE_PREFIX` (default: `<domain>`):
+
+- `vps-<stack>.tfstate`
+- `dns-<stack>.tfstate`
+- `storage-<stack>.tfstate`
+
+## Why Remote State
+
+Remote storage avoids runner-local state loss in CI environments, where filesystem state is ephemeral by design. All three deploy methods (GitHub Actions, Docker, local Nix) share the same remote state.
+
+## Best Practices
+
+- Keep state files out of git (`terraform.tfstate`, `*.tfstate.backup`).
+- Keep the Terraform state bucket separate from the backups bucket.
+- If you need a fresh VPS (e.g., after key regeneration), set `HETZNER_REUSE_EXISTING_SERVER=false`.
+- For unified key management across local and CI, use `SSH_PRIVATE_KEY` (content).

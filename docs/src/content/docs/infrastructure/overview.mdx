@@ -1,0 +1,63 @@
+---
+title: Infrastructure Overview
+description: How Terraform stacks are organized and how deploy orchestrates them.
+---
+
+## Stack Organization
+
+Terraform is split by service category so each stack only initializes the providers it needs:
+
+- `infra/vps/<stack>` — server provisioning
+- `infra/dns/<stack>` — DNS record management
+- `infra/storage/<stack>` — backup object storage
+- `infra/terraform-state/<stack>` — remote state bucket setup
+
+### Current Stacks
+
+| Category | Stack | Path |
+|----------|-------|------|
+| VPS | `hetzner` | `infra/vps/hetzner` |
+| DNS | `cloudflare` | `infra/dns/cloudflare` |
+| Storage | `hetzner-object-storage` | `infra/storage/hetzner-object-storage` |
+| Terraform state | `hetzner-object-storage` | `infra/terraform-state/hetzner-object-storage` |
+
+## Deploy Orchestration
+
+`scripts/install.sh` runs stacks in this order:
+
+1. **Set up remote state bucket** — creates or reuses the Terraform state bucket.
+2. **Apply VPS stack** — provisions the server, reads `server_ip`.
+3. **Apply DNS stack** — creates A, MX, SPF, DMARC records using `mail_server_ipv4=server_ip`.
+4. **Apply Storage stack** — creates backup bucket, reads `s3_bucket_url`.
+5. **Deploy NixOS** — bootstraps or updates the server configuration.
+
+## What Gets Created
+
+On the **infrastructure** side:
+
+- One VPS (mail host)
+- DNS records for `mail.<domain>`, `webmail.<domain>`, `rspamd.<domain>`
+- One object storage bucket for backups
+
+On the **server** side (NixOS):
+
+- Postfix + Dovecot mail services
+- ACME/Let's Encrypt certificates
+- Rspamd spam filtering + web UI
+- nginx reverse proxy and TLS termination
+- PostgreSQL database
+- Sync engine service
+- Webmail service
+- Scheduled encrypted restic backups
+
+## Selecting Stacks
+
+Set these variables in `config.env`:
+
+```bash
+VPS_STACK=hetzner
+DNS_STACK=cloudflare
+STORAGE_STACK=hetzner-object-storage
+```
+
+If unset, these are the defaults.

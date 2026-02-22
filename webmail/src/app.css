@@ -1,0 +1,353 @@
+/* ─── DM Sans Font ─── */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is([data-kb-theme="dark"] *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+}
+
+:root {
+  --radius: 0.625rem;
+  --font-ui: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Light theme */
+  --background: #f6f8fc;
+  --foreground: #1a1a2e;
+  --card: #ffffff;
+  --card-foreground: #1a1a2e;
+  --popover: #ffffff;
+  --popover-foreground: #1a1a2e;
+  --primary: #1a73e8;
+  --primary-foreground: #ffffff;
+  --secondary: #edf0f4;
+  --secondary-foreground: #1a1a2e;
+  --muted: #edf0f4;
+  --muted-foreground: #5f6368;
+  --accent: #d3e3fd;
+  --accent-foreground: #1a73e8;
+  --destructive: #ea4335;
+  --border: #e4e7eb;
+  --input: #edf0f4;
+  --ring: #1a73e8;
+
+  --sidebar: #ffffff;
+  --sidebar-foreground: #1a1a2e;
+  --sidebar-primary: #1a73e8;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #d3e3fd;
+  --sidebar-accent-foreground: #1a73e8;
+  --sidebar-border: #f0f2f5;
+  --sidebar-ring: #1a73e8;
+
+  --chart-1: #1a73e8;
+  --chart-2: #34a853;
+  --chart-3: #fbbc04;
+  --chart-4: #ea4335;
+  --chart-5: #7c4dff;
+
+  /* Custom tokens */
+  --compose-bg: #c2e7ff;
+  --compose-hover: #a8daf7;
+  --hover-bg: #edf2fc;
+  --active-bg: #d3e3fd;
+  --search-bg: #edf0f4;
+  --text-secondary: #5f6368;
+  --text-muted: #8e9196;
+  --border-light: #f0f2f5;
+}
+
+[data-kb-theme="dark"] {
+  --background: #111827;
+  --foreground: #f0f2f5;
+  --card: #1e293b;
+  --card-foreground: #f0f2f5;
+  --popover: #1e293b;
+  --popover-foreground: #f0f2f5;
+  --primary: #8ab4f8;
+  --primary-foreground: #1a1a2e;
+  --secondary: #1e293b;
+  --secondary-foreground: #f0f2f5;
+  --muted: #374151;
+  --muted-foreground: #9ca3af;
+  --accent: rgba(138,180,248,0.15);
+  --accent-foreground: #8ab4f8;
+  --destructive: #f87171;
+  --border: rgba(255,255,255,0.08);
+  --input: rgba(255,255,255,0.08);
+  --ring: #8ab4f8;
+
+  --sidebar: #1e293b;
+  --sidebar-foreground: #f0f2f5;
+  --sidebar-primary: #8ab4f8;
+  --sidebar-primary-foreground: #1a1a2e;
+  --sidebar-accent: rgba(138,180,248,0.15);
+  --sidebar-accent-foreground: #8ab4f8;
+  --sidebar-border: rgba(255,255,255,0.06);
+  --sidebar-ring: #8ab4f8;
+
+  --compose-bg: rgba(138,180,248,0.2);
+  --compose-hover: rgba(138,180,248,0.3);
+  --hover-bg: rgba(255,255,255,0.05);
+  --active-bg: rgba(138,180,248,0.15);
+  --search-bg: rgba(255,255,255,0.06);
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+  --border-light: rgba(255,255,255,0.04);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-ui);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  pre {
+    font-family: var(--font-ui);
+  }
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* ─── Email row hover actions ─── */
+.email-row .hover-actions {
+  display: none;
+}
+.email-row:hover .hover-actions {
+  display: flex;
+}
+.email-row:hover .email-date-text {
+  visibility: hidden;
+}
+
+/* ─── Compose slide-up ─── */
+@keyframes slideUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.compose-modal-enter {
+  animation: slideUp 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Compose overlay ─── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.96) translateY(12px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.compose-overlay-enter {
+  animation: fadeIn 200ms ease-out;
+}
+
+.compose-panel-enter {
+  animation: scaleIn 250ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─── Reading pane slide ─── */
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.reading-pane-enter {
+  animation: slideInRight 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─── Loading skeleton ─── */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--search-bg) 25%, var(--border-light) 50%, var(--search-bg) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+/* ─── Active email row ─── */
+.email-row-active {
+  background: var(--active-bg) !important;
+  box-shadow: inset 3px 0 0 var(--primary);
+}
+
+/* ─── Gmail-like checkbox ─── */
+.mail-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--text-muted);
+  border-radius: 2px;
+  background: transparent;
+  display: inline-grid;
+  place-content: center;
+  transition: border-color 140ms ease, background-color 140ms ease;
+}
+
+.mail-checkbox:hover {
+  border-color: var(--text-secondary);
+}
+
+.mail-checkbox:checked,
+.mail-checkbox:indeterminate {
+  border-color: var(--primary);
+  background: var(--primary);
+}
+
+.mail-checkbox:checked::before {
+  content: "";
+  width: 5px;
+  height: 9px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) translateY(-1px);
+}
+
+.mail-checkbox:indeterminate::before {
+  content: "";
+  width: 8px;
+  height: 2px;
+  border-radius: 999px;
+  background: #fff;
+}
+
+
+/* ─── TipTap Editor ─── */
+.tiptap-content {
+  font-family: var(--font-ui);
+}
+
+.tiptap-content p {
+  margin: 0 0 0.5em;
+}
+
+.tiptap-content p:last-child {
+  margin-bottom: 0;
+}
+
+.tiptap-content h1,
+.tiptap-content h2,
+.tiptap-content h3 {
+  margin: 0.8em 0 0.4em;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.tiptap-content h1 { font-size: 1.5em; }
+.tiptap-content h2 { font-size: 1.25em; }
+.tiptap-content h3 { font-size: 1.1em; }
+
+.tiptap-content ul,
+.tiptap-content ol {
+  margin: 0.4em 0;
+  padding-left: 1.5em;
+}
+
+.tiptap-content li {
+  margin: 0.15em 0;
+}
+
+.tiptap-content blockquote {
+  margin: 0.5em 0;
+  padding-left: 1em;
+  border-left: 3px solid var(--border);
+  color: var(--text-secondary);
+}
+
+.tiptap-content pre {
+  background: var(--search-bg);
+  border-radius: 6px;
+  padding: 0.75em 1em;
+  overflow-x: auto;
+  margin: 0.5em 0;
+  font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace;
+  font-size: 0.9em;
+}
+
+.tiptap-content code {
+  background: var(--search-bg);
+  border-radius: 3px;
+  padding: 0.15em 0.3em;
+  font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace;
+  font-size: 0.9em;
+}
+
+.tiptap-content pre code {
+  background: none;
+  padding: 0;
+}
+
+.tiptap-content hr {
+  border: none;
+  border-top: 1px solid var(--border-light);
+  margin: 1em 0;
+}
+
+.tiptap-content a {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+/* Placeholder */
+.tiptap-content p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: var(--text-muted);
+  pointer-events: none;
+  height: 0;
+}

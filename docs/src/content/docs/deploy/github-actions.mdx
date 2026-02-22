@@ -1,0 +1,56 @@
+---
+title: Deploy with GitHub Actions
+description: Deploy your mail server using GitHub Actions CI/CD.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Use this method if you prefer running deploy from GitHub instead of your local machine.
+
+<Steps>
+1. **Fork the repository** on GitHub.
+
+2. **Set repository secrets** in your fork with the same variable names from the [Configuration](/getting-started/configuration/) reference, including `SSH_PRIVATE_KEY`.
+
+3. **Run the workflow** — go to Actions and run `Deploy Mail Server`.
+</Steps>
+
+## Easier Secret Setup
+
+Instead of manually adding each secret in the GitHub UI, you can push them from a local `config.env`:
+
+<Steps>
+1. **Clone your fork** locally.
+
+2. **Create `config.env`** in the repo root (see [Configuration](/getting-started/configuration/) for the format).
+
+3. **Configure your SSH key** — reuse an existing key or generate a new one:
+   ```bash
+   ssh-keygen -t ed25519 -f ~/.ssh/homerow_ed25519 -N ""
+   ```
+
+4. **Push secrets** to your fork:
+   ```bash
+   ./hrow push-secrets --repo <owner/repo> --ssh-key <path/to/private_key>
+   ```
+
+   Example with a dedicated key:
+   ```bash
+   ./hrow push-secrets --repo <owner/repo> --ssh-key ~/.ssh/homerow_ed25519
+   ```
+
+   Example with your default key:
+   ```bash
+   ./hrow push-secrets --repo <owner/repo> --ssh-key ~/.ssh/id_ed25519
+   ```
+</Steps>
+
+This requires GitHub CLI (`gh`) installed and authenticated (`gh auth login`).
+
+:::note
+On first deploy, the workflow sets up the remote Terraform state bucket, then stores stack state remotely for all future runs.
+:::
+
+## SSH Key
+
+Deploy always needs an SSH key. The preferred input is `SSH_PRIVATE_KEY` (key content as a secret). This key is used for deploy/bootstrap and for later SSH admin access to your server.

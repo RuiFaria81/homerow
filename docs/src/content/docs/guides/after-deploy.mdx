@@ -1,0 +1,47 @@
+---
+title: After Deploy
+description: What's ready after a successful deployment and next steps.
+---
+
+Your deploy finishes with a working mail platform, but first-send deliverability still depends on post-deploy checks.
+
+## What You Already Have
+
+- **Webmail UI** at `https://<WEBMAIL_SUBDOMAIN>.<domain>` (default `https://webmail.<domain>`)
+- **Mail host** at `mail.<domain>` (IMAP/SMTP services)
+- **Rspamd UI** at `https://rspamd.<domain>`
+- **Login credentials**: the `EMAIL` + `MAIL_PASSWORD` from your `config.env`
+- **DNS records**: A, MX, SPF, DMARC created by the infrastructure stack
+- **TLS certificates**: auto-provisioned via ACME/Let's Encrypt
+- **Backups**: scheduled daily encrypted restic backups
+- **Sync engine**: running and syncing mailbox data to PostgreSQL
+
+## Webmail Features
+
+The webmail service includes:
+
+- Threaded conversation view
+- Compose with rich text editor
+- Labels and categories
+- Keyboard shortcuts and command palette
+- Spam controls
+- Contact management
+- 2FA (TOTP) authentication
+- Gmail Takeout import support
+
+## Next Steps
+
+1. **Test deliverability** — send a test email to verify SMTP works. If on Hetzner, check the [Hetzner Post-Install Guide](/guides/hetzner-post-install/).
+
+2. **Import existing mail** — if migrating from Gmail, see the [Gmail Migration Guide](/guides/gmail-migration/).
+
+3. **SSH into your server** for maintenance:
+   ```bash
+   ./hrow ssh
+   ```
+
+4. **Monitor services** — check systemd service status on the server:
+   ```bash
+   systemctl status postfix dovecot rspamd
+   systemctl status sync-engine webmail
+   ```

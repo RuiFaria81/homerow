@@ -1,0 +1,67 @@
+---
+title: Providers Reference
+description: Required secrets and variables for each infrastructure provider.
+---
+
+## Why Infrastructure Is Split
+
+Deployment is split into three components:
+
+1. **VPS** — creates the server where NixOS and mail/webmail services run. Must output a public IPv4 address (`server_ip`).
+2. **DNS** — creates DNS records so your domain points to the VPS. Receives `mail_server_ipv4` from the VPS stack.
+3. **Storage** — creates object storage for encrypted restic backups. Must output backup repo URL (`s3_bucket_url`).
+
+This separation keeps provider growth additive. You can add new VPS, DNS, or Storage stacks independently.
+
+## Required Secrets by Stack
+
+### VPS (`hetzner`)
+
+| Variable | Required | Purpose | Default |
+|----------|----------|---------|---------|
+| `HCLOUD_TOKEN` | Yes | Hetzner Cloud API token | — |
+| `HETZNER_SERVER_TYPE` | No | Server plan/type | `cx23` |
+| `HETZNER_LOCATION` | No | Datacenter region | `nbg1` |
+| `HETZNER_REUSE_EXISTING_SERVER` | No | Auto-reuse existing `mail-server` | `true` |
+| `HETZNER_EXISTING_SSH_KEY_ID` | No | Reuse a Hetzner SSH key instead of creating `admin_key` | — |
+| `HETZNER_EXISTING_SERVER_ID` | No | Reuse an existing server ID | — |
+| `HETZNER_EXISTING_SERVER_IPV4` | No | IP of existing server | — |
+
+### DNS (`cloudflare`)
+
+| Variable | Required | Purpose |
+|----------|----------|---------|
+| `CLOUDFLARE_TOKEN` | Yes | Cloudflare API token |
+| `CLOUDFLARE_ZONE_ID` | Yes | Zone ID for your domain |
+
+### Storage (`hetzner-object-storage`)
+
+| Variable | Required | Purpose | Default |
+|----------|----------|---------|---------|
+| `S3_ACCESS_KEY` | Yes | Object storage access key | — |
+| `S3_SECRET_KEY` | Yes | Object storage secret key | — |
+| `HETZNER_OBJECT_STORAGE_LOCATION` | No | Storage region | `nbg1` |
+| `BACKUP_BUCKET_NAME` | No | Backup bucket name | `mail-backup-<domain>` |
+| `TF_STATE_BUCKET_NAME` | No | State bucket name | `mail-tfstate-<domain>` |
+| `TF_STATE_PREFIX` | No | State key prefix | `<domain>` |
+
+## Common Secrets (Not Provider-Specific)
+
+| Variable | Required | Purpose | Default |
+|----------|----------|---------|---------|
+| `DOMAIN` | Yes | Base domain | — |
+| `EMAIL` | No | Admin mailbox | `admin@<domain>` |
+| `MAIL_PASSWORD` | Yes | Mail admin password | — |
+| `RESTIC_PASSWORD` | Yes | Backup encryption password | — |
+| `ACME_ENV` | No | Certificate environment | `production` |
+| `WEBMAIL_SUBDOMAIN` | No | Webmail subdomain (must not be `mail`) | `webmail` |
+
+## config.env Organization
+
+A good pattern is to organize `config.env` in three sections:
+
+1. Common deployment values (`DOMAIN`, `EMAIL`, passwords)
+2. Stack selectors (`VPS_STACK`, `DNS_STACK`, `STORAGE_STACK`)
+3. Provider-specific credentials for the selected stacks
+
+If you switch providers in the future, only the provider-specific section changes.

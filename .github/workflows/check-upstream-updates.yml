@@ -1,0 +1,84 @@
+name: Check Upstream Updates
+
+on:
+  schedule:
+    - cron: "0 12 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Compare with upstream
+        id: compare
+        shell: bash
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          UPSTREAM_REPO: ${{ vars.UPSTREAM_REPO }}
+        run: |
+          set -euo pipefail
+          TARGET_UPSTREAM="${UPSTREAM_REPO:-guilhermeprokisch/homerow}"
+          git fetch origin "${DEFAULT_BRANCH}" --quiet
+          git remote add upstream "https://github.com/${TARGET_UPSTREAM}.git"
+          git fetch upstream "${DEFAULT_BRANCH}" --quiet
+          BEHIND_COUNT="$(git rev-list --right-only --count "origin/${DEFAULT_BRANCH}...upstream/${DEFAULT_BRANCH}")"
+          echo "behind=${BEHIND_COUNT}" >> "$GITHUB_OUTPUT"
+          echo "upstream_repo=${TARGET_UPSTREAM}" >> "$GITHUB_OUTPUT"
+          echo "upstream_branch=${DEFAULT_BRANCH}" >> "$GITHUB_OUTPUT"
+
+      - name: Create or update issue when behind
+        if: steps.compare.outputs.behind != '0'
+        uses: actions/github-script@v7
+        env:
+          BEHIND: ${{ steps.compare.outputs.behind }}
+          UPSTREAM_REPO: ${{ steps.compare.outputs.upstream_repo }}
+          UPSTREAM_BRANCH: ${{ steps.compare.outputs.upstream_branch }}
+        with:
+          script: |
+            const title = "Upstream updates available";
+            const body = [
+              "Your fork is behind upstream.",
+              "",
+              `- Upstream: \`${process.env.UPSTREAM_REPO}\``,
+              `- Branch: \`${process.env.UPSTREAM_BRANCH}\``,
+              `- Commits behind: **${process.env.BEHIND}**`,
+              "",
+              "Recommended action:",
+              "1. Fetch upstream changes.",
+              "2. Merge/rebase your default branch.",
+              "3. Re-run deploy after review.",
+            ].join("\n");
+
+            const { owner, repo } = context.repo;
+            const issues = await github.rest.issues.listForRepo({
+              owner,
+              repo,
+              state: "open",
+              per_page: 100,
+            });
+
+            const existing = issues.data.find((issue) => issue.title === title);
+            if (existing) {
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number: existing.number,
+                body,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner,
+                repo,
+                title,
+                body,
+              });
+            }

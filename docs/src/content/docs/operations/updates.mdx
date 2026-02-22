@@ -1,0 +1,32 @@
+---
+title: Updates
+description: How to check for and apply updates to your deployment.
+---
+
+## Version Tracking
+
+- The current project version is in the `VERSION` file at the repository root.
+- Deploy prints a non-blocking update notice when upstream has a newer `v*` tag.
+
+## Fork Update Checks
+
+For forks, set the repository variable `UPSTREAM_REPO` (e.g., `guilhermeprokisch/homerow`) to enable scheduled upstream update checks via GitHub Actions.
+
+The `check-upstream-updates.yml` workflow runs on a schedule and notifies you when new versions are available.
+
+## Applying Updates
+
+To update your deployment after pulling new changes:
+
+1. Pull the latest changes from upstream (or merge them into your fork).
+2. Re-run deploy using your preferred method:
+   ```bash
+   SSH_PRIVATE_KEY="$(cat <path/to/key>)" nix run .#deploy
+   ```
+   Or via Docker:
+   ```bash
+   SSH_PRIVATE_KEY="$(cat <path/to/key>)" ./hrow docker deploy
+   ```
+   Or trigger the GitHub Actions workflow.
+
+The deploy process handles NixOS configuration updates and service restarts automatically.

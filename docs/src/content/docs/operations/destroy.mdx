@@ -1,0 +1,32 @@
+---
+title: Destroy
+description: How to tear down your deployment and stop paying for resources.
+---
+
+Use destroy when you want to fully tear down this deployment and stop paying for the provisioned resources.
+
+## What Destroy Does
+
+`./hrow destroy` will:
+
+- Destroy Terraform-managed storage, DNS, and VPS resources
+- Remove local Terraform state/artifacts
+- Remove local deploy keys and generated settings files
+
+## Running Destroy
+
+```bash
+./hrow destroy
+```
+
+:::danger
+This is destructive. After destroy, your server and mailbox data in that environment are no longer available unless you restore from backups.
+:::
+
+## Before Destroying
+
+Consider:
+
+- **Verify backups** — ensure your restic backups are up to date if you need to restore data later.
+- **Export data** — download any mail or data you want to keep from the webmail interface.
+- **DNS propagation** — after destroy, DNS records are removed and mail delivery will stop.

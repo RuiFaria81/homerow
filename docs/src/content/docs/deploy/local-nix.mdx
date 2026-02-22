@@ -1,0 +1,60 @@
+---
+title: Deploy with Local Nix
+description: Deploy directly using a local Nix installation.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+If you already use Nix (or are on NixOS), you can run deploy directly.
+
+<Steps>
+1. **Clone and enter the repository:**
+   ```bash
+   git clone <repo-url>
+   cd homerow
+   ```
+
+2. **Create `config.env`** in the repo root. See [Configuration](/getting-started/configuration/) for the full format.
+
+3. **Configure your SSH key** — reuse an existing key or generate one:
+   ```bash
+   ssh-keygen -t ed25519 -f ~/.ssh/homerow_ed25519 -N ""
+   ```
+
+4. **Run deploy** (pass key content via `SSH_PRIVATE_KEY`):
+   ```bash
+   SSH_PRIVATE_KEY="$(cat <path/to/private_key>)" nix run .#deploy
+   ```
+
+   Or enter a dev shell first:
+   ```bash
+   nix develop
+   ./scripts/deploy-from-config.sh
+   ```
+
+   Alternative with key path:
+   ```bash
+   DEPLOY_SSH_PRIVATE_KEY_PATH=<path/to/private_key> nix run .#deploy
+   ```
+</Steps>
+
+The dev shell (`devenv.nix`) includes deploy tools like `terraform`, `openssh`, and `git`.
+
+## Project CLI
+
+For a concise interface, use the project CLI:
+
+```bash
+./hrow help
+```
+
+Common commands:
+
+```bash
+./hrow deploy
+./hrow destroy
+./hrow ssh
+./hrow push-secrets --repo <owner/repo>
+./hrow e2e
+./hrow docker deploy
+```

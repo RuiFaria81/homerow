@@ -1,0 +1,20 @@
+FROM nixos/nix:2.24.14
+
+ENV NIX_CONFIG="experimental-features = nix-command flakes"
+ENV PATH="/root/.nix-profile/bin:${PATH}"
+
+RUN NIXPKGS_ALLOW_UNFREE=1 nix profile install --impure --priority 4 \
+  nixpkgs#bash \
+  nixpkgs#coreutils \
+  nixpkgs#findutils \
+  nixpkgs#gawk \
+  nixpkgs#git \
+  nixpkgs#gnugrep \
+  nixpkgs#gnused \
+  nixpkgs#openssh \
+  nixpkgs#perl \
+  nixpkgs#rsync \
+  nixpkgs#terraform \
+  nixpkgs#which
+
+WORKDIR /workspace

@@ -1,0 +1,60 @@
+---
+title: Gmail Migration
+description: Import your Gmail data using Google Takeout.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+This project supports importing Gmail data through Google Takeout archives. Use this guide after your server is already deployed and working.
+
+## What Gets Imported
+
+- Message bodies and metadata from Gmail MBOX exports
+- Folders/labels mapping for mailbox organization
+- Conversation history into the local database and IMAP sync flow
+
+## Steps
+
+<Steps>
+1. **Export from Gmail**
+
+   Go to [Google Takeout](https://takeout.google.com/), select **Mail**, and create the archive (`.tgz`). If your export is split into multiple parts, keep all of them.
+
+2. **Upload the archive**
+
+   From your local machine:
+   ```bash
+   ./scripts/upload-takeout.sh --file /path/to/your-takeout.tgz
+   ```
+
+   To upload and immediately start import:
+   ```bash
+   ./scripts/upload-takeout.sh --file /path/to/your-takeout.tgz --start-import
+   ```
+
+   The script reads auth defaults from `config.env`, or you can pass host/email/password flags directly.
+
+3. **Alternative: start import from webmail**
+
+   You can also start the import from the web interface:
+   - Open **Settings** > **Import**
+   - Select the uploaded archive
+   - Start the job and monitor progress
+
+4. **Verify the result**
+
+   After import:
+   - Check mailbox/folder counts in webmail
+   - Spot-check recent, sent, and archived threads
+   - Confirm labels/categories from Gmail are present
+</Steps>
+
+:::note
+For large archives, initial UI counts can take some time while background sync catches up.
+:::
+
+## Notes
+
+- Import is intended for migration/bootstrap, not continuous Gmail syncing.
+- Keep a backup of your original Takeout files until you verify data integrity.
+- Import multiple split archives one by one.

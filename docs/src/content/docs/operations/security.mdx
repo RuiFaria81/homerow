@@ -1,0 +1,114 @@
+---
+title: Security
+description: Security practices for your mail deployment.
+---
+
+## Security Baseline
+
+This project applies a hardening baseline by default:
+
+- **SSH hardening**:
+  - password and keyboard-interactive auth disabled,
+  - root login is key-only (`prohibit-password`),
+  - forwarding/X11 disabled,
+  - lower auth retry limits.
+- **Brute-force protection**: `fail2ban` enabled for SSH.
+- **Kernel network hardening**: anti-spoofing and redirect/syncookie sysctls.
+- **Cloud perimeter firewall (Hetzner)**:
+  - explicit inbound rules for SSH/web/mail ports,
+  - server attached to a dedicated firewall resource.
+- **PostgreSQL local auth hardening**:
+  - moved from `trust` to `scram-sha-256`,
+  - role password rotation during deploy.
+- **Service isolation**:
+  - systemd sandboxing for custom webmail and sync-engine services (`NoNewPrivileges`, restricted address families, protected system/home, strict umask).
+- **TLS verification**:
+  - removed insecure `NODE_TLS_REJECT_UNAUTHORIZED=0` behavior from production services.
+- **Deploy safety**:
+  - existing Hetzner server/key reuse is explicit-only (no implicit auto-reuse of IDs),
+  - timeouts and progress logs for long deploy phases (SSH wait, Cloudflare lookup/import, Terraform import).
+
+## Operator Notes
+
+- The setup is operator-controlled and can be tightened further without changing project architecture.
+- Mail deliverability settings (SPF/DKIM/DMARC/RDNS) are separate from host hardening controls.
+
+## How To Customize Hardening
+
+### 1. Restrict SSH Source IPs (Recommended)
+
+By default, SSH is allowed from anywhere in the cloud firewall. Restrict it in VPS Terraform variables:
+
+- File: `infra/vps/hetzner/main.tf`
+- Variable: `allowed_ssh_cidrs`
+
+Example:
+
+```hcl
+allowed_ssh_cidrs = ["203.0.113.10/32"]
+```
+
+### 2. Adjust SSH and Fail2ban Policy
+
+Host SSH/fail2ban policy lives in:
+
+- `modules/configuration.nix`
+
+You can tune:
+
+- `services.openssh.settings.*` (for example `PermitRootLogin = "no"` if you run an admin user + sudo),
+- `services.fail2ban.maxretry`,
+- `services.fail2ban.bantime`.
+
+### 3. Tune Systemd Service Sandboxing
+
+Service hardening is in:
+
+- `modules/webmail.nix`
+- `modules/sync-engine.nix`
+
+If a future feature needs broader access, tune serviceConfig keys like:
+
+- `ProtectSystem`,
+- `ProtectHome`,
+- `RestrictAddressFamilies`,
+- `PrivateTmp`.
+
+### 4. Tune Deploy Timeouts and Diagnostics
+
+Deploy behavior is in:
+
+- `scripts/install.sh`
+
+You can override:
+
+- `SSH_READY_TIMEOUT_SECONDS`
+- `CLOUDFLARE_API_CONNECT_TIMEOUT_SECONDS`
+- `CLOUDFLARE_API_MAX_TIME_SECONDS`
+- `CLOUDFLARE_API_RETRIES`
+- `TERRAFORM_IMPORT_TIMEOUT_SECONDS`
+
+These are useful for slower runners or provider API jitter.
+
+## Configuration Security
+
+- Never commit `config.env`, private keys, or provider secrets.
+- Rotate credentials regularly.
+- Use `ACME_ENV=production` for browser-trusted certificates.
+
+## Terraform State
+
+- Terraform state is stored remotely in S3-compatible object storage.
+- Keep state bucket separate from backups bucket.
+- Do not commit `terraform.tfstate` files.
+
+## Backups
+
+- **Encrypted daily backups** via restic to S3-compatible object storage.
+- Backed up: `/var/vmail` (mailboxes), `/var/lib/acme` (certificates), `/var/lib/dhparams`.
+- **PostgreSQL backups**: `mailsync` dumps are generated at `02:45` into `/var/backup/postgresql/<timestamp>/` and included in the daily restic snapshot.
+- Schedule: daily at 3 AM with 7-day, 4-week, 6-month retention.
+
+## Credential Rotation
+
+When `MAIL_PASSWORD` changes and you redeploy, password-derived runtime credentials are rotated by the deployment flow.

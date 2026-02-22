@@ -1,0 +1,49 @@
+---
+title: Deploy with Docker / Podman
+description: Deploy without needing a local Nix installation.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+If you don't want to install Nix locally, this is the simplest path.
+
+<Steps>
+1. **Clone and enter the repository:**
+   ```bash
+   git clone <repo-url>
+   cd homerow
+   ```
+
+2. **Create `config.env`** in the repo root. See [Configuration](/getting-started/configuration/) for the full reference. Example:
+   ```bash
+   DOMAIN=example.com
+   EMAIL=admin@example.com
+   MAIL_PASSWORD=change-me
+   RESTIC_PASSWORD=change-me
+
+   HCLOUD_TOKEN=...
+   CLOUDFLARE_TOKEN=...
+   CLOUDFLARE_ZONE_ID=...
+   S3_ACCESS_KEY=...
+   S3_SECRET_KEY=...
+   ```
+
+3. **Configure your SSH key** — reuse an existing key or generate a dedicated one:
+   ```bash
+   ssh-keygen -t ed25519 -f ~/.ssh/homerow_ed25519 -N ""
+   ```
+
+4. **Make sure Docker or Podman is installed.**
+
+5. **Run deploy** (pass key content via `SSH_PRIVATE_KEY`):
+   ```bash
+   SSH_PRIVATE_KEY="$(cat <path/to/private_key>)" ./hrow docker deploy
+   ```
+
+   Alternative with key path:
+   ```bash
+   DEPLOY_SSH_PRIVATE_KEY_PATH=<path/to/private_key> ./hrow docker deploy
+   ```
+</Steps>
+
+On the first run, the deploy image is built automatically before starting the full deployment.

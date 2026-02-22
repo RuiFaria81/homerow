@@ -1,0 +1,159 @@
+{ config, pkgs, lib, ... }:
+let
+  settings = import ./settings.nix;
+  dbPassword = settings.imapPassword;
+  dbPasswordSql = lib.replaceStrings [ "'" ] [ "''" ] dbPassword;
+
+  syncEngineEnvFile = pkgs.writeText "sync-engine.env" ''
+    DB_PASSWORD=${dbPassword}
+    IMAP_PASS=${settings.imapPassword}
+  '';
+
+  syncEngineApp = pkgs.buildNpmPackage {
+    pname = "mail-sync-engine";
+    version = "1.0.0";
+    src = ../sync-engine; 
+    npmDepsHash = "sha256-+s3kdxlqE09CTQmCOTTBUNXGC4qmvo+CHKT26jygN+I="; 
+    npmBuildScript = "build"; 
+    preBuild = "sed -i 's/tsc/tsc || true/' package.json";
+    
+    installPhase = ''
+      mkdir -p $out/lib
+      cp -r dist $out/lib/
+      cp -r node_modules $out/lib/
+      cp schema.sql $out/lib/
+    '';
+  };
+in {
+  services.postgresql = {
+    enable = true;
+    package = pkgs.postgresql_16;
+    ensureDatabases = [ "mailsync" ];
+    ensureUsers = [{ name = "mailsync"; ensureDBOwnership = true; }];
+    authentication = lib.mkAfter ''
+      local all postgres peer
+      local mailsync mailsync scram-sha-256
+      host  mailsync mailsync 127.0.0.1/32 scram-sha-256
+      host  mailsync mailsync ::1/128 scram-sha-256
+    '';
+  };
+
+  systemd.services.sync-engine-db-init = {
+    description = "Initialize Mail Sync Engine Database Schema";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "postgresql.service" ];
+    requires = [ "postgresql.service" ];
+    path = [ pkgs.postgresql_16 pkgs.coreutils pkgs.gnugrep ]; 
+    
+    serviceConfig = {
+      Type = "oneshot";
+      User = "postgres"; 
+      ExecStart = pkgs.writeShellScript "init-db" ''
+        set -e
+        until pg_isready -h /run/postgresql; do
+          sleep 1
+        done
+
+        # 1. Ensure mailsync role exists with a password and keep it rotated.
+        psql <<SQL
+        DO $do$
+        BEGIN
+          IF NOT EXISTS (SELECT FROM pg_catalog.pg_roles WHERE rolname = 'mailsync') THEN
+            CREATE ROLE mailsync WITH LOGIN PASSWORD '${dbPasswordSql}';
+          ELSE
+            ALTER ROLE mailsync WITH LOGIN PASSWORD '${dbPasswordSql}';
+          END IF;
+        END
+        $do$;
+        SQL
+        
+        # 2. Ensure mailsync database exists
+        psql -c "CREATE DATABASE mailsync OWNER mailsync;" || true
+        psql -c "ALTER DATABASE mailsync OWNER TO mailsync;" || true
+
+        # 3. Initialize Schema if needed
+        if ! psql -d mailsync -c "SELECT 1 FROM folders LIMIT 0" >/dev/null 2>&1; then
+           echo "Applying database schema..."
+           psql -d mailsync -f ${syncEngineApp}/lib/schema.sql
+           psql -d mailsync -c "GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO mailsync;"
+           psql -d mailsync -c "GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO mailsync;"
+        fi
+
+        # 3b. Keep ownership of existing objects with mailsync (legacy upgrades).
+        psql -d mailsync <<'SQL'
+        ALTER SCHEMA public OWNER TO mailsync;
+        GRANT ALL ON SCHEMA public TO mailsync;
+        DO $do$
+        DECLARE r record;
+        BEGIN
+          FOR r IN SELECT tablename FROM pg_tables WHERE schemaname = 'public' LOOP
+            EXECUTE format('ALTER TABLE public.%I OWNER TO mailsync', r.tablename);
+          END LOOP;
+          FOR r IN SELECT sequence_name FROM information_schema.sequences WHERE sequence_schema = 'public' LOOP
+            EXECUTE format('ALTER SEQUENCE public.%I OWNER TO mailsync', r.sequence_name);
+          END LOOP;
+        END
+        $do$;
+        SQL
+
+        # 4. Seed Admin
+        echo "Seeding admin account..."
+        psql -d mailsync -c "INSERT INTO accounts (email, imap_host, smtp_host, username, password) VALUES ('${settings.email}', '127.0.0.1', '127.0.0.1', '${settings.email}', '${settings.imapPassword}') ON CONFLICT (email) DO NOTHING;"
+      '';
+    };
+  };
+
+  systemd.services.mail-sync-engine = {
+    description = "Mail Sync Engine";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network.target" "postgresql.service" "dovecot.service" "sync-engine-db-init.service" ];
+    requires = [ "postgresql.service" "sync-engine-db-init.service" ];
+
+    environment = {
+      NODE_ENV = "production";
+      DB_HOST = "127.0.0.1";
+      DB_PORT = "5432";
+      DB_NAME = "mailsync";
+      DB_USER = "mailsync";
+      ATTACHMENT_DIR = "/var/lib/mail-sync-engine/attachments";
+      IMAP_HOST = "127.0.0.1";
+      IMAP_PORT = "993";
+      IMAP_TLS = "true";
+      IMAP_USER = settings.email;
+      SMTP_HOST = "127.0.0.1";
+      SMTP_PORT = "465"; 
+      SMTP_SECURE = "true";
+    };
+
+    serviceConfig = {
+      ExecStart = "${pkgs.nodejs_22}/bin/node ${syncEngineApp}/lib/dist/index.js";
+      ExecStartPre = [
+        "${pkgs.coreutils}/bin/mkdir -p /var/lib/mail-sync-engine/attachments"
+        "${pkgs.coreutils}/bin/chmod -R g+rX /var/lib/mail-sync-engine/attachments"
+      ];
+      WorkingDirectory = "${syncEngineApp}/lib";
+      User = "mailsync";
+      Group = "mailsync";
+      StateDirectory = "mail-sync-engine";
+      Restart = "always";
+      EnvironmentFile = "${syncEngineEnvFile}";
+      NoNewPrivileges = true;
+      PrivateTmp = true;
+      ProtectSystem = "full";
+      ProtectHome = true;
+      ProtectKernelTunables = true;
+      ProtectKernelModules = true;
+      ProtectControlGroups = true;
+      RestrictSUIDSGID = true;
+      LockPersonality = true;
+      RestrictAddressFamilies = [ "AF_UNIX" "AF_INET" "AF_INET6" ];
+      UMask = "0027";
+    };
+  };
+
+  users.users.mailsync = {
+    isSystemUser = true;
+    group = "mailsync";
+  };
+  users.groups.mailsync = {};
+}

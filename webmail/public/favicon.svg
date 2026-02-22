@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Nix Mail">
+  <rect width="64" height="64" rx="14" fill="#0f766e" />
+  <path d="M14 20h36c2.2 0 4 1.8 4 4v16c0 2.2-1.8 4-4 4H14c-2.2 0-4-1.8-4-4V24c0-2.2 1.8-4 4-4Z" fill="#f8fafc" />
+  <path d="m12 24 20 14L52 24" fill="none" stroke="#0f766e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

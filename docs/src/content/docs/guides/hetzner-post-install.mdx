@@ -1,0 +1,76 @@
+---
+title: Hetzner Post-Install
+description: Post-deploy steps for Hetzner Cloud to ensure mail deliverability.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+If you deploy on Hetzner Cloud, you may hit two common issues before outbound mail is fully reliable:
+
+1. Outbound SMTP ports `25` and `465` are blocked by default.
+2. A fresh cloud IP can inherit poor sender reputation from a previous tenant.
+
+## 1. Understand the SMTP Port Policy
+
+Hetzner blocks outbound traffic on ports `25` and `465` by default for cloud servers. Your first SMTP attempts from `mail.<domain>` may time out even when deploy was successful.
+
+Before requesting an unblock, verify Hetzner's current eligibility and process in their official FAQ:
+- [Why can I only send mails to specific destinations?](https://docs.hetzner.com/cloud/servers/faq/#why-can-i-only-send-mails-to-specific-destinations)
+- [How do I remove the email traffic block on port 25?](https://docs.hetzner.com/cloud/servers/faq/#how-do-i-remove-the-email-traffic-block-on-port-25)
+
+Common requirements at time of writing: account older than 1 month, first invoice paid, and a limit request with clear anti-spam posture.
+
+## 2. Request Port Unblock
+
+<Steps>
+1. Open **Hetzner Cloud Console**.
+2. Go to **Limits** > **Request change** > **Limit increase**.
+3. Use a clear subject like `Unblock Ports 25/465 for Mail Server`.
+4. Include your domain, host, use case, and DNS protections.
+</Steps>
+
+Example request:
+
+```text
+Hello Hetzner Team,
+
+I run a self-hosted mail stack for transactional and personal mailbox traffic on:
+- domain: <your-domain>
+- mail host: mail.<your-domain>
+
+I have configured SPF, DKIM, and DMARC, and set reverse DNS for the mail host.
+Please unblock outbound traffic on ports 25 and 465 for this server.
+
+Thank you.
+```
+
+## 3. Validate with Mail-Tester
+
+Use [Mail-Tester](https://www.mail-tester.com/) as a baseline external score:
+
+<Steps>
+1. Open Mail-Tester and copy the temporary address shown.
+2. Log into your webmail (`https://<WEBMAIL_SUBDOMAIN>.<domain>`).
+3. Compose and send an email to that address with realistic content (not just "test" or "hello").
+4. Click **Check your score**.
+</Steps>
+
+## 4. Barracuda Blocklist
+
+A common outcome on recycled cloud IPs is a near-perfect score with a blocklist hit. If Mail-Tester reports a Barracuda listing:
+
+1. Open the [Barracuda removal request](https://www.barracudacentral.org/rbl/removal-request).
+2. Submit your server IP and contact info.
+3. Explain this is a newly rented IP with clean configuration and enforced DNS auth.
+
+## 5. Post-Unblock Smoke Test
+
+After Hetzner approves and blocklist status is clean:
+
+- Send to a Gmail address and an Outlook address.
+- Verify: accepted by remote server, not landing in spam, SPF/DKIM/DMARC pass in message headers.
+- Re-run Mail-Tester after each major DNS or server config change.
+
+:::tip
+If your score is still low after DNS/auth is correct, warm up sending volume gradually instead of high-volume bursts on day one.
+:::

@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+SCRIPT="${ROOT_DIR}/scripts/push-gh-secrets.sh"
+
+TMP_DIR="$(mktemp -d)"
+trap 'rm -rf "${TMP_DIR}"' EXIT
+
+BIN_DIR="${TMP_DIR}/bin"
+LOG_FILE="${TMP_DIR}/gh.log"
+mkdir -p "${BIN_DIR}"
+
+cat > "${BIN_DIR}/gh" <<EOF
+#!/usr/bin/env bash
+set -euo pipefail
+if [ "\$1" = "auth" ] && [ "\$2" = "status" ]; then
+  exit 0
+fi
+if [ "\$1" = "secret" ] && [ "\$2" = "set" ]; then
+  name="\$3"
+  echo "set:\${name}" >> "${LOG_FILE}"
+  cat >/dev/null || true
+  exit 0
+fi
+exit 1
+EOF
+chmod +x "${BIN_DIR}/gh"
+
+CONFIG_FILE="${TMP_DIR}/config.env"
+cat > "${CONFIG_FILE}" <<'EOF'
+DOMAIN=example.com
+EMAIL=admin@example.com
+MAIL_PASSWORD=mail-secret
+RESTIC_PASSWORD=backup-secret
+HCLOUD_TOKEN=hc-token
+CLOUDFLARE_TOKEN=cf-token
+CLOUDFLARE_ZONE_ID=cf-zone
+S3_ACCESS_KEY=s3-key
+S3_SECRET_KEY=s3-secret
+ACME_ENV=production
+VPS_STACK=hetzner
+DNS_STACK=cloudflare
+STORAGE_STACK=hetzner-object-storage
+HETZNER_SERVER_TYPE=cx23
+HETZNER_LOCATION=nbg1
+HETZNER_REUSE_EXISTING_SERVER=false
+HETZNER_OBJECT_STORAGE_LOCATION=nbg1
+WEBMAIL_SUBDOMAIN=mailbox
+TF_STATE_BUCKET_NAME=mail-state-example-com
+TF_STATE_PREFIX=prod/example.com
+SEED_INBOX=true
+SEED_INBOX_COUNT=25
+SEED_INBOX_INCLUDE_CATEGORIES=false
+EOF
+
+SSH_KEY_PATH="${TMP_DIR}/id_ed25519"
+cat > "${SSH_KEY_PATH}" <<'EOF'
+-----BEGIN OPENSSH PRIVATE KEY-----
+test-private-key
+-----END OPENSSH PRIVATE KEY-----
+EOF
+
+PATH="${BIN_DIR}:${PATH}" "${SCRIPT}" --config "${CONFIG_FILE}" --repo "owner/repo" --ssh-key "${SSH_KEY_PATH}" >/dev/null
+
+for name in DOMAIN EMAIL MAIL_PASSWORD RESTIC_PASSWORD HCLOUD_TOKEN CLOUDFLARE_TOKEN CLOUDFLARE_ZONE_ID S3_ACCESS_KEY S3_SECRET_KEY ACME_ENV VPS_STACK DNS_STACK STORAGE_STACK HETZNER_SERVER_TYPE HETZNER_LOCATION HETZNER_REUSE_EXISTING_SERVER HETZNER_OBJECT_STORAGE_LOCATION WEBMAIL_SUBDOMAIN TF_STATE_BUCKET_NAME TF_STATE_PREFIX SEED_INBOX SEED_INBOX_COUNT SEED_INBOX_INCLUDE_CATEGORIES SSH_PRIVATE_KEY; do
+  grep -q "set:${name}" "${LOG_FILE}"
+done
+
+echo "push-gh-secrets test: ok"
