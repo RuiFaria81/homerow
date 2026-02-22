@@ -3,6 +3,7 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 INSTALL_SCRIPT="${ROOT_DIR}/scripts/install.sh"
+CONFIGURATION_NIX="${ROOT_DIR}/modules/configuration.nix"
 
 if ! grep -Fq 'TF_STATE_STACK_DIR="infra/terraform-state/${TF_STATE_STACK}"' "${INSTALL_SCRIPT}"; then
   echo "expected install.sh to define terraform-state stack directory" >&2
@@ -45,17 +46,32 @@ if grep -Fq 'log "Generating SSH key..."' "${INSTALL_SCRIPT}"; then
 fi
 
 if ! grep -Fq 'WORKSPACE_SSH_PUBLIC_KEY_PATH="$(pwd)/infra/id_ed25519.pub"' "${INSTALL_SCRIPT}"; then
-  echo "expected install.sh to materialize workspace ssh public key path when SSH_PRIVATE_KEY is provided" >&2
+  echo "expected install.sh to define workspace ssh public key path for nix evaluation" >&2
   exit 1
 fi
 
-if ! grep -Fq 'cp "${TEMP_DEPLOY_SSH_PUBLIC_KEY}" "${WORKSPACE_SSH_PUBLIC_KEY_PATH}"' "${INSTALL_SCRIPT}"; then
-  echo "expected install.sh to write workspace ssh public key for Nix evaluation" >&2
+if ! grep -Fq 'cp "${DEPLOY_SSH_PUBLIC_KEY_PATH}" "${WORKSPACE_SSH_PUBLIC_KEY_PATH}"' "${INSTALL_SCRIPT}"; then
+  echo "expected install.sh to always write workspace ssh public key from configured deploy key" >&2
+  exit 1
+fi
+
+if ! grep -Fq 'SSH_AUTHORIZED_KEY="$(cat "${WORKSPACE_SSH_PUBLIC_KEY_PATH}")"' "${INSTALL_SCRIPT}"; then
+  echo "expected install.sh to read workspace ssh public key for settings.nix" >&2
+  exit 1
+fi
+
+if ! grep -Fq "sshAuthorizedKey = ''" "${INSTALL_SCRIPT}"; then
+  echo "expected install.sh to write sshAuthorizedKey into settings.nix" >&2
   exit 1
 fi
 
 if ! grep -Fq 'ssh_public_key_path = "${DEPLOY_SSH_PUBLIC_KEY_PATH}"' "${INSTALL_SCRIPT}"; then
   echo "expected install.sh to pass configured ssh public key path to terraform vars" >&2
+  exit 1
+fi
+
+if ! grep -Fq 'settings.sshAuthorizedKey' "${CONFIGURATION_NIX}"; then
+  echo "expected configuration.nix to source root authorized key from settings.sshAuthorizedKey" >&2
   exit 1
 fi
 

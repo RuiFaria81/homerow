@@ -1,0 +1,23 @@
+:root {
+  --sl-color-accent-low: #d5ede9;
+  --sl-color-accent: #0f665c;
+  --sl-color-accent-high: #0a433c;
+  --sl-color-text-accent: #0f665c;
+}
+
+:root[data-theme="dark"] {
+  --sl-color-accent-low: #082823;
+  --sl-color-accent: #2fa99a;
+  --sl-color-accent-high: #86d7cc;
+  --sl-color-text-accent: #86d7cc;
+}
+
+.hero {
+  background:
+    radial-gradient(1100px 320px at 50% -220px, color-mix(in oklab, var(--sl-color-accent) 22%, transparent), transparent 70%),
+    var(--sl-color-bg);
+}
+
+[data-has-hero] .site-title {
+  color: var(--sl-color-text-accent);
+}

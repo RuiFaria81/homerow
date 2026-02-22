@@ -58,7 +58,7 @@ in {
   };
   
   users.users.root.openssh.authorizedKeys.keys = [
-    (builtins.readFile ../infra/id_ed25519.pub) 
+    settings.sshAuthorizedKey
   ];
 
   # Prevent inode/space exhaustion on small servers by regularly pruning old
