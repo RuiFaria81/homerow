@@ -226,6 +226,8 @@ test.describe("Requested feature regressions", () => {
 
     const logoButton = page.getByRole("button", { name: "Go to Inbox" });
     await expect(logoButton).toBeVisible();
+    await expect(logoButton).toContainText("Homerow");
+    await expect(logoButton).toContainText("beta");
     await logoButton.click();
     await expect(page).toHaveURL(/\/(?:\?|$)/);
     await expect(page.getByRole("heading", { name: "Inbox" })).toBeVisible();

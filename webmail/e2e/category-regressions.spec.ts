@@ -122,13 +122,13 @@ test.describe("Category regressions", () => {
     await expect(page).toHaveURL(/filter=category%3A/i);
     await expect(page.getByRole("heading", { name: categoryName, exact: true })).toBeVisible();
     await expect.poll(async () => page.title()).toMatch(
-      new RegExp(`^(\\(\\d+\\)\\s)?${escapeRegExp(categoryName)} - Nix Mail$`)
+      new RegExp(`^(\\(\\d+\\)\\s)?${escapeRegExp(categoryName)} - Homerow$`)
     );
 
     await page.getByRole("link", { name: /^Important(?:\s+\d+)?$/ }).first().click();
     await expect(page).toHaveURL(/filter=important/i);
     await expect(page.getByRole("heading", { name: "Important", exact: true })).toBeVisible();
-    await expect.poll(async () => page.title()).toMatch(/^(?:\(\d+\)\s)?Important - Nix Mail$/);
+    await expect.poll(async () => page.title()).toMatch(/^(?:\(\d+\)\s)?Important - Homerow$/);
   });
 
   test("rapid category switching keeps list and total aligned with selected tab", async ({ page }) => {

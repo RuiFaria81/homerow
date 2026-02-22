@@ -8,7 +8,7 @@ export default createHandler(() => (
         <head>
           <meta charset="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <title>Nix Mail</title>
+          <title>Homerow</title>
           <link rel="manifest" href="/manifest.webmanifest" />
           <meta name="theme-color" content="#0f766e" />
           <meta name="mobile-web-app-capable" content="yes" />

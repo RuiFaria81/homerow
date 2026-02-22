@@ -871,7 +871,7 @@ export default function Settings() {
     if (!codes.length) return;
 
     const text = [
-      "Nix Mail backup codes",
+      "Homerow backup codes",
       "",
       ...codes.map((code, index) => `${index + 1}. ${code}`),
       "",
@@ -883,7 +883,7 @@ export default function Settings() {
     const url = URL.createObjectURL(blob);
     const anchor = document.createElement("a");
     anchor.href = url;
-    anchor.download = "nix-mail-backup-codes.txt";
+    anchor.download = "homerow-backup-codes.txt";
     document.body.appendChild(anchor);
     anchor.click();
     anchor.remove();
@@ -1249,7 +1249,7 @@ export default function Settings() {
     try {
       const result = await authClient.twoFactor.enable({
         password: twoFactorPassword(),
-        issuer: "Nix Mail",
+        issuer: "Homerow",
       });
       if (result.error) {
         showToast(result.error.message || "Could not start two-factor setup", "error");

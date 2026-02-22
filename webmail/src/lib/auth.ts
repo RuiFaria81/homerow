@@ -33,7 +33,7 @@ export const auth = betterAuth({
   },
   plugins: [
     twoFactor({
-      issuer: "Nix Mail",
+      issuer: "Homerow",
     }),
   ],
 });

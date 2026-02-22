@@ -1,8 +1,8 @@
 {
   "id": "/",
-  "name": "Nix Mail",
-  "short_name": "Nix Mail",
-  "description": "A modern webmail interface for Nix Mail.",
+  "name": "Homerow",
+  "short_name": "Homerow",
+  "description": "A modern webmail interface for Homerow.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

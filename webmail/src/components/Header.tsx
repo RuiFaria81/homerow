@@ -191,7 +191,7 @@ export default function Header(props: HeaderProps) {
           {props.sidebarCollapsed ? <IconChevronRight size={18} /> : <IconChevronLeft size={18} />}
         </button>
         <button
-          class="flex items-center gap-2.5 border-none bg-transparent rounded-xl px-1.5 py-1 cursor-pointer text-left text-[var(--foreground)] hover:bg-[var(--hover-bg)] transition-colors"
+          class="relative flex items-center gap-2.5 border-none bg-transparent rounded-xl px-1.5 py-1 cursor-pointer text-left text-[var(--foreground)] hover:bg-[var(--hover-bg)] transition-colors"
           title={`Go to Inbox${getActionShortcutHint("gotoInbox")}`}
           aria-label="Go to Inbox"
           onClick={() => {
@@ -199,10 +199,13 @@ export default function Header(props: HeaderProps) {
             navigate("/");
           }}
         >
-          <img src="/favicon.svg" alt="" aria-hidden="true" class="w-9 h-9 rounded-lg object-cover" />
-          <div class="text-xl font-semibold tracking-tight text-[var(--foreground)]">
-            Mail
-            <span class="text-[var(--text-muted)] font-normal text-[13px] ml-1.5 opacity-80">beta</span>
+          <img src="/logo.svg" alt="" aria-hidden="true" class="h-8 w-auto max-w-[40px] object-contain shrink-0" />
+          <div class="flex flex-col leading-none">
+            <span class="text-[9px] font-medium uppercase tracking-[0.08em] text-[var(--text-muted)] opacity-75">Homerow</span>
+            <span class="inline-flex items-baseline gap-1 text-xl font-semibold tracking-tight text-[var(--foreground)]">
+              <span>Mail</span>
+              <span class="text-[9px] font-normal text-[var(--text-muted)] opacity-75">beta</span>
+            </span>
           </div>
         </button>
       </div>

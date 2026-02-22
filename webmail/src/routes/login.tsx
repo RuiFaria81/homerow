@@ -86,11 +86,9 @@ export default function Login() {
     <div class="min-h-screen flex items-center justify-center bg-[var(--background)]">
       <div class="w-full max-w-sm">
         <div class="flex items-center justify-center gap-3 mb-8">
-          <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-[#4285f4] via-[#34a853] to-[#ea4335] flex items-center justify-center text-white font-bold text-lg shadow-sm">
-            M
-          </div>
+          <img src="/logo.svg" alt="" aria-hidden="true" class="h-12 w-auto max-w-[64px] object-contain" />
           <span class="text-2xl font-semibold tracking-tight text-[var(--foreground)]">
-            Nix Mail
+            Homerow
           </span>
         </div>
 

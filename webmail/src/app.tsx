@@ -723,13 +723,13 @@ export default function App() {
             if (typeof document === "undefined") return;
             const context = sectionContext();
             if (!context) {
-              document.title = "Nix Mail";
+              document.title = "Homerow";
               return;
             }
             const fallbackUnread = context.fallbackFolder ? (folderCounts()?.[context.fallbackFolder]?.unread ?? 0) : 0;
             const unread = activeUnreadCount() ?? fallbackUnread;
             const unreadPrefix = unread > 0 ? `(${unread}) ` : "";
-            document.title = `${unreadPrefix}${context.title} - Nix Mail`;
+            document.title = `${unreadPrefix}${context.title} - Homerow`;
           });
 
           const isAuthPage = () => location.pathname === "/login";

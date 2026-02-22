@@ -1,4 +1,4 @@
-const CACHE_VERSION = "nix-mail-v2";
+const CACHE_VERSION = "homerow-v3";
 const SHELL_CACHE = `${CACHE_VERSION}-shell`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 const APP_SHELL = ["/", "/manifest.webmanifest", "/favicon.svg", "/favicon.ico", "/pwa-192.png", "/pwa-512.png"];
