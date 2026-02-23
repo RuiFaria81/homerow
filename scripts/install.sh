@@ -310,9 +310,26 @@ terraform_verify_state_bucket() {
     error "Terraform state bucket verification failed for ${TF_STATE_BUCKET_NAME}."
 }
 
+SEED_INBOX_OVERRIDE_SET="${SEED_INBOX+x}"
+SEED_INBOX_OVERRIDE_VALUE="${SEED_INBOX:-}"
+SEED_INBOX_COUNT_OVERRIDE_SET="${SEED_INBOX_COUNT+x}"
+SEED_INBOX_COUNT_OVERRIDE_VALUE="${SEED_INBOX_COUNT:-}"
+SEED_INBOX_INCLUDE_CATEGORIES_OVERRIDE_SET="${SEED_INBOX_INCLUDE_CATEGORIES+x}"
+SEED_INBOX_INCLUDE_CATEGORIES_OVERRIDE_VALUE="${SEED_INBOX_INCLUDE_CATEGORIES:-}"
+
 if [ -f "config.env" ]; then
 log "Loading configuration from config.env..."
 source config.env
+
+if [ -n "${SEED_INBOX_OVERRIDE_SET}" ]; then
+    SEED_INBOX="${SEED_INBOX_OVERRIDE_VALUE}"
+fi
+if [ -n "${SEED_INBOX_COUNT_OVERRIDE_SET}" ]; then
+    SEED_INBOX_COUNT="${SEED_INBOX_COUNT_OVERRIDE_VALUE}"
+fi
+if [ -n "${SEED_INBOX_INCLUDE_CATEGORIES_OVERRIDE_SET}" ]; then
+    SEED_INBOX_INCLUDE_CATEGORIES="${SEED_INBOX_INCLUDE_CATEGORIES_OVERRIDE_VALUE}"
+fi
 else
     log "No config.env found. Switching to interactive mode."
 fi
