@@ -2,8 +2,9 @@ import { createSignal, onCleanup, onMount, Show, type Accessor, type Setter } fr
 import { useNavigate } from "@solidjs/router";
 import { IconSearch, IconSettings, IconChevronLeft, IconChevronRight, IconChevronDown, IconSlidersHorizontal, IconClose, IconGithub } from "./Icons";
 import { authClient } from "~/lib/auth-client";
+import { toggleCommandPalette } from "~/lib/command-palette-store";
 import { setActiveFilter } from "~/lib/labels-store";
-import { getActionShortcutHint } from "~/lib/keyboard-shortcuts-store";
+import { formatShortcut, getActionShortcutHint, getPreferredActionShortcut } from "~/lib/keyboard-shortcuts-store";
 
 interface HeaderProps {
   searchTerm: Accessor<string>;
@@ -125,6 +126,10 @@ export default function Header(props: HeaderProps) {
   const userEmail = () => session().data?.user?.email || "";
   const userInitial = () => userEmail().slice(0, 1).toUpperCase() || "U";
   const userAvatarImage = () => session().data?.user?.image || "";
+  const commandPaletteShortcutLabel = () => {
+    const shortcut = getPreferredActionShortcut("openCommandPalette");
+    return shortcut ? formatShortcut(shortcut) : "Set shortcut";
+  };
 
   const handleSignOut = async () => {
     setIsUserMenuOpen(false);
@@ -374,6 +379,18 @@ export default function Header(props: HeaderProps) {
 
       {/* Actions */}
       <div class="flex items-center gap-1.5 ml-auto">
+        <button
+          class="hidden md:inline-flex h-10 items-center gap-2 rounded-full border border-[var(--border)] bg-transparent px-3 text-xs text-[var(--text-secondary)] cursor-pointer transition-colors duration-200 hover:bg-[var(--hover-bg)] hover:text-[var(--foreground)]"
+          title={`Open command palette${getActionShortcutHint("openCommandPalette")}`}
+          aria-label="Open command palette"
+          data-testid="command-palette-indicator"
+          onClick={toggleCommandPalette}
+        >
+          <span class="uppercase tracking-[0.08em] text-[10px]">Command</span>
+          <span class="inline-flex items-center gap-1 rounded-md border border-[var(--border)] bg-[var(--search-bg)] px-1.5 py-0.5 leading-none text-[11px] text-[var(--text-muted)]">
+            <span>{commandPaletteShortcutLabel()}</span>
+          </span>
+        </button>
         <a
           href="https://github.com/guilhermeprokisch/homerow"
           target="_blank"

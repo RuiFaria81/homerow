@@ -237,6 +237,11 @@ test.describe("Requested feature regressions", () => {
     const searchInput = page.getByPlaceholder("Search messages");
     const bounds = await searchInput.boundingBox();
     expect(bounds?.height ?? 0).toBeGreaterThanOrEqual(50);
+
+    const commandPaletteIndicator = page.getByTestId("command-palette-indicator");
+    await expect(commandPaletteIndicator).toBeVisible();
+    await commandPaletteIndicator.click();
+    await expect(page.getByTestId("command-palette")).toBeVisible();
   });
 
   test("opens command palette with keyboard shortcut and executes compose command", async ({ page }) => {
