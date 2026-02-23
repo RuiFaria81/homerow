@@ -37,11 +37,15 @@ The webmail service includes:
 
 3. **SSH into your server** for maintenance:
    ```bash
-   ./hrow ssh
+   ssh -i <path/to/private_key> root@mail.<domain>
+   ```
+   If DNS is not propagated yet, connect by IP instead:
+   ```bash
+   ssh -i <path/to/private_key> root@<server_ip>
    ```
 
 4. **Monitor services** — check systemd service status on the server:
    ```bash
-   systemctl status postfix dovecot rspamd
-   systemctl status sync-engine webmail
+   sudo systemctl status postfix dovecot rspamd
+   sudo systemctl status mail-sync-engine custom-webmail-blue custom-webmail-green
    ```
