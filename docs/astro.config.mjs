@@ -1,9 +1,11 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
+import mermaid from "astro-mermaid";
 
 export default defineConfig({
   site: "https://docs.homerow.email",
   integrations: [
+    mermaid(),
     starlight({
       title: "Homerow Email",
       favicon: "/favicon.svg",
@@ -50,6 +52,7 @@ export default defineConfig({
           items: [
             { label: "After Deploy", slug: "guides/after-deploy" },
             { label: "Gmail Migration", slug: "guides/gmail-migration" },
+            { label: "Mermaid Diagrams", slug: "guides/mermaid-diagrams" },
             {
               label: "Hetzner Post-Install",
               slug: "guides/hetzner-post-install",
