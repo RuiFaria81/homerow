@@ -127,7 +127,7 @@ Quick restore outline:
    - `sudo -u postgres createdb -O mailsync mailsync`
    - `sudo -u postgres pg_restore -d mailsync /var/backup/postgresql/<timestamp>/mailsync.dump`
 4. Restart services:
-   - `sudo systemctl restart postgresql mail-sync-engine custom-webmail`
+   - `sudo systemctl restart postgresql mail-sync-engine custom-webmail-blue custom-webmail-green`
 
 ## `config.env` Variables
 

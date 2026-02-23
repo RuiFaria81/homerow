@@ -3,15 +3,15 @@ let
   settings = import ./settings.nix;
   webmailSubdomain = settings.webmailSubdomain or "webmail";
   webmailHost = "${webmailSubdomain}.${settings.domain}";
-  
+
   customWebmailApp = pkgs.buildNpmPackage {
     pname = "custom-webmail";
     version = "1.0.0";
     src = ../webmail;
-    
+
     npmDepsHash = "sha256-bv2joWko3x9EqcFK+2erXsLd9WM0oxUL3ue9cT+PH/Y=";
-    npmBuildScript = "build"; 
-    
+    npmBuildScript = "build";
+
     installPhase = ''
       mkdir -p $out
       cp -r .output $out/
@@ -19,7 +19,78 @@ let
     '';
   };
 
-  webmailPort = 3000;
+  webmailBluePort = 3001;
+  webmailGreenPort = 3002;
+
+  commonEnvironment = {
+    HOST = "0.0.0.0";
+    BETTER_AUTH_BASE_URL = "https://${webmailHost}";
+    BETTER_AUTH_TRUSTED_ORIGINS = "https://${webmailHost},http://localhost:3000,http://127.0.0.1:3000";
+    DB_HOST = "127.0.0.1";
+    DB_PORT = "5432";
+    DB_NAME = "mailsync";
+    DB_USER = "mailsync";
+    DB_PASSWORD = "${settings.imapPassword}";
+
+    # Mail Server Settings
+    IMAP_HOST = "127.0.0.1";
+    IMAP_PORT = "993";
+    IMAP_TLS = "true";
+
+    SMTP_HOST = "127.0.0.1";
+    SMTP_PORT = "465";
+    SMTP_SECURE = "true";
+
+    # Explicitly set the user to the full email address
+    # We provide multiple common keys to catch whatever the app is looking for
+    ADMIN_EMAIL = "${settings.email}";
+    SMTP_USER = "${settings.email}";
+    IMAP_USER = "${settings.email}";
+    USER_EMAIL = "${settings.email}";
+
+    # Use the plain text password from our automated setup
+    ADMIN_PASSWORD = "${settings.imapPassword}";
+    SMTP_PASS = "${settings.imapPassword}";
+    IMAP_PASS = "${settings.imapPassword}";
+
+    AVATAR_STORAGE_DIR = "/var/lib/custom-webmail/avatars";
+    TAKEOUT_IMPORT_DIR = "/var/lib/custom-webmail/takeout-imports";
+  };
+
+  mkWebmailService = slot: port: {
+    description = "Custom SolidStart Webmail (${slot})";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network.target" "dovecot2.service" "postfix.service" ];
+
+    environment = commonEnvironment // {
+      PORT = toString port;
+      WEBMAIL_SLOT = slot;
+    };
+
+    # Keep instances running during nixos-rebuild switch; deploy script restarts
+    # each slot one-by-one after switch for rolling updates.
+    restartIfChanged = false;
+
+    serviceConfig = {
+      ExecStart = "${pkgs.nodejs}/bin/node ${customWebmailApp}/.output/server/index.mjs";
+      User = "webmail";
+      Group = "webmail";
+      StateDirectory = "custom-webmail";
+      Restart = "always";
+      RestartSec = "10s";
+      NoNewPrivileges = true;
+      PrivateTmp = true;
+      ProtectSystem = "full";
+      ProtectHome = true;
+      ProtectKernelTunables = true;
+      ProtectKernelModules = true;
+      ProtectControlGroups = true;
+      RestrictSUIDSGID = true;
+      LockPersonality = true;
+      RestrictAddressFamilies = [ "AF_UNIX" "AF_INET" "AF_INET6" ];
+      UMask = "0077";
+    };
+  };
 in {
   users.users.webmail = {
     isSystemUser = true;
@@ -32,8 +103,8 @@ in {
   systemd.services.custom-webmail-auth-bootstrap = {
     description = "Bootstrap Better Auth schema and admin user for webmail";
     wantedBy = [ "multi-user.target" ];
-    before = [ "custom-webmail.service" ];
-    requiredBy = [ "custom-webmail.service" ];
+    before = [ "custom-webmail-blue.service" "custom-webmail-green.service" ];
+    requiredBy = [ "custom-webmail-blue.service" "custom-webmail-green.service" ];
     after = [ "postgresql.service" "sync-engine-db-init.service" ];
     requires = [ "postgresql.service" "sync-engine-db-init.service" ];
 
@@ -43,7 +114,7 @@ in {
         set -euo pipefail
 
         cd ${customWebmailApp}
-        ${pkgs.nodejs}/bin/node --input-type=module <<'EOF'
+        ${pkgs.nodejs}/bin/node --input-type=module <<'JS'
         import { betterAuth } from "better-auth";
         import { twoFactor } from "better-auth/plugins";
         import { getMigrations } from "better-auth/db";
@@ -54,7 +125,7 @@ in {
         const adminEmail = "${settings.email}";
         const adminPassword = "${settings.imapPassword}";
         const stateDir = "/var/lib/custom-webmail-auth-bootstrap";
-        const passwordHashFile = `''${stateDir}/admin_password_sha256`;
+        const passwordHashFile = stateDir + "/admin_password_sha256";
 
         const baseURL = "https://${webmailHost}";
         const trustedOrigins = [
@@ -120,81 +191,27 @@ in {
             throw error;
           }
         } finally {
-          writeFileSync(passwordHashFile, `''${desiredPasswordHash}\n`, { encoding: "utf8" });
+          writeFileSync(passwordHashFile, desiredPasswordHash + "\n", { encoding: "utf8" });
           await pool.end();
         }
-        EOF
+        JS
       '';
     };
   };
 
-  systemd.services.custom-webmail = {
-    description = "Custom SolidStart Webmail";
-    wantedBy = [ "multi-user.target" ];
-    after = [ "network.target" "dovecot2.service" "postfix.service" ];
+  systemd.services.custom-webmail-blue = mkWebmailService "blue" webmailBluePort;
+  systemd.services.custom-webmail-green = mkWebmailService "green" webmailGreenPort;
 
-    environment = {
-      PORT = toString webmailPort;
-      HOST = "0.0.0.0";
-      BETTER_AUTH_BASE_URL = "https://${webmailHost}";
-      BETTER_AUTH_TRUSTED_ORIGINS = "https://${webmailHost},http://localhost:3000,http://127.0.0.1:3000";
-      DB_HOST = "127.0.0.1";
-      DB_PORT = "5432";
-      DB_NAME = "mailsync";
-      DB_USER = "mailsync";
-      DB_PASSWORD = "${settings.imapPassword}";
-      
-      # Mail Server Settings
-      IMAP_HOST = "127.0.0.1";
-      IMAP_PORT = "993"; 
-      IMAP_TLS = "true";
-      
-      SMTP_HOST = "127.0.0.1";
-      SMTP_PORT = "465";
-      SMTP_SECURE = "true";
-
-      # Explicitly set the user to the full email address
-      # We provide multiple common keys to catch whatever the app is looking for
-      ADMIN_EMAIL = "${settings.email}";
-      SMTP_USER = "${settings.email}";
-      IMAP_USER = "${settings.email}";
-      USER_EMAIL = "${settings.email}";
-      
-      # Use the plain text password from our automated setup
-      ADMIN_PASSWORD = "${settings.imapPassword}";
-      SMTP_PASS = "${settings.imapPassword}";
-      IMAP_PASS = "${settings.imapPassword}";
-      
-      AVATAR_STORAGE_DIR = "/var/lib/custom-webmail/avatars";
-      TAKEOUT_IMPORT_DIR = "/var/lib/custom-webmail/takeout-imports";
-    };
-
-    serviceConfig = {
-      ExecStart = "${pkgs.nodejs}/bin/node ${customWebmailApp}/.output/server/index.mjs";
-      User = "webmail";
-      Group = "webmail";
-      StateDirectory = "custom-webmail";
-      Restart = "always";
-      RestartSec = "10s";
-      NoNewPrivileges = true;
-      PrivateTmp = true;
-      ProtectSystem = "full";
-      ProtectHome = true;
-      ProtectKernelTunables = true;
-      ProtectKernelModules = true;
-      ProtectControlGroups = true;
-      RestrictSUIDSGID = true;
-      LockPersonality = true;
-      RestrictAddressFamilies = [ "AF_UNIX" "AF_INET" "AF_INET6" ];
-      UMask = "0077";
-    };
+  services.nginx.upstreams.custom-webmail.servers = {
+    "127.0.0.1:${toString webmailBluePort}" = {};
+    "127.0.0.1:${toString webmailGreenPort}" = {};
   };
 
   services.nginx.virtualHosts."${webmailHost}" = {
     enableACME = true;
     forceSSL = true;
     locations."/" = {
-      proxyPass = "http://127.0.0.1:${toString webmailPort}";
+      proxyPass = "http://custom-webmail";
       proxyWebsockets = true;
       extraConfig = ''
         proxy_set_header Host $host;

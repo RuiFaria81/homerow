@@ -50,6 +50,67 @@ wait_for_ssh_ready() {
     done
 }
 
+rollout_webmail_slots() {
+    local host="$1"
+    local private_key="$2"
+
+    log "Applying rolling webmail restart (blue/green) on ${host}..."
+    ssh -o StrictHostKeyChecking=no -i "${private_key}" "root@${host}" bash -s <<'REMOTE'
+set -euo pipefail
+
+wait_webmail_health() {
+    local port="$1"
+    local max_attempts="${2:-90}"
+    local attempt
+    local status_line
+
+    for attempt in $(seq 1 "${max_attempts}"); do
+        if exec 3<>"/dev/tcp/127.0.0.1/${port}" 2>/dev/null; then
+            printf 'GET /api/health HTTP/1.1\r\nHost: 127.0.0.1\r\nConnection: close\r\n\r\n' >&3 || true
+            status_line="$(head -n 1 <&3 || true)"
+            exec 3>&- 3<&- || true
+
+            if echo "${status_line}" | grep -q " 200 "; then
+                return 0
+            fi
+        fi
+        sleep 1
+    done
+
+    return 1
+}
+
+restart_slot() {
+    local unit="$1"
+    local port="$2"
+
+    systemctl restart "${unit}"
+    if ! wait_webmail_health "${port}" 90; then
+        journalctl -u "${unit}" -n 120 --no-pager >&2 || true
+        return 1
+    fi
+}
+
+systemctl daemon-reload
+systemctl start custom-webmail-auth-bootstrap
+
+if ! systemctl is-active --quiet custom-webmail-green; then
+    systemctl start custom-webmail-green
+fi
+if ! wait_webmail_health 3002 90; then
+    journalctl -u custom-webmail-green -n 120 --no-pager >&2 || true
+    exit 1
+fi
+
+restart_slot custom-webmail-blue 3001
+restart_slot custom-webmail-green 3002
+systemctl reload nginx
+
+systemctl is-active --quiet custom-webmail-blue
+systemctl is-active --quiet custom-webmail-green
+REMOTE
+}
+
 TEMP_EXTRA=""
 TEMP_FLAKE=""
 TEMP_TF_BACKEND_VPS=""
@@ -751,6 +812,8 @@ else
         --flake "$FLAKE_REF" \
         root@$SERVER_IP
 fi
+
+run_timed_step "rolling webmail restart (${SERVER_IP})" rollout_webmail_slots "${SERVER_IP}" "${DEPLOY_SSH_PRIVATE_KEY_PATH}"
 
 if [ "$SEED_INBOX" = "true" ]; then
     log "Seeding inbox for development/test usage (count=${SEED_INBOX_COUNT})..."

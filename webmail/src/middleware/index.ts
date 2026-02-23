@@ -10,6 +10,7 @@ export default createMiddleware({
     // Skip auth check for login page, auth API routes, and static assets
     if (
       pathname === "/login" ||
+      pathname === "/api/health" ||
       pathname.startsWith("/api/auth/") ||
       pathname.startsWith("/_build/") ||
       pathname.startsWith("/assets/") ||

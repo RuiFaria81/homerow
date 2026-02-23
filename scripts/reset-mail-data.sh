@@ -18,7 +18,7 @@ Wipes server mail/import data for repeatable import tests:
 Defaults:
 - host: terraform output 'server_ip' from ./infra
 - user: root
-- stops mail-sync-engine and custom-webmail during reset (unless --keep-webmail-running)
+- stops mail-sync-engine and custom-webmail slots during reset (unless --keep-webmail-running)
 USAGE
 }
 
@@ -78,8 +78,17 @@ set -euo pipefail
 
 KEEP_WEBMAIL_RUNNING="$1"
 
+webmail_unit_exists() {
+  local unit="$1"
+  systemctl list-unit-files --type=service --no-legend --no-pager | awk '{print $1}' | grep -Fxq "${unit}.service"
+}
+
 if [[ "$KEEP_WEBMAIL_RUNNING" != "true" ]]; then
-  systemctl stop custom-webmail || true
+  if webmail_unit_exists "custom-webmail-blue" || webmail_unit_exists "custom-webmail-green"; then
+    systemctl stop custom-webmail-blue custom-webmail-green || true
+  else
+    systemctl stop custom-webmail || true
+  fi
 fi
 systemctl stop mail-sync-engine || true
 systemctl stop rspamd || true
@@ -114,12 +123,20 @@ systemctl restart postfix
 systemctl restart rspamd
 systemctl restart mail-sync-engine
 if [[ "$KEEP_WEBMAIL_RUNNING" != "true" ]]; then
-  systemctl start custom-webmail
+  if webmail_unit_exists "custom-webmail-blue" || webmail_unit_exists "custom-webmail-green"; then
+    systemctl start custom-webmail-blue custom-webmail-green
+  else
+    systemctl start custom-webmail
+  fi
 fi
 
 systemctl is-active dovecot postfix rspamd mail-sync-engine
 if [[ "$KEEP_WEBMAIL_RUNNING" != "true" ]]; then
-  systemctl is-active custom-webmail
+  if webmail_unit_exists "custom-webmail-blue" || webmail_unit_exists "custom-webmail-green"; then
+    systemctl is-active custom-webmail-blue custom-webmail-green
+  else
+    systemctl is-active custom-webmail
+  fi
 fi
 REMOTE
 
