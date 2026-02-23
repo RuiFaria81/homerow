@@ -39,13 +39,14 @@ test("shows update notification elements when update is available", async ({ pag
   });
 
   await login(page);
-  await expect(page.getByTestId("page-update-banner")).toBeVisible({ timeout: 20_000 });
-  await expect(page.getByTestId("header-update-dot")).toBeVisible();
+  await expect(page.getByTestId("github-menu-update-dot")).toBeVisible({ timeout: 20_000 });
 
-  await page.getByRole("button", { name: "Open Update Details" }).click();
+  await page.getByTestId("github-menu-button").click();
+  await expect(page.getByTestId("github-menu-update-item")).toBeVisible();
+  await page.getByTestId("github-menu-update-item").click();
   await expect(page).toHaveURL(/\/settings/);
   await expect(page.getByTestId("settings-update-card")).toBeVisible();
-
-  await page.getByTestId("dismiss-update-banner").click();
-  await expect(page.getByTestId("page-update-banner")).toHaveCount(0);
+  await page.getByTestId("settings-update-notifications-off").click();
+  await page.goto("/");
+  await expect(page.getByTestId("github-menu-update-dot")).toHaveCount(0);
 });

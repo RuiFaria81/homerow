@@ -120,9 +120,6 @@ function resolveSource(mode: UpdateMode): { repo: string | null; label: "Upstrea
 }
 
 async function fetchLatestFromRepo(repo: string): Promise<string | null> {
-  const mock = normalizeVersion(process.env.UPDATE_CHECK_MOCK_LATEST_VERSION);
-  if (mock) return mock;
-
   const headers = {
     "accept": "application/vnd.github+json",
     "user-agent": "homerow-webmail-update-check",
@@ -165,9 +162,6 @@ async function fetchLatestFromRepo(repo: string): Promise<string | null> {
 }
 
 async function resolveLatestVersion(mode: UpdateMode, sourceRepo: string | null): Promise<string | null> {
-  const mock = normalizeVersion(process.env.UPDATE_CHECK_MOCK_LATEST_VERSION);
-  if (mock) return mock;
-
   if (mode === "pinned") {
     return normalizeVersion(process.env.UPDATE_TARGET || null);
   }
@@ -178,36 +172,6 @@ async function resolveLatestVersion(mode: UpdateMode, sourceRepo: string | null)
 function releaseUrlFor(repo: string | null, version: string | null): string | null {
   if (!repo || !version) return null;
   return `https://github.com/${repo}/releases/tag/${version}`;
-}
-
-function resolveDebugForcedStatus(input: {
-  installed: string;
-  latest: string | null;
-  mode: UpdateMode;
-  source: { repo: string | null; label: "Upstream" | "Origin" | "Pinned" };
-}): UpdateStatusPayload | null {
-  const forceAvailable = process.env.UPDATE_CHECK_FORCE_AVAILABLE === "1";
-  const forceLatest = normalizeVersion(process.env.UPDATE_CHECK_FORCE_LATEST_VERSION || null);
-  const forceInstalled = normalizeVersion(process.env.UPDATE_CHECK_FORCE_INSTALLED_VERSION || null);
-
-  if (!forceAvailable && !forceLatest && !forceInstalled) return null;
-
-  const installed = forceInstalled || input.installed;
-  const latest = forceLatest || input.latest || normalizeVersion("v999.0.0");
-  const severity = computeSeverity(normalizeVersion(installed), latest);
-  const updateAvailable = forceAvailable ? true : severity !== "none" && severity !== "unknown";
-
-  return {
-    installed,
-    latest,
-    updateAvailable,
-    severity: forceAvailable && (severity === "none" || severity === "unknown") ? "minor" : severity,
-    releaseUrl: releaseUrlFor(input.source.repo, latest),
-    checkedAt: new Date().toISOString(),
-    sourceLabel: input.source.label,
-    sourceRepo: input.source.repo,
-    mode: input.mode,
-  };
 }
 
 export async function getUpdateStatus(options?: { force?: boolean }): Promise<UpdateStatusPayload> {
@@ -222,12 +186,6 @@ export async function getUpdateStatus(options?: { force?: boolean }): Promise<Up
   const source = resolveSource(mode);
   const installed = await resolveInstalledVersion();
   const latest = await resolveLatestVersion(mode, source.repo);
-  const debugStatus = resolveDebugForcedStatus({ installed, latest, mode, source });
-  if (debugStatus) {
-    cachedValue = debugStatus;
-    cachedAt = now;
-    return debugStatus;
-  }
   const severity = computeSeverity(normalizeVersion(installed), latest);
   const updateAvailable = severity !== "none" && severity !== "unknown";
 

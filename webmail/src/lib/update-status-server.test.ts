@@ -50,29 +50,3 @@ test("getUpdateStatus supports pinned mode for deterministic checks", async () =
     process.env.UPDATE_CHECK_DISABLE_CACHE = original.UPDATE_CHECK_DISABLE_CACHE;
   }
 });
-
-test("getUpdateStatus supports forced debug update availability", async () => {
-  const original = {
-    HOMEROW_VERSION: process.env.HOMEROW_VERSION,
-    UPDATE_CHECK_FORCE_AVAILABLE: process.env.UPDATE_CHECK_FORCE_AVAILABLE,
-    UPDATE_CHECK_FORCE_LATEST_VERSION: process.env.UPDATE_CHECK_FORCE_LATEST_VERSION,
-    UPDATE_CHECK_DISABLE_CACHE: process.env.UPDATE_CHECK_DISABLE_CACHE,
-  };
-
-  process.env.HOMEROW_VERSION = "v1.9.9";
-  process.env.UPDATE_CHECK_FORCE_AVAILABLE = "1";
-  process.env.UPDATE_CHECK_FORCE_LATEST_VERSION = "v1.9.9";
-  process.env.UPDATE_CHECK_DISABLE_CACHE = "1";
-
-  try {
-    const status = await getUpdateStatus({ force: true });
-    assert.equal(status.updateAvailable, true);
-    assert.equal(status.severity, "minor");
-    assert.equal(status.latest, "v1.9.9");
-  } finally {
-    process.env.HOMEROW_VERSION = original.HOMEROW_VERSION;
-    process.env.UPDATE_CHECK_FORCE_AVAILABLE = original.UPDATE_CHECK_FORCE_AVAILABLE;
-    process.env.UPDATE_CHECK_FORCE_LATEST_VERSION = original.UPDATE_CHECK_FORCE_LATEST_VERSION;
-    process.env.UPDATE_CHECK_DISABLE_CACHE = original.UPDATE_CHECK_DISABLE_CACHE;
-  }
-});

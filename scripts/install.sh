@@ -592,9 +592,6 @@ cat > modules/settings.nix <<EOF
   email = "${EMAIL}";
   hashedPassword = "${HASHED_PASS}";
   imapPassword = "${MAIL_PASSWORD}"; # Added for automated internal service login
-  updateCheckForceAvailable = "${UPDATE_CHECK_FORCE_AVAILABLE:-}";
-  updateCheckForceLatestVersion = "${UPDATE_CHECK_FORCE_LATEST_VERSION:-}";
-  updateCheckForceInstalledVersion = "${UPDATE_CHECK_FORCE_INSTALLED_VERSION:-}";
   sshAuthorizedKey = ''
 ${SSH_AUTHORIZED_KEY}
 '';

@@ -46,14 +46,12 @@ interface AutoReplyBannerSettings {
 
 export default function App() {
   const SIDEBAR_COLLAPSED_KEY = "sidebarCollapsed";
-  const UPDATE_BANNER_DISMISS_KEY = "updateBannerDismiss";
   const [quickSettingsOpen, setQuickSettingsOpen] = createSignal(false);
   const [searchTerm, setSearchTerm] = createSignal("");
   const [sidebarCollapsed, setSidebarCollapsed] = createSignal(false);
   const [importBannerJob, setImportBannerJob] = createSignal<ImportBannerJob | null>(null);
   const [autoReplySettings, { refetch: refetchAutoReplySettings }] = createResource(getAutoReplySettings);
   const [updateStatus, { refetch: refetchUpdateStatus }] = createResource(getUpdateStatusClient);
-  const [dismissedUpdateVersion, setDismissedUpdateVersion] = createSignal<string | null>(null);
   const activeImportStatuses: ImportBannerJob["status"][] = ["created", "uploading", "queued", "running"];
 
   onMount(() => {
@@ -127,22 +125,6 @@ export default function App() {
       window.removeEventListener("auto-reply-settings-updated", handleAutoReplyUpdated);
       clearInterval(timer);
     };
-  });
-
-  onMount(() => {
-    if (typeof window === "undefined") return;
-    try {
-      const raw = localStorage.getItem(UPDATE_BANNER_DISMISS_KEY);
-      if (!raw) return;
-      const parsed = JSON.parse(raw) as { latest?: string; until?: number };
-      if (!parsed.latest || !parsed.until || Date.now() > parsed.until) {
-        localStorage.removeItem(UPDATE_BANNER_DISMISS_KEY);
-        return;
-      }
-      setDismissedUpdateVersion(parsed.latest);
-    } catch {
-      localStorage.removeItem(UPDATE_BANNER_DISMISS_KEY);
-    }
   });
 
   onMount(() => {
@@ -330,23 +312,6 @@ export default function App() {
   };
 
   const shouldShowAutoReplyBanner = () => isAutoReplyActive(autoReplySettings() as AutoReplyBannerSettings | undefined);
-  const shouldShowUpdateBanner = () => {
-    const status = updateStatus();
-    if (!status?.updateAvailable || !status.latest) return false;
-    return dismissedUpdateVersion() !== status.latest;
-  };
-  const dismissUpdateBanner = () => {
-    const latest = updateStatus()?.latest;
-    if (!latest || typeof window === "undefined") return;
-    setDismissedUpdateVersion(latest);
-    localStorage.setItem(
-      UPDATE_BANNER_DISMISS_KEY,
-      JSON.stringify({
-        latest,
-        until: Date.now() + 7 * 24 * 60 * 60 * 1000,
-      }),
-    );
-  };
   const autoReplyBannerMessage = () => {
     const settings = autoReplySettings() as AutoReplyBannerSettings | undefined;
     if (!settings) return "Auto reply is active. Replies are sent once per sender per active period.";
@@ -781,7 +746,7 @@ export default function App() {
 
           const isAuthPage = () => location.pathname === "/login";
           const globalBannerCount = () =>
-            Number(shouldShowUpdateBanner()) + Number(shouldShowImportBanner()) + Number(shouldShowAutoReplyBanner());
+            Number(shouldShowImportBanner()) + Number(shouldShowAutoReplyBanner());
           const headerRowStart = () => globalBannerCount() + 1;
           const contentRowStart = () => globalBannerCount() + 2;
           const gridTemplateRows = () => {
@@ -789,9 +754,8 @@ export default function App() {
             if (count === 0) return "64px 1fr";
             return `${"58px ".repeat(count)}64px 1fr`.trim();
           };
-          const updateBannerRowStart = () => 1;
-          const importBannerRowStart = () => Number(shouldShowUpdateBanner()) + 1;
-          const autoReplyBannerRowStart = () => Number(shouldShowUpdateBanner()) + Number(shouldShowImportBanner()) + 1;
+          const importBannerRowStart = () => 1;
+          const autoReplyBannerRowStart = () => Number(shouldShowImportBanner()) + 1;
 
           return (
             <Show
@@ -805,40 +769,6 @@ export default function App() {
                   "grid-template-rows": gridTemplateRows(),
                 }}
               >
-                <Show when={shouldShowUpdateBanner()}>
-                  <div data-testid="page-update-banner" class="col-span-full border-b border-[#f2d091]" style={{ "grid-row-start": updateBannerRowStart() }}>
-                    <div class="bg-gradient-to-r from-[#fff8e6] via-[#fffdf4] to-[#fff5dd] px-4">
-                      <div class="mx-auto w-full max-w-6xl">
-                        <div class="h-[58px] py-2.5 flex items-center justify-between gap-4 text-sm">
-                          <div class="flex items-center gap-3 min-w-0">
-                            <span class="px-2 py-0.5 rounded-full bg-[#ffe8b3] text-[#8a5a00] text-[11px] font-bold uppercase tracking-wider shrink-0">
-                              Update Available
-                            </span>
-                            <span class="text-[#7a5500] font-medium truncate">
-                              {`Homerow ${updateStatus()?.installed ?? "current"} -> ${updateStatus()?.latest ?? "latest"}`}
-                            </span>
-                          </div>
-                          <div class="flex items-center gap-2 shrink-0">
-                            <button
-                              onClick={() => navigate("/settings?tab=general")}
-                              class="px-3 py-1 rounded-md text-xs font-semibold text-[#7a5500] bg-white border border-[#efd8a0] cursor-pointer hover:bg-[#fffef9]"
-                            >
-                              Open Update Details
-                            </button>
-                            <button
-                              data-testid="dismiss-update-banner"
-                              onClick={dismissUpdateBanner}
-                              class="px-3 py-1 rounded-md text-xs font-medium text-[#7a5500] bg-transparent border border-[#efd8a0] cursor-pointer hover:bg-[#fff3d6]"
-                            >
-                              Dismiss 7 Days
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </Show>
-
                 <Show when={shouldShowImportBanner()}>
                   <div class="col-span-full border-b border-[#cfe7d6] bg-gradient-to-r from-[#ecf8ef] via-[#f3fbf5] to-[#e9f7ff] px-4" style={{ "grid-row-start": importBannerRowStart() }}>
                     <div class="mx-auto w-full max-w-6xl">
@@ -917,7 +847,8 @@ export default function App() {
                     onSearch={handleSearch}
                     onOpenSettings={() => setQuickSettingsOpen(true)}
                     sidebarCollapsed={sidebarCollapsed()}
-                    hasUpdateAvailable={Boolean(updateStatus()?.updateAvailable)}
+                    hasUpdateAvailable={Boolean(updateStatus()?.updateAvailable && settings.updateNotifications)}
+                    updateStatus={updateStatus() ?? undefined}
                     onToggleSidebar={() => {
                       const nextCollapsed = !sidebarCollapsed();
                       setSidebarCollapsed(nextCollapsed);

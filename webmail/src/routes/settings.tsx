@@ -1813,6 +1813,36 @@ export default function Settings() {
                 </div>
               </div>
 
+              {/* Update notifications */}
+              <div class="flex flex-col gap-2">
+                <label class="text-sm font-semibold text-[var(--foreground)]">Update notifications</label>
+                <p class="text-xs text-[var(--text-muted)]">Show update indicators in the Homerow links menu and account toolbar.</p>
+                <div class="flex gap-3 mt-1">
+                  <button
+                    data-testid="settings-update-notifications-on"
+                    class={`px-4 py-2 rounded-lg text-sm font-medium border cursor-pointer transition-all ${
+                      settings.updateNotifications
+                        ? "bg-[var(--active-bg)] text-[var(--primary)] border-[var(--primary)]"
+                        : "bg-transparent text-[var(--text-secondary)] border-[var(--border)] hover:bg-[var(--hover-bg)]"
+                    }`}
+                    onClick={() => setSettings("updateNotifications", true)}
+                  >
+                    On
+                  </button>
+                  <button
+                    data-testid="settings-update-notifications-off"
+                    class={`px-4 py-2 rounded-lg text-sm font-medium border cursor-pointer transition-all ${
+                      !settings.updateNotifications
+                        ? "bg-[var(--active-bg)] text-[var(--primary)] border-[var(--primary)]"
+                        : "bg-transparent text-[var(--text-secondary)] border-[var(--border)] hover:bg-[var(--hover-bg)]"
+                    }`}
+                    onClick={() => setSettings("updateNotifications", false)}
+                  >
+                    Off
+                  </button>
+                </div>
+              </div>
+
               {/* Local cache */}
               <div class="flex flex-col gap-2">
                 <label class="text-sm font-semibold text-[var(--foreground)]">Local cache</label>

@@ -5,6 +5,7 @@ import { authClient } from "~/lib/auth-client";
 import { toggleCommandPalette } from "~/lib/command-palette-store";
 import { setActiveFilter } from "~/lib/labels-store";
 import { formatShortcut, getActionShortcutHint, getPreferredActionShortcut } from "~/lib/keyboard-shortcuts-store";
+import type { UpdateStatusPayload } from "~/lib/update-status-types";
 
 interface HeaderProps {
   searchTerm: Accessor<string>;
@@ -14,12 +15,14 @@ interface HeaderProps {
   sidebarCollapsed: boolean;
   onToggleSidebar: () => void;
   hasUpdateAvailable?: boolean;
+  updateStatus?: UpdateStatusPayload;
 }
 
 export default function Header(props: HeaderProps) {
   const navigate = useNavigate();
   const session = authClient.useSession();
   const [isUserMenuOpen, setIsUserMenuOpen] = createSignal(false);
+  const [isGithubMenuOpen, setIsGithubMenuOpen] = createSignal(false);
   const [isSearchFiltersOpen, setIsSearchFiltersOpen] = createSignal(false);
   const [fromFilter, setFromFilter] = createSignal("");
   const [toFilter, setToFilter] = createSignal("");
@@ -39,6 +42,8 @@ export default function Header(props: HeaderProps) {
 
   let userMenuRef: HTMLDivElement | undefined;
   let userMenuButtonRef: HTMLButtonElement | undefined;
+  let githubMenuRef: HTMLDivElement | undefined;
+  let githubMenuButtonRef: HTMLButtonElement | undefined;
   let searchFiltersRef: HTMLDivElement | undefined;
   let searchFiltersButtonRef: HTMLButtonElement | undefined;
 
@@ -153,6 +158,10 @@ export default function Header(props: HeaderProps) {
     setIsUserMenuOpen(false);
   };
 
+  const closeGithubMenu = () => {
+    setIsGithubMenuOpen(false);
+  };
+
   const closeSearchFilters = () => {
     setIsSearchFiltersOpen(false);
   };
@@ -164,6 +173,9 @@ export default function Header(props: HeaderProps) {
       if (userMenuRef?.contains(target)) return;
       if (userMenuButtonRef?.contains(target)) return;
       closeUserMenu();
+      if (githubMenuRef?.contains(target)) return;
+      if (githubMenuButtonRef?.contains(target)) return;
+      closeGithubMenu();
       if (searchFiltersRef?.contains(target)) return;
       if (searchFiltersButtonRef?.contains(target)) return;
       closeSearchFilters();
@@ -172,6 +184,7 @@ export default function Header(props: HeaderProps) {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         closeUserMenu();
+        closeGithubMenu();
         closeSearchFilters();
       }
     };
@@ -392,29 +405,85 @@ export default function Header(props: HeaderProps) {
             <span>{commandPaletteShortcutLabel()}</span>
           </span>
         </button>
-        <a
-          href="https://github.com/guilhermeprokisch/homerow"
-          target="_blank"
-          rel="noreferrer"
-          class="w-10 h-10 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-secondary)] transition-colors duration-200 hover:bg-[var(--hover-bg)] hover:text-[var(--foreground)]"
-          title="Open Homerow repository"
-          aria-label="Open Homerow repository on GitHub"
-        >
-          <IconGithub size={19} />
-        </a>
+        <div class="relative">
+          <button
+            ref={githubMenuButtonRef}
+            data-testid="github-menu-button"
+            class="relative w-10 h-10 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-secondary)] transition-colors duration-200 hover:bg-[var(--hover-bg)] hover:text-[var(--foreground)]"
+            title="Open Homerow links"
+            aria-label="Open Homerow links"
+            aria-haspopup="menu"
+            aria-expanded={isGithubMenuOpen()}
+            onClick={() => setIsGithubMenuOpen((open) => !open)}
+          >
+            <IconGithub size={19} />
+            <Show when={props.hasUpdateAvailable}>
+              <span
+                data-testid="github-menu-update-dot"
+                class="absolute right-1.5 top-1.5 h-2.5 w-2.5 rounded-full bg-[#f59e0b] border border-[var(--card)]"
+                aria-label="Update available"
+              />
+            </Show>
+          </button>
+          <Show when={isGithubMenuOpen()}>
+            <div
+              ref={githubMenuRef}
+              class="absolute right-0 top-[calc(100%+8px)] w-[260px] rounded-xl border border-[var(--border-light)] bg-[var(--card)] shadow-xl py-1 z-30"
+              role="menu"
+              aria-label="Homerow links menu"
+            >
+              <Show when={props.hasUpdateAvailable}>
+                <button
+                  data-testid="github-menu-update-item"
+                  class="w-full text-left px-3 py-2.5 text-sm border-none bg-transparent cursor-pointer text-[var(--foreground)] hover:bg-[var(--hover-bg)] transition-colors"
+                  role="menuitem"
+                  onClick={() => {
+                    closeGithubMenu();
+                    navigate("/settings?tab=general");
+                  }}
+                >
+                  {`Update available (${props.updateStatus?.installed ?? "current"} -> ${props.updateStatus?.latest ?? "latest"})`}
+                </button>
+              </Show>
+              <a
+                href={props.updateStatus?.releaseUrl || "https://github.com/guilhermeprokisch/homerow/releases"}
+                target="_blank"
+                rel="noreferrer"
+                class="block px-3 py-2.5 text-sm text-[var(--foreground)] no-underline hover:bg-[var(--hover-bg)] transition-colors"
+                role="menuitem"
+                onClick={closeGithubMenu}
+              >
+                Updates & announcements
+              </a>
+              <a
+                href="https://github.com/guilhermeprokisch/homerow/issues/new/choose"
+                target="_blank"
+                rel="noreferrer"
+                class="block px-3 py-2.5 text-sm text-[var(--foreground)] no-underline hover:bg-[var(--hover-bg)] transition-colors"
+                role="menuitem"
+                onClick={closeGithubMenu}
+              >
+                Report a bug
+              </a>
+              <a
+                href="https://github.com/guilhermeprokisch/homerow/stargazers"
+                target="_blank"
+                rel="noreferrer"
+                class="block px-3 py-2.5 text-sm text-[var(--foreground)] no-underline hover:bg-[var(--hover-bg)] transition-colors"
+                role="menuitem"
+                onClick={closeGithubMenu}
+              >
+                Give a star
+              </a>
+            </div>
+          </Show>
+        </div>
         <button
-          class="relative w-10 h-10 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-secondary)] transition-colors duration-200 hover:bg-[var(--hover-bg)] hover:text-[var(--foreground)]"
+          class="w-10 h-10 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-secondary)] transition-colors duration-200 hover:bg-[var(--hover-bg)] hover:text-[var(--foreground)]"
           title={`Settings${getActionShortcutHint("openRightMenu")}`}
           onClick={props.onOpenSettings}
         >
           <IconSettings size={20} />
-          <Show when={props.hasUpdateAvailable}>
-            <span
-              data-testid="header-update-dot"
-              class="absolute right-1.5 top-1.5 h-2.5 w-2.5 rounded-full bg-[#f59e0b] border border-[var(--card)]"
-              aria-label="Update available"
-            />
-          </Show>
         </button>
         <div class="relative ml-2">
           <button

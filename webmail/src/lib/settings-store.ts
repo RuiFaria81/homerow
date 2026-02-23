@@ -103,6 +103,7 @@ export interface AppSettings {
   conversationView: boolean;
   expandAllThreadMessages: boolean;
   notifications: boolean;
+  updateNotifications: boolean;
   enableCategories: boolean;
   shortcutFeedback: boolean;
 }
@@ -118,6 +119,7 @@ const defaultSettings: AppSettings = {
   conversationView: true,
   expandAllThreadMessages: false,
   notifications: true,
+  updateNotifications: true,
   enableCategories: true,
   shortcutFeedback: false,
 };
