@@ -8,6 +8,30 @@ if [ ! -f "${ROOT_DIR}/flake.nix" ] || [ ! -f "${ROOT_DIR}/scripts/install.sh" ]
   exit 1
 fi
 
+resolve_ssh_private_key_content() {
+  local config_file="$1"
+  local key_content="${SSH_PRIVATE_KEY:-}"
+  if [ -n "${key_content}" ]; then
+    printf '%s' "${key_content}"
+    return 0
+  fi
+
+  local key_path="${SSH_PRIVATE_KEY_PATH:-}"
+  if [ -z "${key_path}" ] && [ -f "${config_file}" ]; then
+    key_path="$(set -a; source "${config_file}"; set +a; printf '%s' "${SSH_PRIVATE_KEY_PATH:-}")"
+  fi
+
+  if [ -z "${key_path}" ]; then
+    return 0
+  fi
+  if [[ "${key_path}" != /* ]]; then
+    key_path="${ROOT_DIR}/${key_path}"
+  fi
+  [ -f "${key_path}" ] || { echo "[deploy] SSH private key not found: ${key_path}" >&2; exit 1; }
+
+  cat "${key_path}"
+}
+
 ENGINE="${DEPLOY_ENGINE:-}"
 if [ -z "${ENGINE}" ]; then
   if command -v docker >/dev/null 2>&1; then
@@ -29,6 +53,8 @@ if [ ! -f "${CONFIG_FILE}" ]; then
   echo "[deploy] missing config file at ${CONFIG_FILE}" >&2
   exit 1
 fi
+
+SSH_PRIVATE_KEY_CONTENT="$(resolve_ssh_private_key_content "${CONFIG_FILE}")"
 
 has_image=0
 if "${ENGINE}" image inspect "${IMAGE}" >/dev/null 2>&1; then
@@ -61,12 +87,18 @@ if [ -t 0 ] && [ -t 1 ]; then
   TTY_ARGS=(-it)
 fi
 
-exec "${ENGINE}" run --rm "${TTY_ARGS[@]}" \
-  -v "${ROOT_DIR}:/workspace" \
-  -v "${CONFIG_FILE}:${CONTAINER_CONFIG_PATH}:ro" \
-  -w /workspace \
-  -e DEPLOY_CONFIG_FILE="${CONTAINER_CONFIG_PATH}" \
-  -e DEPLOY_SKIP_UPDATE_CHECK="${DEPLOY_SKIP_UPDATE_CHECK:-}" \
-  -e UPDATE_SOURCE_REMOTE="${UPDATE_SOURCE_REMOTE:-}" \
-  "${IMAGE}" \
-  /workspace/scripts/deploy-from-config.sh "$@"
+run_args=(
+  run --rm
+  "${TTY_ARGS[@]}"
+  -v "${ROOT_DIR}:/workspace"
+  -v "${CONFIG_FILE}:${CONTAINER_CONFIG_PATH}:ro"
+  -w /workspace
+  -e "DEPLOY_CONFIG_FILE=${CONTAINER_CONFIG_PATH}"
+  -e "DEPLOY_SKIP_UPDATE_CHECK=${DEPLOY_SKIP_UPDATE_CHECK:-}"
+  -e "UPDATE_SOURCE_REMOTE=${UPDATE_SOURCE_REMOTE:-}"
+)
+if [ -n "${SSH_PRIVATE_KEY_CONTENT}" ]; then
+  run_args+=(-e "SSH_PRIVATE_KEY=${SSH_PRIVATE_KEY_CONTENT}")
+fi
+
+exec "${ENGINE}" "${run_args[@]}" "${IMAGE}" /workspace/scripts/deploy-from-config.sh "$@"

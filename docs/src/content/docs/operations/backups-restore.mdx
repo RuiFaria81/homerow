@@ -1,0 +1,42 @@
+---
+title: Backups and Restore
+description: How backups are created and how to restore mailbox and database data.
+---
+
+## Backup Model
+
+Backups are built in two layers:
+
+- **Mail data + system state**: restic snapshots of `/var/vmail`, `/var/lib/acme`, and `/var/lib/dhparams`.
+- **PostgreSQL (`mailsync`)**: local dump snapshots in `/var/backup/postgresql/<timestamp>/`, then included in the same restic run.
+
+## Schedule
+
+- `02:45` server time: `postgres-backup.service` creates:
+  - `globals.sql` (roles/global objects)
+  - `mailsync.dump` (custom-format DB dump)
+- `03:00` server time: restic snapshot runs with daily/weekly/monthly retention.
+
+## Restore Outline
+
+1. Restore snapshot data with restic (including `/var/backup/postgresql/...`).
+2. Restore globals:
+   ```bash
+   sudo -u postgres psql -f /var/backup/postgresql/<timestamp>/globals.sql
+   ```
+3. Recreate and restore `mailsync`:
+   ```bash
+   sudo -u postgres dropdb --if-exists mailsync
+   sudo -u postgres createdb -O mailsync mailsync
+   sudo -u postgres pg_restore -d mailsync /var/backup/postgresql/<timestamp>/mailsync.dump
+   ```
+4. Restart services:
+   ```bash
+   sudo systemctl restart postgresql mail-sync-engine custom-webmail-blue custom-webmail-green
+   ```
+
+## Important Notes
+
+- Validate your latest backup before making destructive changes.
+- Keep backup storage separate from Terraform state storage.
+- Keep backup credentials and encryption secrets out of git.

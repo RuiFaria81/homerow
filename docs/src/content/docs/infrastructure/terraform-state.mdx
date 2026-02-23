@@ -32,4 +32,4 @@ Remote storage avoids runner-local state loss in CI environments, where filesyst
 - Keep state files out of git (`terraform.tfstate`, `*.tfstate.backup`).
 - Keep the Terraform state bucket separate from the backups bucket.
 - If you need a fresh VPS (e.g., after key regeneration), set `HETZNER_REUSE_EXISTING_SERVER=false`.
-- For unified key management across local and CI, use `SSH_PRIVATE_KEY` (content).
+- For local deploys, set `SSH_PRIVATE_KEY_PATH`; in GitHub Actions, store key content in `SSH_PRIVATE_KEY`.

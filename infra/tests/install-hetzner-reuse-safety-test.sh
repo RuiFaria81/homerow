@@ -4,7 +4,7 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 INSTALL_SCRIPT="${ROOT_DIR}/scripts/install.sh"
 
-if grep -Fq 'EXISTING_HCLOUD_SSH_KEY_ID="$(find_existing_hcloud_ssh_key_id "${DEPLOY_SSH_PUBLIC_KEY_PATH}")"' "${INSTALL_SCRIPT}"; then
+if grep -Fq 'EXISTING_HCLOUD_SSH_KEY_ID="$(find_existing_hcloud_ssh_key_id "${SSH_PUBLIC_KEY_PATH}")"' "${INSTALL_SCRIPT}"; then
   echo "did not expect install.sh to auto-detect existing Hetzner SSH key id" >&2
   exit 1
 fi

@@ -49,7 +49,7 @@ if [ "${#missing[@]}" -gt 0 ]; then
   error "missing required variables in ${CONFIG_FILE}: ${missing[*]}"
 fi
 
-SSH_KEY_PATH="${DEPLOY_SSH_PRIVATE_KEY_PATH:-${REPO_ROOT}/infra/id_ed25519}"
+SSH_KEY_PATH="${SSH_PRIVATE_KEY_PATH:-${REPO_ROOT}/infra/id_ed25519}"
 if [[ "${SSH_KEY_PATH}" != /* ]]; then
   SSH_KEY_PATH="${REPO_ROOT}/${SSH_KEY_PATH}"
 fi

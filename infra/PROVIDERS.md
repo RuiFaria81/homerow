@@ -38,7 +38,8 @@ Optional tuning:
 - `HETZNER_SERVER_TYPE` (default `cx23`)
 - `HETZNER_LOCATION` (default `nbg1`)
 - `HETZNER_REUSE_EXISTING_SERVER` (default `true`; set `false` to force creating a fresh server instead of auto-reusing `mail-server`)
-- `SSH_PRIVATE_KEY` (preferred unified input for CI/local runs; when set, deploy uses this key content directly)
+- `SSH_PRIVATE_KEY_PATH` (preferred local input; path to your private key)
+- `SSH_PRIVATE_KEY` (GitHub Actions secret content)
 - `HETZNER_EXISTING_SSH_KEY_ID` (optional override; when set, deploy reuses this Hetzner SSH key instead of creating `admin_key`)
 - `HETZNER_EXISTING_SERVER_ID` + `HETZNER_EXISTING_SERVER_IPV4` (optional override; when set, deploy reuses an existing `mail-server` instead of creating a new one)
 

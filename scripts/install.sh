@@ -423,17 +423,13 @@ SEED_INBOX=${SEED_INBOX:-"false"}
 SEED_INBOX_COUNT=${SEED_INBOX_COUNT:-"12"}
 SEED_INBOX_INCLUDE_CATEGORIES=${SEED_INBOX_INCLUDE_CATEGORIES:-"false"}
 SKIP_NPM_DEPS_HASH_VERIFICATION=${SKIP_NPM_DEPS_HASH_VERIFICATION:-"false"}
-DEPLOY_SSH_PRIVATE_KEY_PATH_SET="${DEPLOY_SSH_PRIVATE_KEY_PATH+x}"
-DEPLOY_SSH_PUBLIC_KEY_PATH_SET="${DEPLOY_SSH_PUBLIC_KEY_PATH+x}"
-DEPLOY_SSH_PRIVATE_KEY_PATH=${DEPLOY_SSH_PRIVATE_KEY_PATH:-""}
-DEPLOY_SSH_PUBLIC_KEY_PATH=${DEPLOY_SSH_PUBLIC_KEY_PATH:-""}
+SSH_PRIVATE_KEY_PATH_SET="${SSH_PRIVATE_KEY_PATH+x}"
+SSH_PRIVATE_KEY_PATH=${SSH_PRIVATE_KEY_PATH:-""}
+SSH_PUBLIC_KEY_PATH=""
 SSH_PRIVATE_KEY=${SSH_PRIVATE_KEY:-""}
 
-if [ -n "${DEPLOY_SSH_PRIVATE_KEY_PATH}" ] && [[ "${DEPLOY_SSH_PRIVATE_KEY_PATH}" != /* ]]; then
-    DEPLOY_SSH_PRIVATE_KEY_PATH="$(pwd)/${DEPLOY_SSH_PRIVATE_KEY_PATH}"
-fi
-if [ -n "${DEPLOY_SSH_PUBLIC_KEY_PATH}" ] && [[ "${DEPLOY_SSH_PUBLIC_KEY_PATH}" != /* ]]; then
-    DEPLOY_SSH_PUBLIC_KEY_PATH="$(pwd)/${DEPLOY_SSH_PUBLIC_KEY_PATH}"
+if [ -n "${SSH_PRIVATE_KEY_PATH}" ] && [[ "${SSH_PRIVATE_KEY_PATH}" != /* ]]; then
+    SSH_PRIVATE_KEY_PATH="$(pwd)/${SSH_PRIVATE_KEY_PATH}"
 fi
 
 VPS_STACK_DIR="infra/vps/${VPS_STACK}"
@@ -524,7 +520,7 @@ case "${SKIP_NPM_DEPS_HASH_VERIFICATION}" in
 esac
 
 USE_USER_MANAGED_SSH_KEY=false
-if [ -n "${DEPLOY_SSH_PRIVATE_KEY_PATH_SET}" ] || [ -n "${DEPLOY_SSH_PUBLIC_KEY_PATH_SET}" ]; then
+if [ -n "${SSH_PRIVATE_KEY_PATH_SET}" ]; then
     USE_USER_MANAGED_SSH_KEY=true
 fi
 
@@ -546,34 +542,32 @@ WORKSPACE_SSH_PUBLIC_KEY_PATH="$(pwd)/infra/id_ed25519.pub"
 
 if [ -n "${SSH_PRIVATE_KEY}" ]; then
     if [ "${USE_USER_MANAGED_SSH_KEY}" = "true" ]; then
-        log "SSH_PRIVATE_KEY is set; ignoring DEPLOY_SSH_*_PATH values for this run."
+        log "SSH_PRIVATE_KEY is set; ignoring SSH_PRIVATE_KEY_PATH for this run."
     fi
 
     TEMP_DEPLOY_SSH_PRIVATE_KEY="$(mktemp)"
     TEMP_DEPLOY_SSH_PUBLIC_KEY="${TEMP_DEPLOY_SSH_PRIVATE_KEY}.pub"
     printf '%s\n' "${SSH_PRIVATE_KEY}" > "${TEMP_DEPLOY_SSH_PRIVATE_KEY}"
     ssh-keygen -y -f "${TEMP_DEPLOY_SSH_PRIVATE_KEY}" > "${TEMP_DEPLOY_SSH_PUBLIC_KEY}"
-    DEPLOY_SSH_PRIVATE_KEY_PATH="${TEMP_DEPLOY_SSH_PRIVATE_KEY}"
-    DEPLOY_SSH_PUBLIC_KEY_PATH="${TEMP_DEPLOY_SSH_PUBLIC_KEY}"
+    SSH_PRIVATE_KEY_PATH="${TEMP_DEPLOY_SSH_PRIVATE_KEY}"
+    SSH_PUBLIC_KEY_PATH="${TEMP_DEPLOY_SSH_PUBLIC_KEY}"
 elif [ "${USE_USER_MANAGED_SSH_KEY}" = "true" ]; then
-    if [ -z "${DEPLOY_SSH_PRIVATE_KEY_PATH}" ]; then
-        error "DEPLOY_SSH_PRIVATE_KEY_PATH is set but empty. Set it to an existing private key path."
+    if [ -z "${SSH_PRIVATE_KEY_PATH}" ]; then
+        error "SSH_PRIVATE_KEY_PATH is set but empty. Set it to an existing private key path."
     fi
-    if [ -z "${DEPLOY_SSH_PUBLIC_KEY_PATH}" ]; then
-        DEPLOY_SSH_PUBLIC_KEY_PATH="${DEPLOY_SSH_PRIVATE_KEY_PATH}.pub"
-    fi
-    [ -f "${DEPLOY_SSH_PRIVATE_KEY_PATH}" ] || error "Custom SSH private key not found: ${DEPLOY_SSH_PRIVATE_KEY_PATH}"
-    if [ ! -f "${DEPLOY_SSH_PUBLIC_KEY_PATH}" ]; then
+    SSH_PUBLIC_KEY_PATH="${SSH_PRIVATE_KEY_PATH}.pub"
+    [ -f "${SSH_PRIVATE_KEY_PATH}" ] || error "Custom SSH private key not found: ${SSH_PRIVATE_KEY_PATH}"
+    if [ ! -f "${SSH_PUBLIC_KEY_PATH}" ]; then
         log "Deriving SSH public key from provided private key..."
-        ssh-keygen -y -f "${DEPLOY_SSH_PRIVATE_KEY_PATH}" > "${DEPLOY_SSH_PUBLIC_KEY_PATH}"
+        ssh-keygen -y -f "${SSH_PRIVATE_KEY_PATH}" > "${SSH_PUBLIC_KEY_PATH}"
     fi
 else
-    error "SSH key not provided. Set SSH_PRIVATE_KEY (preferred) or DEPLOY_SSH_PRIVATE_KEY_PATH to an existing key."
+    error "SSH key not provided. Set SSH_PRIVATE_KEY (content) or SSH_PRIVATE_KEY_PATH (path to existing private key)."
 fi
-chmod 600 "${DEPLOY_SSH_PRIVATE_KEY_PATH}"
-chmod 644 "${DEPLOY_SSH_PUBLIC_KEY_PATH}"
+chmod 600 "${SSH_PRIVATE_KEY_PATH}"
+chmod 644 "${SSH_PUBLIC_KEY_PATH}"
 mkdir -p "$(dirname "${WORKSPACE_SSH_PUBLIC_KEY_PATH}")"
-cp "${DEPLOY_SSH_PUBLIC_KEY_PATH}" "${WORKSPACE_SSH_PUBLIC_KEY_PATH}"
+cp "${SSH_PUBLIC_KEY_PATH}" "${WORKSPACE_SSH_PUBLIC_KEY_PATH}"
 SSH_AUTHORIZED_KEY="$(cat "${WORKSPACE_SSH_PUBLIC_KEY_PATH}")"
 
 log "Generating Password Hash..."
@@ -663,7 +657,7 @@ domain = "${DOMAIN}"
 hcloud_token = "${HCLOUD_TOKEN}"
 server_type = "${HETZNER_SERVER_TYPE}"
 location = "${HETZNER_LOCATION}"
-ssh_public_key_path = "${DEPLOY_SSH_PUBLIC_KEY_PATH}"
+ssh_public_key_path = "${SSH_PUBLIC_KEY_PATH}"
 EOF
 
     if [ -n "$EXISTING_HCLOUD_SSH_KEY_ID" ]; then
@@ -773,7 +767,7 @@ log "Preparing secure secret deployment..."
 TEMP_EXTRA=$(mktemp -d)
 
 mkdir -p "$TEMP_EXTRA/etc/ssh"
-cp "${DEPLOY_SSH_PRIVATE_KEY_PATH}" "$TEMP_EXTRA/etc/ssh/ssh_host_ed25519_key"
+cp "${SSH_PRIVATE_KEY_PATH}" "$TEMP_EXTRA/etc/ssh/ssh_host_ed25519_key"
 chmod 600 "$TEMP_EXTRA/etc/ssh/ssh_host_ed25519_key"
 
 mkdir -p "$TEMP_EXTRA/root"
@@ -790,14 +784,14 @@ chmod 600 "$TEMP_EXTRA/root/restic-env"
 
 SSH_READY_TIMEOUT_SECONDS="${SSH_READY_TIMEOUT_SECONDS:-600}"
 log "Checking server SSH readiness at ${SERVER_IP} (timeout ${SSH_READY_TIMEOUT_SECONDS}s)..."
-wait_for_ssh_ready "${SERVER_IP}" "${DEPLOY_SSH_PRIVATE_KEY_PATH}" "${SSH_READY_TIMEOUT_SECONDS}" 5
+wait_for_ssh_ready "${SERVER_IP}" "${SSH_PRIVATE_KEY_PATH}" "${SSH_READY_TIMEOUT_SECONDS}" 5
 
-IS_NIXOS=$(ssh -o StrictHostKeyChecking=no -i "${DEPLOY_SSH_PRIVATE_KEY_PATH}" root@$SERVER_IP "grep -i nixos /etc/os-release" 2>/dev/null || true)
+IS_NIXOS=$(ssh -o StrictHostKeyChecking=no -i "${SSH_PRIVATE_KEY_PATH}" root@$SERVER_IP "grep -i nixos /etc/os-release" 2>/dev/null || true)
 
 if [ -n "$IS_NIXOS" ]; then
     log "✨ Existing NixOS detected. Performing safe update..."
     # Set the SSH options via environment variable for nixos-rebuild
-    export NIX_SSHOPTS="-i ${DEPLOY_SSH_PRIVATE_KEY_PATH} -o StrictHostKeyChecking=no"
+    export NIX_SSHOPTS="-i ${SSH_PRIVATE_KEY_PATH} -o StrictHostKeyChecking=no"
     run_timed_step "nixos-rebuild switch (${SERVER_IP})" nix run nixpkgs#nixos-rebuild -- switch \
         --flake "$FLAKE_REF" \
         --target-host root@$SERVER_IP \
@@ -807,13 +801,13 @@ else
     log "🚀 No NixOS detected. Running fresh installation (nixos-anywhere)..."
     run_timed_step "nixos-anywhere install (${SERVER_IP})" nix run github:nix-community/nixos-anywhere -- \
         --build-on-remote \
-        --ssh-option "IdentityFile=${DEPLOY_SSH_PRIVATE_KEY_PATH}" \
+        --ssh-option "IdentityFile=${SSH_PRIVATE_KEY_PATH}" \
         --extra-files "$TEMP_EXTRA" \
         --flake "$FLAKE_REF" \
         root@$SERVER_IP
 fi
 
-run_timed_step "rolling webmail restart (${SERVER_IP})" rollout_webmail_slots "${SERVER_IP}" "${DEPLOY_SSH_PRIVATE_KEY_PATH}"
+run_timed_step "rolling webmail restart (${SERVER_IP})" rollout_webmail_slots "${SERVER_IP}" "${SSH_PRIVATE_KEY_PATH}"
 
 if [ "$SEED_INBOX" = "true" ]; then
     log "Seeding inbox for development/test usage (count=${SEED_INBOX_COUNT})..."

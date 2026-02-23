@@ -21,9 +21,9 @@ If you already use Nix (or are on NixOS), you can run deploy directly.
    ssh-keygen -t ed25519 -f ~/.ssh/homerow_ed25519 -N ""
    ```
 
-4. **Run deploy** (pass key content via `SSH_PRIVATE_KEY`):
+4. **Run deploy** using key path:
    ```bash
-   SSH_PRIVATE_KEY="$(cat <path/to/private_key>)" nix run .#deploy
+   SSH_PRIVATE_KEY_PATH=<path/to/private_key> nix run .#deploy
    ```
 
    Or enter a dev shell first:
@@ -31,30 +31,10 @@ If you already use Nix (or are on NixOS), you can run deploy directly.
    nix develop
    ./scripts/deploy-from-config.sh
    ```
-
-   Alternative with key path:
-   ```bash
-   DEPLOY_SSH_PRIVATE_KEY_PATH=<path/to/private_key> nix run .#deploy
-   ```
 </Steps>
 
+:::note
+Deploy always needs an SSH key. For this local method, set `SSH_PRIVATE_KEY_PATH`.
+:::
+
 The dev shell (`devenv.nix`) includes deploy tools like `terraform`, `openssh`, and `git`.
-
-## Project CLI
-
-For a concise interface, use the project CLI:
-
-```bash
-./hrow help
-```
-
-Common commands:
-
-```bash
-./hrow deploy
-./hrow destroy
-./hrow ssh
-./hrow push-secrets --repo <owner/repo>
-./hrow e2e
-./hrow docker deploy
-```

@@ -22,6 +22,6 @@ expect_contains "${WEBMAIL_MODULE}" 'restartIfChanged = false;'
 expect_contains "${INSTALL_SCRIPT}" 'rollout_webmail_slots() {'
 expect_contains "${INSTALL_SCRIPT}" 'restart_slot custom-webmail-blue 3001'
 expect_contains "${INSTALL_SCRIPT}" 'restart_slot custom-webmail-green 3002'
-expect_contains "${INSTALL_SCRIPT}" 'run_timed_step "rolling webmail restart (${SERVER_IP})" rollout_webmail_slots "${SERVER_IP}" "${DEPLOY_SSH_PRIVATE_KEY_PATH}"'
+expect_contains "${INSTALL_SCRIPT}" 'run_timed_step "rolling webmail restart (${SERVER_IP})" rollout_webmail_slots "${SERVER_IP}" "${SSH_PRIVATE_KEY_PATH}"'
 
 echo "install webmail rolling release test: ok"

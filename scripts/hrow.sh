@@ -17,11 +17,36 @@ Commands:
   install          Run install orchestrator
   destroy          Destroy infrastructure/resources
   ssh              SSH into the deployed VPS
-  push-secrets     Push config values to GitHub secrets
+  fork-deploy      Push fork secrets and optionally trigger Deploy Mail Server workflow
   e2e              Run webmail end-to-end tests
   docker           Run a command inside deploy container
   help             Show this help
 EOF
+}
+
+resolve_ssh_private_key_content() {
+  local config_file="$1"
+  local key_content="${SSH_PRIVATE_KEY:-}"
+  if [ -n "${key_content}" ]; then
+    printf '%s' "${key_content}"
+    return 0
+  fi
+
+  local key_path="${SSH_PRIVATE_KEY_PATH:-}"
+  if [ -z "${key_path}" ] && [ -f "${config_file}" ]; then
+    # Read key path from config.env when running in docker mode.
+    key_path="$(set -a; source "${config_file}"; set +a; printf '%s' "${SSH_PRIVATE_KEY_PATH:-}")"
+  fi
+
+  if [ -z "${key_path}" ]; then
+    return 0
+  fi
+  if [[ "${key_path}" != /* ]]; then
+    key_path="${REPO_ROOT}/${key_path}"
+  fi
+  [ -f "${key_path}" ] || { echo "[hrow] SSH private key not found: ${key_path}" >&2; exit 1; }
+
+  cat "${key_path}"
 }
 
 run_docker_command() {
@@ -35,7 +60,7 @@ run_docker_command() {
     install) target="/workspace/scripts/install.sh" ;;
     destroy) target="/workspace/scripts/destroy.sh" ;;
     ssh) target="/workspace/scripts/ssh-vps.sh" ;;
-    push-secrets) target="/workspace/scripts/push-gh-secrets.sh" ;;
+    fork-deploy) target="/workspace/scripts/fork-deploy.sh" ;;
     e2e) target="/workspace/scripts/run-tests.sh" ;;
     *) echo "[hrow] unknown docker subcommand: ${subcmd}" >&2; exit 1 ;;
   esac
@@ -57,6 +82,8 @@ run_docker_command() {
   local config_file="${DEPLOY_CONFIG_FILE:-${REPO_ROOT}/config.env}"
   local container_config_path="/tmp/.deploy-config.env"
   [ -f "${config_file}" ] || { echo "[hrow] missing config file at ${config_file}" >&2; exit 1; }
+  local ssh_private_key_content
+  ssh_private_key_content="$(resolve_ssh_private_key_content "${config_file}")"
 
   local has_image=0
   if "${engine}" image inspect "${image}" >/dev/null 2>&1; then
@@ -99,8 +126,8 @@ run_docker_command() {
     -e "DEPLOY_SKIP_UPDATE_CHECK=${DEPLOY_SKIP_UPDATE_CHECK:-}"
     -e "UPDATE_SOURCE_REMOTE=${UPDATE_SOURCE_REMOTE:-}"
   )
-  if [ -n "${SSH_PRIVATE_KEY:-}" ]; then
-    run_args+=(-e "SSH_PRIVATE_KEY=${SSH_PRIVATE_KEY}")
+  if [ -n "${ssh_private_key_content}" ]; then
+    run_args+=(-e "SSH_PRIVATE_KEY=${ssh_private_key_content}")
   fi
 
   exec "${engine}" "${run_args[@]}" "${image}" "${target}" "$@"
@@ -124,8 +151,8 @@ case "${cmd}" in
   ssh)
     exec "${REPO_ROOT}/scripts/ssh-vps.sh" "$@"
     ;;
-  push-secrets)
-    exec "${REPO_ROOT}/scripts/push-gh-secrets.sh" "$@"
+  fork-deploy)
+    exec "${REPO_ROOT}/scripts/fork-deploy.sh" "$@"
     ;;
   e2e)
     exec "${REPO_ROOT}/scripts/run-tests.sh" "$@"

@@ -9,9 +9,9 @@ There are three ways to deploy. Pick the one that fits your setup.
 
 | Method | Requires | Best for |
 |--------|----------|----------|
-| [GitHub Actions](/deploy/github-actions/) | GitHub account | Hands-off, CI-driven deploys |
-| [Docker / Podman](/deploy/docker/) | Docker or Podman | No local Nix installation needed |
-| [Local Nix](/deploy/local-nix/) | Nix installed | Most direct, full control |
+| [Remote: Fork-and-Deploy (GitHub Actions)](/deploy/github-actions/) | GitHub account | Hands-off, CI-driven deploys |
+| [Local: Docker / Podman](/deploy/docker/) | Docker or Podman | No local Nix installation needed |
+| [Local: Nix / NixOS](/deploy/local-nix/) | Nix installed | Most direct, full control |
 
 ## Prerequisites
 
@@ -25,7 +25,7 @@ All methods require:
 ## Steps Overview
 
 <Steps>
-1. **Clone the repository** and create your `config.env` with domain, credentials, and provider tokens. See [Configuration](/getting-started/configuration/) for all variables.
+1. **Create your `config.env`** with domain, credentials, and provider tokens. See [Configuration](/getting-started/configuration/) for all variables.
 
 2. **Generate or reuse an SSH key** for deploy and server access:
    ```bash
@@ -37,6 +37,7 @@ All methods require:
    - Provision VPS, DNS records, and backup storage
    - Bootstrap NixOS on the server
    - Configure mail services, webmail, sync engine, and backups
+   - For local methods (Docker/Podman and Nix/NixOS), clone the repository first.
 
 4. **Access your services** after deploy completes:
    - Webmail: `https://webmail.<your-domain>`

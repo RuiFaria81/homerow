@@ -2,7 +2,7 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
-SCRIPT="${ROOT_DIR}/scripts/push-gh-secrets.sh"
+SCRIPT="${ROOT_DIR}/scripts/fork-deploy.sh"
 
 TMP_DIR="$(mktemp -d)"
 trap 'rm -rf "${TMP_DIR}"' EXIT
@@ -19,8 +19,12 @@ if [ "\$1" = "auth" ] && [ "\$2" = "status" ]; then
 fi
 if [ "\$1" = "secret" ] && [ "\$2" = "set" ]; then
   name="\$3"
-  echo "set:\${name}" >> "${LOG_FILE}"
+  echo "set:\${name} args:\$*" >> "${LOG_FILE}"
   cat >/dev/null || true
+  exit 0
+fi
+if [ "\$1" = "workflow" ] && [ "\$2" = "run" ]; then
+  echo "workflow:run args:\$*" >> "${LOG_FILE}"
   exit 0
 fi
 exit 1
@@ -52,6 +56,7 @@ TF_STATE_PREFIX=prod/example.com
 SEED_INBOX=true
 SEED_INBOX_COUNT=25
 SEED_INBOX_INCLUDE_CATEGORIES=false
+GITHUB_FORK_REPO=owner/repo
 EOF
 
 SSH_KEY_PATH="${TMP_DIR}/id_ed25519"
@@ -60,11 +65,16 @@ cat > "${SSH_KEY_PATH}" <<'EOF'
 test-private-key
 -----END OPENSSH PRIVATE KEY-----
 EOF
+echo "SSH_PRIVATE_KEY_PATH=${SSH_KEY_PATH}" >> "${CONFIG_FILE}"
 
-PATH="${BIN_DIR}:${PATH}" "${SCRIPT}" --config "${CONFIG_FILE}" --repo "owner/repo" --ssh-key "${SSH_KEY_PATH}" >/dev/null
+PATH="${BIN_DIR}:${PATH}" PUSH_GH_SECRETS_DEPLOY_ANSWER=y "${SCRIPT}" --config "${CONFIG_FILE}" >/dev/null
 
 for name in DOMAIN EMAIL MAIL_PASSWORD RESTIC_PASSWORD HCLOUD_TOKEN CLOUDFLARE_TOKEN CLOUDFLARE_ZONE_ID S3_ACCESS_KEY S3_SECRET_KEY ACME_ENV VPS_STACK DNS_STACK STORAGE_STACK HETZNER_SERVER_TYPE HETZNER_LOCATION HETZNER_REUSE_EXISTING_SERVER HETZNER_OBJECT_STORAGE_LOCATION WEBMAIL_SUBDOMAIN TF_STATE_BUCKET_NAME TF_STATE_PREFIX SEED_INBOX SEED_INBOX_COUNT SEED_INBOX_INCLUDE_CATEGORIES SSH_PRIVATE_KEY; do
   grep -q "set:${name}" "${LOG_FILE}"
 done
+
+grep -q "set:DOMAIN args:secret set DOMAIN --repo owner/repo --body example.com" "${LOG_FILE}"
+grep -q "set:SSH_PRIVATE_KEY args:secret set SSH_PRIVATE_KEY --repo owner/repo" "${LOG_FILE}"
+grep -q "workflow:run args:workflow run Deploy Mail Server --repo owner/repo" "${LOG_FILE}"
 
 echo "push-gh-secrets test: ok"

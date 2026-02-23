@@ -15,8 +15,8 @@ if ! grep -Fq 'HETZNER_REUSE_EXISTING_SERVER=${HETZNER_REUSE_EXISTING_SERVER:-"t
   exit 1
 fi
 
-if ! grep -Fq 'DEPLOY_SSH_PRIVATE_KEY_PATH=${DEPLOY_SSH_PRIVATE_KEY_PATH:-""}' "${INSTALL_SCRIPT}"; then
-  echo "expected install.sh to define deploy ssh private key path input without implicit default" >&2
+if ! grep -Fq 'SSH_PRIVATE_KEY_PATH=${SSH_PRIVATE_KEY_PATH:-""}' "${INSTALL_SCRIPT}"; then
+  echo "expected install.sh to define ssh private key path input without implicit default" >&2
   exit 1
 fi
 
@@ -30,13 +30,13 @@ if ! grep -Fq 'if [ -n "${SSH_PRIVATE_KEY}" ]; then' "${INSTALL_SCRIPT}"; then
   exit 1
 fi
 
-if ! grep -Fq 'SSH key not provided. Set SSH_PRIVATE_KEY (preferred) or DEPLOY_SSH_PRIVATE_KEY_PATH to an existing key.' "${INSTALL_SCRIPT}"; then
-  echo "expected install.sh to require an explicit ssh key and prefer SSH_PRIVATE_KEY" >&2
+if ! grep -Fq 'SSH key not provided. Set SSH_PRIVATE_KEY (content) or SSH_PRIVATE_KEY_PATH (path to existing private key).' "${INSTALL_SCRIPT}"; then
+  echo "expected install.sh to require explicit ssh key content or key path" >&2
   exit 1
 fi
 
-if ! grep -Fq 'DEPLOY_SSH_PRIVATE_KEY_PATH is set but empty. Set it to an existing private key path.' "${INSTALL_SCRIPT}"; then
-  echo "expected install.sh to validate an empty DEPLOY_SSH_PRIVATE_KEY_PATH input" >&2
+if ! grep -Fq 'SSH_PRIVATE_KEY_PATH is set but empty. Set it to an existing private key path.' "${INSTALL_SCRIPT}"; then
+  echo "expected install.sh to validate an empty SSH_PRIVATE_KEY_PATH input" >&2
   exit 1
 fi
 
@@ -50,7 +50,7 @@ if ! grep -Fq 'WORKSPACE_SSH_PUBLIC_KEY_PATH="$(pwd)/infra/id_ed25519.pub"' "${I
   exit 1
 fi
 
-if ! grep -Fq 'cp "${DEPLOY_SSH_PUBLIC_KEY_PATH}" "${WORKSPACE_SSH_PUBLIC_KEY_PATH}"' "${INSTALL_SCRIPT}"; then
+if ! grep -Fq 'cp "${SSH_PUBLIC_KEY_PATH}" "${WORKSPACE_SSH_PUBLIC_KEY_PATH}"' "${INSTALL_SCRIPT}"; then
   echo "expected install.sh to always write workspace ssh public key from configured deploy key" >&2
   exit 1
 fi
@@ -65,7 +65,7 @@ if ! grep -Fq "sshAuthorizedKey = ''" "${INSTALL_SCRIPT}"; then
   exit 1
 fi
 
-if ! grep -Fq 'ssh_public_key_path = "${DEPLOY_SSH_PUBLIC_KEY_PATH}"' "${INSTALL_SCRIPT}"; then
+if ! grep -Fq 'ssh_public_key_path = "${SSH_PUBLIC_KEY_PATH}"' "${INSTALL_SCRIPT}"; then
   echo "expected install.sh to pass configured ssh public key path to terraform vars" >&2
   exit 1
 fi

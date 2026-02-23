@@ -14,19 +14,7 @@ If you don't want to install Nix locally, this is the simplest path.
    cd homerow
    ```
 
-2. **Create `config.env`** in the repo root. See [Configuration](/getting-started/configuration/) for the full reference. Example:
-   ```bash
-   DOMAIN=example.com
-   EMAIL=admin@example.com
-   MAIL_PASSWORD=change-me
-   RESTIC_PASSWORD=change-me
-
-   HCLOUD_TOKEN=...
-   CLOUDFLARE_TOKEN=...
-   CLOUDFLARE_ZONE_ID=...
-   S3_ACCESS_KEY=...
-   S3_SECRET_KEY=...
-   ```
+2. **Create `config.env`** in the repo root. See [Configuration](/getting-started/configuration/) for the full reference and the complete example.
 
 3. **Configure your SSH key** — reuse an existing key or generate a dedicated one:
    ```bash
@@ -35,15 +23,14 @@ If you don't want to install Nix locally, this is the simplest path.
 
 4. **Make sure Docker or Podman is installed.**
 
-5. **Run deploy** (pass key content via `SSH_PRIVATE_KEY`):
+5. **Run deploy** using key path:
    ```bash
-   SSH_PRIVATE_KEY="$(cat <path/to/private_key>)" ./hrow docker deploy
-   ```
-
-   Alternative with key path:
-   ```bash
-   DEPLOY_SSH_PRIVATE_KEY_PATH=<path/to/private_key> ./hrow docker deploy
+   SSH_PRIVATE_KEY_PATH=<path/to/private_key> ./hrow docker deploy
    ```
 </Steps>
+
+:::note
+Deploy always needs an SSH key. For this local method, set `SSH_PRIVATE_KEY_PATH`.
+:::
 
 On the first run, the deploy image is built automatically before starting the full deployment.

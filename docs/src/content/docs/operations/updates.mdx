@@ -21,11 +21,11 @@ To update your deployment after pulling new changes:
 1. Pull the latest changes from upstream (or merge them into your fork).
 2. Re-run deploy using your preferred method:
    ```bash
-   SSH_PRIVATE_KEY="$(cat <path/to/key>)" nix run .#deploy
+   SSH_PRIVATE_KEY_PATH=<path/to/key> nix run .#deploy
    ```
    Or via Docker:
    ```bash
-   SSH_PRIVATE_KEY="$(cat <path/to/key>)" ./hrow docker deploy
+   SSH_PRIVATE_KEY_PATH=<path/to/key> ./hrow docker deploy
    ```
    Or trigger the GitHub Actions workflow.
 

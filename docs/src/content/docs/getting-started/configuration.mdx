@@ -14,6 +14,8 @@ All configuration lives in `config.env` at the repository root. This file is nev
 | `MAIL_PASSWORD` | Yes | Mail admin password for mailbox/auth bootstrap | — |
 | `RESTIC_PASSWORD` | Yes | Encryption password for backups | — |
 | `SSH_PRIVATE_KEY` | No | SSH private key content (preferred for CI) | — |
+| `GITHUB_FORK_REPO` | No | Target repository for `fork-deploy` (format: `owner/repo`) | — |
+| `SSH_PRIVATE_KEY_PATH` | No | Local private key path used by deploy helpers and `fork-deploy` | — |
 | `ACME_ENV` | No | Certificate environment | `production` |
 | `WEBMAIL_SUBDOMAIN` | No | Webmail host subdomain (must not be `mail`) | `webmail` |
 | `VPS_STACK` | No | VPS provider stack selector | `hetzner` |
@@ -21,6 +23,12 @@ All configuration lives in `config.env` at the repository root. This file is nev
 | `STORAGE_STACK` | No | Storage provider stack selector | `hetzner-object-storage` |
 | `TF_STATE_BUCKET_NAME` | No | Bucket name for Terraform remote state | `mail-tfstate-<domain>` |
 | `TF_STATE_PREFIX` | No | Key prefix inside the state bucket | `<domain>` |
+
+:::note
+Use `SSH_PRIVATE_KEY_PATH` for local deploy commands.
+Use `SSH_PRIVATE_KEY` as secret content for GitHub Actions.
+If you manually add secrets in your fork, set `SSH_PRIVATE_KEY` to the full private key content (not a filesystem path).
+:::
 
 ## Provider Variables
 
@@ -70,6 +78,8 @@ STORAGE_STACK=hetzner-object-storage
 
 ACME_ENV=production
 WEBMAIL_SUBDOMAIN=webmail
+GITHUB_FORK_REPO=owner/repo
+SSH_PRIVATE_KEY_PATH=~/.ssh/homerow_ed25519
 HETZNER_SERVER_TYPE=cx23
 HETZNER_LOCATION=nbg1
 HETZNER_REUSE_EXISTING_SERVER=true

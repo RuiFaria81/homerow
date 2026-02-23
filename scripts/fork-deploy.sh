@@ -4,13 +4,15 @@ set -euo pipefail
 usage() {
   cat <<'EOF'
 Usage:
-  push-gh-secrets.sh [--config path/to/config.env] [--repo owner/repo] [--ssh-key path/to/private_key]
+  fork-deploy.sh [--config path/to/config.env] [--repo owner/repo] [--ssh-key path/to/private_key]
 
 Notes:
   - Requires GitHub CLI (`gh`) and authenticated session (`gh auth login`).
   - Can run inside or outside this repository.
   - Pushes non-empty values from config.env as repository secrets.
-  - Pushes SSH_PRIVATE_KEY from --ssh-key path, or infra/id_ed25519 if found.
+  - --repo is optional if config.env includes GITHUB_FORK_REPO.
+  - Pushes SSH_PRIVATE_KEY from --ssh-key path, SSH_PRIVATE_KEY_PATH, or infra/id_ed25519 if found.
+  - After pushing secrets, asks whether to trigger workflow "Deploy Mail Server".
 EOF
 }
 
@@ -20,16 +22,19 @@ error() {
 }
 
 if REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null)"; then
+  IN_GIT_REPO=1
   CONFIG_FILE="${REPO_ROOT}/config.env"
   DEFAULT_SSH_KEY_FILE="${REPO_ROOT}/infra/id_ed25519"
 else
+  IN_GIT_REPO=0
   REPO_ROOT="${PWD}"
   CONFIG_FILE="${PWD}/config.env"
   DEFAULT_SSH_KEY_FILE="${PWD}/infra/id_ed25519"
 fi
 
 TARGET_REPO=""
-SSH_KEY_FILE="${DEFAULT_SSH_KEY_FILE}"
+SSH_KEY_FILE=""
+SSH_KEY_FLAG_SET=0
 
 while [ "$#" -gt 0 ]; do
   case "$1" in
@@ -46,6 +51,7 @@ while [ "$#" -gt 0 ]; do
     --ssh-key)
       [ "$#" -ge 2 ] || error "--ssh-key requires a value."
       SSH_KEY_FILE="$2"
+      SSH_KEY_FLAG_SET=1
       shift 2
       ;;
     -h|--help)
@@ -66,6 +72,22 @@ gh auth status >/dev/null 2>&1 || error "GitHub CLI is not authenticated. Run `g
 set -a
 source "${CONFIG_FILE}"
 set +a
+
+if [ -z "${TARGET_REPO}" ]; then
+  TARGET_REPO="${GITHUB_FORK_REPO:-}"
+fi
+
+if [ "${SSH_KEY_FLAG_SET}" -eq 0 ]; then
+  if [ -n "${SSH_PRIVATE_KEY_PATH:-}" ]; then
+    SSH_KEY_FILE="${SSH_PRIVATE_KEY_PATH}"
+  else
+    SSH_KEY_FILE="${DEFAULT_SSH_KEY_FILE}"
+  fi
+fi
+
+if [ -z "${TARGET_REPO}" ] && [ "${IN_GIT_REPO}" -eq 0 ]; then
+  error "missing target repository. Set --repo <owner/repo> or GITHUB_FORK_REPO in config.env."
+fi
 
 gh_args=()
 if [ -n "${TARGET_REPO}" ]; then
@@ -105,6 +127,30 @@ set_secret() {
   echo "[push-gh-secrets] set ${name}"
 }
 
+maybe_trigger_deploy_workflow() {
+  local workflow_name="Deploy Mail Server"
+  local answer="${PUSH_GH_SECRETS_DEPLOY_ANSWER:-}"
+
+  if [ -z "${answer}" ]; then
+    if [ -t 0 ]; then
+      read -r -p "[push-gh-secrets] Trigger '${workflow_name}' workflow now? [y/N] " answer
+    else
+      echo "[push-gh-secrets] non-interactive shell: skipping deploy prompt."
+      return 0
+    fi
+  fi
+
+  case "${answer}" in
+    y|Y|yes|YES)
+      gh workflow run "${workflow_name}" "${gh_args[@]}" >/dev/null
+      echo "[push-gh-secrets] triggered workflow '${workflow_name}'"
+      ;;
+    *)
+      echo "[push-gh-secrets] skipped workflow trigger"
+      ;;
+  esac
+}
+
 for name in "${secrets[@]}"; do
   value="${!name:-}"
   if [ -n "${value}" ]; then
@@ -118,5 +164,7 @@ if [ -f "${SSH_KEY_FILE}" ]; then
 else
   echo "[push-gh-secrets] skipped SSH_PRIVATE_KEY (${SSH_KEY_FILE} not found)"
 fi
+
+maybe_trigger_deploy_workflow
 
 echo "[push-gh-secrets] done"
