@@ -13,6 +13,7 @@ interface EmailRowProps {
   email: {
     seq: number;
     from: string;
+    participants?: string[];
     subject: string;
     date: string;
     flags: string[];
@@ -142,6 +143,22 @@ export default function EmailRow(props: EmailRowProps) {
     return false;
   };
 
+  const participantSummary = () => {
+    const rawParticipants = (props.email.participants || [])
+      .map((participant) => participant.trim())
+      .filter(Boolean);
+    const participants = rawParticipants.length > 0
+      ? rawParticipants
+      : props.email.from
+          .split(",")
+          .map((participant) => participant.trim())
+          .filter(Boolean);
+
+    if (participants.length <= 1) return props.email.from;
+    const visible = participants.slice(0, 3).join(", ");
+    return participants.length > 3 ? `${visible} and more` : visible;
+  };
+
   return (
     <div
       data-testid="row-drag-handle"
@@ -226,9 +243,14 @@ export default function EmailRow(props: EmailRowProps) {
           isUnread() ? "font-bold text-[var(--foreground)]" : "font-medium text-[var(--text-secondary)]"
         }`}
       >
-        <span class="overflow-hidden text-ellipsis">{props.email.from}</span>
+        <span class="overflow-hidden text-ellipsis" data-testid="email-row-participants">
+          {props.email.messageCount && props.email.messageCount > 1 ? participantSummary() : props.email.from}
+        </span>
         <Show when={props.email.messageCount && props.email.messageCount > 1}>
-          <span class="inline-flex items-center justify-center min-w-[20px] h-[18px] px-1 rounded-full text-[11px] font-semibold bg-[var(--text-muted)] text-white shrink-0 leading-none">
+          <span
+            class="inline-flex items-center justify-center min-w-[20px] h-[18px] px-1 rounded-full text-[11px] font-semibold bg-[var(--text-muted)] text-white shrink-0 leading-none"
+            data-testid="email-row-message-count"
+          >
             {props.email.messageCount}
           </span>
         </Show>

@@ -92,6 +92,82 @@ async function sendInboundEmail(params: {
   transport.close();
 }
 
+async function sendThreadedConversation(params: {
+  subject: string;
+  participants: string[];
+  messages: number;
+}): Promise<void> {
+  const user = requiredEnv("E2E_EMAIL");
+  const password = requiredEnv("E2E_PASSWORD");
+  const transport = nodemailer.createTransport({
+    host: smtpHost(),
+    port: smtpPort(),
+    secure: smtpPort() === 465,
+    auth: {
+      user,
+      pass: password,
+    },
+    tls: { rejectUnauthorized: false },
+  });
+
+  const threadRoot = `thread-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+  const ids = Array.from({ length: params.messages }, (_, idx) => `<${threadRoot}-${idx + 1}@inout.email>`);
+
+  for (let i = 0; i < params.messages; i += 1) {
+    const references = ids.slice(0, i);
+    await transport.sendMail({
+      from: `${params.participants[i % params.participants.length]} <${user}>`,
+      to: user,
+      subject: params.subject,
+      text: `Thread message ${i + 1}`,
+      messageId: ids[i],
+      inReplyTo: i > 0 ? ids[i - 1] : undefined,
+      references: references.length > 0 ? references.join(" ") : undefined,
+    });
+  }
+
+  transport.close();
+}
+
+async function waitForHomeRowBySubject(page: Page, subject: string): Promise<Locator> {
+  const deadline = Date.now() + 120_000;
+  const row = page.locator(".email-row", { hasText: subject }).first();
+
+  while (Date.now() < deadline) {
+    if (await row.count()) {
+      await expect(row).toBeVisible({ timeout: 10_000 });
+      return row;
+    }
+    await page.getByTitle("Refresh").click();
+    await page.waitForTimeout(2_500);
+  }
+
+  await expect(row).toBeVisible({ timeout: 5_000 });
+  return row;
+}
+
+async function forceThreadedInboxMode(page: Page): Promise<void> {
+  await page.addInitScript(() => {
+    try {
+      const raw = window.localStorage.getItem("settings");
+      const current = raw ? JSON.parse(raw) : {};
+      window.localStorage.setItem(
+        "settings",
+        JSON.stringify({
+          ...current,
+          enableCategories: false,
+          conversationView: true,
+        }),
+      );
+    } catch {
+      window.localStorage.setItem(
+        "settings",
+        JSON.stringify({ enableCategories: false, conversationView: true }),
+      );
+    }
+  });
+}
+
 test.describe("Requested feature regressions", () => {
   test.beforeEach(async ({ page }) => {
     await login(page);
@@ -257,6 +333,28 @@ test.describe("Requested feature regressions", () => {
     await expect(refreshButton).toHaveAttribute("data-state", "success");
     await expect(page.getByTestId("inbox-refresh-success-icon")).toBeVisible();
     await expect(refreshButton).toHaveAttribute("data-state", "idle", { timeout: 6_000 });
+  });
+
+  test("shows participant hint and grouped email count for conversations in inbox rows", async ({ page }) => {
+    const stamp = Date.now();
+    const subject = `Thread row indicator e2e ${stamp}`;
+    await sendThreadedConversation({
+      subject,
+      participants: ["Anna", "John", "me", "Chris"],
+      messages: 4,
+    });
+
+    await forceThreadedInboxMode(page);
+    await page.goto("/");
+    const row = await waitForHomeRowBySubject(page, subject);
+    const countText = (await row.getByTestId("email-row-message-count").innerText()).trim();
+    const count = Number.parseInt(countText, 10);
+    expect(Number.isFinite(count)).toBeTruthy();
+    expect(count).toBeGreaterThan(1);
+
+    const participantsText = (await row.getByTestId("email-row-participants").innerText()).trim();
+    expect(participantsText).toMatch(/Anna|John|Chris|me/i);
+    expect(participantsText).toMatch(/,| and more/i);
   });
 
   test("opens command palette with keyboard shortcut and executes compose command", async ({ page }) => {
