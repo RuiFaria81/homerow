@@ -15,6 +15,18 @@ The stack has five layers:
 
 ## Data Flow
 
+```mermaid
+flowchart LR
+  U["User Browser"] --> NG["nginx + TLS (ACME)"]
+  NG --> WM["Custom Webmail Service"]
+  WM --> PG["PostgreSQL (indexed mailbox data)"]
+  SE["Sync Engine"] --> PG
+  SE <--> IMAP["Postfix + Dovecot (IMAP/SMTP)"]
+  WM --> IMAP
+  NG --> RSPAMD["Rspamd"]
+  VPS["VPS (NixOS)"] -. "restic backups" .-> S3["Object Storage (encrypted backups)"]
+```
+
 ```
 User Browser
     ↓ HTTPS

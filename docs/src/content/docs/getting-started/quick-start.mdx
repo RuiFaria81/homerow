@@ -5,11 +5,12 @@ description: Choose your deployment method and get a mail server running.
 
 import { Tabs, TabItem, Steps } from '@astrojs/starlight/components';
 
-There are three ways to deploy. Pick the one that fits your setup.
+There are three ways to deploy. **Recommended default: Remote Fork-and-Deploy with GitHub Actions.**
+Use the local methods when you specifically want local execution and control.
 
 | Method | Requires | Best for |
 |--------|----------|----------|
-| [Remote: Fork-and-Deploy (GitHub Actions)](/deploy/github-actions/) | GitHub account | Hands-off, CI-driven deploys |
+| [Remote: Fork-and-Deploy (GitHub Actions)](/deploy/github-actions/) | GitHub account | **Recommended** for most users |
 | [Local: Docker / Podman](/deploy/docker/) | Docker or Podman | No local Nix installation needed |
 | [Local: Nix / NixOS](/deploy/local-nix/) | Nix installed | Most direct, full control |
 
