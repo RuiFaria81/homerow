@@ -76,15 +76,6 @@ SSH_PRIVATE_KEY_PATH=<path/to/private_key> nix run .#deploy
 - Gmail migration: https://docs.homerow.email/guides/gmail-migration/
 - Hetzner post-install guide: https://docs.homerow.email/guides/hetzner-post-install/
 
-## Tests
-
-```bash
-bash infra/tests/provider-selection-test.sh
-bash infra/tests/deploy-from-config-test.sh
-bash infra/tests/project-cli-test.sh
-bash infra/tests/update-notice-test.sh
-```
-
 ## Development Notes
 
 - Never commit `config.env`, private keys, or provider secrets.
