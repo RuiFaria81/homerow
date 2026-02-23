@@ -6,6 +6,11 @@ export default defineConfig({
   integrations: [
     starlight({
       title: "Homerow Email",
+      logo: {
+        src: "./src/assets/logo.svg",
+        alt: "Homerow logo",
+        replacesTitle: false,
+      },
       social: {
         github: "https://github.com/guilhermeprokisch/homerow",
       },
