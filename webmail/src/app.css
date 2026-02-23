@@ -156,6 +156,15 @@
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
 
+.sidebar-scroll-hidden {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.sidebar-scroll-hidden::-webkit-scrollbar {
+  display: none;
+}
+
 /* ─── Email row hover actions ─── */
 .email-row .hover-actions {
   display: none;

@@ -217,6 +217,15 @@ export function IconHelp(props: IconProps): JSX.Element {
   );
 }
 
+export function IconGithub(props: IconProps): JSX.Element {
+  const d = defaults(props);
+  return (
+    <svg width={d.size} height={d.size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width={d.strokeWidth} stroke-linecap="round" stroke-linejoin="round" class={d.class}>
+      <path d="M9 19c-4.5 1.5-4.5-2.5-6-3m12 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3-.3 6.2-1.5 6.2-6.8a5.2 5.2 0 0 0-1.4-3.6 4.9 4.9 0 0 0-.1-3.6s-1.1-.3-3.8 1.4a13.4 13.4 0 0 0-7 0C5.2 1.2 4 1.5 4 1.5a4.9 4.9 0 0 0-.1 3.6 5.2 5.2 0 0 0-1.4 3.6c0 5.3 3.2 6.5 6.2 6.8a3.4 3.4 0 0 0-.9 2.6V22" />
+    </svg>
+  );
+}
+
 export function IconClock(props: IconProps): JSX.Element {
   const d = defaults(props);
   return (

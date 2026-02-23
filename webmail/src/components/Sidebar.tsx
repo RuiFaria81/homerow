@@ -11,12 +11,15 @@ import { IconInbox, IconSend, IconSendClock, IconTrash, IconCompose, IconArchive
 import LabelModal from "./LabelModal";
 
 export default function Sidebar() {
+  const SIDEBAR_CATEGORIES_EXPANDED_KEY = "sidebarCategoriesExpanded";
+  const SIDEBAR_SENT_EXPANDED_KEY = "sidebarSentExpanded";
   const location = useLocation();
   const [showLabelModal, setShowLabelModal] = createSignal(false);
   const [categoriesExpanded, setCategoriesExpanded] = createSignal(true);
   const [sentExpanded, setSentExpanded] = createSignal(true);
   const [isImportActive, setIsImportActive] = createSignal(false);
   const [stableCounts, setStableCounts] = createSignal<Record<string, { unread: number; total: number }>>({});
+  const [treeStateHydrated, setTreeStateHydrated] = createSignal(false);
   let refreshDebounce: ReturnType<typeof setTimeout> | undefined;
   let lastRefreshAt = 0;
   const density = () => DENSITY_CONFIG[settings.density];
@@ -41,6 +44,30 @@ export default function Sidebar() {
     }
     lastRefreshAt = now;
     refreshCounts();
+  });
+
+  createEffect(() => {
+    if (typeof window === "undefined") return;
+    if (treeStateHydrated()) return;
+    const storedCategories = localStorage.getItem(SIDEBAR_CATEGORIES_EXPANDED_KEY);
+    if (storedCategories === "true" || storedCategories === "false") {
+      setCategoriesExpanded(storedCategories === "true");
+    }
+    const storedSent = localStorage.getItem(SIDEBAR_SENT_EXPANDED_KEY);
+    if (storedSent === "true" || storedSent === "false") {
+      setSentExpanded(storedSent === "true");
+    }
+    setTreeStateHydrated(true);
+  });
+
+  createEffect(() => {
+    if (typeof window === "undefined" || !treeStateHydrated()) return;
+    localStorage.setItem(SIDEBAR_CATEGORIES_EXPANDED_KEY, categoriesExpanded() ? "true" : "false");
+  });
+
+  createEffect(() => {
+    if (typeof window === "undefined" || !treeStateHydrated()) return;
+    localStorage.setItem(SIDEBAR_SENT_EXPANDED_KEY, sentExpanded() ? "true" : "false");
   });
 
   createEffect(() => {
@@ -138,7 +165,7 @@ export default function Sidebar() {
   };
 
   return (
-    <aside data-testid="left-sidebar-menu" data-shortcut-left-menu="true" class="h-full bg-[var(--card)] border-r border-[var(--border-light)] flex flex-col overflow-y-auto">
+    <aside data-testid="left-sidebar-menu" data-shortcut-left-menu="true" class="sidebar-scroll-hidden h-full bg-[var(--card)] border-r border-[var(--border-light)] flex flex-col overflow-y-auto">
       {/* Compose Button */}
       <div class="p-3 pb-2">
         <button
@@ -171,8 +198,11 @@ export default function Sidebar() {
             <Show when={displayCount("Inbox") > 0}>
               <span class="text-xs text-[var(--text-muted)]">{displayCount("Inbox")}</span>
             </Show>
-            <Show when={settings.enableCategories && categoryTabs().length > 0}>
+            <Show when={settings.enableCategories}>
               <button
+                data-testid="sidebar-toggle-categories"
+                aria-label={categoriesExpanded() ? "Collapse categories" : "Expand categories"}
+                title={categoriesExpanded() ? "Collapse categories" : "Expand categories"}
                 class="w-5 h-5 rounded border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--foreground)]"
                 onClick={(e) => {
                   e.preventDefault();
@@ -187,7 +217,7 @@ export default function Sidebar() {
             </Show>
           </A>
           <Show when={settings.enableCategories && categoriesExpanded() && categoryTabs().length > 0}>
-            <div class="mt-0.5 ml-8 flex flex-col gap-0.5">
+            <div data-testid="sidebar-categories-tree" class="mt-0.5 ml-8 flex flex-col gap-0.5">
               <For each={categoryTabs()}>
                 {(tab) => {
                   const CategoryIcon = categoryIconById(tab.icon);
@@ -253,6 +283,8 @@ export default function Sidebar() {
               <span class="text-xs text-[var(--text-muted)]">{displayCount("Sent")}</span>
             </Show>
             <button
+              data-testid="sidebar-toggle-sent"
+              aria-label={sentExpanded() ? "Collapse sent subfolders" : "Expand sent subfolders"}
               class="w-5 h-5 rounded border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--foreground)]"
               onClick={(e) => {
                 e.preventDefault();
@@ -266,25 +298,27 @@ export default function Sidebar() {
             </button>
           </A>
           <Show when={sentExpanded()}>
-            <A
-              href="/folder/Scheduled"
-              onClick={() => handleFolderClick(undefined)}
-              class={`ml-8 flex items-center gap-2 px-3 ${density().sidebarPy} rounded-lg transition-all duration-150 ${density().fontSize} font-medium no-underline ${
-                isActive("/folder/Scheduled")
-                  ? "bg-[var(--active-bg)] text-[var(--primary)] font-semibold"
-                  : "text-[var(--text-secondary)] hover:bg-[var(--hover-bg)]"
-              }`}
-            >
-              <IconSendClock
-                size={15}
-                strokeWidth={isActive("/folder/Scheduled") ? 2 : 1.75}
-                class={isActive("/folder/Scheduled") ? "text-[var(--primary)]" : ""}
-              />
-              <span class="flex-1">Scheduled</span>
-              <Show when={displayCount("Scheduled") > 0}>
-                <span class="text-xs text-[var(--text-muted)]">{displayCount("Scheduled")}</span>
-              </Show>
-            </A>
+            <div data-testid="sidebar-sent-tree">
+              <A
+                href="/folder/Scheduled"
+                onClick={() => handleFolderClick(undefined)}
+                class={`ml-8 flex items-center gap-2 px-3 ${density().sidebarPy} rounded-lg transition-all duration-150 ${density().fontSize} font-medium no-underline ${
+                  isActive("/folder/Scheduled")
+                    ? "bg-[var(--active-bg)] text-[var(--primary)] font-semibold"
+                    : "text-[var(--text-secondary)] hover:bg-[var(--hover-bg)]"
+                }`}
+              >
+                <IconSendClock
+                  size={15}
+                  strokeWidth={isActive("/folder/Scheduled") ? 2 : 1.75}
+                  class={isActive("/folder/Scheduled") ? "text-[var(--primary)]" : ""}
+                />
+                <span class="flex-1">Scheduled</span>
+                <Show when={displayCount("Scheduled") > 0}>
+                  <span class="text-xs text-[var(--text-muted)]">{displayCount("Scheduled")}</span>
+                </Show>
+              </A>
+            </div>
           </Show>
         </div>
 

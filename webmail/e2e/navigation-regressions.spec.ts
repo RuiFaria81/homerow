@@ -89,4 +89,25 @@ test.describe("Navigation regressions", () => {
       await expectMessageListRendered(page, "Inbox");
     }
   });
+
+  test("left menu tree expanded state survives reload", async ({ page }) => {
+    const sentToggle = page.getByTestId("sidebar-toggle-sent");
+    await expect(sentToggle).toBeVisible();
+    await sentToggle.click();
+    await expect(page.getByTestId("sidebar-sent-tree")).toHaveCount(0);
+
+    const categoriesToggle = page.getByTestId("sidebar-toggle-categories");
+    const hasCategoriesToggle = (await categoriesToggle.count()) > 0;
+    if (hasCategoriesToggle) {
+      await categoriesToggle.click();
+      await expect(page.getByTestId("sidebar-categories-tree")).toHaveCount(0);
+    }
+
+    await page.reload();
+    await expect(page.getByRole("heading", { name: "Inbox", exact: true })).toBeVisible();
+    await expect(page.getByTestId("sidebar-sent-tree")).toHaveCount(0);
+    if (hasCategoriesToggle) {
+      await expect(page.getByTestId("sidebar-categories-tree")).toHaveCount(0);
+    }
+  });
 });

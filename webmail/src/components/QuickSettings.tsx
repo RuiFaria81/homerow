@@ -64,9 +64,14 @@ export default function QuickSettings(props: QuickSettingsProps) {
                 }`}
                 onClick={() => setSettings("readingPane", "right")}
               >
-                <div class="w-full h-12 rounded bg-[var(--card)] border border-[var(--border-light)] flex overflow-hidden shadow-sm">
-                  <div class="w-1/3 border-r border-[var(--border-light)]" />
-                  <div class="w-2/3" />
+                <div class="w-full h-12 rounded bg-[var(--search-bg)] border border-[var(--border)] flex overflow-hidden shadow-sm">
+                  <div class="w-1/3 border-r border-[var(--border)] bg-[var(--secondary)] flex items-center justify-center">
+                    <div class="w-2.5 h-2.5 rounded-full bg-[var(--primary)]" style={{ opacity: "0.85" }} />
+                  </div>
+                  <div class="w-2/3 px-2 py-1.5 flex flex-col justify-center gap-1">
+                    <div class="rounded-full h-1.5 w-4/5 bg-[var(--foreground)] opacity-30" />
+                    <div class="rounded-full h-1.5 w-3/5 bg-[var(--foreground)] opacity-20" />
+                  </div>
                 </div>
                 <span class={`text-sm font-medium ${settings.readingPane === "right" ? "text-[var(--primary)]" : "text-[var(--text-secondary)]"}`}>Column</span>
               </button>
@@ -79,9 +84,14 @@ export default function QuickSettings(props: QuickSettingsProps) {
                 }`}
                 onClick={() => setSettings("readingPane", "bottom")}
               >
-                <div class="w-full h-12 rounded bg-[var(--card)] border border-[var(--border-light)] flex flex-col overflow-hidden shadow-sm">
-                  <div class="h-1/2 border-b border-[var(--border-light)]" />
-                  <div class="h-1/2" />
+                <div class="w-full h-12 rounded bg-[var(--search-bg)] border border-[var(--border)] flex flex-col overflow-hidden shadow-sm">
+                  <div class="h-1/2 border-b border-[var(--border)] bg-[var(--secondary)] px-2 py-1.5 flex items-center gap-1.5">
+                    <div class="w-2 h-2 rounded-full bg-[var(--primary)]" style={{ opacity: "0.85" }} />
+                    <div class="rounded-full h-1.5 flex-1 bg-[var(--foreground)] opacity-25" />
+                  </div>
+                  <div class="h-1/2 px-2 py-1.5 flex items-center">
+                    <div class="rounded-full h-1.5 w-2/3 bg-[var(--foreground)] opacity-20" />
+                  </div>
                 </div>
                 <span class={`text-sm font-medium ${settings.readingPane === "bottom" ? "text-[var(--primary)]" : "text-[var(--text-secondary)]"}`}>Row</span>
               </button>

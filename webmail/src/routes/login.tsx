@@ -85,11 +85,17 @@ export default function Login() {
   return (
     <div class="min-h-screen flex items-center justify-center bg-[var(--background)]">
       <div class="w-full max-w-sm">
-        <div class="flex items-center justify-center gap-3 mb-8">
-          <img src="/logo.svg" alt="" aria-hidden="true" class="h-12 w-auto max-w-[64px] object-contain" />
-          <span class="text-2xl font-semibold tracking-tight text-[var(--foreground)]">
-            Homerow
-          </span>
+        <div class="flex items-center justify-center mb-8">
+          <div class="relative flex items-center gap-2.5 rounded-xl px-1.5 py-1 text-left text-[var(--foreground)]">
+            <img src="/logo.svg" alt="" aria-hidden="true" class="h-10 w-auto max-w-[40px] object-contain shrink-0" />
+            <div class="flex flex-col leading-none">
+              <span class="text-[9px] font-medium uppercase tracking-[0.08em] text-[var(--text-muted)] opacity-75">Homerow</span>
+              <span class="inline-flex items-baseline gap-1 text-[26px] font-semibold tracking-tight text-[var(--foreground)]">
+                <span>Mail</span>
+                <span class="text-[9px] font-normal text-[var(--text-muted)] opacity-75">beta</span>
+              </span>
+            </div>
+          </div>
         </div>
 
         <div class="bg-[var(--card)] rounded-xl shadow-[0_1px_3px_rgba(0,0,0,0.08)] border border-[var(--border-light)] p-8">

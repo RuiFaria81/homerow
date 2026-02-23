@@ -1,6 +1,6 @@
 import { createSignal, onCleanup, onMount, Show, type Accessor, type Setter } from "solid-js";
 import { useNavigate } from "@solidjs/router";
-import { IconSearch, IconSettings, IconChevronLeft, IconChevronRight, IconChevronDown, IconSlidersHorizontal, IconClose } from "./Icons";
+import { IconSearch, IconSettings, IconChevronLeft, IconChevronRight, IconChevronDown, IconSlidersHorizontal, IconClose, IconGithub } from "./Icons";
 import { authClient } from "~/lib/auth-client";
 import { setActiveFilter } from "~/lib/labels-store";
 import { getActionShortcutHint } from "~/lib/keyboard-shortcuts-store";
@@ -374,6 +374,16 @@ export default function Header(props: HeaderProps) {
 
       {/* Actions */}
       <div class="flex items-center gap-1.5 ml-auto">
+        <a
+          href="https://github.com/guilhermeprokisch/homerow"
+          target="_blank"
+          rel="noreferrer"
+          class="w-10 h-10 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-secondary)] transition-colors duration-200 hover:bg-[var(--hover-bg)] hover:text-[var(--foreground)]"
+          title="Open Homerow repository"
+          aria-label="Open Homerow repository on GitHub"
+        >
+          <IconGithub size={19} />
+        </a>
         <button
           class="w-10 h-10 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-secondary)] transition-colors duration-200 hover:bg-[var(--hover-bg)] hover:text-[var(--foreground)]"
           title={`Settings${getActionShortcutHint("openRightMenu")}`}
