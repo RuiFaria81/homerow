@@ -55,6 +55,12 @@ let
 
     AVATAR_STORAGE_DIR = "/var/lib/custom-webmail/avatars";
     TAKEOUT_IMPORT_DIR = "/var/lib/custom-webmail/takeout-imports";
+  } // lib.optionalAttrs ((settings.updateCheckForceAvailable or "") != "") {
+    UPDATE_CHECK_FORCE_AVAILABLE = settings.updateCheckForceAvailable;
+  } // lib.optionalAttrs ((settings.updateCheckForceLatestVersion or "") != "") {
+    UPDATE_CHECK_FORCE_LATEST_VERSION = settings.updateCheckForceLatestVersion;
+  } // lib.optionalAttrs ((settings.updateCheckForceInstalledVersion or "") != "") {
+    UPDATE_CHECK_FORCE_INSTALLED_VERSION = settings.updateCheckForceInstalledVersion;
   };
 
   mkWebmailService = slot: port: {

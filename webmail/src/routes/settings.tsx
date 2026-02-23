@@ -1,5 +1,5 @@
 // src/routes/settings.tsx
-import { createSignal, Show, For, createEffect, onCleanup, createMemo, untrack, createResource } from "solid-js";
+import { createSignal, Show, For, createEffect, onCleanup, createMemo, untrack, createResource, onMount } from "solid-js";
 import { A, useSearchParams } from "@solidjs/router";
 import { settings, setSettings, ReadingPanePosition, THEMES, FONTS, type ThemeId, type FontId } from "~/lib/settings-store";
 import { IconBack, IconInbox, IconLabel, IconMail, IconClose, IconPlus, IconEdit, IconTrash, IconSignature, IconFolder, IconUsers, IconInfo, IconSparkles, IconBriefcase, IconCart, IconReceipt, IconHeart, IconCode, IconBolt, IconCategories, IconChevronDown, IconBlock, IconSend, IconImport } from "~/components/Icons";
@@ -20,6 +20,7 @@ import { showToast } from "~/lib/toast-store";
 import { authClient } from "~/lib/auth-client";
 import { getBlockedSenders, unblockSender, blockSender, getAutoReplySettings, saveAutoReplySettings, type AutoReplySettings } from "~/lib/mail-client";
 import { cacheBlockedSenderEmails } from "~/lib/blocked-senders-cache";
+import { getUpdateStatusClient } from "~/lib/update-status-client";
 import hotkeys from "hotkeys-js";
 import { SHORTCUT_ACTIONS, shortcutBindings, setShortcutBinding, restoreDefaultShortcuts, formatShortcut, normalizeShortcut, getShortcutConflictMap, type ShortcutActionId } from "~/lib/keyboard-shortcuts-store";
 import QRCode from "qrcode";
@@ -203,6 +204,7 @@ export default function Settings() {
   const [newBlockedSenderName, setNewBlockedSenderName] = createSignal("");
   const [selectedBlockedSenders, setSelectedBlockedSenders] = createSignal<Set<string>>(new Set());
   const [blockedSendersList, { refetch: refetchBlockedSenders }] = createResource(getBlockedSenders);
+  const [updateStatus, { refetch: refetchUpdateStatus }] = createResource(getUpdateStatusClient);
 
   const [autoReplySettings] = createResource(getAutoReplySettings);
   const [autoReplyEnabled, setAutoReplyEnabled] = createSignal(false);
@@ -1604,6 +1606,11 @@ export default function Settings() {
   createEffect(() => {
     if (activeTab() !== "general") return;
     void refreshLocalCacheStats();
+    void refetchUpdateStatus();
+  });
+
+  onMount(() => {
+    void refetchUpdateStatus();
   });
 
   return (
@@ -1647,6 +1654,25 @@ export default function Settings() {
           <Show when={activeTab() === "general"}>
             <div class="flex flex-col gap-8">
               <h2 class="text-xl font-semibold text-[var(--foreground)]">General Settings</h2>
+
+              <Show when={updateStatus()?.updateAvailable}>
+                <div data-testid="settings-update-card" class="flex items-start justify-between gap-4 p-4 rounded-xl border border-[#f2d091] bg-gradient-to-r from-[#fff8e6] to-[#fffdf4]">
+                  <div class="flex flex-col gap-1">
+                    <span class="text-sm font-semibold text-[#7a5500]">Update available</span>
+                    <span class="text-xs text-[#7a5500]">
+                      {`Installed ${updateStatus()?.installed ?? "unknown"} · Latest ${updateStatus()?.latest ?? "unknown"} · Channel ${updateStatus()?.sourceLabel ?? "Upstream"}`}
+                    </span>
+                  </div>
+                  <a
+                    href={updateStatus()?.releaseUrl || "https://github.com/guilhermeprokisch/homerow/releases"}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="px-3 py-1.5 rounded-md text-xs font-semibold text-[#7a5500] bg-white border border-[#efd8a0] no-underline hover:bg-[#fffef9]"
+                  >
+                    View changelog
+                  </a>
+                </div>
+              </Show>
 
               {/* Display density */}
               <div class="flex flex-col gap-2">

@@ -13,6 +13,7 @@ interface HeaderProps {
   onOpenSettings: () => void;
   sidebarCollapsed: boolean;
   onToggleSidebar: () => void;
+  hasUpdateAvailable?: boolean;
 }
 
 export default function Header(props: HeaderProps) {
@@ -402,11 +403,18 @@ export default function Header(props: HeaderProps) {
           <IconGithub size={19} />
         </a>
         <button
-          class="w-10 h-10 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-secondary)] transition-colors duration-200 hover:bg-[var(--hover-bg)] hover:text-[var(--foreground)]"
+          class="relative w-10 h-10 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-secondary)] transition-colors duration-200 hover:bg-[var(--hover-bg)] hover:text-[var(--foreground)]"
           title={`Settings${getActionShortcutHint("openRightMenu")}`}
           onClick={props.onOpenSettings}
         >
           <IconSettings size={20} />
+          <Show when={props.hasUpdateAvailable}>
+            <span
+              data-testid="header-update-dot"
+              class="absolute right-1.5 top-1.5 h-2.5 w-2.5 rounded-full bg-[#f59e0b] border border-[var(--card)]"
+              aria-label="Update available"
+            />
+          </Show>
         </button>
         <div class="relative ml-2">
           <button
