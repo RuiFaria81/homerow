@@ -244,6 +244,21 @@ test.describe("Requested feature regressions", () => {
     await expect(page.getByTestId("command-palette")).toBeVisible();
   });
 
+  test("refresh button animates while refreshing and shows inline completion state", async ({ page }) => {
+    const refreshButton = page.getByTestId("inbox-refresh-button");
+    await expect(refreshButton).toBeVisible();
+    await expect(refreshButton).toHaveAttribute("data-state", "idle");
+
+    await refreshButton.click();
+    await expect
+      .poll(async () => await refreshButton.getAttribute("data-state"))
+      .not.toBe("idle");
+
+    await expect(refreshButton).toHaveAttribute("data-state", "success");
+    await expect(page.getByTestId("inbox-refresh-success-icon")).toBeVisible();
+    await expect(refreshButton).toHaveAttribute("data-state", "idle", { timeout: 6_000 });
+  });
+
   test("opens command palette with keyboard shortcut and executes compose command", async ({ page }) => {
     const modifier = process.platform === "darwin" ? "Meta" : "Control";
 

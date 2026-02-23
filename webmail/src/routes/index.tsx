@@ -30,7 +30,7 @@ import ReadingPane from "~/components/ReadingPane";
 import ContextMenu, { type ContextMenuItem } from "~/components/ContextMenu";
 import SnoozeMenu from "~/components/SnoozeMenu";
 import KeyboardShortcutsHelp from "~/components/KeyboardShortcutsHelp";
-import { IconMail, IconRefresh, IconArchive, IconTrash, IconChevronLeft, IconChevronRight, IconClose, IconStar, IconEnvelope, IconEnvelopeOpen, IconReply, IconFolder, IconSpam, IconExpand, IconCollapse, IconLabel, IconInbox, IconUsers, IconInfo, IconSparkles, IconBriefcase, IconCart, IconReceipt, IconHeart, IconCode, IconBolt, IconClock, IconBlock } from "~/components/Icons";
+import { IconMail, IconRefresh, IconArchive, IconTrash, IconChevronLeft, IconChevronRight, IconClose, IconStar, IconEnvelope, IconEnvelopeOpen, IconReply, IconFolder, IconSpam, IconExpand, IconCollapse, IconLabel, IconInbox, IconUsers, IconInfo, IconSparkles, IconBriefcase, IconCart, IconReceipt, IconHeart, IconCode, IconBolt, IconClock, IconBlock, IconCheck } from "~/components/Icons";
 import { useMailEvents } from "~/lib/mail-events";
 import { showToast } from "~/lib/toast-store";
 import { cacheBlockedSenderEmails } from "~/lib/blocked-senders-cache";
@@ -58,12 +58,14 @@ export default function Home() {
   const [hasOpenedPane, setHasOpenedPane] = createSignal(false);
   const [newConversationKeys, setNewConversationKeys] = createSignal<Set<string>>(new Set());
   const [isImportActive, setIsImportActive] = createSignal(false);
+  const [refreshIndicatorState, setRefreshIndicatorState] = createSignal<"idle" | "refreshing" | "success">("idle");
   const attemptedAutoLabelKeys = new Set<string>();
   let autoLabelQueue: Promise<void> = Promise.resolve();
 
   let refreshInFlight = false;
   let refreshQueued = false;
   let refreshQueueTimer: ReturnType<typeof setTimeout> | undefined;
+  let refreshIndicatorTimer: ReturnType<typeof setTimeout> | undefined;
   let lastRefreshAt = 0;
   const MIN_REFRESH_GAP_MS = 1500;
   const prefetchInFlight = new Set<number>();
@@ -848,20 +850,41 @@ export default function Home() {
       return null;
     }
 
+    if (refreshIndicatorTimer) {
+      clearTimeout(refreshIndicatorTimer);
+      refreshIndicatorTimer = undefined;
+    }
+    setRefreshIndicatorState("refreshing");
     refreshInFlight = true;
+    let refreshFailed = false;
     try {
       const data = await silentRefresh();
       refreshCounts();
       lastRefreshAt = Date.now();
       return data;
+    } catch (err) {
+      refreshFailed = true;
+      throw err;
     } finally {
       refreshInFlight = false;
       if (refreshQueued) {
         refreshQueued = false;
         void requestInboxRefresh();
+      } else if (!refreshFailed) {
+        setRefreshIndicatorState("success");
+        refreshIndicatorTimer = setTimeout(() => {
+          setRefreshIndicatorState("idle");
+          refreshIndicatorTimer = undefined;
+        }, 1200);
+      } else {
+        setRefreshIndicatorState("idle");
       }
     }
   };
+
+  onCleanup(() => {
+    if (refreshIndicatorTimer) clearTimeout(refreshIndicatorTimer);
+  });
 
   const totalEmails = () => paginatedData()?.total ?? 0;
   const totalPages = () => Math.max(1, Math.ceil(totalEmails() / perPage()));
@@ -1976,7 +1999,28 @@ export default function Home() {
               <svg class="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--text-muted)] pointer-events-none" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
               <input type="text" placeholder="Filter emails..." value={searchTerm()} onInput={(e) => setSearchTerm(e.currentTarget.value)} class="h-9 pl-10 pr-4 border border-[var(--border)] rounded-full bg-transparent text-sm text-[var(--foreground)] outline-none transition-all focus:border-[var(--primary)] focus:shadow-sm placeholder:text-[var(--text-muted)]" />
             </div>
-            <button onClick={() => void requestInboxRefresh(true)} class="w-9 h-9 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-secondary)] hover:bg-[var(--hover-bg)]" title={`Refresh${getActionShortcutHint("refreshEmails")}`}><IconRefresh size={18} /></button>
+            <button
+              onClick={() => void requestInboxRefresh(true)}
+              class={`w-9 h-9 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center transition-colors ${
+                refreshIndicatorState() === "success"
+                  ? "text-emerald-600 bg-emerald-100/70 hover:bg-emerald-100/90"
+                  : "text-[var(--text-secondary)] hover:bg-[var(--hover-bg)]"
+              }`}
+              data-testid="inbox-refresh-button"
+              data-state={refreshIndicatorState()}
+              title={`Refresh${getActionShortcutHint("refreshEmails")}`}
+            >
+              <Show
+                when={refreshIndicatorState() === "refreshing"}
+                fallback={
+                  <Show when={refreshIndicatorState() === "success"} fallback={<span data-testid="inbox-refresh-idle-icon"><IconRefresh size={18} /></span>}>
+                    <span data-testid="inbox-refresh-success-icon"><IconCheck size={18} /></span>
+                  </Show>
+                }
+              >
+                <span data-testid="inbox-refresh-spinning-icon"><IconRefresh size={18} class="animate-spin" /></span>
+              </Show>
+            </button>
           </div>
         </div>
 
