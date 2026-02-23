@@ -1,23 +1,201 @@
 :root {
-  --sl-color-accent-low: #d5ede9;
-  --sl-color-accent: #0f665c;
-  --sl-color-accent-high: #0a433c;
-  --sl-color-text-accent: #0f665c;
+  --font-ui: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --sl-font: var(--font-ui);
+  --sl-nav-height: 4.25rem;
+  --sl-nav-pad-x: 1rem;
+  --sl-nav-pad-y: 0.625rem;
+  --sl-sidebar-width: 18.5rem;
+}
+
+:root[data-theme="light"] {
+  --app-bg: #f6f8fc;
+  --app-foreground: #1a1a2e;
+  --app-card: #ffffff;
+  --app-primary: #1a73e8;
+  --app-active-bg: #d3e3fd;
+  --app-hover-bg: #edf2fc;
+  --app-search-bg: #edf0f4;
+  --app-text-secondary: #5f6368;
+  --app-text-muted: #8e9196;
+  --app-border: #e4e7eb;
+  --app-border-light: #f0f2f5;
+
+  --sl-color-black: var(--app-bg);
+  --sl-color-white: var(--app-foreground);
+  --sl-color-gray-1: #1f2937;
+  --sl-color-gray-2: var(--app-text-secondary);
+  --sl-color-gray-3: var(--app-text-muted);
+  --sl-color-gray-4: #9ca3af;
+  --sl-color-gray-5: #d7dce2;
+  --sl-color-gray-6: var(--app-search-bg);
+  --sl-color-gray-7: var(--app-card);
+
+  --sl-color-accent: var(--app-primary);
+  --sl-color-accent-low: rgba(26, 115, 232, 0.15);
+  --sl-color-accent-high: var(--app-active-bg);
+  --sl-color-text: var(--app-text-secondary);
+  --sl-color-text-accent: var(--app-primary);
+  --sl-color-text-invert: #ffffff;
+  --sl-color-bg: var(--app-bg);
+  --sl-color-bg-nav: var(--app-card);
+  --sl-color-bg-sidebar: var(--app-card);
+  --sl-color-bg-inline-code: var(--app-search-bg);
+  --sl-color-bg-accent: var(--app-active-bg);
+  --sl-color-hairline-light: var(--app-border-light);
+  --sl-color-hairline: var(--app-border);
+  --sl-color-hairline-shade: var(--app-border-light);
+  --sl-color-backdrop-overlay: rgba(95, 99, 104, 0.4);
 }
 
 :root[data-theme="dark"] {
-  --sl-color-accent-low: #082823;
-  --sl-color-accent: #2fa99a;
-  --sl-color-accent-high: #86d7cc;
-  --sl-color-text-accent: #86d7cc;
+  --app-bg: #111827;
+  --app-foreground: #f0f2f5;
+  --app-card: #1e293b;
+  --app-primary: #8ab4f8;
+  --app-active-bg: rgba(138, 180, 248, 0.15);
+  --app-hover-bg: rgba(255, 255, 255, 0.05);
+  --app-search-bg: rgba(255, 255, 255, 0.08);
+  --app-text-secondary: #9ca3af;
+  --app-text-muted: #6b7280;
+  --app-border: rgba(255, 255, 255, 0.08);
+  --app-border-light: rgba(255, 255, 255, 0.04);
+
+  --sl-color-black: var(--app-bg);
+  --sl-color-white: var(--app-foreground);
+  --sl-color-gray-1: #e5e7eb;
+  --sl-color-gray-2: #d1d5db;
+  --sl-color-gray-3: var(--app-text-secondary);
+  --sl-color-gray-4: var(--app-text-muted);
+  --sl-color-gray-5: #374151;
+  --sl-color-gray-6: #1f2937;
+  --sl-color-gray-7: #111827;
+
+  --sl-color-accent: var(--app-primary);
+  --sl-color-accent-low: rgba(138, 180, 248, 0.15);
+  --sl-color-accent-high: rgba(138, 180, 248, 0.3);
+  --sl-color-text: var(--app-text-secondary);
+  --sl-color-text-accent: var(--app-primary);
+  --sl-color-text-invert: #1a1a2e;
+  --sl-color-bg: var(--app-bg);
+  --sl-color-bg-nav: var(--app-card);
+  --sl-color-bg-sidebar: var(--app-card);
+  --sl-color-bg-inline-code: var(--app-search-bg);
+  --sl-color-bg-accent: var(--app-active-bg);
+  --sl-color-hairline-light: rgba(255, 255, 255, 0.06);
+  --sl-color-hairline: var(--app-border);
+  --sl-color-hairline-shade: var(--app-border-light);
+  --sl-color-backdrop-overlay: rgba(17, 24, 39, 0.66);
+}
+
+body {
+  font-family: var(--font-ui);
+}
+
+header.header {
+  border-bottom: 1px solid var(--sl-color-hairline-light);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.sidebar-pane {
+  border-inline-end: 1px solid var(--sl-color-hairline-light);
+}
+
+.sidebar-content a,
+.sidebar-content summary {
+  border-radius: 0.75rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.sidebar-content a:hover,
+.sidebar-content summary:hover {
+  background: var(--app-hover-bg);
+}
+
+.sidebar-content a[aria-current="page"] {
+  background: var(--sl-color-accent-low);
+  color: var(--sl-color-text-accent);
+}
+
+site-search button[data-open-modal] {
+  border-radius: 999px;
+  background: var(--app-search-bg);
+  border: 1px solid var(--sl-color-hairline-light);
+  min-height: 2.5rem;
+}
+
+site-search button[data-open-modal]:hover {
+  background: var(--app-hover-bg);
+}
+
+.sl-link-button {
+  border-radius: 999px;
+}
+
+.sl-link-button.primary {
+  background: var(--sl-color-accent);
+  color: var(--sl-color-text-invert);
+}
+
+.sl-link-button.primary:hover {
+  filter: brightness(0.96);
+}
+
+.sl-link-button.minimal {
+  border: 1px solid var(--sl-color-hairline);
+  color: var(--sl-color-white);
+}
+
+.hero .actions .sl-link-button.minimal {
+  padding-inline: 1rem;
+}
+
+.sl-link-button.minimal:hover {
+  background: var(--app-hover-bg);
+}
+
+.card {
+  border-radius: 1rem;
+  background: var(--app-card);
+  border: 1px solid var(--sl-color-hairline-light);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.card:hover {
+  border-color: var(--sl-color-accent-low);
 }
 
 .hero {
+  padding: 1.5rem;
+  gap: 1.5rem;
+  border-radius: 1.25rem;
+  border: 1px solid var(--sl-color-hairline-light);
   background:
-    radial-gradient(1100px 320px at 50% -220px, color-mix(in oklab, var(--sl-color-accent) 22%, transparent), transparent 70%),
-    var(--sl-color-bg);
+    radial-gradient(
+      900px 220px at 60% -140px,
+      color-mix(in oklab, var(--sl-color-accent) 18%, transparent),
+      transparent 70%
+    ),
+    var(--app-card);
 }
 
-[data-has-hero] .site-title {
-  color: var(--sl-color-text-accent);
+.hero .copy > * {
+  max-width: 70ch;
+}
+
+.hero > img,
+.hero > .hero-html {
+  width: min(60%, 14rem);
+}
+
+@media (min-width: 50rem) {
+  .hero {
+    grid-template-columns: minmax(0, 3.5fr) minmax(0, 1.2fr);
+    gap: clamp(1.5rem, 2.4vw, 2.5rem);
+    padding: clamp(2rem, 3vw, 3rem);
+  }
+
+  .hero > img,
+  .hero > .hero-html {
+    width: min(100%, 16rem);
+  }
 }
