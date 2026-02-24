@@ -16,8 +16,9 @@ provider "minio" {
 }
 
 resource "minio_s3_bucket" "terraform_state" {
-  bucket = var.bucket_name
-  acl    = "private"
+  bucket        = var.bucket_name
+  acl           = "private"
+  force_destroy = true
 }
 
 variable "location" {

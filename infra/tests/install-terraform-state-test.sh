@@ -4,6 +4,7 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 INSTALL_SCRIPT="${ROOT_DIR}/scripts/install.sh"
 CONFIGURATION_NIX="${ROOT_DIR}/modules/configuration.nix"
+TF_STATE_MAIN="${ROOT_DIR}/infra/terraform-state/hetzner-object-storage/main.tf"
 
 if ! grep -Fq 'TF_STATE_STACK_DIR="infra/terraform-state/${TF_STATE_STACK}"' "${INSTALL_SCRIPT}"; then
   echo "expected install.sh to define terraform-state stack directory" >&2
@@ -77,6 +78,11 @@ fi
 
 if ! grep -Fq 'terraform -chdir="$TF_STATE_STACK_DIR" init -backend=false' "${INSTALL_SCRIPT}"; then
   echo "expected install.sh to set up terraform state with local backend init" >&2
+  exit 1
+fi
+
+if ! grep -Fq 'force_destroy = true' "${TF_STATE_MAIN}"; then
+  echo "expected terraform-state bucket to enable force_destroy for full teardown" >&2
   exit 1
 fi
 

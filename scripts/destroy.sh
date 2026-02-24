@@ -7,6 +7,7 @@ BLUE='\033[0;34m'
 NC='\033[0m'
 
 log() { echo -e "${BLUE}[INFO]${NC} $1"; }
+error() { echo -e "${RED}[ERROR]${NC} $1" >&2; }
 is_ipv4() {
     local value="$1"
     [[ "$value" =~ ^([0-9]{1,3}\.){3}[0-9]{1,3}$ ]]
@@ -189,7 +190,11 @@ destroy_tf_state_stack() {
     terraform -chdir="${dir}" init -input=false -backend=false >/dev/null
 
     if ! terraform -chdir="${dir}" state show "${resource_addr}" >/dev/null 2>&1; then
-        terraform -chdir="${dir}" import -input=false "${resource_addr}" "${TF_STATE_BUCKET_NAME}" >/dev/null 2>&1 || true
+        if ! terraform -chdir="${dir}" import -input=false "${resource_addr}" "${TF_STATE_BUCKET_NAME}"; then
+            error "Failed to import Terraform state bucket '${TF_STATE_BUCKET_NAME}' in ${dir}."
+            error "Check TF_STATE_BUCKET_NAME, HETZNER_OBJECT_STORAGE_LOCATION, S3_ACCESS_KEY, and S3_SECRET_KEY."
+            return 1
+        fi
     fi
 
     if terraform -chdir="${dir}" state show "${resource_addr}" >/dev/null 2>&1; then
