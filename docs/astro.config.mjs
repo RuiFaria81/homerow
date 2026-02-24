@@ -35,8 +35,7 @@ export default defineConfig({
           label: "Deploy",
           items: [
             { label: "GitHub Actions", slug: "deploy/github-actions" },
-            { label: "Docker / Podman", slug: "deploy/docker" },
-            { label: "Local Nix", slug: "deploy/local-nix" },
+            { label: "Local", slug: "deploy/local" },
           ],
         },
         {

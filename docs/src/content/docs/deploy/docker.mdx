@@ -1,45 +1,14 @@
 ---
 title: Deploy with Docker / Podman
-description: Deploy without needing a local Nix installation.
+description: Docker/Podman local deploy entrypoint (moved to unified local page).
+sidebar:
+  hidden: true
 ---
 
-import { Steps } from '@astrojs/starlight/components';
+This page moved to [Deploy Locally](/deploy/local/).
 
-If you don't want to install Nix locally, this is the simplest path.
+Use the **Docker / Podman** section there:
 
-:::note
-For most users, the recommended method is [Fork-and-Deploy (GitHub Actions)](/deploy/github-actions/).
-Use this local Docker/Podman path when you want deployment to run from your own machine.
-:::
-
-<Steps>
-1. **Clone and enter the repository:**
-   ```bash
-   git clone <repo-url>
-   cd homerow
-   ```
-
-2. **Create `config.env`** in the repo root. See [Configuration](/getting-started/configuration/) for the full reference and the complete example.
-
-3. **Configure your SSH key** — reuse an existing key or generate a dedicated one:
-   ```bash
-   ssh-keygen -t ed25519 -f ~/.ssh/homerow_ed25519 -N ""
-   ```
-   Then set `SSH_PRIVATE_KEY_PATH` in `config.env`:
-   ```bash
-   SSH_PRIVATE_KEY_PATH=~/.ssh/homerow_ed25519
-   ```
-
-4. **Make sure Docker or Podman is installed.**
-
-5. **Run deploy:**
-   ```bash
-   ./hrow deploy --via docker
-   ```
-</Steps>
-
-:::note
-Deploy always needs an SSH key. For this local method, set `SSH_PRIVATE_KEY_PATH`.
-:::
-
-On the first run, the deploy image is built automatically before starting the full deployment.
+```bash
+./hrow deploy --via docker
+```

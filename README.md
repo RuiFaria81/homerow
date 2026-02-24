@@ -12,8 +12,7 @@ Key pages:
 - Quick start: https://docs.homerow.email/getting-started/quick-start/
 - Configuration (`config.env`): https://docs.homerow.email/getting-started/configuration/
 - Remote deploy (GitHub Actions): https://docs.homerow.email/deploy/github-actions/
-- Local deploy (Docker/Podman): https://docs.homerow.email/deploy/docker/
-- Local deploy (Nix/NixOS): https://docs.homerow.email/deploy/local-nix/
+- Local deploy (Docker/Podman or Nix/NixOS): https://docs.homerow.email/deploy/local/
 - Architecture overview: https://docs.homerow.email/architecture/overview/
 - Sync engine: https://docs.homerow.email/architecture/sync-engine/
 - Terraform state: https://docs.homerow.email/infrastructure/terraform-state/
