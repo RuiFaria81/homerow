@@ -190,7 +190,12 @@ destroy_tf_state_stack() {
     terraform -chdir="${dir}" init -input=false -backend=false >/dev/null
 
     if ! terraform -chdir="${dir}" state show "${resource_addr}" >/dev/null 2>&1; then
-        if ! terraform -chdir="${dir}" import -input=false "${resource_addr}" "${TF_STATE_BUCKET_NAME}"; then
+        if ! terraform -chdir="${dir}" import -input=false \
+            -var="location=${HETZNER_OBJECT_STORAGE_LOCATION}" \
+            -var="s3_access_key=${S3_ACCESS_KEY:-}" \
+            -var="s3_secret_key=${S3_SECRET_KEY:-}" \
+            -var="bucket_name=${TF_STATE_BUCKET_NAME}" \
+            "${resource_addr}" "${TF_STATE_BUCKET_NAME}"; then
             error "Failed to import Terraform state bucket '${TF_STATE_BUCKET_NAME}' in ${dir}."
             error "Check TF_STATE_BUCKET_NAME, HETZNER_OBJECT_STORAGE_LOCATION, S3_ACCESS_KEY, and S3_SECRET_KEY."
             return 1
