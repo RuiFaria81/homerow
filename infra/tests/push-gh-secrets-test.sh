@@ -27,6 +27,14 @@ if [ "\$1" = "workflow" ] && [ "\$2" = "run" ]; then
   echo "workflow:run args:\$*" >> "${LOG_FILE}"
   exit 0
 fi
+if [ "\$1" = "run" ] && [ "\$2" = "list" ]; then
+  echo '12345'
+  exit 0
+fi
+if [ "\$1" = "run" ] && [ "\$2" = "watch" ]; then
+  echo "run:watch args:\$*" >> "${LOG_FILE}"
+  exit 0
+fi
 exit 1
 EOF
 chmod +x "${BIN_DIR}/gh"
@@ -77,6 +85,13 @@ grep -q "set:DOMAIN args:secret set DOMAIN --repo owner/repo --body example.com"
 grep -q "set:SSH_PRIVATE_KEY args:secret set SSH_PRIVATE_KEY --repo owner/repo" "${LOG_FILE}"
 grep -q "workflow:run args:workflow run Deploy Mail Server --repo owner/repo" "${LOG_FILE}"
 
+PATH="${BIN_DIR}:${PATH}" \
+  PUSH_GH_SECRETS_DEPLOY_ANSWER=y \
+  PUSH_GH_SECRETS_WATCH=true \
+  "${SCRIPT}" --config "${CONFIG_FILE}" >/dev/null
+
+grep -q "run:watch args:run watch 12345 --repo owner/repo" "${LOG_FILE}"
+
 # When stdin is non-interactive (e.g., curl | bash), the script should still
 # prompt via tty fallback if available.
 TTY_INPUT_FILE="${TMP_DIR}/tty-input"
@@ -87,7 +102,7 @@ PATH="${BIN_DIR}:${PATH}" \
   "${SCRIPT}" --config "${CONFIG_FILE}" </dev/null >/dev/null
 
 # Expect a second workflow run logged from the tty fallback path.
-if [ "$(grep -c "workflow:run args:workflow run Deploy Mail Server --repo owner/repo" "${LOG_FILE}")" -lt 2 ]; then
+if [ "$(grep -c "workflow:run args:workflow run Deploy Mail Server --repo owner/repo" "${LOG_FILE}" || true)" -lt 2 ]; then
   echo "expected workflow trigger via tty fallback prompt" >&2
   exit 1
 fi

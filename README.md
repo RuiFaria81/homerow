@@ -35,19 +35,19 @@ GITHUB_FORK_REPO=<owner/repo>
 SSH_PRIVATE_KEY_PATH=<path/to/private_key>
 ```
 
-4. Push secrets to your fork (without cloning):
+4. Deploy:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/guilhermeprokisch/homerow/main/scripts/fork-deploy.sh | bash -s -- --config ./config.env
 ```
 
-The script can also trigger workflow `Deploy Mail Server` after uploading secrets.
+This script does:
+- Pushes all non-empty deploy values from `config.env` to your fork as GitHub repository secrets.
+- Uploads `SSH_PRIVATE_KEY` from `SSH_PRIVATE_KEY_PATH` (or `--ssh-key` if provided).
+- Can trigger workflow `Deploy Mail Server` after secrets are uploaded.
 
 > [!NOTE]
 > `gh` CLI is required for this flow (`gh auth login`).
-> Deploy always needs an SSH key.
-> Local commands use `SSH_PRIVATE_KEY_PATH`; GitHub Actions uses `SSH_PRIVATE_KEY` secret content.
-> If you manually add secrets in your fork, set `SSH_PRIVATE_KEY` to full private key content (not a filesystem path).
 
 ### Option B: Locally
 
