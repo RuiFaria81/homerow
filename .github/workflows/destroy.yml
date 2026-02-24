@@ -8,7 +8,7 @@ on:
         required: true
         type: string
       delete_storage:
-        description: "Also delete Terraform-managed storage bucket/resources and backup data"
+        description: "WARNING: Permanent data loss. Also delete backup data and bucket resources"
         required: true
         default: "no"
         type: choice
