@@ -39,7 +39,7 @@ curl -fsSL https://raw.githubusercontent.com/guilhermeprokisch/homerow/main/scri
 
 This script does:
 - Pushes all non-empty deploy values from `config.env` to your fork as GitHub repository secrets.
-- Uploads `SSH_PRIVATE_KEY` from `SSH_PRIVATE_KEY_PATH` (or `--ssh-key` if provided).
+- Uploads `SSH_PRIVATE_KEY` from `SSH_PRIVATE_KEY_PATH`.
 - Can trigger workflow `Deploy Mail Server` after secrets are uploaded.
 
 ### Option B: Locally
