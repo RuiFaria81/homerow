@@ -8,7 +8,7 @@ on:
         required: true
         type: string
       delete_storage:
-        description: "Also delete Terraform-managed storage bucket/resources"
+        description: "Also delete Terraform-managed storage bucket/resources and backup data"
         required: true
         default: "no"
         type: choice

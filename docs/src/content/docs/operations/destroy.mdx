@@ -10,7 +10,7 @@ Use destroy when you want to fully tear down this deployment and stop paying for
 `./hrow destroy` will:
 
 - Destroy Terraform-managed DNS and VPS resources
-- Optionally destroy Terraform-managed storage bucket/resources when `--delete-storage` is set
+- Optionally destroy Terraform-managed storage bucket/resources and backup data when `--delete-storage` is set
 - Remove local Terraform state/artifacts
 - Remove local deploy keys and generated settings files
 
@@ -20,7 +20,7 @@ Use destroy when you want to fully tear down this deployment and stop paying for
 ./hrow destroy
 ```
 
-To also delete storage bucket/resources:
+To also delete storage bucket/resources and backup data:
 
 ```bash
 ./hrow destroy --delete-storage

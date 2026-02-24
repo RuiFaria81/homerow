@@ -66,7 +66,7 @@ Usage: ./hrow destroy [--yes] [--delete-storage]
 
 Options:
   --yes             Skip confirmation prompt
-  --delete-storage  Also destroy Terraform-managed storage bucket/resources
+  --delete-storage  Also destroy Terraform-managed storage bucket/resources and backups
   -h, --help        Show this help
 USAGE
             exit 0
@@ -81,9 +81,9 @@ done
 echo -e "${RED}!!! WARNING !!!${NC}"
 echo "This will DELETE the mail server, all emails, DNS records, and local keys."
 if [[ "${DELETE_STORAGE}" == "true" ]]; then
-    echo "Storage bucket/resources will also be deleted."
+    echo "Storage bucket/resources and backups will also be deleted."
 else
-    echo "Storage bucket/resources will be preserved (pass --delete-storage to remove them)."
+    echo "Storage bucket/resources and backups will be preserved (pass --delete-storage to remove them)."
 fi
 if [[ "${ASSUME_YES}" != "true" ]]; then
     read -p "Are you sure? (y/N): " confirm
@@ -187,7 +187,7 @@ if [[ "${DELETE_STORAGE}" == "true" ]]; then
         -var="s3_secret_key=${S3_SECRET_KEY:-}" \
         -var="bucket_name=${BACKUP_BUCKET_NAME}"
 else
-    log "Skipping storage stack destroy (use --delete-storage to include it)."
+    log "Skipping storage stack destroy (use --delete-storage to include bucket/resources and backups)."
 fi
 destroy_stack "${DNS_STACK_DIR}" "[2/4] Destroying DNS stack..." "${TEMP_TF_BACKEND_DNS}" \
     -var="domain=${DOMAIN}" \
