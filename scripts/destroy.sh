@@ -49,19 +49,25 @@ EOF
 }
 
 ASSUME_YES="false"
+DELETE_STORAGE="false"
 while [[ $# -gt 0 ]]; do
     case "$1" in
         --yes)
             ASSUME_YES="true"
             shift
             ;;
+        --delete-storage)
+            DELETE_STORAGE="true"
+            shift
+            ;;
         -h|--help)
             cat <<'USAGE'
-Usage: ./hrow destroy [--yes]
+Usage: ./hrow destroy [--yes] [--delete-storage]
 
 Options:
-  --yes       Skip confirmation prompt
-  -h, --help  Show this help
+  --yes             Skip confirmation prompt
+  --delete-storage  Also destroy Terraform-managed storage bucket/resources
+  -h, --help        Show this help
 USAGE
             exit 0
             ;;
@@ -74,6 +80,11 @@ done
 
 echo -e "${RED}!!! WARNING !!!${NC}"
 echo "This will DELETE the mail server, all emails, DNS records, and local keys."
+if [[ "${DELETE_STORAGE}" == "true" ]]; then
+    echo "Storage bucket/resources will also be deleted."
+else
+    echo "Storage bucket/resources will be preserved (pass --delete-storage to remove them)."
+fi
 if [[ "${ASSUME_YES}" != "true" ]]; then
     read -p "Are you sure? (y/N): " confirm
     if [[ "$confirm" != "y" ]]; then
@@ -89,6 +100,12 @@ VPS_STACK=${VPS_STACK:-"hetzner"}
 DNS_STACK=${DNS_STACK:-"cloudflare"}
 STORAGE_STACK=${STORAGE_STACK:-"hetzner-object-storage"}
 DOMAIN=${DOMAIN:-""}
+HCLOUD_TOKEN=${HCLOUD_TOKEN:-""}
+CLOUDFLARE_TOKEN=${CLOUDFLARE_TOKEN:-""}
+CLOUDFLARE_ZONE_ID=${CLOUDFLARE_ZONE_ID:-""}
+WEBMAIL_SUBDOMAIN=${WEBMAIL_SUBDOMAIN:-"webmail"}
+HETZNER_SERVER_TYPE=${HETZNER_SERVER_TYPE:-"cx23"}
+HETZNER_LOCATION=${HETZNER_LOCATION:-"nbg1"}
 HETZNER_OBJECT_STORAGE_LOCATION=${HETZNER_OBJECT_STORAGE_LOCATION:-"nbg1"}
 
 VPS_STACK_DIR="infra/vps/${VPS_STACK}"
@@ -120,6 +137,13 @@ TF_STATE_BUCKET_NAME=${TF_STATE_BUCKET_NAME:-"mail-tfstate-${DOMAIN//./-}"}
 TF_STATE_BUCKET_NAME="$(sanitize_bucket_name "$TF_STATE_BUCKET_NAME")"
 TF_STATE_PREFIX=${TF_STATE_PREFIX:-"${DOMAIN}"}
 TF_STATE_PREFIX="$(normalize_state_prefix "$TF_STATE_PREFIX")"
+BACKUP_BUCKET_NAME=${BACKUP_BUCKET_NAME:-"mail-backup-${DOMAIN//./-}"}
+BACKUP_BUCKET_NAME="$(sanitize_bucket_name "$BACKUP_BUCKET_NAME")"
+
+TEMP_DESTROY_SSH_PUBLIC_KEY="$(mktemp)"
+cat > "${TEMP_DESTROY_SSH_PUBLIC_KEY}" <<'EOF'
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA destroy@local
+EOF
 
 TEMP_TF_BACKEND_VPS=""
 TEMP_TF_BACKEND_DNS=""
@@ -137,7 +161,7 @@ destroy_stack() {
     local dir="$1"
     local label="$2"
     local backend_config="${3:-}"
-    local extra_args=("${@:4}")
+    local tf_vars=("${@:4}")
 
     if [ -n "${backend_config}" ] && [ -f "${backend_config}" ]; then
         terraform -chdir="${dir}" init -input=false -backend-config="${backend_config}" >/dev/null
@@ -149,16 +173,34 @@ destroy_stack() {
 
     if terraform -chdir="${dir}" state pull >/dev/null 2>&1 || [ -f "${dir}/terraform.tfstate" ]; then
         echo -e "${GREEN}${label}${NC}"
-        terraform -chdir="${dir}" destroy -auto-approve "${extra_args[@]}"
+        terraform -chdir="${dir}" destroy -input=false -auto-approve "${tf_vars[@]}"
     else
         log "No state found for ${dir}, skipping."
     fi
 }
 
 # 2. Terraform Destroy
-destroy_stack "${STORAGE_STACK_DIR}" "[1/4] Destroying storage stack..." "${TEMP_TF_BACKEND_STORAGE}"
-destroy_stack "${DNS_STACK_DIR}" "[2/4] Destroying DNS stack..." "${TEMP_TF_BACKEND_DNS}" -var="mail_server_ipv4=${DNS_MAIL_SERVER_IPV4}"
-destroy_stack "${VPS_STACK_DIR}" "[3/4] Destroying VPS stack..." "${TEMP_TF_BACKEND_VPS}"
+if [[ "${DELETE_STORAGE}" == "true" ]]; then
+    destroy_stack "${STORAGE_STACK_DIR}" "[1/4] Destroying storage stack..." "${TEMP_TF_BACKEND_STORAGE}" \
+        -var="location=${HETZNER_OBJECT_STORAGE_LOCATION}" \
+        -var="s3_access_key=${S3_ACCESS_KEY:-}" \
+        -var="s3_secret_key=${S3_SECRET_KEY:-}" \
+        -var="bucket_name=${BACKUP_BUCKET_NAME}"
+else
+    log "Skipping storage stack destroy (use --delete-storage to include it)."
+fi
+destroy_stack "${DNS_STACK_DIR}" "[2/4] Destroying DNS stack..." "${TEMP_TF_BACKEND_DNS}" \
+    -var="domain=${DOMAIN}" \
+    -var="cloudflare_token=${CLOUDFLARE_TOKEN}" \
+    -var="cloudflare_zone_id=${CLOUDFLARE_ZONE_ID}" \
+    -var="mail_server_ipv4=${DNS_MAIL_SERVER_IPV4}" \
+    -var="webmail_subdomain=${WEBMAIL_SUBDOMAIN}"
+destroy_stack "${VPS_STACK_DIR}" "[3/4] Destroying VPS stack..." "${TEMP_TF_BACKEND_VPS}" \
+    -var="domain=${DOMAIN}" \
+    -var="hcloud_token=${HCLOUD_TOKEN}" \
+    -var="server_type=${HETZNER_SERVER_TYPE}" \
+    -var="location=${HETZNER_LOCATION}" \
+    -var="ssh_public_key_path=${TEMP_DESTROY_SSH_PUBLIC_KEY}"
 
 # 3. Clean SSH Known Hosts
 if [ ! -z "$SERVER_IP" ]; then
@@ -174,5 +216,6 @@ rm -rf infra/dns/*/.terraform infra/dns/*/.terraform.lock.hcl infra/dns/*/terraf
 rm -rf infra/storage/*/.terraform infra/storage/*/.terraform.lock.hcl infra/storage/*/terraform.tfstate* infra/storage/*/terraform.tfvars
 rm -f infra/id_ed25519 infra/id_ed25519.pub modules/settings.nix
 rm -f "${TEMP_TF_BACKEND_VPS:-}" "${TEMP_TF_BACKEND_DNS:-}" "${TEMP_TF_BACKEND_STORAGE:-}"
+rm -f "${TEMP_DESTROY_SSH_PUBLIC_KEY:-}"
 
 echo -e "${GREEN}Cleanup Complete.${NC}"

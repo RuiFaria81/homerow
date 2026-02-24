@@ -7,6 +7,14 @@ on:
         description: "Type DESTROY to confirm"
         required: true
         type: string
+      delete_storage:
+        description: "Also delete Terraform-managed storage bucket/resources"
+        required: true
+        default: "no"
+        type: choice
+        options:
+          - "no"
+          - "yes"
 
 permissions:
   contents: read
@@ -85,4 +93,8 @@ jobs:
       - name: Destroy
         shell: bash
         run: |
-          ./hrow destroy --via local --yes
+          DESTROY_ARGS=(./hrow destroy --via local --yes)
+          if [ "${{ github.event.inputs.delete_storage }}" = "yes" ]; then
+            DESTROY_ARGS+=(--delete-storage)
+          fi
+          "${DESTROY_ARGS[@]}"
