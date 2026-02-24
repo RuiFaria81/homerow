@@ -106,6 +106,26 @@ if ! grep -Fq 'terraform -chdir="$VPS_STACK_DIR" init -input=false -migrate-stat
   exit 1
 fi
 
+if ! grep -Fq 'mask_in_github_actions() {' "${INSTALL_SCRIPT}"; then
+  echo "expected install.sh to define github actions masking helper" >&2
+  exit 1
+fi
+
+if ! grep -Fq 'mask_in_github_actions "${SERVER_IP}"' "${INSTALL_SCRIPT}"; then
+  echo "expected install.sh to mask server ip in github actions logs" >&2
+  exit 1
+fi
+
+if grep -Fq 'Reusing explicitly configured Hetzner server: id=${EXISTING_HCLOUD_SERVER_ID} ipv4=${EXISTING_HCLOUD_SERVER_IPV4}' "${INSTALL_SCRIPT}"; then
+  echo "expected install.sh to avoid logging explicit existing server ipv4" >&2
+  exit 1
+fi
+
+if grep -Fq 'Reusing existing Hetzner server id: ${EXISTING_HCLOUD_SERVER_ID} (${EXISTING_HCLOUD_SERVER_IPV4})' "${INSTALL_SCRIPT}"; then
+  echo "expected install.sh to avoid logging reused server ipv4 in logs" >&2
+  exit 1
+fi
+
 if ! grep -Fq 'terraform -chdir="$DNS_STACK_DIR" init -input=false -migrate-state -force-copy -backend-config="$TEMP_TF_BACKEND_DNS"' "${INSTALL_SCRIPT}"; then
   echo "expected install.sh to initialize dns stack with remote backend config" >&2
   exit 1

@@ -19,6 +19,12 @@ log() { echo -e "${BLUE}[INFO]${NC} $1"; }
 success() { echo -e "${GREEN}[SUCCESS]${NC} $1"; }
 error() { echo -e "${RED}[ERROR]${NC} $1"; exit 1; }
 warn() { echo -e "${RED}[WARN]${NC} $1"; }
+mask_in_github_actions() {
+    local value="${1:-}"
+    if [ "${GITHUB_ACTIONS:-}" = "true" ] && [ -n "${value}" ]; then
+        printf '::add-mask::%s\n' "${value}"
+    fi
+}
 
 STRICT_CONFIG_MODE="${INSTALL_STRICT_CONFIG:-0}"
 INSTALL_CONFIG_FILE="${INSTALL_CONFIG_FILE:-${DEPLOY_CONFIG_FILE:-${REPO_ROOT}/config.env}}"
@@ -692,7 +698,7 @@ if [ "$VPS_STACK" = "hetzner" ]; then
         elif [ "$HETZNER_REUSE_EXISTING_SERVER" != "true" ]; then
             log "Skipping existing Hetzner server reuse (HETZNER_REUSE_EXISTING_SERVER=false)."
         else
-            log "Reusing explicitly configured Hetzner server: id=${EXISTING_HCLOUD_SERVER_ID} ipv4=${EXISTING_HCLOUD_SERVER_IPV4}"
+            log "Reusing explicitly configured Hetzner server: id=${EXISTING_HCLOUD_SERVER_ID}"
         fi
     fi
 
@@ -716,7 +722,7 @@ EOF
     fi
 
     if [ -n "$EXISTING_HCLOUD_SERVER_ID" ] && [ -n "$EXISTING_HCLOUD_SERVER_IPV4" ]; then
-        log "Reusing existing Hetzner server id: ${EXISTING_HCLOUD_SERVER_ID} (${EXISTING_HCLOUD_SERVER_IPV4})"
+        log "Reusing existing Hetzner server id: ${EXISTING_HCLOUD_SERVER_ID}"
         cat >> "$VPS_STACK_DIR/terraform.tfvars" <<EOF
 existing_server_id = ${EXISTING_HCLOUD_SERVER_ID}
 existing_server_ipv4 = "${EXISTING_HCLOUD_SERVER_IPV4}"
@@ -785,6 +791,7 @@ log "Applying VPS stack: ${VPS_STACK}"
 run_timed_step "terraform init (${VPS_STACK_DIR})" terraform -chdir="$VPS_STACK_DIR" init -input=false -migrate-state -force-copy -backend-config="$TEMP_TF_BACKEND_VPS"
 run_timed_step "terraform apply (${VPS_STACK_DIR})" terraform -chdir="$VPS_STACK_DIR" apply -auto-approve
 SERVER_IP=$(terraform -chdir="$VPS_STACK_DIR" output -raw server_ip)
+mask_in_github_actions "${SERVER_IP}"
 
 log "Applying DNS stack: ${DNS_STACK}"
 run_timed_step "terraform init (${DNS_STACK_DIR})" terraform -chdir="$DNS_STACK_DIR" init -input=false -migrate-state -force-copy -backend-config="$TEMP_TF_BACKEND_DNS"

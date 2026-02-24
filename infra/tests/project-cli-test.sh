@@ -107,6 +107,16 @@ if ! grep -Fq 'if [ -n "${SSH_PRIVATE_KEY:-}" ]; then' "${SSH_HELPER}"; then
   exit 1
 fi
 
+if ! grep -Fq 'mask_in_github_actions() {' "${SSH_HELPER}"; then
+  echo "expected ssh-vps.sh to define github actions masking helper" >&2
+  exit 1
+fi
+
+if ! grep -Fq 'mask_in_github_actions "${SERVER_IP}"' "${SSH_HELPER}"; then
+  echo "expected ssh-vps.sh to mask server ip in github actions logs" >&2
+  exit 1
+fi
+
 DEPLOY_INVALID_LOG="$(mktemp)"
 if "${CLI}" deploy --via invalid >"${DEPLOY_INVALID_LOG}" 2>&1; then
   echo "expected deploy --via invalid to fail" >&2

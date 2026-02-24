@@ -18,6 +18,13 @@ Options:
 USAGE
 }
 
+mask_in_github_actions() {
+  local value="${1:-}"
+  if [ "${GITHUB_ACTIONS:-}" = "true" ] && [ -n "${value}" ]; then
+    printf '::add-mask::%s\n' "${value}"
+  fi
+}
+
 TMP_SSH_KEY=""
 BACKEND_FILE=""
 cleanup() {
@@ -97,6 +104,7 @@ EOF
 terraform -chdir="${VPS_DIR}" init -input=false -backend-config="${BACKEND_FILE}" >/dev/null
 SERVER_IP="$(terraform -chdir="${VPS_DIR}" output -raw server_ip 2>/dev/null || true)"
 [ -n "${SERVER_IP}" ] || error "could not resolve server_ip from terraform state."
+mask_in_github_actions "${SERVER_IP}"
 
 if [ "${PRINT_HOST_ONLY}" = "true" ]; then
   printf '%s\n' "${SERVER_IP}"

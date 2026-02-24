@@ -8,6 +8,12 @@ NC='\033[0m'
 
 log() { echo -e "${BLUE}[INFO]${NC} $1"; }
 error() { echo -e "${RED}[ERROR]${NC} $1" >&2; }
+mask_in_github_actions() {
+    local value="${1:-}"
+    if [ "${GITHUB_ACTIONS:-}" = "true" ] && [ -n "${value}" ]; then
+        printf '::add-mask::%s\n' "${value}"
+    fi
+}
 is_ipv4() {
     local value="$1"
     [[ "$value" =~ ^([0-9]{1,3}\.){3}[0-9]{1,3}$ ]]
@@ -124,6 +130,7 @@ fi
 if ! is_ipv4 "$SERVER_IP"; then
     SERVER_IP=""
 fi
+mask_in_github_actions "${SERVER_IP}"
 
 DNS_MAIL_SERVER_IPV4="$SERVER_IP"
 if [ -z "$DNS_MAIL_SERVER_IPV4" ] && [ -f "${DNS_STACK_DIR}/terraform.tfvars" ]; then
@@ -135,6 +142,7 @@ fi
 if [ -z "$DNS_MAIL_SERVER_IPV4" ]; then
     DNS_MAIL_SERVER_IPV4="127.0.0.1"
 fi
+mask_in_github_actions "${DNS_MAIL_SERVER_IPV4}"
 
 TF_STATE_BUCKET_NAME=${TF_STATE_BUCKET_NAME:-"mail-tfstate-${DOMAIN//./-}"}
 TF_STATE_BUCKET_NAME="$(sanitize_bucket_name "$TF_STATE_BUCKET_NAME")"
@@ -248,7 +256,7 @@ fi
 
 # 3. Clean SSH Known Hosts
 if [ ! -z "$SERVER_IP" ]; then
-    echo -e "${GREEN}[4/4] Removing $SERVER_IP from known_hosts...${NC}"
+    echo -e "${GREEN}[4/4] Removing server from known_hosts...${NC}"
     ssh-keygen -R "$SERVER_IP" >/dev/null 2>&1 || true
 fi
 

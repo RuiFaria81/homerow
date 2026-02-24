@@ -31,6 +31,9 @@ expect_contains 'terraform -chdir="${dir}" init -input=false -backend-config="${
 expect_contains 'if terraform -chdir="${dir}" state pull >/dev/null 2>&1 || [ -f "${dir}/terraform.tfstate" ]; then'
 expect_contains 'terraform -chdir="${dir}" destroy -input=false -auto-approve "${tf_vars[@]}"'
 expect_contains 'error() { echo -e "${RED}[ERROR]${NC} $1" >&2; }'
+expect_contains 'mask_in_github_actions() {'
+expect_contains 'mask_in_github_actions "${SERVER_IP}"'
+expect_contains 'mask_in_github_actions "${DNS_MAIL_SERVER_IPV4}"'
 expect_contains 'BACKUP_BUCKET_NAME=${BACKUP_BUCKET_NAME:-"mail-backup-${DOMAIN//./-}"}'
 expect_contains '-var="bucket_name=${BACKUP_BUCKET_NAME}"'
 expect_contains '-var="s3_access_key=${S3_ACCESS_KEY:-}"'
@@ -57,5 +60,6 @@ expect_contains 'destroy_stack "${VPS_STACK_DIR}" "[3/4] Destroying VPS stack...
 expect_contains 'TEMP_DESTROY_SSH_PUBLIC_KEY="$(mktemp)"'
 expect_contains '-var="ssh_public_key_path=${TEMP_DESTROY_SSH_PUBLIC_KEY}"'
 expect_contains 'rm -f "${TEMP_DESTROY_SSH_PUBLIC_KEY:-}"'
+expect_contains 'echo -e "${GREEN}[4/4] Removing server from known_hosts...${NC}"'
 
 echo "destroy terraform state test: ok"
