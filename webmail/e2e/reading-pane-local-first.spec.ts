@@ -50,4 +50,20 @@ test.describe("Reading pane local-first behavior", () => {
       .poll(async () => loadingText.count(), { timeout: 800, intervals: [100, 200, 200, 300] })
       .toBe(0);
   });
+
+  test("opening and reopening reader does not apply list width transition", async ({ page }) => {
+    const rows = page.locator(".email-row");
+    test.skip((await rows.count()) < 1, "Need at least one email row");
+
+    const listPanel = page.getByTestId("mail-list-panel");
+
+    await rows.first().click();
+    await expect(listPanel).not.toHaveClass(/transition-\[width,height\]/);
+
+    await page.getByTestId("reading-pane-close").click();
+    await expect(page.getByTestId("reading-pane-close")).toHaveCount(0);
+
+    await rows.first().click();
+    await expect(listPanel).not.toHaveClass(/transition-\[width,height\]/);
+  });
 });

@@ -297,7 +297,7 @@ const ReadingPane = (props: ReadingPaneProps) => {
       {/* Toolbar */}
       <div class="flex items-center px-4 py-2 border-b border-[var(--border)] min-h-[56px] bg-[var(--card)]">
         <div class="flex items-center gap-1">
-          <button onClick={props.onClose} class="w-8 h-8 rounded-lg border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-secondary)] hover:bg-[var(--hover-bg)] hover:text-[var(--foreground)] transition-colors">
+          <button data-testid="reading-pane-close" onClick={props.onClose} class="w-8 h-8 rounded-lg border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-secondary)] hover:bg-[var(--hover-bg)] hover:text-[var(--foreground)] transition-colors">
             <IconClose size={18} />
           </button>
           <div class="w-[1px] h-5 bg-[var(--border)] mx-1" />

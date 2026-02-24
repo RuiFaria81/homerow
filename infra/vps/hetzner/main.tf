@@ -33,6 +33,12 @@ resource "hcloud_server" "mail" {
   location    = var.location
   ssh_keys    = [local.ssh_key_id]
 
+  lifecycle {
+    # Hetzner models `ssh_keys` as ForceNew for servers. Ignore drift so
+    # rotating the Terraform-managed SSH key cannot destroy/recreate the VPS.
+    ignore_changes = [ssh_keys]
+  }
+
   public_net {
     ipv4_enabled = true
     ipv6_enabled = true

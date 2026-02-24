@@ -39,6 +39,11 @@ terraform -chdir="${VPS_DIR}" init -backend=false -input=false -no-color >/dev/n
 terraform -chdir="${DNS_DIR}" init -backend=false -input=false -no-color >/dev/null
 terraform -chdir="${STORAGE_DIR}" init -backend=false -input=false -no-color >/dev/null
 
+if ! rg -q 'ignore_changes\s*=\s*\[ssh_keys\]' "${VPS_DIR}/main.tf"; then
+  echo "expected hcloud_server.mail lifecycle.ignore_changes to include ssh_keys to avoid destructive server replacement on key drift" >&2
+  exit 1
+fi
+
 terraform -chdir="${VPS_DIR}" plan \
   -input=false \
   -refresh=false \

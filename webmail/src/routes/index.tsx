@@ -55,7 +55,6 @@ export default function Home() {
   const [pageCache, setPageCache] = createSignal<Map<string, Awaited<ReturnType<typeof fetchEmailsPaginated>>>>(new Map());
   const [lastPageNavAt, setLastPageNavAt] = createSignal(0);
   const [fullSpacePane, setFullSpacePane] = createSignal(false);
-  const [hasOpenedPane, setHasOpenedPane] = createSignal(false);
   const [newConversationKeys, setNewConversationKeys] = createSignal<Set<string>>(new Set());
   const [isImportActive, setIsImportActive] = createSignal(false);
   const [refreshIndicatorState, setRefreshIndicatorState] = createSignal<"idle" | "refreshing" | "success">("idle");
@@ -1927,10 +1926,6 @@ export default function Home() {
   const isVertical = () => settings.readingPane === "bottom";
   const isNone = () => settings.readingPane === "none";
   const showPane = () => !isNone() && selectedEmail() !== null;
-  createEffect(() => {
-    if (!showPane() || hasOpenedPane()) return;
-    queueMicrotask(() => setHasOpenedPane(true));
-  });
   const selectedFolder = () => {
     const seq = selectedEmail();
     if (seq === null) return "INBOX";
@@ -1970,7 +1965,8 @@ export default function Home() {
     >
       {/* Email List Panel */}
       <div
-        class={`flex flex-col overflow-hidden ${hasOpenedPane() ? "transition-[width,height] duration-75 ease-out" : ""} ${isFullSpace() ? "hidden" : ""}`}
+        class={`flex flex-col overflow-hidden ${isFullSpace() ? "hidden" : ""}`}
+        data-testid="mail-list-panel"
         style={{
           width: !isVertical() && showPane() && !isFullSpace() ? `calc(100% - ${paneSize()}px)` : "100%",
           height: isVertical() && showPane() && !isFullSpace() ? `calc(100% - ${paneSize()}px)` : "100%",

@@ -32,7 +32,6 @@ export default function FolderView() {
   const [pageCursors, setPageCursors] = createSignal<Map<number, string | null>>(new Map([[1, null]]));
   const [pageCache, setPageCache] = createSignal<Map<string, Awaited<ReturnType<typeof fetchEmailsPaginated>>>>(new Map());
   const [lastPageNavAt, setLastPageNavAt] = createSignal(0);
-  const [hasOpenedPane, setHasOpenedPane] = createSignal(false);
   const [newConversationKeys, setNewConversationKeys] = createSignal<Set<string>>(new Set());
   const attemptedAutoLabelKeys = new Set<string>();
   let autoLabelQueue: Promise<void> = Promise.resolve();
@@ -946,10 +945,6 @@ export default function FolderView() {
   const isVertical = () => settings.readingPane === "bottom";
   const isNone = () => settings.readingPane === "none";
   const showPane = () => !isNone() && selectedEmail() !== null;
-  createEffect(() => {
-    if (!showPane() || hasOpenedPane()) return;
-    queueMicrotask(() => setHasOpenedPane(true));
-  });
 
   return (
     <div
@@ -957,7 +952,8 @@ export default function FolderView() {
       style={{ cursor: isResizing() ? (isVertical() ? "row-resize" : "col-resize") : undefined }}
     >
       <div
-        class={`flex flex-col overflow-hidden ${isResizing() || !hasOpenedPane() ? "" : "transition-[width,height] duration-75 ease-out"}`}
+        class="flex flex-col overflow-hidden"
+        data-testid="mail-list-panel"
         style={{
           width: !isVertical() && showPane() ? `calc(100% - ${paneSize()}px)` : "100%",
           height: isVertical() && showPane() ? `calc(100% - ${paneSize()}px)` : "100%",
