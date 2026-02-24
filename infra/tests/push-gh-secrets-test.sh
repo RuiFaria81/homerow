@@ -84,12 +84,6 @@ done
 grep -q "set:DOMAIN args:secret set DOMAIN --repo owner/repo --body example.com" "${LOG_FILE}"
 grep -q "set:SSH_PRIVATE_KEY args:secret set SSH_PRIVATE_KEY --repo owner/repo" "${LOG_FILE}"
 grep -q "workflow:run args:workflow run Deploy Mail Server --repo owner/repo" "${LOG_FILE}"
-
-PATH="${BIN_DIR}:${PATH}" \
-  PUSH_GH_SECRETS_DEPLOY_ANSWER=y \
-  PUSH_GH_SECRETS_WATCH=true \
-  "${SCRIPT}" --config "${CONFIG_FILE}" >/dev/null
-
 grep -q "run:watch args:run watch 12345 --repo owner/repo" "${LOG_FILE}"
 
 # When stdin is non-interactive (e.g., curl | bash), the script should still

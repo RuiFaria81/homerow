@@ -4,7 +4,7 @@ set -euo pipefail
 usage() {
   cat <<'EOF'
 Usage:
-  fork-deploy.sh [--config path/to/config.env] [--repo owner/repo] [--ssh-key path/to/private_key] [--watch]
+  fork-deploy.sh [--config path/to/config.env] [--repo owner/repo] [--ssh-key path/to/private_key]
 
 Notes:
   - Requires GitHub CLI (`gh`) and authenticated session (`gh auth login`).
@@ -13,7 +13,7 @@ Notes:
   - --repo is optional if config.env includes GITHUB_FORK_REPO.
   - Pushes SSH_PRIVATE_KEY from --ssh-key path, SSH_PRIVATE_KEY_PATH, or infra/id_ed25519 if found.
   - After pushing secrets, asks whether to trigger workflow "Deploy Mail Server".
-  - Use --watch (or PUSH_GH_SECRETS_WATCH=true) to follow workflow progress after triggering it.
+  - Always watches workflow progress after triggering it.
 EOF
 }
 
@@ -36,7 +36,6 @@ fi
 TARGET_REPO=""
 SSH_KEY_FILE=""
 SSH_KEY_FLAG_SET=0
-WATCH_WORKFLOW="${PUSH_GH_SECRETS_WATCH:-false}"
 
 while [ "$#" -gt 0 ]; do
   case "$1" in
@@ -55,10 +54,6 @@ while [ "$#" -gt 0 ]; do
       SSH_KEY_FILE="$2"
       SSH_KEY_FLAG_SET=1
       shift 2
-      ;;
-    --watch)
-      WATCH_WORKFLOW="true"
-      shift
       ;;
     -h|--help)
       usage
@@ -133,13 +128,6 @@ set_secret() {
   echo "[push-gh-secrets] set ${name}"
 }
 
-is_truthy() {
-  case "${1:-}" in
-    1|true|TRUE|yes|YES|y|Y|on|ON) return 0 ;;
-    *) return 1 ;;
-  esac
-}
-
 watch_triggered_workflow() {
   local workflow_name="$1"
   local run_id=""
@@ -183,9 +171,7 @@ maybe_trigger_deploy_workflow() {
     y|Y|yes|YES)
       gh workflow run "${workflow_name}" "${gh_args[@]}" >/dev/null
       echo "[push-gh-secrets] triggered workflow '${workflow_name}'"
-      if is_truthy "${WATCH_WORKFLOW}"; then
-        watch_triggered_workflow "${workflow_name}"
-      fi
+      watch_triggered_workflow "${workflow_name}"
       ;;
     *)
       echo "[push-gh-secrets] skipped workflow trigger"
