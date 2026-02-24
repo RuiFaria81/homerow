@@ -199,3 +199,10 @@ site-search button[data-open-modal]:hover {
     width: min(100%, 16rem);
   }
 }
+
+/* Keep variable keys readable in docs tables. */
+.sl-markdown-content table th:first-child,
+.sl-markdown-content table td:first-child,
+.sl-markdown-content table td:first-child code {
+  white-space: nowrap;
+}

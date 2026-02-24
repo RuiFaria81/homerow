@@ -1,0 +1,35 @@
+---
+title: Advanced Configuration
+description: Optional variables for custom infrastructure behavior and developer workflows.
+---
+
+Use these variables only when you need custom behavior beyond the default deploy path.
+
+## Advanced Variables
+
+| Variable | Required | Purpose | Default |
+|----------|----------|---------|---------|
+| `TF_STATE_BUCKET_NAME` | No | Bucket name for Terraform remote state | `mail-tfstate-<domain>` |
+| `TF_STATE_PREFIX` | No | Key prefix inside the state bucket | `<domain>` |
+| `DEV_MODE` | No | Enable dev-only CLI commands (for example `./hrow e2e`) | `false` |
+| `USE_DOCKER` | No | Make `./hrow` default to docker mode for local deploy | `false` |
+| `SEED_INBOX` | No | Seed demo/test messages after deploy | `false` |
+| `SEED_INBOX_COUNT` | No | Number of messages when `SEED_INBOX=true` | `12` |
+| `SEED_INBOX_INCLUDE_CATEGORIES` | No | Include category labels while seeding | `false` |
+| `SKIP_NPM_DEPS_HASH_VERIFICATION` | No | Skip npm dependency hash verification during install | `false` |
+
+## Example Advanced Block
+
+```bash
+# Advanced/developer options (optional)
+# TF_STATE_BUCKET_NAME=mail-tfstate-example-com
+# TF_STATE_PREFIX=example.com
+# DEV_MODE=false
+# USE_DOCKER=false
+# SEED_INBOX=false
+# SEED_INBOX_COUNT=12
+# SEED_INBOX_INCLUDE_CATEGORIES=false
+# SKIP_NPM_DEPS_HASH_VERIFICATION=false
+```
+
+Back to [Configuration](/getting-started/configuration/).

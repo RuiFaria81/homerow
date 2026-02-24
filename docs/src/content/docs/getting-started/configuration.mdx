@@ -14,15 +14,13 @@ All configuration lives in `config.env` at the repository root. This file is nev
 | `MAIL_PASSWORD` | Yes | Mail admin password for mailbox/auth bootstrap | — |
 | `RESTIC_PASSWORD` | Yes | Encryption password for backups | — |
 | `SSH_PRIVATE_KEY` | No | SSH private key content (preferred for CI) | — |
-| `GITHUB_FORK_REPO` | No | Target repository for `fork-deploy` (format: `owner/repo`) | — |
-| `SSH_PRIVATE_KEY_PATH` | No | Local private key path used by deploy helpers and `fork-deploy` | — |
+| `GITHUB_FORK_REPO` | No | Target repository for GitHub deploy workflows (format: `owner/repo`) | — |
+| `SSH_PRIVATE_KEY_PATH` | No | Local private key path used by deploy helpers | — |
 | `ACME_ENV` | No | Certificate environment | `production` |
 | `WEBMAIL_SUBDOMAIN` | No | Webmail host subdomain (must not be `mail`) | `webmail` |
 | `VPS_STACK` | No | VPS provider stack selector | `hetzner` |
 | `DNS_STACK` | No | DNS provider stack selector | `cloudflare` |
 | `STORAGE_STACK` | No | Storage provider stack selector | `hetzner-object-storage` |
-| `TF_STATE_BUCKET_NAME` | No | Bucket name for Terraform remote state | `mail-tfstate-<domain>` |
-| `TF_STATE_PREFIX` | No | Key prefix inside the state bucket | `<domain>` |
 
 :::note
 Use `SSH_PRIVATE_KEY_PATH` for local deploy commands.
@@ -76,7 +74,6 @@ VPS_STACK=hetzner
 DNS_STACK=cloudflare
 STORAGE_STACK=hetzner-object-storage
 
-ACME_ENV=production
 WEBMAIL_SUBDOMAIN=webmail
 GITHUB_FORK_REPO=owner/repo
 SSH_PRIVATE_KEY_PATH=~/.ssh/homerow_ed25519
@@ -84,7 +81,12 @@ HETZNER_SERVER_TYPE=cx23
 HETZNER_LOCATION=nbg1
 HETZNER_REUSE_EXISTING_SERVER=true
 HETZNER_OBJECT_STORAGE_LOCATION=nbg1
+
 ```
+
+## Advanced
+
+For Terraform state customization and developer/test flags, see [Advanced Configuration](/advanced/configuration/).
 
 :::caution
 Never commit `config.env` or private keys to version control.

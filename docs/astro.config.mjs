@@ -76,6 +76,12 @@ export default defineConfig({
             },
           ],
         },
+        {
+          label: "Advanced",
+          items: [
+            { label: "Configuration", slug: "advanced/configuration" },
+          ],
+        },
       ],
     }),
   ],
