@@ -99,6 +99,7 @@ if [ -f "config.env" ]; then source config.env; fi
 VPS_STACK=${VPS_STACK:-"hetzner"}
 DNS_STACK=${DNS_STACK:-"cloudflare"}
 STORAGE_STACK=${STORAGE_STACK:-"hetzner-object-storage"}
+TF_STATE_STACK=${TF_STATE_STACK:-"hetzner-object-storage"}
 DOMAIN=${DOMAIN:-""}
 HCLOUD_TOKEN=${HCLOUD_TOKEN:-""}
 CLOUDFLARE_TOKEN=${CLOUDFLARE_TOKEN:-""}
@@ -111,6 +112,7 @@ HETZNER_OBJECT_STORAGE_LOCATION=${HETZNER_OBJECT_STORAGE_LOCATION:-"nbg1"}
 VPS_STACK_DIR="infra/vps/${VPS_STACK}"
 DNS_STACK_DIR="infra/dns/${DNS_STACK}"
 STORAGE_STACK_DIR="infra/storage/${STORAGE_STACK}"
+TF_STATE_STACK_DIR="infra/terraform-state/${TF_STATE_STACK}"
 
 SERVER_IP=""
 if [ -f "${VPS_STACK_DIR}/terraform.tfstate" ]; then
@@ -179,6 +181,29 @@ destroy_stack() {
     fi
 }
 
+destroy_tf_state_stack() {
+    local dir="$1"
+    local label="$2"
+    local resource_addr="minio_s3_bucket.terraform_state"
+
+    terraform -chdir="${dir}" init -input=false -backend=false >/dev/null
+
+    if ! terraform -chdir="${dir}" state show "${resource_addr}" >/dev/null 2>&1; then
+        terraform -chdir="${dir}" import -input=false "${resource_addr}" "${TF_STATE_BUCKET_NAME}" >/dev/null 2>&1 || true
+    fi
+
+    if terraform -chdir="${dir}" state show "${resource_addr}" >/dev/null 2>&1; then
+        echo -e "${GREEN}${label}${NC}"
+        terraform -chdir="${dir}" destroy -input=false -auto-approve \
+            -var="location=${HETZNER_OBJECT_STORAGE_LOCATION}" \
+            -var="s3_access_key=${S3_ACCESS_KEY:-}" \
+            -var="s3_secret_key=${S3_SECRET_KEY:-}" \
+            -var="bucket_name=${TF_STATE_BUCKET_NAME}"
+    else
+        log "No Terraform state bucket found for ${dir}, skipping."
+    fi
+}
+
 # 2. Terraform Destroy
 if [[ "${DELETE_STORAGE}" == "true" ]]; then
     destroy_stack "${STORAGE_STACK_DIR}" "[1/4] Destroying storage stack..." "${TEMP_TF_BACKEND_STORAGE}" \
@@ -186,16 +211,17 @@ if [[ "${DELETE_STORAGE}" == "true" ]]; then
         -var="s3_access_key=${S3_ACCESS_KEY:-}" \
         -var="s3_secret_key=${S3_SECRET_KEY:-}" \
         -var="bucket_name=${BACKUP_BUCKET_NAME}"
+    destroy_tf_state_stack "${TF_STATE_STACK_DIR}" "[2/4] Destroying Terraform state bucket stack..."
 else
     log "Skipping storage stack destroy (use --delete-storage to include backup data and the Terraform state bucket)."
 fi
-destroy_stack "${DNS_STACK_DIR}" "[2/4] Destroying DNS stack..." "${TEMP_TF_BACKEND_DNS}" \
+destroy_stack "${DNS_STACK_DIR}" "[3/4] Destroying DNS stack..." "${TEMP_TF_BACKEND_DNS}" \
     -var="domain=${DOMAIN}" \
     -var="cloudflare_token=${CLOUDFLARE_TOKEN}" \
     -var="cloudflare_zone_id=${CLOUDFLARE_ZONE_ID}" \
     -var="mail_server_ipv4=${DNS_MAIL_SERVER_IPV4}" \
     -var="webmail_subdomain=${WEBMAIL_SUBDOMAIN}"
-destroy_stack "${VPS_STACK_DIR}" "[3/4] Destroying VPS stack..." "${TEMP_TF_BACKEND_VPS}" \
+destroy_stack "${VPS_STACK_DIR}" "[4/4] Destroying VPS stack..." "${TEMP_TF_BACKEND_VPS}" \
     -var="domain=${DOMAIN}" \
     -var="hcloud_token=${HCLOUD_TOKEN}" \
     -var="server_type=${HETZNER_SERVER_TYPE}" \
