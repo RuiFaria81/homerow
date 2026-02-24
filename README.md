@@ -31,14 +31,7 @@ Key pages:
 
 1. Fork this repository.
 2. Create a local `config.env` (see Configuration docs above).
-3. Add helper values to `config.env`:
-
-```bash
-GITHUB_FORK_REPO=<owner/repo>
-SSH_PRIVATE_KEY_PATH=<path/to/private_key>
-```
-
-4. Deploy:
+3. Deploy:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/guilhermeprokisch/homerow/main/scripts/fork-deploy.sh | bash -s -- --config ./config.env
