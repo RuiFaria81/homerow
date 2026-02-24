@@ -203,6 +203,12 @@ destroy_tf_state_stack() {
     fi
 
     if terraform -chdir="${dir}" state show "${resource_addr}" >/dev/null 2>&1; then
+        terraform -chdir="${dir}" apply -input=false -auto-approve \
+            -target="${resource_addr}" \
+            -var="location=${HETZNER_OBJECT_STORAGE_LOCATION}" \
+            -var="s3_access_key=${S3_ACCESS_KEY:-}" \
+            -var="s3_secret_key=${S3_SECRET_KEY:-}" \
+            -var="bucket_name=${TF_STATE_BUCKET_NAME}" >/dev/null
         echo -e "${GREEN}${label}${NC}"
         terraform -chdir="${dir}" destroy -input=false -auto-approve \
             -var="location=${HETZNER_OBJECT_STORAGE_LOCATION}" \

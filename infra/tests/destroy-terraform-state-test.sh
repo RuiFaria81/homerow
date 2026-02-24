@@ -44,6 +44,8 @@ expect_contains '-var="s3_access_key=${S3_ACCESS_KEY:-}" \'
 expect_contains '-var="s3_secret_key=${S3_SECRET_KEY:-}" \'
 expect_contains '-var="bucket_name=${TF_STATE_BUCKET_NAME}" \'
 expect_contains '"${resource_addr}" "${TF_STATE_BUCKET_NAME}"; then'
+expect_contains 'terraform -chdir="${dir}" apply -input=false -auto-approve \'
+expect_contains '-target="${resource_addr}" \'
 expect_contains "error \"Failed to import Terraform state bucket '\${TF_STATE_BUCKET_NAME}' in \${dir}.\""
 expect_contains 'destroy_tf_state_stack "${TF_STATE_STACK_DIR}" "[2/4] Destroying Terraform state bucket stack..."'
 expect_contains 'log "Skipping storage stack destroy (use --delete-storage to include backup data and the Terraform state bucket)."'
