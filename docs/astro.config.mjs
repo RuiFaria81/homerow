@@ -52,7 +52,6 @@ export default defineConfig({
           items: [
             { label: "After Deploy", slug: "guides/after-deploy" },
             { label: "Gmail Migration", slug: "guides/gmail-migration" },
-            { label: "Mermaid Diagrams", slug: "guides/mermaid-diagrams" },
             {
               label: "Hetzner Post-Install",
               slug: "guides/hetzner-post-install",
