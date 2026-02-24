@@ -130,10 +130,13 @@ set_secret() {
 maybe_trigger_deploy_workflow() {
   local workflow_name="Deploy Mail Server"
   local answer="${PUSH_GH_SECRETS_DEPLOY_ANSWER:-}"
+  local prompt_tty_path="${PUSH_GH_SECRETS_TTY_PATH:-/dev/tty}"
 
   if [ -z "${answer}" ]; then
     if [ -t 0 ]; then
       read -r -p "[push-gh-secrets] Trigger '${workflow_name}' workflow now? [y/N] " answer
+    elif [ -r "${prompt_tty_path}" ]; then
+      read -r -p "[push-gh-secrets] Trigger '${workflow_name}' workflow now? [y/N] " answer < "${prompt_tty_path}"
     else
       echo "[push-gh-secrets] non-interactive shell: skipping deploy prompt."
       return 0

@@ -41,16 +41,7 @@ GitHub CLI (`gh`) is required for this flow, and it must be authenticated (`gh a
    ```
 
    After secrets are pushed, the script asks whether to trigger workflow `Deploy Mail Server` immediately.
-
-   Example with a dedicated key:
-   ```bash
-   curl -fsSL https://raw.githubusercontent.com/guilhermeprokisch/homerow/main/scripts/fork-deploy.sh | bash -s -- --config ./config.env --repo <owner/repo> --ssh-key ~/.ssh/homerow_ed25519
-   ```
-
-   Example with your default key:
-   ```bash
-   curl -fsSL https://raw.githubusercontent.com/guilhermeprokisch/homerow/main/scripts/fork-deploy.sh | bash -s -- --config ./config.env --repo <owner/repo> --ssh-key ~/.ssh/id_ed25519
-   ```
+   Use `--repo` or `--ssh-key` only for one-off overrides when you do not want to use the `config.env` defaults.
 </Steps>
 
 :::note

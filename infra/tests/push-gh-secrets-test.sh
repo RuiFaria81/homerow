@@ -77,4 +77,19 @@ grep -q "set:DOMAIN args:secret set DOMAIN --repo owner/repo --body example.com"
 grep -q "set:SSH_PRIVATE_KEY args:secret set SSH_PRIVATE_KEY --repo owner/repo" "${LOG_FILE}"
 grep -q "workflow:run args:workflow run Deploy Mail Server --repo owner/repo" "${LOG_FILE}"
 
+# When stdin is non-interactive (e.g., curl | bash), the script should still
+# prompt via tty fallback if available.
+TTY_INPUT_FILE="${TMP_DIR}/tty-input"
+printf 'y\n' > "${TTY_INPUT_FILE}"
+
+PATH="${BIN_DIR}:${PATH}" \
+  PUSH_GH_SECRETS_TTY_PATH="${TTY_INPUT_FILE}" \
+  "${SCRIPT}" --config "${CONFIG_FILE}" </dev/null >/dev/null
+
+# Expect a second workflow run logged from the tty fallback path.
+if [ "$(grep -c "workflow:run args:workflow run Deploy Mail Server --repo owner/repo" "${LOG_FILE}")" -lt 2 ]; then
+  echo "expected workflow trigger via tty fallback prompt" >&2
+  exit 1
+fi
+
 echo "push-gh-secrets test: ok"
