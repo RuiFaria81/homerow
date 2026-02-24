@@ -87,9 +87,17 @@ export default function App() {
       })[0];
     };
 
+    let takeoutJobsApiUnavailable = false;
     const updateImportBanner = async () => {
+      if (takeoutJobsApiUnavailable) return;
       try {
         const res = await fetch("/api/imports/takeout/jobs");
+        if (res.status === 404) {
+          takeoutJobsApiUnavailable = true;
+          setImportBannerJob(null);
+          localStorage.setItem("takeoutImportActive", "false");
+          return;
+        }
         if (!res.ok) return;
         const payload = (await res.json()) as { jobs?: ImportBannerJob[] };
         const job = payload.jobs ? pick(payload.jobs) : null;

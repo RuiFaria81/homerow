@@ -772,7 +772,7 @@ TEMP_FLAKE=$(mktemp -d)
 TEMP_FLAKE=$(cd "$TEMP_FLAKE" && pwd -P)
 rsync -a \
     --exclude '.git' \
-    --exclude 'takeout' \
+    --exclude '/takeout' \
     --exclude 'webmail/playwright-report' \
     --exclude 'webmail/test-results' \
     --exclude 'webmail/.playwright' \

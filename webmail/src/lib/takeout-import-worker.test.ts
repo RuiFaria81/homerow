@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { parseTakeoutBlockedAddressesJson } from "./takeout-blocked-addresses";
+import { parseTakeoutBlockedAddressesJson } from "./takeout-blocked-addresses.ts";
 
 test("parseTakeoutBlockedAddressesJson normalizes, validates, and deduplicates addresses", () => {
   const parsed = parseTakeoutBlockedAddressesJson(JSON.stringify({

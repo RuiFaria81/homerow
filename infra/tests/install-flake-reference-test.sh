@@ -9,8 +9,8 @@ if ! grep -Fq 'log "Preparing filtered deploy source..."' "${INSTALL_SCRIPT}"; t
   exit 1
 fi
 
-if ! grep -Fq -- "--exclude 'takeout'" "${INSTALL_SCRIPT}"; then
-  echo "expected install.sh to exclude takeout from deploy source copy" >&2
+if ! grep -Fq -- "--exclude '/takeout'" "${INSTALL_SCRIPT}"; then
+  echo "expected install.sh to exclude only root takeout from deploy source copy" >&2
   exit 1
 fi
 

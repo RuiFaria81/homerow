@@ -1,6 +1,7 @@
 import type { APIEvent } from "@solidjs/start/server";
 import { stat } from "node:fs/promises";
 import path from "node:path";
+import { isTakeoutArchiveFilename, normalizeTakeoutServerFilename } from "~/lib/takeout-import-filenames";
 import { createTakeoutImportJob, ensureImportTempDir, listRecentTakeoutImportJobs } from "~/lib/takeout-import-jobs";
 import { kickTakeoutImportWorker } from "~/lib/takeout-import-worker";
 
@@ -37,9 +38,9 @@ export async function POST({ request }: APIEvent) {
   const options: Record<string, unknown> = { ...(body.options || {}) };
 
   if (existingServerFilename) {
-    const baseName = path.basename(existingServerFilename);
+    const baseName = normalizeTakeoutServerFilename(existingServerFilename);
     if (!baseName) return new Response("Invalid existingServerFilename", { status: 400 });
-    if (!baseName.toLowerCase().endsWith(".tgz") && !baseName.toLowerCase().endsWith(".tar.gz")) {
+    if (!isTakeoutArchiveFilename(baseName)) {
       return new Response("Only .tgz or .tar.gz files are supported", { status: 400 });
     }
 
@@ -67,7 +68,7 @@ export async function POST({ request }: APIEvent) {
     return new Response("Missing filename", { status: 400 });
   }
 
-  if (!filename.toLowerCase().endsWith(".tgz") && !filename.toLowerCase().endsWith(".tar.gz")) {
+  if (!isTakeoutArchiveFilename(filename)) {
     return new Response("Only .tgz or .tar.gz files are supported", { status: 400 });
   }
 

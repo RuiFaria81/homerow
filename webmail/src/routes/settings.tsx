@@ -78,6 +78,12 @@ interface TakeoutArchiveAnalysis {
   blockedSenders: string[];
 }
 
+interface ServerTakeoutArchiveFile {
+  filename: string;
+  fileSizeBytes: number;
+  modifiedAt: string;
+}
+
 interface LabelImportPlanItem {
   sourceName: string;
   targetName: string;
@@ -173,6 +179,10 @@ export default function Settings() {
   const [importSourceMode, setImportSourceMode] = createSignal<ImportSourceMode>("upload");
   const [serverTakeoutFilename, setServerTakeoutFilename] = createSignal("");
   const [deleteServerFileAfterImport, setDeleteServerFileAfterImport] = createSignal(false);
+  const [takeoutJobsApiAvailable, setTakeoutJobsApiAvailable] = createSignal(true);
+  const [serverTakeoutFiles, setServerTakeoutFiles] = createSignal<ServerTakeoutArchiveFile[]>([]);
+  const [serverTakeoutFilesLoading, setServerTakeoutFilesLoading] = createSignal(false);
+  const [serverTakeoutFilesUnavailable, setServerTakeoutFilesUnavailable] = createSignal(false);
   const [clearingCache, setClearingCache] = createSignal(false);
   const [cacheStats, setCacheStats] = createSignal<{ pages: number; bytes: number } | null>(null);
   const [loadingCacheStats, setLoadingCacheStats] = createSignal(false);
@@ -658,8 +668,31 @@ export default function Settings() {
   };
 
   const parseError = async (response: Response): Promise<string> => {
-    const text = await response.text();
-    return text || `Request failed with status ${response.status}`;
+    const fallback = `Request failed with status ${response.status}`;
+    const contentType = (response.headers.get("content-type") || "").toLowerCase();
+
+    if (contentType.includes("application/json")) {
+      try {
+        const payload = (await response.clone().json()) as { error?: string; message?: string };
+        if (typeof payload.error === "string" && payload.error.trim()) return payload.error.trim();
+        if (typeof payload.message === "string" && payload.message.trim()) return payload.message.trim();
+      } catch {
+        // Continue with plain-text parsing.
+      }
+    }
+
+    const text = (await response.text()).trim();
+    if (!text) return fallback;
+    const htmlResponse = contentType.includes("text/html") || /^<!doctype html/i.test(text) || /^<html/i.test(text);
+    if (htmlResponse) {
+      if (response.status === 404) {
+        return "Takeout import API is not available on this server yet (404). Deploy the latest webmail backend.";
+      }
+      const titleMatch = text.match(/<title[^>]*>([^<]+)<\/title>/i);
+      const title = titleMatch?.[1]?.trim();
+      return title ? `${title} (HTTP ${response.status})` : fallback;
+    }
+    return text.length > 280 ? `${text.slice(0, 280)}...` : text;
   };
 
   const resetTakeoutAnalysis = () => {
@@ -769,9 +802,15 @@ export default function Settings() {
   };
 
   const loadLatestTakeoutJob = async () => {
+    if (!takeoutJobsApiAvailable()) return;
     try {
       const response = await fetch("/api/imports/takeout/jobs");
+      if (response.status === 404) {
+        setTakeoutJobsApiAvailable(false);
+        return;
+      }
       if (!response.ok) return;
+      setTakeoutJobsApiAvailable(true);
       const payload = (await response.json()) as { jobs?: TakeoutImportJob[] };
       if (payload.jobs && payload.jobs.length > 0) {
         const best = pickBestImportJob(payload.jobs);
@@ -789,19 +828,56 @@ export default function Settings() {
 
   const refreshTakeoutJob = async (id: string) => {
     const response = await fetch(`/api/imports/takeout/jobs/${id}`);
+    if (response.status === 404) {
+      setTakeoutJobsApiAvailable(false);
+      return;
+    }
     if (!response.ok) return;
+    setTakeoutJobsApiAvailable(true);
     const payload = (await response.json()) as { job: TakeoutImportJob };
     setTakeoutJob(payload.job);
     hydrateAnalysisFromJob(payload.job);
   };
 
+  const loadServerTakeoutFiles = async () => {
+    setServerTakeoutFilesLoading(true);
+    try {
+      const response = await fetch("/api/imports/takeout/files");
+      if (response.status === 404) {
+        setServerTakeoutFilesUnavailable(true);
+        setServerTakeoutFiles([]);
+        return;
+      }
+      if (!response.ok) {
+        setServerTakeoutFilesUnavailable(true);
+        setServerTakeoutFiles([]);
+        return;
+      }
+      const payload = (await response.json()) as { available?: boolean; files?: ServerTakeoutArchiveFile[] };
+      if (payload.available === false) {
+        setServerTakeoutFilesUnavailable(true);
+        setServerTakeoutFiles([]);
+        return;
+      }
+      setServerTakeoutFilesUnavailable(false);
+      setServerTakeoutFiles(Array.isArray(payload.files) ? payload.files : []);
+    } catch {
+      setServerTakeoutFilesUnavailable(true);
+      setServerTakeoutFiles([]);
+    } finally {
+      setServerTakeoutFilesLoading(false);
+    }
+  };
+
   createEffect(() => {
     if (activeTab() !== "import") return;
+    if (!takeoutJobsApiAvailable()) return;
     if (takeoutJob()) return;
     void loadLatestTakeoutJob();
   });
 
   createEffect(() => {
+    if (!takeoutJobsApiAvailable()) return;
     const timer = setInterval(() => {
       void loadLatestTakeoutJob();
     }, 2000);
@@ -814,6 +890,11 @@ export default function Settings() {
     const current = takeoutJob();
     const active = !!current && ["created", "uploading", "queued", "running"].includes(current.status);
     localStorage.setItem("takeoutImportActive", active ? "true" : "false");
+  });
+
+  createEffect(() => {
+    if (importSourceMode() !== "server") return;
+    void loadServerTakeoutFiles();
   });
 
   let wasAccountsTab = false;
@@ -2810,12 +2891,7 @@ export default function Settings() {
               <div class="rounded-2xl border border-[var(--border)] bg-[var(--search-bg)] p-5 flex flex-col gap-4">
                 <div class="flex items-center gap-3">
                   <div class="w-10 h-10 rounded-xl bg-white border border-[var(--border)] flex items-center justify-center">
-                    <svg viewBox="0 0 24 24" class="w-6 h-6" aria-hidden="true">
-                      <path d="M2 6.5L12 14.2L22 6.5V6C22 4.9 21.1 4 20 4H4C2.9 4 2 4.9 2 6V6.5Z" fill="#EA4335" />
-                      <path d="M2 7.8V18C2 19.1 2.9 20 4 20H7.5V11.8L2 7.8Z" fill="#34A853" />
-                      <path d="M22 7.8V18C22 19.1 21.1 20 20 20H16.5V11.8L22 7.8Z" fill="#4285F4" />
-                      <path d="M7.5 20H16.5V11.8L12 15.2L7.5 11.8V20Z" fill="#FBBC04" />
-                    </svg>
+                    <img src="/gmail-logo.svg" alt="Gmail logo" class="w-6 h-6 object-contain" />
                   </div>
                   <div>
                     <h2 class="text-xl font-semibold text-[var(--foreground)]">Import from Google Takeout</h2>
@@ -2857,6 +2933,7 @@ export default function Settings() {
                     onClick={() => {
                       setImportSourceMode("server");
                       resetTakeoutAnalysis();
+                      void loadServerTakeoutFiles();
                     }}
                     class={`w-full text-left px-4 py-3 rounded-xl text-sm border cursor-pointer transition-all ${
                       importSourceMode() === "server"
@@ -2908,6 +2985,52 @@ export default function Settings() {
                     <p class="text-xs text-[var(--text-muted)]">
                       Place the archive in <code>/var/lib/custom-webmail/takeout-imports</code>, then enter only the filename.
                     </p>
+                    <Show when={!serverTakeoutFilesUnavailable()}>
+                      <div class="rounded-lg border border-[var(--border)] bg-[var(--card)] p-3 flex flex-col gap-2">
+                        <div class="flex items-center justify-between">
+                          <span class="text-xs font-semibold text-[var(--foreground)]">Available files on server</span>
+                          <button
+                            onClick={() => void loadServerTakeoutFiles()}
+                            disabled={serverTakeoutFilesLoading()}
+                            class="px-2 py-1 rounded border border-[var(--border)] bg-transparent text-xs text-[var(--text-secondary)] cursor-pointer hover:bg-[var(--hover-bg)] disabled:opacity-60 disabled:cursor-not-allowed"
+                          >
+                            {serverTakeoutFilesLoading() ? "Refreshing..." : "Refresh"}
+                          </button>
+                        </div>
+                        <Show when={!serverTakeoutFilesLoading() && serverTakeoutFiles().length === 0}>
+                          <div class="text-xs text-[var(--text-muted)]">No `.tgz` or `.tar.gz` files found right now.</div>
+                        </Show>
+                        <Show when={serverTakeoutFiles().length > 0}>
+                          <div class="max-h-40 overflow-y-auto rounded border border-[var(--border)] bg-[var(--search-bg)]">
+                            <For each={serverTakeoutFiles()}>
+                              {(file) => (
+                                <button
+                                  onClick={() => {
+                                    setServerTakeoutFilename(file.filename);
+                                    resetTakeoutAnalysis();
+                                  }}
+                                  class={`w-full flex items-center justify-between gap-3 px-3 py-2 border-none border-b border-[var(--border)] last:border-b-0 cursor-pointer text-left ${
+                                    serverTakeoutFilename() === file.filename
+                                      ? "bg-[var(--active-bg)] text-[var(--primary)]"
+                                      : "bg-transparent text-[var(--text-secondary)] hover:bg-[var(--hover-bg)]"
+                                  }`}
+                                >
+                                  <span class="truncate text-xs font-medium">{file.filename}</span>
+                                  <span class="text-[11px] opacity-80 shrink-0">
+                                    {formatBytes(file.fileSizeBytes)} · {new Date(file.modifiedAt).toLocaleString()}
+                                  </span>
+                                </button>
+                              )}
+                            </For>
+                          </div>
+                        </Show>
+                      </div>
+                    </Show>
+                    <Show when={serverTakeoutFilesUnavailable()}>
+                      <div class="text-xs rounded-lg border border-[var(--border)] bg-[var(--card)] px-3 py-2 text-[var(--text-muted)]">
+                        Server file listing is unavailable right now. You can still type the filename manually.
+                      </div>
+                    </Show>
                     <div class="flex items-center gap-3">
                       <input
                         type="text"
@@ -2937,10 +3060,15 @@ export default function Settings() {
                   <span class="w-7 h-7 rounded-full bg-[var(--active-bg)] text-[var(--primary)] text-xs font-bold flex items-center justify-center">2</span>
                   <label class="text-sm font-semibold text-[var(--foreground)]">Analyze archive</label>
                 </div>
+                <Show when={!takeoutJobsApiAvailable()}>
+                  <div class="text-xs rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-[var(--destructive)]">
+                    Takeout import API endpoints are not available on this server (404). Deploy the latest backend to use this flow.
+                  </div>
+                </Show>
                 <div class="flex items-center gap-3">
                   <button
                     onClick={() => void runTakeoutArchiveAnalysis()}
-                    disabled={takeoutBusy() || takeoutAnalysisBusy() || (importSourceMode() === "upload" ? !selectedTakeoutFile() : !serverTakeoutFilename().trim())}
+                    disabled={!takeoutJobsApiAvailable() || takeoutBusy() || takeoutAnalysisBusy() || (importSourceMode() === "upload" ? !selectedTakeoutFile() : !serverTakeoutFilename().trim())}
                     class="min-w-[220px] px-5 py-2.5 rounded-lg bg-[var(--primary)] text-white text-sm font-semibold border-none cursor-pointer hover:brightness-110 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     {takeoutAnalysisBusy()
