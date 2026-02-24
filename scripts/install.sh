@@ -1,6 +1,15 @@
 #!/usr/bin/env bash
 set -e
 
+if REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null)"; then
+    :
+else
+    REPO_ROOT="${PWD}"
+fi
+
+[ -f "${REPO_ROOT}/flake.nix" ] || { echo "[install] run this command from inside the homerow repository." >&2; exit 1; }
+cd "${REPO_ROOT}"
+
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
 RED='\033[0;31m'
@@ -10,6 +19,13 @@ log() { echo -e "${BLUE}[INFO]${NC} $1"; }
 success() { echo -e "${GREEN}[SUCCESS]${NC} $1"; }
 error() { echo -e "${RED}[ERROR]${NC} $1"; exit 1; }
 warn() { echo -e "${RED}[WARN]${NC} $1"; }
+
+STRICT_CONFIG_MODE="${INSTALL_STRICT_CONFIG:-0}"
+INSTALL_CONFIG_FILE="${INSTALL_CONFIG_FILE:-${DEPLOY_CONFIG_FILE:-${REPO_ROOT}/config.env}}"
+
+if [ "${STRICT_CONFIG_MODE}" = "1" ] && [ "${DEPLOY_SKIP_UPDATE_CHECK:-}" != "1" ]; then
+    "${REPO_ROOT}/scripts/print-update-notice.sh" "${REPO_ROOT}" || true
+fi
 
 run_timed_step() {
     local label="$1"
@@ -121,14 +137,14 @@ TEMP_DEPLOY_SSH_PRIVATE_KEY=""
 TEMP_DEPLOY_SSH_PUBLIC_KEY=""
 TF_IMPORT_TIMEOUT_SECONDS="${TF_IMPORT_TIMEOUT_SECONDS:-120}"
 cleanup() {
-    [ -n "$TEMP_EXTRA" ] && rm -rf "$TEMP_EXTRA"
-    [ -n "$TEMP_FLAKE" ] && rm -rf "$TEMP_FLAKE"
-    [ -n "$TEMP_TF_BACKEND_VPS" ] && rm -f "$TEMP_TF_BACKEND_VPS"
-    [ -n "$TEMP_TF_BACKEND_DNS" ] && rm -f "$TEMP_TF_BACKEND_DNS"
-    [ -n "$TEMP_TF_BACKEND_STORAGE" ] && rm -f "$TEMP_TF_BACKEND_STORAGE"
-    [ -n "$TEMP_TF_STATE_VERIFY_LOG" ] && rm -f "$TEMP_TF_STATE_VERIFY_LOG"
-    [ -n "$TEMP_DEPLOY_SSH_PRIVATE_KEY" ] && rm -f "$TEMP_DEPLOY_SSH_PRIVATE_KEY"
-    [ -n "$TEMP_DEPLOY_SSH_PUBLIC_KEY" ] && rm -f "$TEMP_DEPLOY_SSH_PUBLIC_KEY"
+    [ -n "$TEMP_EXTRA" ] && rm -rf "$TEMP_EXTRA" || true
+    [ -n "$TEMP_FLAKE" ] && rm -rf "$TEMP_FLAKE" || true
+    [ -n "$TEMP_TF_BACKEND_VPS" ] && rm -f "$TEMP_TF_BACKEND_VPS" || true
+    [ -n "$TEMP_TF_BACKEND_DNS" ] && rm -f "$TEMP_TF_BACKEND_DNS" || true
+    [ -n "$TEMP_TF_BACKEND_STORAGE" ] && rm -f "$TEMP_TF_BACKEND_STORAGE" || true
+    [ -n "$TEMP_TF_STATE_VERIFY_LOG" ] && rm -f "$TEMP_TF_STATE_VERIFY_LOG" || true
+    [ -n "$TEMP_DEPLOY_SSH_PRIVATE_KEY" ] && rm -f "$TEMP_DEPLOY_SSH_PRIVATE_KEY" || true
+    [ -n "$TEMP_DEPLOY_SSH_PUBLIC_KEY" ] && rm -f "$TEMP_DEPLOY_SSH_PUBLIC_KEY" || true
 }
 trap cleanup EXIT
 
@@ -378,9 +394,9 @@ SEED_INBOX_COUNT_OVERRIDE_VALUE="${SEED_INBOX_COUNT:-}"
 SEED_INBOX_INCLUDE_CATEGORIES_OVERRIDE_SET="${SEED_INBOX_INCLUDE_CATEGORIES+x}"
 SEED_INBOX_INCLUDE_CATEGORIES_OVERRIDE_VALUE="${SEED_INBOX_INCLUDE_CATEGORIES:-}"
 
-if [ -f "config.env" ]; then
-log "Loading configuration from config.env..."
-source config.env
+if [ -f "${INSTALL_CONFIG_FILE}" ]; then
+log "Loading configuration from ${INSTALL_CONFIG_FILE}..."
+source "${INSTALL_CONFIG_FILE}"
 
 if [ -n "${SEED_INBOX_OVERRIDE_SET}" ]; then
     SEED_INBOX="${SEED_INBOX_OVERRIDE_VALUE}"
@@ -392,6 +408,9 @@ if [ -n "${SEED_INBOX_INCLUDE_CATEGORIES_OVERRIDE_SET}" ]; then
     SEED_INBOX_INCLUDE_CATEGORIES="${SEED_INBOX_INCLUDE_CATEGORIES_OVERRIDE_VALUE}"
 fi
 else
+    if [ "${STRICT_CONFIG_MODE}" = "1" ]; then
+        error "missing config file at ${INSTALL_CONFIG_FILE}."
+    fi
     log "No config.env found. Switching to interactive mode."
 fi
 
@@ -399,10 +418,42 @@ get_input() {
     local var_name=$1
     local prompt=$2
     if [ -z "${!var_name}" ]; then
+        if [ "${STRICT_CONFIG_MODE}" = "1" ]; then
+            error "missing required variable ${var_name} in ${INSTALL_CONFIG_FILE}."
+        fi
         read -p "$prompt: " val
         eval "$var_name=\"$val\""
     fi
 }
+
+if [ "${STRICT_CONFIG_MODE}" = "1" ]; then
+    required_vars=(
+        DOMAIN
+        MAIL_PASSWORD
+        RESTIC_PASSWORD
+        HCLOUD_TOKEN
+        CLOUDFLARE_TOKEN
+        CLOUDFLARE_ZONE_ID
+        S3_ACCESS_KEY
+        S3_SECRET_KEY
+    )
+
+    missing=()
+    for var_name in "${required_vars[@]}"; do
+        if [ -z "${!var_name:-}" ]; then
+            missing+=("${var_name}")
+        fi
+    done
+
+    if [ "${#missing[@]}" -gt 0 ]; then
+        error "missing required variables in ${INSTALL_CONFIG_FILE}: ${missing[*]}"
+    fi
+fi
+
+if [ "${INSTALL_ONLY_VALIDATE_CONFIG:-0}" = "1" ]; then
+    log "Configuration validation passed."
+    exit 0
+fi
 
 get_input "DOMAIN" "Enter your domain"
 get_input "MAIL_PASSWORD" "Enter Mail Admin Password"

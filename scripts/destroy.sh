@@ -12,12 +12,38 @@ is_ipv4() {
     [[ "$value" =~ ^([0-9]{1,3}\.){3}[0-9]{1,3}$ ]]
 }
 
+ASSUME_YES="false"
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --yes)
+            ASSUME_YES="true"
+            shift
+            ;;
+        -h|--help)
+            cat <<'USAGE'
+Usage: ./hrow destroy [--yes]
+
+Options:
+  --yes       Skip confirmation prompt
+  -h, --help  Show this help
+USAGE
+            exit 0
+            ;;
+        *)
+            echo "Unknown argument: $1" >&2
+            exit 1
+            ;;
+    esac
+done
+
 echo -e "${RED}!!! WARNING !!!${NC}"
 echo "This will DELETE the mail server, all emails, DNS records, and local keys."
-read -p "Are you sure? (y/N): " confirm
-if [[ "$confirm" != "y" ]]; then
-    echo "Aborted."
-    exit 1
+if [[ "${ASSUME_YES}" != "true" ]]; then
+    read -p "Are you sure? (y/N): " confirm
+    if [[ "$confirm" != "y" ]]; then
+        echo "Aborted."
+        exit 1
+    fi
 fi
 
 # 1. Load Config

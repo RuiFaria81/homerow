@@ -57,7 +57,7 @@ The script can also trigger workflow `Deploy Mail Server` after uploading secret
 3. Run:
 
 ```bash
-SSH_PRIVATE_KEY_PATH=<path/to/private_key> ./hrow docker deploy
+SSH_PRIVATE_KEY_PATH=<path/to/private_key> ./hrow deploy --via docker
 ```
 
 ### Option C: Locally with Nix/NixOS

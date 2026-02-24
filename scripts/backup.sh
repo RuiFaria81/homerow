@@ -6,92 +6,151 @@ SSH_HELPER="${ROOT_DIR}/ssh-vps.sh"
 
 usage() {
   cat <<'USAGE'
-Usage: ./hrow restore-backup [--list] [--source <restic|local>] [--restic-snapshot <id|latest>] [--snapshot <timestamp|latest>] [--yes] [--no-restart]
+Usage:
+  ./hrow backup <command> [options]
 
-Restores mail files and PostgreSQL data.
-Default flow:
-  1) Recover /var/vmail and /var/backup/postgresql from restic bucket
-  2) Restore PostgreSQL `mailsync` from /var/backup/postgresql/<timestamp>/
+Commands:
+  list                   List available snapshots
+  restore                Restore from backup snapshots (destructive)
+  trigger                Trigger backup jobs now
 
-Options:
-  --list                    List available snapshots for selected source and exit
+Options for list:
+  --source <restic|local>   Snapshot source to list (default: restic)
+
+Options for restore:
   --source <restic|local>   Restore source (default: restic)
   --restic-snapshot <id>    Restic snapshot ID to recover files from (default: latest)
   --snapshot <value>        PostgreSQL snapshot timestamp to restore (default: latest)
   --yes                     Skip destructive confirmation prompt
   --no-restart              Do not restart services after restore
+
+Options for trigger:
+  --target <all|postgres|restic>   Which backup job(s) to run (default: all)
+
+General:
   -h, --help                Show this help
 
 Examples:
-  ./hrow restore-backup --list
-  ./hrow restore-backup --restic-snapshot 0b28a36f --snapshot 20260224T024501Z
-  ./hrow restore-backup --source local --snapshot latest --yes
+  ./hrow backup list
+  ./hrow backup list --source local
+  ./hrow backup restore --restic-snapshot latest --snapshot latest --yes
+  ./hrow backup trigger
+  ./hrow backup trigger --target restic
 USAGE
 }
 
 if [ ! -x "${SSH_HELPER}" ]; then
-  echo "[restore-backup] missing SSH helper at ${SSH_HELPER}" >&2
+  echo "[backup] missing SSH helper at ${SSH_HELPER}" >&2
   exit 1
 fi
 
-MODE="restore"
 SOURCE="restic"
 RESTIC_SNAPSHOT="latest"
 SNAPSHOT="latest"
 ASSUME_YES="false"
 NO_RESTART="false"
+TRIGGER_TARGET="all"
+
+ACTION="${1:-}"
+case "${ACTION}" in
+  list|restore|trigger)
+    shift
+    ;;
+  help|-h|--help)
+    usage
+    exit 0
+    ;;
+  "")
+    echo "[backup] missing command. Use: list | restore | trigger" >&2
+    usage >&2
+    exit 1
+    ;;
+  *)
+    echo "[backup] unknown command: ${ACTION}" >&2
+    usage >&2
+    exit 1
+    ;;
+esac
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
-    --list)
-      MODE="list"
-      shift
-      ;;
     --source)
       SOURCE="${2:-}"
       if [[ "${SOURCE}" != "restic" && "${SOURCE}" != "local" ]]; then
-        echo "[restore-backup] --source must be restic or local." >&2
+        echo "[backup] --source must be restic or local." >&2
         exit 1
       fi
       shift 2
       ;;
     --restic-snapshot)
+      if [[ "${ACTION}" != "restore" ]]; then
+        echo "[backup] --restic-snapshot is only valid with 'restore'." >&2
+        exit 1
+      fi
       RESTIC_SNAPSHOT="${2:-}"
       if [ -z "${RESTIC_SNAPSHOT}" ]; then
-        echo "[restore-backup] --restic-snapshot requires a value." >&2
+        echo "[backup] --restic-snapshot requires a value." >&2
         exit 1
       fi
       shift 2
       ;;
     --snapshot)
+      if [[ "${ACTION}" != "restore" ]]; then
+        echo "[backup] --snapshot is only valid with 'restore'." >&2
+        exit 1
+      fi
       SNAPSHOT="${2:-}"
       if [ -z "${SNAPSHOT}" ]; then
-        echo "[restore-backup] --snapshot requires a value." >&2
+        echo "[backup] --snapshot requires a value." >&2
         exit 1
       fi
       shift 2
       ;;
     --yes)
+      if [[ "${ACTION}" != "restore" ]]; then
+        echo "[backup] --yes is only valid with 'restore'." >&2
+        exit 1
+      fi
       ASSUME_YES="true"
       shift
       ;;
     --no-restart)
+      if [[ "${ACTION}" != "restore" ]]; then
+        echo "[backup] --no-restart is only valid with 'restore'." >&2
+        exit 1
+      fi
       NO_RESTART="true"
       shift
+      ;;
+    --target)
+      if [[ "${ACTION}" != "trigger" ]]; then
+        echo "[backup] --target is only valid with 'trigger'." >&2
+        exit 1
+      fi
+      TRIGGER_TARGET="${2:-}"
+      case "${TRIGGER_TARGET}" in
+        all|postgres|restic)
+          ;;
+        *)
+          echo "[backup] --target must be one of: all, postgres, restic." >&2
+          exit 1
+          ;;
+      esac
+      shift 2
       ;;
     -h|--help)
       usage
       exit 0
       ;;
     *)
-      echo "[restore-backup] unknown argument: $1" >&2
-      usage
+      echo "[backup] unknown argument: $1" >&2
+      usage >&2
       exit 1
       ;;
   esac
 done
 
-if [[ "${MODE}" == "list" ]]; then
+if [[ "${ACTION}" == "list" ]]; then
   exec "${SSH_HELPER}" bash -s -- "${SOURCE}" <<'REMOTE'
 set -euo pipefail
 
@@ -123,15 +182,53 @@ printf '%s\n' "${snapshots}"
 REMOTE
 fi
 
+if [[ "${ACTION}" == "trigger" ]]; then
+  exec "${SSH_HELPER}" bash -s -- "${TRIGGER_TARGET}" <<'REMOTE'
+set -euo pipefail
+
+TARGET="$1"
+
+run_postgres_backup() {
+  echo "[backup] triggering postgres-backup.service"
+  systemctl start postgres-backup.service
+}
+
+run_restic_backup() {
+  echo "[backup] triggering restic-backups-mail-server.service"
+  systemctl start restic-backups-mail-server.service
+}
+
+case "${TARGET}" in
+  all)
+    # Ensure fresh DB dump exists before restic snapshot includes it.
+    run_postgres_backup
+    run_restic_backup
+    ;;
+  postgres)
+    run_postgres_backup
+    ;;
+  restic)
+    run_restic_backup
+    ;;
+  *)
+    echo "Unknown backup trigger target: ${TARGET}" >&2
+    exit 1
+    ;;
+esac
+
+echo "[backup] trigger completed (${TARGET})"
+REMOTE
+fi
+
 if [[ "${ASSUME_YES}" != "true" ]]; then
-  echo "[restore-backup] This is destructive and will replace the current mailsync database."
+  echo "[backup] This is destructive and will replace the current mailsync database."
   if [[ "${SOURCE}" == "restic" ]]; then
     read -r -p "Continue with restore from restic='${RESTIC_SNAPSHOT}' and postgres='${SNAPSHOT}'? (y/N): " confirm
   else
     read -r -p "Continue with local postgres snapshot '${SNAPSHOT}'? (y/N): " confirm
   fi
   if [[ "${confirm}" != "y" ]]; then
-    echo "[restore-backup] Aborted."
+    echo "[backup] Aborted."
     exit 1
   fi
 fi
@@ -160,7 +257,7 @@ webmail_unit_exists() {
   systemctl list-unit-files --type=service --no-legend --no-pager | awk '{print $1}' | grep -Fxq "${unit}.service"
 }
 
-echo "[restore-backup] stopping services"
+echo "[backup] stopping services"
 systemctl stop mail-sync-engine || true
 if webmail_unit_exists "custom-webmail-blue" || webmail_unit_exists "custom-webmail-green"; then
   systemctl stop custom-webmail-blue custom-webmail-green || true
@@ -191,7 +288,7 @@ if [[ "${SOURCE}" == "restic" ]]; then
     RESOLVED_RESTIC_SNAPSHOT="${REQUESTED_RESTIC_SNAPSHOT}"
   fi
 
-  echo "[restore-backup] restoring files from restic snapshot ${RESOLVED_RESTIC_SNAPSHOT}"
+  echo "[backup] restoring files from restic snapshot ${RESOLVED_RESTIC_SNAPSHOT}"
   restic --repository-file /root/restic-repo --password-file /root/restic-password restore "${RESOLVED_RESTIC_SNAPSHOT}" --target "${RESTIC_TARGET}" --include /var/vmail --include /var/backup/postgresql
 
   if [[ ! -d "${RESTIC_TARGET}/var/vmail" ]]; then
@@ -211,7 +308,7 @@ if [[ "${SOURCE}" == "restic" ]]; then
   if id -u vmail >/dev/null 2>&1 && getent group vmail >/dev/null 2>&1; then
     chown -R vmail:vmail /var/vmail
   else
-    echo "[restore-backup] skipping /var/vmail chown: vmail user/group not found"
+    echo "[backup] skipping /var/vmail chown: vmail user/group not found"
   fi
   chown -R postgres:postgres /var/backup/postgresql
 fi
@@ -248,7 +345,7 @@ if [[ ! -f "${SNAPSHOT_DIR}/mailsync.dump" ]]; then
   exit 1
 fi
 
-echo "[restore-backup] restoring postgres snapshot ${SNAPSHOT}"
+echo "[backup] restoring postgres snapshot ${SNAPSHOT}"
 
 globals_log="$(mktemp)"
 cleanup() {
@@ -266,7 +363,7 @@ if grep -q '^ERROR:' "${globals_log}"; then
     echo "Unexpected error(s) while applying globals.sql" >&2
     exit 1
   fi
-  echo "[restore-backup] continuing despite existing role(s) from globals.sql"
+  echo "[backup] continuing despite existing role(s) from globals.sql"
 fi
 
 sudo -u postgres dropdb --if-exists mailsync
@@ -287,5 +384,5 @@ if [[ "${NO_RESTART}" != "true" ]]; then
   systemctl is-active postgresql dovecot postfix mail-sync-engine
 fi
 
-echo "[restore-backup] restore completed from ${SNAPSHOT}"
+echo "[backup] restore completed from ${SNAPSHOT}"
 REMOTE

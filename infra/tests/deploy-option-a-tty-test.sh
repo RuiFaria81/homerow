@@ -9,8 +9,8 @@ if ! grep -Fq 'if [ -t 0 ] && [ -t 1 ]; then' "${DEPLOY_SCRIPT}"; then
   exit 1
 fi
 
-if ! grep -Fq 'exec "${ENGINE}" run --rm "${TTY_ARGS[@]}"' "${DEPLOY_SCRIPT}"; then
-  echo "expected deploy.sh to pass optional TTY args to container run" >&2
+if ! grep -Fq 'exec "${ENGINE}" "${run_args[@]}"' "${DEPLOY_SCRIPT}"; then
+  echo "expected deploy.sh to pass composed run args (including optional TTY) to container run" >&2
   exit 1
 fi
 

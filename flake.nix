@@ -48,7 +48,7 @@
             name = "deploy";
             runtimeInputs = [ pkgs.bash pkgs.git ];
             text = ''
-              exec "${self}/scripts/deploy-from-config.sh" "$@"
+              exec env INSTALL_STRICT_CONFIG=1 "${self}/scripts/install.sh" "$@"
             '';
           };
         in {

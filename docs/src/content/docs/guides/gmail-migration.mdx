@@ -24,12 +24,17 @@ This project supports importing Gmail data through Google Takeout archives. Use 
 
    From your local machine:
    ```bash
-   ./scripts/upload-takeout.sh --file /path/to/your-takeout.tgz
+   ./hrow import takeout --file /path/to/your-takeout.tgz
    ```
 
-   To upload and immediately start import:
+   To upload only and start import later:
    ```bash
-   ./scripts/upload-takeout.sh --file /path/to/your-takeout.tgz --start-import
+   ./hrow import takeout --file /path/to/your-takeout.tgz --upload-only
+   ```
+
+   To keep the uploaded archive on server after a successful import:
+   ```bash
+   ./hrow import takeout --file /path/to/your-takeout.tgz --keep-remote
    ```
 
    The script reads auth defaults from `config.env`, or you can pass host/email/password flags directly.

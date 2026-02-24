@@ -23,15 +23,21 @@ If your export is split, keep all parts and import them one by one.
 From your local machine:
 
 ```bash
-./scripts/upload-takeout.sh --file /path/to/your-takeout.tgz
+./hrow import takeout --file /path/to/your-takeout.tgz
 ```
 
 This uploads the archive to the server import directory.
 
-If you want to upload and immediately start import:
+If you want to upload only and start import later:
 
 ```bash
-./scripts/upload-takeout.sh --file /path/to/your-takeout.tgz --start-import
+./hrow import takeout --file /path/to/your-takeout.tgz --upload-only
+```
+
+If you want to keep the uploaded archive on server after a successful import:
+
+```bash
+./hrow import takeout --file /path/to/your-takeout.tgz --keep-remote
 ```
 
 The script can read auth defaults from `config.env`, or you can pass host/email/password flags directly.

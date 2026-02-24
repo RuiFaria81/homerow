@@ -2,7 +2,7 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
-DEPLOY_SCRIPT="${ROOT_DIR}/scripts/deploy-from-config.sh"
+INSTALL_SCRIPT="${ROOT_DIR}/scripts/install.sh"
 
 TMP_DIR="$(mktemp -d)"
 trap 'rm -rf "${TMP_DIR}"' EXIT
@@ -17,8 +17,8 @@ assert_contains() {
 }
 
 MISSING_CONFIG_LOG="${TMP_DIR}/missing-config.log"
-if DEPLOY_SKIP_UPDATE_CHECK=1 DEPLOY_CONFIG_FILE="${TMP_DIR}/does-not-exist.env" "${DEPLOY_SCRIPT}" >"${MISSING_CONFIG_LOG}" 2>&1; then
-  echo "expected deploy script failure when config file is missing" >&2
+if INSTALL_STRICT_CONFIG=1 DEPLOY_SKIP_UPDATE_CHECK=1 INSTALL_CONFIG_FILE="${TMP_DIR}/does-not-exist.env" "${INSTALL_SCRIPT}" >"${MISSING_CONFIG_LOG}" 2>&1; then
+  echo "expected install strict mode failure when config file is missing" >&2
   exit 1
 fi
 assert_contains "${MISSING_CONFIG_LOG}" "missing config file"
@@ -31,8 +31,8 @@ RESTIC_PASSWORD=backup-secret
 EOF
 
 INCOMPLETE_LOG="${TMP_DIR}/incomplete.log"
-if DEPLOY_SKIP_UPDATE_CHECK=1 DEPLOY_CONFIG_FILE="${INCOMPLETE_CONFIG}" "${DEPLOY_SCRIPT}" >"${INCOMPLETE_LOG}" 2>&1; then
-  echo "expected deploy script failure for missing required vars" >&2
+if INSTALL_STRICT_CONFIG=1 DEPLOY_SKIP_UPDATE_CHECK=1 INSTALL_CONFIG_FILE="${INCOMPLETE_CONFIG}" "${INSTALL_SCRIPT}" >"${INCOMPLETE_LOG}" 2>&1; then
+  echo "expected install strict mode failure for missing required vars" >&2
   exit 1
 fi
 assert_contains "${INCOMPLETE_LOG}" "missing required variables"
@@ -50,18 +50,8 @@ S3_ACCESS_KEY=s3-key
 S3_SECRET_KEY=s3-secret
 EOF
 
-FAKE_INSTALL="${TMP_DIR}/fake-install.sh"
-cat > "${FAKE_INSTALL}" <<'EOF'
-#!/usr/bin/env bash
-set -euo pipefail
-test -n "${DOMAIN:-}"
-test -n "${HCLOUD_TOKEN:-}"
-echo "install-called"
-EOF
-chmod +x "${FAKE_INSTALL}"
-
 SUCCESS_LOG="${TMP_DIR}/success.log"
-DEPLOY_SKIP_UPDATE_CHECK=1 DEPLOY_CONFIG_FILE="${VALID_CONFIG}" DEPLOY_INSTALL_CMD="${FAKE_INSTALL}" "${DEPLOY_SCRIPT}" >"${SUCCESS_LOG}" 2>&1
-assert_contains "${SUCCESS_LOG}" "install-called"
+INSTALL_STRICT_CONFIG=1 INSTALL_ONLY_VALIDATE_CONFIG=1 DEPLOY_SKIP_UPDATE_CHECK=1 INSTALL_CONFIG_FILE="${VALID_CONFIG}" "${INSTALL_SCRIPT}" >"${SUCCESS_LOG}" 2>&1
+assert_contains "${SUCCESS_LOG}" "Configuration validation passed."
 
-echo "deploy-from-config test: ok"
+echo "deploy strict-config test: ok"

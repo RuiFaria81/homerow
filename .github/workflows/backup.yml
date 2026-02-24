@@ -1,13 +1,59 @@
-name: Deploy Mail Server
+name: Backup Operations
 
 on:
   workflow_dispatch:
+    inputs:
+      action:
+        description: "Backup action"
+        required: true
+        type: choice
+        options:
+          - list
+          - trigger
+          - restore
+      source:
+        description: "Source for list/restore"
+        required: false
+        default: restic
+        type: choice
+        options:
+          - restic
+          - local
+      target:
+        description: "Target for trigger"
+        required: false
+        default: all
+        type: choice
+        options:
+          - all
+          - postgres
+          - restic
+      restic_snapshot:
+        description: "Restic snapshot id for restore"
+        required: false
+        default: latest
+        type: string
+      snapshot:
+        description: "Postgres snapshot timestamp for restore"
+        required: false
+        default: latest
+        type: string
+      no_restart:
+        description: "Do not restart services after restore"
+        required: false
+        default: false
+        type: boolean
+      assume_yes:
+        description: "Skip destructive restore confirmation"
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: read
 
 jobs:
-  deploy:
+  backup:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -46,7 +92,7 @@ jobs:
           TF_STATE_BUCKET_NAME: ${{ secrets.TF_STATE_BUCKET_NAME }}
           TF_STATE_PREFIX: ${{ secrets.TF_STATE_PREFIX }}
         run: |
-          cat > config.env <<EOF
+          cat > config.env <<EOF_CONFIG
           DOMAIN=${DOMAIN}
           EMAIL=${EMAIL}
           MAIL_PASSWORD=${MAIL_PASSWORD}
@@ -67,15 +113,42 @@ jobs:
           WEBMAIL_SUBDOMAIN=${WEBMAIL_SUBDOMAIN:-webmail}
           TF_STATE_BUCKET_NAME=${TF_STATE_BUCKET_NAME}
           TF_STATE_PREFIX=${TF_STATE_PREFIX}
-          EOF
+          EOF_CONFIG
 
-      - name: Deploy
+      - name: Run backup action
         shell: bash
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
-          if [ -z "${SSH_PRIVATE_KEY}" ]; then
-            echo "Missing required secret: SSH_PRIVATE_KEY" >&2
-            exit 1
-          fi
-          ./hrow deploy --via local
+          ACTION='${{ github.event.inputs.action }}'
+          SOURCE='${{ github.event.inputs.source }}'
+          TARGET='${{ github.event.inputs.target }}'
+          RESTIC_SNAPSHOT='${{ github.event.inputs.restic_snapshot }}'
+          SNAPSHOT='${{ github.event.inputs.snapshot }}'
+          NO_RESTART='${{ github.event.inputs.no_restart }}'
+          ASSUME_YES='${{ github.event.inputs.assume_yes }}'
+
+          cmd=(./hrow backup --via local "${ACTION}")
+          case "${ACTION}" in
+            list)
+              cmd+=(--source "${SOURCE}")
+              ;;
+            trigger)
+              cmd+=(--target "${TARGET}")
+              ;;
+            restore)
+              cmd+=(--source "${SOURCE}" --restic-snapshot "${RESTIC_SNAPSHOT}" --snapshot "${SNAPSHOT}")
+              if [[ "${NO_RESTART}" == "true" ]]; then
+                cmd+=(--no-restart)
+              fi
+              if [[ "${ASSUME_YES}" == "true" ]]; then
+                cmd+=(--yes)
+              fi
+              ;;
+            *)
+              echo "Unsupported backup action: ${ACTION}" >&2
+              exit 1
+              ;;
+          esac
+
+          "${cmd[@]}"

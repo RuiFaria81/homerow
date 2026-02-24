@@ -95,10 +95,11 @@ run_args=(
   -w /workspace
   -e "DEPLOY_CONFIG_FILE=${CONTAINER_CONFIG_PATH}"
   -e "DEPLOY_SKIP_UPDATE_CHECK=${DEPLOY_SKIP_UPDATE_CHECK:-}"
+  -e "INSTALL_STRICT_CONFIG=1"
   -e "UPDATE_SOURCE_REMOTE=${UPDATE_SOURCE_REMOTE:-}"
 )
 if [ -n "${SSH_PRIVATE_KEY_CONTENT}" ]; then
   run_args+=(-e "SSH_PRIVATE_KEY=${SSH_PRIVATE_KEY_CONTENT}")
 fi
 
-exec "${ENGINE}" "${run_args[@]}" "${IMAGE}" /workspace/scripts/deploy-from-config.sh "$@"
+exec "${ENGINE}" "${run_args[@]}" "${IMAGE}" /workspace/scripts/install.sh "$@"

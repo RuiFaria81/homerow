@@ -2,22 +2,28 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-SSH_KEY="${ROOT_DIR}/infra/id_ed25519"
+SSH_HELPER="${ROOT_DIR}/ssh-vps.sh"
+if REPO_ROOT="$(git -C "${ROOT_DIR}" rev-parse --show-toplevel 2>/dev/null)"; then
+  :
+else
+  REPO_ROOT="$(cd "${ROOT_DIR}/.." && pwd)"
+fi
 
 usage() {
   cat <<USAGE
 Usage: $0 --file <local-takeout.tgz> [options]
 
 Copies a local Google Takeout archive to the server import temp dir.
-Optional: creates and starts an import job using server-side file reuse.
+By default, creates and starts an import job using server-side file reuse.
 
 Options:
   --file <path>            Local .tgz/.tar.gz file to upload (required)
-  --host <ip-or-host>      Server host (default: terraform output server_ip)
+  --host <ip-or-host>      Server host (default: resolved from Terraform remote state)
   --user <ssh-user>        SSH user (default: root)
   --remote-dir <dir>       Remote target dir (default: /var/lib/custom-webmail/takeout-imports)
   --remote-name <name>     Remote filename (default: basename of --file)
-  --start-import           Create and queue import job after upload
+  --upload-only            Only upload archive; do not create/start import job
+  --keep-remote            Keep uploaded archive on server after successful import
   --email <email>          Webmail account email for API login (default: config.env EMAIL)
   --password <password>    Webmail account password for API login (default: config.env MAIL_PASSWORD)
   --api-base <url>         API base on remote host (default: http://127.0.0.1:3000)
@@ -25,8 +31,8 @@ Options:
 
 Examples:
   $0 --file ./takeout/my.tgz
-  $0 --file ./takeout/my.tgz --start-import
-  $0 --file ./takeout/my.tgz --host 1.2.3.4 --start-import --api-base http://127.0.0.1:3000
+  $0 --file ./takeout/my.tgz --upload-only
+  $0 --file ./takeout/my.tgz --keep-remote --host 1.2.3.4 --api-base http://127.0.0.1:3000
 USAGE
 }
 
@@ -35,10 +41,18 @@ HOST=""
 USER_NAME="root"
 REMOTE_DIR="/var/lib/custom-webmail/takeout-imports"
 REMOTE_NAME=""
-START_IMPORT="false"
+START_IMPORT="true"
+KEEP_REMOTE="false"
 LOGIN_EMAIL=""
 LOGIN_PASSWORD=""
 API_BASE="http://127.0.0.1:3000"
+SSH_KEY_PATH=""
+TMP_SSH_KEY=""
+
+cleanup() {
+  [ -n "${TMP_SSH_KEY}" ] && rm -f "${TMP_SSH_KEY}" || true
+}
+trap cleanup EXIT
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -62,8 +76,12 @@ while [[ $# -gt 0 ]]; do
       REMOTE_NAME="${2:-}"
       shift 2
       ;;
-    --start-import)
-      START_IMPORT="true"
+    --upload-only)
+      START_IMPORT="false"
+      shift
+      ;;
+    --keep-remote)
+      KEEP_REMOTE="true"
       shift
       ;;
     --email)
@@ -110,15 +128,9 @@ if [[ -z "$REMOTE_NAME" ]]; then
   REMOTE_NAME="$(basename "$FILE_PATH")"
 fi
 
-if [[ -z "$HOST" ]]; then
-  if command -v terraform >/dev/null 2>&1 && [[ -d "${ROOT_DIR}/infra" ]]; then
-    HOST="$(cd "${ROOT_DIR}/infra" && terraform output -raw server_ip 2>/dev/null || true)"
-  fi
-fi
-
-if [[ -f "${ROOT_DIR}/config.env" ]]; then
+if [[ -f "${REPO_ROOT}/config.env" ]]; then
   # shellcheck disable=SC1090
-  source "${ROOT_DIR}/config.env"
+  source "${REPO_ROOT}/config.env"
 fi
 
 if [[ -z "$LOGIN_EMAIL" ]]; then
@@ -129,21 +141,38 @@ if [[ -z "$LOGIN_PASSWORD" ]]; then
 fi
 
 if [[ -z "$HOST" ]]; then
+  if [[ -x "${SSH_HELPER}" ]]; then
+    HOST="$("${SSH_HELPER}" --print-host 2>/dev/null || true)"
+  fi
+fi
+
+if [[ -z "$HOST" ]]; then
   echo "Could not determine server host. Pass --host <ip-or-host>." >&2
   exit 1
 fi
 
-if [[ ! -f "$SSH_KEY" ]]; then
-  echo "SSH key not found: $SSH_KEY" >&2
-  exit 1
+if [[ -n "${SSH_PRIVATE_KEY:-}" ]]; then
+  TMP_SSH_KEY="$(mktemp)"
+  printf '%s\n' "${SSH_PRIVATE_KEY}" > "${TMP_SSH_KEY}"
+  chmod 600 "${TMP_SSH_KEY}"
+  SSH_KEY_PATH="${TMP_SSH_KEY}"
+else
+  SSH_KEY_PATH="${SSH_PRIVATE_KEY_PATH:-${REPO_ROOT}/infra/id_ed25519}"
+  if [[ "${SSH_KEY_PATH}" != /* ]]; then
+    SSH_KEY_PATH="${REPO_ROOT}/${SSH_KEY_PATH}"
+  fi
+  if [[ ! -f "${SSH_KEY_PATH}" ]]; then
+    echo "SSH key not found: ${SSH_KEY_PATH}" >&2
+    exit 1
+  fi
 fi
 
 echo "[upload] target=${USER_NAME}@${HOST}"
 echo "[upload] local=${FILE_PATH}"
 echo "[upload] remote=${REMOTE_DIR}/${REMOTE_NAME}"
 
-ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" "${USER_NAME}@${HOST}" "mkdir -p '$REMOTE_DIR'"
-scp -o StrictHostKeyChecking=no -i "$SSH_KEY" "$FILE_PATH" "${USER_NAME}@${HOST}:${REMOTE_DIR}/${REMOTE_NAME}"
+ssh -o StrictHostKeyChecking=no -i "${SSH_KEY_PATH}" "${USER_NAME}@${HOST}" "mkdir -p '$REMOTE_DIR'"
+scp -o StrictHostKeyChecking=no -i "${SSH_KEY_PATH}" "$FILE_PATH" "${USER_NAME}@${HOST}:${REMOTE_DIR}/${REMOTE_NAME}"
 echo "[upload] done"
 
 if [[ "$START_IMPORT" != "true" ]]; then
@@ -163,7 +192,7 @@ fi
 echo "[import] creating import job from existing server file"
 set +e
 CREATE_RESPONSE="$(
-  ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" "${USER_NAME}@${HOST}" bash -s -- \
+  ssh -o StrictHostKeyChecking=no -i "${SSH_KEY_PATH}" "${USER_NAME}@${HOST}" bash -s -- \
     "$API_BASE" "$REMOTE_NAME" "$LOGIN_EMAIL" "$LOGIN_PASSWORD" <<'REMOTE'
 set -euo pipefail
 
@@ -221,7 +250,7 @@ echo "[import] job id=${JOB_ID}"
 echo "[import] queueing job"
 set +e
 QUEUE_OUTPUT="$(
-ssh -o StrictHostKeyChecking=no -i "$SSH_KEY" "${USER_NAME}@${HOST}" \
+ssh -o StrictHostKeyChecking=no -i "${SSH_KEY_PATH}" "${USER_NAME}@${HOST}" \
   bash -s -- "$API_BASE" "$JOB_ID" "$LOGIN_EMAIL" "$LOGIN_PASSWORD" <<'REMOTE'
 set -euo pipefail
 
@@ -263,3 +292,24 @@ fi
 
 echo "[import] started"
 echo "[import] check status at ${API_BASE}/api/imports/takeout/jobs"
+
+if [[ "${KEEP_REMOTE}" == "true" ]]; then
+  echo "[import] keeping remote archive at ${REMOTE_DIR}/${REMOTE_NAME}"
+  exit 0
+fi
+
+set +e
+REMOVE_OUTPUT="$(
+  ssh -o StrictHostKeyChecking=no -i "${SSH_KEY_PATH}" "${USER_NAME}@${HOST}" \
+    "rm -f '${REMOTE_DIR}/${REMOTE_NAME}'"
+)"
+REMOVE_STATUS=$?
+set -e
+
+if [[ $REMOVE_STATUS -ne 0 ]]; then
+  echo "[import] import started, but failed to remove remote archive ${REMOTE_DIR}/${REMOTE_NAME}." >&2
+  echo "$REMOVE_OUTPUT" >&2
+  exit 1
+fi
+
+echo "[import] removed remote archive ${REMOTE_DIR}/${REMOTE_NAME}"

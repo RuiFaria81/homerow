@@ -1,15 +1,28 @@
-name: Deploy Mail Server
+name: Destroy Mail Server
 
 on:
   workflow_dispatch:
+    inputs:
+      confirm:
+        description: "Type DESTROY to confirm"
+        required: true
+        type: string
 
 permissions:
   contents: read
 
 jobs:
-  deploy:
+  destroy:
     runs-on: ubuntu-latest
     steps:
+      - name: Validate confirmation
+        shell: bash
+        run: |
+          if [ "${{ github.event.inputs.confirm }}" != "DESTROY" ]; then
+            echo "Confirmation mismatch. Type DESTROY to run this workflow." >&2
+            exit 1
+          fi
+
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -46,7 +59,7 @@ jobs:
           TF_STATE_BUCKET_NAME: ${{ secrets.TF_STATE_BUCKET_NAME }}
           TF_STATE_PREFIX: ${{ secrets.TF_STATE_PREFIX }}
         run: |
-          cat > config.env <<EOF
+          cat > config.env <<EOF_CONFIG
           DOMAIN=${DOMAIN}
           EMAIL=${EMAIL}
           MAIL_PASSWORD=${MAIL_PASSWORD}
@@ -67,15 +80,9 @@ jobs:
           WEBMAIL_SUBDOMAIN=${WEBMAIL_SUBDOMAIN:-webmail}
           TF_STATE_BUCKET_NAME=${TF_STATE_BUCKET_NAME}
           TF_STATE_PREFIX=${TF_STATE_PREFIX}
-          EOF
+          EOF_CONFIG
 
-      - name: Deploy
+      - name: Destroy
         shell: bash
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
-          if [ -z "${SSH_PRIVATE_KEY}" ]; then
-            echo "Missing required secret: SSH_PRIVATE_KEY" >&2
-            exit 1
-          fi
-          ./hrow deploy --via local
+          ./hrow destroy --via local --yes
