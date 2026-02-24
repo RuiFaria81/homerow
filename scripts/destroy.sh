@@ -11,6 +11,42 @@ is_ipv4() {
     local value="$1"
     [[ "$value" =~ ^([0-9]{1,3}\.){3}[0-9]{1,3}$ ]]
 }
+sanitize_bucket_name() {
+    local raw="$1"
+    local cleaned
+    cleaned="$(echo "$raw" \
+        | tr '[:upper:]' '[:lower:]' \
+        | sed -E 's/[^a-z0-9-]+/-/g; s/^-+//; s/-+$//; s/-+/-/g')"
+    if [ ${#cleaned} -lt 3 ]; then
+        cleaned="mail-backup-${cleaned}"
+    fi
+    echo "${cleaned:0:63}"
+}
+normalize_state_prefix() {
+    local raw="$1"
+    local normalized
+    normalized="$(echo "$raw" | sed -E 's#^/+##; s#/+$##; s#//+#/#g')"
+    echo "$normalized"
+}
+write_s3_backend_config() {
+    local backend_file="$1"
+    local bucket_name="$2"
+    local key_path="$3"
+    local location="$4"
+    local endpoint="https://${location}.your-objectstorage.com"
+
+    cat > "$backend_file" <<EOF
+bucket = "${bucket_name}"
+key = "${key_path}"
+region = "${location}"
+access_key = "${S3_ACCESS_KEY}"
+secret_key = "${S3_SECRET_KEY}"
+endpoints = { s3 = "${endpoint}" }
+skip_credentials_validation = true
+skip_requesting_account_id = true
+skip_region_validation = true
+EOF
+}
 
 ASSUME_YES="false"
 while [[ $# -gt 0 ]]; do
@@ -52,6 +88,8 @@ if [ -f "config.env" ]; then source config.env; fi
 VPS_STACK=${VPS_STACK:-"hetzner"}
 DNS_STACK=${DNS_STACK:-"cloudflare"}
 STORAGE_STACK=${STORAGE_STACK:-"hetzner-object-storage"}
+DOMAIN=${DOMAIN:-""}
+HETZNER_OBJECT_STORAGE_LOCATION=${HETZNER_OBJECT_STORAGE_LOCATION:-"nbg1"}
 
 VPS_STACK_DIR="infra/vps/${VPS_STACK}"
 DNS_STACK_DIR="infra/dns/${DNS_STACK}"
@@ -78,14 +116,39 @@ if [ -z "$DNS_MAIL_SERVER_IPV4" ]; then
     DNS_MAIL_SERVER_IPV4="127.0.0.1"
 fi
 
+TF_STATE_BUCKET_NAME=${TF_STATE_BUCKET_NAME:-"mail-tfstate-${DOMAIN//./-}"}
+TF_STATE_BUCKET_NAME="$(sanitize_bucket_name "$TF_STATE_BUCKET_NAME")"
+TF_STATE_PREFIX=${TF_STATE_PREFIX:-"${DOMAIN}"}
+TF_STATE_PREFIX="$(normalize_state_prefix "$TF_STATE_PREFIX")"
+
+TEMP_TF_BACKEND_VPS=""
+TEMP_TF_BACKEND_DNS=""
+TEMP_TF_BACKEND_STORAGE=""
+if [ -n "${TF_STATE_BUCKET_NAME}" ] && [ -n "${TF_STATE_PREFIX}" ] && [ -n "${S3_ACCESS_KEY:-}" ] && [ -n "${S3_SECRET_KEY:-}" ]; then
+    TEMP_TF_BACKEND_VPS="$(mktemp)"
+    TEMP_TF_BACKEND_DNS="$(mktemp)"
+    TEMP_TF_BACKEND_STORAGE="$(mktemp)"
+    write_s3_backend_config "$TEMP_TF_BACKEND_VPS" "${TF_STATE_BUCKET_NAME}" "${TF_STATE_PREFIX}/vps-${VPS_STACK}.tfstate" "${HETZNER_OBJECT_STORAGE_LOCATION}"
+    write_s3_backend_config "$TEMP_TF_BACKEND_DNS" "${TF_STATE_BUCKET_NAME}" "${TF_STATE_PREFIX}/dns-${DNS_STACK}.tfstate" "${HETZNER_OBJECT_STORAGE_LOCATION}"
+    write_s3_backend_config "$TEMP_TF_BACKEND_STORAGE" "${TF_STATE_BUCKET_NAME}" "${TF_STATE_PREFIX}/storage-${STORAGE_STACK}.tfstate" "${HETZNER_OBJECT_STORAGE_LOCATION}"
+fi
+
 destroy_stack() {
     local dir="$1"
     local label="$2"
-    local extra_args=("${@:3}")
+    local backend_config="${3:-}"
+    local extra_args=("${@:4}")
 
-    if [ -f "${dir}/terraform.tfstate" ]; then
+    if [ -n "${backend_config}" ] && [ -f "${backend_config}" ]; then
+        terraform -chdir="${dir}" init -input=false -backend-config="${backend_config}" >/dev/null
+    elif [ -f "${dir}/terraform.tfstate" ]; then
+        terraform -chdir="${dir}" init -input=false -backend=false >/dev/null
+    else
+        terraform -chdir="${dir}" init -input=false >/dev/null
+    fi
+
+    if terraform -chdir="${dir}" state pull >/dev/null 2>&1 || [ -f "${dir}/terraform.tfstate" ]; then
         echo -e "${GREEN}${label}${NC}"
-        terraform -chdir="${dir}" init >/dev/null
         terraform -chdir="${dir}" destroy -auto-approve "${extra_args[@]}"
     else
         log "No state found for ${dir}, skipping."
@@ -93,9 +156,9 @@ destroy_stack() {
 }
 
 # 2. Terraform Destroy
-destroy_stack "${STORAGE_STACK_DIR}" "[1/4] Destroying storage stack..."
-destroy_stack "${DNS_STACK_DIR}" "[2/4] Destroying DNS stack..." -var="mail_server_ipv4=${DNS_MAIL_SERVER_IPV4}"
-destroy_stack "${VPS_STACK_DIR}" "[3/4] Destroying VPS stack..."
+destroy_stack "${STORAGE_STACK_DIR}" "[1/4] Destroying storage stack..." "${TEMP_TF_BACKEND_STORAGE}"
+destroy_stack "${DNS_STACK_DIR}" "[2/4] Destroying DNS stack..." "${TEMP_TF_BACKEND_DNS}" -var="mail_server_ipv4=${DNS_MAIL_SERVER_IPV4}"
+destroy_stack "${VPS_STACK_DIR}" "[3/4] Destroying VPS stack..." "${TEMP_TF_BACKEND_VPS}"
 
 # 3. Clean SSH Known Hosts
 if [ ! -z "$SERVER_IP" ]; then
@@ -110,5 +173,6 @@ rm -rf infra/vps/*/.terraform infra/vps/*/.terraform.lock.hcl infra/vps/*/terraf
 rm -rf infra/dns/*/.terraform infra/dns/*/.terraform.lock.hcl infra/dns/*/terraform.tfstate* infra/dns/*/terraform.tfvars
 rm -rf infra/storage/*/.terraform infra/storage/*/.terraform.lock.hcl infra/storage/*/terraform.tfstate* infra/storage/*/terraform.tfvars
 rm -f infra/id_ed25519 infra/id_ed25519.pub modules/settings.nix
+rm -f "${TEMP_TF_BACKEND_VPS:-}" "${TEMP_TF_BACKEND_DNS:-}" "${TEMP_TF_BACKEND_STORAGE:-}"
 
 echo -e "${GREEN}Cleanup Complete.${NC}"
