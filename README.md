@@ -6,21 +6,21 @@ This repository provides a practical path to provision infrastructure, deploy a 
 
 ## Documentation
 
-Full docs: https://docs.homerow.email
+Full docs: https://homerow.email
 
 Key pages:
-- Quick start: https://docs.homerow.email/getting-started/quick-start/
-- Configuration (`config.env`): https://docs.homerow.email/getting-started/configuration/
-- Remote deploy (GitHub Actions): https://docs.homerow.email/deploy/github-actions/
-- Local deploy (Docker/Podman or Nix/NixOS): https://docs.homerow.email/deploy/local/
-- Architecture overview: https://docs.homerow.email/architecture/overview/
-- Sync engine: https://docs.homerow.email/architecture/sync-engine/
-- Terraform state: https://docs.homerow.email/infrastructure/terraform-state/
-- Resource sizing: https://docs.homerow.email/operations/resource-sizing/
-- Backups and restore: https://docs.homerow.email/operations/backups-restore/
-- Security: https://docs.homerow.email/operations/security/
-- Updates: https://docs.homerow.email/operations/updates/
-- Destroy: https://docs.homerow.email/operations/destroy/
+- Quick start: https://homerow.email/getting-started/quick-start/
+- Configuration (`config.env`): https://homerow.email/getting-started/configuration/
+- Remote deploy (GitHub Actions): https://homerow.email/deploy/github-actions/
+- Local deploy (Docker/Podman or Nix/NixOS): https://homerow.email/deploy/local/
+- Architecture overview: https://homerow.email/architecture/overview/
+- Sync engine: https://homerow.email/architecture/sync-engine/
+- Terraform state: https://homerow.email/infrastructure/terraform-state/
+- Resource sizing: https://homerow.email/operations/resource-sizing/
+- Backups and restore: https://homerow.email/operations/backups-restore/
+- Security: https://homerow.email/operations/security/
+- Updates: https://homerow.email/operations/updates/
+- Destroy: https://homerow.email/operations/destroy/
 
 ## Deploy
 
@@ -71,9 +71,9 @@ Nix/NixOS:
 
 ## Post-Deploy Guides
 
-- After deploy checks: https://docs.homerow.email/guides/after-deploy/
-- Gmail migration: https://docs.homerow.email/guides/gmail-migration/
-- Hetzner post-install guide: https://docs.homerow.email/guides/hetzner-post-install/
+- After deploy checks: https://homerow.email/guides/after-deploy/
+- Gmail migration: https://homerow.email/guides/gmail-migration/
+- Hetzner post-install guide: https://homerow.email/guides/hetzner-post-install/
 
 ## Development Notes
 
