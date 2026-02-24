@@ -26,6 +26,9 @@ Key pages:
 
 ### Option A: Remotely with GitHub Actions (Fork-and-Deploy)
 
+> [!NOTE]
+> `gh` CLI is required for this flow (`gh auth login`).
+
 1. Fork this repository.
 2. Create a local `config.env` (see Configuration docs above).
 3. Add helper values to `config.env`:
@@ -45,9 +48,6 @@ This script does:
 - Pushes all non-empty deploy values from `config.env` to your fork as GitHub repository secrets.
 - Uploads `SSH_PRIVATE_KEY` from `SSH_PRIVATE_KEY_PATH` (or `--ssh-key` if provided).
 - Can trigger workflow `Deploy Mail Server` after secrets are uploaded.
-
-> [!NOTE]
-> `gh` CLI is required for this flow (`gh auth login`).
 
 ### Option B: Locally
 
