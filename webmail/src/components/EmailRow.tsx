@@ -162,7 +162,7 @@ export default function EmailRow(props: EmailRowProps) {
   return (
     <div
       data-testid="row-drag-handle"
-      class={`email-row group grid grid-cols-[auto_200px_1fr_auto] items-center pl-2 pr-4 ${density().rowHeight} cursor-pointer transition-all duration-150 relative border-b border-transparent select-none touch-none ${
+      class={`email-row group grid grid-cols-[auto_200px_1fr_auto] items-center pl-2 pr-4 ${density().rowHeight} cursor-pointer transition-[background-color,color,box-shadow] duration-150 relative border-b border-transparent select-none touch-none ${
         props.active ? "email-row-active" : props.checked ? "bg-[var(--active-bg)]" : isUnread() ? "bg-white dark:bg-[var(--card)]" : ""
       } hover:bg-[var(--hover-bg)] hover:shadow-[inset_3px_0_0_var(--primary)]`}
       style={{ "z-index": undefined }}

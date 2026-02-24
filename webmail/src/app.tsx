@@ -52,6 +52,12 @@ export default function App() {
   const [importBannerJob, setImportBannerJob] = createSignal<ImportBannerJob | null>(null);
   const [autoReplySettings, { refetch: refetchAutoReplySettings }] = createResource(getAutoReplySettings);
   const [updateStatus, { refetch: refetchUpdateStatus }] = createResource(getUpdateStatusClient);
+  const autoReplySettingsLatest = createMemo(
+    () => (autoReplySettings.latest as AutoReplyBannerSettings | null | undefined) ?? null,
+  );
+  const updateStatusLatest = createMemo(
+    () => updateStatus.latest ?? null,
+  );
   const activeImportStatuses: ImportBannerJob["status"][] = ["created", "uploading", "queued", "running"];
 
   onMount(() => {
@@ -311,9 +317,9 @@ export default function App() {
     return true;
   };
 
-  const shouldShowAutoReplyBanner = () => isAutoReplyActive(autoReplySettings() as AutoReplyBannerSettings | undefined);
+  const shouldShowAutoReplyBanner = () => isAutoReplyActive(autoReplySettingsLatest() ?? undefined);
   const autoReplyBannerMessage = () => {
-    const settings = autoReplySettings() as AutoReplyBannerSettings | undefined;
+    const settings = autoReplySettingsLatest() ?? undefined;
     if (!settings) return "Auto reply is active. Replies are sent once per sender per active period.";
     if (settings.startDate && settings.endDate) {
       return `Auto reply is active from ${settings.startDate} until ${settings.endDate}. Replies are sent once per sender per active period.`;
@@ -847,8 +853,8 @@ export default function App() {
                     onSearch={handleSearch}
                     onOpenSettings={() => setQuickSettingsOpen(true)}
                     sidebarCollapsed={sidebarCollapsed()}
-                    hasUpdateAvailable={Boolean(updateStatus()?.updateAvailable && settings.updateNotifications)}
-                    updateStatus={updateStatus() ?? undefined}
+                    hasUpdateAvailable={Boolean(updateStatusLatest()?.updateAvailable && settings.updateNotifications)}
+                    updateStatus={updateStatusLatest() ?? undefined}
                     onToggleSidebar={() => {
                       const nextCollapsed = !sidebarCollapsed();
                       setSidebarCollapsed(nextCollapsed);

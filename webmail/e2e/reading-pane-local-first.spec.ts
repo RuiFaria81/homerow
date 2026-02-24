@@ -51,19 +51,24 @@ test.describe("Reading pane local-first behavior", () => {
       .toBe(0);
   });
 
-  test("opening and reopening reader does not apply list width transition", async ({ page }) => {
+  test("opening and reopening reader keeps list resize free of layout transitions", async ({ page }) => {
     const rows = page.locator(".email-row");
     test.skip((await rows.count()) < 1, "Need at least one email row");
 
     const listPanel = page.getByTestId("mail-list-panel");
+    const firstRow = rows.first();
 
-    await rows.first().click();
+    await expect(firstRow).not.toHaveClass(/transition-all/);
+
+    await firstRow.click();
     await expect(listPanel).not.toHaveClass(/transition-\[width,height\]/);
+    await expect(firstRow).not.toHaveClass(/transition-all/);
 
     await page.getByTestId("reading-pane-close").click();
     await expect(page.getByTestId("reading-pane-close")).toHaveCount(0);
 
-    await rows.first().click();
+    await firstRow.click();
     await expect(listPanel).not.toHaveClass(/transition-\[width,height\]/);
+    await expect(firstRow).not.toHaveClass(/transition-all/);
   });
 });

@@ -1,4 +1,4 @@
-import { createResource, Show, createSignal, For, createMemo, createEffect } from "solid-js";
+import { createResource, Show, createSignal, For, createMemo, createEffect, onCleanup } from "solid-js";
 import { getEmail, getThreadMessages, getThreadIdForMessage, deleteEmail, archiveEmails, type FullEmail } from "~/lib/mail-client";
 import { refreshCounts } from "~/lib/sidebar-store";
 import { labelsState, isCategoryLabelName } from "~/lib/labels-store";
@@ -145,6 +145,44 @@ const ReadingPane = (props: ReadingPaneProps) => {
   };
 
   const [deleting, setDeleting] = createSignal(false);
+  const [allowHeavyRender, setAllowHeavyRender] = createSignal(false);
+  const [heavyRenderWarmed, setHeavyRenderWarmed] = createSignal(false);
+  let warmRafA: number | undefined;
+  let warmRafB: number | undefined;
+
+  createEffect(() => {
+    const seq = props.emailSeq;
+    if (seq === null) {
+      setAllowHeavyRender(false);
+      return;
+    }
+    if (heavyRenderWarmed()) {
+      setAllowHeavyRender(true);
+      return;
+    }
+    if (typeof window === "undefined") {
+      setAllowHeavyRender(true);
+      setHeavyRenderWarmed(true);
+      return;
+    }
+    setAllowHeavyRender(false);
+    if (warmRafA !== undefined) window.cancelAnimationFrame(warmRafA);
+    if (warmRafB !== undefined) window.cancelAnimationFrame(warmRafB);
+    warmRafA = window.requestAnimationFrame(() => {
+      warmRafA = undefined;
+      warmRafB = window.requestAnimationFrame(() => {
+        warmRafB = undefined;
+        setAllowHeavyRender(true);
+        setHeavyRenderWarmed(true);
+      });
+    });
+  });
+
+  onCleanup(() => {
+    if (typeof window === "undefined") return;
+    if (warmRafA !== undefined) window.cancelAnimationFrame(warmRafA);
+    if (warmRafB !== undefined) window.cancelAnimationFrame(warmRafB);
+  });
 
   const handleComposerSent = (optimistic?: FullEmail) => {
     if (!optimistic) return;
@@ -401,11 +439,14 @@ const ReadingPane = (props: ReadingPaneProps) => {
                   userAvatarImage={userAvatarImage()}
                   iframeHeight={iframeHeight()}
                   resizeIframeToContent={resizeIframeToContent}
+                  allowHeavyRender={allowHeavyRender()}
                 />
               </div>
               <div class="absolute inset-x-0 bottom-0 z-20 pointer-events-none">
                 <div class="pointer-events-auto bg-[var(--card)] backdrop-blur border-t border-[var(--border)] shadow-[0_-8px_20px_rgba(0,0,0,0.08)]">
-                  <InlineComposer email={safeSingleEmail() as FullEmail} onSent={handleComposerSent} />
+                  <Show when={allowHeavyRender()}>
+                    <InlineComposer email={safeSingleEmail() as FullEmail} onSent={handleComposerSent} />
+                  </Show>
                 </div>
               </div>
             </div>
@@ -539,7 +580,12 @@ const ReadingPane = (props: ReadingPaneProps) => {
                                   />
                                 }
                               >
-                                <ThreadMessageIframe html={msg.html!} allowHistoryCollapse={index() > 0} />
+                                <Show
+                                  when={allowHeavyRender()}
+                                  fallback={<div class="h-28 rounded-md border border-[var(--border)] bg-[var(--search-bg)] animate-pulse" />}
+                                >
+                                  <ThreadMessageIframe html={msg.html!} allowHistoryCollapse={index() > 0} />
+                                </Show>
                               </Show>
                             </div>
 
@@ -577,7 +623,7 @@ const ReadingPane = (props: ReadingPaneProps) => {
             </div>
 
             {/* Reply composer at bottom */}
-            <Show when={composerEmail()}>
+            <Show when={composerEmail() && allowHeavyRender()}>
               <div class="absolute inset-x-0 bottom-0 z-20 pointer-events-none">
                 <div class="pointer-events-auto bg-[var(--card)] backdrop-blur border-t border-[var(--border)] shadow-[0_-8px_20px_rgba(0,0,0,0.08)]">
                   <InlineComposer email={composerEmail() as FullEmail} onSent={handleComposerSent} />
@@ -749,6 +795,7 @@ function SingleEmailView(props: {
   userAvatarImage: string;
   iframeHeight: number;
   resizeIframeToContent: (frame: HTMLIFrameElement) => void;
+  allowHeavyRender: boolean;
 }) {
   const srcdoc = createMemo(() => buildCollapsibleReaderHtml(props.email.html || ""));
   const bindHistoryToggleResize = (frame: HTMLIFrameElement) => {
@@ -839,20 +886,25 @@ function SingleEmailView(props: {
             />
           }
         >
-          <iframe
-            srcdoc={srcdoc()}
-            class="w-full border-none block"
-            style={{ height: `${props.iframeHeight}px` }}
-            sandbox="allow-same-origin allow-popups allow-popups-to-escape-sandbox"
-            onLoad={(e) => {
-              const frame = e.currentTarget as HTMLIFrameElement;
-              bindHistoryToggleResize(frame);
-              props.resizeIframeToContent(frame);
-              setTimeout(() => props.resizeIframeToContent(frame), 150);
-              setTimeout(() => props.resizeIframeToContent(frame), 700);
-            }}
-            title="Email Content"
-          />
+          <Show
+            when={props.allowHeavyRender}
+            fallback={<div class="h-28 rounded-md border border-[var(--border)] bg-[var(--search-bg)] animate-pulse" />}
+          >
+            <iframe
+              srcdoc={srcdoc()}
+              class="w-full border-none block"
+              style={{ height: `${props.iframeHeight}px` }}
+              sandbox="allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+              onLoad={(e) => {
+                const frame = e.currentTarget as HTMLIFrameElement;
+                bindHistoryToggleResize(frame);
+                props.resizeIframeToContent(frame);
+                setTimeout(() => props.resizeIframeToContent(frame), 150);
+                setTimeout(() => props.resizeIframeToContent(frame), 700);
+              }}
+              title="Email Content"
+            />
+          </Show>
         </Show>
       </div>
       <Show when={(props.email.attachments?.length || 0) > 0}>
