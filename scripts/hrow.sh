@@ -16,6 +16,7 @@ Commands:
   deploy           Run deploy from config
   install          Run install orchestrator
   destroy          Destroy infrastructure/resources
+  restore-backup   Restore backup from restic bucket (or local snapshots)
   ssh              SSH into the deployed VPS
   fork-deploy      Push fork secrets and optionally trigger Deploy Mail Server workflow
   e2e              Run webmail end-to-end tests
@@ -59,6 +60,7 @@ run_docker_command() {
     deploy) target="/workspace/scripts/deploy-from-config.sh" ;;
     install) target="/workspace/scripts/install.sh" ;;
     destroy) target="/workspace/scripts/destroy.sh" ;;
+    restore-backup) target="/workspace/scripts/restore-backup.sh" ;;
     ssh) target="/workspace/scripts/ssh-vps.sh" ;;
     fork-deploy) target="/workspace/scripts/fork-deploy.sh" ;;
     e2e) target="/workspace/scripts/run-tests.sh" ;;
@@ -147,6 +149,9 @@ case "${cmd}" in
     ;;
   destroy)
     exec "${REPO_ROOT}/scripts/destroy.sh" "$@"
+    ;;
+  restore-backup)
+    exec "${REPO_ROOT}/scripts/restore-backup.sh" "$@"
     ;;
   ssh)
     exec "${REPO_ROOT}/scripts/ssh-vps.sh" "$@"

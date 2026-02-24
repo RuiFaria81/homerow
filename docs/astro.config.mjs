@@ -63,6 +63,7 @@ export default defineConfig({
           label: "Operations",
           items: [
             { label: "Updates", slug: "operations/updates" },
+            { label: "Backups and Restore", slug: "operations/backups-restore" },
             { label: "Resource Sizing", slug: "operations/resource-sizing" },
             { label: "Destroy", slug: "operations/destroy" },
             { label: "Security", slug: "operations/security" },

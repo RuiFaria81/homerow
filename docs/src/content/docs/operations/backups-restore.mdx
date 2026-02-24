@@ -20,20 +20,55 @@ Backups are built in two layers:
 ## Restore Outline
 
 1. Restore snapshot data with restic (including `/var/backup/postgresql/...`).
-2. Restore globals:
+2. Restore from backup bucket + database snapshot (automated command, defaults to restic):
+   ```bash
+   ./hrow restore-backup --list
+   ./hrow restore-backup --restic-snapshot latest --snapshot latest
+   ```
+3. (Manual equivalent) Restore globals:
    ```bash
    sudo -u postgres psql -f /var/backup/postgresql/<timestamp>/globals.sql
    ```
-3. Recreate and restore `mailsync`:
+4. Recreate and restore `mailsync`:
    ```bash
    sudo -u postgres dropdb --if-exists mailsync
    sudo -u postgres createdb -O mailsync mailsync
    sudo -u postgres pg_restore -d mailsync /var/backup/postgresql/<timestamp>/mailsync.dump
    ```
-4. Restart services:
+5. Restart services:
    ```bash
    sudo systemctl restart postgresql mail-sync-engine custom-webmail-blue custom-webmail-green
    ```
+
+## Restore Command Reference
+
+`./hrow restore-backup` restores from the backup bucket by default:
+
+1. Restores `/var/vmail` and `/var/backup/postgresql` from restic
+2. Restores `mailsync` PostgreSQL from selected dump timestamp
+
+Common commands:
+
+```bash
+# List restic snapshots in backup storage
+./hrow restore-backup --list
+
+# Restore from latest restic snapshot + latest postgres dump
+./hrow restore-backup --yes
+
+# Restore from specific restic snapshot + specific postgres dump timestamp
+./hrow restore-backup --restic-snapshot <restic-id> --snapshot <YYYYMMDDTHHMMSSZ> --yes
+
+# Local-only mode (skip restic restore)
+./hrow restore-backup --source local --snapshot latest --yes
+```
+
+Notes:
+
+- `--source` defaults to `restic`.
+- `--restic-snapshot` defaults to `latest`.
+- `--snapshot` defaults to `latest` (latest local `/var/backup/postgresql/<timestamp>`).
+- Use `--no-restart` when you need to manage service restarts manually.
 
 ## Important Notes
 

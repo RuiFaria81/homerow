@@ -9,6 +9,7 @@ When code changes are made, run this exact flow:
 
 1. Deploy:
    - You can skip hash verification if no new dependencies was added SKIP_NPM_DEPS_HASH_VERIFICATION
+   - Always check if the behaviour variables are set in config.env before set your own 
    - `./scripts/install.sh`
 2. Run Playwright regression tests against production:
    - `cd webmail`

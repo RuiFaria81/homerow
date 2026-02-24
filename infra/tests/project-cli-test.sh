@@ -23,6 +23,7 @@ fi
 
 HELP_OUTPUT="$("${CLI}" help)"
 echo "${HELP_OUTPUT}" | grep -q "ssh"
+echo "${HELP_OUTPUT}" | grep -q "restore-backup"
 echo "${HELP_OUTPUT}" | grep -q "fork-deploy"
 echo "${HELP_OUTPUT}" | grep -q "deploy"
 echo "${HELP_OUTPUT}" | grep -q "docker"
@@ -41,6 +42,11 @@ grep -q "unknown command" "${UNKNOWN_LOG}"
 
 if ! grep -Fq 'exec "${REPO_ROOT}/scripts/ssh-vps.sh" "$@"' "${CLI}"; then
   echo "expected hrow ssh command to call scripts/ssh-vps.sh" >&2
+  exit 1
+fi
+
+if ! grep -Fq 'exec "${REPO_ROOT}/scripts/restore-backup.sh" "$@"' "${CLI}"; then
+  echo "expected hrow restore-backup command to call scripts/restore-backup.sh" >&2
   exit 1
 fi
 
