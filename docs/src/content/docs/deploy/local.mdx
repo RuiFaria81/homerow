@@ -44,7 +44,7 @@ If Docker or Podman is installed:
 
 ### Nix / NixOS
 
-If your machine already has deploy dependencies available:
+If your machine already has local deploy dependencies installed (`nix`, `terraform`, `ssh`, and `git`):
 
 ```bash
 ./hrow deploy --via local
@@ -60,4 +60,3 @@ nix develop
 :::note
 Deploy always needs an SSH key. For local deploy methods, set `SSH_PRIVATE_KEY_PATH` in `config.env`.
 :::
-
