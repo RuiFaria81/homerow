@@ -25,16 +25,20 @@ Use this local Nix/NixOS path when you want deployment to run from your own mach
    ```bash
    ssh-keygen -t ed25519 -f ~/.ssh/homerow_ed25519 -N ""
    ```
-
-4. **Run deploy** using key path:
+   Then set `SSH_PRIVATE_KEY_PATH` in `config.env`:
    ```bash
-   SSH_PRIVATE_KEY_PATH=<path/to/private_key> nix run .#deploy
+   SSH_PRIVATE_KEY_PATH=~/.ssh/homerow_ed25519
    ```
 
-   Or enter a dev shell first:
+4. **Run deploy:**
+   ```bash
+   ./hrow deploy --via local
+   ```
+
+   If your machine doesn't already have deploy dependencies available, enter a dev shell first:
    ```bash
    nix develop
-   INSTALL_STRICT_CONFIG=1 ./scripts/install.sh
+   ./hrow deploy --via local
    ```
 </Steps>
 

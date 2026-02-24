@@ -25,12 +25,16 @@ Use this local Docker/Podman path when you want deployment to run from your own 
    ```bash
    ssh-keygen -t ed25519 -f ~/.ssh/homerow_ed25519 -N ""
    ```
+   Then set `SSH_PRIVATE_KEY_PATH` in `config.env`:
+   ```bash
+   SSH_PRIVATE_KEY_PATH=~/.ssh/homerow_ed25519
+   ```
 
 4. **Make sure Docker or Podman is installed.**
 
-5. **Run deploy** using key path:
+5. **Run deploy:**
    ```bash
-   SSH_PRIVATE_KEY_PATH=<path/to/private_key> ./hrow deploy --via docker
+   ./hrow deploy --via docker
    ```
 </Steps>
 

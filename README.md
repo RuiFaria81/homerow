@@ -50,24 +50,24 @@ The script can also trigger workflow `Deploy Mail Server` after uploading secret
 > Local commands use `SSH_PRIVATE_KEY_PATH`; GitHub Actions uses `SSH_PRIVATE_KEY` secret content.
 > If you manually add secrets in your fork, set `SSH_PRIVATE_KEY` to full private key content (not a filesystem path).
 
-### Option B: Locally with Docker/Podman
+### Option B: Locally
+
+Shared setup:
 
 1. Clone this repository.
 2. Create `config.env` in repo root (see Configuration docs).
-3. Run:
+3. Set `SSH_PRIVATE_KEY_PATH` in `config.env`.
+
+Docker/Podman:
 
 ```bash
-SSH_PRIVATE_KEY_PATH=<path/to/private_key> ./hrow deploy --via docker
+./hrow deploy --via docker
 ```
 
-### Option C: Locally with Nix/NixOS
-
-1. Clone this repository.
-2. Create `config.env` in repo root (see Configuration docs).
-3. Run:
+Nix/NixOS:
 
 ```bash
-SSH_PRIVATE_KEY_PATH=<path/to/private_key> nix run .#deploy
+./hrow deploy --via local
 ```
 
 ## Post-Deploy Guides
