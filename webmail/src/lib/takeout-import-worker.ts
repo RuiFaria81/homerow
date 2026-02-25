@@ -13,6 +13,11 @@ import PostalMime from "postal-mime";
 import { getPool } from "~/lib/db";
 import { parseTakeoutBlockedAddressesJson } from "~/lib/takeout-blocked-addresses";
 import {
+  checkpointIdsPathForArchive,
+  checkpointMetaPathForArchive,
+  getTakeoutCheckpointDir,
+} from "~/lib/takeout-import-checkpoints";
+import {
   beginTakeoutImportEstimation,
   cancelTakeoutImportJob,
   claimNextQueuedTakeoutImportJob,
@@ -664,21 +669,6 @@ async function estimateTotalMessagesInTakeoutArchives(
   return Math.max(1, totalMessages);
 }
 
-function checkpointBaseName(tgzPath: string): string {
-  const file = path.basename(tgzPath);
-  if (file.endsWith(".tar.gz")) return file.slice(0, -".tar.gz".length);
-  if (file.endsWith(".tgz")) return file.slice(0, -".tgz".length);
-  return file;
-}
-
-function checkpointMetaPathForArchive(tgzPath: string): string {
-  return path.join(path.dirname(tgzPath), `.import-checkpoint-${checkpointBaseName(tgzPath)}.json`);
-}
-
-function checkpointIdsPathForArchive(tgzPath: string): string {
-  return path.join(path.dirname(tgzPath), `.import-checkpoint-${checkpointBaseName(tgzPath)}.ids`);
-}
-
 function loadCheckpoint(tgzPath: string): Set<string> {
   const imported = new Set<string>();
 
@@ -697,15 +687,21 @@ function loadCheckpoint(tgzPath: string): Set<string> {
 
 async function appendCheckpointIds(tgzPath: string, ids: string[]): Promise<void> {
   if (ids.length === 0) return;
+  fs.mkdirSync(getTakeoutCheckpointDir(), { recursive: true });
   await appendFile(checkpointIdsPathForArchive(tgzPath), `${ids.join("\n")}\n`);
 }
 
 function saveCheckpointMeta(tgzPath: string, imported: Set<string>): void {
-  const checkpoint: Checkpoint = {
-    totalImported: imported.size,
-    lastImportedAt: new Date().toISOString(),
-  };
-  fs.writeFileSync(checkpointMetaPathForArchive(tgzPath), JSON.stringify(checkpoint));
+  try {
+    const checkpoint: Checkpoint = {
+      totalImported: imported.size,
+      lastImportedAt: new Date().toISOString(),
+    };
+    fs.mkdirSync(getTakeoutCheckpointDir(), { recursive: true });
+    fs.writeFileSync(checkpointMetaPathForArchive(tgzPath), JSON.stringify(checkpoint));
+  } catch {
+    // Checkpoint metadata is best-effort and must not fail an import.
+  }
 }
 
 function getImapConfig() {
