@@ -222,6 +222,16 @@ const importedMockMessages: DemoMessage[] = [
   }
 ];
 
+const EXCLUDED_DEMO_SUBJECT_PATTERNS = [
+  /OpenSearchCon China/i,
+  /Redditors are asking questions/i,
+];
+
+function isExcludedDemoMessage(message: DemoMessage): boolean {
+  const subject = message.subject || "";
+  return EXCLUDED_DEMO_SUBJECT_PATTERNS.some((pattern) => pattern.test(subject));
+}
+
 function createInitialState(): DemoState {
   const baseMessages: DemoMessage[] = [
     {
@@ -535,7 +545,7 @@ function createInitialState(): DemoState {
       accountEmail: DEMO_USER_EMAIL,
       messageId: "<demo-trash@homerow.dev>",
     },
-    ...importedMockMessages,
+    ...importedMockMessages.filter((message) => !isExcludedDemoMessage(message)),
   ];
 
   return {

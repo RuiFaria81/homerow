@@ -1,59 +1,59 @@
 {
-  "_ContextMenu-DcoPvryE.js": {
-    "file": "assets/ContextMenu-DcoPvryE.js",
+  "_ContextMenu-CqbnkWNk.js": {
+    "file": "assets/ContextMenu-CqbnkWNk.js",
     "name": "ContextMenu",
     "imports": [
       "_web-BodMEUbZ.js",
       "_demo-mode-DxEbv_7t.js",
-      "_compose-store-CurH7LKh.js",
-      "_ReadingPane-uLypmUQ7.js"
+      "_compose-store-Bwtqr4d8.js",
+      "_ReadingPane-B3sKXaQL.js"
     ]
   },
   "_HttpStatusCode-DjTx85av.js": {
     "file": "assets/HttpStatusCode-DjTx85av.js",
     "name": "HttpStatusCode"
   },
-  "_KeyboardShortcutsHelp-BJsCQtCl.js": {
-    "file": "assets/KeyboardShortcutsHelp-BJsCQtCl.js",
+  "_KeyboardShortcutsHelp-BVDNH0Ka.js": {
+    "file": "assets/KeyboardShortcutsHelp-BVDNH0Ka.js",
     "name": "KeyboardShortcutsHelp",
     "imports": [
       "_web-BodMEUbZ.js",
-      "_toast-store-BBXN42qf.js",
-      "_LexicalEditor-CYs3q90S.js",
-      "_compose-store-CurH7LKh.js"
+      "_toast-store-pDX3eVY5.js",
+      "_LexicalEditor-F3YGpl73.js",
+      "_compose-store-Bwtqr4d8.js"
     ]
   },
-  "_LexicalEditor-CYs3q90S.js": {
-    "file": "assets/LexicalEditor-CYs3q90S.js",
+  "_LexicalEditor-F3YGpl73.js": {
+    "file": "assets/LexicalEditor-F3YGpl73.js",
     "name": "LexicalEditor",
     "imports": [
       "_web-BodMEUbZ.js",
       "_demo-mode-DxEbv_7t.js",
       "_signature-store-DCytQ-Iv.js",
-      "_compose-store-CurH7LKh.js",
-      "_toast-store-BBXN42qf.js"
+      "_compose-store-Bwtqr4d8.js",
+      "_toast-store-pDX3eVY5.js"
     ]
   },
-  "_ReadingPane-uLypmUQ7.js": {
-    "file": "assets/ReadingPane-uLypmUQ7.js",
+  "_ReadingPane-B3sKXaQL.js": {
+    "file": "assets/ReadingPane-B3sKXaQL.js",
     "name": "ReadingPane",
     "imports": [
       "_web-BodMEUbZ.js",
-      "_toast-store-BBXN42qf.js",
+      "_toast-store-pDX3eVY5.js",
       "_labels-store-CaPlMdcl.js",
-      "_compose-store-CurH7LKh.js",
+      "_compose-store-Bwtqr4d8.js",
       "_sidebar-store-BI5wkxnU.js",
       "_auth-client-DfsKyPI7.js",
-      "_sender-utils-D6rAKKI7.js",
-      "_LexicalEditor-CYs3q90S.js"
+      "_sender-utils-DJSX84eq.js",
+      "_LexicalEditor-F3YGpl73.js"
     ]
   },
-  "_SnoozeMenu-C2UyH4j3.js": {
-    "file": "assets/SnoozeMenu-C2UyH4j3.js",
+  "_SnoozeMenu-DjVX4QWJ.js": {
+    "file": "assets/SnoozeMenu-DjVX4QWJ.js",
     "name": "SnoozeMenu",
     "imports": [
       "_web-BodMEUbZ.js",
-      "_toast-store-BBXN42qf.js"
+      "_toast-store-pDX3eVY5.js"
     ]
   },
   "_auth-client-DfsKyPI7.js": {
@@ -68,21 +68,21 @@
     "file": "assets/blocked-senders-cache-oQMt0Aap.js",
     "name": "blocked-senders-cache"
   },
-  "_compose-store-CurH7LKh.js": {
-    "file": "assets/compose-store-CurH7LKh.js",
+  "_compose-store-Bwtqr4d8.js": {
+    "file": "assets/compose-store-Bwtqr4d8.js",
     "name": "compose-store",
     "imports": [
       "_web-BodMEUbZ.js",
       "_demo-mode-DxEbv_7t.js",
-      "_toast-store-BBXN42qf.js"
+      "_toast-store-pDX3eVY5.js"
     ]
   },
-  "_delayed-send-CkjFQXat.js": {
-    "file": "assets/delayed-send-CkjFQXat.js",
+  "_delayed-send-DeJipyAD.js": {
+    "file": "assets/delayed-send-DeJipyAD.js",
     "name": "delayed-send",
     "imports": [
       "_web-BodMEUbZ.js",
-      "_toast-store-BBXN42qf.js"
+      "_toast-store-pDX3eVY5.js"
     ]
   },
   "_demo-mode-DxEbv_7t.js": {
@@ -107,12 +107,12 @@
       "_demo-mode-DxEbv_7t.js"
     ]
   },
-  "_mail-events-DnFP9lP5.js": {
-    "file": "assets/mail-events-DnFP9lP5.js",
+  "_mail-events-DWBajT1B.js": {
+    "file": "assets/mail-events-DWBajT1B.js",
     "name": "mail-events",
     "imports": [
       "_web-BodMEUbZ.js",
-      "_compose-store-CurH7LKh.js",
+      "_compose-store-Bwtqr4d8.js",
       "_blocked-senders-cache-oQMt0Aap.js",
       "_demo-mode-DxEbv_7t.js"
     ]
@@ -125,15 +125,15 @@
       "_demo-mode-DxEbv_7t.js"
     ]
   },
-  "_sender-utils-D6rAKKI7.js": {
-    "file": "assets/sender-utils-D6rAKKI7.js",
+  "_sender-utils-DJSX84eq.js": {
+    "file": "assets/sender-utils-DJSX84eq.js",
     "name": "sender-utils",
     "imports": [
       "_web-BodMEUbZ.js",
-      "_toast-store-BBXN42qf.js",
-      "_compose-store-CurH7LKh.js",
-      "_delayed-send-CkjFQXat.js",
-      "_LexicalEditor-CYs3q90S.js",
+      "_toast-store-pDX3eVY5.js",
+      "_compose-store-Bwtqr4d8.js",
+      "_delayed-send-DeJipyAD.js",
+      "_LexicalEditor-F3YGpl73.js",
       "_signature-store-DCytQ-Iv.js",
       "_auth-client-DfsKyPI7.js",
       "_demo-mode-DxEbv_7t.js"
@@ -153,8 +153,8 @@
       "_demo-mode-DxEbv_7t.js"
     ]
   },
-  "_toast-store-BBXN42qf.js": {
-    "file": "assets/toast-store-BBXN42qf.js",
+  "_toast-store-pDX3eVY5.js": {
+    "file": "assets/toast-store-pDX3eVY5.js",
     "name": "toast-store",
     "isDynamicEntry": true,
     "imports": [
@@ -177,12 +177,12 @@
     "name": "web"
   },
   "src/lib/mail-client.ts": {
-    "file": "assets/mail-client-C9iB1n2d.js",
+    "file": "assets/mail-client-BYsPL4c0.js",
     "name": "mail-client",
     "src": "src/lib/mail-client.ts",
     "isDynamicEntry": true,
     "imports": [
-      "_toast-store-BBXN42qf.js",
+      "_toast-store-pDX3eVY5.js",
       "_demo-mode-DxEbv_7t.js",
       "_web-BodMEUbZ.js"
     ]
@@ -211,107 +211,107 @@
     ]
   },
   "src/routes/compose.tsx?pick=default&pick=$css": {
-    "file": "assets/compose-BHRZ22a1.js",
+    "file": "assets/compose-Dllnyp7s.js",
     "name": "compose",
     "src": "src/routes/compose.tsx?pick=default&pick=$css",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
       "_web-BodMEUbZ.js",
-      "_toast-store-BBXN42qf.js",
-      "_delayed-send-CkjFQXat.js",
+      "_toast-store-pDX3eVY5.js",
+      "_delayed-send-DeJipyAD.js",
       "_signature-store-DCytQ-Iv.js",
       "_auth-client-DfsKyPI7.js",
       "_demo-mode-DxEbv_7t.js"
     ]
   },
   "src/routes/contacts.tsx?pick=default&pick=$css": {
-    "file": "assets/contacts-DidR3sgt.js",
+    "file": "assets/contacts-YDAslmLR.js",
     "name": "contacts",
     "src": "src/routes/contacts.tsx?pick=default&pick=$css",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_toast-store-BBXN42qf.js",
+      "_toast-store-pDX3eVY5.js",
       "_web-BodMEUbZ.js",
-      "_compose-store-CurH7LKh.js",
+      "_compose-store-Bwtqr4d8.js",
       "_demo-mode-DxEbv_7t.js"
     ],
     "dynamicImports": [
-      "_toast-store-BBXN42qf.js"
+      "_toast-store-pDX3eVY5.js"
     ]
   },
   "src/routes/email/[id].tsx?pick=default&pick=$css": {
-    "file": "assets/_id_-BV4_gwAv.js",
+    "file": "assets/_id_-B_kHOQ46.js",
     "name": "_id_",
     "src": "src/routes/email/[id].tsx?pick=default&pick=$css",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
       "_web-BodMEUbZ.js",
-      "_toast-store-BBXN42qf.js",
-      "_sender-utils-D6rAKKI7.js",
-      "_SnoozeMenu-C2UyH4j3.js",
+      "_toast-store-pDX3eVY5.js",
+      "_sender-utils-DJSX84eq.js",
+      "_SnoozeMenu-DjVX4QWJ.js",
       "_sidebar-store-BI5wkxnU.js",
       "_auth-client-DfsKyPI7.js",
       "_demo-mode-DxEbv_7t.js",
-      "_compose-store-CurH7LKh.js",
-      "_delayed-send-CkjFQXat.js",
-      "_LexicalEditor-CYs3q90S.js",
+      "_compose-store-Bwtqr4d8.js",
+      "_delayed-send-DeJipyAD.js",
+      "_LexicalEditor-F3YGpl73.js",
       "_signature-store-DCytQ-Iv.js"
     ]
   },
   "src/routes/folder/[name].tsx?pick=default&pick=$css": {
-    "file": "assets/_name_-CfkGUXpC.js",
+    "file": "assets/_name_-BiRwwq86.js",
     "name": "_name_",
     "src": "src/routes/folder/[name].tsx?pick=default&pick=$css",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
       "_web-BodMEUbZ.js",
-      "_toast-store-BBXN42qf.js",
-      "_compose-store-CurH7LKh.js",
+      "_toast-store-pDX3eVY5.js",
+      "_compose-store-Bwtqr4d8.js",
       "_sidebar-store-BI5wkxnU.js",
       "_labels-store-CaPlMdcl.js",
       "_pagination-cache-DMNmOrru.js",
-      "_ContextMenu-DcoPvryE.js",
-      "_ReadingPane-uLypmUQ7.js",
-      "_SnoozeMenu-C2UyH4j3.js",
-      "_mail-events-DnFP9lP5.js",
+      "_ContextMenu-CqbnkWNk.js",
+      "_ReadingPane-B3sKXaQL.js",
+      "_SnoozeMenu-DjVX4QWJ.js",
+      "_mail-events-DWBajT1B.js",
       "_demo-mode-DxEbv_7t.js",
       "_auth-client-DfsKyPI7.js",
-      "_sender-utils-D6rAKKI7.js",
-      "_delayed-send-CkjFQXat.js",
-      "_LexicalEditor-CYs3q90S.js",
+      "_sender-utils-DJSX84eq.js",
+      "_delayed-send-DeJipyAD.js",
+      "_LexicalEditor-F3YGpl73.js",
       "_signature-store-DCytQ-Iv.js",
       "_blocked-senders-cache-oQMt0Aap.js"
     ]
   },
   "src/routes/index.tsx?pick=default&pick=$css": {
-    "file": "assets/index-w_Si-HUu.js",
+    "file": "assets/index-CmunmFu3.js",
     "name": "index",
     "src": "src/routes/index.tsx?pick=default&pick=$css",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
       "_web-BodMEUbZ.js",
-      "_toast-store-BBXN42qf.js",
-      "_compose-store-CurH7LKh.js",
+      "_toast-store-pDX3eVY5.js",
+      "_compose-store-Bwtqr4d8.js",
       "_sidebar-store-BI5wkxnU.js",
       "_labels-store-CaPlMdcl.js",
       "_pagination-cache-DMNmOrru.js",
-      "_ContextMenu-DcoPvryE.js",
-      "_ReadingPane-uLypmUQ7.js",
-      "_SnoozeMenu-C2UyH4j3.js",
-      "_KeyboardShortcutsHelp-BJsCQtCl.js",
-      "_mail-events-DnFP9lP5.js",
+      "_ContextMenu-CqbnkWNk.js",
+      "_ReadingPane-B3sKXaQL.js",
+      "_SnoozeMenu-DjVX4QWJ.js",
+      "_KeyboardShortcutsHelp-BVDNH0Ka.js",
+      "_mail-events-DWBajT1B.js",
       "_blocked-senders-cache-oQMt0Aap.js",
-      "_LexicalEditor-CYs3q90S.js",
-      "_sender-utils-D6rAKKI7.js",
+      "_LexicalEditor-F3YGpl73.js",
+      "_sender-utils-DJSX84eq.js",
       "_demo-mode-DxEbv_7t.js",
       "_auth-client-DfsKyPI7.js",
       "_signature-store-DCytQ-Iv.js",
-      "_delayed-send-CkjFQXat.js"
+      "_delayed-send-DeJipyAD.js"
     ]
   },
   "src/routes/login.tsx?pick=default&pick=$css": {
@@ -327,37 +327,37 @@
     ]
   },
   "src/routes/search.tsx?pick=default&pick=$css": {
-    "file": "assets/search-BbZ1z_M2.js",
+    "file": "assets/search-JMQL6EYH.js",
     "name": "search",
     "src": "src/routes/search.tsx?pick=default&pick=$css",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
       "_web-BodMEUbZ.js",
-      "_toast-store-BBXN42qf.js",
-      "_ReadingPane-uLypmUQ7.js",
+      "_toast-store-pDX3eVY5.js",
+      "_ReadingPane-B3sKXaQL.js",
       "_labels-store-CaPlMdcl.js",
-      "_compose-store-CurH7LKh.js",
-      "_sender-utils-D6rAKKI7.js",
-      "_LexicalEditor-CYs3q90S.js",
-      "_KeyboardShortcutsHelp-BJsCQtCl.js",
+      "_compose-store-Bwtqr4d8.js",
+      "_sender-utils-DJSX84eq.js",
+      "_LexicalEditor-F3YGpl73.js",
+      "_KeyboardShortcutsHelp-BVDNH0Ka.js",
       "_demo-mode-DxEbv_7t.js",
       "_sidebar-store-BI5wkxnU.js",
       "_auth-client-DfsKyPI7.js",
-      "_delayed-send-CkjFQXat.js",
+      "_delayed-send-DeJipyAD.js",
       "_signature-store-DCytQ-Iv.js"
     ]
   },
   "src/routes/settings.tsx?pick=default&pick=$css": {
-    "file": "assets/settings-C2reEU0U.js",
+    "file": "assets/settings-DDVcgRFH.js",
     "name": "settings",
     "src": "src/routes/settings.tsx?pick=default&pick=$css",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
       "_web-BodMEUbZ.js",
-      "_compose-store-CurH7LKh.js",
-      "_toast-store-BBXN42qf.js",
+      "_compose-store-Bwtqr4d8.js",
+      "_toast-store-pDX3eVY5.js",
       "_labels-store-CaPlMdcl.js",
       "_pagination-cache-DMNmOrru.js",
       "_signature-store-DCytQ-Iv.js",
@@ -365,26 +365,26 @@
       "_demo-mode-DxEbv_7t.js",
       "_blocked-senders-cache-oQMt0Aap.js",
       "_update-status-client-C_Z8d7Cu.js",
-      "_LexicalEditor-CYs3q90S.js"
+      "_LexicalEditor-F3YGpl73.js"
     ]
   },
   "virtual:$vinxi/handler/client": {
-    "file": "assets/client-L4uK6YHy.js",
+    "file": "assets/client-D3pMk97f.js",
     "name": "client",
     "src": "virtual:$vinxi/handler/client",
     "isEntry": true,
     "imports": [
       "_web-BodMEUbZ.js",
-      "_toast-store-BBXN42qf.js",
+      "_toast-store-pDX3eVY5.js",
       "_index-DmCM5nP8.js",
-      "_compose-store-CurH7LKh.js",
+      "_compose-store-Bwtqr4d8.js",
       "_labels-store-CaPlMdcl.js",
       "_sidebar-store-BI5wkxnU.js",
-      "_mail-events-DnFP9lP5.js",
+      "_mail-events-DWBajT1B.js",
       "_demo-mode-DxEbv_7t.js",
       "_auth-client-DfsKyPI7.js",
-      "_LexicalEditor-CYs3q90S.js",
-      "_delayed-send-CkjFQXat.js",
+      "_LexicalEditor-F3YGpl73.js",
+      "_delayed-send-DeJipyAD.js",
       "_signature-store-DCytQ-Iv.js",
       "_update-status-client-C_Z8d7Cu.js",
       "_HttpStatusCode-DjTx85av.js",

@@ -10,5 +10,7 @@ test.describe("Demo mode", () => {
     await expect(demoSubject).toBeVisible();
     await expect(page.locator(".email-row").filter({ hasText: "Invoice for February" }).first()).toBeVisible();
     await expect(page.locator(".email-row").filter({ hasText: "Celebrate Black History month" }).first()).toBeVisible();
+    await expect(page.locator(".email-row").filter({ hasText: "OpenSearchCon China" })).toHaveCount(0);
+    await expect(page.locator(".email-row").filter({ hasText: "Redditors are asking questions" })).toHaveCount(0);
   });
 });
