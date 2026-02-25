@@ -33,7 +33,7 @@ Key pages:
 > `gh` CLI is required for this flow (`gh auth login`).
 
 1. Fork this repository.
-2. Create a local `config.env` (see Configuration docs above).
+2. Create a `config.env` anywhere in your computer (see Configuration docs above).
 3. Deploy:
 
 ```bash
