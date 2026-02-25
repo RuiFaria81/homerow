@@ -19,7 +19,8 @@ MISSING_S3_LOG="$(mktemp)"
 INVALID_WEBMAIL_SUBDOMAIN_LOG="$(mktemp)"
 EXISTING_SSH_KEY_PLAN_LOG="$(mktemp)"
 EXISTING_SERVER_PLAN_LOG="$(mktemp)"
-trap 'rm -rf "${TMP_DIR}"; rm -f "${MISSING_HCLOUD_LOG}" "${MISSING_CF_LOG}" "${MISSING_S3_LOG}" "${INVALID_WEBMAIL_SUBDOMAIN_LOG}" "${EXISTING_SSH_KEY_PLAN_LOG}" "${EXISTING_SERVER_PLAN_LOG}"' EXIT
+DKIM_PLAN_LOG="$(mktemp)"
+trap 'rm -rf "${TMP_DIR}"; rm -f "${MISSING_HCLOUD_LOG}" "${MISSING_CF_LOG}" "${MISSING_S3_LOG}" "${INVALID_WEBMAIL_SUBDOMAIN_LOG}" "${EXISTING_SSH_KEY_PLAN_LOG}" "${EXISTING_SERVER_PLAN_LOG}" "${DKIM_PLAN_LOG}"' EXIT
 
 mkdir -p "${TMP_DIR}/vps" "${TMP_DIR}/dns" "${TMP_DIR}/storage"
 cp -R "${INFRA_DIR}/vps/hetzner" "${TMP_DIR}/vps/"
@@ -109,6 +110,27 @@ terraform -chdir="${DNS_DIR}" plan \
   -var="cloudflare_zone_id=${VALID_CLOUDFLARE_ZONE_ID}" \
   -var='webmail_subdomain=webmail' \
   -var='mail_server_ipv4=203.0.113.10' >/dev/null
+
+terraform -chdir="${DNS_DIR}" plan \
+  -input=false \
+  -refresh=false \
+  -lock=false \
+  -no-color \
+  -var='domain=example.com' \
+  -var="cloudflare_token=${VALID_CLOUDFLARE_TOKEN}" \
+  -var="cloudflare_zone_id=${VALID_CLOUDFLARE_ZONE_ID}" \
+  -var='webmail_subdomain=webmail' \
+  -var='mail_server_ipv4=203.0.113.10' \
+  -var='dkim_selector=mail' \
+  -var='dkim_public_key=MIIBexampleDKIMKeyAbCd123=' >"${DKIM_PLAN_LOG}"
+if ! grep -q "cloudflare_record.helo_spf" "${DKIM_PLAN_LOG}"; then
+  echo "expected dns plan to include HELO SPF TXT record for mail host" >&2
+  exit 1
+fi
+if ! grep -q "cloudflare_record.dkim\\[0\\]" "${DKIM_PLAN_LOG}"; then
+  echo "expected dns plan to include DKIM TXT record when dkim_public_key is set" >&2
+  exit 1
+fi
 
 if terraform -chdir="${DNS_DIR}" plan \
   -input=false \

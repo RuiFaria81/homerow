@@ -3,6 +3,7 @@ import { ImapFlow, ImapFlowOptions } from 'imapflow';
 import nodemailer from 'nodemailer';
 import crypto from "node:crypto";
 import { getPool } from './db';
+import { buildListUnsubscribeHeaders } from "./outgoing-mail-headers";
 
 export type MessageSyncStatus = "staged" | "imap_syncing" | "imap_synced" | "sync_error";
 
@@ -659,11 +660,14 @@ function buildRawHtmlMessage(
   bcc?: string,
   options?: { messageId?: string; inReplyTo?: string; references?: string[]; date?: Date },
 ): string {
+  const listUnsubscribeHeaders = buildListUnsubscribeHeaders(CURRENT_USER);
   const headers = [
     buildFromHeader(fromName, CURRENT_USER),
     `To: ${to || ""}`,
     `Subject: ${subject || "(No Subject)"}`,
     `Date: ${(options?.date ?? new Date()).toUTCString()}`,
+    `List-Unsubscribe: ${listUnsubscribeHeaders["List-Unsubscribe"]}`,
+    `List-Unsubscribe-Post: ${listUnsubscribeHeaders["List-Unsubscribe-Post"]}`,
     `MIME-Version: 1.0`,
     `Content-Type: text/html; charset=utf-8`,
   ];
@@ -2970,6 +2974,7 @@ async function sendEmailNow(
     ...(inReplyTo ? { inReplyTo } : {}),
     ...(references.length ? { references: references.join(" ") } : {}),
     text: plainText,
+    headers: buildListUnsubscribeHeaders(CURRENT_USER),
     ...(cc ? { cc } : {}),
     ...(bcc ? { bcc } : {}),
     ...(isHtml ? { html: normalizedHtmlBody } : {}),

@@ -133,6 +133,52 @@ systemctl is-active --quiet custom-webmail-green
 REMOTE
 }
 
+extract_dkim_dns_parts() {
+    local host="$1"
+    local private_key="$2"
+    local domain="$3"
+
+    ssh -o StrictHostKeyChecking=no -i "${private_key}" "root@${host}" bash -s -- "${domain}" <<'REMOTE'
+set -euo pipefail
+
+domain="$1"
+line=""
+
+for candidate in \
+    "/var/dkim/${domain}.mail.txt" \
+    "/var/dkim/${domain}.txt" \
+    "/var/dkim/mail.txt" \
+    "/var/dkim/${domain}/mail.txt"; do
+    if [ -f "${candidate}" ]; then
+        line="$(tr '\n' ' ' < "${candidate}")"
+        break
+    fi
+done
+
+if [ -z "${line}" ] && [ -d /var/dkim ]; then
+    while IFS= read -r file; do
+        if grep -q "v=DKIM1" "${file}" 2>/dev/null; then
+            line="$(tr '\n' ' ' < "${file}")"
+            break
+        fi
+    done < <(find /var/dkim -maxdepth 2 -type f -name '*.txt' 2>/dev/null)
+fi
+
+[ -n "${line}" ] || exit 1
+
+normalized="$(echo "${line}" | tr '\r\n\t' ' ')"
+selector="$(echo "${normalized}" \
+    | sed -E 's/[()";]/ /g' \
+    | awk '{ for (i = 1; i <= NF; i++) { if ($i ~ /\._domainkey/) { sub(/\._domainkey.*/, "", $i); print $i; exit } } }')"
+key="$(echo "${normalized}" | tr -d '" ' | sed -nE 's/.*p=([A-Za-z0-9+\/=]+).*/\1/p')"
+
+[ -n "${selector}" ] || exit 1
+[ -n "${key}" ] || exit 1
+
+printf '%s\t%s\n' "${selector}" "${key}"
+REMOTE
+}
+
 TEMP_EXTRA=""
 TEMP_FLAKE=""
 TEMP_TF_BACKEND_VPS=""
@@ -271,6 +317,50 @@ endpoints = { s3 = "${endpoint}" }
 skip_credentials_validation = true
 skip_requesting_account_id = true
 skip_region_validation = true
+EOF
+}
+
+terraform_module_has_variable() {
+    local module_dir="$1"
+    local var_name="$2"
+    rg -q "variable\\s+\"${var_name}\"" "${module_dir}"/*.tf 2>/dev/null
+}
+
+upsert_tfvar_string() {
+    local tfvars_file="$1"
+    local key="$2"
+    local value="$3"
+    local tmp_file
+
+    tmp_file="$(mktemp)"
+    awk -v k="${key}" -v v="${value}" '
+        BEGIN { updated = 0 }
+        {
+            if ($0 ~ "^[[:space:]]*" k "[[:space:]]*=") {
+                print k " = \"" v "\""
+                updated = 1
+            } else {
+                print $0
+            }
+        }
+        END {
+            if (!updated) {
+                print k " = \"" v "\""
+            }
+        }
+    ' "${tfvars_file}" > "${tmp_file}"
+    mv "${tmp_file}" "${tfvars_file}"
+}
+
+write_dns_tfvars() {
+    local output_file="$1"
+    cat > "${output_file}" <<EOF
+domain = "${DOMAIN}"
+cloudflare_token = "${CLOUDFLARE_TOKEN}"
+cloudflare_zone_id = "${CLOUDFLARE_ZONE_ID}"
+webmail_subdomain = "${WEBMAIL_SUBDOMAIN}"
+dkim_selector = "${DKIM_SELECTOR}"
+dkim_public_key = "${DKIM_PUBLIC_KEY}"
 EOF
 }
 
@@ -474,6 +564,8 @@ HETZNER_OBJECT_STORAGE_LOCATION=${HETZNER_OBJECT_STORAGE_LOCATION:-${S3_LOCATION
 EMAIL=${EMAIL:-"admin@$DOMAIN"}
 ACME_ENV=${ACME_ENV:-"production"}
 WEBMAIL_SUBDOMAIN=${WEBMAIL_SUBDOMAIN:-"webmail"}
+DKIM_SELECTOR=${DKIM_SELECTOR:-"mail"}
+DKIM_PUBLIC_KEY=${DKIM_PUBLIC_KEY:-""}
 TF_STATE_STACK=${TF_STATE_STACK:-"hetzner-object-storage"}
 HETZNER_REUSE_EXISTING_SERVER=${HETZNER_REUSE_EXISTING_SERVER:-"true"}
 SEED_INBOX=${SEED_INBOX:-"false"}
@@ -538,6 +630,10 @@ fi
 
 if [ "$WEBMAIL_SUBDOMAIN" = "mail" ]; then
     error "WEBMAIL_SUBDOMAIN='mail' is not supported. Use a different subdomain (for example: webmail)."
+fi
+
+if ! [[ "${DKIM_SELECTOR}" =~ ^[A-Za-z0-9._-]+$ ]]; then
+    error "Invalid DKIM_SELECTOR='${DKIM_SELECTOR}'. Use only letters, numbers, dot, underscore, or dash."
 fi
 
 case "${HETZNER_REUSE_EXISTING_SERVER}" in
@@ -731,12 +827,12 @@ EOF
 fi
 
 if [ "$DNS_STACK" = "cloudflare" ]; then
-    cat > "$DNS_STACK_DIR/terraform.tfvars" <<EOF
-domain = "${DOMAIN}"
-cloudflare_token = "${CLOUDFLARE_TOKEN}"
-cloudflare_zone_id = "${CLOUDFLARE_ZONE_ID}"
-webmail_subdomain = "${WEBMAIL_SUBDOMAIN}"
-EOF
+    write_dns_tfvars "$DNS_STACK_DIR/terraform.tfvars"
+fi
+
+DNS_STACK_SUPPORTS_DKIM=false
+if terraform_module_has_variable "$DNS_STACK_DIR" "dkim_selector" && terraform_module_has_variable "$DNS_STACK_DIR" "dkim_public_key"; then
+    DNS_STACK_SUPPORTS_DKIM=true
 fi
 
 if [ "$STORAGE_STACK" = "hetzner-object-storage" ]; then
@@ -802,14 +898,18 @@ if [ "$DNS_STACK" = "cloudflare" ]; then
     RSPAMD_A_RECORD_ID="$(cloudflare_find_record_id "A" "rspamd.${DOMAIN}")"
     MX_RECORD_ID="$(cloudflare_find_record_id "MX" "${DOMAIN}" "mail.${DOMAIN}")"
     SPF_RECORD_ID="$(cloudflare_find_record_id "TXT" "${DOMAIN}" "v=spf1 mx a:mail.${DOMAIN} -all")"
+    HELO_SPF_RECORD_ID="$(cloudflare_find_record_id "TXT" "mail.${DOMAIN}" "v=spf1 a -all")"
     DMARC_RECORD_ID="$(cloudflare_find_record_id "TXT" "_dmarc.${DOMAIN}" "v=DMARC1; p=quarantine; rua=mailto:admin@${DOMAIN}")"
+    DKIM_RECORD_ID="$(cloudflare_find_record_id "TXT" "${DKIM_SELECTOR}._domainkey.${DOMAIN}")"
 
     if [ -n "$MAIL_A_RECORD_ID" ]; then terraform_import_if_exists "$DNS_STACK_DIR" "cloudflare_record.mail_a" "${CLOUDFLARE_ZONE_ID}/${MAIL_A_RECORD_ID}"; fi
     if [ -n "$WEBMAIL_A_RECORD_ID" ]; then terraform_import_if_exists "$DNS_STACK_DIR" "cloudflare_record.webmail_a" "${CLOUDFLARE_ZONE_ID}/${WEBMAIL_A_RECORD_ID}"; fi
     if [ -n "$RSPAMD_A_RECORD_ID" ]; then terraform_import_if_exists "$DNS_STACK_DIR" "cloudflare_record.rspamd_a" "${CLOUDFLARE_ZONE_ID}/${RSPAMD_A_RECORD_ID}"; fi
     if [ -n "$MX_RECORD_ID" ]; then terraform_import_if_exists "$DNS_STACK_DIR" "cloudflare_record.mx" "${CLOUDFLARE_ZONE_ID}/${MX_RECORD_ID}"; fi
     if [ -n "$SPF_RECORD_ID" ]; then terraform_import_if_exists "$DNS_STACK_DIR" "cloudflare_record.spf" "${CLOUDFLARE_ZONE_ID}/${SPF_RECORD_ID}"; fi
+    if [ -n "$HELO_SPF_RECORD_ID" ]; then terraform_import_if_exists "$DNS_STACK_DIR" "cloudflare_record.helo_spf" "${CLOUDFLARE_ZONE_ID}/${HELO_SPF_RECORD_ID}"; fi
     if [ -n "$DMARC_RECORD_ID" ]; then terraform_import_if_exists "$DNS_STACK_DIR" "cloudflare_record.dmarc" "${CLOUDFLARE_ZONE_ID}/${DMARC_RECORD_ID}"; fi
+    if [ -n "$DKIM_RECORD_ID" ]; then terraform_import_if_exists "$DNS_STACK_DIR" "cloudflare_record.dkim[0]" "${CLOUDFLARE_ZONE_ID}/${DKIM_RECORD_ID}"; fi
 fi
 run_timed_step "terraform apply (${DNS_STACK_DIR})" terraform -chdir="$DNS_STACK_DIR" apply -auto-approve -var="mail_server_ipv4=${SERVER_IP}"
 
@@ -863,6 +963,28 @@ else
         --extra-files "$TEMP_EXTRA" \
         --flake "$FLAKE_REF" \
         root@$SERVER_IP
+fi
+
+if [ "$DNS_STACK_SUPPORTS_DKIM" = "true" ] && [ -z "${DKIM_PUBLIC_KEY}" ]; then
+    log "Extracting DKIM DNS key from deployed server..."
+    if DKIM_PARTS="$(extract_dkim_dns_parts "${SERVER_IP}" "${SSH_PRIVATE_KEY_PATH}" "${DOMAIN}" 2>/dev/null)"; then
+        DKIM_SELECTOR="$(echo "${DKIM_PARTS}" | awk -F'\t' '{print $1}')"
+        DKIM_PUBLIC_KEY="$(echo "${DKIM_PARTS}" | awk -F'\t' '{print $2}')"
+        upsert_tfvar_string "$DNS_STACK_DIR/terraform.tfvars" "dkim_selector" "${DKIM_SELECTOR}"
+        upsert_tfvar_string "$DNS_STACK_DIR/terraform.tfvars" "dkim_public_key" "${DKIM_PUBLIC_KEY}"
+
+        if [ "$DNS_STACK" = "cloudflare" ]; then
+            DKIM_RECORD_ID="$(cloudflare_find_record_id "TXT" "${DKIM_SELECTOR}._domainkey.${DOMAIN}")"
+            if [ -n "$DKIM_RECORD_ID" ]; then
+                terraform_import_if_exists "$DNS_STACK_DIR" "cloudflare_record.dkim[0]" "${CLOUDFLARE_ZONE_ID}/${DKIM_RECORD_ID}"
+            fi
+        fi
+
+        run_timed_step "terraform apply (${DNS_STACK_DIR}, dkim sync)" terraform -chdir="$DNS_STACK_DIR" apply -auto-approve -var="mail_server_ipv4=${SERVER_IP}"
+        log "DKIM DNS record synchronized for selector '${DKIM_SELECTOR}'."
+    else
+        warn "Could not extract DKIM key from server; DNS DKIM record was not auto-managed in this run."
+    fi
 fi
 
 run_timed_step "rolling webmail restart (${SERVER_IP})" rollout_webmail_slots "${SERVER_IP}" "${SSH_PRIVATE_KEY_PATH}"

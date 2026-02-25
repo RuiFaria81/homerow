@@ -57,6 +57,23 @@ resource "cloudflare_record" "spf" {
   allow_overwrite = true
 }
 
+resource "cloudflare_record" "helo_spf" {
+  zone_id = var.cloudflare_zone_id
+  name    = "mail"
+  content = "v=spf1 a -all"
+  type    = "TXT"
+  allow_overwrite = true
+}
+
+resource "cloudflare_record" "dkim" {
+  count   = trimspace(var.dkim_public_key) != "" ? 1 : 0
+  zone_id = var.cloudflare_zone_id
+  name    = "${var.dkim_selector}._domainkey"
+  content = "v=DKIM1; k=rsa; p=${trimspace(var.dkim_public_key)}"
+  type    = "TXT"
+  allow_overwrite = true
+}
+
 resource "cloudflare_record" "dmarc" {
   zone_id = var.cloudflare_zone_id
   name    = "_dmarc"
@@ -105,4 +122,19 @@ variable "webmail_subdomain" {
     condition     = lower(trimspace(var.webmail_subdomain)) != "mail"
     error_message = "webmail_subdomain must not be 'mail' to avoid mail host overlap."
   }
+}
+
+variable "dkim_selector" {
+  type    = string
+  default = "mail"
+
+  validation {
+    condition     = trimspace(var.dkim_selector) != ""
+    error_message = "dkim_selector must not be empty."
+  }
+}
+
+variable "dkim_public_key" {
+  type    = string
+  default = ""
 }
