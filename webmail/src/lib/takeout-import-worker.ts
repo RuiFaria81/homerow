@@ -12,6 +12,7 @@ import tar from "tar-stream";
 import PostalMime from "postal-mime";
 import { getPool } from "~/lib/db";
 import { parseTakeoutBlockedAddressesJson } from "~/lib/takeout-blocked-addresses";
+import { sanitizeNullableText, sanitizeTextArray, stripNullBytes } from "~/lib/takeout-import-sanitize";
 import {
   checkpointIdsPathForArchive,
   checkpointMetaPathForArchive,
@@ -893,6 +894,8 @@ async function stageMessageInDb(params: {
   parsedStageContent?: ParsedStageContent | null;
 }): Promise<{ stagedMessageId: string; tempUid: number } | null> {
   const pool = getPool();
+  const sanitizedMessageId = sanitizeNullableText(params.messageId);
+  const sanitizedFlags = sanitizeTextArray(params.flags);
   const mergeFlagsIntoExisting = async (messageRowId: string): Promise<void> => {
     await pool.query(
       `UPDATE messages
@@ -904,17 +907,17 @@ async function stageMessageInDb(params: {
            ),
            updated_at = now()
        WHERE id = $1`,
-      [messageRowId, params.flags],
+      [messageRowId, sanitizedFlags],
     );
   };
 
-  if (params.messageId) {
+  if (sanitizedMessageId) {
     const duplicate = await pool.query<{ id: string }>(
       `SELECT id
        FROM messages
        WHERE folder_id = $1 AND message_id = $2
        LIMIT 1`,
-      [params.folderId, params.messageId],
+      [params.folderId, sanitizedMessageId],
     );
     if (duplicate.rows.length > 0) {
       await mergeFlagsIntoExisting(duplicate.rows[0].id);
@@ -940,13 +943,13 @@ async function stageMessageInDb(params: {
   const ccAddresses = extractAddressListHeader(params.rawMessage, "Cc");
   const bccAddresses = extractAddressListHeader(params.rawMessage, "Bcc");
   const replyToAddresses = extractAddressListHeader(params.rawMessage, "Reply-To");
-  const subject = extractSubject(params.rawMessage);
-  const snippet = params.parsedStageContent?.snippet || extractSnippet(params.rawMessage);
+  const subject = stripNullBytes(extractSubject(params.rawMessage));
+  const snippet = stripNullBytes(params.parsedStageContent?.snippet || extractSnippet(params.rawMessage));
   const dateIso = extractDateIso(params.rawMessage);
-  const isUnread = !params.flags.includes("\\Seen");
+  const isUnread = !sanitizedFlags.includes("\\Seen");
   const placeholder = `<p style="color:#6b7280">This email is still syncing from IMAP.</p>`;
-  const textBody = params.parsedStageContent?.textBody || snippet;
-  const htmlBody = params.parsedStageContent?.htmlBody || placeholder;
+  const textBody = stripNullBytes(params.parsedStageContent?.textBody || snippet);
+  const htmlBody = stripNullBytes(params.parsedStageContent?.htmlBody || placeholder);
   const hasAttachments = params.parsedStageContent?.hasAttachments ?? false;
 
   const inserted = await pool.query<{ id: string }>(
@@ -964,7 +967,7 @@ async function stageMessageInDb(params: {
       params.accountId,
       params.folderId,
       tempUid,
-      params.messageId,
+      sanitizedMessageId,
       subject,
       JSON.stringify(fromAddress),
       JSON.stringify(toAddresses),
@@ -972,7 +975,7 @@ async function stageMessageInDb(params: {
       JSON.stringify(bccAddresses),
       JSON.stringify(replyToAddresses),
       dateIso,
-      params.flags,
+      sanitizedFlags,
       textBody,
       htmlBody,
       snippet,
