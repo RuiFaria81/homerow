@@ -1,0 +1,7350 @@
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/mail-client-C9iB1n2d.js","assets/demo-mode-DxEbv_7t.js","assets/web-BodMEUbZ.js"])))=>i.map(i=>d[i]);
+import{j as I,J,a as O,i as q,t as d,q as p,x as l,e as X}from"./web-BodMEUbZ.js";import{t as U,v as $,u as tt,w as V,D as et,i as at,j as it}from"./demo-mode-DxEbv_7t.js";var nt=d("<a>");function _a(i){i=I({inactiveClass:"inactive",activeClass:"active"},i);const[,a]=J(i,["href","state","class","activeClass","inactiveClass","end"]),e=U(()=>i.href),t=$(e),n=tt(),o=O(()=>{const r=e();if(r===void 0)return[!1,!1];const s=V(r.split(/[?#]/,1)[0]).toLowerCase(),h=decodeURI(V(n.pathname).toLowerCase());return[i.end?s===h:h.startsWith(s+"/")||h===s,s===h]});return(()=>{var r=nt();return q(r,I(a,{get href(){return t()||i.href},get state(){return JSON.stringify(i.state)},get classList(){return{...i.class&&{[i.class]:!0},[i.inactiveClass]:!o()[0],[i.activeClass]:o()[0],...a.classList}},link:"",get"aria-current"(){return o()[1]?"page":void 0}}),!1,!1),r})()}const lt="modulepreload",ot=function(i){return"/demo/"+i},D={},rt=function(a,e,t){let n=Promise.resolve();if(e&&e.length>0){let r=function(x){return Promise.all(x.map(y=>Promise.resolve(y).then(u=>({status:"fulfilled",value:u}),u=>({status:"rejected",reason:u}))))};document.getElementsByTagName("link");const s=document.querySelector("meta[property=csp-nonce]"),h=s?.nonce||s?.getAttribute("nonce");n=r(e.map(x=>{if(x=ot(x),x in D)return;D[x]=!0;const y=x.endsWith(".css"),u=y?'[rel="stylesheet"]':"";if(document.querySelector(`link[href="${x}"]${u}`))return;const k=document.createElement("link");if(k.rel=y?"stylesheet":lt,y||(k.as="script"),k.crossOrigin="",k.href=x,h&&k.setAttribute("nonce",h),document.head.appendChild(k),y)return new Promise((T,_)=>{k.addEventListener("load",T),k.addEventListener("error",()=>_(new Error(`Unable to preload CSS for ${x}`)))})}))}function o(r){const s=new Event("vite:preloadError",{cancelable:!0});if(s.payload=r,window.dispatchEvent(s),!s.defaultPrevented)throw r}return n.then(r=>{for(const s of r||[])s.status==="rejected"&&o(s.reason);return a().catch(o)})},g=et.email,M=Date.now(),v=i=>new Date(M-i*6e4).toISOString();function H(i){return{...i,flags:[...i.flags||[]],to:i.to?[...i.to]:void 0,cc:i.cc?[...i.cc]:void 0,bcc:i.bcc?[...i.bcc]:void 0,replyTo:i.replyTo?[...i.replyTo]:void 0,attachments:i.attachments?i.attachments.map(a=>({...a})):void 0,references:i.references?[...i.references]:void 0}}const st=[{id:1301,seq:1301,threadId:"thread-mock-1301",subject:"‼️ 仅剩 5 天：立省 OpenSearchCon China 门票优惠",from:"The Linux Foundation",fromAddress:"no-reply@linuxfoundation.org",to:["demo@demo.com"],date:"2026-02-25T01:03:26.000Z",flags:["\\Seen"],snippet:"3月17-18日，上海：50+ 场技术分享 · 专业交流机会 ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏ ͏",hasAttachments:!1,folderPath:"INBOX",html:`<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" lang="en"><head>
+    <title>OpenSearchCon China 2026 Early Bird Registration Ending</title>
+    <meta property="og:title" content="OpenSearchCon China 2026 Early Bird Registration Ending">
+    <meta name="twitter:title" content="OpenSearchCon China 2026 Early Bird Registration Ending">
+    
+    
+    
+<meta name="x-apple-disable-message-reformatting">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--[if gte mso 9]>
+  <xml>
+    <o:OfficeDocumentSettings>
+      <o:AllowPNG/>
+      <o:PixelsPerInch>96</o:PixelsPerInch>
+    </o:OfficeDocumentSettings>
+    <w:WordDocument xmlns:w="urn:schemas-microsoft-com:office:word">
+      <w:DontUseAdvancedTypographyReadingMail/>
+    </w:WordDocument>
+  </xml>
+  
+  <style>
+    ul > li {
+      text-indent: -1em;
+    }
+  </style>
+<![endif]-->
+<!--[if mso]>
+<style type="text/css">
+ body, td {font-family: Arial, Helvetica, sans-serif;}
+ .hse-body-wrapper-table {background-color: #efefef;}
+</style>
+<![endif]-->
+<!--[if mso | IE]>
+  <style type="text/css">
+    .hse-column-container { border: none !important; padding: 0 !important; }
+  </style>
+<![endif]-->
+    
+      
+  
+  
+    
+  <meta name="generator" content="HubSpot"><meta property="og:url" content="https://email.linuxfoundation.org/opensearchcon-china-2026-early-bird-registration-ending"><meta name="robots" content="noindex,follow"><!--[if !((mso)|(IE))]><!-- --><style type="text/css">@media only screen and (max-width:639px){img.stretch-on-mobile,.hs_rss_email_entries_table img,.hs-stretch-cta .hs-cta-img{height:auto !important;width:100% !important}
+.display_block_on_small_screens{display:block}.hs_padded{padding-left:20px !important;padding-right:20px !important}
+.hs-hm,table.hs-hm{display:none}.hs-hd{display:block !important}table.hs-hd{display:table !important}
+}@media only screen and (max-width:639px){.hse-border-m{border-left:1px solid #eaf0f6 !important;border-right:1px solid #eaf0f6 !important;box-sizing:border-box}
+.hse-border-bottom-m{border-bottom:1px solid #eaf0f6 !important}.hse-border-top-m{border-top:1px solid #eaf0f6 !important}
+.hse-border-top-hm{border-top:none !important}.hse-border-bottom-hm{border-bottom:none !important}
+}.moz-text-html .hse-column-container{max-width:600px !important;width:600px !important}
+.moz-text-html .hse-column{display:table-cell;vertical-align:top}.moz-text-html .hse-section .hse-size-6{max-width:300px !important;width:300px !important}
+.moz-text-html .hse-section .hse-size-12{max-width:600px !important;width:600px !important}
+@media only screen and (min-width:640px){.hse-column-container{max-width:600px !important;width:600px !important}
+.hse-column{display:table-cell;vertical-align:top}.hse-section .hse-size-6{max-width:300px !important;width:300px !important}
+.hse-section .hse-size-12{max-width:600px !important;width:600px !important} }@media only screen and (max-width:639px){.hse-body-wrapper-td{padding-top:20px !important}
+#section_1771862810524 .hse-column-container{background-color:transparent !important}
+#section_1771862810524 .hse-column-container{background-color:transparent !important}
+}@media screen and (max-width:639px){.social-network-cell{display:inline-block} }
+@media only screen and (max-width:639px){.hse-body-wrapper-td{padding-bottom:20px !important}
+#section-3 .hse-column-container{background-color:#fff !important} }</style><!--<![endif]--><style type="text/css">#hs_body #hs_cos_wrapper_main a[x-apple-data-detectors]{color:inherit !important;text-decoration:none !important;font-size:inherit !important;font-family:inherit !important;font-weight:inherit !important;line-height:inherit !important}
+a{text-decoration:underline}p{margin:0}body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;moz-osx-font-smoothing:grayscale}
+table{border-spacing:0;mso-table-lspace:0;mso-table-rspace:0}table,td{border-collapse:collapse}
+img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exactly}
+.ShadowHTML p,.sh-modified-inline p{margin:0}</style></head>
+  <body id="hs_body" bgcolor="#efefef" style="margin:0 !important; padding:0 !important; font-family:Arial, sans-serif; font-size:14px; color:#000000; word-break:break-word">
+    <div id="preview_text" style="display:none;font-size:1px;color:#efefef;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;" lang="en">3月17-18日，上海：50+ 场技术分享 · 专业交流机会 ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ &nbsp;
+</div>
+    
+<!--[if gte mso 9]>
+<v:background xmlns:v="urn:schemas-microsoft-com:vml" fill="t">
+    <v:fill type="tile" size="100%,100%" color="#ffffff"/>
+</v:background>
+<![endif]-->
+    <div class="hse-body-background" lang="en" style="background-color:#efefef" bgcolor="#efefef">
+      <table role="presentation" class="hse-body-wrapper-table" cellpadding="0" cellspacing="0" style="margin:0; padding:0; width:100% !important; min-width:320px !important; height:100% !important" width="100%" height="100%">
+        <tbody><tr>
+          <td class="hse-body-wrapper-td" valign="top" style="font-family:Arial, sans-serif; font-size:14px; color:#000000; word-break:break-word; padding-top:20px; padding-bottom:20px">
+            <div id="hs_cos_wrapper_main" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_dnd_area" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="dnd_area">  <div id="section_1771862810524" class="hse-section hse-section-first" style="padding-left:10px; padding-right:10px">
+    
+    
+      <div class="hse-column-container" style="min-width:280px; max-width:600px; margin:0 auto">
+    
+    <!--[if (mso)|(IE)]>
+      <table align="center" style="width:600px;" cellpadding="0" cellspacing="0" role="presentation">
+      <tr>
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign="top" style="width:600px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px">
+<![endif]-->
+<div id="column_1771862810524_0" class="hse-column hse-size-12">
+  <div id="hs_cos_wrapper_module_17718628105222" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><div style="overflow:hidden">
+  <table role="presentation" class="hse-pre-header hse-secondary" width="100%" cellpadding="0" cellspacing="0" style="text-align:right; font-family:Arial, sans-serif; font-size:12px; line-height:135%; color:#23496d; margin-bottom:0; padding:0" align="right">
+    <tbody>
+      <tr>
+        <td align="right" valign="top" style="color:#000000; word-break:break-word; text-align:right; font-family:Arial, sans-serif; font-size:12px; padding:10px 0; margin-bottom:0; line-height:135%">
+          <a href="https://email.linuxfoundation.org/e3t/Ctc/RI+113/cZw--04/VW37dJ5cvnjsW8HMqQg2NVZYnW6R-97G5KY73xN9fbGb65nR3bW8wM7ks6lZ3p6V-jcmN6TyK1BW374YYj3nP33ZW4X8cvJ3hNK46W479Z6g7kSlmNW1zFLr656cP-LW4MH7Jq2VgxqrW8HQRvn7dk_hSW7SM-4R4b4JTtW23KHtq16FzrNW5TsGLv67bfg9W848Bhx4MLWY7W8-1s5T7lpzp_W8C1mS44p7bPRVx-Z6G1lWQbzW4R7DKY62c1MHW7Jlv_c7Bj4ScW7zQvzJ984WS3W51-_l61sNvsSW1ZRYJK2k-q6TW6qYTMR2JJPYFW3GMknM5F6YMfW28Lgtm50gDQkW70j8Yp2HXcsWW1TqW-q8NPSg9Vws7_f3LnHKrW2kpg1D4_JNWSW3jdq226_xtV6W8rvNpt1mjCMRW69B9MB8CxFZwW48TCkD3PZQ6WW71t94c9cvntRW4x9dyK4mfytFW23wzfj7FcDZpW66DKtw8xkqxXW7Y32V54BscttW7bN-NH7nsMsqW3l9FKl7ZKt9DW6ywNyB74yH5lW63L03S2y5HGfMBNwTKt1TnRVZBKCJ2DBcQzW8-HGN13bFpsDW2HB02X2W74RXW4DnsN73lR-1xf49xY3K04" style="color:#0094ff; font-weight:bold; text-decoration:underline; font-style:normal" data-hs-link-id="0" data-hs-link-id-v2="5eud/mFz" target="_blank">View in browser</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div></div>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+   
+  </div>
+  <div id="section-0" class="hse-section" style="padding-left:10px; padding-right:10px">
+    
+    
+      <div class="hse-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#ffffff" bgcolor="#ffffff">
+    
+    <!--[if (mso)|(IE)]>
+      <table align="center" style="width:600px;" cellpadding="0" cellspacing="0" role="presentation" width="600" bgcolor="#ffffff">
+      <tr style="background-color:#ffffff;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign="top" style="width:600px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px">
+<![endif]-->
+<div id="column_1647462062880_0" class="hse-column hse-size-12">
+  <div id="hs_cos_wrapper_module_17013139255254" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><table class="hse-image-wrapper" role="presentation" width="100%" cellpadding="0" cellspacing="0">
+  <tbody>
+    <tr>
+      <td align="center" valign="top" style="font-family:Arial, sans-serif; color:#000000; word-break:break-word; text-align:center; padding:0px; font-size:0px">
+        <a href="https://email.linuxfoundation.org/e3t/Ctc/RI+113/cZw--04/VW37dJ5cvnjsW8HMqQg2NVZYnW6R-97G5KY73xN9fbGbq3qgz0W95jsWP6lZ3pDW63lKmT9fbm4ZW2sLjpz4xc9l_W3cTbym7JYpMhW6FZvyd1pLzWXW160ndY33Vc01W1s2Ms_4dcmrNN2XlK9kGx_0TW3MNP3D88Ghg-W87tpn-4V7X2pN8GjnGXfhcj8W89DchN5d2hrMW1-TJN-3T-RLyW4dNnYR53JmTGW6QY0Nj4mq4JQW87b6H06bwsRPW1PKkMB2c5-5CN7yVy5YHXpQrW6MjPlD4gWtz8W5LpB-r1gJS9LW51K6kp3q6GYgW5ghLxn8GFfmyW7fDBvT2Lw6MlW2SyNpF2J3vQDW5vmfkM3tqGshN8tfyVdnWRDxVvwQN25HCW_NW3kG0ym8y68ddW1HBr4-8_jbkYW5Q0Dp11K8_ZrW312WsV5DyCdkf6mDTv404" target="_blank" style="color:#00a4bd" data-hs-link-id="0" data-hs-link-id-v2="l4vDUHKn">
+        <img alt="OSC China 2026 - Chinese - Email Banner - EB Registration Ending" src="https://email.linuxfoundation.org/hs-fs/hubfs/OSC%20China%202026%20-%20Chinese%20-%20Email%20Banner%20-%20EB%20Registration%20Ending.png?width=1200&amp;upscale=true&amp;name=OSC%20China%202026%20-%20Chinese%20-%20Email%20Banner%20-%20EB%20Registration%20Ending.png" style="outline:none; text-decoration:none; border:none; max-width:100%; font-size:16px" width="600" align="middle" class="stretch-on-mobile">
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+   
+  </div>
+  <div id="section_1700667815127" class="hse-section" style="padding-left:10px; padding-right:10px">
+    
+    
+      <div class="hse-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#ffffff" bgcolor="#ffffff">
+    
+    <!--[if (mso)|(IE)]>
+      <table align="center" style="width:600px;" cellpadding="0" cellspacing="0" role="presentation" width="600" bgcolor="#ffffff">
+      <tr style="background-color:#ffffff;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign="top" style="width:600px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px">
+<![endif]-->
+<div id="column_1700667815127_0" class="hse-column hse-size-12">
+    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:14px; color:#000000; word-break:break-word; padding:15px 20px"><div id="hs_cos_wrapper_module_17006678150962" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><div id="hs_cos_wrapper_module_17006678150962_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="rich_text"><p style="text-align:center; font-size:20px; line-height:125%" align="center"><span style="color: #000000;"><strong><span style="color: #000000;"><span style="color: #000000;">最后 5 天，把握机会购买 OpenSearchCon 优惠门票！</span></span></strong></span></p>
+<p style="text-align:center; font-size:18px; line-height:125%" align="center"><span style="color: #000000;"><em><span style="color: #000000;">早鸟注册优惠将于 3 月 1 日截止</span></em></span></p>
+<p style="text-align:left; line-height:115%" align="left">&nbsp;</p>
+<p style="line-height:125%; text-align:left" align="left"><span style="color: #000000;">您参加 </span><a href="https://email.linuxfoundation.org/e3t/Ctc/RI+113/cZw--04/VW37dJ5cvnjsW8HMqQg2NVZYnW6R-97G5KY73xN9fbGbq3qgz0W95jsWP6lZ3mhW7qfhN75_z_Z4W127bf46244pHW70K30085YzMZN6s0wDRn63Y5W1cc08249SLBqN1NMBXQ-YZJmW4b4Hqs2yDfgFW2KGZn57xKkjkW74MNR_1l2D5rW6BWHjz93XG8PW5rLSr16YDlc1W3gwBG22H2qtGW5ZSr0X28-ZtnV3nGGb6gkSq0W3cvc188llQMyW2mXP761303-KW1-DWKC5QkNP1W6Bfjb-6Q7wntW49FdNT5NHp6jW68hD-57bH2BSW1JqJVx1RqKMCW4bm03P5Sz64GW3mtGMH2672RPW3-L6lN7G7WRbW33QMbf8kRMvtW3LdDM35Fd7s0W78XM0f6Kyvs2W42GK6R3pcmtjW3Dx5FQ3Gw871W7D-xsz8McvVCf3Pj1X604" style="color:#0094ff; font-weight:bold" data-hs-link-id="0" data-hs-link-id-v2="W8NpbvQl" target="_blank"><strong>OpenSearchCon China 2026</strong></a><span style="color: #000000;">&nbsp;的门票正在等您! 大会将于 </span><strong><span style="color: #000000;">3 月 17–18 日</span></strong><span style="color: #000000;"> 在</span><a href="https://email.linuxfoundation.org/e3t/Ctc/RI+113/cZw--04/VW37dJ5cvnjsW8HMqQg2NVZYnW6R-97G5KY73xN9fbG8l5nR3bW50kH_H6lZ3pgVwF1f_6FB2jRW7GS0QM5y3wk1W7y4hyv2TLWbVW5pxFPx3FBjw3W2fsCRV3K_-tWW8KxbV17y0GNYW4ngm5s4PcG8wW7xpVm75C7QPDW5bSTbK17snLBW18xVY52M77ywVQclt93HHH3SW2_4rm65qvjQnVd89ds3SZ_mPW8w5lV68fRpFGW2-ZWXg2h4GTsW7_-k_t3xM_1sW8BFg425W3zXXW1Q2kfg7GGWfnN5-_-9wm85V6W8b1gz854pQmZW6p0N-R5mPg8WW6rRCzw4GbT-QW3FLG3-47q2w9W48VDMd33b3yrW5YvpTD5sf6-CW86QH555XhvJDW3lg0ZS1jGw6jW59zqjw6R-0q8VMX0q67Bs1xgW3V5GwD7s9T-pW49mr3D81cpL7W9cnmxt7Db1pqf32PRpY04" style="color:#0094ff; font-weight:bold" data-hs-link-id="0" data-hs-link-id-v2="M7KGk/Ad" target="_blank"><strong>上海虹桥希尔顿酒店</strong></a><span style="color: #000000;">举办，早鸟优惠即将结束！请于 </span><strong><span style="color: #000000;">3 月 1 日（周日）前完成注册</span></strong><span style="color: #000000;">，锁定早鸟价格。</span></p></div></div></td></tr></tbody></table>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+   
+  </div>
+  <div id="section_1757528569091" class="hse-section" style="padding-left:10px; padding-right:10px">
+    
+    
+      <div class="hse-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#ffffff" bgcolor="#ffffff">
+    
+    <!--[if (mso)|(IE)]>
+      <table align="center" style="width:600px;" cellpadding="0" cellspacing="0" role="presentation" width="600" bgcolor="#ffffff">
+      <tr style="background-color:#ffffff;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign="top" style="width:300px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role="presentation" width="300" cellpadding="0" cellspacing="0" style="width:300px">
+<![endif]-->
+<div id="column_1757528569091_1" class="hse-column hse-size-6">
+    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:14px; color:#000000; word-break:break-word; padding:2px 20px 5px"><div id="hs_cos_wrapper_module_17575285720431" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate!important">
+    <tbody><tr>
+      <td align="center" valign="middle" bgcolor="#a46ac4" style="font-family:Arial, sans-serif; font-size:14px; color:#000000; word-break:break-word; border-radius:8px; cursor:auto; background-color:#a46ac4; mso-padding-alt:12px 18px">
+        <a href="https://email.linuxfoundation.org/e3t/Ctc/RI+113/cZw--04/VW37dJ5cvnjsW8HMqQg2NVZYnW6R-97G5KY73xN9fbG8l5nR3bW50kH_H6lZ3lHW6WKXkH3Mg9TQW6hZpYB8yN4Q6N5j31WBTSlY0W2ML_J24mpMDbW9jm0n56dV3cnW1TtPz45ZQpQRW7KjXr17xLBqhW44gNrJ2tsVfgN1YsshcdXJFCW1YjBw74r7J0JW5qgxJ142-l7FW5VHxHZ73sPhsW6zQY6r7KXGfkW3p1Rjc7L87MfW85R5yQ6GM8k8W8wWFyJ4q6_pwW7tbnBS33Y6f6W6WKp8j457JMcW8HF00l15qTcmVxf4J977sbynW6YQbsR1Rg2jbW3cTgdQ1S8WMfN51P8G36dNcmN4cR-ZXbGqtlW35Dhy43dW-6DN3B9cLp7CwsDW3XX-CD7dbmhzW8MsT903Xf5WbW1NVbJG5RpdcHW5DnCVs2Ckh-nW2mP_yY4rhPZMW2dyJbW3w4XBdf5nKHsW04" target="_blank" style="color:#00a4bd; font-size:16px; font-family:Arial, sans-serif; Margin:0; text-transform:none; text-decoration:none; padding:12px 18px; display:block" data-hs-link-id="0" data-hs-link-id-v2="qKB/bmrF">
+          <strong style="color:#FFFFFF;font-weight:bold;text-decoration:none;font-style:normal;">查看日程 &gt;&gt;</strong>
+        </a>
+      </td>
+    </tr>
+  </tbody></table></div></td></tr></tbody></table>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+<!--[if (mso)|(IE)]>
+  <td valign="top" style="width:300px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role="presentation" width="300" cellpadding="0" cellspacing="0" style="width:300px">
+<![endif]-->
+<div id="column_1767909399041_0" class="hse-column hse-size-6">
+    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:14px; color:#000000; word-break:break-word; padding:2px 20px 5px"><div id="hs_cos_wrapper_module_17679093875531" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate!important">
+    <tbody><tr>
+      <td align="center" valign="middle" bgcolor="#a46ac4" style="font-family:Arial, sans-serif; font-size:14px; color:#000000; word-break:break-word; border-radius:8px; cursor:auto; background-color:#a46ac4; mso-padding-alt:12px 18px">
+        <a href="https://email.linuxfoundation.org/e3t/Ctc/RI+113/cZw--04/VW37dJ5cvnjsW8HMqQg2NVZYnW6R-97G5KY73xN9fbGbq3qgz0W95jsWP6lZ3mxVV9fdb2B0GxTVs5sHy1KdJ62W21Ck0736nfZmW2NG13v6bkHWxW3-ZvL11yKVqhW1yJ5cn6_VpmZN8pNtjZ7XBw2N5RhNscHWT_4N23CZw8TLBDSW40Qb8l4xbQN3W3YTL_n2YZFTDN8-TLbwNQYwmW2YJdN75xVfLBW4Q1glc6H-PbFW5gvCkZ7wq7B-W4WjL_Z21Z82kW6sWbRR6K-gFvMY2fPTVPBTPW2MNLx35QD-lVW4t9Lnr602wP2W8RddLs2MLp6HW5zgj-N3HWy5zW1cj06P8qStjdW3tt5Ls6vcc48W93rpgj7-PZ63N6_Yp6fC9RgRW4l8tDC7QJg3NW5PMC903l9KfPW1nhhLY6gdmPJW7lxz0138WtKrf8pQgmT04" target="_blank" style="color:#00a4bd; font-size:16px; font-family:Arial, sans-serif; Margin:0; text-transform:none; text-decoration:none; padding:12px 18px; display:block" data-hs-link-id="0" data-hs-link-id-v2="+noRPng9">
+          <strong style="color:#FFFFFF;font-weight:bold;text-decoration:none;font-style:normal;">立即注册并享优惠 &gt;&gt;</strong>
+        </a>
+      </td>
+    </tr>
+  </tbody></table></div></td></tr></tbody></table>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+   
+  </div>
+  <div id="module_1679505677503" class="hse-section" style="padding-left:10px; padding-right:10px">
+    
+    
+      <div class="hse-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#ffffff" bgcolor="#ffffff">
+    
+    <!--[if (mso)|(IE)]>
+      <table align="center" style="width:600px;" cellpadding="0" cellspacing="0" role="presentation" width="600" bgcolor="#ffffff">
+      <tr style="background-color:#ffffff;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign="top" style="width:600px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px">
+<![endif]-->
+<div id="module_1679505677503_0" class="hse-column hse-size-12">
+    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:14px; color:#000000; word-break:break-word; padding:10px 20px"><div id="hs_cos_wrapper_module_17013138516572" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><table role="none" border="0" cellpadding="0" cellspacing="0" style="vertical-align:top" width="100%">
+  <tbody><tr>
+    <td align="center" style="font-family:Arial, sans-serif; color:#000000; font-size:0; word-break:break-word">
+      <p style="font-size:1px;border-top:1px solid #000000;width:100%;margin:0 auto;"></p>
+      <!--[if mso]>
+        <table role="none" align="center" border="0" cellpadding="0" cellspacing="0" style="font-size:1px;border-top:1px solid #000000;width:560px;">
+          <tr>
+            <td style="height:0;line-height:0">&nbsp;</td>
+          </tr>
+        </table>
+      <![endif]-->
+    </td>
+  </tr>
+</tbody></table></div></td></tr></tbody></table>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+   
+  </div>
+  <div id="module_1701393930980" class="hse-section" style="padding-left:10px; padding-right:10px">
+    
+    
+      <div class="hse-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#ffffff" bgcolor="#ffffff">
+    
+    <!--[if (mso)|(IE)]>
+      <table align="center" style="width:600px;" cellpadding="0" cellspacing="0" role="presentation" width="600" bgcolor="#ffffff">
+      <tr style="background-color:#ffffff;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign="top" style="width:600px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px">
+<![endif]-->
+<div id="module_1701393930980_0" class="hse-column hse-size-12">
+    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:14px; color:#000000; word-break:break-word; padding:10px 20px 5px"><div id="hs_cos_wrapper_module_17361982452791" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><div id="hs_cos_wrapper_module_17361982452791_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="rich_text"><p style="line-height:125%"><strong><span style="font-size: 13px;"><span style="font-size: 18px;">直接向 OpenSearch 社区专家学习</span><br><br></span></strong></p>
+<p style="line-height:115%"><span style="font-size: 14px;"><span style="color: #000000;">OpenSearchCon 不仅仅是一系列演讲，更是一个让您提问、解决挑战、与每天大规模部署 OpenSearch 的工程师和架构师面对面交流。一次与对的人深入对话，可能就能解决您团队数月未解的难题！</span><span style="color: #000000;"><br></span><span style="color: #000000;"><br></span><span style="color: #000000;">大会设有 </span><a href="https://email.linuxfoundation.org/e3t/Ctc/RI+113/cZw--04/VW37dJ5cvnjsW8HMqQg2NVZYnW6R-97G5KY73xN9fbG8l5nR3bW50kH_H6lZ3p5W2GVhh_2_fTGLW7Bh8Xp8txpsNW13gHxd90S9qnW5-TvWn4F7B-tW37-8rf7MWtKTW13srym5-1PtsW4dQqCg2mhcG2N2bS-yN98mDHW1lK7p51SR6p_W29TL_v7cWR04W2wwkvw5FpnsGW1grbQ05vLK6pL4PPBPLNwXW46xpPk8W6g9_W1nrv_c1BJyryW7XvKMl1Pj2BHN9gsRmGqHbS6W3PGF_S7Kg3t-W7FvSCc7RF2c_W1Ysg7M1qwrkQW5y0v1j49GxyvTYXYN8Rd8qfW5XYP764HsF9nW3Fx6TT5nGm4jN46PflVZ_klNW5vc-md2Kj4wzW7Y3K0y16vp2HW18m4Vr92_tycN7npf0lvc4fSW3qrNth6vt7JGW7hSs-87kpSrPW43Fvng3t9kgtf7HHsXb04" style="color:#0094ff; font-weight:bold" data-hs-link-id="1" data-hs-link-id-v2="wRkuF42A" target="_blank"><strong>50+ 场技术专题分享</strong></a><span style="color: #000000;">，涵盖四大核心方向：分析 + 安全 + 可观测性、搜索 + Apache Lucene、OpenSearch 运维实践，以及安全教育 + 社区发展。</span></span></p>
+<p style="line-height:125%">&nbsp;</p></div></div></td></tr></tbody></table>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+   
+  </div>
+  <div id="section_1761321845750" class="hse-section" style="padding-left:10px; padding-right:10px">
+    
+    
+      <div class="hse-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#ffffff" bgcolor="#ffffff">
+    
+    <!--[if (mso)|(IE)]>
+      <table align="center" style="width:600px;" cellpadding="0" cellspacing="0" role="presentation" width="600" bgcolor="#ffffff">
+      <tr style="background-color:#ffffff;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign="top" style="width:600px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px">
+<![endif]-->
+<div id="column_1761321845750_1" class="hse-column hse-size-12">
+    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:14px; color:#000000; word-break:break-word; padding:0px 20px 5px"><div id="hs_cos_wrapper_module_17365275888293" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate!important">
+    <tbody><tr>
+      <td align="center" valign="middle" bgcolor="#a46ac4" style="font-family:Arial, sans-serif; font-size:14px; color:#000000; word-break:break-word; border-radius:8px; cursor:auto; background-color:#a46ac4; mso-padding-alt:10px 18px">
+        <a href="https://email.linuxfoundation.org/e3t/Ctc/RI+113/cZw--04/VW37dJ5cvnjsW8HMqQg2NVZYnW6R-97G5KY73xN9fbG8l5nR3bW50kH_H6lZ3nyW1_f66L7ll7y7W84lVzq6YLtZ5N2XnsxDsmlhhW29WJJJ2TlPPzW4QCv2H25Ty56W4pzhzT5WKM6nW6J89184n_N2DW8-dhXy56XXJ4W6tZlwh5pkrjHN2MsKCfvycQDW2pDZSY4_QjzhN2skGM8YMjKDW570vnc3RkY-CW21lwr57tRWQJW2pRRJQ3L_Dh3W3z98Wl1JY7GsV3mh5m6Ym7p1N8Rm7vmjXpQ8W3LLpxm1BMRdGN4TS31ZNSm0xW3yb-Zt5C94v4W32QLd-7TJhHHW4sTzqJ3hlv0TW8HMxFZ2L0knNW6FSsHD4pnMZkVRh6Wf2RPq_YV5w3S_2Mg3nWVZNhrQ3gfK0tW8tpgvQ6Xw3F-W1cmpFm2B-JsTW1x1jYV97HhhPW3TG1F42bsG4tf2YYdwg04" target="_blank" style="color:#00a4bd; font-size:16px; font-family:Arial, sans-serif; Margin:0; text-transform:none; text-decoration:none; padding:10px 18px; display:block" data-hs-link-id="2" data-hs-link-id-v2="0yXBGo4v">
+          <strong style="color:#FFFFFF;font-weight:bold;text-decoration:none;font-style:normal;">查看完整日程 &gt;&gt;</strong>
+        </a>
+      </td>
+    </tr>
+  </tbody></table></div></td></tr></tbody></table>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+   
+  </div>
+  <div id="module_1674595039191" class="hse-section" style="padding-left:10px; padding-right:10px">
+    
+    
+      <div class="hse-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#ffffff" bgcolor="#ffffff">
+    
+    <!--[if (mso)|(IE)]>
+      <table align="center" style="width:600px;" cellpadding="0" cellspacing="0" role="presentation" width="600" bgcolor="#ffffff">
+      <tr style="background-color:#ffffff;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign="top" style="width:600px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px">
+<![endif]-->
+<div id="module_1674595039191_0" class="hse-column hse-size-12">
+    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:14px; color:#000000; word-break:break-word; padding:10px 20px"><div id="hs_cos_wrapper_module_17655665715572" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><table role="none" border="0" cellpadding="0" cellspacing="0" style="vertical-align:top" width="100%">
+  <tbody><tr>
+    <td align="center" style="font-family:Arial, sans-serif; color:#000000; font-size:0; word-break:break-word">
+      <p style="font-size:1px;border-top:1px solid #23496d;width:100%;margin:0 auto;"></p>
+      <!--[if mso]>
+        <table role="none" align="center" border="0" cellpadding="0" cellspacing="0" style="font-size:1px;border-top:1px solid #23496d;width:560px;">
+          <tr>
+            <td style="height:0;line-height:0">&nbsp;</td>
+          </tr>
+        </table>
+      <![endif]-->
+    </td>
+  </tr>
+</tbody></table></div></td></tr></tbody></table>
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:14px; color:#000000; word-break:break-word; padding:0px 20px 5px"><div id="hs_cos_wrapper_module_17685907042472" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><div id="hs_cos_wrapper_module_17685907042472_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="rich_text"><p style="line-height:125%"><strong><span style="font-size: 13px;"><span style="font-size: 18px;">与引领 OpenSearch 未来的组织建立联系</span><br><br></span></strong></p>
+<p style="font-size:14px; line-height:115%"><span style="color: #000000;">现场将汇聚来自阿里云、字节跳动、Eliatra、微软、SAP、瞻博网络（Juniper Networks）、红帽、Zalando 等企业的团队代表，以及包括 温州商学院、上海大学在内的创新机构。</span><span style="color: #000000;"><br></span><span style="color: #000000;"><br></span><span style="color: #000000;">此外，还可参加两场专属交流活动：</span><a href="https://email.linuxfoundation.org/e3t/Ctc/RI+113/cZw--04/VW37dJ5cvnjsW8HMqQg2NVZYnW6R-97G5KY73xN9fbG8F5nR3bW5BWr2F6lZ3mDW36g3JR4MLN9RN7g0KTyfGPVnW7ytSS03ymyrQW4Q60cD3mn9tlW3d8ysK276d-tW2j5Fvz36K3nLN7_YjylscfZfW3XRKcm7mTygKN8Myw-_HBmmkW8rt1mV5rmDDQW8dS3Wk58PpVtW97R52Q8zpC5zW613jft5PcHF2W8LVXbG5fQcqvW7ns2RH3Hjx2TW4cbK1f7TPZK6W9408HV2wc27kW1_90vf87yvwvW1HB-CP89NyJTW4Ngf2_1KDYgjN2v_vynqc9vvN4D9zTPpkF1cN8g-d5YY9r86W3B6Gdp3chrGCVm1nJm6ZwF1KW53xmRK96q0TYW2JCZ325VbGb_MHm97zd4YKBW7wr1m333-RpCW59gd5N7wXMqCN8M_1j6r6YHLW45ZjrN6C-ZmpW9hlpGl2TMGjxV-37fP3rTj-Df2mdx9v04" style="color:#0094ff; font-weight:bold; font-size:11px" data-hs-link-id="0" data-hs-link-id-v2="6DuQ59E+" target="_blank"><strong><span style="font-size: 14px;">Better Together 午餐会</span></strong></a><span style="color: #000000;"> 和 </span><a href="https://email.linuxfoundation.org/e3t/Ctc/RI+113/cZw--04/VW37dJ5cvnjsW8HMqQg2NVZYnW6R-97G5KY73xN9fbG8F5nR3bW5BWr2F6lZ3nTW2Djr3l5MbJDXW4N_RQK43RYWfN1vCXwsvbBQ8W5_hyLB4LLpnbVtqNx84VV0vWV2tq813RhT_YW8LMrkw2CfKV3N43PkKdNq3x7N6_l2s0qKmq0W27QLHG37xtKdW5cZW9g92wsF2W4rplRC7lv0MFW56wh818pN6kkW8N3rK76JZGGhW2HdsbT62R1gxVlrfBD7-Lwr4W22R5T-5W2n88W73Pv2C7FwW8mW7mYjdN5HfqPRW1B4hw76gS00nVJW4pj50dJ2dW70GVLV3-6ByVVDhPKz5nll07W1FM5Gf57Nk2SW2k9RN33gYrFfV8PWn68KgSPvW8bmN-G1f1kFyW1vCzZp7S4Lm1W6PBRQz8C4njjW13pvjV3ymMtLW88RvHR8hfxyJW1nnB651kSVG3W7518VS87_SB_W56-X735_fyC7f2N1rk604" style="color:#0094ff; font-weight:bold; font-size:11px" data-hs-link-id="0" data-hs-link-id-v2="t2XVX6ij" target="_blank"><strong><span style="font-size: 14px;">Search Party 欢迎招待会</span></strong></a><span style="font-size: 11px; color: #000000;">。</span></p>
+<p style="line-height:115%">&nbsp;</p></div></div></td></tr></tbody></table>
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:14px; color:#000000; word-break:break-word; padding:10px 20px 5px"><div id="hs_cos_wrapper_module_17365276394204" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate!important">
+    <tbody><tr>
+      <td align="center" valign="middle" bgcolor="#a46ac4" style="font-family:Arial, sans-serif; font-size:14px; color:#000000; word-break:break-word; border-radius:8px; cursor:auto; background-color:#a46ac4; mso-padding-alt:12px 18px">
+        <a href="https://email.linuxfoundation.org/e3t/Ctc/RI+113/cZw--04/VW37dJ5cvnjsW8HMqQg2NVZYnW6R-97G5KY73xN9fbG8l5nR3bW50kH_H6lZ3pYMLPvmkx8sb5W2GZznm13_9TxW1t2rtx2L-k1wW2XGk2Z2xdhBTN2xkZhJbZ-HRW575Kjt55vqD6W2lXjKc5039csW2MBcVh5kSvjvW4qjVYv7XSNN9N8Tfz3vjQXR1W1hYht-841VB6V6HPJ53j2Yl9Vw3TJS5X5zL_N3l_VczqJrVgW5fNnZQ1Cs1WtW8Knh2q8RX-yFW4_Zp8M14r3mcW2lV0z_139f7mW8YwDRh7Z-CW6W8Vc1M81nW0K5W6C8WKP77sHk0N2RRZlQtptRJW2NNkCr8PPBXmW8nJJcv7zfvdfW5vw0B77sV6ZFW42zqkp83TjPxW31dB_z5ZdHpWW313dF02TSb4-W2M2gzW356-9MMs59VJQWm6tW993dqn29Cx8RW2Q1SLN6vVRQjf3Zs5zM04" target="_blank" style="color:#00a4bd; font-size:16px; font-family:Arial, sans-serif; Margin:0; text-transform:none; text-decoration:none; padding:12px 18px; display:block" data-hs-link-id="0" data-hs-link-id-v2="txTAlg4r">
+          <strong style="color:#FFFFFF;font-weight:bold;text-decoration:none;font-style:normal;">查看参会名单 &gt;&gt;</strong>
+        </a>
+      </td>
+    </tr>
+  </tbody></table></div></td></tr></tbody></table>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+   
+  </div>
+  <div id="module_1619554237800" class="hse-section" style="padding-left:10px; padding-right:10px">
+    
+    
+      <div class="hse-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#ffffff" bgcolor="#ffffff">
+    
+    <!--[if (mso)|(IE)]>
+      <table align="center" style="width:600px;" cellpadding="0" cellspacing="0" role="presentation" width="600" bgcolor="#ffffff">
+      <tr style="background-color:#ffffff;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign="top" style="width:600px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px">
+<![endif]-->
+<div id="module_1619554237800_0" class="hse-column hse-size-12">
+    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:14px; color:#000000; word-break:break-word; padding:10px 20px"><div id="hs_cos_wrapper_module_17600276881426" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><table role="none" border="0" cellpadding="0" cellspacing="0" style="vertical-align:top" width="100%">
+  <tbody><tr>
+    <td align="center" style="font-family:Arial, sans-serif; color:#000000; font-size:0; word-break:break-word">
+      <p style="font-size:1px;border-top:1px solid #23496d;width:100%;margin:0 auto;"></p>
+      <!--[if mso]>
+        <table role="none" align="center" border="0" cellpadding="0" cellspacing="0" style="font-size:1px;border-top:1px solid #23496d;width:560px;">
+          <tr>
+            <td style="height:0;line-height:0">&nbsp;</td>
+          </tr>
+        </table>
+      <![endif]-->
+    </td>
+  </tr>
+</tbody></table></div></td></tr></tbody></table>
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:14px; color:#000000; word-break:break-word; padding:10px 20px 5px"><div id="hs_cos_wrapper_module_17655665660231" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><div id="hs_cos_wrapper_module_17655665660231_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="rich_text"><p style="line-height:115%"><span style="font-size: 18px;"><strong>3月1日前注册即可享受优惠</strong></span><br><br>在3月1日前 <a href="https://email.linuxfoundation.org/e3t/Ctc/RI+113/cZw--04/VW37dJ5cvnjsW8HMqQg2NVZYnW6R-97G5KY73xN9fbGbq3qgz0W95jsWP6lZ3kXW4ffg013smYt9W1wBn918BH1BjW3brxb43cXvGYN6Qp2_cY-0ynW1cvLn28q3X3ZW8MxD_D81gGF_W4t5kP84LcfNJW40fDNw7zcSTbW1MbQvf7-SDdrW2nl8-X3gX86QW6-ThZb8vtQC9V7SShW19jmvcVs671895dB0dW8P2GQN2pyPtjW7K6hZ58PCBbjW4qszqr8zyjskW4msQqN7J4Rq8W1DcpX87fs_JdW6MBZPg8N3wjLW5sPL2l8jlwCzW7WCycM5MRsWlW1t1LB_48BcjRW4xMsCl2mSL0PW81dS-Z2cwGBZW6lHFv_7JfWm1W6s7qQx623Z0KW5gR08x6DlPXcW1R7_YK3MjBxJN4FX4g5BC4yTW46vZyZ565LYGf7kDHg-04" style="color:#0094ff; font-weight:bold" data-hs-link-id="1" data-hs-link-id-v2="0K9uQ8Ta" target="_blank"><strong>注册参加 OpenSearchCon China</strong></a>，仅需 ¥149，立省 ¥50。<br><br><strong>您的门票包含：</strong>主题演讲 + 分论坛技术分享、茶歇 + 午餐、大会纪念 T 恤、Search Party 欢迎酒会，以及活动结束后的点播议程访问权限。<br><br>更多优惠！全日制学生、教职人员及媒体从业者可享 ¥99 的优惠票价。<a href="https://email.linuxfoundation.org/e3t/Ctc/RI+113/cZw--04/VW37dJ5cvnjsW8HMqQg2NVZYnW6R-97G5KY73xN9fbG8l5nR3bW50kH_H6lZ3mLW1-JGwJ5fydQ4W54NDwj5pP9phN6F5yP1Rt3Z6W69Q7QZ2LLy-2W3gCJC17n67v6W77NrMJ6N_DGCW5BRhTP6LprkPW4nwrb_8YNx0GW5vbJ6D8_NvqdW721vqN5b1tXvW3518k62tWY6rVLzf125Cl56TW4dt_Ff6RFVW_W6yL_s06VZ_YcW5jl02m3PNZ-QW6GmfxL7hQ-25W98PbZf6S1QR9W8bvcqc21KKmLW3pDL6F1bx6g-W7--ffn7cF9h3W8KyWfK6dd-TSW6_bcHn4r1PPbW8Vw23f6DykJ4N11tYBBS5RKdW8y1sNZ4YM5LQW6t_T1H3jSRqRW4g2zqh5crBg0W35dJB78-L0R4W2c1DMS1GCfYXW8MqLjD1Rybp_N6TVZm12dPHsW6tZ_mc3V-fs9f5TzdTd04" style="color:#0094ff; font-weight:bold" data-hs-link-id="0" data-hs-link-id-v2="b9cOt3PC" target="_blank"><strong>了解详情</strong></a>。</p>
+<p style="line-height:115%; font-size:18px">&nbsp;</p>
+<p style="text-align:center; line-height:115%" align="center"><strong>早鸟优惠将于 3 月 1 日（周日）23:59 中国标准时间截止。</strong></p></div></div></td></tr></tbody></table>
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:14px; color:#000000; word-break:break-word; padding:5px 20px"><div id="hs_cos_wrapper_module_17685907131603" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate!important">
+    <tbody><tr>
+      <td align="center" valign="middle" bgcolor="#a46ac4" style="font-family:Arial, sans-serif; font-size:14px; color:#000000; word-break:break-word; border-radius:8px; cursor:auto; background-color:#a46ac4; mso-padding-alt:12px 18px">
+        <a href="https://email.linuxfoundation.org/e3t/Ctc/RI+113/cZw--04/VW37dJ5cvnjsW8HMqQg2NVZYnW6R-97G5KY73xN9fbGbq3qgz0W95jsWP6lZ3nkN7yqzYZC9S0MW1hFK4J2ssTDNW1MzpnG13fDWhW6_-8_w7D71XFW5Dn9N145pD3JW4Q5WBy3rlxsbW6vHp-48sQNPMW4yYdmL4MJ5Y9W4nHYHL6mYqg7VN4ZXV2592qmVycxLq72p09dW37S3kV18v_wxW4f36ld4_ZByzW4G9v5-2zdCYZN66FrK6Rm4GqW3F-9s48dvmVKW39h--41k61cdVkqvMG6mv2Q-W4Gyv2P21Y6XSW4LnQV26gQTwkW73qrdz6ky50jW3zbTWN83961HW1lqT4R6M2FmzW3Rvy7z1PCvyMW236bmP6KPLmKW46Bz5K4CRdntW3rfbQ97sq_z8N6kcMCspxzwFW52ygX28qm3vbVN8-4575H4vsf25lcVb04" target="_blank" style="color:#00a4bd; font-size:16px; font-family:Arial, sans-serif; Margin:0; text-transform:none; text-decoration:none; padding:12px 18px; display:block" data-hs-link-id="2" data-hs-link-id-v2="fvvtktmZ">
+          <strong style="color:#FFFFFF;font-weight:bold;text-decoration:none;font-style:normal;">立即注册，立享优惠 &gt;&gt;</strong>
+        </a>
+      </td>
+    </tr>
+  </tbody></table></div></td></tr></tbody></table>
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:14px; color:#000000; word-break:break-word; padding:10px 20px"><div id="hs_cos_wrapper_module_17685907179264" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><table role="none" border="0" cellpadding="0" cellspacing="0" style="vertical-align:top" width="100%">
+  <tbody><tr>
+    <td align="center" style="font-family:Arial, sans-serif; color:#000000; font-size:0; word-break:break-word">
+      <p style="font-size:1px;border-top:1px solid #23496d;width:100%;margin:0 auto;"></p>
+      <!--[if mso]>
+        <table role="none" align="center" border="0" cellpadding="0" cellspacing="0" style="font-size:1px;border-top:1px solid #23496d;width:560px;">
+          <tr>
+            <td style="height:0;line-height:0">&nbsp;</td>
+          </tr>
+        </table>
+      <![endif]-->
+    </td>
+  </tr>
+</tbody></table></div></td></tr></tbody></table>
+<div id="hs_cos_wrapper_module_161955423773217" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><table role="presentation" align="center" style="width: auto; text-align: center; margin: 0 auto; " class="hs_cos_wrapper_type_social_module">
+  <tbody>
+    <tr>
+      <td class="social-network-cell" align="center" style="font-family:Arial, sans-serif; font-size:14px; color:#000000; word-break:break-word">
+        <table role="presentation" align="center" style="width: auto; text-align: center; margin: 0 auto; " class="hs_cos_wrapper_type_social_module_single">
+          <tbody>
+            <tr>
+              <td class="display_block_on_small_screens" align="center" style="font-family:Arial, sans-serif; font-size:14px; color:#000000; word-break:break-word; padding:8px 5px; line-height:1; vertical-align:middle" valign="middle">
+                <a href="https://email.linuxfoundation.org/e3t/Ctc/RI+113/cZw--04/VW37dJ5cvnjsW8HMqQg2NVZYnW6R-97G5KY73xN9fbG8F5nR3bW5BWr2F6lZ3m7W2n4qG_4F9gyGVqYsyt3wgLk6W4vr_x36p8qfDW16_RGZ8lpJ3vW2tP4GZ1btbByN3d11gM928MwW6-RlMD4V1nthW1YJ0SC7-xhrTW5fXlky8FbhFvW4xk2MS3v0x1BW5GZGHl4pwFQ3W1l1WH47zjr72VsHS7p4CjY1NW5NVYLG3NN0C7W4pKV7Q3t0LjSW8Zzxjd7HcpFfW1vHCPC9gFLMMW8YC93G3ykgHKN8yg22KvsktfVvX2pY8mQQt7W5-KkFQ5BGsGvW14Gw8f7P7wtqW7HgJ1d7LMD_pW5MQ03712X6j2W6Blx024YgXYDW4fZZZg24Shx-W1XXxtk2MXW_sW4S5b8810m1_FW85PSTd5L7R6fN1tFcL2Mc9drW2ZK2s67TxtFKW360n1g8JPpGKW772z9r40SrG4N52zjWz91qvtf2Hzv0804" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="ULs4ydge" target="_blank"><img src="https://email.linuxfoundation.org/hs-fs/hubfs/LFX%20Logo%20-%20white%20-%203-1-Sep-29-2025-06-07-31-1143-PM.png?height=50&amp;upscale=true&amp;name=LFX%20Logo%20-%20white%20-%203-1-Sep-29-2025-06-07-31-1143-PM.png" alt="LFX Logo - white - 3-1-Sep-29-2025-06-07-31-1143-PM" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td><td class="social-network-cell" align="center" style="font-family:Arial, sans-serif; font-size:14px; color:#000000; word-break:break-word">
+        <table role="presentation" align="center" style="width: auto; text-align: center; margin: 0 auto; " class="hs_cos_wrapper_type_social_module_single">
+          <tbody>
+            <tr>
+              <td class="display_block_on_small_screens" align="center" style="font-family:Arial, sans-serif; font-size:14px; color:#000000; word-break:break-word; padding:8px 5px; line-height:1; vertical-align:middle" valign="middle">
+                <a href="https://email.linuxfoundation.org/e3t/Ctc/RI+113/cZw--04/VW37dJ5cvnjsW8HMqQg2NVZYnW6R-97G5KY73xN9fbGb63qgz0W8wLKSR6lZ3kPVX2NWL1NdglMW4JGp-J8wrTyVW1g0MyH7fxywLW5Sc8W17DnJrSW74y91N581Qs6W48wSDC2dSXw8N4Hmkn_rWs-fW6bl--l35ffHpW22Lf2d55TX4ZN8sYqhtGjzkpVW8jkJ2zBlTMN2nJ9kChm1bpW49vkh34qNSQlW58sn4p1xYbH9W4TB7ML6-hgxxW4TtZd510X_3wW6YtZfl6RGKq1W5bHBt-8DP9F8W4mBP0060SMZxW4Bf_515ZWMvRW57kbzP6QqdFhW6MZ30t4BwMT7W3G73sT4L8NZcN9j9qcVG0lK0W3qFZ9p74yrlBN33R9xQhpQgPN81P9tMHkvrsW8WTyQZ6lpH6Bf27PWW004" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="dhnSUQRt" target="_blank"><img src="https://email.linuxfoundation.org/hs/hsstatic/TemplateAssets/static-1.262/img/hs_default_template_images/modules/Follow+Me+-+Email/twitter_circle_color.png" alt="X" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td><td class="social-network-cell" align="center" style="font-family:Arial, sans-serif; font-size:14px; color:#000000; word-break:break-word">
+        <table role="presentation" align="center" style="width: auto; text-align: center; margin: 0 auto; " class="hs_cos_wrapper_type_social_module_single">
+          <tbody>
+            <tr>
+              <td class="display_block_on_small_screens" align="center" style="font-family:Arial, sans-serif; font-size:14px; color:#000000; word-break:break-word; padding:8px 5px; line-height:1; vertical-align:middle" valign="middle">
+                <a  href="https://email.linuxfoundation.org/e3t/Ctc/RI+113/cZw--04/VW37dJ5cvnjsW8HMqQg2NVZYnW6R-97G5KY73xN9fbGbq3qgz0W95jsWP6lZ3lzW3NhNTY7VpZLrV1yPyk5CZCj9W1N8MwH1nXBnpW6l8Gq26zQfKwW4P1pss1njJ23W51-M3L5lY864W5l9rSj9jHLw0W7-8y101h9n_yW1g4R9V4P1_Z4W6llPLW25z6RSW7m0RGR8YGDhJW7xXk5Z4lq8_0W6SmS456t8sM7W7mLx6F7F6flBW6ZYvCJ5W2MsNN2pVS-2zWXnBW6K6H423dbzt3VJVRrX6KsyX5Vwcb_16h9Y_GN1cCBh79kMXKW5qJnRP7dfsZJW7fHYtY2rnKxDN73Y1BCJCDLMVyD_d919RkFpN1qLmNKrrnHWW91w0Zv23VycbW7N_2bq7jwzYvW3zrlS310pnnfW5J0WrN306r0HW5yqLNJ2CCTkhf7Kh49F04" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="CyTRM5jl" target="_blank"><img src="https://email.linuxfoundation.org/hs/hsstatic/TemplateAssets/static-1.262/img/hs_default_template_images/modules/Follow+Me+-+Email/linkedin_circle_color.png" alt="LinkedIn" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td><td class="social-network-cell" align="center" style="font-family:Arial, sans-serif; font-size:14px; color:#000000; word-break:break-word">
+        <table role="presentation" align="center" style="width: auto; text-align: center; margin: 0 auto; " class="hs_cos_wrapper_type_social_module_single">
+          <tbody>
+            <tr>
+              <td class="display_block_on_small_screens" align="center" style="font-family:Arial, sans-serif; font-size:14px; color:#000000; word-break:break-word; padding:8px 5px; line-height:1; vertical-align:middle" valign="middle">
+                <a href="https://email.linuxfoundation.org/e3t/Ctc/RI+113/cZw--04/VW37dJ5cvnjsW8HMqQg2NVZYnW6R-97G5KY73xN9fbGb63qgz0W8wLKSR6lZ3pRN3jNZxKJdm5wW6hN2WV4kkPz4V2B1cZ63RgPzW11d-vD4d2qsjW4RWPdf527V3dW7l4T7l3KLGNKN4-pwPvgrk31W2X86R749vs8BW56y-x92jpRGrVfk9Sn33hNGMW7PhXGj4PPjPqW95wYDt3j2Z5GW8DG4wD8DKlzzW8fwDnT5n7M7BW1RR0V47G1xXdW4RpHrt5rgQr8W8Ksdp4148r2HW16P2xp5gCW_QW4Wb0Nm3xQv94W5mhSvJ89vMK3W1986pm30gLrHN4WDh70s2GdxW4jV43T4SRbyfW86xqpV4TlWQtVLQg2G88myN0W7xVsJT4SRxv5MvPwy_QqYN8W8XMy8G3dhQKjf5196CC04" style="color:#00a4bd; text-decoration:none !important" data-hs-link-id="0" data-hs-link-id-v2="oVrAde+v" target="_blank"><img src="https://email.linuxfoundation.org/hs/hsstatic/TemplateAssets/static-1.262/img/hs_default_template_images/modules/Follow+Me+-+Email/facebook_circle_color.png" alt="Facebook" height="25" style="outline:none; text-decoration:none; border:none; width:auto!important; height:25px!important; vertical-align:middle" valign="middle" width="auto">
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+   
+  </div>
+  <div id="section-3" class="hse-section hse-section-last" style="padding-left:10px; padding-right:10px">
+    
+    
+      <div class="hse-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#ffffff; padding-bottom:20px; padding-top:20px" bgcolor="#ffffff">
+    
+    <!--[if (mso)|(IE)]>
+      <table align="center" style="width:600px;" cellpadding="0" cellspacing="0" role="presentation" width="600" bgcolor="#ffffff">
+      <tr style="background-color:#ffffff;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign="top" style="width:600px;padding-bottom:20px; padding-top:20px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px">
+<![endif]-->
+<div id="column-3-1" class="hse-column hse-size-12">
+    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:14px; color:#000000; word-break:break-word; padding:0px 20px"><div id="hs_cos_wrapper_module-3-1-1" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><div id="hs_cos_wrapper_module-3-1-1_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="rich_text"><h2 style="margin:0; font-size:8px; line-height:175%; font-weight:normal; text-align:center" align="center"><span style="font-size: 12px; color: #000000;">This email was sent by: <span style="font-weight: bold;">The Linux Foundation Events</span></span></h2></div></div></td></tr></tbody></table>
+<div id="hs_cos_wrapper_module_16171499571171" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module">
+  
+  
+  
+  
+  
+  
+  
+<table role="presentation" class="hse-footer hse-secondary" width="100%" cellpadding="0" cellspacing="0" style="font-family:Arial, sans-serif; font-size:12px; line-height:135%; color:#23496d; margin-bottom:0; padding:0">
+    <tbody>
+        <tr>
+            <td align="center" valign="top" style="font-family:Arial, sans-serif; font-size:14px; color:#000000; word-break:break-word; text-align:center; margin-bottom:0; line-height:135%; padding:10px 20px">
+                <p style="font-family:Arial, sans-serif;font-size:12px;font-weight:normal;text-decoration:none;font-style:normal;color:#000000;direction:lrt;" dir="lrt">
+                  2810 N Church St., PMB 57274, Wilmington, Delaware 19802-4447, United States
+                </p>
+                <p style="font-family:Arial, sans-serif;font-size:12px;font-weight:normal;text-decoration:none;font-style:normal;color:#000000;direction:lrt;" dir="lrt">
+                 <a data-unsubscribe="true" href="https://hs-8112310.s.hubspotemail.net/hs/preferences-center/2207705/en/page?data=W2nXS-N30h-FYW38x47c25d5FmW3STwXF217y2XW2Wj6HN1NfXspW2sZ3b93bsCdQW1--ZJL4ms65sW1N6tDx2WR6WFW1ShCRb49QWzTW1Xf2fM3-1w1xW2WNxC536B-dnW1NkD0g2WNyR3W2-tjdT2t3n-rW1QfJYK36ytFvW3dkHYy4rhPp-W1_5_GS3z8gDxW2xZYjX3P2XRlW3DSfHJ2RrjG2W3BXDx63650WNW4fKv-W2qSrlhW2HzNd93bdYH-W1BBZb434D4LNW3jkKdS1BPntFW1SvRBn36BdgLW348w8l4mJ43fW2Mpx-N2qNLFtW3z8kTB25nRQkW49tXHQ1Vy--CW3z0RDZ4tpqqDW34xsJL23n_NJW45TqGS36s_01W3DMcQd2xYdtPW3h_R_03T51vlW4mswwK2zJ9vwW3f-mn43yZx8qW2RMl-R3_rjGvW45TplW3z3kzYW3Zwg8X1Qy7HnW3yZWZl2KrTxSW4kgl6Q4ms_YBW3bc99n3ZxWjFW3296452sZvbRW41BRkf2PxwP5W3ZYw3Z2KFg2HW3DJNZ93bqTjXW346psl2PBmNvW41LL-93gwXYWW21lNxb3GJ7CqW4tpQMB3d1XLCW2YDThy1S9p57W2p4cvr43Rx81W2MDgGZ4cKg_lW2MFvpZ3SznlmW45yJhY1BdWQpW3d8Vt63Sy61vW2PRLzF3K5XhHW2CPq082WzmFwW43y7Qg2vMwvvW2w3Ch320WDWW0&amp;utm_campaign=28837556-OpenSearchCon-China-2026&amp;utm_source=hs_email&amp;utm_medium=email&amp;utm_content=405318432&amp;_hsenc=p2ANqtz-9Wtj2fDS6mn60fR8QBaIIjzcGU55Gt_w9Kr65L008JWUh_oMuO-0r9hR5OM_ePXDaEnA3XvqWA5QXBZo_CNtvzaCHcQdQ_GwQe3_bex_qcRQe0J20&amp;_hsmi=405318432" style="color:#00a4bd" data-hs-link-id="0" data-hs-link-id-v2="qjPJqCop" target="_blank">Subscription Center</a>
+        
+            
+              
+              
+            </p></td>
+        </tr>
+    </tbody>
+</table></div>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+   
+  </div></div>
+          </td>
+        </tr>
+      </tbody></table>
+    </div>
+  
+<img src="https://email.linuxfoundation.org/e3t/Cto/RI+113/cZw--04/VW37dJ5cvnjsW8HMqQg2NVZYnW6R-97G5KY73xW9fbFYk3CNxxB132" alt="" width="1" height="1" border="0" style="display:none!important;min-height:1px!important;width:1px!important;border-width:0!important;margin-top:0!important;margin-bottom:0!important;margin-right:0!important;margin-left:0!important;padding-top:0!important;padding-bottom:0!important;padding-right:0!important;padding-left:0!important"></body></html>
+`,text:`3月17-18日，上海：50+ 场技术分享 · 专业交流机会 ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏  ͏ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­ ­
+
+View in browser (https://email.linuxfoundation.org/e3t/Ctc/RI+113/cZw--04/VW37dJ5cvnjsW8HMqQg2NVZYnW6R-97G5KY73xN9fbGb65m_5PW8wM7ks6lZ3pSW28K32N6K7n0YW9fX4xx65z9G1W80rLyj4kzjpMW8LJFVM1KRZ3CVYZg-16KzCCFW3ZJWPl7flMybW8QMjC03-q-VLW6wTKzw3__QfCW66b1TR30c1ZVW6WKDh1103FL6W17b3kv2C-wsGW5L4lrr8Bm5WjVwzNzJ6-YxV2W2wz_wW1HKVn0W27Rr9S8GGZ47W1d44Bw292t3lW2zCJxw6B5HVmW7yr0zc3cSyvrW5b3qV-6BblBvN3N8Zlc2Rp1HW79gmG23ZvSQcN8pBHsscssZ0W6GFz6R64vSVXW6774b65WZQRyW7Yk_fQ9kH7t3V789w636X05gW5m4KkB8hnlqXW14z_kT4dWRzDVyV3-C1YgBjTW2B8StM24HzmFW8npGcN4ZpYpmW94vVts22k0TxW6QmM0h7PR2NhN4KmMjVJf_3WW3cHRH04XWc5hW4qnlNy6Hpl2KW1-_jBd4zcQfGW4rqTCP3XnNLJW5dMHpb69989tW40t_fj3KRY1dV7v7Rc1BCPSGW35sF2J5qRcbMVFxvGr4Y9G8bW1fLlQf3mMPQKf86kXZF04 )
+
+OSC China 2026 - Chinese - Email Banner - EB Registration Ending (https://email.linuxfoundation.org/e3t/Ctc/RI+113/cZw--04/VW37dJ5cvnjsW8HMqQg2NVZYnW6R-97G5KY73xN9fbGb63prCCW8wLKSR6lZ3nHN1gdy8tk6tWyW8JwHH860BNd0W8HcSS-2TcNVLW64n1ML1vh60jW8x4HNF9ggSJdW6tMNSk5-kW3jW7Pnty44kJxSqW4npK9P4G3mdnN6-cVcMTyB8YW7MGPNm8QYNn3W5B44d723N9dcW5jR6V394BBfGW5F9CYk4bP2lbW8dzJTG4mXVt3W3SQrJ45SbY20VQ_nx652CpMfW8MwQ966942WBW2HNdWv54kD9hW84cMxn7KyJJYW20QL0m4MqfZ3N4990cC943bwW1X1zyQ7j3NsKW9dslpt6LkjJMN5Tdl5SnzCCbN2mVBcqTHPypW92WT3_1Skq2LW995TGW4_JklXW4q1xzG8gnyPQf4s4hTj04 )
+
+最后 5 天，把握机会购买 OpenSearchCon 优惠门票！
+
+早鸟注册优惠将于 3 月 1 日截止
+
+您参加 OpenSearchCon China 2026 (https://email.linuxfoundation.org/e3t/Ctc/RI+113/cZw--04/VW37dJ5cvnjsW8HMqQg2NVZYnW6R-97G5KY73xN9fbGb63prCCW8wLKSR6lZ3m-W2dNWFn10r_Y_W7QVW9d4X4_ttW7FRpdN7CJdxQW4CfGn43YMgc7W2vSrWy3pmsPPW4v--Rv4fTH5DW6JxT7z5vNWRKW1sxr-F3C2_7TW3Tk6P-7tdMTcW64-ZRG8GPcJlW2wr-md5lZJPMVHjqhx198P9_W75R_M26rVLSsW6XYm-S47BZjLW5bvvxF21qh0MW8r3Xgw6sWyqjW90pNqT60_-RfW4B9DtQ7D4VbKW1sy12t5krk1FN8Pch_j1xNbXW9htbWl39_pdTW1cyJH11TW8pgW6v7k7l7XHS6sN8JFfpFpsWkLW3d8Jhz4phpzwW8P3Rrf8Z5fLkW2Mpz7t3BPvkZW55DFGd5tPd7wf5_YD5T04 )  的门票正在等您! 大会将于 3 月 17–18 日 在上海虹桥希尔顿酒店 (https://email.linuxfoundation.org/e3t/Ctc/RI+113/cZw--04/VW37dJ5cvnjsW8HMqQg2NVZYnW6R-97G5KY73xN9fbGbq3prCCW95jsWP6lZ3kCW3z9M6k1mKk-KW1rg3-f2N48XpW8nlxl06XgXNPW1NqnRs8LfHrwW4MnfzV1KFGPVW48Hpn-7RmSYvW4yY95W578ncTN4m1ZTMcBsJ7N3rF78rryXL0W3wqTwv4HqwfxW68hdDG4-g2m6W5f9jx_8BYhqsW36TmR28lc4VQN4mZM3f7_JJPW7NxnDM3hqpZbW59HZq24G1HxlW5h0SWm4N9KP4W4R119M7-SXXdW5gjYTQ7k8wL-W1Ql1r11fxQnHW8_9y472YnJTKW8Y61sg49mf77W6pSVPG5Xr_jgVyZd9f7Fx64RW3gVHMk1CYFTgN2Vy-3gTfLczW9dzKr7680SxBW1j8Gv623p_nGW2BXVfc4MqgGXW7wfM4s96ZDRqdF4Tvd04 ) 举办，早鸟优惠即将结束！请于 3 月 1 日（周日）前完成注册，锁定早鸟价格。
+
+查看日程 >>
+(https://email.linuxfoundation.org/e3t/Ctc/RI+113/cZw--04/VW37dJ5cvnjsW8HMqQg2NVZYnW6R-97G5KY73xN9fbGbq3prCCW95jsWP6lZ3mWW2jD_Vv1ZxLGlVPcCPF5llcP6V7BdkD4zBszHW2_zm3j5LC0GbW1mcQVH4xrQpMW7C2pXt3fj27hW70s_MB1zN12tN6b25c5bdfwNW3Wyy4l97kK-BW55ZK6B8-PvbpMp9GGZw-RLpW4zmT1q1VlMwFW3CLpzk3kTlwxW26k7s_7bLYBmW77lvGP6HpvbDW1cR9XH7Q7s19N96d9WvhZHcCN25G4sJx7137W8j1Wks32vCK2W2lt__N13DnpvW7hrtjl3TlfLDW5B24L_3wj6hWW5kVGlw1CXYPnW6S41kL8XlWKfW4NgRvm8pwMTTW1r2N3W3JPwrjW5zy83T9cmwXdN3qjQlhskzmzVXBhkM63Bqp0VZgmCY8GzG_Lf59jFkY04 )
+
+立即注册并享优惠 >>
+(https://email.linuxfoundation.org/e3t/Ctc/RI+113/cZw--04/VW37dJ5cvnjsW8HMqQg2NVZYnW6R-97G5KY73xN9fbGbq3prCCW95jsWP6lZ3lnW1h6RGN1Wl_4PW6gGRlF6CqRRrVPNvJ02ZR9_BW7KWHj_8yhf--W5yzP-l6fw5KNW6FSS3790l4-lW6Slwm_2m-VGxW2XVhSt38cydSW8wm3L-2qHR5gW7VWgQ67ymB3mW2F5bM_1m_TtPW1hgR777H299fW3BTb0G41XJhDW5jMQmN5XdjNpW6s74b628f-LpN5ZRhdLJMwTqW8cGV2-3prcYrW3R_9BL24-2D5N1qWp72nSWQCW6_RvG-84Yvf5W8C5PDN4Vpt6wW239v608lJNWpW4mX2x52yNssqW763wfN67mRh5W4JF4gJ1vYS37W99gY3m21l4bsW92M1t9694g2mW5Ck_5N9c__h0W6GJCSv1JRwVfW2P0TT08MtkK9dmL2Rs04 )
+
+直接向 OpenSearch 社区专家学习
+
+OpenSearchCon 不仅仅是一系列演讲，更是一个让您提问、解决挑战、与每天大规模部署 OpenSearch 的工程师和架构师面对面交流。一次与对的人深入对话，可能就能解决您团队数月未解的难题！
+
+大会设有 50+ 场技术专题分享 (https://email.linuxfoundation.org/e3t/Ctc/RI+113/cZw--04/VW37dJ5cvnjsW8HMqQg2NVZYnW6R-97G5KY73xN9fbGbq3prCCW95jsWP6lZ3mWW2jD_Vv1ZxLGlVPcCPF5llcP6V7BdkD4zBszHW2_zm3j5LC0GbW1mcQVH4xrQpMW7C2pXt3fj27hW70s_MB1zN12tN6b25c5bdfwNW3Wyy4l97kK-BW55ZK6B8-PvbpMp9GGZw-RLpW4zmT1q1VlMwFW3CLpzk3kTlwxW26k7s_7bLYBmW77lvGP6HpvbDW1cR9XH7Q7s19N96d9WvhZHcCN25G4sJx7137W8j1Wks32vCK2W2lt__N13DnpvW7hrtjl3TlfLDW5B24L_3wj6hWW5kVGlw1CXYPnW6S41kL8XlWKfW4NgRvm8pwMTTW1r2N3W3JPwrjW5zy83T9cmwXdN3qjQlhskzmzVXBhkM63Bqp0VZgmCY8GzG_Lf59jFkY04 ) ，涵盖四大核心方向：分析 + 安全 + 可观测性、搜索 + Apache Lucene、OpenSearch 运维实践，以及安全教育 + 社区发展。
+
+查看完整日程 >>
+(https://email.linuxfoundation.org/e3t/Ctc/RI+113/cZw--04/VW37dJ5cvnjsW8HMqQg2NVZYnW6R-97G5KY73xN9fbGbq3prCCW95jsWP6lZ3mWW2jD_Vv1ZxLGlVPcCPF5llcP6V7BdkD4zBszHW2_zm3j5LC0GbW1mcQVH4xrQpMW7C2pXt3fj27hW70s_MB1zN12tN6b25c5bdfwNW3Wyy4l97kK-BW55ZK6B8-PvbpMp9GGZw-RLpW4zmT1q1VlMwFW3CLpzk3kTlwxW26k7s_7bLYBmW77lvGP6HpvbDW1cR9XH7Q7s19N96d9WvhZHcCN25G4sJx7137W8j1Wks32vCK2W2lt__N13DnpvW7hrtjl3TlfLDW5B24L_3wj6hWW5kVGlw1CXYPnW6S41kL8XlWKfW4NgRvm8pwMTTW1r2N3W3JPwrjW5zy83T9cmwXdN3qjQlhskzmzVXBhkM63Bqp0VZgmCY8GzG_Lf59jFkY04 )
+
+与引领 OpenSearch 未来的组织建立联系
+
+现场将汇聚来自阿里云、字节跳动、Eliatra、微软、SAP、瞻博网络（Juniper Networks）、红帽、Zalando 等企业的团队代表，以及包括 温州商学院、上海大学在内的创新机构。
+
+此外，还可参加两场专属交流活动：Better Together 午餐会 (https://email.linuxfoundation.org/e3t/Ctc/RI+113/cZw--04/VW37dJ5cvnjsW8HMqQg2NVZYnW6R-97G5KY73xN9fbG8F5m_5PW5BWr2F6lZ3pVN6-MNyjg0rRCW1hcWz117FF23W5f4d2-3NKsvWW3BfbNV8p7yxtW6WFnmW3jVyq4W72dmPg6Vkxr-W2LNXNX4PmCDmW17gY1Z177q2-W82kffx1qW6tsW4KhwVJ3cp2nvW973VCH5SblT-W7SYNjy3d3nkPW8GZ9FK3d_NWQN4Dhgb8pvYK4W3wdhz65RBGLhW8rr6Gf62bxzTW354tYz8TPLDHW1tmKLV1ZR8XNW6hFqB-1cHRmsW72qy9w8bgwH9W2GS0JX2sN5zwW1nLSQD3c39Y7W5CjWh32wJ0dmN2WQ_7VdVsPpW8qlRdy8Fww84VmbHXS6qlZ-QW6Zx6qc4jY2NpW4nvK2H2hBGDTVFydNg5qGqN4W7Bz-Nq4MlYc5N5-YrNx2QBfkW71NdHQ6r_knHW8FpzjM2Dym4BW98pwjr9jdDmXf7WYL6W04 ) 和 Search Party 欢迎招待会 (https://email.linuxfoundation.org/e3t/Ctc/RI+113/cZw--04/VW37dJ5cvnjsW8HMqQg2NVZYnW6R-97G5KY73xN9fbG8F5m_5PW5BWr2F6lZ3mYW1h3vlK8wZz0PW6G4dLL5p4mrBW17NKTq3Yb7y2W1N1KPc11k3fDW6B0lKg2VYdVsTxYpD2SxmjFW37Lxfn96J53vW7_tL8s58z3H4W1pq7gL2CyRnRW8_dfpp2jZXh5W81C9Sg7rDqSpW2LgHrC6N1LhVW5fkQxC8rTSh4W1qxhnj1dM6M6W2l5S771FSbhVVlPstl5v7d7tW2_djrm5zzKBDW89VFxV7Z3R33W7scZyC2TW2kDW94DBwV6cRwN2W3XrDTB4W-vrKW756w_M3x3DV_W4gDrK74Yh0V_W4F8_lY3l6WvCVlvJll1LjvnTMdHwt7PkbR4M83Hx_HwT_3N1S1BGMHFysfW1-YF4T9g44MSVdRdC06fdw96W7y13RV44yRJnW8ZR5nt7zz1q0W97xr-G5hpzGhW8w_2L51csSv3f8qRtd-04 ) 。
+
+查看参会名单 >>
+(https://email.linuxfoundation.org/e3t/Ctc/RI+113/cZw--04/VW37dJ5cvnjsW8HMqQg2NVZYnW6R-97G5KY73xN9fbG8l5m_5PW50kH_H6lZ3pSW3_XD2Y4rl4BLW6zSwYz5LQ7HnVf1nqD7LKldVW92Mq7B6ycHBpMyp1CvlHfccW23NF5l1nZbqqW26DfR95nt4CTW5KzqGM1x0xmpW7ZHLQM5tKmbLW7bj2RB8dTD2KW4KH1dv3PS7swW1FSKdQ2ZS0LjN3BxB31Cdd2xW7BFSmw4yMrjkW1kCJdB77myN_W3279Vt1Hfs5WVX10f34jPyWpW8Y4mNh3HrC8MW2mbwvh7F4lmRW4QGZg836hhTmVznPZ46bk1LpN4qz3T5cQD6dVWYZrR4VR6TZW61Rrkf90J4QtN23jDqlFTVTsN1Nqs8xdvvgLW6J19701mhXCdVlG0Wd4K8DJ-W1D2cX18RTJH_W5RjrjT83HFHVN5TqVHCfH1yjW17mqrv6t1GM3f2w0c_q04 )
+
+3月1日前注册即可享受优惠
+
+在3月1日前 注册参加 OpenSearchCon China (https://email.linuxfoundation.org/e3t/Ctc/RI+113/cZw--04/VW37dJ5cvnjsW8HMqQg2NVZYnW6R-97G5KY73xN9fbGbq3prCCW95jsWP6lZ3lnW1h6RGN1Wl_4PW6gGRlF6CqRRrVPNvJ02ZR9_BW7KWHj_8yhf--W5yzP-l6fw5KNW6FSS3790l4-lW6Slwm_2m-VGxW2XVhSt38cydSW8wm3L-2qHR5gW7VWgQ67ymB3mW2F5bM_1m_TtPW1hgR777H299fW3BTb0G41XJhDW5jMQmN5XdjNpW6s74b628f-LpN5ZRhdLJMwTqW8cGV2-3prcYrW3R_9BL24-2D5N1qWp72nSWQCW6_RvG-84Yvf5W8C5PDN4Vpt6wW239v608lJNWpW4mX2x52yNssqW763wfN67mRh5W4JF4gJ1vYS37W99gY3m21l4bsW92M1t9694g2mW5Ck_5N9c__h0W6GJCSv1JRwVfW2P0TT08MtkK9dmL2Rs04 ) ，仅需 ¥149，立省 ¥50。
+
+您的门票包含：主题演讲 + 分论坛技术分享、茶歇 + 午餐、大会纪念 T 恤、Search Party 欢迎酒会，以及活动结束后的点播议程访问权限。
+
+更多优惠！全日制学生、教职人员及媒体从业者可享 ¥99 的优惠票价。了解详情 (https://email.linuxfoundation.org/e3t/Ctc/RI+113/cZw--04/VW37dJ5cvnjsW8HMqQg2NVZYnW6R-97G5KY73xN9fbG8l5m_5PW50kH_H6lZ3lCW9fyQ871vC0_yW7QtC4j2yRB_5N5r_kxNVHlfhW101g-J2YJdx7W97RW8s1kNwpsW77Vkgt4-GkMtW1Zt_tz8_8gmvW8MbKdm26tBTCW2rGjjn7rrgwYW5-hqpY42yC0ZW2k8MfW9c4B9QV7QXm284F2p0W7QsZtd7KvWv_W6F0WyW8B-DQ-W566SZ64j6j3sW3SNHcK7vyr6KW5WbDT_7jCpR7W6z9gf46btm_bW36Cr8v7ntRqXW1JspDJ2YGW0ZW5QygQP1PMDlMW2rCGRJ4312vJW6r_7v11mDWrKW1mJZHB8t6bLGW7psfYw469Z7jW1fV-Mf91mBjDVXDnKg93v_0FW8Yd4sX7Tg3hhW7tkrWN7DYvTvW2Tl0Hp3FRymYN4_qHVfBXkKrW8mGWPy99hK0Rf2Hghfq04 ) 。
+
+早鸟优惠将于 3 月 1 日（周日）23:59 中国标准时间截止。
+
+立即注册，立享优惠 >>
+(https://email.linuxfoundation.org/e3t/Ctc/RI+113/cZw--04/VW37dJ5cvnjsW8HMqQg2NVZYnW6R-97G5KY73xN9fbGbq3prCCW95jsWP6lZ3lnW1h6RGN1Wl_4PW6gGRlF6CqRRrVPNvJ02ZR9_BW7KWHj_8yhf--W5yzP-l6fw5KNW6FSS3790l4-lW6Slwm_2m-VGxW2XVhSt38cydSW8wm3L-2qHR5gW7VWgQ67ymB3mW2F5bM_1m_TtPW1hgR777H299fW3BTb0G41XJhDW5jMQmN5XdjNpW6s74b628f-LpN5ZRhdLJMwTqW8cGV2-3prcYrW3R_9BL24-2D5N1qWp72nSWQCW6_RvG-84Yvf5W8C5PDN4Vpt6wW239v608lJNWpW4mX2x52yNssqW763wfN67mRh5W4JF4gJ1vYS37W99gY3m21l4bsW92M1t9694g2mW5Ck_5N9c__h0W6GJCSv1JRwVfW2P0TT08MtkK9dmL2Rs04 )
+
+LFX Logo - white - 3-1-Sep-29-2025-06-07-31-1143-PM (https://email.linuxfoundation.org/e3t/Ctc/RI+113/cZw--04/VW37dJ5cvnjsW8HMqQg2NVZYnW6R-97G5KY73xN9fbG8F5m_5PW5BWr2F6lZ3mVN27Vpqyth9qTW5LLjPh818NHtW7H6Dh24WRKbDW5jccnY1fJ4RzW7Ht2Tp6scST1W8yGNtD11k1p3W3PTVr63mm7kgW1Djprl877qB1N5y5yls1NB11W8dJjHt6SsZbSW7BvQd469sZv1W1vBKc8342Mp-N8QLkhQcFlsxW2xy2X58CmDdqW56zqxj880v2bW7ms2667yvdXPW77n7z38TJ67xW99c9Cm6fPJ6HW19YbXL6l6-dYW1P0V-x3GGVrXW31Mt447yxpZTW6Nv_hf3xw07XW8DMxhC3kH00nW3b54K5469vCNW8_8hPD7yX1BgW7QK3m78MsWc4W84k82K4NTLB1N5tF_dYz2xj0V2V43g2JK8T3N8F825CJ4rBSW3HMLzs2vHJLcW3Ln2z-8nQl7pW7J2qmb3Tjx7mW5RdFvY161vNXf9h3vQT04 )
+
+X (https://email.linuxfoundation.org/e3t/Ctc/RI+113/cZw--04/VW37dJ5cvnjsW8HMqQg2NVZYnW6R-97G5KY73xN9fbG9R3prCCW7Y8-PT6lZ3mZVVtk9K3C7pqmW3XlDQF6XrW02W6-GmCK4rN2h7W9hPPXc1NDtvLW62GKrb7fppnVW4y97XN6H5JxGN5SjN9jD77zTW6lknNd8Ysp1SW4xMl4Y2Y7CfDW3_0Jfh6Cnr_zW3Z0jDC4Nn264W6CS6RF7x0XW4W4X6_Sn6bfv3-N36MzfT3Q3N7W7rDdLY85k9bjW10L6_K6cMm3-Vj1DhZ494wfLW5_4W3C8R9vN1W9h1jxl3hzh6MW695CM85KdL6gW1-Rk6j2n5rvqW51zb7f5KfSrGW76wPRK8MZz3TN7Mw9Yvymzj8W1N2yPt8xHjD9W37RDjX1Wb_wpf3BPR3T04 )
+
+LinkedIn (https://email.linuxfoundation.org/e3t/Ctc/RI+113/cZw--04/VW37dJ5cvnjsW8HMqQg2NVZYnW6R-97G5KY73xN9fbGb63prCCW8wLKSR6lZ3n8W48phW049WRjwW7_yRvw41L9HMVVSKbd1cKMW7W4Nr8N-8S3N-sN5-Jh0kx0ZjcW2DpZgS4ngmZ6W1vZ03M5dM77ZW1RTRn92By2FVN3WMNSWD42-9N5BNDMFmQ0QWW1hbR_S6bLT8PW31N9j92jtpd5N3d3qNHj3lSqW17WRkm5lLSrjW7n4ZR25Qm_LCW4tL-sn60PsDqVjqxnB8YV-xPW5j8nmv8BHMD6W6KWFpp6vZzjNW2snWLK8vJhBmW3qQdNw6L5t_PW3nGrLM5Z9vGyW3fYfbJ8rN2LSW20htQm4k_ZTHW4-JZ995Tlz5TW8LJQ214pGVp8W8x9HY-4lng15W8fBM2w54LZTNf5X3Syq04 )
+
+Facebook (https://email.linuxfoundation.org/e3t/Ctc/RI+113/cZw--04/VW37dJ5cvnjsW8HMqQg2NVZYnW6R-97G5KY73xN9fbGb63prCCW8wLKSR6lZ3l1W6_ZZcz9fTDFtW217nLq6_p5C3VBTdrH9c7GmyW9kS1wC4KtvfKW3tt1B43lHpVLW64MBnk6p0kyHW5lXdLp6R9jk4VQrZrk2fcNt9W2vNmfP7LktbKW86K3rh8hWKTCVGGpDW7FTTTNW1gvQty6MmSvyW7NHKX47DGrmCW2J716J4tsjcKN5WWHgbyBR1_N3q7sgpKcwmQN7fhZZMrM73DVbbYFM8nNnN6W1ZsqKH2DF_sMW4lvSR85XpSxWW4qbgPM7qvypxW1L5MCG89JwFxW4Cbflc4chzw6N802kP3CbTT9W46NHCW3ftb0CW22KBJW7yvZZ7W21S8CK6wS6V0W2G9JjB4Wt6jDf69NgwT04 )
+
+This email was sent by: The Linux Foundation Events
+
+2810 N Church St., PMB 57274, Wilmington, Delaware 19802-4447, United States
+
+Subscription Center (https://hs-8112310.s.hubspotemail.net/hs/preferences-center/2207705/en/page?data=W2nXS-N30h-FYW38x47c25d5FmW3STwXF217y2XW2Wj6HN1NfXspW2sZ3b93bsCdQW1--ZJL4ms65sW1N6tDx2WR6WFW1ShCRb49QWzTW1Xf2fM3-1w1xW2WNxC536B-dnW1NkD0g2WNyR3W2-tjdT2t3n-rW1QfJYK36ytFvW3dkHYy4rhPp-W1_5_GS3z8gDxW2xZYjX3P2XRlW3DSfHJ2RrjG2W3BXDx63650WNW4fKv-W2qSrlhW2HzNd93bdYH-W1BBZb434D4LNW3jkKdS1BPntFW1SvRBn36BdgLW348w8l4mJ43fW2Mpx-N2qNLFtW3z8kTB25nRQkW49tXHQ1Vy--CW3z0RDZ4tpqqDW34xsJL23n_NJW45TqGS36s_01W3DMcQd2xYdtPW3h_R_03T51vlW4mswwK2zJ9vwW3f-mn43yZx8qW2RMl-R3_rjGvW45TplW3z3kzYW3Zwg8X1Qy7HnW3yZWZl2KrTxSW4kgl6Q4ms_YBW3bc99n3ZxWjFW3296452sZvbRW41BRkf2PxwP5W3ZYw3Z2KFg2HW3DJNZ93bqTjXW346psl2PBmNvW41LL-93gwXYWW21lNxb3GJ7CqW4tpQMB3d1XLCW2YDThy1S9p57W2p4cvr43Rx81W2MDgGZ4cKg_lW2MFvpZ3SznlmW45yJhY1BdWQpW3d8Vt63Sy61vW2PRLzF3K5XhHW2CPq082WzmFwW43y7Qg2vMwvvW2w3Ch320WDWW0&_hsenc=p2ANqtz-9qOl2IJgOOaVoxgH4xI2YNtmK6J4iskr4yPHXwP8pd3rckUJ4HRnio2Pw6ySYURtKwxwKUPNzijPbCDKUR7-r-c37x1Dti-B5J50CP4j9Z9BVskO0&_hsmi=405318432 )
+`,accountEmail:"demo@demo.com",messageId:"<demo-mock-1301@homerow.dev>"},{id:1302,seq:1302,threadId:"thread-mock-1302",subject:"★★★★★ 'Scintillating' | Samurai now open",from:"British Museum",fromAddress:"emails@britishmuseum.org",to:["demo@demo.com"],date:"2026-02-03T16:32:45.000Z",flags:["\\Seen"],snippet:"★★★★★ 'Scintillating' | Samurai now open 'Extraordinary' – The Guardian View this email online https://emails.britishmuseum.org/q/1f52Myo8OnZbVQwAcEviYeE/wv https://email",hasAttachments:!1,folderPath:"INBOX",html:`<!DOCTYPE HTML>
+<html>
+<head>
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<!--Fix to get Windows Phone 8 to render CSS3 and Media Queries-->
+<meta content="IE=edge" http-equiv="X-UA-Compatible" />
+<title>★★★★★ 'Scintillating' | Samurai now open</title>
+<style type="text/css">
+body {
+padding: 0;
+margin: 0;
+}
+a[x-apple-data-detectors] {
+color: inherit !important;
+text-decoration: none !important;
+font-size: inherit !important;
+font-family: inherit !important;
+font-weight: inherit !important;
+line-height: inherit !important;
+}
+body,
+td {
+font-family: Arial, Helvetica, sans-serif;
+margin: 0px;
+}
+img {
+border: none;
+display: block;
+}
+.amf-editor .preheader_text {
+display: block !important;
+visibility: visible !important;
+}
+.amf-editor .hide_at_launch {overflow-wrap: break-word;
+word-wrap: break-word;
+-ms-word-break: break-all;word-break: break-all;word-break: break-word;-ms-hyphens: auto;
+-moz-hyphens: auto;
+-webkit-hyphens: auto;
+hyphens: auto;
+}
+.amf-editor:hover .editor_expand {
+display:block !important;
+height: 20px !important;
+}
+.amf-editor .image-target {
+max-width: 200px;
+}
+</style>
+<style amf:inline="amf:inline" type="text/css">
+body,
+p,
+th,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+padding: 0;
+margin: 0;
+font-weight: normal;
+}
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6 {
+text-align: inherit;
+}h1 {
+font-size: 24px;
+line-height: 27px;
+font-weight: bold;
+}
+h2 {
+font-size: 24px;
+line-height: 27px;
+font-weight: normal;
+}h3 {
+font-size: 21px;
+line-height: 24px;
+font-weight: bold;
+}
+h4 {
+font-size: 21px;
+line-height: 24px;
+font-weight: normal;
+}
+h5 {
+font-size: 15px;
+line-height: 18px;
+font-weight: normal;
+}
+h6 {
+font-size: 12px;
+line-height: 15px;
+font-weight: bold;
+color: #949494;
+}
+p {
+font-size: 18px;
+line-height: 21px;
+}
+ul {
+padding: 0;
+margin: 0 0 0 20px;
+}
+.preheader_text .hide_at_launch {
+display: none;
+visibility: hidden;
+}
+.testimonial {
+font-family: Georgia, Arial, Helvetica, sans-serif;
+}
+</style>
+<style type="text/css">
+@media only screen and (max-width: 599px) {
+html {
+-webkit-text-size-adjust: none;
+}
+.wrapper {
+width: 100%;
+width: 100% !important;
+padding-left: 20px;
+padding-right: 20px;
+}
+.fl {
+width: 100%;
+width: 100% !important;
+float: left;
+height: auto;
+padding-left: 0 !important;
+padding-right: 0 !important;
+}
+.mob_none {
+display: none !important;
+}
+.full_img img {
+width: 100% !important;
+height: auto;
+}
+.nopad {
+padding: 0 !important;
+}
+.nosidepad {
+padding-left: 0 !important;
+padding-right: 0 !important;
+}
+.button {
+padding: 0 !important;
+text-align: center;
+width: 100%;
+margin: auto;
+float: none;
+}
+.button td {
+padding: 0 !important;
+}
+.button td a {
+display: block;
+padding: 10px 40px;
+margin: 0 auto;
+}
+.center {
+text-align: center !important;
+margin: 0 auto;
+float: none !important;
+}
+.center div {
+text-align: center !important;
+}
+.center img {
+display: block;
+margin: auto;
+}
+.automarg {
+margin: 0 auto;
+}
+.logo img {
+width: 250px !important;
+height: auto;
+}
+.footer .social {
+margin: auto;
+float: none;
+}
+.pad_logo {
+padding: 10px 5px 0 5px !important;
+}
+th {
+display: table;
+}
+table.amf__dt-none {
+display: table !important;
+}
+table.amf__dt-none[width="100%"] {
+width: 100% !important;
+}
+.nav_font p{
+font-size: 15px !important;
+line-height: 18px !important;
+}
+.nav_font a{
+text-decoration: none;
+}
+.no_bg_image {
+background-image: none !important;
+}
+.reset_pad {
+padding-top: 0 !important;
+padding-bottom: 0 !important;
+}
+.three_col_outer {
+padding: 20px !important;
+}
+.three_col_outer2 {
+padding-top: 20px !important;
+}
+.three_col_outer .text,
+.three_col_outer .btn,
+.three_col_outer2 .text,
+.three_col_outer2 .btn {
+padding-top: 20px !important;
+}
+.three_col_outer h3,
+.three_col_outer2 h3 {
+font-size: 24px;
+line-height: 27px;
+font-weight: bold;
+}
+.three_col_outer h4,
+.three_col_outer2 h4 {
+font-size: 24px;
+line-height: 27px;
+font-weight: normal;
+}
+.three_col_outer h5,
+.three_col_outer2 h5 {
+font-size: 18px;
+line-height: 21px;
+font-weight: normal;
+}
+.btn_small_mob {
+width: 160px;
+height: 35px;
+text-align: left;
+}
+.btn_small_mob a {
+text-decoration: none;
+}
+.extra_pad {
+padding-top: 20px !important;
+}
+.less_pad {
+padding-top: 0 !important;
+}
+.no_height {
+height: auto !important;
+}
+.top_xs_padding--add .top_xs_padding_target {
+padding-top: 20px !important;
+}
+.bottom_xs_padding--add .bottom_xs_padding_target {
+padding-bottom: 20px !important;
+}
+.overlay_mob {
+padding: 20px 0 20px 0;
+}
+.no_grey_bg {
+background-color: #ffffff !important;
+}
+}
+</style>
+<style amf:inline="amf:inline" type="text/css">
+.module_height {
+-amf-class-label: "Choose module height:";
+}
+.module_height--260 {
+-amf-class-label: "260px";
+}
+.module_height--260 .module_height_target {
+height: 260px;
+}
+.module_height--260 .module_height_target .p_adjust {
+height: 132px;
+}
+.module_height--290 {
+-amf-class-label: "290px";
+}
+.module_height--290 .module_height_target {
+height: 290px;
+}
+.module_height--290 .module_height_target .p_adjust {
+height: 162px;
+}
+.module_height--320 {
+-amf-class-label: "320px";
+}
+.module_height--320 .module_height_target {
+height: 320px;
+}
+.module_height--320 .module_height_target .p_adjust {
+height: 192px;
+}
+</style>
+<style amf:inline="amf:inline" type="text/css">.test_font {
+-amf-class-label: "Choose the font:";
+}
+.test_font--georgia {
+-amf-class-label: 'Georgia, Sans Serif';
+}
+.test_font--georgia .test_font_target {
+font-family: Georgia, Arial, Helvetica, sans-serif !important;
+}
+.test_font--arial {
+-amf-class-label: 'Arial, Serif';
+}
+.test_font--arial .test_font_target {
+font-family: Arial, Helvetica, sans-serif !important;
+}
+</style>
+<style amf:inline="amf:inline" type="text/css">.btn_colour1 {
+-amf-class-label: 'Button colour:';
+-amf-class-preview: background-color color;
+}
+.btn_colour1--black {
+-amf-class-label: 'Black';
+background-color: #000000;
+}
+.btn_colour1--black a{
+color: #ffffff;
+text-decoration: none;
+}
+.btn_colour1--green_white {
+-amf-class-label: 'Green / White';
+background-color: #3AD4A7;
+}
+.btn_colour1--green_white a {
+color: #ffffff;
+text-decoration: none;
+}
+.btn_colour1--green_black {
+-amf-class-label: 'Green / Black';
+background-color: #3AD4A7;
+}
+.btn_colour1--green_black a {
+color: #000000;
+text-decoration: none;
+}
+.btn_colour1--grey_white {
+-amf-class-label: 'Blue / White';
+background-color: #596564;
+}
+.btn_colour1--grey_white a {
+color: #ffffff;
+text-decoration: none;
+}
+.btn_colour1--yellow {
+-amf-class-label: 'Yellow';
+background-color: #FFE912;
+}
+.btn_colour1--yellow a {
+color: #000000;
+text-decoration: none;
+}.btn_colour2 {
+-amf-class-label: 'Button colour:';
+-amf-class-preview: background-color color;
+}
+.btn_colour2--white {
+-amf-class-label: 'White';
+background-color: #ffffff;
+}
+.btn_colour2--white a{
+color: #000000;
+text-decoration: none;
+}
+.btn_colour2--green_white {
+-amf-class-label: 'Green / White';
+background-color: #3AD4A7;
+}
+.btn_colour2--green_white a {
+color: #ffffff;
+text-decoration: none;
+}
+.btn_colour2--green_black {
+-amf-class-label: 'Green / Black';
+background-color: #3AD4A7;
+}
+.btn_colour2--green_black a {
+color: #000000;
+text-decoration: none;
+}
+.btn_colour2--grey_white {
+-amf-class-label: 'Grey / White';
+background-color: #596564;
+}
+.btn_colour2--grey_white a {
+color: #ffffff;
+text-decoration: none;
+}
+.btn_colour2--yellow {
+-amf-class-label: 'Yellow';
+background-color: #FFE912;
+}
+.btn_colour2--yellow a {
+color: #000000;
+text-decoration: none;
+}.btn_shop {
+width: 15px;
+height: 35px;
+text-align: left;
+}
+.btn_small {
+width: 160px;
+height: 35px;
+text-align: left;
+}
+.btn_med {
+width: 200px;
+height: 35px;
+text-align: left;
+}
+.btn_lg {
+width: 240px;
+height: 35px;
+text-align: left;
+}
+.btn_shop span,
+.btn_small span,
+.btn_med span,
+.btn_lg span {
+font-size: 18px;
+font-weight: bold;
+}
+.btn_pad {
+padding: 5px 20px;
+}
+.btn_pad2 {
+padding: 5px 20px 5px 0;
+}
+.bg_image {
+background-position: center center;
+background-repeat: no-repeat;
+background-size: cover;
+}
+</style>
+<style amf:inline="amf:inline" type="text/css">
+.button_size {
+-amf-class-label: 'Choose button size:';
+}
+.button_size--small {
+-amf-class-label: 'Small';
+width: 160px;
+height: 35px;
+text-align: left;
+}
+.button_size--medium {
+-amf-class-label: 'Medium';
+width: 200px;
+height: 35px;
+text-align: left;
+}
+.button_size--large {
+-amf-class-label: 'Large';
+width: 240px;
+height: 35px;
+text-align: left;
+}
+</style>
+<style amf:inline="amf:inline" type="text/css">.top_outer_padding {
+-amf-class-label: 'Top padding:';
+}
+.top_outer_padding--add {
+-amf-class-label: 'Add padding';
+}
+.top_outer_padding--remove {
+-amf-class-label: 'Remove padding';
+}
+.top_outer_padding--add .top_outer_padding_target {
+padding-top: 20px;
+}
+.top_outer_padding--remove .top_outer_padding_target {
+padding-top: 0px;
+}
+.bottom_outer_padding {
+-amf-class-label: 'Bottom padding:';
+}
+.bottom_outer_padding--add {
+-amf-class-label: 'Add padding';
+}
+.bottom_outer_padding--remove {
+-amf-class-label: 'Remove padding';
+}
+.bottom_outer_padding--add .bottom_outer_padding_target {
+padding-bottom: 20px;
+}
+.bottom_outer_padding--remove .bottom_outer_padding_target {
+padding-bottom: 0px;
+}
+</style>
+<style amf:inline="amf:inline" type="text/css">.top_padding {
+-amf-class-label: 'Top padding:';
+}
+.top_padding--add {
+-amf-class-label: 'Add padding';
+}
+.top_padding--remove {
+-amf-class-label: 'Remove padding';
+}
+.top_padding--add .top_padding_target {
+padding-top: 20px;
+}
+.top_padding--remove .top_padding_target {
+padding-top: 0px;
+}
+.bottom_padding {
+-amf-class-label: 'Bottom padding:';
+}
+.bottom_padding--add {
+-amf-class-label: 'Add padding';
+}
+.bottom_padding--remove {
+-amf-class-label: 'Remove padding';
+}
+.bottom_padding--add .bottom_padding_target {
+padding-bottom: 20px;
+}
+.bottom_padding--remove .bottom_padding_target {
+padding-bottom: 0px;
+}
+</style>
+<style amf:inline="amf:inline" type="text/css">.top_xs_padding {
+-amf-class-label: 'Top padding:';
+}
+.top_xs_padding--add {
+-amf-class-label: 'Add padding';
+}
+.top_xs_padding--remove {
+-amf-class-label: 'Remove padding';
+}
+.top_xs_padding--add .top_xs_padding_target {
+padding-top: 10px;
+}
+.top_xs_padding--remove .top_xs_padding_target {
+padding-top: 0px;
+}
+.bottom_xs_padding {
+-amf-class-label: 'Bottom padding:';
+}
+.bottom_xs_padding--add {
+-amf-class-label: 'Add padding';
+}
+.bottom_xs_padding--remove {
+-amf-class-label: 'Remove padding';
+}
+.bottom_xs_padding--add .bottom_xs_padding_target {
+padding-bottom: 10px;
+}
+.bottom_xs_padding--remove .bottom_xs_padding_target {
+padding-bottom: 0px;
+}
+</style>
+<style type="text/css">
+@media only screen and (max-width:599px) {
+.amf__mb-none { display: none !important; } 
+.amf__dt-none,.amf__dt-none-img {display: block !important; max-height: none !important; overflow: visible !important;}
+table.amf__dt-none {display:table !important;}
+tr.amf__dt-none {display:table-row !important;}
+th.amf__dt-none,td.amf__dt-none {display:table-cell !important;}
+.amf__dt-none {float: none !important; width: auto !important;}
+.amf__dt-none-img {height: auto !important; width: 100% !important;}
+}
+</style></head>
+<body style="font-weight: normal; margin: 0; padding: 0">
+<!--[if gte mso 9]><style>ul,ol {margin: 0 0 0 30px !important;}</style><![endif]-->
+<!--[if gte mso 9]>
+<style type="text/css">
+
+.outlook_fix1 {
+height: 85px !important;
+}
+.outlook_fix2 {
+height: 111px !important;
+}
+</style>
+<![endif]-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="center">
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper" style="width:600px;" width="600">
+<tr class="mob_none">
+<td style="padding: 5px;">
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+<tr>
+<td align="left" class="preheader_text hide_at_launch" style="font-size:12px; font-family: arial, sans-serif; padding: 0 20px 0 0;"><h5 style="text-align: inherit; font-size: 15px; font-weight: normal; line-height: 18px; margin: 0; padding: 0; color:#333333">'Extraordinary'&nbsp;– <em>The Guardian</em></h5>
+</td>
+<td align="right" style="font-size:12px; font-family: arial, sans-serif;">
+<h5 style="text-align: inherit; font-size: 15px; font-weight: normal; line-height: 18px; margin: 0; padding: 0; color:#333333;">
+<a href="https://emails.britishmuseum.org/q/1f52Myo8OnZbVQwAcEviYeE/wv" style="color:#333333;"><span>View this email online</span></a></h5>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<a href="https://emails.britishmuseum.org/c/1BncIYAtI4SEu7qOyBOYacuGRl" target="_blank"><img src="https://emails.britishmuseum.org/t/11s33SewAiXGqNjOV.png" alt=""></a>
+<table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center">
+<table border="0" cellpadding="0" cellspacing="0" class="fl" style="width:600px;" width="600">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+<tr>
+<td class="fl" style="vertical-align:top; font-weight:normal;" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" class="fl" role="presentation" style="background-color:#ffffff;background-color:rgb(255,255,255);width:600px;" width="600">
+<tr>
+<td style="padding: 20px 0 20px 20px;">
+<a href="https://emails.britishmuseum.org/c/14dB0b7wKkwr0y0YN1SpUJDARZPO" style="text-decoration:none;">
+<img alt="Visit the British Museum website." border="0" src="https://emails.britishmuseum.org/i/amf_british_museum/project_15/logo_black_do_not_delete.png?size=396x0&amp;w=B36t6h2AweouEMnNtNjHuzIJgUrY" style="display:block; width:198px;" width="198" />
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center" valign="middle">
+<table border="0" cellpadding="0" cellspacing="0" class="fl nav_font" height="50" style="width: 600px; height: 50px; background-color: #ffffff; text-align: center;" width="600">
+<tr>
+<td height="50" style="width: 33%; height: 50px;" width="33%">
+<a href="https://emails.britishmuseum.org/c/14dB0qjBU0nVqxOUqTvUJXZQEPub" style="color:#000000; text-decoration: none;">
+<span style="font-size: 18px;">Exhibitions</span>
+</a>
+</td>
+<td height="50" style="width: 33%; height: 50px;" width="33%">
+<a href="https://emails.britishmuseum.org/c/14dB0FvH3GfpQxCQ4L9pzcm6rF8y" style="color:#000000; text-decoration: none;">
+<span style="font-size: 18px;">Membership</span>
+</a>
+</td>
+<td height="50" style="width: 33%; height: 50px;" width="33%">
+<a href="https://emails.britishmuseum.org/c/14dB0UHMdm6UgxqLICMUoqImeuMV" style="color:#000000; text-decoration: none;">
+<span style="font-size: 18px;">Shop</span>
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><table border="0" cellpadding="0" cellspacing="0" class="bottom_outer_padding--add" style="-amf-class-label: &#39;Add padding&#39;; background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center">
+<table border="0" cellpadding="0" cellspacing="0" class="fl" style="width: 600px; background-color: #ffffff; color: #000000; text-align: left;" width="600">
+<tr>
+<td align="center" class="fl" style="width: 560px;" valign="top" width="560">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="top_outer_padding_target bottom_outer_padding_target" style="padding-bottom: 20px">
+<table align="center" border="0" cellpadding="0" cellspacing="0" class="fl" style="width: 560px; text-align: left;" width="560">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper">
+<tr>
+<td class="full_img">
+<a href="https://emails.britishmuseum.org/c/14dB19TRn1YoGxeHmuqpdF4C1kri" style="text-decoration: none;">
+<img alt="Inside the Samurai exhibition." border="0" class="center" src="https://emails.britishmuseum.org/i/amf_british_museum/project_15/Samurai/S_1120x750.jpg?size=1120x0&amp;w=BhsXCQmXwMHt9LGmY9O-G6UhXa1k" style="display:block; width: 560px;" width="560" />
+</a>
+</td>
+</tr>
+<tr>
+<td style="padding-top: 20px;">
+<h1 style="text-align: inherit; font-size: 24px; font-weight: bold; line-height: 27px; margin: 0; padding: 0">Samurai</h1>
+</td>
+</tr>
+<tr>
+<td>
+<h2 style="text-align: inherit; font-size: 24px; font-weight: normal; line-height: 27px; margin: 0; padding: 0">Now open</h2>
+</td>
+</tr>
+<tr>
+<td style="padding-top: 20px;">
+<p style="font-size: 18px; font-weight: normal; line-height: 21px; margin: 0; padding: 0">★★★★★ 'A ravishing, riveting exhibition' – <em>The Times</em><br />
+★★★★★ 'An extraordinary encounter' – <em>The Guardian</em><br />
+<br />
+Unravel 1,000 years of myth and reality in our new blockbuster exhibition, that 'challenges everything you thought you knew about the Japanese warriors' (<em>The Telegraph)</em>. Special late openings now on sale: 7, 12 and 14 February.</p>
+</td>
+</tr>
+<tr>
+<td style="padding-top: 20px;">
+<table border="0" cellpadding="0" cellspacing="0" class="button_size--small" style="-amf-class-label: &#39;Small&#39;; height: 35px; text-align: left; width: 160px; background-color:#000000;background-color:rgb(0,0,0);">
+<tr>
+<td class="btn_pad" style="padding: 5px 20px">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left">
+<a href="https://emails.britishmuseum.org/c/14dB1p5WwHPT6x2D0m3U2TqROa5F" style="text-decoration:none; color: #ffffff">
+<span style="font-size: 18px;"><strong>Book now</strong></span>
+</a>
+</td>
+<td align="right">
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<img align="right" alt="black_arrow" border="0" src="https://emails.britishmuseum.org/i/amf_british_museum/project_163/arrows/black_arrow_160.png?size=40x0&amp;w=BbyR6p3ixLlSm5e0PIzxcorxTtBw" width="20" />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center">
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper" style="background-color:#ffffff;background-color:rgb(255,255,255);width:600px;" width="600">
+<tr>
+<td class="top_outer_padding_target bottom_outer_padding_target nosidepad" style="padding-left: 20px; padding-right: 20px;">
+<table border="0" cellpading="0" cellspacing="0" width="100%">
+<tr>
+<td style="padding-bottom: 20px;">
+<p style="font-size: 18px; font-weight: normal; line-height: 21px; margin: 0; padding: 0"><span style="font-size:14px">Supported by<br />
+The Huo Family Foundation</span></p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center">
+<table border="0" cellpadding="0" cellspacing="0" class="fl" style="width: 600px; background-color: #ffffff;" width="600">
+<tr>
+<td align="center" class="fl" style="width: 560px;" width="560">
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper top_padding--remove bottom_padding--remove" style="-amf-class-label: &#39;Remove padding&#39;; -amf-class-label: &#39;Remove padding&#39;; width: 560px;" width="560">
+<tr>
+<td class="top_padding--add top_padding_target bottom_padding--add bottom_padding_target" style="-amf-class-label: &#39;Add padding&#39;; padding-top: 0px; -amf-class-label: &#39;Add padding&#39;; padding-bottom: 0px">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td bgcolor="#000000" class="editor_expand" height="1" style="background-color:#9c9c9c;background-color:rgb(156,156,156);font-size:1px;height:1px;line-height:1px;" width="100%">
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr></table><table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center">
+<table border="0" cellpadding="0" cellspacing="0" class="fl" style="width: 600px; background-color: #ffffff; color: #000000; text-align: left;" width="600">
+<tr>
+<td align="center" style="width: 600px;" width="600">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="top_outer_padding_target bottom_outer_padding_target">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<th class="fl no_height" style="font-weight: normal; margin: 0; padding: 0; width: 300px; " valign="top" width="300">
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper" style="width: 300px; text-align:left;" width="300">
+<tr>
+<td class="fl" style="padding: 20px 10px 0 20px;">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" class="full_img fl no_height" height="320" style="width: 270px; height: 320px;" width="270">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="fl top_padding_target bottom_padding_target">
+<a href="https://emails.britishmuseum.org/c/14dB1Ei1GnHnwwQyEdHoS7N7AZK2" style="text-decoration: none;">
+<img alt="Curator Joe Nickols with a selection of samurai swords." border="0" class="center no_height" height="320" src="https://emails.britishmuseum.org/i/amf_british_museum/project_15/Samurai/Samurai_swords_4_540x640.jpg?size=540x0&amp;w=BB8hbDxeSAV5wYmNbMaSbsNpoWfE" style="display:block; width: 270px; height: 320px;" width="270" />
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr><tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" class="top_padding--add" style="-amf-class-label: &#39;Add padding&#39;" width="100%">
+<tr>
+<td class="top_padding_target bottom_padding_target" style="padding-top: 20px">
+<h1 style="text-align: inherit; font-size: 24px; font-weight: bold; line-height: 27px; margin: 0; padding: 0">Curator's Corner</h1>
+</td>
+</tr>
+</table>
+</td>
+</tr><tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="top_padding_target bottom_padding_target">
+<h2 style="text-align: inherit; font-size: 24px; font-weight: normal; line-height: 27px; margin: 0; padding: 0">Samurai swords</h2>
+</td>
+</tr>
+</table>
+</td>
+</tr><tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" class="top_padding--add" style="-amf-class-label: &#39;Add padding&#39;" width="100%">
+<tr>
+<td class="top_padding_target bottom_padding_target" style="padding-top: 20px">
+<p style="font-size: 18px; font-weight: normal; line-height: 21px; margin: 0; padding: 0">Join Project Curator Joe Nickols as they get to grips with some fearsome weaponry, spanning 1,000 years of Japanese history.</p>
+</td>
+</tr>
+</table>
+</td>
+</tr><tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" class="top_padding--add bottom_padding--add" style="-amf-class-label: &#39;Add padding&#39;; -amf-class-label: &#39;Add padding&#39;" width="100%">
+<tr>
+<td class="top_padding_target bottom_padding_target" style="padding-top: 20px; padding-bottom: 20px">
+<table border="0" cellpadding="0" cellspacing="0" class="button_size--large" style="-amf-class-label: &#39;Large&#39;; height: 35px; text-align: left; width: 240px; background-color:#000000;background-color:rgb(0,0,0);">
+<tr>
+<td class="btn_pad" style="padding: 5px 20px">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left">
+<a href="https://emails.britishmuseum.org/c/14dB1Tu6Q3yRWwEui5kTHm9nnPop" style="text-decoration:none; color: #ffffff">
+<span style="font-size: 18px;"><strong>Watch the video</strong></span>
+</a>
+</td>
+<td align="right">
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<img align="right" alt="black_arrow" border="0" src="https://emails.britishmuseum.org/i/amf_british_museum/project_163/arrows/black_arrow_160.png?size=40x0&amp;w=BbyR6p3ixLlSm5e0PIzxcorxTtBw" width="20" />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</th>
+<th class="fl no_height" style="font-weight: normal; margin: 0; padding: 0; width: 300px; " valign="top" width="300">
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper" style="width: 300px; text-align:left;" width="300">
+<tr>
+<td class="fl" style="padding: 20px 20px 0 10px;">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" class="full_img fl no_height" height="320" style="width: 270px; height: 320px;" width="270">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="fl top_padding_target bottom_padding_target">
+<a href="https://emails.britishmuseum.org/c/14dB2nSh9phQMwglzOBTlORSXuH9" style="text-decoration: none;">
+<img alt="Colour woodblock print of Tomoe Gozen wearing red and green armour." border="0" class="center no_height" height="320" src="https://emails.britishmuseum.org/i/amf_british_museum/project_15/Samurai/Tomoe_2_540x640.jpg?size=540x0&amp;w=B7xLG6nNXV26rMiEtrbN3EA75NVo" style="display:block; width: 270px; height: 320px;" width="270" />
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr><tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" class="top_padding--add" style="-amf-class-label: &#39;Add padding&#39;" width="100%">
+<tr>
+<td class="top_padding_target bottom_padding_target" style="padding-top: 20px">
+<h1 style="text-align: inherit; font-size: 24px; font-weight: bold; line-height: 27px; margin: 0; padding: 0">Free online talk</h1>
+</td>
+</tr>
+</table>
+</td>
+</tr><tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="top_padding_target bottom_padding_target">
+<h2 style="text-align: inherit; font-size: 24px; font-weight: normal; line-height: 27px; margin: 0; padding: 0">Women's History Month</h2>
+</td>
+</tr>
+</table>
+</td>
+</tr><tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" class="top_padding--add" style="-amf-class-label: &#39;Add padding&#39;" width="100%">
+<tr>
+<td class="top_padding_target bottom_padding_target" style="padding-top: 20px">
+<p style="font-size: 18px; font-weight: normal; line-height: 21px; margin: 0; padding: 0">Discover what life was like for historical samurai women, as well as explore present-day gender inequality in Japan.</p>
+</td>
+</tr>
+</table>
+</td>
+</tr><tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" class="top_padding--add bottom_padding--add" style="-amf-class-label: &#39;Add padding&#39;; -amf-class-label: &#39;Add padding&#39;" width="100%">
+<tr>
+<td class="top_padding_target bottom_padding_target" style="padding-top: 20px; padding-bottom: 20px">
+<table border="0" cellpadding="0" cellspacing="0" class="button_size--large" style="-amf-class-label: &#39;Large&#39;; height: 35px; text-align: left; width: 240px; background-color:#000000;background-color:rgb(0,0,0);">
+<tr>
+<td class="btn_pad" style="padding: 5px 20px">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left">
+<a href="https://emails.britishmuseum.org/c/14dB2D4mj59lcw4hdGfob3e8Kklw" style="text-decoration:none; color: #ffffff">
+<span style="font-size: 18px;"><strong>Book your place</strong></span>
+</a>
+</td>
+<td align="right">
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<img align="right" alt="black_arrow" border="0" src="https://emails.britishmuseum.org/i/amf_british_museum/project_163/arrows/black_arrow_160.png?size=40x0&amp;w=BbyR6p3ixLlSm5e0PIzxcorxTtBw" width="20" />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</th>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center">
+<table border="0" cellpadding="0" cellspacing="0" class="fl" style="width: 600px; background-color: #ffffff;" width="600">
+<tr>
+<td align="center" class="fl" style="width: 560px;" width="560">
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper top_padding--remove bottom_padding--add" style="-amf-class-label: &#39;Remove padding&#39;; -amf-class-label: &#39;Add padding&#39;; width: 560px;" width="560">
+<tr>
+<td class="top_padding--add top_padding_target bottom_padding--add bottom_padding_target" style="-amf-class-label: &#39;Add padding&#39;; padding-top: 0px; -amf-class-label: &#39;Add padding&#39;; padding-bottom: 20px">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td bgcolor="#000000" class="editor_expand" height="1" style="background-color:#000000;background-color:rgb(0,0,0);font-size:1px;height:1px;line-height:1px;" width="100%">
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr></table><table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center" class="top_outer_padding_target bottom_outer_padding_target">
+<span class="hide_at_launch fl"></span>
+<table border="0" cellpadding="0" cellspacing="0" class="fl" width="600">
+<tr>
+<td class="wrapper" style="background-color: #000000;background-image: url(https://emails.britishmuseum.org/i/amf_british_museum/project_15/Samurai/JTI_armour_left_600x300.jpg?size=0x0&amp;w=BVQAymZAv7aHbAAe27o_GjZNN9mA);background-position: center center;background-repeat: no-repeat;background-size: cover;width: 600px;" width="600">
+<!--[if gte mso 9]>
+<v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:450pt;height:188pt;">
+<v:fill type="frame" src="http://emails.britishmuseum.org/files/amf_british_museum/project_15/Samurai/JTI_armour_left_600x300.jpg" color="#000000" />
+<v:textbox inset="0,0,0,0">
+<![endif]-->
+<div>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr height="25" style="height: 25px;" valign="top"></tr>
+<tr>
+<td class="mob_none" style="width: 320px;" valign="top" width="320"></td>
+<td class="fl" style="padding: 20px 20px 20px 0;" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper" style="width: 270px; background-color: #ffffff; color: #000000; text-align: left;" width="270">
+<tr>
+<td class="fl" style="width: 270px;" valign="top" width="270">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="fl" style="padding: 20px 10px 0 20px;">
+<h1 style="text-align: inherit; font-size: 24px; font-weight: bold; line-height: 27px; margin: 0; padding: 0">Exhibition book</h1>
+</td>
+</tr>
+<tr>
+<td class="fl" style="padding: 20px 20px 20px 0px;">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="mob_none" style="width: 20px;" width="20"></td>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" class="button_size--small" style="-amf-class-label: &#39;Small&#39;; height: 35px; text-align: left; width: 160px; background-color:#000000;background-color:rgb(0,0,0);">
+<tr>
+<td class="btn_pad2" style="padding: 5px 20px 5px 0">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td style="width: 20px;" width="20">
+</td>
+<td align="left">
+<a href="https://emails.britishmuseum.org/c/14dB2SgrsL0PCvScRxST0hAox9ZT" style="text-decoration:none; color: #ffffff">
+<span style="font-size: 18px;"><strong>Buy now</strong></span>
+</a>
+</td>
+<td align="right">
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<img align="right" alt="black_arrow" border="0" src="https://emails.britishmuseum.org/i/amf_british_museum/project_163/arrows/black_arrow_160.png?size=40x0&amp;w=BbyR6p3ixLlSm5e0PIzxcorxTtBw" width="20" />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr height="25" style="height: 25px;" valign="top"></tr>
+</table>
+</div>
+<!--[if gte mso 9]>
+</v:textbox>
+</v:rect>
+<![endif]-->
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center">
+<table border="0" cellpadding="0" cellspacing="0" class="fl" style="width: 600px; background-color: #ffffff;" width="600">
+<tr>
+<td align="center" class="fl" style="width: 560px;" width="560">
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper bottom_padding--add top_padding--add" style="-amf-class-label: &#39;Add padding&#39;; -amf-class-label: &#39;Add padding&#39;; width: 560px;" width="560">
+<tr>
+<td class="top_padding--add top_padding_target bottom_padding--add bottom_padding_target" style="-amf-class-label: &#39;Add padding&#39;; padding-top: 20px; -amf-class-label: &#39;Add padding&#39;; padding-bottom: 20px">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td bgcolor="#000000" class="editor_expand" height="1" style="background-color:#000000;background-color:rgb(0,0,0);font-size:1px;height:1px;line-height:1px;" width="100%">
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr></table><table border="0" cellpadding="0" cellspacing="0" class="bottom_outer_padding--add" style="-amf-class-label: &#39;Add padding&#39;; background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center">
+<table border="0" cellpadding="0" cellspacing="0" class="fl" style="width: 600px; background-color: #ffffff; color: #000000; text-align: left;" width="600">
+<tr>
+<td align="center" class="fl" style="width: 560px;" valign="top" width="560">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="top_outer_padding_target bottom_outer_padding_target" style="padding-bottom: 20px">
+<table align="center" border="0" cellpadding="0" cellspacing="0" class="fl" style="width: 560px; text-align: left;" width="560">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper">
+<tr>
+<td class="full_img">
+<a href="https://emails.britishmuseum.org/c/14dB37swCqSk2vG8vpwnPvWEjZEg" style="text-decoration: none;">
+<img alt="Inside the Hawaii exhibition." border="0" class="center" src="https://emails.britishmuseum.org/i/amf_british_museum/project_15/Hawaii/Hawaii_Feb_1120x750.jpg?size=1120x0&amp;w=B9ByIGTXDc-txDkxUFDKxseo_ebI" style="display:block; width: 560px;" width="560" />
+</a>
+</td>
+</tr>
+<tr>
+<td style="padding-top: 20px;">
+<h1 style="text-align: inherit; font-size: 24px; font-weight: bold; line-height: 27px; margin: 0; padding: 0">Hawaiʻi: a kingdom crossing oceans</h1>
+</td>
+</tr>
+<tr>
+<td>
+<h2 style="text-align: inherit; font-size: 24px; font-weight: normal; line-height: 27px; margin: 0; padding: 0">Until 25 May</h2>
+</td>
+</tr>
+<tr>
+<td style="padding-top: 20px;">
+<p style="font-size: 18px; font-weight: normal; line-height: 21px; margin: 0; padding: 0">★★★★★ 'An epic thriller of an exhibition' <em>The Guardian</em><br />
+<br />
+Explore the dazzling artistry and powerful history of this Pacific island nation.</p>
+</td>
+</tr>
+<tr>
+<td style="padding-top: 20px;">
+<table border="0" cellpadding="0" cellspacing="0" class="button_size--small" style="-amf-class-label: &#39;Small&#39;; height: 35px; text-align: left; width: 160px; background-color:#000000;background-color:rgb(0,0,0);">
+<tr>
+<td class="btn_pad" style="padding: 5px 20px">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left">
+<a href="https://emails.britishmuseum.org/c/14dB3mEBM6JOsvu49h9SEKiU6PiD" style="text-decoration:none; color: #ffffff">
+<span style="font-size: 18px;"><strong>Book now</strong></span>
+</a>
+</td>
+<td align="right">
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<img align="right" alt="black_arrow" border="0" src="https://emails.britishmuseum.org/i/amf_british_museum/project_163/arrows/black_arrow_160.png?size=40x0&amp;w=BbyR6p3ixLlSm5e0PIzxcorxTtBw" width="20" />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center">
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper" style="background-color:#ffffff;background-color:rgb(255,255,255);width:600px;" width="600">
+<tr>
+<td class="top_outer_padding_target bottom_outer_padding_target nosidepad" style="padding-left: 20px; padding-right: 20px;">
+<table border="0" cellpading="0" cellspacing="0" width="100%">
+<tr>
+<td style="padding-bottom: 20px;">
+<p style="font-size: 18px; font-weight: normal; line-height: 21px; margin: 0; padding: 0"><span style="font-size:14px">Supported by<br />
+Lynne and Marc Benioff</span></p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center">
+<table border="0" cellpadding="0" cellspacing="0" class="fl" style="width: 600px; background-color: #ffffff;" width="600">
+<tr>
+<td align="center" class="fl" style="width: 560px;" width="560">
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper top_padding--remove bottom_padding--add" style="-amf-class-label: &#39;Remove padding&#39;; -amf-class-label: &#39;Add padding&#39;; width: 560px;" width="560">
+<tr>
+<td class="top_padding--add top_padding_target bottom_padding--add bottom_padding_target" style="-amf-class-label: &#39;Add padding&#39;; padding-top: 0px; -amf-class-label: &#39;Add padding&#39;; padding-bottom: 20px">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td bgcolor="#000000" class="editor_expand" height="1" style="background-color:#9c9c9c;background-color:rgb(156,156,156);font-size:1px;height:1px;line-height:1px;" width="100%">
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr></table><table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center" class="top_outer_padding_target bottom_outer_padding_target">
+<table border="0" cellpadding="0" cellspacing="0" class="fl" style="width: 600px; background-color: #ffffff; text-align: left;" width="600">
+<tr>
+<td class="fl" style="width: 300px;" valign="top" width="300">
+<table border="0" cellpadding="0" cellspacing="0" class="fl">
+<tr>
+<td class="full_img">
+<a href="https://emails.britishmuseum.org/c/14dB3BQGVMBiSvhZN8NntYF9TEX0" style="text-decoration: none;">
+<img alt="Portrait of Boki, Governer of Wahu of the Sandwich Islands, and his wife Liliha. Boki is wearing a feather helmet and a feather cloak, and Liliha is wearing a feather headdress, cloth wrap and a lei niho palaoa (neck ornament) made of a hook-shaped sperm whale tooth and cords of human hair." border="0" class="center" src="https://emails.britishmuseum.org/i/amf_british_museum/project_15/Hawaii/Hawaii_Feb_600x550_2.jpg?size=600x0&amp;w=Bh8UpRh_5eVB2yVpXu3MAn5wvt0g" style="display:block; width: 300px;" width="300" />
+</a>
+</td>
+</tr>
+</table>
+</td>
+<td class="fl" style="width: 300px;" valign="top" width="300">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td style="padding: 20px;">
+<table border="0" cellpadding="0" cellspacing="0" class="fl" style="width: 260px;" width="260">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="top_padding_target bottom_padding_target">
+<h1 style="text-align: inherit; font-size: 24px; font-weight: bold; line-height: 27px; margin: 0; padding: 0">Free online talk</h1>
+</td>
+</tr>
+</table>
+</td>
+</tr><tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="top_padding_target bottom_padding_target">
+<h2 style="text-align: inherit; font-size: 24px; font-weight: normal; line-height: 27px; margin: 0; padding: 0">12 February, 17.30</h2>
+</td>
+</tr>
+</table>
+</td>
+</tr><tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" class="top_padding--add" style="-amf-class-label: &#39;Add padding&#39;" width="100%">
+<tr>
+<td class="top_padding_target bottom_padding_target" style="padding-top: 20px">
+<p style="font-size: 18px; font-weight: normal; line-height: 21px; margin: 0; padding: 0">Join an expert panel as they explore the power of portraiture during the Hawaiian king and queen's visit to London in 1824.</p>
+</td>
+</tr>
+</table>
+</td>
+</tr><tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" class="top_padding--add" style="-amf-class-label: &#39;Add padding&#39;" width="100%">
+<tr>
+<td class="top_padding_target bottom_padding_target" style="padding-top: 20px">
+<table border="0" cellpadding="0" cellspacing="0" class="button_size--large" style="-amf-class-label: &#39;Large&#39;; height: 35px; text-align: left; width: 240px; background-color:#000000;background-color:rgb(0,0,0);">
+<tr>
+<td class="btn_pad" style="padding: 5px 20px">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left">
+<a href="https://emails.britishmuseum.org/c/14dB3R2M5ssNiv5Vr0qSjd1pGuBn" style="text-decoration:none; color: #ffffff">
+<span style="font-size: 18px;"><strong>Book your place</strong></span>
+</a>
+</td>
+<td align="right">
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<img align="right" alt="black_arrow" border="0" src="https://emails.britishmuseum.org/i/amf_british_museum/project_163/arrows/black_arrow_160.png?size=40x0&amp;w=BbyR6p3ixLlSm5e0PIzxcorxTtBw" width="20" />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center">
+<table border="0" cellpadding="0" cellspacing="0" class="fl" style="width: 600px; background-color: #ffffff;" width="600">
+<tr>
+<td align="center" class="fl" style="width: 560px;" width="560">
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper bottom_padding--add top_padding--add" style="-amf-class-label: &#39;Add padding&#39;; -amf-class-label: &#39;Add padding&#39;; width: 560px;" width="560">
+<tr>
+<td class="top_padding--add top_padding_target bottom_padding--add bottom_padding_target" style="-amf-class-label: &#39;Add padding&#39;; padding-top: 20px; -amf-class-label: &#39;Add padding&#39;; padding-bottom: 20px">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td bgcolor="#000000" class="editor_expand" height="1" style="background-color:#000000;background-color:rgb(0,0,0);font-size:1px;height:1px;line-height:1px;" width="100%">
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr></table><table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center" class="top_outer_padding_target bottom_outer_padding_target">
+<span class="hide_at_launch fl"></span>
+<table border="0" cellpadding="0" cellspacing="0" class="fl" width="600">
+<tr>
+<td class="wrapper" style="background-color: #000000;background-image: url(https://emails.britishmuseum.org/i/amf_british_museum/project_15/Samurai/Hokusai_600x300.jpg?size=0x0&amp;w=B3Ubwln-8EK_PBfR9CUh-q5orrp8);background-position: center center;background-repeat: no-repeat;background-size: cover;width: 600px;" width="600">
+<!--[if gte mso 9]>
+<v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:450pt;height:188pt;">
+<v:fill type="frame" src="http://emails.britishmuseum.org/files/amf_british_museum/project_15/Samurai/Hokusai_600x300.jpg" color="#000000" />
+<v:textbox inset="0,0,0,0">
+<![endif]-->
+<div>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr height="25" style="height: 25px;" valign="top"></tr>
+<tr>
+<td class="mob_none" style="width: 20px;" valign="top" width="20"></td>
+<td class="fl" style="padding: 20px 20px 20px 0;">
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper" style="width: 270px; background-color: #ffffff; color: #000000; text-align: left;" valign="top" width="560">
+<tr>
+<td class="fl" style="width: 270px;" valign="top" width="270">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="fl" style="padding: 20px 10px 0 20px;">
+<h1 style="text-align: inherit; font-size: 24px; font-weight: bold; line-height: 27px; margin: 0; padding: 0">Love exhibitions?</h1>
+</td>
+</tr>
+<tr>
+<td class="fl" style="padding: 20px 20px 20px 0px;">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="mob_none" style="width: 20px;" width="20"></td>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" class="button_size--large" style="-amf-class-label: &#39;Large&#39;; height: 35px; text-align: left; width: 240px; background-color:#000000;background-color:rgb(0,0,0);">
+<tr>
+<td class="btn_pad2" style="padding: 5px 20px 5px 0">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td style="width: 20px;" width="20">
+</td>
+<td align="left">
+<a href="https://emails.britishmuseum.org/c/14dB46eRf8khIuTR4S4n8rnFtkfK" style="text-decoration:none; color: #ffffff">
+<span style="font-size: 18px;"><strong>Become a Member</strong></span>
+</a>
+</td>
+<td align="right">
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<img align="right" alt="black_arrow" border="0" src="https://emails.britishmuseum.org/i/amf_british_museum/project_163/arrows/black_arrow_160.png?size=40x0&amp;w=BbyR6p3ixLlSm5e0PIzxcorxTtBw" width="20" />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr height="25" style="height: 25px;" valign="top"></tr>
+</table>
+</div>
+<!--[if gte mso 9]>
+</v:textbox>
+</v:rect>
+<![endif]-->
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center">
+<table border="0" cellpadding="0" cellspacing="0" class="fl" style="width: 600px; background-color: #ffffff;" width="600">
+<tr>
+<td align="center" class="fl" style="width: 560px;" width="560">
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper bottom_padding--add top_padding--add" style="-amf-class-label: &#39;Add padding&#39;; -amf-class-label: &#39;Add padding&#39;; width: 560px;" width="560">
+<tr>
+<td class="top_padding--add top_padding_target bottom_padding--add bottom_padding_target" style="-amf-class-label: &#39;Add padding&#39;; padding-top: 20px; -amf-class-label: &#39;Add padding&#39;; padding-bottom: 20px">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td bgcolor="#000000" class="editor_expand" height="1" style="background-color:#000000;background-color:rgb(0,0,0);font-size:1px;height:1px;line-height:1px;" width="100%">
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr></table><table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center" class="top_outer_padding_target bottom_outer_padding_target">
+<table border="0" cellpadding="0" cellspacing="0" class="fl" dir="rtl" style="width: 600px; background-color: #ffffff; color: #000000; text-align: left;" width="600">
+<tr>
+<td class="fl" dir="ltr" style="width: 300px;" valign="top" width="300">
+<table border="0" cellpadding="0" cellspacing="0" class="fl">
+<tr>
+<td class="full_img">
+<a href="https://emails.britishmuseum.org/c/14dB4lqWoObM8uHMIJHRXFJVg9U7" style="text-decoration: none;">
+<img alt="A print from the Samurai shop." border="0" class="center" src="https://emails.britishmuseum.org/i/amf_british_museum/project_15/Samurai/Samurai_-_Prints_600x550.jpg?size=600x0&amp;w=BJsyGLk1GM6eZ5-LoM2ofEP_I4Xo" style="display:block; width: 300px;" width="300" />
+</a>
+</td>
+</tr>
+</table>
+</td>
+<td class="fl" dir="ltr" style="width: 300px;" valign="top" width="300">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td style="padding: 20px;">
+<table border="0" cellpadding="0" cellspacing="0" class="fl" style="width: 260px;" width="260">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="top_padding_target bottom_padding_target">
+<h1 style="text-align: inherit; font-size: 24px; font-weight: bold; line-height: 27px; margin: 0; padding: 0">Samurai shop</h1>
+</td>
+</tr>
+</table>
+</td>
+</tr><tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" class="top_padding--add" style="-amf-class-label: &#39;Add padding&#39;" width="100%">
+<tr>
+<td class="top_padding_target bottom_padding_target" style="padding-top: 20px">
+<p style="font-size: 18px; font-weight: normal; line-height: 21px; margin: 0; padding: 0">From fearsome replicas and exquisite jewellery to thrilling manga and stunning prints, discover this new samurai-inspired range.</p>
+</td>
+</tr>
+</table>
+</td>
+</tr><tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" class="bottom_padding--remove top_padding--add" style="-amf-class-label: &#39;Add padding&#39;; -amf-class-label: &#39;Remove padding&#39;" width="100%">
+<tr>
+<td class="top_padding_target bottom_padding_target" style="padding-top: 20px; padding-bottom: 0px">
+<table border="0" cellpadding="0" cellspacing="0" class="button_size--small" style="-amf-class-label: &#39;Small&#39;; height: 35px; text-align: left; width: 160px; background-color:#000000;background-color:rgb(0,0,0);">
+<tr>
+<td class="btn_pad" style="padding: 5px 20px">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left">
+<a href="https://emails.britishmuseum.org/c/14dB4AD1yu3gyuvImBlmMU6b2Zyu" style="text-decoration:none; color: #ffffff">
+<span style="font-size: 18px;"><strong>Shop now</strong></span>
+</a>
+</td>
+<td align="right">
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<img align="right" alt="black_arrow" border="0" src="https://emails.britishmuseum.org/i/amf_british_museum/project_163/arrows/black_arrow_160.png?size=40x0&amp;w=BbyR6p3ixLlSm5e0PIzxcorxTtBw" width="20" />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center">
+<table border="0" cellpadding="0" cellspacing="0" class="fl" style="width: 600px; background-color: #ffffff;" width="600">
+<tr>
+<td align="center" class="fl" style="width: 560px;" width="560">
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper top_padding--add bottom_padding--remove" style="-amf-class-label: &#39;Add padding&#39;; -amf-class-label: &#39;Remove padding&#39;; width: 560px;" width="560">
+<tr>
+<td class="top_padding--add top_padding_target bottom_padding--add bottom_padding_target" style="-amf-class-label: &#39;Add padding&#39;; padding-top: 20px; -amf-class-label: &#39;Add padding&#39;; padding-bottom: 0px">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td bgcolor="#000000" class="editor_expand" height="1" style="background-color:#000000;background-color:rgb(0,0,0);font-size:1px;height:1px;line-height:1px;" width="100%">
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr></table><table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center">
+<table border="0" cellpadding="0" cellspacing="0" class="fl" style="width: 600px; background-color: #ffffff; color: #000000; text-align: left;" width="600">
+<tr>
+<td align="center" style="width: 600px;" width="600">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="top_outer_padding_target bottom_outer_padding_target">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<th class="fl no_height" style="font-weight: normal; margin: 0; padding: 0; width: 300px; " valign="top" width="300">
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper" style="width: 300px; text-align:left;" width="300">
+<tr>
+<td class="fl" style="padding: 20px 10px 0 20px;">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="top_padding_target bottom_padding_target">
+<h1 style="text-align: inherit; font-size: 24px; font-weight: bold; line-height: 27px; margin: 0; padding: 0">Support the Museum</h1>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</th>
+<th class="fl no_height" style="font-weight: normal; margin: 0; padding: 0; width: 300px; " valign="top" width="300">
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper" style="width: 300px; text-align:left;" width="300">
+<tr>
+<td class="fl" style="padding: 20px 20px 0 10px;">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="top_padding_target bottom_padding_target">
+<table border="0" cellpadding="0" cellspacing="0" class="button_size--medium" style="-amf-class-label: &#39;Medium&#39;; height: 35px; text-align: left; width: 200px; background-color:#000000;background-color:rgb(0,0,0);">
+<tr>
+<td class="btn_pad" style="padding: 5px 20px">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left">
+<a href="https://emails.britishmuseum.org/c/14dB7Ma6AggE0rYNIQCPwULuhP1j" style="text-decoration:none; color: #ffffff">
+<span style="font-size: 18px;"><strong>Donate now</strong></span>
+</a>
+</td>
+<td align="right">
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<img align="right" alt="black_arrow" border="0" src="https://emails.britishmuseum.org/i/amf_british_museum/project_163/arrows/black_arrow_160.png?size=40x0&amp;w=BbyR6p3ixLlSm5e0PIzxcorxTtBw" width="20" />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</th>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center">
+<table border="0" cellpadding="0" cellspacing="0" class="fl" style="width: 600px; background-color: #ffffff;" width="600">
+<tr>
+<td align="center" class="fl" style="width: 560px;" width="560">
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper bottom_padding--remove top_padding--add" style="-amf-class-label: &#39;Add padding&#39;; -amf-class-label: &#39;Remove padding&#39;; width: 560px;" width="560">
+<tr>
+<td class="top_padding--add top_padding_target bottom_padding--add bottom_padding_target" style="-amf-class-label: &#39;Add padding&#39;; padding-top: 20px; -amf-class-label: &#39;Add padding&#39;; padding-bottom: 0px">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td bgcolor="#000000" class="editor_expand" height="1" style="background-color:#000000;background-color:rgb(0,0,0);font-size:1px;height:1px;line-height:1px;" width="100%">
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr></table>
+<table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center">
+<table border="0" cellpadding="0" cellspacing="0" class="fl" style="width: 600px; background-color: #ffffff; color: #000000; text-align: left;" width="600">
+<tr>
+<td class="fl" style="width: 560px;" width="560">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="fl" style="padding: 20px;">
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper" style="width: 560px;" width="560">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td>
+<h1 style="text-align: inherit; font-size: 24px; font-weight: bold; line-height: 27px; margin: 0; padding: 0">
+                                                                    Connect with us
+                                                                </h1>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="210">
+<tr>
+<td style="width: 40px; padding: 20px 10px 20px 0;" width="40">
+<a href="https://emails.britishmuseum.org/c/14dB81mbJW88qrMJmIgkm97K4EFG" style="text-decoration: none;" target="_blank">
+<img alt="Connect with us on Facebook" border="0" src="https://emails.britishmuseum.org/i/amf_british_museum/project_15/Social_logos/facebook_black_circle.png?size=40x0&amp;w=BCPLKhtPQpGLSXTLQ9cGLSGwFKC0" style="display:block; width: 40px;" width="40" />
+</a>
+</td>
+<td style="width: 40px; padding: 20px 10px 20px 0;" width="40">
+<a href="https://emails.britishmuseum.org/c/14dB8gygTBZCQrAF0zTPbntZRuk3" style="text-decoration: none;" target="_blank">
+<img alt="Connect with us on X" border="0" src="https://emails.britishmuseum.org/i/amf_british_museum/project_15/Social_logos/X_black_circle.png?size=40x0&amp;w=BB5kfGNgCP0gQzJdjmcO7HJTrE9I" style="display:block; width: 40px;" width="40" />
+</a>
+</td>
+<td style="width: 40px; padding: 20px 10px 20px 0;" width="40">
+<a href="https://emails.britishmuseum.org/c/14dB8vKm3hR7groAErxk0BQfEjYq" style="text-decoration: none;" target="_blank">
+<img alt="Connect with us on Instagram" border="0" src="https://emails.britishmuseum.org/i/amf_british_museum/project_15/Social_logos/Insta_black_circle.png?size=40x0&amp;w=BJSFwdh7ZCYMTMftvbQV27btOaow" style="display:block; width: 40px;" width="40" />
+</a>
+</td>
+<td style="width: 40px; padding: 20px 10px 20px 0;" width="40">
+<a href="https://emails.britishmuseum.org/c/14dB8KWrcXIBGrcwijaOPQcvr9CN" style="text-decoration: none;" target="_blank">
+<img alt="Connect with us on YouTube" border="0" src="https://emails.britishmuseum.org/i/amf_british_museum/project_15/Social_logos/YouTube_black_circle.png?size=40x0&amp;w=BE3QUmuzm8MZdwHrUe4HIB6CL59U" style="display:block; width: 40px;" width="40" />
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td>
+<h6 style="text-align: inherit; color: #949494; font-size: 12px; font-weight: bold; line-height: 15px; margin: 0; padding: 0"><p style="font-size: 18px; font-weight: normal; line-height: 21px; margin: 0; padding: 0"><span style="font-size:14px"><strong><a href="https://emails.britishmuseum.org/u/17ik7JdDQWVDMGYvGfJ0Djr" style="color: rgb(0, 0, 0);" target="_blank">Unsubscribe</a><span style="color:#000000">&nbsp; |&nbsp;&nbsp;</span><a href="https://emails.britishmuseum.org/k/12SAaBSWCWybL2547b2Rw3C3" style="color: rgb(0, 0, 0);" target="_blank">Update preferences</a><span style="color:#000000">&nbsp; |&nbsp;&nbsp;</span><a href="https://emails.britishmuseum.org/c/14dB908wmDA66r0rWaOjF4yLdZha" style="color: rgb(0, 0, 0);" target="_blank">Privacy policy</a></strong></span><br />
+<br />
+<span style="font-size:14px"><span style="color:#000000"><strong>Images:&nbsp;</strong></span><br />
+<br />
+Inside <em>Samurai</em>.<br />
+<br />
+Tsukioka Yoshitoshi (1839–92), Tomoe Gozen&nbsp;from <em>Mirror of Beauties Past and Present</em>. Colour woodblock print, 1875–76.<br />
+<br />
+Suit of armour and helmet. Iron, silk, wool, leather, gold and lacquer, Japan. 1519 (helmet) 1696 (armour) and 1800s (textiles). &nbsp;Purchase made possible by the JTI Japanese Acquisition Fund.&nbsp;<br />
+<br />
+Inside&nbsp;<em>Hawaiʻi: a kingdom crossing oceans</em>.<br />
+<br />
+John Hayter (1800–1895), <em>Na Poki, Prime Minister of the Sandwich Islands,&nbsp;and his wife, Liliha</em>. Lithograph, 1824.&nbsp;<br />
+<br />
+Katsushika Hokusai (1760–1849),&nbsp;<em>Minamoto no Tametomo on the Isle of Demons</em>. Hanging scroll painting, ink and colours on silk, 1811.</span><br />
+<br />
+<span style="font-size:14px"><span style="color:#000000">© 2026 The Trustees of the British Museum </span></span></p>
+</h6>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<!--[if lt mso 12]><img src="https://emails.britishmuseum.org/r/11s33SewAiXGqNjOV.png?c=1" alt=""><![endif]--><![if gt mso 11]><img src="https://emails.britishmuseum.org/r/11s33SewAiXGqNjOV.png" alt=""><![endif]>
+</body>
+</html>
+`,text:`★★★★★ 'Scintillating' | Samurai now open
+
+'Extraordinary' – The Guardian
+
+View this email online https://emails.britishmuseum.org/q/1f52Myo8OnZbVQwAcEviYeE/wv
+
+https://emails.britishmuseum.org/c/12Zgny5RD3lY1r6bQtHjH5THyi
+
+Visit the British Museum website.
+https://emails.britishmuseum.org/c/14dB9fkBwjrAwqOnA2rOuiV10OVx
+
+Exhibitions
+https://emails.britishmuseum.org/c/14dB9uwGFZj4WqCjdU5jjxhgNEzU
+Membership
+https://emails.britishmuseum.org/c/14dB9JILPFazmqqeRLIO8LDwAueh
+Shop
+https://emails.britishmuseum.org/c/14dB9YUQZl23MqeavDmiXZZMnjSE
+
+Inside the Samurai exhibition.
+https://emails.britishmuseum.org/c/14dBatj1iGL2CpQ1NmDiCsIhWZbo
+
+Samurai
+
+Now open
+
+★★★★★ 'A ravishing, riveting exhibition' – The Times
+★★★★★ 'An extraordinary encounter' – The Guardian
+
+Unravel 1,000 years of myth and reality in our new blockbuster exhibition, that 'challenges everything you thought you knew about the Japanese warriors' (The Telegraph). Special late openings now on sale: 7, 12 and 14 February.
+
+Book now
+https://emails.britishmuseum.org/c/14dBaIv6smCx2pDXregNrH4xJOPL
+
+black_arrow
+
+Supported by
+The Huo Family Foundation
+
+Curator Joe Nickols with a selection of samurai swords.
+https://emails.britishmuseum.org/c/14dBaXHbC2u1sprT55UigVqNwEu8
+
+Curator's Corner
+
+Samurai swords
+
+Join Project Curator Joe Nickols as they get to grips with some fearsome weaponry, spanning 1,000 years of Japanese history.
+
+Watch the video
+https://emails.britishmuseum.org/c/14dBbcTgLIlvSpfOIXxN69N3ju8v
+
+black_arrow
+
+Colour woodblock print of Tomoe Gozen wearing red and green armour.
+https://emails.britishmuseum.org/c/14dBbs5lVod0ip3KmPbhVo9j6jMS
+
+Free online talk
+
+Women's History Month
+
+Discover what life was like for historical samurai women, as well as explore present-day gender inequality in Japan.
+
+Book your place
+https://emails.britishmuseum.org/c/14dBbHhr544uIoRG0GOMKCvyT9rf
+
+black_arrow
+
+
+
+Exhibition book
+
+Buy now
+https://emails.britishmuseum.org/c/14dBbWtweJVZ8oFBEyshzQROFZ5C
+
+black_arrow
+
+Inside the Hawaii exhibition.
+https://emails.britishmuseum.org/c/14dBcbFBopNtyotxiq5Mp5e4sOJZ
+
+Hawaiʻi: a kingdom crossing oceans
+
+Until 25 May
+
+★★★★★ 'An epic thriller of an exhibition' The Guardian
+
+Explore the dazzling artistry and powerful history of this Pacific island nation.
+
+Book now
+https://emails.britishmuseum.org/c/14dBcqRGy5EXYohsWhJhejAkfEom
+
+black_arrow
+
+Supported by
+Lynne and Marc Benioff
+
+Portrait of Boki, Governer of Wahu of the Sandwich Islands, and his wife Liliha. Boki is wearing a feather helmet and a feather cloak, and Liliha is wearing a feather headdress, cloth wrap and a lei niho palaoa (neck ornament) made of a hook-shaped sperm whale tooth and cords of human hair.
+https://emails.britishmuseum.org/c/14dBcG3LHLwsoo5oA9mM3xWA2u2J
+
+Free online talk
+
+12 February, 17.30
+
+Join an expert panel as they explore the power of portraiture during the Hawaiian king and queen's visit to London in 1824.
+
+Book your place
+https://emails.britishmuseum.org/c/14dBdarW17frenHfRSDLI0F5C9lt
+
+black_arrow
+
+
+
+Love exhibitions?
+
+Become a Member
+https://emails.britishmuseum.org/c/14dBdpE1aN6VEnvbvKhgxf1loYZQ
+
+black_arrow
+
+A print from the Samurai shop.
+https://emails.britishmuseum.org/c/14dBdEQ6ksYq4nj79BULmtnBbOEd
+
+Samurai shop
+
+From fearsome replicas and exquisite jewellery to thrilling manga and stunning prints, discover this new samurai-inspired range.
+
+Shop now
+https://emails.britishmuseum.org/c/14dBdU2bu8PUun72NtygbHJQYEiA
+
+black_arrow
+
+Support the Museum
+
+Donate now
+https://emails.britishmuseum.org/c/14dBe9egDOHoUmUYrlbL0W66LtWX
+
+black_arrow
+
+Connect with us
+
+Connect with us on Facebook
+https://emails.britishmuseum.org/c/14dBeoqlNuyTkmIU5cPfQasmyjBk
+Connect with us on X
+https://emails.britishmuseum.org/c/14dBeDCqXaqnKmwPJ4sKFoOCl9fH
+Connect with us on Instagram
+https://emails.britishmuseum.org/c/14dBeSOw6QhSamkLmW6fuDaS7YU4
+Connect with us on YouTube
+https://emails.britishmuseum.org/c/14dBf80Bgw9mAm8H0NJKjRx7UOyr
+
+Unsubscribe https://emails.britishmuseum.org/u/17ik7JdDQWVDMGYvGfJ0Djr | Update preferences https://emails.britishmuseum.org/k/12SAaBSWCWybL2547b2Rw3C3 | Privacy policy
+https://emails.britishmuseum.org/c/14dBfncGqc0R0lWCEFnf95TnHEcO
+
+Images:
+
+Inside Samurai.
+
+Tsukioka Yoshitoshi (1839–92), Tomoe Gozen from Mirror of Beauties Past and Present. Colour woodblock print, 1875–76.
+
+Suit of armour and helmet. Iron, silk, wool, leather, gold and lacquer, Japan. 1519 (helmet) 1696 (armour) and 1800s (textiles). Purchase made possible by the JTI Japanese Acquisition Fund.
+
+Inside Hawaiʻi: a kingdom crossing oceans.
+
+John Hayter (1800–1895), Na Poki, Prime Minister of the Sandwich Islands, and his wife, Liliha. Lithograph, 1824.
+
+Katsushika Hokusai (1760–1849), Minamoto no Tametomo on the Isle of Demons. Hanging scroll painting, ink and colours on silk, 1811.
+
+© 2026 The Trustees of the British Museum
+`,accountEmail:"demo@demo.com",messageId:"<demo-mock-1302@homerow.dev>"},{id:1303,seq:1303,threadId:"thread-mock-1303",subject:"Battlefield 6 | Jetzt live: Saison 2 von REDSEC",from:"PlayStation",fromAddress:"email@email.playstation.com",to:["demo@demo.com"],date:"2026-02-24T20:04:09.000Z",flags:["\\Seen"],snippet:"96 PlayStation Stelle dich dem Nebel des Krieges PlayStation Zeit für drastische Maßnahmen In Saison 2 von Battlefield 6 und REDSEC nimmt der Krieg gegen Pax Armata globa",hasAttachments:!1,folderPath:"INBOX",html:`
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+	<base target="_blank" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta name="robots" content="noindex, nofollow">
+<meta name="x-apple-disable-message-reformatting">
+	<!--[if gte mso 9]><xml><o:OfficeDocumentSettings><o:AllowPNG/><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml><![endif]-->
+	<title>PlayStation</title>
+		<!--  -->
+ <style>
+  
+  @font-face{font-family:'SST-Roman';src: url(https://www.playstation.com/en-in/1.40.01/etc/designs/pdc/clientlibs_base/fonts/hinted-SSTPro-Roman.woff) format('woff'); font-weight:400;font-style:normal }
+   
+  @font-face{ font-family:'SST-Roman-Bold';src:url(https://www.playstation.com/en-in/1.40.01/etc/designs/pdc/clientlibs_base/fonts/hinted-SSTPro-Bold.eot);src:url(https://www.playstation.com/en-in/1.40.01/etc/designs/pdc/clientlibs_base/fonts/hinted-SSTPro-Bold.eot?#iefix) format("embedded-opentype"),url(https://www.playstation.com/en-in/1.40.01/etc/designs/pdc/clientlibs_base/fonts/hinted-SSTPro-Bold.woff2) format("woff2"),url(https://www.playstation.com/en-in/1.40.01/etc/designs/pdc/clientlibs_base/fonts/hinted-SSTPro-Bold.woff) format("woff"),url(https://www.playstation.com/en-in/1.40.01/etc/designs/pdc/clientlibs_base/fonts/hinted-SSTPro-Bold.ttf) format("truetype"),url(https://www.playstation.com/en-in/1.40.01/etc/designs/pdc/clientlibs_base/fonts/hinted-SSTPro-Bold.svg#SSTPro-Bold)
+ format("svg");font-weight:500;font-style:normal}
+
+  body, #body-table, .body-table { height: 100% !important; width: 100% !important; margin: 0; padding: 0; font-family:SST, SST-Roman, Arial, Helvetica, sans-serif; min-width: 100%!important; }
+  a { text-decoration: none; }
+  img, a img { border: 0; outline: none; text-decoration: none; }
+  table, td, th { border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+  .ReadMsgBody { width: 100%; }
+  .ExternalClass { width: 100%; }
+  .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div { line-height: 100%; } 
+  img { -ms-interpolation-mode: bicubic; } 
+  body, table, td, p, a, li, blockquote { -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; } 
+  #outlook a { padding: 0; }
+  @media only screen and (max-width: 480px) { body { margin: 0 !important; } div[style*="margin: 16px 0"] { margin: 0 !important; font-size: 100% !important; }}
+
+     /*CTA HOVER STYLES*/
+.cta-hover_CD3D0F_ON {transition: 0.1s;}
+.cta-hover_2D64E6_ON {transition: 0.1s;}
+.cta-hover_CD3D0F_ON:hover {box-shadow: 0px 0px 0px 3px white inset, 0px 0px 0px 1px #CD3D0F!important;}
+.cta-hover_2D64E6_ON:hover {box-shadow: 0px 0px 0px 3px white inset, 0px 0px 0px 1px #2D64E6!important;}
+
+  @media only screen and (max-width:480px) {
+   .body, #body-table {background-color:#eeeeee!important;}
+   
+   .hide { display: none!important; }
+   .no-bg { background: none!important; }
+   .mobile_image { display: block !important;  max-height: none !important;}
+   
+   .responsive { width: 100% !important; }
+   .responsiveInner { width: 85% !important; }
+   .ps_logo {width:50px!important; height: 39px!important;}
+   .w100 {width: 100%!important;}
+   .w95 {width: 95%!important;}
+   .w90 {width: 90%!important;}
+   .w85 {width: 85%!important;}
+   .w80 {width: 80%!important;}
+   .w75 {width: 75%!important;}
+   .w70 {width: 70%!important;}
+   .w65 {width: 65%!important;}
+   .w60 {width: 60%!important;}
+   .w55 {width: 55%!important;}
+   .w50 {width: 50%!important;}
+.w46 {width: 46%!important;}
+   .w47 {width: 47%!important;}
+   .w48 {width: 48%!important;}
+   .w45 {width: 45%!important;}
+   
+   .block { display: block !important; }
+   .display-table {display: table!important;}
+   .inline-block { display: inline-block !important; }
+   .display-header {display: table-header-group!important}
+   .display-footer {display: table-footer-group!important}
+   .float-l {float: left!important;}
+   .float-r {float: right!important;}
+   .cntr {float: none !important; margin: auto !important; text-align: center !important;}
+   #txt-align-cntr {text-align: center!important; margin: auto 0!important; float: none!important;}
+   td.txt-left {float: left!important; text-align: left!important;}
+   td.txt-center {float: center!important; text-align: center!important;}
+   td.txt-right {float: right!important; text-align: right!important;}
+   
+   .hauto { height: auto !important; }
+   .h135 { height: 135px !important; }
+   .h30 { height: 30px !important; }
+   .h25 { height: 25px !important; }
+   .h20 { height: 20px !important; }
+   .h15 { height: 15px !important; }
+   .h100per {height: 100%!important;}
+   
+   .p-0 {padding: 0!important;}
+   .p-b-0 { padding-bottom: 0!important;}
+   .p-t-0 { padding-top: 0!important;}
+   .p-l-0 { padding-left: 0!important;}
+   .p-r-0 { padding-right: 0!important;}
+   .p-b-header {padding-bottom: 7%!important;}
+   .p-t-header {padding-top: 0%!important;} .p-20 { padding: 20px !important; }
+   .p-t-30 { padding-top: 30px !important; }
+   .p-b-30 { padding-bottom: 30px !important; }
+   .p-trl-30 { padding-top: 30px !important; padding-right: 30px !important; padding-left: 30px !important; }
+   .p-t-100per {padding-top: 100%!important;}
+.p-t-10 {padding-top: 10px!important;}
+.p-t-20 {padding-top: 20px!important;}
+.p-t-30 {padding-top: 30px!important;}
+.p-t-40 {padding-top: 40px!important;}
+   
+   .m-0-auto { margin: 0 auto !important; }
+   .m-t-10 { margin-top: 10px !important; }
+   .m-t-20 { margin-top: 20px !important; }
+   .m-t-30 { margin-top: 30px !important; }
+   .m-b-10 { margin-bottom: 10px !important; }
+   .m-b-20 { margin-bottom: 20px !important; }
+   .m-b-30 { margin-bottom: 30px !important; }
+   .m-trl-30 { margin-top: 30px !important; margin-right: 30px !important; margin-left: 30px !important; }
+   
+   .fs30 { font-size: 30px !important; }
+   .fs20 { font-size: 20px !important; }
+   .fs18 { font-size: 18px !important; }
+   .fs16 { font-size: 16px !important; }
+   .fs14 { font-size: 14px !important; }
+   
+   .mobbg-reset { background-position: top center!important;}
+   .mobbg-reset-header { background-position: 50% 50%!important;}
+   .mobbg-reset-top { background-position: top center!important;}
+   .mobbg-reset-bottom { background-position: bottom center!important;}
+   .footer-links {padding: 5px 0px!important;}
+   
+/*MOBILE IVALDI CSS*/
+.imageindent_spacerTop_hide_optional_560 {display:none!important;}
+
+  /*MOBILE ADJUST FOR MB*/
+			.hero-title-mobile-css {font-size:20px!important; line-height:26px!important; }
+			.accent-title-mobile-css {font-size:10px!important; line-height:20px!important; }
+			.paragraph-mobile-css {font-size:14px!important; line-height:24px!important; }
+			.cta-wrapper-mobile-css {min-width:80px;max-width:250px!important; min-height:40px!important; }
+			.cta-mobile-css {font-size:14px!important; line-height:17.5px!important;} .cta-mobile-padding-css {padding:11px!important;}
+			.cta-width-spacer {width:80px!important;}
+			.cta-height-spacer {height:40px!important;}
+			.disclaimer-mobile-css{}
+			.mobile-module-spacers { height:30px!important;}
+			.mobile-module-inner-spacing-bottom-10 { padding-bottom:10px!important;}
+			.mobile-module-inner-spacing-bottom-20 { padding-bottom:20px!important;}
+			.mobile-module-inner-spacing-bottom-30 { padding-bottom:30px!important;}
+			.mobile-module-inner-spacing-subtitle {padding-bottom:10px!important;}
+  }
+  
+  @media only screen and (max-width:480px) {
+  
+   u + .body .gmail-hide {display: none!important;}
+   body[data-outlook-cycle] { margin: 0!important; width: 100%!important; padding: 0!important;}
+   body[data-outlook-cycle] .gmail-hide {display:none!important;}
+  
+   div#menu {left:0;width:100%;max-height:0!important;overflow:hidden!important;top:40px; transition: all  0.5s!important;} 
+   table.menu th { display: block!important; border-top:0!important;background: none!important; height: auto!important; padding: 5px!important;}
+  
+   div#menu th:first-child {border-top:0!important;background: none!important;}  
+   div#menu th:last-child {border-top:0!important;border-bottom:0px!important; background: none!important;}
+  
+      label.hamburger {cursor:pointer;display: inline-block!important;position:inherit!important;right:0;top:0px!important;z-index:1;padding:0px 0px!important; float: right!important; width: 100%!important;}
+   label.hamburger img {width:34px!important;height:42px!important; float: right!important; margin-right: 10px!important; text-align: right!important; display: block!important;}
+   #hidden-checkbox:checked ~ div#menu {max-height:300px!important; display: block!important; padding-bottom: 20px!important}
+   .nav-bgcolor {background: rgba(0,0,0,0.4)!important;}
+  
+   }
+
+    
+  
+   @media only screen and (max-width:320px) {
+   .responsive-bp320 { width: 100% !important; }
+   .w100-bp320 { width: 100% !important; }
+   .w85-bp320 { width: 85% !important; }
+   .w60-bp320 { width: 60% !important; }
+   .block-bp320 { display: block !important; }
+   .hauto-bp320 { height: auto !important; }
+   .text-center-bp320 { text-align: center !important; }
+   .cntr-bp320 {float: none !important; margin: auto !important; text-align: center !important;}
+   .coverbg-bp320 {background-size: cover!important;}
+   .m-b-20-bp320 { margin-bottom: 20px!important;}
+  
+   .hide-bp320 {display:none!important;}
+   .body-table { background-size: 100% 400px!important}
+   .no-bg-bp320 {background: none!important;}
+   .footer-links {width: 100%!important; padding: 5px 0px!important; display: block!important;}
+   .body-bg {background-size: 110%!important;}
+   .nav-bgcolor {background: rgba(22,60,110,1)!important;}
+  
+  }
+ 
+</style>	
+<!--[if mso]><style> body, #body-table, .body-table, table, td, th, span, font, a {font-family: Arial, Helvetica, sans-serif !important;}</style><![endif]-->
+
+<style></style><style>
+.subjectb_NOT_USED {display:none!important;}
+.subjectc_NOT_USED {display:none!important;}
+.subjectd_NOT_USED {display:none!important;}
+</style>
+
+<!--  -->
+
+<style>
+.rounded img.hero-img {border-radius: 16px!important; -webkit-border-radius: 16px!important; -moz-border-radius: 16px!important;}
+.toprounded img.hero-img {border-radius: 16px 16px 0px 0px!important; -webkit-border-radius: 16px 16px 0px 0px!important; -moz-border-radius: 16px 16px 0px 0px!important;}
+.bottomrounded img.hero-img {border-radius: 0px 0px 16px 16px!important; -moz-border-radius: 0px 0px 16px 16px!important; -webkit-border-radius: 0px 0px 16px 16px!important;}
+
+ @media only screen and (max-width:480px) {
+.hybrid24-hero-title-mobile-css { line-height: 120%!important; margin: auto!important; text-align: center!important; float: none!important;}
+.hybrid24-paragraph-mobile-css {line-height: 130%!important; margin: auto!important; text-align: center!important; padding-top: 25px!important; float: none!important;}
+.hybrid24-disclaimer-mobile-css {line-height: 130%!important; margin: auto!important; text-align: center!important; padding-top: 25px!important; float: none!important;}
+.hybrid24-cta-mobile-css {padding: 10px 20px!important;}
+/* .hybrid24-cta-mobile-css a {display: inline-block!important;}
+.hybrid24-cta-mobile-css a font {display: table!important;}
+td.hybrid24-cta-mobile-css a {display: inline-block!important; width: 100%!important;}
+td.hybrid24-cta-mobile-css a font {display: inline-table!important; width: 100%!important} */
+table td.hybrid24-cta-mobile-css a {display: inline!important; width: 100%!important;}
+table td.hybrid24-cta-mobile-css a font {display: inline!important; width: 100%!important}
+
+.cta-wrapper-css {padding-top: 60px!important; }
+.mod-padding-css {padding: 25px 0px!important;}
+.dop24-cta-wrapper-mobile-css {max-width: 100%!important;}
+
+td.force-bottons-all td.cta-outter-wrapper-css table.dop24-cta-wrapper-mobile-css {float: left!important;}
+td.force-bottons-me td.cta-outter-wrapper-css table.dop24-cta-wrapper-mobile-css {float: right!important;}
+}
+</style>
+<!--  -->
+<style>
+@media only screen and (max-width:480px){
+.p-t-20_40px {padding-top: 20px!important; }
+}
+</style>
+
+</head>
+<body class="body" bgcolor="#FFFFFF" style="padding:0; width: 100%; background:#FFFFFF">
+<center>
+<table class="responsive" border="0" cellpadding="0" cellspacing="0" width="100%" background="#FFFFFF" style="width: 100%; background:#FFFFFF; min-width:100%">
+	<tr>
+		<td align="center" valign="top" background="#FFFFFF">
+			<table id="main-wrapper" class="responsive" border="0" cellpadding="0" cellspacing="0" align="center" width="740" bgcolor="#EEEEEE">
+				<tr>
+					<td align="center" valign="top" bgcolor="#EEEEEE">
+			<span style="display:none;"> </span>
+<!---->
+
+<!--
+ --><span style="display:none;"> </span>
+<!---->
+<!-- -->
+<table id="header-section" class="responsive" border="0" cellpadding="0" cellspacing="0" align="center" width="740">
+				<tr>
+					<td class="mobbg-reset-header" background="https://image.playstationemail.com/lib/fe9c12717065047e76/m/32/MB-HEAD-740-BG-MOBv2.jpg" border="0" cellpadding="0" cellspacing="0" align="center" width="740" bgcolor="#003a9d" style="background-position: -9999px; background-size: cover; background-repeat: no-repeat;">
+						<table class="responsive" width="740" border="0" cellpadding="0" cellspacing="0" align="center">
+							<tr>
+								<td class="no-bg hauto" height="100" align="center" valign="top" background="https://image.playstationemail.com/lib/fe9c12717065047e76/m/32/MB-HEAD-740-BG-DESKv2.jpg" bgcolor="#003a9d" style="height: 100px; background-repeat: no-repeat; background-position: top center; background-color:#003a9d;">
+								<!--[if gte mso 9]>
+								<v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:739px;height:100px;">
+								<v:fill type="frame" src="https://image.playstationemail.com/lib/fe9c12717065047e76/m/32/MB-HEAD-740-BG-DESKv2.jpg" color="#003a9d" />
+								<v:textbox inset="0,0,0,0">
+								<![endif]-->
+								<div>
+									<table class="w85 cntr" border="0" cellpadding="0" cellspacing="0" align="center" width="640">									<tr>										<td class="mobbg-header-height" align="left" valign="top" style=" vertical-align:top;">											<table class="w100" border="0" cellpadding="0" cellspacing="0" align="center" width="640">												<tr>													 <td class="mobile-module-spacers" height="20" style="height: 20px; line-height:20px;font-size: 0px; mso-line-height-rule:exactly">&nbsp;</td>												</tr>												<tr class="hide">													
+<td align="left" valign="middle" style="font-family: SST, SST-Roman, Arial, Helvetica, sans-serif; font-size: 11px; color: #ffffff; height: auto; line-height: 21px; mso-line-height-rule:exactly; display: block; direction: ltr; padding-bottom:10px" dir="ltr">													Stelle dich dem Nebel des Krieges													</td>												</tr>												<tr>													<td align="center" valign="top">														<table width="640" border="0" align="center" cellpadding="0" cellspacing="0" class="w100" role="presentation">															<tr>																<th width="50" align="left" valign="middle" class="block-bp320 w100-bp320 hauto-bp320 cntr-bp320">																
+<a href="https://click.playstationemail.com/u/?qs=eyJkZWtJZCI6IjdhNTZhNzI5LWJhYTMtNDUyMS04ZjQ4LTNkMDQ5MzgwMzM2NSIsImRla1ZlcnNpb24iOjEsIml2IjoiblhEZXVaVEFxb1BKMndVeHZic3Yvdz09IiwiY2lwaGVyVGV4dCI6InZ0RytPUnVsakFoQW5UL0ErNkJQb0RTZGVaRjZNbmVFWXorK05SSDlnMHdqOHlEd2dtSnBmS1ZRSUtQdHJVMFlFVmF4Z25wZFFkTDJ2bmVJdW5MVlFySVJQM1lTclZ1YklKMXczcm1Vd0txRHlkc0ZNYjI3TC84PSIsImF1dGhUYWciOiJ2bmVJdW5MVlFySVJQM1lTclZ1YklBPT0ifQ%3D%3D" target="_blank" style="display:block;" >																
+<img src="https://image.playstationemail.com/lib/fe9c12717065047e76/m/32/logo-header-PlayStation.png" alt="PlayStation" width="50" style="display: block; border: none;" class="cntr-bp320"/>																</a>															  	</th>															  	<th width="20" height="30" style="width: 20px; height: 30px" class="block-bp320 w100-bp320 h20">&nbsp;
+																 	</th>
+																	<th class="block-bp320 w100-bp320 hauto-bp320 text-center-bp320 fs20" style="font-family: SST, SST-Roman, Arial, Helvetica, sans-serif; font-size: 22px; line-height: 26px; color: #ffffff; font-weight: normal; text-align: left; direction: ltr;" dir="ltr">																PlayStation																</th>															  	</tr>														  	</table>													  	</td>													</tr>													<tr>													<td class="h15" height="0" style="height: 0px; line-height:0px; mso-line-height-rule:exactly">&nbsp;</td>												</tr>												</table>																						</td>										</tr>									</table>
+								</div>
+								<!--[if gte mso 9]>
+								</v:textbox>
+								</v:rect>
+								<![endif]-->
+								</td>
+							</tr>
+							
+						</table>
+					</td>
+				</tr>
+	<tr>
+	<td height="1" style="height: 1px; line-height: 1px; font-size: 0px; mso-line-height-rule:exactly; background-color: #003a9d; background-repeat: no-repeat; background-position: bottom center" bgcolor="#003a9d" background="https://image.playstationemail.com/lib/fe9c12717065047e76/m/32/MB-HEAD-740-BG-DESKv2.jpg">
+		<!---->
+<img src="https://click.playstationemail.com/open.aspx?ZNOGAATBLR4EVA27OBM6L5NYZ4.60259&d=60259&bmt=0" width="1" height="1" alt=""></custom>
+</custom>
+<!---->
+<!-- -->
+		</td>
+	</tr>
+<!---->	
+			</table><span style="display:none;"> </span>
+<!--  -->
+<!---->
+<!---->
+<table class="responsive hero-1 square" width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" style="width:100%; min-width: 100%">
+	<tr>
+		<td align="center" valign="top">
+<table class="responsive" width="740" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" style="width:740px">
+	<tbody>
+<!---->
+<tr class="show_optional">
+      <td align="center" valign="top" bgcolor="#FFFFFF" style="background-color:#FFFFFF">
+<table class="w100" width="740" border="0" align="center" cellpadding="0" cellspacing="0" style="width:740px">
+<tr>
+      <td align="center" valign="top" temp='' bgcolor='#FFFFFF' style="background-color: #FFFFFF">
+<!-- -->
+			<a class="link_main hide" href="https://click.playstationemail.com/u/?qs=eyJkZWtJZCI6IjYwZTRmYTIyLTBjMzEtNDRmMy05ZTczLTE3YmVjNDE2YmM1ZCIsImRla1ZlcnNpb24iOjEsIml2IjoidEJ0cHYwQ1JIYWdwU1l5UFBYTzJQdz09IiwiY2lwaGVyVGV4dCI6IjNxaXpySjZHQUF3dG9FQkliT3A3T1dZZGNZbFJlVkRJQzBNMC9PbWdWdit0SEMzanhueXdvdUhRNUI2ZlptaTlaNmVqcXVDemJyOU5uSTFMeUZUaVlMczdjSFZOdkV4MHk3UWJhYjlBa1Iyb0tVbU1qejF6dGo4PSIsImF1dGhUYWciOiJuSTFMeUZUaVlMczdjSFZOdkV4MHl3PT0ifQ%3D%3D" >
+			<!-- -->
+				<img src="https://image.playstationemail.com/lib/fe9c12717065047e76/m/1/4a2ef151-3bb4-4d95-baf9-b102c211f4f3.jpg?no_cache=0" width="740" style="display:block; border: none;" class="responsive hauto hide hero-img deskimg" alt="BF" title="BF"/>
+				<!-- -->
+		  </a>
+		  <!-- -->
+			 <!-- -->
+								<!--[if !mso]><!-->
+				
+								<div class="mobile_image" style="mso-hide:all;display:none;max-height:0px;overflow:hidden;">
+									<!-- -->
+			<a class="link_main mobile_image hero-img mobimg" href="https://click.playstationemail.com/u/?qs=eyJkZWtJZCI6IjZkM2Q4ZThlLWZjZmUtNDhkZC1hMDIwLThjZGFhZjJhZTdhZSIsImRla1ZlcnNpb24iOjEsIml2IjoibVpSM0xpOHA0YldiZmpScUc2eGh5QT09IiwiY2lwaGVyVGV4dCI6InV3aHp5QlVGSk95U0ZIcDVacmNxMVEzWW0wS2sra0ZGYVdmTGRPYmdjaktsZ29VanUxUW1jclNldzI5anNpblYrVHBWRENYekNIVmNibnREOTdiVFNibUhIVHVQNGRFTElKbVVkeTR2S2VHMW0zNDBhaHVzWWNnPSIsImF1dGhUYWciOiJibnREOTdiVFNibUhIVHVQNGRFTElBPT0ifQ%3D%3D" >
+			<!-- -->
+									<img src="https://image.playstationemail.com/lib/fe9c12717065047e76/m/1/d05550be-5b6f-4bfb-9889-9abf5fed6c78.jpg?no_cache=0" width="100%" style="display:block; border: none;mso-hide:all;" class="responsive hauto hero-img mobimg" alt="BF" title="BF"/>
+				<!-- -->
+		  </a>
+		  <!-- -->
+								</div>
+								<!--<![endif]-->
+								<!-- -->
+	</td>
+	</tr>
+</table>
+</td>
+</tr>
+<!---->
+<tr>
+<td class="mod-padding-css custom-mod-pad-1 no-force" align="center" valign="top" style="padding: 40px 0px 40px 0px; background-color:#FFFFFF; " bgcolor="#FFFFFF">
+<table width="620" border="0" cellspacing="0" cellpadding="0" align="center" class="w85 cntr">
+ 			<tbody>
+<!-- -->
+<!-- -->
+				<tr class="show_optional">
+					<td class="hybrid24-hero-title-mobile-css" temp='' bgcolor='#FFFFFF' align="center" valign="top" style="text-align: center;  direction:ltr; font-size: 34px; font-family:Arial, Helvetica, sans-serif;line-height: 40px; mso-line-height-rule:exactly; color:#000000; background-color: #FFFFFF" dir="ltr">
+					Zeit für drastische Maßnahmen</td>
+				</tr>
+	  			<!-- -->
+<!-- -->
+				<tr class="show_optional">
+				  <td class="hybrid24-paragraph-mobile-css" temp='' bgcolor='#FFFFFF' align="center"  valign="top" style="background-color: #FFFFFF; font-size: 14px; font-family:Arial, Helvetica, sans-serif;line-height:20px; mso-line-height-rule:exactly; padding-top:20px; color:#000000; direction:ltr; text-align: center;" dir="ltr">
+					In Saison 2 von Battlefield 6 und REDSEC nimmt der Krieg gegen Pax Armata globale Dimensionen an und erreicht im Zuge eines zermürbenden Angriffs zur Rückeroberung eines NATO-Luftwaffenstützpunkts deutsches Gebirge. <br><br>Saison 2 bringt das kompromisslose Kriegsgeschehen in puncto Nervenkitzel auf die nächste Stufe. Mit ihr werden neben dem psychoaktiven VL-7-Rauch, der den Orientierungssinn auf dem Schlachtfeld verzerrt, die neue Karte „Contaminated“ sowie neue Waffen eingeführt, zudem erlebt der legendäre AH-6 Little Bird sein Comeback.		
+					</td>
+				</tr>
+				  <!-- -->
+<!-- -->
+	  <tr class="show_optional">
+	  <td class="cta-outter-wrapper-css cntr" align="center" valign="top" temp='' bgcolor='#FFFFFF' style="padding-top:30px; background-color: #FFFFFF">
+		<table width="620" cellpadding="0" cellspacing="0" border="0" class="w100 cntr" align="center">
+    <tr>
+      <td class="cntr" align="center" valign="top" temp='' bgcolor='#FFFFFF' style="background-color: #FFFFFF">
+	<table border="0" cellspacing="0" cellpadding="0" align="center" class="w100 cntr">
+        <tbody>
+          <tr>
+            <th class="w100 cntr block" align="center" valign="top" temp='' bgcolor='#FFFFFF' style="background-color: #FFFFFF">
+				<table class="cntr dop24-cta-wrapper-mobile-css" align="right" border="0" cellpadding="0" cellspacing="0" style="text-align:center; min-width:100px; padding-right:5px; padding-left: 5px">
+				<tr>
+																					          <td height="1" style="height: 1px; line-height: 1px; mso-line-height-rule:exactly; display: block" align="center"><!--[if gte mso 9]>
+        <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="false" stroke="false" style="width:100px;height:1px;">
+<![endif]-->
+																					            <img class="cta-width-spacer" src="https://image.playstationemail.com/lib/fe8e12717267007872/m/127/mb-spacer.gif" width="100" height="1" alt="" style="display: block; width: 100px; height: 1px"/>
+																					            <!--[if gte mso 9]>
+        </v:rect>
+        <![endif]--></td>
+																				            </tr>
+					 <tr>
+						<td class="cta-mobile-padding-css hybrid24-cta-mobile-css" align="center" dir="ltr" bgcolor="#D53B00" style="text-decoration: none; font-size:16px; font-family: Arial, Helvetica, sans-serif; line-height:20px;mso-line-height-rule:exactly; font-weight:400; padding:15px 25px; background-color:#D53B00; min-height: auto; line-height:24px; mso-line-height-rule:exactly; direction:ltr; border-radius: 50px; -moz-border-radius: 50px; -webkit-border-radius: 50px; display: inline-block; padding:10px 40px;">
+							 <a class="cta-mobile-css" href="https://click.playstationemail.com/u/?qs=eyJkZWtJZCI6IjFiMDI1NWM1LWNlNTgtNDQxNS1iZTE1LTZiYzljNGNmMzU4YiIsImRla1ZlcnNpb24iOjEsIml2IjoidDZPR2c0N3FRc3JucndWZXVabGlBdz09IiwiY2lwaGVyVGV4dCI6InFVLzZ4N1dSVTNZbWpHdlJ2ZDRGQnlHVFkwWGEwYmlYSTYyRVpQaDFXSTVNYUdDeTNLY2k3UmY0ZkJrV0xvY3RqUEVPaWRuYnduYUJZWVVxMzlISm13RGRTWGowWElHYzg3ZWpob09PNmtMSzU2OEZYcm1aWWdNPSIsImF1dGhUYWciOiJZWVVxMzlISm13RGRTWGowWElHYzh3PT0ifQ%3D%3D"  style="display: inline-block; text-decoration: none; font-size:16px; font-family: Arial, Helvetica, sans-serif; line-height:20px;mso-line-height-rule:exactly; font-weight:400; color:#FFFFFF;">
+								 <font class="hybrid24-cta-mobile-css" style="text-decoration: none; text-decoration: none; font-size:16px; font-family: Arial, Helvetica, sans-serif; line-height:20px;mso-line-height-rule:exactly; font-weight:400; color: #FFFFFF">
+								Jetzt spielen
+								 </font>
+					 </a>
+					 </td>
+			         </tr>
+		  </table>
+			  </th>
+			  <!-- -->
+		  </table>
+		  </td>
+	  </tr>
+	  <!-- -->
+<!-- -->
+</tbody>
+</table>
+</td>
+</tr>
+  </tbody>
+</table>
+		</td>
+	</tr>
+</table>
+<!---->
+<!--  --><span style="display:none;"> </span>
+<!--  -->
+<!---->
+<!---->
+<table class="responsive hero-2 square" width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" style="width:100%; min-width: 100%">
+	<tr>
+		<td align="center" valign="top">
+<table class="responsive" width="740" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" style="width:740px">
+	<tbody>
+<!---->
+<tr class="show_optional">
+      <td align="center" valign="top" bgcolor="#FFFFFF" style="background-color:#FFFFFF">
+<table class="w100" width="740" border="0" align="center" cellpadding="0" cellspacing="0" style="width:740px">
+<tr>
+      <td align="center" valign="top" temp='' bgcolor='#FFFFFF' style="background-color: #FFFFFF">
+<!-- -->
+			<a class="link_main hide" href="https://click.playstationemail.com/u/?qs=eyJkZWtJZCI6IjdjODJkNWE1LTM1NjgtNGU2Yy1iODRmLWZhMGM1NTY0YTVmNSIsImRla1ZlcnNpb24iOjEsIml2IjoiSDJORnh0ckJKRVlvOGQ2ZlZ0RXF1QT09IiwiY2lwaGVyVGV4dCI6ImVaWEl6S1FqWmgzeThZY3RFNU81dW0xQmQrbFFmdkVLUzIzV1htc0ZSWGZBa0pKLzRmK2kzVnQvYVZPL2l2Z21DN3ZTNjAxcmdZWlkyd1BNdndCU3ZUZHRRMEYwcWpuOU1oOWpSY2Jhd1NSR0tQSGVuMWJSS3JnPSIsImF1dGhUYWciOiIyd1BNdndCU3ZUZHRRMEYwcWpuOU1nPT0ifQ%3D%3D" >
+			<!-- -->
+				<img src="https://image.playstationemail.com/lib/fe9c12717065047e76/m/1/7c071f71-0747-4066-86c0-986363f2ba5f.png?no_cache=0" width="740" style="display:block; border: none;" class="responsive hauto hide hero-img deskimg" alt="BF" title="BF"/>
+				<!-- -->
+		  </a>
+		  <!-- -->
+			 <!-- -->
+								<!--[if !mso]><!-->
+				
+								<div class="mobile_image" style="mso-hide:all;display:none;max-height:0px;overflow:hidden;">
+									<!-- -->
+			<a class="link_main mobile_image hero-img mobimg" href="https://click.playstationemail.com/u/?qs=eyJkZWtJZCI6ImE5ODhjYjA1LWNjZTgtNDEyMC1hM2IwLTVkOTNhNDY2MjRiOSIsImRla1ZlcnNpb24iOjEsIml2IjoidHdQYUNPakNhT0pJVERXSTFoV2RsQT09IiwiY2lwaGVyVGV4dCI6Im1OZFBqb3FGRi9MRVg3Nlh0aFZZTUx0WHJRRU9rRXo1T29FdTJxaEVJcHp1Z0hobVRLMjVJUGhPdXo3K1owVXdkbUF1WUJJYW02OWU4S29OV1p5YWhQWFZjK0pxRHJaNU03Y0QyZ2pvd21qaVNFdzFpTllWblpRPSIsImF1dGhUYWciOiI4S29OV1p5YWhQWFZjK0pxRHJaNU13PT0ifQ%3D%3D" >
+			<!-- -->
+									<img src="https://image.playstationemail.com/lib/fe9c12717065047e76/m/1/9f1ad62b-4b31-47d7-8c66-e7125cd1935e.png?no_cache=0" width="100%" style="display:block; border: none;mso-hide:all;" class="responsive hauto hero-img mobimg" alt="BF" title="BF"/>
+				<!-- -->
+		  </a>
+		  <!-- -->
+								</div>
+								<!--<![endif]-->
+								<!-- -->
+	</td>
+	</tr>
+</table>
+</td>
+</tr>
+<!---->
+<tr>
+<td class="mod-padding-css custom-mod-pad-2 no-force" align="center" valign="top" style="padding: 40px 0px 40px 0px; background-color:#FFFFFF; " bgcolor="#FFFFFF">
+<table width="620" border="0" cellspacing="0" cellpadding="0" align="center" class="w85 cntr">
+ 			<tbody>
+<!-- -->
+<!-- -->
+				<tr class="show_optional">
+					<td class="hybrid24-hero-title-mobile-css" temp='' bgcolor='#FFFFFF' align="center" valign="top" style="text-align: center;  direction:ltr; font-size: 34px; font-family:Arial, Helvetica, sans-serif;line-height: 40px; mso-line-height-rule:exactly; color:#000000; background-color: #FFFFFF" dir="ltr">
+					Schalte mit Battlefield Pro noch mehr Inhalte frei</td>
+				</tr>
+	  			<!-- -->
+<!-- -->
+				<tr class="show_optional">
+				  <td class="hybrid24-paragraph-mobile-css" temp='' bgcolor='#FFFFFF' align="center"  valign="top" style="background-color: #FFFFFF; font-size: 14px; font-family:Arial, Helvetica, sans-serif;line-height:20px; mso-line-height-rule:exactly; padding-top:20px; color:#000000; direction:ltr; text-align: center;" dir="ltr">
+					Mit dem Battle Pass von Saison 2 schaltest du sofort sechs Belohnungen frei und erhältst Zugriff auf vier brandneue Themenpfade mit neuer Ausrüstung, Waffenpaketen, Soldaten-Skins, EP-Boosts und mehr. <br><br>Upgrade auf Battlefield Pro und erhalte Zugriff auf den Battle Pass, sechs zusätzliche Belohnungen, die sofort freigeschaltet werden, 25 Stufensprünge sowie einen exklusiven Bonuspfad mit Gefechtsausrüstung zur Verstärkung deines Arsenals.		
+					</td>
+				</tr>
+				  <!-- -->
+<!-- -->
+	  <tr class="show_optional">
+	  <td class="cta-outter-wrapper-css cntr" align="center" valign="top" temp='' bgcolor='#FFFFFF' style="padding-top:30px; background-color: #FFFFFF">
+		<table width="620" cellpadding="0" cellspacing="0" border="0" class="w100 cntr" align="center">
+    <tr>
+      <td class="cntr" align="center" valign="top" temp='' bgcolor='#FFFFFF' style="background-color: #FFFFFF">
+	<table border="0" cellspacing="0" cellpadding="0" align="center" class="w100 cntr">
+        <tbody>
+          <tr>
+            <th class="w100 cntr block" align="center" valign="top" temp='' bgcolor='#FFFFFF' style="background-color: #FFFFFF">
+				<table class="cntr dop24-cta-wrapper-mobile-css" align="right" border="0" cellpadding="0" cellspacing="0" style="text-align:center; min-width:100px; padding-right:5px; padding-left: 5px">
+				<tr>
+																					          <td height="1" style="height: 1px; line-height: 1px; mso-line-height-rule:exactly; display: block" align="center"><!--[if gte mso 9]>
+        <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="false" stroke="false" style="width:100px;height:1px;">
+<![endif]-->
+																					            <img class="cta-width-spacer" src="https://image.playstationemail.com/lib/fe8e12717267007872/m/127/mb-spacer.gif" width="100" height="1" alt="" style="display: block; width: 100px; height: 1px"/>
+																					            <!--[if gte mso 9]>
+        </v:rect>
+        <![endif]--></td>
+																				            </tr>
+					 <tr>
+						<td class="cta-mobile-padding-css hybrid24-cta-mobile-css" align="center" dir="ltr" bgcolor="#D53B00" style="text-decoration: none; font-size:16px; font-family: Arial, Helvetica, sans-serif; line-height:20px;mso-line-height-rule:exactly; font-weight:400; padding:15px 25px; background-color:#D53B00; min-height: auto; line-height:24px; mso-line-height-rule:exactly; direction:ltr; border-radius: 50px; -moz-border-radius: 50px; -webkit-border-radius: 50px; display: inline-block; padding:10px 40px;">
+							 <a class="cta-mobile-css" href="https://click.playstationemail.com/u/?qs=eyJkZWtJZCI6ImRiNjEyNGFlLWMwMDktNDljYS05MGM2LWNmMDhkODgzZjM4NSIsImRla1ZlcnNpb24iOjEsIml2IjoiOWNRUm9DQ0FlK1ZDQVRnZ3Ewa0JaUT09IiwiY2lwaGVyVGV4dCI6Ijh2MnFCYUZZZSsxUEtiWmEyamtMdmFnVlJXWFBqU0E2ZkZUOXJxUkJteW9kckQ5Y2Z4dWYvakdnVWhPaDhTMC9SVGJuZXdBN2F6d1hTb2ZBb3VuVC82ZUtCTlE4OEpqMGYvWEVFYUFnZ0h2bFFnRTRJS3RKQVdVPSIsImF1dGhUYWciOiJTb2ZBb3VuVC82ZUtCTlE4OEpqMGZ3PT0ifQ%3D%3D"  style="display: inline-block; text-decoration: none; font-size:16px; font-family: Arial, Helvetica, sans-serif; line-height:20px;mso-line-height-rule:exactly; font-weight:400; color:#FFFFFF;">
+								 <font class="hybrid24-cta-mobile-css" style="text-decoration: none; text-decoration: none; font-size:16px; font-family: Arial, Helvetica, sans-serif; line-height:20px;mso-line-height-rule:exactly; font-weight:400; color: #FFFFFF">
+								Jetzt kaufen
+								 </font>
+					 </a>
+					 </td>
+			         </tr>
+		  </table>
+			  </th>
+			  <!-- -->
+		  </table>
+		  </td>
+	  </tr>
+	  <!-- -->
+<!-- -->
+</tbody>
+</table>
+</td>
+</tr>
+  </tbody>
+</table>
+		</td>
+	</tr>
+</table>
+<!---->
+<!--  --><span style="display:none;"> </span>
+<!--  -->
+<!---->
+<!---->
+<table class="responsive hero-3 square" width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" style="width:100%; min-width: 100%">
+	<tr>
+		<td align="center" valign="top">
+<table class="responsive" width="740" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" style="width:740px">
+	<tbody>
+<!---->
+<tr class="show_optional">
+      <td align="center" valign="top" bgcolor="#FFFFFF" style="background-color:#FFFFFF">
+<table class="w100" width="740" border="0" align="center" cellpadding="0" cellspacing="0" style="width:740px">
+<tr>
+      <td align="center" valign="top" temp='' bgcolor='#FFFFFF' style="background-color: #FFFFFF">
+<!-- -->
+			<a class="link_main hide" href="https://click.playstationemail.com/u/?qs=eyJkZWtJZCI6IjA4YTY0OGRlLTkyMmUtNDRhYi1iYjZlLTNlMzgxOGQ0ZDljOSIsImRla1ZlcnNpb24iOjEsIml2IjoiWXdMdkJMMjJ5TVJQOHQ5dm1kdkRXUT09IiwiY2lwaGVyVGV4dCI6IjRZeVdlZytLbG40TkJUNjJkU1o5MW5oekFGaTdlTE9MSzB6SmswVnBTZkdtbFNtYUNjRzhkSnRVa2dqYjBIRi8veFRQcmhkN0pJd0NSdUlHd1AzMEFpSE5Mdzc4SXJJUFNtTUM3d1M5dHNqRVQvTGZiNW5idzFrPSIsImF1dGhUYWciOiJSdUlHd1AzMEFpSE5Mdzc4SXJJUFNnPT0ifQ%3D%3D" >
+			<!-- -->
+				<img src="https://image.playstationemail.com/lib/fe9c12717065047e76/m/1/84bc4fa6-7358-41a9-8674-ce977baf2599.png?no_cache=0" width="740" style="display:block; border: none;" class="responsive hauto hide hero-img deskimg" alt="BF" title="BF"/>
+				<!-- -->
+		  </a>
+		  <!-- -->
+			 <!-- -->
+								<!--[if !mso]><!-->
+				
+								<div class="mobile_image" style="mso-hide:all;display:none;max-height:0px;overflow:hidden;">
+									<!-- -->
+			<a class="link_main mobile_image hero-img mobimg" href="https://click.playstationemail.com/u/?qs=eyJkZWtJZCI6ImY1MzgzZTM1LTdmNzYtNDlmOS1iNjhiLWFiMWFiNjNjODM5ZSIsImRla1ZlcnNpb24iOjEsIml2IjoiTUFhajVkMFJDMGhaSjVKdUVUQ2hRQT09IiwiY2lwaGVyVGV4dCI6IjU2Y1QwTVZNUVZaSkZhK2xPaC9oSEFGL0xDY0xzR2dTT1dkNlNacmovZDdUOW12SXI4UHB4NERSSUpIL3lCWUdINW9jZUdWTk5HcmZZSVJFVVhSSDJzTmNzVUlabXZ0MGNqQUdvK1hkRVF0SVdTZVNiaEV3b1VBPSIsImF1dGhUYWciOiJZSVJFVVhSSDJzTmNzVUlabXZ0MGNnPT0ifQ%3D%3D" >
+			<!-- -->
+									<img src="https://image.playstationemail.com/lib/fe9c12717065047e76/m/1/c8788faf-b07b-4f90-9632-fcbd98983fab.png?no_cache=0" width="100%" style="display:block; border: none;mso-hide:all;" class="responsive hauto hero-img mobimg" alt="BF" title="BF"/>
+				<!-- -->
+		  </a>
+		  <!-- -->
+								</div>
+								<!--<![endif]-->
+								<!-- -->
+	</td>
+	</tr>
+</table>
+</td>
+</tr>
+<!---->
+<tr>
+<td class="mod-padding-css custom-mod-pad-3 no-force" align="center" valign="top" style="padding: 40px 0px 40px 0px; background-color:#FFFFFF; " bgcolor="#FFFFFF">
+<table width="620" border="0" cellspacing="0" cellpadding="0" align="center" class="w85 cntr">
+ 			<tbody>
+<!-- -->
+<!-- -->
+				<tr class="show_optional">
+					<td class="hybrid24-hero-title-mobile-css" temp='' bgcolor='#FFFFFF' align="center" valign="top" style="text-align: center;  direction:ltr; font-size: 34px; font-family:Arial, Helvetica, sans-serif;line-height: 40px; mso-line-height-rule:exactly; color:#000000; background-color: #FFFFFF" dir="ltr">
+					Gehe mit PlayStation®Plus aufs Ganze</td>
+				</tr>
+	  			<!-- -->
+<!-- -->
+				<tr class="show_optional">
+				  <td class="hybrid24-paragraph-mobile-css" temp='' bgcolor='#FFFFFF' align="center"  valign="top" style="background-color: #FFFFFF; font-size: 14px; font-family:Arial, Helvetica, sans-serif;line-height:20px; mso-line-height-rule:exactly; padding-top:20px; color:#000000; direction:ltr; text-align: center;" dir="ltr">
+					Mit einer PlayStation Plus-Mitgliedschaft schaltest du zusätzliche Stufen frei, wenn du Battlefield Pro kaufst, beschleunigst deinen Fortschritt durch erweiterten Zugriff auf Bonus-EP-Events und verschaffst deinem ganzen Team einen Boost, wenn mindestens zwei von euch auf PlayStation®-Konsolen spielen.<sup>1</sup><br><br>Als Mitglied kannst du jetzt außerdem das Paket „Toxic Tide“ erhalten, das den Pax-Armata-Aufklärungssoldaten-Skin „Filtered Out“, das M433-Waffenpaket „Blue Dot“, das P18-Waffenpaket „Backwoods“ und mehr beinhaltet!		
+					</td>
+				</tr>
+				  <!-- -->
+<!-- -->
+	  <tr class="show_optional">
+	  <td class="cta-outter-wrapper-css cntr" align="center" valign="top" temp='' bgcolor='#FFFFFF' style="padding-top:30px; background-color: #FFFFFF">
+		<table width="620" cellpadding="0" cellspacing="0" border="0" class="w100 cntr" align="center">
+    <tr>
+      <td class="cntr" align="center" valign="top" temp='' bgcolor='#FFFFFF' style="background-color: #FFFFFF">
+	<table border="0" cellspacing="0" cellpadding="0" align="center" class="w100 cntr">
+        <tbody>
+          <tr>
+            <th class="w100 cntr block" align="center" valign="top" temp='' bgcolor='#FFFFFF' style="background-color: #FFFFFF">
+				<table class="cntr dop24-cta-wrapper-mobile-css" align="right" border="0" cellpadding="0" cellspacing="0" style="text-align:center; min-width:100px; padding-right:5px; padding-left: 5px">
+				<tr>
+																					          <td height="1" style="height: 1px; line-height: 1px; mso-line-height-rule:exactly; display: block" align="center"><!--[if gte mso 9]>
+        <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="false" stroke="false" style="width:100px;height:1px;">
+<![endif]-->
+																					            <img class="cta-width-spacer" src="https://image.playstationemail.com/lib/fe8e12717267007872/m/127/mb-spacer.gif" width="100" height="1" alt="" style="display: block; width: 100px; height: 1px"/>
+																					            <!--[if gte mso 9]>
+        </v:rect>
+        <![endif]--></td>
+																				            </tr>
+					 <tr>
+						<td class="cta-mobile-padding-css hybrid24-cta-mobile-css" align="center" dir="ltr" bgcolor="#0070CC" style="text-decoration: none; font-size:16px; font-family: Arial, Helvetica, sans-serif; line-height:20px;mso-line-height-rule:exactly; font-weight:400; padding:15px 25px; background-color:#0070CC; min-height: auto; line-height:24px; mso-line-height-rule:exactly; direction:ltr; border-radius: 50px; -moz-border-radius: 50px; -webkit-border-radius: 50px; display: inline-block; padding:10px 40px;">
+							 <a class="cta-mobile-css" href="https://click.playstationemail.com/u/?qs=eyJkZWtJZCI6IjhjNDEyOGMzLThjYzAtNDllOC1hMGRkLWIyNzdiNTZhYTY1ZiIsImRla1ZlcnNpb24iOjEsIml2IjoiVnJ1RThObFF5WFR6MkNQSE1HRS8rZz09IiwiY2lwaGVyVGV4dCI6IjNyZFJMNnBoZFRNYi9Fc2xyakZJMjVCTFhHU0VzQWV2SFVtZ2U2TkhEb1AxbVBxN1luS2UxV0JlYnN4aEplWlJvc2xjcmdUbFRtME1iQm1PWm9HOUNxaWxaMWVhUEQ2dGkxYTdoUERaVU1sMDg5Z2p4ekJoUC9vPSIsImF1dGhUYWciOiJiQm1PWm9HOUNxaWxaMWVhUEQ2dGl3PT0ifQ%3D%3D"  style="display: inline-block; text-decoration: none; font-size:16px; font-family: Arial, Helvetica, sans-serif; line-height:20px;mso-line-height-rule:exactly; font-weight:400; color:#FFFFFF;">
+								 <font class="hybrid24-cta-mobile-css" style="text-decoration: none; text-decoration: none; font-size:16px; font-family: Arial, Helvetica, sans-serif; line-height:20px;mso-line-height-rule:exactly; font-weight:400; color: #FFFFFF">
+								Jetzt einlösen
+								 </font>
+					 </a>
+					 </td>
+			         </tr>
+		  </table>
+			  </th>
+			  <!-- -->
+		  </table>
+		  </td>
+	  </tr>
+	  <!-- -->
+<!-- -->
+</tbody>
+</table>
+</td>
+</tr>
+  </tbody>
+</table>
+		</td>
+	</tr>
+</table>
+<!---->
+<!--  --><span style="display:none;"> </span>
+<!--  -->
+
+<!---->
+
+<table class="responsive" width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" style="width:100%; min-width: 100%">
+	<tr>
+		<td align="center" valign="top">
+<table id="footer-section" class="responsive" border="0" cellpadding="0" cellspacing="0" align="center" width="740">
+				<!-- FOOTER PART 1: CONTENT WRAPPER: start -->
+<!---->						
+<tr class="show_optional">
+							<td class="p-t-20_40px" align="center" valign="bottom" width="740" style="width: 740px; background-color: #FFFFFF; padding-top: 40px">
+								<img class="w100 hauto" bgcolor="#FFFFFF" border="0" src="https://image.playstationemail.com/lib/fe9c12717065047e76/m/1/9f304984-0396-4258-90d6-c94226521359.png" alt="" width="740" style="display: block; border: 0; background-color: #FFFFFF">
+							</td>
+						</tr>
+<!---->
+				<tr>
+					<td align="center" valign="top">
+						<table class="responsive" bgcolor="#003a9d" border="0" cellpadding="0" cellspacing="0" align="center" width="740">
+							<tr>
+								<td bgcolor="#003a9d" align="center" valign="top">
+									<table class="responsiveInner" width="640" border="0" align="center" cellpadding="0" cellspacing="0">
+										<tbody>
+											
+											<tr>
+												<td class="cntr" align="center" valign="top" style="border-bottom: 1px solid #0072ce">
+													<table class="responsiveInner bp600-w90 cntr" border="0" cellpadding="0" cellspacing="0" width="640">
+														<tr>
+															<td align="center" valign="top" style="padding-top: 5px">
+																<table border="0" align="left" cellpadding="0" cellspacing="0" class="cntr">
+																	<tr>
+																		<td class="w100 cntr" align="left" valign="top" style="vertical-align: top; padding-bottom: 0px;">
+																		<a href="https://click.playstationemail.com/u/?qs=eyJkZWtJZCI6IjgxMWZkM2Q2LWE2NTItNDliMS1hZTNiLWJmOTMzYjU5NzI0MiIsImRla1ZlcnNpb24iOjEsIml2IjoiU3JwQ1B6OWgxU0lkOWl4N2JRemZyZz09IiwiY2lwaGVyVGV4dCI6InZMTFlGZFQvd0FwSE92NmpQVE91MDRweWdBUkg3Y3BSVWpVT0UxaFNUVVlxV1pGNXlWcmQ3V1FjVkZ2VDFBQTh1SjVkaytWRVdwWERzaXhRMmJXQzlNNDc5b1NUdU9qR3RFcTZRajgvWWRVaUhmWXNlMjBNMzY0PSIsImF1dGhUYWciOiJzaXhRMmJXQzlNNDc5b1NUdU9qR3RBPT0ifQ%3D%3D" >
+																		<img src="https://image.playstationemail.com/lib/fe9c12717065047e76/m/36/footer-white_PlayStation.png" alt="PlayStation" width="40" class="cntr" style="display: block; border: none;"/>
+																		</a>
+																		</td>
+																	</tr>
+																</table>
+
+<!-- -->
+	<table class="w100 cntr show_optional" cellpadding="0" cellspacing="0" border="0" align="right">
+																	<tr>
+																		<td class="w100 cntr" align="center" valign="top" style="vertical-align: top; padding-bottom: 17px;">
+																		<a href="https://click.playstationemail.com/u/?qs=eyJkZWtJZCI6ImZkNzgyNjU0LTRlMTAtNGUwYS1iZjhiLWM5ZDBmOWMyZjVkYiIsImRla1ZlcnNpb24iOjEsIml2Ijoid284eUtHTFZiTUNLc0ZxUHdBTXhCdz09IiwiY2lwaGVyVGV4dCI6Ik45SHpZelZCemVHdWdTTE56TGFNN0JYdDM0SFZ5RjBnMGg4RWxyUDlZUGFXbGI4NHVzdFltS0tYa01kMFNBR1o0QUlEaGZjUm9TOHJ2a2Y5aEk2VXdNQkV6TE5SRGcwcEVNS1BNaWhpMVd6QWlyQmFqOEFETVFjPSIsImF1dGhUYWciOiJ2a2Y5aEk2VXdNQkV6TE5SRGcwcEVBPT0ifQ%3D%3D" >
+																		<img src="https://image.playstationemail.com/lib/fe8e12717267007872/m/127/PHNL_TAGLINE_DESKTOP_EN.png" alt="PLAY HAS NO LIMITS" height="44" class="cntr" style="display: block; border: none;"/>
+																		  </a>
+																		</td>
+																	</tr>
+																</table>
+<!-- -->
+														  </td>
+													  </tr>
+													</table>													
+												</td>
+											</tr>
+											
+											<!-- -->
+											<tr class="show_optional">
+												<td align="center" valign="top" class="w100 display-table m-t-20" style="padding-top:20px">
+													<table class="w100 cntr display-table cntr-bp320" border="0" align="center" cellpadding="0" cellspacing="0">
+														<tbody class="display-table cntr-bp320 w100">
+															<tr>
+																<td class="cntr" align="left" valign="middle" height="50" style="vertical-align: middle">
+																	<table class="cntr" border="0" align="center" cellpadding="0" cellspacing="0">
+																		<tr>
+																			<td width="45" align="center" valign="middle">
+			<a href="https://click.playstationemail.com/u/?qs=eyJkZWtJZCI6IjBjNjEyOWZjLTg3MTQtNGZiYS1hZGNmLWRiZDRmZmUwYTZlZSIsImRla1ZlcnNpb24iOjEsIml2IjoiOG1hTjJZVUE2SUZDV0IzWTFtNXcvQT09IiwiY2lwaGVyVGV4dCI6ImIxMTEySzVwcXMySC9USTliUEZtVDFTRzB3VXZFMlFKUmd1Zk9rK21USlhpay80VmxhcjZ3bFZGWDJJOHVjV2x3c1BQVmRNSnI4bXRYRVo4dkU2bEx6bXIwL2NWRURyMEEvSm1qZG1GQU9pQlFsZ2QyTlp1Y1B3PSIsImF1dGhUYWciOiJYRVo4dkU2bEx6bXIwL2NWRURyMEF3PT0ifQ%3D%3D">
+				<img src="http://image.playstationemail.com/lib/fe8e12717267007872/m/127/mb-socialicon-white-facebook.png" alt="facebook" width="30" style="display:  block; border: none; margin: auto;"/>
+			</a>
+</td> <td width="45" align="center" valign="middle">
+			<a href="https://click.playstationemail.com/u/?qs=eyJkZWtJZCI6IjVmYzg1YWU2LTE2NmYtNDQ4Ni1iM2IzLTgyNWY0YmRiMmU1NiIsImRla1ZlcnNpb24iOjEsIml2IjoiUC9kSUMyQlR6a1l2ZGRzSU9jSzMyQT09IiwiY2lwaGVyVGV4dCI6InFhbGxxWTRlNU45dW9CN2FyN1FsNjBEQ0l1WTlESzhSdkpmdmRNTWMzYUhRTStGRnBLVUVWL0xBN1BuK05jZlFRTTQ4MEZCU1lBQUFiSStGMTZjWkxKc2hxdzhBdSsvOU5qLzNTQXRnVTg1R0wzWGJDRG5DdDlnPSIsImF1dGhUYWciOiJiSStGMTZjWkxKc2hxdzhBdSsvOU5nPT0ifQ%3D%3D">
+				<img src="http://image.playstationemail.com/lib/fe8e12717267007872/m/127/mb-socialicon-white-instagram.png" alt="instagram" width="30" style="display:  block; border: none; margin: auto;"/>
+			</a>
+</td> <td width="45" align="center" valign="middle">
+			<a href="https://click.playstationemail.com/u/?qs=eyJkZWtJZCI6ImI1ZDc1MWFiLTZiZDYtNDM2Ny05YzNkLTcwZTFmYzg0YmFjMCIsImRla1ZlcnNpb24iOjEsIml2IjoiYXJCajJmWjZ0V01meGNpZW4zaWtvZz09IiwiY2lwaGVyVGV4dCI6InhqVFBUWERoc2pGK1VJVk81Y3RLWkNpT3Q0QkNac2RFRmI5MzQ3elJkMVFnc0g0RFdrL0ZGSFB4MVZsODBsZ0ZrVS9yd0c3NE4reTdXQ0FEUjRhUkNOR1ZhVm80ZW9nNzdHcXdZOW4yZXJWakg4WElucDk0cEtJPSIsImF1dGhUYWciOiJXQ0FEUjRhUkNOR1ZhVm80ZW9nNzdBPT0ifQ%3D%3D">
+				<img src="http://image.playstationemail.com/lib/fe8e12717267007872/m/127/mb-socialicon-white-twitch.png" alt="twitch" width="30" style="display:  block; border: none; margin: auto;"/>
+			</a>
+</td> <td width="45" align="center" valign="middle">
+			<a href="https://click.playstationemail.com/u/?qs=eyJkZWtJZCI6ImRmMDk0MjljLWNiOWUtNDgxMC04ZTQ0LWY2NTliNjAwY2NkZSIsImRla1ZlcnNpb24iOjEsIml2IjoiRE4xYnJmVXBYMFNYVUNSNUdlaDA5Zz09IiwiY2lwaGVyVGV4dCI6InV1KzN0MjkvUFQwWHNpY2JXMHdvY291N1A3R0tiSUI0RUtmR2VYTWwwZGhWTE5zaXdpS2NqVVBVY0pXNFMxc2RtUUJTckg1eTJvZFhkWU9QcnRJUWRXZHFpd0R1clNDbG13emRXNjMxS1Y5RWwxQWtlUm5vZFBZPSIsImF1dGhUYWciOiJkWU9QcnRJUWRXZHFpd0R1clNDbG13PT0ifQ%3D%3D" target="_blank">
+				<img src="https://image.playstationemail.com/lib/fe9c12717065047e76/m/1/5e459cba-504d-403c-9c59-fb6e02642c41.png" alt="X" width="30" style="display:  block; border: none; margin: auto;"/>
+			</a>
+</td> <td width="45" align="center" valign="middle">
+			<a href="https://click.playstationemail.com/u/?qs=eyJkZWtJZCI6IjUyMTNmOTRjLWI3YjgtNGIyNy04MjBlLWM5MTNiYzdlZWFmMiIsImRla1ZlcnNpb24iOjEsIml2IjoiaEw3WDZzOWpQaUV0TTdOalVJUmJPQT09IiwiY2lwaGVyVGV4dCI6IlM1eDBXV3IxZTQ1MTA1dzZrd2xXUEQ5UFRnS2NOUWl3MTkzZkpzZnJJSGY1Lytac25uUFJLaUJPU0tYbjAxUGpUNWZsNCtwNWVHQktwcEsvZjkyQ2IyM1NrZHJEZUtDSUtvUysxK3JQWXo0aExUT3pZMUNFV3pnPSIsImF1dGhUYWciOiJwcEsvZjkyQ2IyM1NrZHJEZUtDSUtnPT0ifQ%3D%3D">
+				<img src="http://image.playstationemail.com/lib/fe8e12717267007872/m/127/mb-socialicon-white-youtube.png" alt="youtube" width="30" style="display:  block; border: none; margin: auto; "/>
+			</a>
+</td> <td width="45" align="center" valign="middle">
+			<a href="https://click.playstationemail.com/u/?qs=eyJkZWtJZCI6ImUyNmE1YTU4LTg3OTItNGI4ZS05YTUyLWM1MjQxNzQyMGVlNSIsImRla1ZlcnNpb24iOjEsIml2IjoiMXplK0tiV3FuOUpiMzR2K0FPWTF6QT09IiwiY2lwaGVyVGV4dCI6IjZDbk96cDRLdXZLZ3JCNllxckFCSUl1aUF2MXpiNy9ZRFFFY3JhU2NsVlFEa0d2aStFYzAybTFjUDFWeHB0enVSbUlobFB2bTlwN0o5ZTNtbHJKUEZJcURzK2Z2TTRWODZ0YzN2aW0xcXAvU1c5K0wvZ0RtTmN3PSIsImF1dGhUYWciOiI5ZTNtbHJKUEZJcURzK2Z2TTRWODZnPT0ifQ%3D%3D" target="_blank">
+				<img src="http://image.playstationemail.com/lib/fe8e12717267007872/m/127/mb-socialicon-white-psapp.png" alt="psapp" width="30" style="display:  block; border: none; margin: auto; "/>
+			</a>
+</td>
+<!-- -->
+
+<!-- -->
+<!-- -->
+<td id="siee_rating_show_optional" class="global-PEGI-16 rating_show_optional" width="5" align="right" valign="middle" style="width: 5px">&nbsp;
+	
+</td>
+<td id="siee_rating_show_optional" class="global-PEGI-16 rating_show_optional" width="50" align="right" valign="middle" style="border-left: 1px solid #0072ce">
+	<img src="https://image.playstationemail.com/lib/fe8e12717267007872/m/127/gamerating-global-PEGI-16.png" alt="Game Rating" width="40" style="display:inline-block; border: none;"/>
+    <!-- -->
+</td>
+<!-- -->
+<!-- -->
+
+<!-- -->
+
+<!-- -->
+
+
+<!-- -->
+
+<!-- -->
+
+<!-- -->
+
+<!-- -->
+
+
+<!-- -->
+<!-- -->
+																		</tr>
+																	</table>
+																</td>
+															</tr>
+																<!-- -->
+															<!-- -->
+													<!-- -->	
+														</tbody>
+													</table>
+											<!-- -->
+												</td>
+											</tr>
+											<tr>
+												<td align="center" valign="top" style="padding-bottom:20px">
+												<table class="w100 float-r cntr m-t-10 cntr-bp320 m-b-20-bp320" border="0" align="center" cellpadding="0" cellspacing="0">
+														<tbody class="w100 display-table">
+															<tr>
+																<td class="cntr p-t-0" align="center" valign="middle" dir="**global-text-direction-ARABIC-RTL**" style=" direction:**global-text-direction-ARABIC-RTL**; vertical-align: middle; padding-top: 10px;">
+																	
+																	<a href="https://click.playstationemail.com/u/?qs=eyJkZWtJZCI6ImJkZGQzOWM0LTdmZmEtNDEyNS05NDZkLTFkNzQ1NDMxNGE1NyIsImRla1ZlcnNpb24iOjEsIml2IjoibG5UTWlaVEd3UHZvb0NTbVVaZFI0Zz09IiwiY2lwaGVyVGV4dCI6Ii9VWkJFQnM2emlsSlRyTmpQR25uT0pBU1BIbldGTy9yTnQxdzdYT3hTRExwc0xLaHVNekZ2ZU8wZS9JWXpUalJsRnorZU1iVFhLWVpWMFI3K2dwWWNtMXF5ckJYY1dJTnVwWjB6SW1VeHNENzZLQWtwbEdYVWVJPSIsImF1dGhUYWciOiJWMFI3K2dwWWNtMXF5ckJYY1dJTnVnPT0ifQ%3D%3D" style="color: #FFFFFF; text-decoration: none" class="footer-links" >
+											<span style="font-family: SST, SST-Roman, Arial, Helvetica, sans-serif; font-size: 11px; line-height: 22px; color: #FFFFFF">Online ansehen</span>
+</a>
+																	
+<!-- -->
+																<span class="hide-bp320 terms_show_optional" style="font-size: 11px; line-height: 22px; color: #0072ce;">&nbsp; | &nbsp;</span>
+		<a href="https://click.playstationemail.com/u/?qs=eyJkZWtJZCI6IjAwZjk5OTA3LTY2MDEtNGQ1MC1iNGU1LWViOTRlNTNmMmI3YyIsImRla1ZlcnNpb24iOjEsIml2IjoiSjU3VzNOaW9yZmwrV2htNDJJVEswdz09IiwiY2lwaGVyVGV4dCI6IkhyRjBlRytDOVVobFdISVl1aWFHWWdlUGh4N00wZUJzN3gzUlJXaWoyR3V3Yk44Ym9OeFdnZjBqK1c3cWJaWnQrenF2VFM2elVyUXNYSk1hVUxnWGRIVURiSHpHK0JGM3dTZWUxdHpZcUszNWZsb1p1TmlFeXRNPSIsImF1dGhUYWciOiJYSk1hVUxnWGRIVURiSHpHK0JGM3dRPT0ifQ%3D%3D" style="color: #FFFFFF; text-decoration: none" class="footer-links terms_show_optional" >
+									<span style="font-family: SST, SST-Roman, Arial, Helvetica, sans-serif; font-size: 11px; line-height: 22px; color: #FFFFFF">Teilnahmebedingungen</span>
+								</a>
+															<!-- -->
+															
+															<!-- -->
+																<span class="hide-bp320 personalise_show_optional" style="font-size: 11px; line-height: 22px; color: #0072ce;">&nbsp; | &nbsp;</span>
+		<a href="https://click.playstationemail.com/u/?qs=eyJkZWtJZCI6Ijg1NTczMGI3LWRmM2ItNDdlZS05MzJmLTcwNTdmZTQzZjIxYyIsImRla1ZlcnNpb24iOjEsIml2IjoiYnNEMUJ0OXVuakUwVEdFOHIvTTgxQT09IiwiY2lwaGVyVGV4dCI6IloxTmgxWlhVS05mRUI4M3FlU1EwOWMzNlBCWUo1VUlleFh0d1F0anFKUy9STys3TlF3c2F1YzJMRUFGQzkyUnV6T3dnbkhadk4zWE1SVk1EWVBGYXdvTFRvVS9rd3hubm9tN0E5UWJmYnA0eE5FeGhQSy96UE5RPSIsImF1dGhUYWciOiJSVk1EWVBGYXdvTFRvVS9rd3hubm9nPT0ifQ%3D%3D" style="color: #FFFFFF; text-decoration: none" class="footer-links personalise_show_optional" >
+									<span style="font-family: SST, SST-Roman, Arial, Helvetica, sans-serif; font-size: 11px; line-height: 22px; color: #FFFFFF">Deine Einstellungen</span>
+								</a>
+															<!-- -->
+													
+													
+													<!-- -->
+																<span class="hide-bp320 unsubscribe_show_optional" style="font-size: 11px; line-height: 22px; color: #0072ce;">&nbsp; | &nbsp;</span>
+		<a href="https://click.playstationemail.com/u/?qs=eyJkZWtJZCI6IjA1ZjM3OTdhLTA1ZGItNDdmOC05NzNhLWEwZDdmNWRjNGUyMSIsImRla1ZlcnNpb24iOjEsIml2IjoiNmZrUjNaeDMvcDgrY3E0TTFMVS9Idz09IiwiY2lwaGVyVGV4dCI6IjN4a0o0QVp4clEzb1NCczczbGdUZ3gyV2c0ekxvSmRPa3BIaUdRcmdJUklVZk9idDN3T3ZHa3p0TUJYTXBUWk9kM3NDQ0tLaEljV2dOUnZwMmJOeDYzRk5qVmRmdDNYVWVGV1Y0N1BwK1JIZG5IZituejV5cmd6VXRUOGYiLCJhdXRoVGFnIjoiczNIcmNVMk5WMSszZGRSNFZaWGpzdz09In0%3D" style="color: #FFFFFF; text-decoration: none" class="footer-links unsubscribe_show_optional" >
+									<span style="font-family: SST, SST-Roman, Arial, Helvetica, sans-serif; font-size: 11px; line-height: 22px; color: #FFFFFF">Abbestellen</span>
+								</a>
+															<!-- -->
+																	
+																</td>
+															</tr>
+														</tbody>
+													</table>	
+																
+												</td>
+										  </tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<!-- FOOTER PART 1: CONTENT WRAPPER: end -->
+				<!-- FOOTER PART 2: CONTENT WRAPPER: start -->
+				<tr>
+					<td align="center" valign="top">
+						<table class="responsive" bgcolor="#EEEEEE" border="0" cellpadding="0" cellspacing="0" align="center" width="740">
+							<tr>
+								<td bgcolor="#EEEEEE" align="center" valign="top" style="padding-top: 20px; padding-bottom:20px">
+									<table class="responsiveInner" width="640" border="0" align="center" cellpadding="0" cellspacing="0">
+										<tbody>
+											<tr>
+												<td align="center" valign="top">
+													<!-- -->
+													<table class="w95 cntr show_optional" cellpadding="0" cellspacing="0" border="0" width="640">
+														<!-- -->
+
+													</table>
+													<!-- -->
+														<table class="w95 cntr" cellpadding="0" cellspacing="0" border="0" width="640">
+														<tr>
+															<td align="center" valign="top" style="font-family: SST, SST-Roman, Arial, Helvetica, sans-serif; font-size: 11px; line-height: 21px; color: #999999; direction:ltr;" dir="ltr">
+																<!-- -->
+	<span class="show_optional">
+	<sup>1</sup>PlayStation Plus ist ein fortlaufendes Abonnement mit einer regelmäßigen Abonnementgebühr, die bis zur Kündigung automatisch (zum dann im PS Store geltenden Preis) in bei Abschluss des Abonnements festgelegten Abständen eingezogen wird. Es gelten Nutzungsbedingungen, siehe: <a  href="https://click.playstationemail.com/u/?qs=eyJkZWtJZCI6IjkyN2M3MzYyLTQyNGItNGNmYy05MzhiLWM4MGYwYWMyMmFlZSIsImRla1ZlcnNpb24iOjEsIml2IjoidVdVSTBmdDBaMXdjQ3dOMDcwZDJMUT09IiwiY2lwaGVyVGV4dCI6IlNtNnhHZzloQlhZNWI3UXZrT2sxbGYzZmFWWi92bkRvUjk4aUFpZ094ZG84NUxSbHRGUlR6Ry93bkEzN0FQNFg5dUVRWG9tanJrRmtFdGlPNk1UQ21iZ1VzZmNWaGhIeUlibGxDTkg3ZEdkY0hBc0RkTzlIZGkwPSIsImF1dGhUYWciOiJFdGlPNk1UQ21iZ1VzZmNWaGhIeUlRPT0ifQ%3D%3D" style="text-decoration: underline; color: #999999;">play.st/psplus-usageterms</a>.
+ <span style="height:15px; line-height:15px; mso-line-height-rule:exactly; display:block"><br><br></span>
+	</span>
+	<!-- -->
+																<span style="direction:ltr" dir="ltr">&copy;2026 Sony Interactive Entertainment Europe Limited.</span>
+ <span style="height:15px; line-height:15px; mso-line-height-rule:exactly; display:block"><br><br></span>
+																"PlayStation", das PlayStation-Logo, das PS5-Logo, und "Play Has No Limits" sind (eingetragene) Marken von Sony Interactive Entertainment Inc. "SONY" ist eine eingetragene Marke der Sony Corporation.<br><br>Sämtlicher Inhalt, sämtliche Spieltitel, Handelsnamen beziehungsweise Aufmachungen, Warenzeichen, Illustrationen und damit verbundene Bilder sind Warenzeichen beziehungsweise urheberrechtlich geschützte Werke ihrer jeweiligen Besitzer. Alle Rechte vorbehalten. <a href="https://click.playstationemail.com/u/?qs=eyJkZWtJZCI6IjBhY2Q3ZmM2LTdjYWYtNDA3Ni1iOTM0LWIzMjIwMzI1ZDcxYSIsImRla1ZlcnNpb24iOjEsIml2IjoiS1pubXJUNWZGT0V6YUZEcEVqZjk3Zz09IiwiY2lwaGVyVGV4dCI6IlRWZTRzdmI0U3E2MVpuQXZ1cXc0aVdURlRHSmZIaGRKcFNiQ3NyQ1FxZ0tXd3lENnkxdHYzWVAybkQxTDNPTVJnUWEwaGFVWlpJenRZSXFpK1lFR0RBWEZZMm9ZOEFMUFFpbVo1cTArWHhUaE0yaFE2UkkzL2U0PSIsImF1dGhUYWciOiJZSXFpK1lFR0RBWEZZMm9ZOEFMUFFnPT0ifQ%3D%3D" style="text-decoration: underline; color: #999999;">Mehr Info</a>.
+ <span style="height:15px; line-height:15px; mso-line-height-rule:exactly; display:block"><br><br></span>
+																<!---->
+																<!-- -->
+																<span class="noreply_marketing_show_optional">
+																Diese E-Mail wird automatisch versandt, daher können Schreiben an diese Adresse leider nicht beantwortet werden.
+ <span style="height:15px; line-height:15px; mso-line-height-rule:exactly; display:block"><br><br></span>
+																</span>
+																<!-- -->
+																<!-- -->
+																<span style="direction:ltr" dir="ltr">© Sony Interactive Entertainment Europe Limited is a company registered in England and Wales. Registered number: 03277793. Registered office: 10 Great Marlborough Street, London, W1F 7LP, United Kingdom.</span>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+											</tbody>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<!-- FOOTER PART 2: CONTENT WRAPPER: end -->
+			</table>
+</td>
+							</tr>
+						</table>
+
+<!--  -->
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+</center>
+</body>
+</html>
+
+
+
+
+
+`,text:'96 PlayStation Stelle dich dem Nebel des Krieges PlayStation Zeit für drastische Maßnahmen In Saison 2 von Battlefield 6 und REDSEC nimmt der Krieg gegen Pax Armata globale Dimensionen an und erreicht im Zuge eines zermürbenden Angriffs zur Rückeroberung eines NATO-Luftwaffenstützpunkts deutsches Gebirge. Saison 2 bringt das kompromisslose Kriegsgeschehen in puncto Nervenkitzel auf die nächste Stufe. Mit ihr werden neben dem psychoaktiven VL-7-Rauch, der den Orientierungssinn auf dem Schlachtfeld verzerrt, die neue Karte „Contaminated“ sowie neue Waffen eingeführt, zudem erlebt der legendäre AH-6 Little Bird sein Comeback. Jetzt spielen Schalte mit Battlefield Pro noch mehr Inhalte frei Mit dem Battle Pass von Saison 2 schaltest du sofort sechs Belohnungen frei und erhältst Zugriff auf vier brandneue Themenpfade mit neuer Ausrüstung, Waffenpaketen, Soldaten-Skins, EP-Boosts und mehr. Upgrade auf Battlefield Pro und erhalte Zugriff auf den Battle Pass, sechs zusätzliche Belohnungen, die sofort freigeschaltet werden, 25 Stufensprünge sowie einen exklusiven Bonuspfad mit Gefechtsausrüstung zur Verstärkung deines Arsenals. Jetzt kaufen Gehe mit PlayStation®Plus aufs Ganze Mit einer PlayStation Plus-Mitgliedschaft schaltest du zusätzliche Stufen frei, wenn du Battlefield Pro kaufst, beschleunigst deinen Fortschritt durch erweiterten Zugriff auf Bonus-EP-Events und verschaffst deinem ganzen Team einen Boost, wenn mindestens zwei von euch auf PlayStation®-Konsolen spielen. 1 Als Mitglied kannst du jetzt außerdem das Paket „Toxic Tide“ erhalten, das den Pax-Armata-Aufklärungssoldaten-Skin „Filtered Out“, das M433-Waffenpaket „Blue Dot“, das P18-Waffenpaket „Backwoods“ und mehr beinhaltet! Jetzt einlösen Online ansehen | Teilnahmebedingungen | Deine Einstellungen | Abbestellen 1 PlayStation Plus ist ein fortlaufendes Abonnement mit einer regelmäßigen Abonnementgebühr, die bis zur Kündigung automatisch (zum dann im PS Store geltenden Preis) in bei Abschluss des Abonnements festgelegten Abständen eingezogen wird. Es gelten Nutzungsbedingungen, siehe: play.st/psplus-usageterms . &copy;2026 Sony Interactive Entertainment Europe Limited. "PlayStation", das PlayStation-Logo, das PS5-Logo, und "Play Has No Limits" sind (eingetragene) Marken von Sony Interactive Entertainment Inc. "SONY" ist eine eingetragene Marke der Sony Corporation. Sämtlicher Inhalt, sämtliche Spieltitel, Handelsnamen beziehungsweise Aufmachungen, Warenzeichen, Illustrationen und damit verbundene Bilder sind Warenzeichen beziehungsweise urheberrechtlich geschützte Werke ihrer jeweiligen Besitzer. Alle Rechte vorbehalten. Mehr Info . Diese E-Mail wird automatisch versandt, daher können Schreiben an diese Adresse leider nicht beantwortet werden. © Sony Interactive Entertainment Europe Limited is a company registered in England and Wales. Registered number: 03277793. Registered office: 10 Great Marlborough Street, London, W1F 7LP, United Kingdom.',accountEmail:"demo@demo.com",messageId:"<demo-mock-1303@homerow.dev>"},{id:1304,seq:1304,threadId:"thread-mock-1304",subject:"Celebrate Black History month",from:"Amazon Business",fromAddress:"no-reply@business.amazon.com",to:["demo@demo.com"],date:"2026-02-24T15:06:43.000Z",flags:["\\Seen"],snippet:"96 Support Black entrepreneurs ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏",hasAttachments:!1,folderPath:"INBOX",html:`<!doctype html>
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+ <head>
+  <title></title>
+  <!--[if !mso]><!-- -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!--<![endif]-->
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style type="text/css">#outlook a { padding:0; }           table { border-spacing:0;}           img { border:0;height:auto;line-height:100%; outline:none;text-decoration:none;-ms-interpolation-mode:bicubic; }           p { display:block; }</style>
+  <!--[if mso]>                    <xml>                      <o:OfficeDocumentSettings xmlns:o="urn:schemas-microsoft-com:office:office">                    <o:AllowPNG/>                          <o:PixelsPerInch>96</o:PixelsPerInch>                      </o:OfficeDocumentSettings>                   <w:WordDocument xmlns:w="urn:schemas-microsoft-com:office:word">               <w:DontUseAdvancedTypographyReadingMail/>             </w:WordDocument>                  </xml>                        <style type="text/css">             table { border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt; }             .mj-outlook-group-fix { width:100% !important; }           </style>                  <![endif]-->
+  <!--[if !mso]><!-->
+  <link href="https://client-data.knak.io/production/company_data/630e3887b58ec/custom-fonts/6319f9bc60b6b/fonts.css" rel="stylesheet" type="text/css">
+  <link href="https://client-data.knak.io/production/company_data/63c704d363902/custom-fonts/66ce388715f45/fonts.css" rel="stylesheet" type="text/css">
+  <style type="text/css">@import url(https://client-data.knak.io/production/company_data/630e3887b58ec/custom-fonts/6319f9bc60b6b/fonts.css); @import url(https://client-data.knak.io/production/company_data/63c704d363902/custom-fonts/66ce388715f45/fonts.css);</style>
+  <!--<![endif]-->
+  <style type="text/css">@media only screen and (min-width:641px) {         .mj-column-per-100 { width:100% !important; max-width: 100%; } .mj-column-per-50 { width:50% !important; max-width: 50%; } .mj-column-per-52 { width:52% !important; max-width: 52%; } .mj-column-per-48 { width:48% !important; max-width: 48%; } .mj-column-per-42 { width:42% !important; max-width: 42%; } .mj-column-per-58 { width:58% !important; max-width: 58%; } .mj-column-per-45 { width:45% !important; max-width: 45%; } .mj-column-per-55 { width:55% !important; max-width: 55%; }       }</style>
+  <style type="text/css">body, .body { margin:0;padding:0;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%; } .links-FFFFFF-underline-bold a { color: #FFFFFF; text-decoration: underline; font-weight: bold; } #body #main [x-apple-data-detectors-type] {            color: inherit !important;            -webkit-text-decoration-color: inherit !important;            text-decoration: inherit !important;           font-weight: inherit !important;          } .mso-button-dark-mode a {background: transparent !important;} .links-161D26 a { color: #161D26; text-decoration: none; } .links-007185-bold a { color: #007185; text-decoration: none; font-weight: bold; } .links-161D26-bold a { color: #161D26; text-decoration: none; font-weight: bold; } .links-FFFFFF-underline a { color: #FFFFFF; text-decoration: underline; }                                         @media only screen and (min-width:641px) {                         .padding-14px-0px-14px-40px { padding: 14px 0px 14px 40px !important} .padding-0px-0px-0px-0px { padding: 0px 0px 0px 0px !important} .max-width-154px { max-width: 154px !important} .padding-5px-24px-24px-40px { padding: 5px 24px 24px 40px !important} .padding-0px-32px-0px-0px { padding: 0px 32px 0px 0px !important} .font-size-36px { font-size: 36px !important} .padding-30px-0px-20px-0px { padding: 30px 0px 20px 0px !important} .padding-0px-40px-0px-0px { padding: 0px 40px 0px 0px !important} .max-width-257px { max-width: 257px !important} .padding-0px-40px-8px-40px { padding: 0px 40px 8px 40px !important} .padding-0px-40px-0px-40px { padding: 0px 40px 0px 40px !important} .height-20px { height: 20px !important} .line-height-20px { line-height: 20px !important} .padding-0px-40px-20px-40px { padding: 0px 40px 20px 40px !important} .font-size-20px { font-size: 20px !important} .padding-6px-40px-6px-40px { padding: 6px 40px 6px 40px !important} .padding-0px-0px-0px-20px { padding: 0px 0px 0px 20px !important} .padding-8px-0px-0px-0px { padding: 8px 0px 0px 0px !important} .padding-20px-40px-0px-40px { padding: 20px 40px 0px 40px !important} .padding-20px-40px-20px-40px { padding: 20px 40px 20px 40px !important} .text-align-right { text-align: right !important} .padding-10px-0px-0px-0px { padding: 10px 0px 0px 0px !important} .margin-0-0-0-auto { margin: 0 0 0 auto !important}             }</style>
+  <style type="text/css">h1{font-size: 40px; margin: 0;}h1.header-customization{font-size: inherit}h2{font-size: 32px; margin: 0;}h2.header-customization{font-size: inherit}h3{font-size: 28px; margin: 0;}h3.header-customization{font-size: inherit}h4{font-size: 24px; margin: 0;}h4.header-customization{font-size: inherit}h5{font-size: 18px; margin: 0;}h5.header-customization{font-size: inherit}h6{font-size: 16px; margin: 0;}h6.header-customization{font-size: inherit}ul{display: block;}sup, sub{line-height:0;}body a{text-decoration: none; color: #827AF0;}.image-highlight{transition: 0.3s;}.image-highlight:hover{filter: brightness(1.2);}@media only screen and (min-width: 641px) { .hide-on-mobile{display:block !important;}.hide-on-desktop{display:none !important;} }.hide-on-desktop{display:block;}.hide-on-mobile{display:none;}</style>
+  <!--[if mso]>             <style>                 .hide-on-mobile {display:block !important}             </style>         <![endif]-->
+  <!--[if mso]>                 <style>                              .mso-font-size-36px { font-size: 36px !important; } .mso-font-size-20px { font-size: 20px !important; }                 </style>             <![endif]-->
+  <style>[class~="x_body"] { width: 99.9% }</style>
+ </head>
+ <body style="word-spacing:normal;background-color:#FFFFFF;" class="body" id="body">
+  <div>
+   <p><img alt="" src="http://elinks.business.amazon.com/CI0/0100019c903030bc-adc39c10-b9ae-48d1-9bb1-8e68e90ade5b-000000/5gOp8aC-N31FNS8ELAqMNj9Yq3l-KXkBfx3BFzgtP_4=446" style="display: none; width: 1px; height: 1px;">
+</p>
+  </div>
+  <!--[if !mso 9]><!-->
+  <div id="emailPreHeader" style="display: none;">Support Black entrepreneurs</div>
+  <div style="display: none;">                                                    ‍͏  ͏  ‍͏  ͏  ‍͏  ͏  ‍͏  ͏  ‍͏  ͏  ‍͏  ͏  ‍͏  ͏  ‍͏  ͏  ‍͏  ͏  ‍͏  ͏  ‍͏  ͏  ‍͏  ͏  ‍͏  ͏  ‍͏  ͏  ‍͏  ͏  ‍͏  ͏  ‍͏  ͏  ‍͏  ͏  ‍͏  ͏  ‍͏  ͏  ‍͏  ͏  ‍͏  ͏  ‍͏  ͏  ‍͏  ͏  ‍͏  ͏  ‍͏  ͏  ‍͏  ͏  ‍͏  ͏  ‍͏  ͏  ‍͏  ͏  ‍͏  ͏  ‍͏  ͏  ‍͏  ͏  ‍͏  ͏  ‍͏  ͏  ‍͏  ͏  ‍͏  ͏  ‍͏  ͏  ‍͏  ͏ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ &nbsp;</div>
+  <!--<![endif]-->
+  <div style="background-color:#FFFFFF;background-position:center center;background-size:auto;background-repeat:repeat;" id="main">
+   <!--[if mso]>
+<table border="0" cellpadding="0" cellspacing="0" width="100%"><![endif]-->
+   <!--[if mso]>
+<tr>
+<td><![endif]-->
+   <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F4F4F5;width:100%;" class="section">
+    <tbody>
+     <tr>
+      <td align="center">
+       <div role="none">
+        <!--[if mso | IE]>
+<table align="center" border="0" cellpadding="0" cellspacing="0" class="block-grid-outlook" style="width:600px;" width="600" >
+<tr>
+<td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+        <div style="background:#FFFFFF;background-color:#FFFFFF;margin:0 auto;max-width:600px;">
+         <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#FFFFFF;width:100%;">
+          <tbody>
+           <tr>
+            <td style="font-size:0px;padding:16px 16px 14px 16px;text-align:center;vertical-align:top;mso-padding-alt:14px 0px 14px 40px;" class="block-grid padding-14px-0px-14px-40px"><!--[if mso | IE]>
+<table role="presentation" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td style="vertical-align:top;width:560px;" ><![endif]-->
+             <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0;line-height:0;text-align:left;display:inline-block;width:100%;direction:ltr;vertical-align:top;">
+              <!--[if mso | IE]>
+<table role="presentation" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td style="vertical-align:middle;width:280px;" ><![endif]-->
+              <div class="mj-column-per-50 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:middle;width:50%;">
+               <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-radius:0px;vertical-align:middle;" width="100%">
+                <tbody>
+                 <tr>
+                  <td class="padding-0px-0px-0px-0px img-container" style="font-size:0px;padding:8px 0px 0px 0px;word-break:break-word;mso-padding-alt:0px 0px 0px 0px;text-align:left;">
+                   <div style="margin:0 auto 0 0;max-width:80%;" class="max-width-154px">
+                    <a href="https://elinks.business.amazon.com/CL0/https:%2F%2Fbusiness.amazon.com%3Fref_=b2b_sow_e_us_eve_260224_ENG_ABBHM26_2/1/0100019c903030bc-adc39c10-b9ae-48d1-9bb1-8e68e90ade5b-000000/V2hg7rHrdBo2M46u4igZkKLFv4oRYoaCi-FjsrgsMpI=446" target="_blank" style="text-decoration: none; color: #827AF0;"><img alt="Amazon Business" height="auto" width="154" src="https://m.media-amazon.com/images/G/01/AmazonBusiness/Logo/Email-Logo/AB-logo-outlined-2color2x.png" style="border:none;border-radius:0px;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;display:block;"></a>
+                   </div>
+                  </td>
+                 </tr>
+                </tbody>
+               </table>
+              </div>
+              <!--[if mso | IE]>
+</td>
+<td style="vertical-align:middle;width:280px;" ><![endif]-->
+              <div class="mj-column-per-50 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:middle;width:50%;">
+               <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-radius:0px;vertical-align:middle;" width="100%">
+                <tbody>
+                 <tr>
+                  <td style="font-size:0px;padding:0 0 0 0;word-break:break-word;">
+                   <div style="line-height:0px;height:0px;mso-line-height-alt:0px;">&nbsp;</div>
+                  </td>
+                 </tr>
+                </tbody>
+               </table>
+              </div>
+              <!--[if mso | IE]>
+</td>
+</tr>
+</table><![endif]-->
+             </div>
+             <!--[if mso | IE]>
+</td>
+</tr>
+</table><![endif]--></td>
+           </tr>
+          </tbody>
+         </table>
+        </div>
+        <!--[if mso | IE]>
+</td>
+</tr>
+</table><![endif]-->
+       </div>
+      </td>
+     </tr>
+    </tbody>
+   </table>
+   <!--[if mso]>
+</td>
+</tr><![endif]-->
+   <!--[if mso]>
+<tr>
+<td><![endif]-->
+   <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F4F4F5;width:100%;" class="section">
+    <tbody>
+     <tr>
+      <td align="center">
+       <div role="none">
+        <!--[if mso | IE]>
+<table align="center" border="0" cellpadding="0" cellspacing="0" class="block-grid-outlook" style="width:600px;" width="600" >
+<tr>
+<td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+        <div style="background:#FFFFFF;background-color:#FFFFFF;margin:0 auto;max-width:600px;">
+         <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#FFFFFF;width:100%;">
+          <tbody>
+           <tr>
+            <td style="font-size:0px;padding:32px 16px 24px 16px;text-align:center;vertical-align:top;mso-padding-alt:5px 24px 24px 40px;" class="block-grid padding-5px-24px-24px-40px"><!--[if mso | IE]>
+<table role="presentation" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td style="vertical-align:top;width:278.72px;" ><![endif]-->
+             <div class="mj-column-per-52 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+              <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+               <tbody>
+                <tr>
+                 <td style="border-radius:0px;vertical-align:top;padding:0px 0px 20px 0px;mso-padding-alt:0px 32px 0px 0px;" class="padding-0px-32px-0px-0px">
+                  <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                   <tbody>
+                    <tr>
+                     <td class="padding-30px-0px-20px-0px text-container" style="font-size:0px;padding:32px 0px 20px 0px;word-break:break-word;mso-padding-alt:30px 0px 20px 0px;text-align:left;">
+                      <div class="links-FFFFFF-underline-bold">
+                       <div style="font-family:'Ember Modern Display', Arial, sans-serif;font-size:28px;font-weight:bold;letter-spacing:none;line-height:1.2;text-align:left;mso-line-height-alt:2.688em;color:#161D26;" class="mso-font-size-36px font-size-36px">
+                        <p style="margin: 0;">Support Black entrepreneurs</p>
+                       </div>
+                      </div>
+                     </td>
+                    </tr>
+                    <tr>
+                     <td valign="middle" class="padding-0px-40px-0px-0px button-container" style="font-size:0px;padding:0px 0px 0px 0px;word-break:break-word;mso-padding-alt:0px 40px 0px 0px;text-align:left;">
+                      <div>
+                       <!--[if mso]>
+<table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="border-spacing:0;border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;">
+<tr>
+<td align="left" class="mso-button-dark-mode"><a:roundrect xmlns:a="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://elinks.business.amazon.com/CL0/https:%2F%2Fwww.amazon.com%2Fbusiness%2Fregister%2Fwelcome%3Fref_=b2b_sow_e_us_eve_260224_ENG_ABBHM26_2%26return_to=%2Fl%2F21382093011/1/0100019c903030bc-adc39c10-b9ae-48d1-9bb1-8e68e90ade5b-000000/sjNuS2QGr7qLypWozK593uDPyXfACZgHZXqXJNFFJQc=446" fillcolor="#FFD814" arcsize="58%" style="v-text-anchor:middle;width:150pt;height:32.25pt;" stroke="f" ><w:anchorlock/><a:textbox inset="0,0,0,0"><center style="color:#ffffff; font-family:sans-serif, Arial; font-size:16px"><![endif]-->
+                       <a href="https://elinks.business.amazon.com/CL0/https:%2F%2Fwww.amazon.com%2Fbusiness%2Fregister%2Fwelcome%3Fref_=b2b_sow_e_us_eve_260224_ENG_ABBHM26_2%26return_to=%2Fl%2F21382093011/1/0100019c903030bc-adc39c10-b9ae-48d1-9bb1-8e68e90ade5b-000000/sjNuS2QGr7qLypWozK593uDPyXfACZgHZXqXJNFFJQc=446" style="display: inline-block; width: auto; background: #FFD814; color: #161D26; font-family: 'Amber Ember', Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.2; margin: 0; text-align: center; text-decoration: none; text-transform: none; padding: 12px 24px 12px 24px; mso-padding-alt: 0px; border-radius: 25px; border-left: 0 none #FFFFFF; border-right: 0 none #FFFFFF; border-top: 0 none #FFFFFF; border-bottom: 0 none #FFFFFF; mso-border-alt: none; box-sizing: border-box;" target="_blank" width="200">Explore Black-owned </a><!--[if mso]></center></a:textbox></a:roundrect>
+</td>
+</tr>
+</table><![endif]-->
+                      </div>
+                     </td>
+                    </tr>
+                   </tbody>
+                  </table>
+                 </td>
+                </tr>
+               </tbody>
+              </table>
+             </div>
+             <!--[if mso | IE]>
+</td>
+<td style="vertical-align:top;width:257.28px;" ><![endif]-->
+             <div class="mj-column-per-48 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+              <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-radius:0px;vertical-align:top;" width="100%">
+               <tbody>
+                <tr>
+                 <td class="img-container" style="font-size:0px;padding:0px 0px 0px 0px;word-break:break-word;text-align:center;">
+                  <div style="margin:0 auto;" class="max-width-257px">
+                   <a href="https://elinks.business.amazon.com/CL0/https:%2F%2Fwww.amazon.com%2Fbusiness%2Fregister%2Fwelcome%3Fref_=b2b_sow_e_us_eve_260224_ENG_ABBHM26_2%26return_to=%2Fl%2F21382093011/2/0100019c903030bc-adc39c10-b9ae-48d1-9bb1-8e68e90ade5b-000000/XHjQwyPFfcTfLzVxshvzGofL77SrQTcM-B3Y8Dr1qm8=446" target="_blank" style="text-decoration: none; color: #827AF0;"><img alt="Tara D. Harkness, HARKNESServices" height="auto" width="257" src="https://m.media-amazon.com/images/G/01/AmazonBusiness/MarketingFY26/OnsiteEvents/Socialgoodevents/BHM26/Email/US-EN_AB_BHM26_P1_101_Email_Small_686x444.jpg" style="border:none;border-radius:16px;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;display:block;"></a>
+                  </div>
+                 </td>
+                </tr>
+               </tbody>
+              </table>
+             </div>
+             <!--[if mso | IE]>
+</td>
+</tr>
+</table><![endif]--></td>
+           </tr>
+          </tbody>
+         </table>
+        </div>
+        <!--[if mso | IE]>
+</td>
+</tr>
+</table><![endif]-->
+       </div>
+      </td>
+     </tr>
+    </tbody>
+   </table>
+   <!--[if mso]>
+</td>
+</tr><![endif]-->
+   <!--[if mso]>
+<tr>
+<td><![endif]-->
+   <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F4F4F5;width:100%;" class="section">
+    <tbody>
+     <tr>
+      <td align="center">
+       <div role="[object Object]">
+        <!--[if mso | IE]>
+<table align="center" border="0" cellpadding="0" cellspacing="0" class="block-grid-outlook" style="width:600px;" width="600" >
+<tr>
+<td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+        <div style="background:#FFFFFF;background-color:#FFFFFF;margin:0 auto;max-width:600px;">
+         <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#FFFFFF;width:100%;">
+          <tbody>
+           <tr>
+            <td style="font-size:0px;padding:0px 0px 0px 0px;text-align:center;vertical-align:top;mso-padding-alt:0px 0px 0px 0px;" class="block-grid"><!--[if mso | IE]>
+<table role="presentation" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td style="vertical-align:top;width:600px;" ><![endif]-->
+             <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+              <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-radius:0px;vertical-align:top;" width="100%">
+               <tbody>
+                <tr>
+                 <td style="font-size:0px;padding:0 0 0 0;word-break:break-word;">
+                  <div style="line-height:24px;height:24px;mso-line-height-alt:24px;">&nbsp;</div>
+                 </td>
+                </tr>
+               </tbody>
+              </table>
+             </div>
+             <!--[if mso | IE]>
+</td>
+</tr>
+</table><![endif]--></td>
+           </tr>
+          </tbody>
+         </table>
+        </div>
+        <!--[if mso | IE]>
+</td>
+</tr>
+</table><![endif]-->
+       </div>
+      </td>
+     </tr>
+    </tbody>
+   </table>
+   <!--[if mso]>
+</td>
+</tr><![endif]-->
+   <!--[if mso]>
+<tr>
+<td><![endif]-->
+   <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F4F4F5;width:100%;" class="section">
+    <tbody>
+     <tr>
+      <td align="center">
+       <div role="none">
+        <!--[if mso | IE]>
+<table align="center" border="0" cellpadding="0" cellspacing="0" class="block-grid-outlook" style="width:600px;" width="600" >
+<tr>
+<td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+        <div style="background:#FFFFFF;background-color:#FFFFFF;margin:0 auto;max-width:600px;">
+         <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#FFFFFF;width:100%;">
+          <tbody>
+           <tr>
+            <td style="font-size:0px;padding:0px 16px 8px 16px;text-align:center;vertical-align:top;mso-padding-alt:0px 40px 8px 40px;" class="block-grid padding-0px-40px-8px-40px"><!--[if mso | IE]>
+<table role="presentation" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td style="vertical-align:top;width:520px;" ><![endif]-->
+             <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+              <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-radius:0px;vertical-align:top;" width="100%">
+               <tbody>
+                <tr>
+                 <td class="text-container" style="font-size:0px;padding:0px 0px 0px 0px;word-break:break-word;text-align:left;">
+                  <div class="links-161D26">
+                   <div style="font-family:'Amber Ember', Arial, sans-serif;font-size:18px;font-weight:bold;letter-spacing:none;line-height:1.2;text-align:left;mso-line-height-alt:1.375em;color:#222D3A;">
+                    <p style="margin: 0 0 0px 0;">Diversify your business procurement</p>
+                   </div>
+                  </div>
+                 </td>
+                </tr>
+               </tbody>
+              </table>
+             </div>
+             <!--[if mso | IE]>
+</td>
+</tr>
+</table><![endif]--></td>
+           </tr>
+          </tbody>
+         </table>
+        </div>
+        <!--[if mso | IE]>
+</td>
+</tr>
+</table><![endif]-->
+       </div>
+      </td>
+     </tr>
+    </tbody>
+   </table>
+   <!--[if mso]>
+</td>
+</tr><![endif]-->
+   <!--[if mso]>
+<tr>
+<td><![endif]-->
+   <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F4F4F5;width:100%;" class="section">
+    <tbody>
+     <tr>
+      <td align="center"><!--[if mso | IE]>
+<table align="center" border="0" cellpadding="0" cellspacing="0" class="block-grid-outlook" style="width:600px;" width="600" >
+<tr>
+<td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+       <div style="background:#FFFFFF;background-color:#FFFFFF;margin:0 auto;max-width:600px;">
+        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#FFFFFF;width:100%;">
+         <tbody>
+          <tr>
+           <td style="font-size:0px;padding:0px 16px 0px 16px;text-align:center;vertical-align:top;mso-padding-alt:0px 40px 0px 40px;" class="block-grid padding-0px-40px-0px-40px"><!--[if mso | IE]>
+<table role="presentation" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td style="vertical-align:top;width:520px;" ><![endif]-->
+            <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+             <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-radius:0px;vertical-align:top;" width="100%">
+              <tbody>
+               <tr>
+                <td class="text-container" style="font-size:0px;padding:0px 0px 0px 0px;word-break:break-word;text-align:left;">
+                 <div class="links-007185-bold">
+                  <div style="font-family:'Amber Ember', Arial, sans-serif;font-size:16px;font-weight:normal;letter-spacing:none;line-height:1.4;text-align:left;mso-line-height-alt:1.375em;color:#222D3A;">
+                   <p style="margin: 0 0 0px 0;">Amazon Business makes it simple to diversify your supply chain with business supplies from credentialed small and diverse sellers. Celebrate this Black History month by shopping Black-owned businesses as you procure IT essentials, Office supplies, and more. Learn how to set up your business procurement to support small and diverse sellers.</p>
+                  </div>
+                 </div>
+                </td>
+               </tr>
+              </tbody>
+             </table>
+            </div>
+            <!--[if mso | IE]>
+</td>
+</tr>
+</table><![endif]--></td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
+       <!--[if mso | IE]>
+</td>
+</tr>
+</table><![endif]--></td>
+     </tr>
+    </tbody>
+   </table>
+   <!--[if mso]>
+</td>
+</tr><![endif]-->
+   <!--[if mso]>
+<tr>
+<td><![endif]-->
+   <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F4F4F5;width:100%;" class="section">
+    <tbody>
+     <tr>
+      <td align="center"><!--[if mso | IE]>
+<table align="center" border="0" cellpadding="0" cellspacing="0" class="block-grid-outlook" style="width:600px;" width="600" >
+<tr>
+<td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+       <div style="background:#FFFFFF;background-color:#FFFFFF;margin:0 auto;max-width:600px;">
+        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#FFFFFF;width:100%;">
+         <tbody>
+          <tr>
+           <td style="font-size:0px;padding:0px 0px 0px 0px;text-align:center;vertical-align:top;mso-padding-alt:0px 0px 0px 0px;" class="block-grid"><!--[if mso | IE]>
+<table role="presentation" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td style="vertical-align:top;width:600px;" ><![endif]-->
+            <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+             <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-radius:0px;vertical-align:top;" width="100%">
+              <tbody>
+               <tr>
+                <td style="font-size:0px;padding:0 0 0 0;word-break:break-word;">
+                 <div style="line-height:30px;height:30px;mso-line-height-alt:30px;">&nbsp;</div>
+                </td>
+               </tr>
+              </tbody>
+             </table>
+            </div>
+            <!--[if mso | IE]>
+</td>
+</tr>
+</table><![endif]--></td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
+       <!--[if mso | IE]>
+</td>
+</tr>
+</table><![endif]--></td>
+     </tr>
+    </tbody>
+   </table>
+   <!--[if mso]>
+</td>
+</tr><![endif]-->
+   <!--[if mso]>
+<tr>
+<td><![endif]-->
+   <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F4F4F5;width:100%;" class="section">
+    <tbody>
+     <tr>
+      <td align="center"><!--[if mso | IE]>
+<table align="center" border="0" cellpadding="0" cellspacing="0" class="block-grid-outlook" style="width:600px;" width="600" >
+<tr>
+<td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+       <div style="background:#FFFFFF;background-color:#FFFFFF;margin:0 auto;max-width:600px;">
+        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#FFFFFF;width:100%;">
+         <tbody>
+          <tr>
+           <td style="font-size:0px;padding:0px;text-align:center;vertical-align:top;" class="block-grid"><!--[if mso | IE]>
+<table role="presentation" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td style="vertical-align:top;width:600px;" ><![endif]-->
+            <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+             <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-radius:0px;vertical-align:top;" width="100%">
+              <tbody>
+               <tr>
+                <td style="font-size:0px;padding:0 0 0 0;word-break:break-word;">
+                 <div style="line-height:24px;height:24px;mso-line-height-alt:20px;" class="height-20px line-height-20px">&nbsp;</div>
+                </td>
+               </tr>
+              </tbody>
+             </table>
+            </div>
+            <!--[if mso | IE]>
+</td>
+</tr>
+</table><![endif]--></td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
+       <!--[if mso | IE]>
+</td>
+</tr>
+</table><![endif]--></td>
+     </tr>
+    </tbody>
+   </table>
+   <!--[if mso]>
+</td>
+</tr><![endif]-->
+   <!--[if mso]>
+<tr>
+<td><![endif]-->
+   <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F4F4F5;width:100%;" class="section">
+    <tbody>
+     <tr>
+      <td align="center"><!--[if mso | IE]>
+<table align="center" border="0" cellpadding="0" cellspacing="0" class="block-grid-outlook" style="width:600px;" width="600" >
+<tr>
+<td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+       <div style="background:#FFFFFF;background-color:#FFFFFF;margin:0 auto;max-width:600px;">
+        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#FFFFFF;width:100%;">
+         <tbody>
+          <tr>
+           <td style="font-size:0px;padding:0px 16px 24px 16px;text-align:center;vertical-align:top;mso-padding-alt:0px 40px 20px 40px;" class="block-grid padding-0px-40px-20px-40px"><!--[if mso | IE]>
+<table role="presentation" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td style="vertical-align:top;width:520px;" ><![endif]-->
+            <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+             <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-radius:0px;vertical-align:top;" width="100%">
+              <tbody>
+               <tr>
+                <td class="text-container" style="font-size:0px;padding:0px 0px 0px 0px;word-break:break-word;text-align:left;">
+                 <div class="links-161D26">
+                  <div style="font-family:'Amber Ember', Arial, sans-serif;font-size:16px;font-weight:bold;letter-spacing:none;line-height:1.2;text-align:left;mso-line-height-alt:1.5em;color:#222D3A;" class="mso-font-size-20px font-size-20px">
+                   <p style="margin: 0;">Features</p>
+                  </div>
+                 </div>
+                </td>
+               </tr>
+              </tbody>
+             </table>
+            </div>
+            <!--[if mso | IE]>
+</td>
+</tr>
+</table><![endif]--></td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
+       <!--[if mso | IE]>
+</td>
+</tr>
+</table><![endif]--></td>
+     </tr>
+    </tbody>
+   </table>
+   <!--[if mso]>
+</td>
+</tr><![endif]-->
+   <!--[if mso]>
+<tr>
+<td><![endif]-->
+   <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F4F4F5;width:100%;" class="section">
+    <tbody>
+     <tr>
+      <td align="center">
+       <div role="none">
+        <!--[if mso | IE]>
+<table align="center" border="0" cellpadding="0" cellspacing="0" class="block-grid-outlook" style="width:600px;" width="600" >
+<tr>
+<td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+        <div style="background:#FFFFFF;background-color:#FFFFFF;margin:0 auto;max-width:600px;">
+         <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#FFFFFF;width:100%;">
+          <tbody>
+           <tr>
+            <td style="font-size:0px;padding:6px 16px 6px 16px;text-align:center;vertical-align:top;mso-padding-alt:6px 40px 6px 40px;" class="block-grid padding-6px-40px-6px-40px"><!--[if mso | IE]>
+<table role="presentation" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td style="vertical-align:top;width:520px;" ><![endif]-->
+             <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0;line-height:0;text-align:left;display:inline-block;width:100%;direction:ltr;vertical-align:top;">
+              <!--[if mso | IE]>
+<table role="presentation" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td style="vertical-align:middle;width:218px;" ><![endif]-->
+              <div class="mj-column-per-42 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:middle;width:42%;">
+               <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-radius:0px;vertical-align:middle;" width="100%">
+                <tbody>
+                 <tr>
+                  <td class="img-container" style="font-size:0px;padding:0px 0px 0px 0px;word-break:break-word;text-align:center;">
+                   <div style="margin:0 auto;max-width:218px;">
+                    <a href="https://elinks.business.amazon.com/CL0/https:%2F%2Fsellercentral.amazon.com%2Fap%2Fsignin%3Fref_=b2b_sow_e_us_eve_260224_ENG_ABBHM26_2%26clientContext=132-2595933-9217207%26openid.pape.max_auth_age=300%26openid.identity=http%253A%252F%252Fspecs.openid.net%252Fauth%252F2.0%252Fidentifier_select%26language=en_US%26pageId=sc_amazon_v3_unified%26openid.pape.preferred_auth_policies=Policy15%26openid.return_to=https%253A%252F%252Fsellercentral.amazon.com%252Fprofile%252Fcertifications%26openid.assoc_handle=sc_na_amazon_v2%26openid.mode=checkid_setup%26fct=Fct%257CRwEBcbVwZkIDeZaYn647XtkaB71iJD6k5cF3hYXHC7LHkEFfGBpU8m5Fkwq-7figMRYy6yLfRJCqdU9dz1Nt47JYU6lc1X1CWq-fcrtmtVD8OdSxeewKLUzed0vkt5v7ctqtUPLGQoE2BZDnBkR44XcfdhCl4XMaCpi2ZEoVxxjIvOPg0aJvJGNR5O2yKy5vu4ygqvoGXQIrND1Cbb7eDlHXDYQCmeYUJEjIby1De3myrNqvtyYdcGgsbWm-hPuo5j45%26intercept=false%26openid.claimed_id=http%253A%252F%252Fspecs.openid.net%252Fauth%252F2.0%252Fidentifier_select%26openid.ns=http%253A%252F%252Fspecs.openid.net%252Fauth%252F2.0%26ssoResponse=eyJ6aXAiOiJERUYiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiQTI1NktXIn0.olczFrK7az5JZKU2cIh07gnCdY79AzFgIR8cWFCB52LP4cCHzXZ4OA.4XVyu7UtiD_blU-e.ACjjmqpGYsOgLsOjttgJu2IR_Y2l8ws1t39JlTRoMrfcuZzSTZjIwNjWUkvmH27bJOmF_7mzpwtBcYbB99Vb-C7FBjMMvMGLBX-KPmzjN1drPvDhyMobYVC3Vit93zCX0WmXsaCU9ek8gIPoFI21PFzNYdi4eF42AqW8J-_KKFhA6iFvGRrVnB_4_hX_gMTm5k6aUOBByw.HjvHG2cf9RF5xYT-KEGH8A/1/0100019c903030bc-adc39c10-b9ae-48d1-9bb1-8e68e90ade5b-000000/nX_TW-c4blCpU8wPaZJ7I4KY1oUSE7Kv0j0vHyaD-Xs=446" target="_blank" style="text-decoration: none; color: #827AF0;"><img alt="illustration of a black woman" height="auto" width="218" src="https://m.media-amazon.com/images/G/01/AmazonBusiness/MarketingFY26/OnsiteEvents/Socialgoodevents/BHM26/Email/US-EN_AB_BHM26_P1_107_Email_Small_Image_400x267.jpg" style="border:none;border-radius:4px;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;display:block;"></a>
+                   </div>
+                  </td>
+                 </tr>
+                </tbody>
+               </table>
+              </div>
+              <!--[if mso | IE]>
+</td>
+<td style="vertical-align:middle;width:301px;" ><![endif]-->
+              <div class="mj-column-per-58 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:middle;width:58%;">
+               <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                <tbody>
+                 <tr>
+                  <td style="border-radius:0px;vertical-align:middle;padding:0px 0px 0px 16px;mso-padding-alt:0px 0px 0px 20px;" class="padding-0px-0px-0px-20px">
+                   <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                    <tbody>
+                     <tr>
+                      <td class="text-container" style="font-size:0px;padding:0px 0px 0px 0px;word-break:break-word;text-align:left;">
+                       <div class="links-161D26-bold">
+                        <div style="font-family:'Amber Ember', Arial, sans-serif;font-size:16px;font-weight:bold;letter-spacing:none;line-height:1.4;text-align:left;mso-line-height-alt:1.75em;color:#222D3A;" class="mso-font-size-20px font-size-20px">
+                         <p style="margin: 0;">Certification</p>
+                        </div>
+                       </div>
+                      </td>
+                     </tr>
+                     <tr>
+                      <td class="text-container" style="font-size:0px;padding:0px 0px 0px 0px;word-break:break-word;text-align:left;">
+                       <div class="links-007185-bold">
+                        <div style="font-family:'Amber Ember', Arial, sans-serif;font-size:16px;font-weight:normal;letter-spacing:none;line-height:1.4;text-align:left;mso-line-height-alt:1.375em;color:#222D3A;">
+                         <p style="margin: 0;">Are you a Black-owned business?</p>
+                        </div>
+                       </div>
+                      </td>
+                     </tr>
+                     <tr>
+                      <td class="padding-8px-0px-0px-0px text-container" style="font-size:0px;padding:4px 0px 0px 0px;word-break:break-word;mso-padding-alt:8px 0px 0px 0px;text-align:left;">
+                       <div class="links-007185-bold">
+                        <div style="font-family:'Amber Ember', Arial, sans-serif;font-size:16px;font-weight:normal;letter-spacing:none;line-height:1.4;text-align:left;mso-line-height-alt:1.375em;color:#222D3A;">
+                         <p style="margin: 0;"><a href="https://elinks.business.amazon.com/CL0/https:%2F%2Fsellercentral.amazon.com%2Fap%2Fsignin%3Fref_=b2b_sow_e_us_eve_260224_ENG_ABBHM26_2%26clientContext=132-2595933-9217207%26openid.pape.max_auth_age=300%26openid.identity=http%253A%252F%252Fspecs.openid.net%252Fauth%252F2.0%252Fidentifier_select%26language=en_US%26pageId=sc_amazon_v3_unified%26openid.pape.preferred_auth_policies=Policy15%26openid.return_to=https%253A%252F%252Fsellercentral.amazon.com%252Fprofile%252Fcertifications%26openid.assoc_handle=sc_na_amazon_v2%26openid.mode=checkid_setup%26fct=Fct%257CRwEBcbVwZkIDeZaYn647XtkaB71iJD6k5cF3hYXHC7LHkEFfGBpU8m5Fkwq-7figMRYy6yLfRJCqdU9dz1Nt47JYU6lc1X1CWq-fcrtmtVD8OdSxeewKLUzed0vkt5v7ctqtUPLGQoE2BZDnBkR44XcfdhCl4XMaCpi2ZEoVxxjIvOPg0aJvJGNR5O2yKy5vu4ygqvoGXQIrND1Cbb7eDlHXDYQCmeYUJEjIby1De3myrNqvtyYdcGgsbWm-hPuo5j45%26intercept=false%26openid.claimed_id=http%253A%252F%252Fspecs.openid.net%252Fauth%252F2.0%252Fidentifier_select%26openid.ns=http%253A%252F%252Fspecs.openid.net%252Fauth%252F2.0%26ssoResponse=eyJ6aXAiOiJERUYiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiQTI1NktXIn0.olczFrK7az5JZKU2cIh07gnCdY79AzFgIR8cWFCB52LP4cCHzXZ4OA.4XVyu7UtiD_blU-e.ACjjmqpGYsOgLsOjttgJu2IR_Y2l8ws1t39JlTRoMrfcuZzSTZjIwNjWUkvmH27bJOmF_7mzpwtBcYbB99Vb-C7FBjMMvMGLBX-KPmzjN1drPvDhyMobYVC3Vit93zCX0WmXsaCU9ek8gIPoFI21PFzNYdi4eF42AqW8J-_KKFhA6iFvGRrVnB_4_hX_gMTm5k6aUOBByw.HjvHG2cf9RF5xYT-KEGH8A/2/0100019c903030bc-adc39c10-b9ae-48d1-9bb1-8e68e90ade5b-000000/Ef7MYq_2I5ou-YqxeKhNIDKGnnBlzYSB58IjpzdI5IQ=446" target="_blank" rel="noopener" style="color: rgb(0, 113, 133); text-decoration: none; font-weight: 700;">Upload your certification</a></p>
+                        </div>
+                       </div>
+                      </td>
+                     </tr>
+                    </tbody>
+                   </table>
+                  </td>
+                 </tr>
+                </tbody>
+               </table>
+              </div>
+              <!--[if mso | IE]>
+</td>
+</tr>
+</table><![endif]-->
+             </div>
+             <!--[if mso | IE]>
+</td>
+</tr>
+</table><![endif]--></td>
+           </tr>
+          </tbody>
+         </table>
+        </div>
+        <!--[if mso | IE]>
+</td>
+</tr>
+</table><![endif]-->
+       </div>
+      </td>
+     </tr>
+    </tbody>
+   </table>
+   <!--[if mso]>
+</td>
+</tr><![endif]-->
+   <!--[if mso]>
+<tr>
+<td><![endif]-->
+   <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F4F4F5;width:100%;" class="section">
+    <tbody>
+     <tr>
+      <td align="center">
+       <div role="none">
+        <!--[if mso | IE]>
+<table align="center" border="0" cellpadding="0" cellspacing="0" class="block-grid-outlook" style="width:600px;" width="600" >
+<tr>
+<td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+        <div style="background:#FFFFFF;background-color:#FFFFFF;margin:0 auto;max-width:600px;">
+         <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#FFFFFF;width:100%;">
+          <tbody>
+           <tr>
+            <td style="font-size:0px;padding:6px 16px 6px 16px;text-align:center;vertical-align:top;mso-padding-alt:6px 40px 6px 40px;" class="block-grid padding-6px-40px-6px-40px"><!--[if mso | IE]>
+<table role="presentation" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td style="vertical-align:top;width:520px;" ><![endif]-->
+             <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0;line-height:0;text-align:left;display:inline-block;width:100%;direction:ltr;vertical-align:top;">
+              <!--[if mso | IE]>
+<table role="presentation" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td style="vertical-align:middle;width:218px;" ><![endif]-->
+              <div class="mj-column-per-42 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:middle;width:42%;">
+               <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-radius:0px;vertical-align:middle;" width="100%">
+                <tbody>
+                 <tr>
+                  <td class="img-container" style="font-size:0px;padding:0px 0px 0px 0px;word-break:break-word;text-align:center;">
+                   <div style="margin:0 auto;max-width:218px;">
+                    <a href="https://elinks.business.amazon.com/CL0/https:%2F%2Fwww.amazon.com%2Fab%2Fccp-portal%2Fpolicies%2Fcreate%2Fgroup%2Fdefault%2Ftemplate%2FSELLER_CREDENTIAL%2F%3Fref_=b2b_sow_e_us_eve_260224_ENG_ABBHM26_2%26_encoding=UTF8%26certifications=1013/1/0100019c903030bc-adc39c10-b9ae-48d1-9bb1-8e68e90ade5b-000000/EPKz4xuLqyoVL8fSv6PFipNEN09-uUpg4WwciPK9Ryg=446" target="_blank" style="text-decoration: none; color: #827AF0;"><img alt="illustration of a black man" height="auto" width="218" src="https://m.media-amazon.com/images/G/01/AmazonBusiness/MarketingFY26/OnsiteEvents/Socialgoodevents/BHM26/Email/US-EN_AB_BHM26_P1_108_Email_Small_Image_400x267.jpg" style="border:none;border-radius:4px;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;display:block;"></a>
+                   </div>
+                  </td>
+                 </tr>
+                </tbody>
+               </table>
+              </div>
+              <!--[if mso | IE]>
+</td>
+<td style="vertical-align:middle;width:301px;" ><![endif]-->
+              <div class="mj-column-per-58 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:middle;width:58%;">
+               <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                <tbody>
+                 <tr>
+                  <td style="border-radius:0px;vertical-align:middle;padding:0px 0px 0px 16px;mso-padding-alt:0px 0px 0px 20px;" class="padding-0px-0px-0px-20px">
+                   <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                    <tbody>
+                     <tr>
+                      <td class="text-container" style="font-size:0px;padding:0px 0px 0px 0px;word-break:break-word;text-align:left;">
+                       <div class="links-161D26-bold">
+                        <div style="font-family:'Amber Ember', Arial, sans-serif;font-size:16px;font-weight:bold;letter-spacing:none;line-height:1.4;text-align:left;mso-line-height-alt:1.75em;color:#222D3A;" class="mso-font-size-20px font-size-20px">
+                         <p style="margin: 0;">Business procurement</p>
+                        </div>
+                       </div>
+                      </td>
+                     </tr>
+                     <tr>
+                      <td class="text-container" style="font-size:0px;padding:0px 0px 0px 0px;word-break:break-word;text-align:left;">
+                       <div class="links-007185-bold">
+                        <div style="font-family:'Amber Ember', Arial, sans-serif;font-size:16px;font-weight:normal;letter-spacing:none;line-height:1.4;text-align:left;mso-line-height-alt:1.375em;color:#222D3A;">
+                         <p style="margin: 0;">Purchase from certified diverse sellers.</p>
+                        </div>
+                       </div>
+                      </td>
+                     </tr>
+                     <tr>
+                      <td class="padding-8px-0px-0px-0px text-container" style="font-size:0px;padding:4px 0px 0px 0px;word-break:break-word;mso-padding-alt:8px 0px 0px 0px;text-align:left;">
+                       <div class="links-007185-bold">
+                        <div style="font-family:'Amber Ember', Arial, sans-serif;font-size:16px;font-weight:normal;letter-spacing:none;line-height:1.4;text-align:left;mso-line-height-alt:1.375em;color:#222D3A;">
+                         <p style="margin: 0;"><a href="https://elinks.business.amazon.com/CL0/https:%2F%2Fwww.amazon.com%2Fab%2Fccp-portal%2Fpolicies%2Fcreate%2Fgroup%2Fdefault%2Ftemplate%2FSELLER_CREDENTIAL%2F%3Fref_=b2b_sow_e_us_eve_260224_ENG_ABBHM26_2%26_encoding=UTF8%26certifications=1013/2/0100019c903030bc-adc39c10-b9ae-48d1-9bb1-8e68e90ade5b-000000/xpmRjLNbIVQXv__CpRGLQfdg5MnxefQV1K4nezXhxjY=446" target="_blank" rel="noopener" style="color: rgb(0, 113, 133); text-decoration: none; font-weight: 700;">Set up your business procurement</a></p>
+                        </div>
+                       </div>
+                      </td>
+                     </tr>
+                    </tbody>
+                   </table>
+                  </td>
+                 </tr>
+                </tbody>
+               </table>
+              </div>
+              <!--[if mso | IE]>
+</td>
+</tr>
+</table><![endif]-->
+             </div>
+             <!--[if mso | IE]>
+</td>
+</tr>
+</table><![endif]--></td>
+           </tr>
+          </tbody>
+         </table>
+        </div>
+        <!--[if mso | IE]>
+</td>
+</tr>
+</table><![endif]-->
+       </div>
+      </td>
+     </tr>
+    </tbody>
+   </table>
+   <!--[if mso]>
+</td>
+</tr><![endif]-->
+   <!--[if mso]>
+<tr>
+<td><![endif]-->
+   <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F4F4F5;width:100%;" class="section">
+    <tbody>
+     <tr>
+      <td align="center">
+       <div role="none">
+        <!--[if mso | IE]>
+<table align="center" border="0" cellpadding="0" cellspacing="0" class="block-grid-outlook" style="width:600px;" width="600" >
+<tr>
+<td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+        <div style="background:#FFFFFF;background-color:#FFFFFF;margin:0 auto;max-width:600px;">
+         <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#FFFFFF;width:100%;">
+          <tbody>
+           <tr>
+            <td style="font-size:0px;padding:6px 16px 6px 16px;text-align:center;vertical-align:top;mso-padding-alt:6px 40px 6px 40px;" class="block-grid padding-6px-40px-6px-40px"><!--[if mso | IE]>
+<table role="presentation" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td style="vertical-align:top;width:520px;" ><![endif]-->
+             <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0;line-height:0;text-align:left;display:inline-block;width:100%;direction:ltr;vertical-align:top;">
+              <!--[if mso | IE]>
+<table role="presentation" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td style="vertical-align:middle;width:218px;" ><![endif]-->
+              <div class="mj-column-per-42 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:middle;width:42%;">
+               <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-radius:0px;vertical-align:middle;" width="100%">
+                <tbody>
+                 <tr>
+                  <td class="img-container" style="font-size:0px;padding:0px 0px 0px 0px;word-break:break-word;text-align:center;">
+                   <div style="margin:0 auto;max-width:218px;">
+                    <a href="https://elinks.business.amazon.com/CL0/https:%2F%2Fbusiness.amazon.com%2Fen%2Fsolutions%2Fresponsible-purchasing%2Fsupplier-diversity%3Fref_=b2b_sow_e_us_eve_260224_ENG_ABBHM26_2/1/0100019c903030bc-adc39c10-b9ae-48d1-9bb1-8e68e90ade5b-000000/ur3S9XCZ4qfJM2POEP8U6Ttcp3d89buGe7Q6PHDC2ek=446" target="_blank" style="text-decoration: none; color: #827AF0;"><img alt="illustration of two Black people" height="auto" width="218" src="https://m.media-amazon.com/images/G/01/AmazonBusiness/MarketingFY26/OnsiteEvents/Socialgoodevents/BHM26/Email/US-EN_AB_BHM26_P1_109_Email_Small_Image_400x267.jpg" style="border:none;border-radius:4px;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;display:block;"></a>
+                   </div>
+                  </td>
+                 </tr>
+                </tbody>
+               </table>
+              </div>
+              <!--[if mso | IE]>
+</td>
+<td style="vertical-align:middle;width:301px;" ><![endif]-->
+              <div class="mj-column-per-58 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:middle;width:58%;">
+               <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                <tbody>
+                 <tr>
+                  <td style="border-radius:0px;vertical-align:middle;padding:0px 0px 0px 16px;mso-padding-alt:0px 0px 0px 20px;" class="padding-0px-0px-0px-20px">
+                   <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                    <tbody>
+                     <tr>
+                      <td class="text-container" style="font-size:0px;padding:0px 0px 0px 0px;word-break:break-word;text-align:left;">
+                       <div class="links-161D26-bold">
+                        <div style="font-family:'Amber Ember', Arial, sans-serif;font-size:16px;font-weight:bold;letter-spacing:none;line-height:1.4;text-align:left;mso-line-height-alt:1.75em;color:#222D3A;" class="mso-font-size-20px font-size-20px">
+                         <p style="margin: 0;">Supplier diversity</p>
+                        </div>
+                       </div>
+                      </td>
+                     </tr>
+                     <tr>
+                      <td class="text-container" style="font-size:0px;padding:0px 0px 0px 0px;word-break:break-word;text-align:left;">
+                       <div class="links-007185-bold">
+                        <div style="font-family:'Amber Ember', Arial, sans-serif;font-size:16px;font-weight:normal;letter-spacing:none;line-height:1.4;text-align:left;mso-line-height-alt:1.375em;color:#222D3A;">
+                         <p style="margin: 0;">Shop thousands of products from small and diverse sellers.</p>
+                        </div>
+                       </div>
+                      </td>
+                     </tr>
+                     <tr>
+                      <td class="padding-8px-0px-0px-0px text-container" style="font-size:0px;padding:4px 0px 0px 0px;word-break:break-word;mso-padding-alt:8px 0px 0px 0px;text-align:left;">
+                       <div class="links-007185-bold">
+                        <div style="font-family:'Amber Ember', Arial, sans-serif;font-size:16px;font-weight:normal;letter-spacing:none;line-height:1.4;text-align:left;mso-line-height-alt:1.375em;color:#222D3A;">
+                         <p style="margin: 0;"><a href="https://elinks.business.amazon.com/CL0/https:%2F%2Fbusiness.amazon.com%2Fen%2Fsolutions%2Fresponsible-purchasing%2Fsupplier-diversity%3Fref_=b2b_sow_e_us_eve_260224_ENG_ABBHM26_2/2/0100019c903030bc-adc39c10-b9ae-48d1-9bb1-8e68e90ade5b-000000/wXWMB8Shn2B0wHMtZtq4n4c5l6i5rajFe0YWhaAUnSw=446" target="_blank" rel="noopener" style="color: rgb(0, 113, 133); text-decoration: none; font-weight: 700;">Learn more</a></p>
+                        </div>
+                       </div>
+                      </td>
+                     </tr>
+                    </tbody>
+                   </table>
+                  </td>
+                 </tr>
+                </tbody>
+               </table>
+              </div>
+              <!--[if mso | IE]>
+</td>
+</tr>
+</table><![endif]-->
+             </div>
+             <!--[if mso | IE]>
+</td>
+</tr>
+</table><![endif]--></td>
+           </tr>
+          </tbody>
+         </table>
+        </div>
+        <!--[if mso | IE]>
+</td>
+</tr>
+</table><![endif]-->
+       </div>
+      </td>
+     </tr>
+    </tbody>
+   </table>
+   <!--[if mso]>
+</td>
+</tr><![endif]-->
+   <!--[if mso]>
+<tr>
+<td><![endif]-->
+   <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F4F4F5;width:100%;" class="section">
+    <tbody>
+     <tr>
+      <td align="center">
+       <div role="none">
+        <!--[if mso | IE]>
+<table align="center" border="0" cellpadding="0" cellspacing="0" class="block-grid-outlook" style="width:600px;" width="600" >
+<tr>
+<td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+        <div style="background:#FFFFFF;background-color:#FFFFFF;margin:0 auto;max-width:600px;">
+         <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#FFFFFF;width:100%;">
+          <tbody>
+           <tr>
+            <td style="font-size:0px;padding:20px 16px 0px 16px;text-align:center;vertical-align:top;mso-padding-alt:20px 40px 0px 40px;" class="block-grid padding-20px-40px-0px-40px"><!--[if mso | IE]>
+<table role="presentation" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td style="vertical-align:top;width:520px;" ><![endif]-->
+             <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+              <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-radius:0px;vertical-align:top;" width="100%">
+               <tbody>
+                <tr>
+                 <td valign="middle" class="button-container" style="font-size:0px;padding:0px 0px 0px 0px;word-break:break-word;text-align:left;">
+                  <div>
+                   <!--[if mso]>
+<table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="border-spacing:0;border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;">
+<tr>
+<td align="left" class="mso-button-dark-mode"><a:roundrect xmlns:a="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://elinks.business.amazon.com/CL0/https:%2F%2Fwww.amazon.com%2Fbusiness%2Fregister%2Fwelcome%3Fref_=b2b_sow_e_us_eve_260224_ENG_ABBHM26_2%26return_to=%2Fl%2F21382093011/2/0100019c903030bc-adc39c10-b9ae-48d1-9bb1-8e68e90ade5b-000000/XHjQwyPFfcTfLzVxshvzGofL77SrQTcM-B3Y8Dr1qm8=446" fillcolor="#FFFFFF" arcsize="18%" style="v-text-anchor:middle;width:87pt;height:33.75pt;" strokecolor="#D5D9D9" strokeweight="0.75pt" ><w:anchorlock/><a:textbox inset="0,0,0,0"><center style="color:#ffffff; font-family:sans-serif, Arial; font-size:16px"><![endif]-->
+                   <a href="https://elinks.business.amazon.com/CL0/https:%2F%2Fwww.amazon.com%2Fbusiness%2Fregister%2Fwelcome%3Fref_=b2b_sow_e_us_eve_260224_ENG_ABBHM26_2%26return_to=%2Fl%2F21382093011/3/0100019c903030bc-adc39c10-b9ae-48d1-9bb1-8e68e90ade5b-000000/LIG8i8mt-3or7l3m172wx_CZCheD0YJtmnHvksDuzJI=446" style="display: inline-block; width: auto; background: #FFFFFF; color: #161D26; font-family: 'Amber Ember', Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.2; margin: 0; text-align: center; text-decoration: none; text-transform: none; padding: 12px 16px 12px 16px; mso-padding-alt: 0px; border-radius: 8px; border-left: 1px solid #D5D9D9; border-right: 1px solid #D5D9D9; border-top: 1px solid #D5D9D9; border-bottom: 1px solid #D5D9D9; mso-border-alt: none; box-sizing: border-box;" target="_blank" width="117">Learn more </a><!--[if mso]></center></a:textbox></a:roundrect>
+</td>
+</tr>
+</table><![endif]-->
+                  </div>
+                 </td>
+                </tr>
+               </tbody>
+              </table>
+             </div>
+             <!--[if mso | IE]>
+</td>
+</tr>
+</table><![endif]--></td>
+           </tr>
+          </tbody>
+         </table>
+        </div>
+        <!--[if mso | IE]>
+</td>
+</tr>
+</table><![endif]-->
+       </div>
+      </td>
+     </tr>
+    </tbody>
+   </table>
+   <!--[if mso]>
+</td>
+</tr><![endif]-->
+   <!--[if mso]>
+<tr>
+<td><![endif]-->
+   <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F4F4F5;width:100%;" class="section">
+    <tbody>
+     <tr>
+      <td align="center"><!--[if mso | IE]>
+<table align="center" border="0" cellpadding="0" cellspacing="0" class="block-grid-outlook" style="width:600px;" width="600" >
+<tr>
+<td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+       <div style="background:#FFFFFF;background-color:#FFFFFF;margin:0 auto;max-width:600px;">
+        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#FFFFFF;width:100%;">
+         <tbody>
+          <tr>
+           <td style="font-size:0px;padding:0px;text-align:center;vertical-align:top;" class="block-grid"><!--[if mso | IE]>
+<table role="presentation" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td style="vertical-align:top;width:600px;" ><![endif]-->
+            <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+             <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-radius:0px;vertical-align:top;" width="100%">
+              <tbody>
+               <tr>
+                <td style="font-size:0px;padding:0 0 0 0;word-break:break-word;">
+                 <div style="line-height:24px;height:24px;mso-line-height-alt:20px;" class="height-20px line-height-20px">&nbsp;</div>
+                </td>
+               </tr>
+              </tbody>
+             </table>
+            </div>
+            <!--[if mso | IE]>
+</td>
+</tr>
+</table><![endif]--></td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
+       <!--[if mso | IE]>
+</td>
+</tr>
+</table><![endif]--></td>
+     </tr>
+    </tbody>
+   </table>
+   <!--[if mso]>
+</td>
+</tr><![endif]-->
+   <!--[if mso]>
+<tr>
+<td><![endif]-->
+   <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#F4F4F5;width:100%;" class="section">
+    <tbody>
+     <tr>
+      <td align="center"><!--[if mso | IE]>
+<table align="center" border="0" cellpadding="0" cellspacing="0" class="block-grid-outlook" style="width:600px;" width="600" >
+<tr>
+<td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+       <div style="background:#161D26;background-color:#161D26;margin:0 auto;max-width:600px;">
+        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#161D26;width:100%;">
+         <tbody>
+          <tr>
+           <td style="font-size:0px;padding:20px 16px 20px 16px;text-align:center;vertical-align:top;mso-padding-alt:20px 40px 20px 40px;" class="block-grid padding-20px-40px-20px-40px">
+            <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+             <tbody>
+              <tr>
+               <td style="line-height:0;font-size:0;direction:rtl;"><!--[if mso | IE]>
+<table role="presentation" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td style="vertical-align:top;width:234px;" ><![endif]-->
+                <div class="mj-column-per-45 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                 <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-radius:0px;vertical-align:top;" width="100%">
+                  <tbody>
+                   <tr>
+                    <td class="text-align-right social-container" style="font-size:0px;padding:0px 0px 0px 0px;word-break:break-word;text-align:left;"><!--[if mso | IE]>
+<table align="right" border="0" cellpadding="0" cellspacing="0" role="presentation" >
+<tr>
+<td><![endif]-->
+                     <div style="display:inline-block;">
+                      <table align="right" border="0" cellpadding="0" cellspacing="0" role="presentation" style="float:none;display:inline-table;">
+                       <tbody>
+                        <tr>
+                         <td style="padding:8px;">
+                          <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:transparent;border-radius:0px;width:20px;">
+                           <tbody>
+                            <tr>
+                             <td style="padding:0px;font-size:0;height:20px;vertical-align:middle;width:20px;"><a href="https://elinks.business.amazon.com/CL0/https:%2F%2Fwww.facebook.com%2FAmazonBusiness%2F%3Fref_=b2b_sow_e_us_eve_260224_ENG_ABBHM26_2/1/0100019c903030bc-adc39c10-b9ae-48d1-9bb1-8e68e90ade5b-000000/puOHQv-Ket8uhYQUXziJFxjB-q1zZyfwATr3RUPWCcw=446" target="_blank" style="text-decoration: none; color: #827AF0;"><img alt="Facebook" height="20" src="https://m.media-amazon.com/images/G/01/AmazonBusiness/Email/RefreshedIcons/Social-Icons/AB-Icon-Social-Facebook-white-500x500.png" style="border-radius:0px;display:block;" width="20"></a></td>
+                            </tr>
+                           </tbody>
+                          </table>
+                         </td>
+                        </tr>
+                       </tbody>
+                      </table>
+                     </div>
+                     <!--[if mso | IE]>
+</td>
+<td><![endif]-->
+                     <div style="display:inline-block;">
+                      <table align="right" border="0" cellpadding="0" cellspacing="0" role="presentation" style="float:none;display:inline-table;">
+                       <tbody>
+                        <tr>
+                         <td style="padding:8px;">
+                          <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:transparent;border-radius:0px;width:20px;">
+                           <tbody>
+                            <tr>
+                             <td style="padding:0px;font-size:0;height:20px;vertical-align:middle;width:20px;"><a href="https://elinks.business.amazon.com/CL0/https:%2F%2Ftwitter.com%2FAmazonBusiness%3Fref_=b2b_sow_e_us_eve_260224_ENG_ABBHM26_2/1/0100019c903030bc-adc39c10-b9ae-48d1-9bb1-8e68e90ade5b-000000/fURHGfWWRQYQFfaoC-6iQ8Zjq8ZjkRqTA4Z8enwWvMQ=446" target="_blank" style="text-decoration: none; color: #827AF0;"><img alt="Twitter" height="20" src="https://m.media-amazon.com/images/G/01/AmazonBusiness/Email/RefreshedIcons/Social-Icons/AB-Icon-Social-Twitter-white-500x500.png" style="border-radius:0px;display:block;" width="20"></a></td>
+                            </tr>
+                           </tbody>
+                          </table>
+                         </td>
+                        </tr>
+                       </tbody>
+                      </table>
+                     </div>
+                     <!--[if mso | IE]>
+</td>
+<td><![endif]-->
+                     <div style="display:inline-block;">
+                      <table align="right" border="0" cellpadding="0" cellspacing="0" role="presentation" style="float:none;display:inline-table;">
+                       <tbody>
+                        <tr>
+                         <td style="padding:8px;">
+                          <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:transparent;border-radius:0px;width:20px;">
+                           <tbody>
+                            <tr>
+                             <td style="padding:0px;font-size:0;height:20px;vertical-align:middle;width:20px;"><a href="https://elinks.business.amazon.com/CL0/https:%2F%2Fwww.linkedin.com%2Fcompany%2Famazon-business%2F%3Fref_=b2b_sow_e_us_eve_260224_ENG_ABBHM26_2/1/0100019c903030bc-adc39c10-b9ae-48d1-9bb1-8e68e90ade5b-000000/5LiYPNJoCaZqP3WSINAkQzSGXrVxJ8iRKta7V6ikKCk=446" target="_blank" style="text-decoration: none; color: #827AF0;"><img alt="Linkedin" height="20" src="https://m.media-amazon.com/images/G/01/AmazonBusiness/Email/RefreshedIcons/Social-Icons/AB-Icon-Social-LinkedIn-white-500x500.png" style="border-radius:0px;display:block;" width="20"></a></td>
+                            </tr>
+                           </tbody>
+                          </table>
+                         </td>
+                        </tr>
+                       </tbody>
+                      </table>
+                     </div>
+                     <!--[if mso | IE]>
+</td>
+</tr>
+</table><![endif]--></td>
+                   </tr>
+                   <tr>
+                    <td class="padding-10px-0px-0px-0px img-container" style="font-size:0px;padding:8px 0px 20px 0px;word-break:break-word;mso-padding-alt:10px 0px 0px 0px;text-align:right;">
+                     <div style="margin:0 auto 0 0;max-width:163px;" class="margin-0-0-0-auto">
+                      <a href="https://elinks.business.amazon.com/CL0/https:%2F%2Fbusiness.amazon.com%3Fref_=b2b_sow_e_us_eve_260224_ENG_ABBHM26_2/2/0100019c903030bc-adc39c10-b9ae-48d1-9bb1-8e68e90ade5b-000000/8ppYjdulgygqxV8TRe9oRhNqrxm308DgMf8exXQU33M=446" target="_blank" style="text-decoration: none; color: #827AF0;"><img alt="Amazon Business logo" height="auto" width="163" src="https://m.media-amazon.com/images/G/01/AmazonBusiness/Logo/Email-Logo/AB-logo-outlined-white2x.png" style="border:none;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;display:block;"></a>
+                     </div>
+                    </td>
+                   </tr>
+                  </tbody>
+                 </table>
+                </div>
+                <!--[if mso | IE]>
+</td>
+<td style="vertical-align:top;width:286px;" ><![endif]-->
+                <div class="mj-column-per-55 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                 <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-radius:0px;vertical-align:top;" width="100%">
+                  <tbody>
+                   <tr>
+                    <td class="text-container" style="font-size:0px;padding:10px 0px 10px 0px;word-break:break-word;text-align:left;">
+                     <div class="links-FFFFFF-underline">
+                      <div style="font-family:'Amber Ember', Arial, sans-serif;font-size:12px;font-weight:normal;letter-spacing:none;line-height:1.2;text-align:left;mso-line-height-alt:0.875em;color:#FFFFFF;">
+                       <p style="margin: 0;"><a href="https://elinks.business.amazon.com/CL0/https:%2F%2Fbusiness.amazon.com%2Fen%2Fcontact-us%3Fref_=b2b_sow_e_us_eve_260224_ENG_ABBHM26_2/1/0100019c903030bc-adc39c10-b9ae-48d1-9bb1-8e68e90ade5b-000000/uXur0x17BrzW09pf1O5oNXDdIhprvrn4s6KBU4Fj2g8=446" target="_blank" rel="noopener" style="color: rgb(255, 255, 255); text-decoration: underline;">Contact us</a> | <a href="https://elinks.business.amazon.com/CL0/https:%2F%2Fwww.amazon.com%2Fab%2Fmanage%2Faccount%2F%3Fref_=b2b_sow_e_us_eve_260224_ENG_ABBHM26_2/1/0100019c903030bc-adc39c10-b9ae-48d1-9bb1-8e68e90ade5b-000000/3daugULo0t4iwtFIlr0tU2VtJbxCdxM0n4QxXbb251k=446" target="_blank" rel="noopener" style="color: rgb(255, 255, 255); text-decoration: underline;">Manage account</a></p>
+                      </div>
+                     </div>
+                    </td>
+                   </tr>
+                   <tr>
+                    <td class="text-container" style="font-size:0px;padding:10px 0px 10px 0px;word-break:break-word;text-align:left;">
+                     <div class="links-FFFFFF-underline">
+                      <div style="font-family:'Amber Ember', Arial, sans-serif;font-size:12px;font-weight:normal;letter-spacing:none;line-height:1.2;text-align:left;mso-line-height-alt:0.875em;color:#FFFFFF;">
+                       <p style="margin: 0;">If you'd rather not receive future emails of this sort from Amazon Business, please let us know your <a href="https://elinks.business.amazon.com/CL0/https:%2F%2Fbusiness.amazon.com%2Femail-preferences%2Fep%2FHiw7hL8lqT6pnc*TW3NGt4HsHhKy98zQhWdGDCRTDjdFXq2A9OU840dLHxzD2Qr0%2F3090488473%2FqVxNx7VqbqkpRjI8Wkr03HuBuysOPUlaU7NQHC7QkYylcJ9tjoLX7%2BjdVQ9Px26SOzhrmlqqzi8GSa*NtolnQrVoTZX2JVOsMejpgwWtcI5ioXi2Di4dd7hdhOBH3lIM967mvhLKT1XBKQuBnRyh8*z*9g9dS8RiK2IIF7h9CarlKgx0xhkuRqMp1es2mAoz89uNLR6YDbdMF2nv8sSPag0ohZJIwrs2d5DO8F8OxPqIlQAkHBhHda9bX3r2uogZQOUuNWBpzPTTIjKfmSayvP%2BHTEc9hqVtdEZym7WeJeGI8p1jqvQ%2BSCfponuiybFI%2Bdr%2BCagXDbrgI%2BVG8FJh7X8hbx4k4i5wQPIB53IYj%2BBrbAGOVQk=%2FDISrVqYXCs5OmKJZSNXioYwgGMJ9TyMd1m9xpis3T3xA%3Fref_=b2b_sow_e_us_eve_260224_ENG_ABBHM26_2/1/0100019c903030bc-adc39c10-b9ae-48d1-9bb1-8e68e90ade5b-000000/aJrEU1tPsvb61qiecYsmMg29kysZWAQgDIzieWs28Do=446" target="_blank" rel="noopener" style="color: rgb(255, 255, 255); text-decoration: underline;">email preferences</a>.</p>
+                      </div>
+                     </div>
+                    </td>
+                   </tr>
+                   <tr>
+                    <td class="text-container" style="font-size:0px;padding:10px 30px 10px 0px;word-break:break-word;text-align:left;">
+                     <div class="links-FFFFFF-underline">
+                      <div style="font-family:'Amber Ember', Arial, sans-serif;font-size:12px;font-weight:normal;letter-spacing:none;line-height:1.2;text-align:left;mso-line-height-alt:0.875em;color:#FFFFFF;">
+                       <p style="margin: 0;">© 2026 Amazon.com, Inc. or its affiliates. All rights reserved. Amazon, Amazon.com and the Amazon.com logo are registered trademarks of Amazon.com, Inc. or its affiliates. Amazon.com, 410 Terry Avenue North, Seattle, WA 98109-5210</p>
+                       <p style="margin: 0;">&nbsp;</p>
+                       <p style="margin: 0;">Reference: 3090488473</p>
+                      </div>
+                     </div>
+                    </td>
+                   </tr>
+                  </tbody>
+                 </table>
+                </div>
+                <!--[if mso | IE]>
+</td>
+</tr>
+</table><![endif]--></td>
+              </tr>
+             </tbody>
+            </table>
+           </td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
+       <!--[if mso | IE]>
+</td>
+</tr>
+</table><![endif]--></td>
+     </tr>
+    </tbody>
+   </table>
+   <!--[if mso]>
+</td>
+</tr><![endif]-->
+   <!--[if mso]>
+</table><![endif]-->
+  </div>
+ </body>
+</html>
+`,text:"96 Support Black entrepreneurs ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ‍͏ ͏ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ ͏‌ ­ ­ ­ ­ Support Black entrepreneurs Explore Black-owned Diversify your business procurement Amazon Business makes it simple to diversify your supply chain with business supplies from credentialed small and diverse sellers. Celebrate this Black History month by shopping Black-owned businesses as you procure IT essentials, Office supplies, and more. Learn how to set up your business procurement to support small and diverse sellers. Features Certification Are you a Black-owned business? Upload your certification Business procurement Purchase from certified diverse sellers. Set up your business procurement Supplier diversity Shop thousands of products from small and diverse sellers. Learn more Learn more Contact us | Manage account If you'd rather not receive future emails of this sort from Amazon Business, please let us know your email preferences . © 2026 Amazon.com, Inc. or its affiliates. All rights reserved. Amazon, Amazon.com and the Amazon.com logo are registered trademarks of Amazon.com, Inc. or its affiliates. Amazon.com, 410 Terry Avenue North, Seattle, WA 98109-5210 Reference: 3090488473",accountEmail:"demo@demo.com",messageId:"<demo-mock-1304@homerow.dev>"},{id:1305,seq:1305,threadId:"thread-mock-1305",subject:"New exhibition | Samurai",from:"British Museum",fromAddress:"emails@britishmuseum.org",to:["demo@demo.com"],date:"2025-11-10T13:41:40.000Z",flags:["\\Seen"],snippet:"New exhibition | Samurai Unmask the reality behind the myth View this email online https://emails.britishmuseum.org/q/1f52Myo42W654waTgay0wNZ/wv https://emails.britishmus",hasAttachments:!1,folderPath:"INBOX",html:`<!DOCTYPE HTML>
+<html>
+<head>
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<!--Fix to get Windows Phone 8 to render CSS3 and Media Queries-->
+<meta content="IE=edge" http-equiv="X-UA-Compatible" />
+<title>New exhibition | Samurai</title>
+<style type="text/css">
+body {
+padding: 0;
+margin: 0;
+}
+a[x-apple-data-detectors] {
+color: inherit !important;
+text-decoration: none !important;
+font-size: inherit !important;
+font-family: inherit !important;
+font-weight: inherit !important;
+line-height: inherit !important;
+}
+body,
+td {
+font-family: Arial, Helvetica, sans-serif;
+margin: 0px;
+}
+img {
+border: none;
+display: block;
+}
+.amf-editor .preheader_text {
+display: block !important;
+visibility: visible !important;
+}
+.amf-editor .hide_at_launch {overflow-wrap: break-word;
+word-wrap: break-word;
+-ms-word-break: break-all;word-break: break-all;word-break: break-word;-ms-hyphens: auto;
+-moz-hyphens: auto;
+-webkit-hyphens: auto;
+hyphens: auto;
+}
+.amf-editor:hover .editor_expand {
+display:block !important;
+height: 20px !important;
+}
+.amf-editor .image-target {
+max-width: 200px;
+}
+</style>
+<style amf:inline="amf:inline" type="text/css">
+body,
+p,
+th,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+padding: 0;
+margin: 0;
+font-weight: normal;
+}
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6 {
+text-align: inherit;
+}h1 {
+font-size: 24px;
+line-height: 27px;
+font-weight: bold;
+}
+h2 {
+font-size: 24px;
+line-height: 27px;
+font-weight: normal;
+}h3 {
+font-size: 21px;
+line-height: 24px;
+font-weight: bold;
+}
+h4 {
+font-size: 21px;
+line-height: 24px;
+font-weight: normal;
+}
+h5 {
+font-size: 15px;
+line-height: 18px;
+font-weight: normal;
+}
+h6 {
+font-size: 12px;
+line-height: 15px;
+font-weight: bold;
+color: #949494;
+}
+p {
+font-size: 18px;
+line-height: 21px;
+}
+ul {
+padding: 0;
+margin: 0 0 0 20px;
+}
+.preheader_text .hide_at_launch {
+display: none;
+visibility: hidden;
+}
+.testimonial {
+font-family: Georgia, Arial, Helvetica, sans-serif;
+}
+</style>
+<style type="text/css">
+@media only screen and (max-width: 599px) {
+html {
+-webkit-text-size-adjust: none;
+}
+.wrapper {
+width: 100%;
+width: 100% !important;
+padding-left: 20px;
+padding-right: 20px;
+}
+.fl {
+width: 100%;
+width: 100% !important;
+float: left;
+height: auto;
+padding-left: 0 !important;
+padding-right: 0 !important;
+}
+.mob_none {
+display: none !important;
+}
+.full_img img {
+width: 100% !important;
+height: auto;
+}
+.nopad {
+padding: 0 !important;
+}
+.nosidepad {
+padding-left: 0 !important;
+padding-right: 0 !important;
+}
+.button {
+padding: 0 !important;
+text-align: center;
+width: 100%;
+margin: auto;
+float: none;
+}
+.button td {
+padding: 0 !important;
+}
+.button td a {
+display: block;
+padding: 10px 40px;
+margin: 0 auto;
+}
+.center {
+text-align: center !important;
+margin: 0 auto;
+float: none !important;
+}
+.center div {
+text-align: center !important;
+}
+.center img {
+display: block;
+margin: auto;
+}
+.automarg {
+margin: 0 auto;
+}
+.logo img {
+width: 250px !important;
+height: auto;
+}
+.footer .social {
+margin: auto;
+float: none;
+}
+.pad_logo {
+padding: 10px 5px 0 5px !important;
+}
+th {
+display: table;
+}
+table.amf__dt-none {
+display: table !important;
+}
+table.amf__dt-none[width="100%"] {
+width: 100% !important;
+}
+.nav_font p{
+font-size: 15px !important;
+line-height: 18px !important;
+}
+.nav_font a{
+text-decoration: none;
+}
+.no_bg_image {
+background-image: none !important;
+}
+.reset_pad {
+padding-top: 0 !important;
+padding-bottom: 0 !important;
+}
+.three_col_outer {
+padding: 20px !important;
+}
+.three_col_outer2 {
+padding-top: 20px !important;
+}
+.three_col_outer .text,
+.three_col_outer .btn,
+.three_col_outer2 .text,
+.three_col_outer2 .btn {
+padding-top: 20px !important;
+}
+.three_col_outer h3,
+.three_col_outer2 h3 {
+font-size: 24px;
+line-height: 27px;
+font-weight: bold;
+}
+.three_col_outer h4,
+.three_col_outer2 h4 {
+font-size: 24px;
+line-height: 27px;
+font-weight: normal;
+}
+.three_col_outer h5,
+.three_col_outer2 h5 {
+font-size: 18px;
+line-height: 21px;
+font-weight: normal;
+}
+.btn_small_mob {
+width: 160px;
+height: 35px;
+text-align: left;
+}
+.btn_small_mob a {
+text-decoration: none;
+}
+.extra_pad {
+padding-top: 20px !important;
+}
+.less_pad {
+padding-top: 0 !important;
+}
+.no_height {
+height: auto !important;
+}
+.top_xs_padding--add .top_xs_padding_target {
+padding-top: 20px !important;
+}
+.bottom_xs_padding--add .bottom_xs_padding_target {
+padding-bottom: 20px !important;
+}
+.overlay_mob {
+padding: 20px 0 20px 0;
+}
+.no_grey_bg {
+background-color: #ffffff !important;
+}
+}
+</style>
+<style amf:inline="amf:inline" type="text/css">
+.module_height {
+-amf-class-label: "Choose module height:";
+}
+.module_height--260 {
+-amf-class-label: "260px";
+}
+.module_height--260 .module_height_target {
+height: 260px;
+}
+.module_height--260 .module_height_target .p_adjust {
+height: 132px;
+}
+.module_height--290 {
+-amf-class-label: "290px";
+}
+.module_height--290 .module_height_target {
+height: 290px;
+}
+.module_height--290 .module_height_target .p_adjust {
+height: 162px;
+}
+.module_height--320 {
+-amf-class-label: "320px";
+}
+.module_height--320 .module_height_target {
+height: 320px;
+}
+.module_height--320 .module_height_target .p_adjust {
+height: 192px;
+}
+</style>
+<style amf:inline="amf:inline" type="text/css">.test_font {
+-amf-class-label: "Choose the font:";
+}
+.test_font--georgia {
+-amf-class-label: 'Georgia, Sans Serif';
+}
+.test_font--georgia .test_font_target {
+font-family: Georgia, Arial, Helvetica, sans-serif !important;
+}
+.test_font--arial {
+-amf-class-label: 'Arial, Serif';
+}
+.test_font--arial .test_font_target {
+font-family: Arial, Helvetica, sans-serif !important;
+}
+</style>
+<style amf:inline="amf:inline" type="text/css">.btn_colour1 {
+-amf-class-label: 'Button colour:';
+-amf-class-preview: background-color color;
+}
+.btn_colour1--black {
+-amf-class-label: 'Black';
+background-color: #000000;
+}
+.btn_colour1--black a{
+color: #ffffff;
+text-decoration: none;
+}
+.btn_colour1--green_white {
+-amf-class-label: 'Green / White';
+background-color: #3AD4A7;
+}
+.btn_colour1--green_white a {
+color: #ffffff;
+text-decoration: none;
+}
+.btn_colour1--green_black {
+-amf-class-label: 'Green / Black';
+background-color: #3AD4A7;
+}
+.btn_colour1--green_black a {
+color: #000000;
+text-decoration: none;
+}
+.btn_colour1--grey_white {
+-amf-class-label: 'Blue / White';
+background-color: #596564;
+}
+.btn_colour1--grey_white a {
+color: #ffffff;
+text-decoration: none;
+}
+.btn_colour1--yellow {
+-amf-class-label: 'Yellow';
+background-color: #FFE912;
+}
+.btn_colour1--yellow a {
+color: #000000;
+text-decoration: none;
+}.btn_colour2 {
+-amf-class-label: 'Button colour:';
+-amf-class-preview: background-color color;
+}
+.btn_colour2--white {
+-amf-class-label: 'White';
+background-color: #ffffff;
+}
+.btn_colour2--white a{
+color: #000000;
+text-decoration: none;
+}
+.btn_colour2--green_white {
+-amf-class-label: 'Green / White';
+background-color: #3AD4A7;
+}
+.btn_colour2--green_white a {
+color: #ffffff;
+text-decoration: none;
+}
+.btn_colour2--green_black {
+-amf-class-label: 'Green / Black';
+background-color: #3AD4A7;
+}
+.btn_colour2--green_black a {
+color: #000000;
+text-decoration: none;
+}
+.btn_colour2--grey_white {
+-amf-class-label: 'Grey / White';
+background-color: #596564;
+}
+.btn_colour2--grey_white a {
+color: #ffffff;
+text-decoration: none;
+}
+.btn_colour2--yellow {
+-amf-class-label: 'Yellow';
+background-color: #FFE912;
+}
+.btn_colour2--yellow a {
+color: #000000;
+text-decoration: none;
+}.btn_shop {
+width: 15px;
+height: 35px;
+text-align: left;
+}
+.btn_small {
+width: 160px;
+height: 35px;
+text-align: left;
+}
+.btn_med {
+width: 200px;
+height: 35px;
+text-align: left;
+}
+.btn_lg {
+width: 240px;
+height: 35px;
+text-align: left;
+}
+.btn_shop span,
+.btn_small span,
+.btn_med span,
+.btn_lg span {
+font-size: 18px;
+font-weight: bold;
+}
+.btn_pad {
+padding: 5px 20px;
+}
+.btn_pad2 {
+padding: 5px 20px 5px 0;
+}
+.bg_image {
+background-position: center center;
+background-repeat: no-repeat;
+background-size: cover;
+}
+</style>
+<style amf:inline="amf:inline" type="text/css">
+.button_size {
+-amf-class-label: 'Choose button size:';
+}
+.button_size--small {
+-amf-class-label: 'Small';
+width: 160px;
+height: 35px;
+text-align: left;
+}
+.button_size--medium {
+-amf-class-label: 'Medium';
+width: 200px;
+height: 35px;
+text-align: left;
+}
+.button_size--large {
+-amf-class-label: 'Large';
+width: 240px;
+height: 35px;
+text-align: left;
+}
+</style>
+<style amf:inline="amf:inline" type="text/css">.top_outer_padding {
+-amf-class-label: 'Top padding:';
+}
+.top_outer_padding--add {
+-amf-class-label: 'Add padding';
+}
+.top_outer_padding--remove {
+-amf-class-label: 'Remove padding';
+}
+.top_outer_padding--add .top_outer_padding_target {
+padding-top: 20px;
+}
+.top_outer_padding--remove .top_outer_padding_target {
+padding-top: 0px;
+}
+.bottom_outer_padding {
+-amf-class-label: 'Bottom padding:';
+}
+.bottom_outer_padding--add {
+-amf-class-label: 'Add padding';
+}
+.bottom_outer_padding--remove {
+-amf-class-label: 'Remove padding';
+}
+.bottom_outer_padding--add .bottom_outer_padding_target {
+padding-bottom: 20px;
+}
+.bottom_outer_padding--remove .bottom_outer_padding_target {
+padding-bottom: 0px;
+}
+</style>
+<style amf:inline="amf:inline" type="text/css">.top_padding {
+-amf-class-label: 'Top padding:';
+}
+.top_padding--add {
+-amf-class-label: 'Add padding';
+}
+.top_padding--remove {
+-amf-class-label: 'Remove padding';
+}
+.top_padding--add .top_padding_target {
+padding-top: 20px;
+}
+.top_padding--remove .top_padding_target {
+padding-top: 0px;
+}
+.bottom_padding {
+-amf-class-label: 'Bottom padding:';
+}
+.bottom_padding--add {
+-amf-class-label: 'Add padding';
+}
+.bottom_padding--remove {
+-amf-class-label: 'Remove padding';
+}
+.bottom_padding--add .bottom_padding_target {
+padding-bottom: 20px;
+}
+.bottom_padding--remove .bottom_padding_target {
+padding-bottom: 0px;
+}
+</style>
+<style amf:inline="amf:inline" type="text/css">.top_xs_padding {
+-amf-class-label: 'Top padding:';
+}
+.top_xs_padding--add {
+-amf-class-label: 'Add padding';
+}
+.top_xs_padding--remove {
+-amf-class-label: 'Remove padding';
+}
+.top_xs_padding--add .top_xs_padding_target {
+padding-top: 10px;
+}
+.top_xs_padding--remove .top_xs_padding_target {
+padding-top: 0px;
+}
+.bottom_xs_padding {
+-amf-class-label: 'Bottom padding:';
+}
+.bottom_xs_padding--add {
+-amf-class-label: 'Add padding';
+}
+.bottom_xs_padding--remove {
+-amf-class-label: 'Remove padding';
+}
+.bottom_xs_padding--add .bottom_xs_padding_target {
+padding-bottom: 10px;
+}
+.bottom_xs_padding--remove .bottom_xs_padding_target {
+padding-bottom: 0px;
+}
+</style>
+<style type="text/css">
+@media only screen and (max-width:599px) {
+.amf__mb-none { display: none !important; } 
+.amf__dt-none,.amf__dt-none-img {display: block !important; max-height: none !important; overflow: visible !important;}
+table.amf__dt-none {display:table !important;}
+tr.amf__dt-none {display:table-row !important;}
+th.amf__dt-none,td.amf__dt-none {display:table-cell !important;}
+.amf__dt-none {float: none !important; width: auto !important;}
+.amf__dt-none-img {height: auto !important; width: 100% !important;}
+}
+</style></head>
+<body style="font-weight: normal; margin: 0; padding: 0">
+<!--[if gte mso 9]><style>ul,ol {margin: 0 0 0 30px !important;}</style><![endif]-->
+<!--[if gte mso 9]>
+<style type="text/css">
+
+.outlook_fix1 {
+height: 85px !important;
+}
+.outlook_fix2 {
+height: 111px !important;
+}
+</style>
+<![endif]-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="center">
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper" style="width:600px;" width="600">
+<tr class="mob_none">
+<td style="padding: 5px;">
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+<tr>
+<td align="left" class="preheader_text hide_at_launch" style="font-size:12px; font-family: arial, sans-serif; padding: 0 20px 0 0;"><h5 style="text-align: inherit; font-size: 15px; font-weight: normal; line-height: 18px; margin: 0; padding: 0; color:#333333">Unmask the reality behind the myth</h5>
+</td>
+<td align="right" style="font-size:12px; font-family: arial, sans-serif;">
+<h5 style="text-align: inherit; font-size: 15px; font-weight: normal; line-height: 18px; margin: 0; padding: 0; color:#333333;">
+<a href="https://emails.britishmuseum.org/q/1f52Myo42W654waTgay0wNZ/wv" style="color:#333333;"><span>View this email online</span></a></h5>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<a href="https://emails.britishmuseum.org/c/1g12JErlg250VfZwQUqwjEW0GZ" target="_blank"><img src="https://emails.britishmuseum.org/t/11s33SevDudav6riS.png" alt=""></a>
+<table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center">
+<table border="0" cellpadding="0" cellspacing="0" class="fl" style="width:600px;" width="600">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+<tr>
+<td class="fl" style="vertical-align:top; font-weight:normal;" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" class="fl" role="presentation" style="background-color:#ffffff;background-color:rgb(255,255,255);width:600px;" width="600">
+<tr>
+<td style="padding: 20px 0 20px 20px;">
+<a href="https://emails.britishmuseum.org/c/141OpY1fNN4QEigKR2nkTlJGFziq" style="text-decoration:none;">
+<img alt="Visit the British Museum website." border="0" src="https://emails.britishmuseum.org/i/amf_british_museum/project_15/logo_black_do_not_delete.png?size=396x0&amp;w=B36t6h2AweouEMnNtNjHuzIJgUrY" style="display:block; width:198px;" width="198" />
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center" valign="middle">
+<table border="0" cellpadding="0" cellspacing="0" class="fl nav_font" height="50" style="width: 600px; height: 50px; background-color: #ffffff; text-align: center;" width="600">
+<tr>
+<td height="50" style="width: 33%; height: 50px;" width="33%">
+<a href="https://emails.britishmuseum.org/c/141OqddkXsWl4i4GuU0PIA5WsoWN" style="color:#000000; text-decoration: none;">
+<span style="font-size: 18px;">Exhibitions</span>
+</a>
+</td>
+<td height="50" style="width: 33%; height: 50px;" width="33%">
+<a href="https://emails.britishmuseum.org/c/141Oqspq78NPuhSC8LEkxOscfeBa" style="color:#000000; text-decoration: none;">
+<span style="font-size: 18px;">Membership</span>
+</a>
+</td>
+<td height="50" style="width: 33%; height: 50px;" width="33%">
+<a href="https://emails.britishmuseum.org/c/141OqHBvgOFjUhGxMDhPn2Os24fx" style="color:#000000; text-decoration: none;">
+<span style="font-size: 18px;">Shop</span>
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><table border="0" cellpadding="0" cellspacing="0" class="bottom_outer_padding--add" style="-amf-class-label: &#39;Add padding&#39;; background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center">
+<table border="0" cellpadding="0" cellspacing="0" class="fl" style="width: 600px; background-color: #ffffff; color: #000000; text-align: left;" width="600">
+<tr>
+<td align="center" class="fl" style="width: 560px;" valign="top" width="560">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="top_outer_padding_target bottom_outer_padding_target" style="padding-bottom: 20px">
+<table align="center" border="0" cellpadding="0" cellspacing="0" class="fl" style="width: 560px; text-align: left;" width="560">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper">
+<tr>
+<td class="full_img">
+<a href="https://emails.britishmuseum.org/c/141OqWNAquwOkhutquVkchaHOTTU" style="text-decoration: none;">
+<img alt="An imposing samurai helmet and facemask with a bristling moustache." border="0" class="center" src="https://emails.britishmuseum.org/i/amf_british_museum/project_15/Samurai/Samurai_Image_Pack_1120x750_Email.jpg?size=1120x0&amp;w=BkMCV6FwCZUgEdr4mgrq57-khHOk" style="display:block; width: 560px;" width="560" />
+</a>
+</td>
+</tr>
+<tr>
+<td style="padding-top: 20px;">
+<h1 style="text-align: inherit; font-size: 24px; font-weight: bold; line-height: 27px; margin: 0; padding: 0">Samurai</h1>
+</td>
+</tr>
+<tr>
+<td>
+<h2 style="text-align: inherit; font-size: 24px; font-weight: normal; line-height: 27px; margin: 0; padding: 0">Opens 3 February</h2>
+</td>
+</tr>
+<tr>
+<td style="padding-top: 20px;">
+<p style="font-size: 18px; font-weight: normal; line-height: 21px; margin: 0; padding: 0">From medieval battlefields to modern blockbusters, discover the real story of the samurai.<br />
+<br />
+Book discounted early bird tickets and save at least 20%, or <a href="https://emails.britishmuseum.org/c/141OrbZFAaoiKhip4myP1vwXBJyh" style="color:#000000;text-decoration:none;" target="_blank"><strong>become a Member</strong></a> today to enjoy entry to all our exhibitions.</p>
+</td>
+</tr>
+<tr>
+<td style="padding-top: 20px;">
+<table border="0" cellpadding="0" cellspacing="0" class="button_size--large" style="-amf-class-label: &#39;Large&#39;; height: 35px; text-align: left; width: 240px; background-color:#000000;background-color:rgb(0,0,0);">
+<tr>
+<td class="btn_pad" style="padding: 5px 20px">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left">
+<a href="https://emails.britishmuseum.org/c/141OrrbKJQfNah6kIecjQJTdozcE" style="text-decoration:none; color: #ffffff">
+<span style="font-size: 18px;"><strong>Book now and save</strong></span>
+</a>
+</td>
+<td align="right">
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<img align="right" alt="black_arrow" border="0" src="https://emails.britishmuseum.org/i/amf_british_museum/project_163/arrows/black_arrow_160.png?size=40x0&amp;w=BbyR6p3ixLlSm5e0PIzxcorxTtBw" width="20" />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center">
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper" style="background-color:#ffffff;background-color:rgb(255,255,255);width:600px;" width="600">
+<tr>
+<td class="top_outer_padding_target bottom_outer_padding_target nosidepad" style="padding-left: 20px; padding-right: 20px;">
+<table border="0" cellpading="0" cellspacing="0" width="100%">
+<tr>
+<td style="padding-bottom: 20px;">
+<p style="font-size: 18px; font-weight: normal; line-height: 21px; margin: 0; padding: 0"><span style="font-size:14px">Supported by</span></p>
+</td>
+</tr><tr>
+<td align="left" style="padding-bottom: 20px;">
+<span></span>
+<a href="" linklabel="" style="text-decoration:none;">
+<img alt="Huo Family Foundation logo" border="0" class="image-target" src="https://emails.britishmuseum.org/i/amf_british_museum/project_15/China_s_hidden_century/Huo_logo_113px_for_Adestra_visual.png?size=0x0&amp;w=B9JSz4JT9DdVx_vC9A765XK1qK4g" style="display:block; width: 113px;" width="113" />
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center">
+<table border="0" cellpadding="0" cellspacing="0" class="fl" style="width: 600px; background-color: #ffffff;" width="600">
+<tr>
+<td align="center" class="fl" style="width: 560px;" width="560">
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper top_padding--remove bottom_padding--remove" style="-amf-class-label: &#39;Remove padding&#39;; -amf-class-label: &#39;Remove padding&#39;; width: 560px;" width="560">
+<tr>
+<td class="top_padding--add top_padding_target bottom_padding--add bottom_padding_target" style="-amf-class-label: &#39;Add padding&#39;; padding-top: 0px; -amf-class-label: &#39;Add padding&#39;; padding-bottom: 0px">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td bgcolor="#000000" class="editor_expand" height="1" style="background-color:#9c9c9c;background-color:rgb(156,156,156);font-size:1px;height:1px;line-height:1px;" width="100%">
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr></table><table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center">
+<table border="0" cellpadding="0" cellspacing="0" class="fl" style="width: 600px; background-color: #ffffff; color: #000000; text-align: left;" width="600">
+<tr>
+<td align="center" style="width: 600px;" width="600">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="top_outer_padding_target bottom_outer_padding_target">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<th class="fl no_height" style="font-weight: normal; margin: 0; padding: 0; width: 300px; " valign="top" width="300">
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper" style="width: 300px; text-align:left;" width="300">
+<tr>
+<td class="fl" style="padding: 20px 10px 0 20px;">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" class="full_img fl no_height" height="320" style="width: 270px; height: 320px;" width="270">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="fl top_padding_target bottom_padding_target">
+<a href="https://emails.britishmuseum.org/c/141OrGnPTw7hAgUgm5POFYftboR1" style="text-decoration: none;">
+<img alt="Woodblock print of a female samurai galloping away from a battle, arrows piercing their armour." border="0" class="center no_height" height="320" src="https://emails.britishmuseum.org/i/amf_british_museum/project_15/Samurai/Tomoe_540x640.jpg?size=540x0&amp;w=BEYS_6iP-BNG5KnWoQ0UiBXMuHM8" style="display:block; width: 270px; height: 320px;" width="270" />
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr><tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" class="top_padding--add" style="-amf-class-label: &#39;Add padding&#39;" width="100%">
+<tr>
+<td class="top_padding_target bottom_padding_target" style="padding-top: 20px">
+<h1 style="text-align: inherit; font-size: 24px; font-weight: bold; line-height: 27px; margin: 0; padding: 0">Who were the samurai?</h1>
+</td>
+</tr>
+</table>
+</td>
+</tr><tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="top_padding_target bottom_padding_target">
+<h2 style="text-align: inherit; font-size: 24px; font-weight: normal; line-height: 27px; margin: 0; padding: 0">Curator's introduction</h2>
+</td>
+</tr>
+</table>
+</td>
+</tr><tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" class="top_padding--add" style="-amf-class-label: &#39;Add padding&#39;" width="100%">
+<tr>
+<td class="top_padding_target bottom_padding_target" style="padding-top: 20px">
+<p style="font-size: 18px; font-weight: normal; line-height: 21px; margin: 0; padding: 0">Explore how samurai have played many&nbsp;– often surprising – roles over their 1,000-year history.</p>
+</td>
+</tr>
+</table>
+</td>
+</tr><tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" class="top_padding--add bottom_padding--add" style="-amf-class-label: &#39;Add padding&#39;; -amf-class-label: &#39;Add padding&#39;" width="100%">
+<tr>
+<td class="top_padding_target bottom_padding_target" style="padding-top: 20px; padding-bottom: 20px">
+<table border="0" cellpadding="0" cellspacing="0" class="button_size--medium" style="-amf-class-label: &#39;Medium&#39;; height: 35px; text-align: left; width: 200px; background-color:#000000;background-color:rgb(0,0,0);">
+<tr>
+<td class="btn_pad" style="padding: 5px 20px">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left">
+<a href="https://emails.britishmuseum.org/c/141OrVzV3bYM0gIbZXtjvcBIYevo" style="text-decoration:none; color: #ffffff">
+<span style="font-size: 18px;"><strong>Read the blog</strong></span>
+</a>
+</td>
+<td align="right">
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<img align="right" alt="black_arrow" border="0" src="https://emails.britishmuseum.org/i/amf_british_museum/project_163/arrows/black_arrow_160.png?size=40x0&amp;w=BbyR6p3ixLlSm5e0PIzxcorxTtBw" width="20" />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</th>
+<th class="fl no_height" style="font-weight: normal; margin: 0; padding: 0; width: 300px; " valign="top" width="300">
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper" style="width: 300px; text-align:left;" width="300">
+<tr>
+<td class="fl" style="padding: 20px 20px 0 10px;">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" class="full_img fl no_height" height="320" style="width: 270px; height: 320px;" width="270">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="fl top_padding_target bottom_padding_target">
+<a href="https://emails.britishmuseum.org/c/141OspY5mxHKQgk3hGKj9FkexTO8" style="text-decoration: none;">
+<img alt="Red and gold firefighter&#39;s cloak with watery motifs." border="0" class="center no_height" height="320" src="https://emails.britishmuseum.org/i/amf_british_museum/project_15/Samurai/Cloak_540x640.jpg?size=540x0&amp;w=B9h8UncePEDrytjEtfz-f95xTa7o" style="display:block; width: 270px; height: 320px;" width="270" />
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr><tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" class="top_padding--add" style="-amf-class-label: &#39;Add padding&#39;" width="100%">
+<tr>
+<td class="top_padding_target bottom_padding_target" style="padding-top: 20px">
+<h1 style="text-align: inherit; font-size: 24px; font-weight: bold; line-height: 27px; margin: 0; padding: 0">Stars of the show</h1>
+</td>
+</tr>
+</table>
+</td>
+</tr><tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="top_padding_target bottom_padding_target">
+<h2 style="text-align: inherit; font-size: 24px; font-weight: normal; line-height: 27px; margin: 0; padding: 0">Exhibition highlights</h2>
+</td>
+</tr>
+</table>
+</td>
+</tr><tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" class="top_padding--add" style="-amf-class-label: &#39;Add padding&#39;" width="100%">
+<tr>
+<td class="top_padding_target bottom_padding_target" style="padding-top: 20px">
+<p style="font-size: 18px; font-weight: normal; line-height: 21px; margin: 0; padding: 0">From fearsome armour to a sumptuous Hokusai painting, preview some of the exhibition's most striking objects.</p>
+</td>
+</tr>
+</table>
+</td>
+</tr><tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" class="top_padding--add bottom_padding--add" style="-amf-class-label: &#39;Add padding&#39;; -amf-class-label: &#39;Add padding&#39;" width="100%">
+<tr>
+<td class="top_padding_target bottom_padding_target" style="padding-top: 20px; padding-bottom: 20px">
+<table border="0" cellpadding="0" cellspacing="0" class="button_size--large" style="-amf-class-label: &#39;Large&#39;; height: 35px; text-align: left; width: 240px; background-color:#000000;background-color:rgb(0,0,0);">
+<tr>
+<td class="btn_pad" style="padding: 5px 20px">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left">
+<a href="https://emails.britishmuseum.org/c/141OsFaawdzfgg7YVynNYTGukJsv" style="text-decoration:none; color: #ffffff">
+<span style="font-size: 18px;"><strong>See the highlights</strong></span>
+</a>
+</td>
+<td align="right">
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<img align="right" alt="black_arrow" border="0" src="https://emails.britishmuseum.org/i/amf_british_museum/project_163/arrows/black_arrow_160.png?size=40x0&amp;w=BbyR6p3ixLlSm5e0PIzxcorxTtBw" width="20" />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</th>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center">
+<table border="0" cellpadding="0" cellspacing="0" class="fl" style="width: 600px; background-color: #ffffff;" width="600">
+<tr>
+<td align="center" class="fl" style="width: 560px;" width="560">
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper bottom_padding--add top_padding--remove" style="-amf-class-label: &#39;Remove padding&#39;; -amf-class-label: &#39;Add padding&#39;; width: 560px;" width="560">
+<tr>
+<td class="top_padding--add top_padding_target bottom_padding--add bottom_padding_target" style="-amf-class-label: &#39;Add padding&#39;; padding-top: 0px; -amf-class-label: &#39;Add padding&#39;; padding-bottom: 20px">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td bgcolor="#000000" class="editor_expand" height="1" style="background-color:#000000;background-color:rgb(0,0,0);font-size:1px;height:1px;line-height:1px;" width="100%">
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr></table><table border="0" cellpadding="0" cellspacing="0" class="bottom_outer_padding--add" style="-amf-class-label: &#39;Add padding&#39;; background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center">
+<table border="0" cellpadding="0" cellspacing="0" class="fl" style="width: 600px; background-color: #ffffff; color: #000000; text-align: left;" width="600">
+<tr>
+<td align="center" class="fl" style="width: 560px;" valign="top" width="560">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="top_outer_padding_target bottom_outer_padding_target" style="padding-bottom: 20px">
+<table align="center" border="0" cellpadding="0" cellspacing="0" class="fl" style="width: 560px; text-align: left;" width="560">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper">
+<tr>
+<td class="full_img">
+<a href="https://emails.britishmuseum.org/c/141OsUmfFTqJGfVUzq1iO82K7z6S" style="text-decoration: none;">
+<img alt="Red, yellow and black feathered helmet with a central crest." border="0" class="center" src="https://emails.britishmuseum.org/i/amf_british_museum/project_15/Hawaii/Mahiole_1120x750_2.jpg?size=1120x0&amp;w=Bk_sTpMOFoGbs2zTbjZoUTu1ZAmc" style="display:block; width: 560px;" width="560" />
+</a>
+</td>
+</tr>
+<tr>
+<td style="padding-top: 20px;">
+<h1 style="text-align: inherit; font-size: 24px; font-weight: bold; line-height: 27px; margin: 0; padding: 0">Hawaiʻi: a kingdom crossing oceans</h1>
+</td>
+</tr>
+<tr>
+<td>
+<h2 style="text-align: inherit; font-size: 24px; font-weight: normal; line-height: 27px; margin: 0; padding: 0">Opens 15 January</h2>
+</td>
+</tr>
+<tr>
+<td style="padding-top: 20px;">
+<p style="font-size: 18px; font-weight: normal; line-height: 21px; margin: 0; padding: 0">When a young king and queen travelled across vast oceans to seek an alliance with the British Crown, their journey marked a turning point in the history of their kingdom, Hawai‘i.&nbsp;<br />
+<br />
+Discover the fascinating history and dazzling artistry of this Pacific island nation.</p>
+</td>
+</tr>
+<tr>
+<td style="padding-top: 20px;">
+<table border="0" cellpadding="0" cellspacing="0" class="button_size--large" style="-amf-class-label: &#39;Large&#39;; height: 35px; text-align: left; width: 240px; background-color:#000000;background-color:rgb(0,0,0);">
+<tr>
+<td class="btn_pad" style="padding: 5px 20px">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left">
+<a href="https://emails.britishmuseum.org/c/141Ot9ykPzie6fJQdhENDmoZUoLf" style="text-decoration:none; color: #ffffff">
+<span style="font-size: 18px;"><strong>Book now and save</strong></span>
+</a>
+</td>
+<td align="right">
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<img align="right" alt="black_arrow" border="0" src="https://emails.britishmuseum.org/i/amf_british_museum/project_163/arrows/black_arrow_160.png?size=40x0&amp;w=BbyR6p3ixLlSm5e0PIzxcorxTtBw" width="20" />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center">
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper" style="background-color:#ffffff;background-color:rgb(255,255,255);width:600px;" width="600">
+<tr>
+<td class="top_outer_padding_target bottom_outer_padding_target nosidepad" style="padding-left: 20px; padding-right: 20px;">
+<table border="0" cellpading="0" cellspacing="0" width="100%">
+<tr>
+<td style="padding-bottom: 20px;">
+<p style="font-size: 18px; font-weight: normal; line-height: 21px; margin: 0; padding: 0"><span style="font-size:14px">Supported by<br />
+Lynne and Marc Benioff</span></p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center">
+<table border="0" cellpadding="0" cellspacing="0" class="fl" style="width: 600px; background-color: #ffffff;" width="600">
+<tr>
+<td align="center" class="fl" style="width: 560px;" width="560">
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper bottom_padding--add top_padding--remove" style="-amf-class-label: &#39;Remove padding&#39;; -amf-class-label: &#39;Add padding&#39;; width: 560px;" width="560">
+<tr>
+<td class="top_padding--add top_padding_target bottom_padding--add bottom_padding_target" style="-amf-class-label: &#39;Add padding&#39;; padding-top: 0px; -amf-class-label: &#39;Add padding&#39;; padding-bottom: 20px">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td bgcolor="#000000" class="editor_expand" height="1" style="background-color:#000000;background-color:rgb(0,0,0);font-size:1px;height:1px;line-height:1px;" width="100%">
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr></table><table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center" class="top_outer_padding_target bottom_outer_padding_target">
+<span class="hide_at_launch fl"></span>
+<table border="0" cellpadding="0" cellspacing="0" class="fl" width="600">
+<tr>
+<td class="wrapper" style="background-color: #000000;background-image: url(https://emails.britishmuseum.org/i/amf_british_museum/project_15/Samurai/Screen_600x300.jpg?size=0x0&amp;w=BHSFrZxa-rpbPHCuy0sxFwlZKVKU);background-position: center center;background-repeat: no-repeat;background-size: cover;width: 600px;" width="600">
+<!--[if gte mso 9]>
+<v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:450pt;height:188pt;">
+<v:fill type="frame" src="http://emails.britishmuseum.org/files/amf_british_museum/project_15/Samurai/Screen_600x300.jpg" color="#000000" />
+<v:textbox inset="0,0,0,0">
+<![endif]-->
+<div>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr height="25" style="height: 25px;" valign="top"></tr>
+<tr>
+<td class="mob_none" style="width: 20px;" valign="top" width="20"></td>
+<td class="fl" style="padding: 20px 20px 20px 0;">
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper" style="width: 270px; background-color: #ffffff; color: #000000; text-align: left;" valign="top" width="560">
+<tr>
+<td class="fl" style="width: 270px;" valign="top" width="270">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="fl" style="padding: 20px 10px 0 20px;">
+<h1 style="text-align: inherit; font-size: 24px; font-weight: bold; line-height: 27px; margin: 0; padding: 0">Love exhibitions?</h1>
+</td>
+</tr>
+<tr>
+<td class="fl" style="padding: 20px 20px 20px 0px;">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="mob_none" style="width: 20px;" width="20"></td>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" class="button_size--large" style="-amf-class-label: &#39;Large&#39;; height: 35px; text-align: left; width: 240px; background-color:#000000;background-color:rgb(0,0,0);">
+<tr>
+<td class="btn_pad2" style="padding: 5px 20px 5px 0">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td style="width: 20px;" width="20">
+</td>
+<td align="left">
+<a href="https://emails.britishmuseum.org/c/141OtoKpZf9IwfxLR9iisALfHepC" style="text-decoration:none; color: #ffffff">
+<span style="font-size: 18px;"><strong>Become a Member</strong></span>
+</a>
+</td>
+<td align="right">
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<img align="right" alt="black_arrow" border="0" src="https://emails.britishmuseum.org/i/amf_british_museum/project_163/arrows/black_arrow_160.png?size=40x0&amp;w=BbyR6p3ixLlSm5e0PIzxcorxTtBw" width="20" />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr height="25" style="height: 25px;" valign="top"></tr>
+</table>
+</div>
+<!--[if gte mso 9]>
+</v:textbox>
+</v:rect>
+<![endif]-->
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center">
+<table border="0" cellpadding="0" cellspacing="0" class="fl" style="width: 600px; background-color: #ffffff;" width="600">
+<tr>
+<td align="center" class="fl" style="width: 560px;" width="560">
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper top_padding--add bottom_padding--remove" style="-amf-class-label: &#39;Add padding&#39;; -amf-class-label: &#39;Remove padding&#39;; width: 560px;" width="560">
+<tr>
+<td class="top_padding--add top_padding_target bottom_padding--add bottom_padding_target" style="-amf-class-label: &#39;Add padding&#39;; padding-top: 20px; -amf-class-label: &#39;Add padding&#39;; padding-bottom: 0px">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td bgcolor="#000000" class="editor_expand" height="1" style="background-color:#000000;background-color:rgb(0,0,0);font-size:1px;height:1px;line-height:1px;" width="100%">
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr></table><table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center">
+<table border="0" cellpadding="0" cellspacing="0" class="fl" style="width: 600px; background-color: #ffffff; color: #000000; text-align: left;" width="600">
+<tr>
+<td align="center" style="width: 600px;" width="600">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="top_outer_padding_target bottom_outer_padding_target">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<th class="fl no_height" style="font-weight: normal; margin: 0; padding: 0; width: 300px; " valign="top" width="300">
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper" style="width: 300px; text-align:left;" width="300">
+<tr>
+<td class="fl" style="padding: 20px 10px 0 20px;">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" class="full_img fl no_height" height="320" style="width: 270px; height: 320px;" width="270">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="fl top_padding_target bottom_padding_target">
+<a href="https://emails.britishmuseum.org/c/141OtDWv8V1cWflHv0VNhP7vu43Z" style="text-decoration: none;">
+<img alt="Woodcut of a brown fallow deer on a green background." border="0" class="center no_height" height="320" src="https://emails.britishmuseum.org/i/amf_british_museum/project_15/Free_displays/Nordic_540x640.jpg?size=540x0&amp;w=B26-u3DXw5-oO2s804-tkwi6r6Mc" style="display:block; width: 270px; height: 320px;" width="270" />
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr><tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" class="top_padding--add" style="-amf-class-label: &#39;Add padding&#39;" width="100%">
+<tr>
+<td class="top_padding_target bottom_padding_target" style="padding-top: 20px">
+<h1 style="text-align: inherit; font-size: 24px; font-weight: bold; line-height: 27px; margin: 0; padding: 0">Nordic Noir</h1>
+</td>
+</tr>
+</table>
+</td>
+</tr><tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="top_padding_target bottom_padding_target">
+<h2 style="text-align: inherit; font-size: 24px; font-weight: normal; line-height: 27px; margin: 0; padding: 0">Edvard Munch to Mamma Andersson</h2>
+</td>
+</tr>
+</table>
+</td>
+</tr><tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" class="top_padding--add" style="-amf-class-label: &#39;Add padding&#39;" width="100%">
+<tr>
+<td class="top_padding_target bottom_padding_target" style="padding-top: 20px">
+<p style="font-size: 18px; font-weight: normal; line-height: 21px; margin: 0; padding: 0">Explore the macabre, melancholy and sometimes provocative themes that run through aspects of Nordic art.</p>
+</td>
+</tr>
+</table>
+</td>
+</tr><tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" class="top_padding--add bottom_padding--add" style="-amf-class-label: &#39;Add padding&#39;; -amf-class-label: &#39;Add padding&#39;" width="100%">
+<tr>
+<td class="top_padding_target bottom_padding_target" style="padding-top: 20px; padding-bottom: 20px">
+<table border="0" cellpadding="0" cellspacing="0" class="button_size--medium" style="-amf-class-label: &#39;Medium&#39;; height: 35px; text-align: left; width: 200px; background-color:#000000;background-color:rgb(0,0,0);">
+<tr>
+<td class="btn_pad" style="padding: 5px 20px">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left">
+<a href="https://emails.britishmuseum.org/c/141OtT8AiASHmf9D8Szi73tLgTIm" style="text-decoration:none; color: #ffffff">
+<span style="font-size: 18px;"><strong>Plan your visit</strong></span>
+</a>
+</td>
+<td align="right">
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<img align="right" alt="black_arrow" border="0" src="https://emails.britishmuseum.org/i/amf_british_museum/project_163/arrows/black_arrow_160.png?size=40x0&amp;w=BbyR6p3ixLlSm5e0PIzxcorxTtBw" width="20" />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</th>
+<th class="fl no_height" style="font-weight: normal; margin: 0; padding: 0; width: 300px; " valign="top" width="300">
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper" style="width: 300px; text-align:left;" width="300">
+<tr>
+<td class="fl" style="padding: 20px 20px 0 10px;">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left" class="full_img fl no_height" height="320" style="width: 270px; height: 320px;" width="270">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="fl top_padding_target bottom_padding_target">
+<a href="https://emails.britishmuseum.org/c/141Ou8kFsgKbMeXyMKcMWhQ13JmJ" style="text-decoration: none;">
+<img alt="Gold heart-shaped pendant with the initials H and K in red enamel." border="0" class="center no_height" height="320" src="https://emails.britishmuseum.org/i/amf_british_museum/project_15/Tudor_heart/Tudor_Heart_2_540x640.jpg?size=540x0&amp;w=BTaKLlgKQgyvYtsugEqZ7BNz5sso" style="display:block; width: 270px; height: 320px;" width="270" />
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr><tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" class="top_padding--add" style="-amf-class-label: &#39;Add padding&#39;" width="100%">
+<tr>
+<td class="top_padding_target bottom_padding_target" style="padding-top: 20px">
+<h1 style="text-align: inherit; font-size: 24px; font-weight: bold; line-height: 27px; margin: 0; padding: 0">The Tudor Heart</h1>
+</td>
+</tr>
+</table>
+</td>
+</tr><tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="top_padding_target bottom_padding_target">
+<h2 style="text-align: inherit; font-size: 24px; font-weight: normal; line-height: 27px; margin: 0; padding: 0">Help save this historic treasure for the nation</h2>
+</td>
+</tr>
+</table>
+</td>
+</tr><tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" class="top_padding--add" style="-amf-class-label: &#39;Add padding&#39;" width="100%">
+<tr>
+<td class="top_padding_target bottom_padding_target" style="padding-top: 20px">
+<p style="font-size: 18px; font-weight: normal; line-height: 21px; margin: 0; padding: 0">This stunning Tudor pendant is currently on display at the British Museum – help us ensure it remains on free, public view.</p>
+</td>
+</tr>
+</table>
+</td>
+</tr><tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" class="top_padding--add bottom_padding--add" style="-amf-class-label: &#39;Add padding&#39;; -amf-class-label: &#39;Add padding&#39;" width="100%">
+<tr>
+<td class="top_padding_target bottom_padding_target" style="padding-top: 20px; padding-bottom: 20px">
+<table border="0" cellpadding="0" cellspacing="0" class="button_size--medium" style="-amf-class-label: &#39;Medium&#39;; height: 35px; text-align: left; width: 200px; background-color:#000000;background-color:rgb(0,0,0);">
+<tr>
+<td class="btn_pad" style="padding: 5px 20px">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left">
+<a href="https://emails.britishmuseum.org/c/141OunwKBWBGceLuqBQhLwcgQz16" style="text-decoration:none; color: #ffffff">
+<span style="font-size: 18px;"><strong>Give today</strong></span>
+</a>
+</td>
+<td align="right">
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<img align="right" alt="black_arrow" border="0" src="https://emails.britishmuseum.org/i/amf_british_museum/project_163/arrows/black_arrow_160.png?size=40x0&amp;w=BbyR6p3ixLlSm5e0PIzxcorxTtBw" width="20" />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</th>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center">
+<table border="0" cellpadding="0" cellspacing="0" class="fl" style="width: 600px; background-color: #ffffff;" width="600">
+<tr>
+<td align="center" class="fl" style="width: 560px;" width="560">
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper bottom_padding--add top_padding--remove" style="-amf-class-label: &#39;Remove padding&#39;; -amf-class-label: &#39;Add padding&#39;; width: 560px;" width="560">
+<tr>
+<td class="top_padding--add top_padding_target bottom_padding--add bottom_padding_target" style="-amf-class-label: &#39;Add padding&#39;; padding-top: 0px; -amf-class-label: &#39;Add padding&#39;; padding-bottom: 20px">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td bgcolor="#000000" class="editor_expand" height="1" style="background-color:#000000;background-color:rgb(0,0,0);font-size:1px;height:1px;line-height:1px;" width="100%">
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr></table><table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center" class="top_outer_padding_target bottom_outer_padding_target">
+<table border="0" cellpadding="0" cellspacing="0" class="fl" style="width: 600px; background-color: #ffffff; text-align: left;" width="600">
+<tr>
+<td class="fl" style="width: 300px;" valign="top" width="300">
+<table border="0" cellpadding="0" cellspacing="0" class="fl">
+<tr>
+<td class="full_img">
+<a href="https://emails.britishmuseum.org/c/141OuCIPLCtaCezq4ttMAKywDoFt" style="text-decoration: none;">
+<img alt="Selection of scarves, gloves and ties from the Museum shop." border="0" class="center" src="https://emails.britishmuseum.org/i/amf_british_museum/project_15/Shop/Winter_Scarves_600x550.jpg?size=600x0&amp;w=BG_i5fbPr6Cjm_f-NhjxWj86UjKA" style="display:block; width: 300px;" width="300" />
+</a>
+</td>
+</tr>
+</table>
+</td>
+<td class="fl" style="width: 300px;" valign="top" width="300">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td style="padding: 20px;">
+<table border="0" cellpadding="0" cellspacing="0" class="fl" style="width: 260px;" width="260">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td>
+<h1 style="text-align: inherit; font-size: 24px; font-weight: bold; line-height: 27px; margin: 0; padding: 0">Beat the chill</h1>
+</td>
+</tr>
+<tr>
+<td>
+<h2 style="text-align: inherit; font-size: 24px; font-weight: normal; line-height: 27px; margin: 0; padding: 0">Winter warmers</h2>
+</td>
+</tr>
+<tr>
+<td style="padding-top: 20px;">
+<p style="font-size: 18px; font-weight: normal; line-height: 21px; margin: 0; padding: 0">Lean into chilly season with this eminently stylish new range of scarves, gloves and other cold-weather accessories.</p>
+</td>
+</tr>
+<tr>
+<td style="padding: 20px 0 0 0;">
+<table border="0" cellpadding="0" cellspacing="0" class="button_size--small" style="-amf-class-label: &#39;Small&#39;; height: 35px; text-align: left; width: 160px; background-color:#000000;background-color:rgb(0,0,0);">
+<tr>
+<td class="btn_pad" style="padding: 5px 20px">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td align="left">
+<a href="https://emails.britishmuseum.org/c/141Ov7704Yc9sebhmcKMfdh2d3Yd" style="text-decoration:none; color: #ffffff">
+<span style="font-size: 18px;"><strong>Shop now</strong></span>
+</a>
+</td>
+<td align="right">
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<img align="right" alt="black_arrow" border="0" src="https://emails.britishmuseum.org/i/amf_british_museum/project_163/arrows/black_arrow_160.png?size=40x0&amp;w=BbyR6p3ixLlSm5e0PIzxcorxTtBw" width="20" />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center">
+<table border="0" cellpadding="0" cellspacing="0" class="fl" style="width: 600px; background-color: #ffffff;" width="600">
+<tr>
+<td align="center" class="fl" style="width: 560px;" width="560">
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper top_padding--add bottom_padding--remove" style="-amf-class-label: &#39;Add padding&#39;; -amf-class-label: &#39;Remove padding&#39;; width: 560px;" width="560">
+<tr>
+<td class="top_padding--add top_padding_target bottom_padding--add bottom_padding_target" style="-amf-class-label: &#39;Add padding&#39;; padding-top: 20px; -amf-class-label: &#39;Add padding&#39;; padding-bottom: 0px">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td bgcolor="#000000" class="editor_expand" height="1" style="background-color:#000000;background-color:rgb(0,0,0);font-size:1px;height:1px;line-height:1px;" width="100%">
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr></table>
+<table border="0" cellpadding="0" cellspacing="0" style="background-color:#ffffff;background-color:rgb(255,255,255);" width="100%">
+<tr>
+<td align="center">
+<table border="0" cellpadding="0" cellspacing="0" class="fl" style="width: 600px; background-color: #ffffff; color: #000000; text-align: left;" width="600">
+<tr>
+<td class="fl" style="width: 560px;" width="560">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="fl" style="padding: 20px;">
+<table border="0" cellpadding="0" cellspacing="0" class="wrapper" style="width: 560px;" width="560">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td>
+<h1 style="text-align: inherit; font-size: 24px; font-weight: bold; line-height: 27px; margin: 0; padding: 0">
+                                                                    Connect with us
+                                                                </h1>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="210">
+<tr>
+<td style="width: 40px; padding: 20px 10px 20px 0;" width="40">
+<a href="https://emails.britishmuseum.org/c/141Ovmj5eE3DSdZd04oh4rDhZTCA" style="text-decoration: none;" target="_blank">
+<img alt="Connect with us on Facebook" border="0" src="https://emails.britishmuseum.org/i/amf_british_museum/project_15/Social_logos/facebook_black_circle.png?size=40x0&amp;w=BCPLKhtPQpGLSXTLQ9cGLSGwFKC0" style="display:block; width: 40px;" width="40" />
+</a>
+</td>
+<td style="width: 40px; padding: 20px 10px 20px 0;" width="40">
+<a href="https://emails.britishmuseum.org/c/141OvBvaojV8idN8DW1LTFZxMJgX" style="text-decoration: none;" target="_blank">
+<img alt="Connect with us on X" border="0" src="https://emails.britishmuseum.org/i/amf_british_museum/project_15/Social_logos/X_black_circle.png?size=40x0&amp;w=BB5kfGNgCP0gQzJdjmcO7HJTrE9I" style="display:block; width: 40px;" width="40" />
+</a>
+</td>
+<td style="width: 40px; padding: 20px 10px 20px 0;" width="40">
+<a href="https://emails.britishmuseum.org/c/141OvQHfxZMCIdB4hNFgIUlNzyVk" style="text-decoration: none;" target="_blank">
+<img alt="Connect with us on Instagram" border="0" src="https://emails.britishmuseum.org/i/amf_british_museum/project_15/Social_logos/Insta_black_circle.png?size=40x0&amp;w=BJSFwdh7ZCYMTMftvbQV27btOaow" style="display:block; width: 40px;" width="40" />
+</a>
+</td>
+<td style="width: 40px; padding: 20px 10px 20px 0;" width="40">
+<a href="https://emails.britishmuseum.org/c/141Ow5TkHFE78doZVFiLy8I3mozH" style="text-decoration: none;" target="_blank">
+<img alt="Connect with us on YouTube" border="0" src="https://emails.britishmuseum.org/i/amf_british_museum/project_15/Social_logos/YouTube_black_circle.png?size=40x0&amp;w=BE3QUmuzm8MZdwHrUe4HIB6CL59U" style="display:block; width: 40px;" width="40" />
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td>
+<h6 style="text-align: inherit; color: #949494; font-size: 12px; font-weight: bold; line-height: 15px; margin: 0; padding: 0"><p style="font-size: 18px; font-weight: normal; line-height: 21px; margin: 0; padding: 0"><span style="font-size:14px"><strong><a href="https://emails.britishmuseum.org/u/17ik7Jdz5v2wVmCOJLLIbSM" style="color: rgb(0, 0, 0);" target="_blank">Unsubscribe</a><span style="color:#000000">&nbsp; |&nbsp;&nbsp;</span><a href="https://emails.britishmuseum.org/k/12SAaBSWyb6iEaKIqeyUdCbo" style="color: rgb(0, 0, 0);" target="_blank">Update preferences</a><span style="color:#000000">&nbsp; |&nbsp;&nbsp;</span><a href="https://emails.britishmuseum.org/c/141Owl5pRlvBydcVzwWgnn4j9ee4" style="color: rgb(0, 0, 0);" target="_blank">Privacy policy</a></strong></span><br />
+<br />
+<span style="font-size:14px"><span style="color:#000000"><strong>Images:&nbsp;</strong></span><br />
+<br />
+Suit of armour. Steel, russet iron, mail, and lacquered iron and leather sheet with textile, Japan, 1600–1700.&nbsp;<br />
+<br />
+Utagawa Kuniyoshi (1797–1861), Tomoe Gozen riding away after the Battle of Awazu. &nbsp;Colour woodblock print, 1852.<br />
+<br />
+Woman's firefighting jacket. Wool, satin-weave silk appliqué, and silk- and gold-thread embroidery, Japan, 1800–50. John C. Weber Collection. Photo © John Bigelow Taylor.&nbsp;<br />
+<br />
+Mahiole hulu manu (feathered helmet), ‘ie‘ie rootlet, olonā fibre and feathers (ʻiʻiwi, ʻōʻō, mamo), Hawaiʻi, possibly late 1700s.<br />
+<br />
+Folding screen. Ink, silver and gold on paper, Japan, 1500–1600.<br />
+<br />
+Mamma Andersson (b. 1962), <em>The Fallow Deer</em>. Woodcut on rice paper, 2016. Reproduced by permission of the artist. Acquisition supported by the AKO Foundation.<br />
+<br />
+Heart-shaped pendant.&nbsp;Gold and enamel, England, about 1518.</span><br />
+<br />
+<span style="font-size:14px"><span style="color:#000000">© 2025 The Trustees of the British Museum </span></span></p>
+</h6>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<!--[if lt mso 12]><img src="https://emails.britishmuseum.org/r/11s33SevDudav6riS.png?c=1" alt=""><![endif]--><![if gt mso 11]><img src="https://emails.britishmuseum.org/r/11s33SevDudav6riS.png" alt=""><![endif]>
+</body>
+</html>
+`,text:`New exhibition | Samurai
+
+Unmask the reality behind the myth
+
+View this email online https://emails.britishmuseum.org/q/1f52Myo42W654waTgay0wNZ/wv
+
+https://emails.britishmuseum.org/c/1H5ll959nTtvK19PnJ2unqCXJn
+
+Visit the British Museum website.
+https://emails.britishmuseum.org/c/141Oj6yVqSV6UnIIQOxpKRGyCf42
+
+Exhibitions
+https://emails.britishmuseum.org/c/141OjlL0AyMBknwEuGaUA62Op4Ip
+Membership
+https://emails.britishmuseum.org/c/141OjAX5KeE5KnkA8xOppkp4bUmM
+Shop
+https://emails.britishmuseum.org/c/141OjQ9aTUvAan8vMprUeyLjYK19
+
+An imposing samurai helmet and facemask with a bristling moustache.
+https://emails.britishmuseum.org/c/141Okkxldgez0mKn48ITT1tPypjT
+
+Samurai
+
+Opens 3 February
+
+From medieval battlefields to modern blockbusters, discover the real story of the samurai.
+
+Book discounted early bird tickets and save at least 20%, or become a Member
+https://emails.britishmuseum.org/c/141OkzJqmW63qmyiI0moIfQ5leYg today to enjoy entry to all our exhibitions.
+
+Book now and save
+https://emails.britishmuseum.org/c/141OkOVvwBXxQmmelRZTxucl84CD
+
+black_arrow
+
+Supported by
+
+ Huo Family Foundation logo
+
+Woodblock print of a female samurai galloping away from a battle, arrows piercing their armour.
+https://emails.britishmuseum.org/c/141Ol47AGhP2gma9ZJDomIyAUUh0
+
+Who were the samurai?
+
+Curator's introduction
+
+Explore how samurai have played many – often surprising – roles over their 1,000-year history.
+
+Read the blog
+https://emails.britishmuseum.org/c/141OljjFPXGwGlY5DBgTbWUQHJVn
+
+black_arrow
+
+Red and gold firefighter's cloak with watery motifs.
+https://emails.britishmuseum.org/c/141OlyvKZDy16lM1hsUo1bh6uzzK
+
+Stars of the show
+
+Exhibition highlights
+
+From fearsome armour to a sumptuous Hokusai painting, preview some of the exhibition's most striking objects.
+
+See the highlights
+https://emails.britishmuseum.org/c/141OlNHQ9jpvwlzWVkxSQpDmhpe7
+
+black_arrow
+
+Red, yellow and black feathered helmet with a central crest.
+https://emails.britishmuseum.org/c/141Om2TViZgZWlnSzcbnFDZC4eSu
+
+Hawaiʻi: a kingdom crossing oceans
+
+Opens 15 January
+
+When a young king and queen travelled across vast oceans to seek an alliance with the British Crown, their journey marked a turning point in the history of their kingdom, Hawai‘i.
+
+Discover the fascinating history and dazzling artistry of this Pacific island nation.
+
+Book now and save
+https://emails.britishmuseum.org/c/141Omi60sF8umlbOd3OSuSlRR4wR
+
+black_arrow
+
+Supported by
+Lynne and Marc Benioff
+
+
+
+Love exhibitions?
+
+Become a Member
+https://emails.britishmuseum.org/c/141Omxi5CkZYMkZJQVsnk6I7DUbe
+
+black_arrow
+
+Woodcut of a brown fallow deer on a green background.
+https://emails.britishmuseum.org/c/141On1GfVGIXCkBB8EJmYzqDdztY
+
+Nordic Noir
+
+Edvard Munch to Mamma Andersson
+
+Explore the macabre, melancholy and sometimes provocative themes that run through aspects of Nordic art.
+
+Plan your visit
+https://emails.britishmuseum.org/c/141OngSl5mAs2kpwMwmRNNMT0p8l
+
+black_arrow
+
+Gold heart-shaped pendant with the initials H and K in red enamel.
+https://emails.britishmuseum.org/c/141Onw4qf2rWskdsqo0mD298NeMI
+
+The Tudor Heart
+
+Help save this historic treasure for the nation
+
+This stunning Tudor pendant is currently on display at the British Museum – help us ensure it remains on free, public view.
+
+Give today
+https://emails.britishmuseum.org/c/141OnLgvoIjqSk1o4fDRsgvoA4r5
+
+black_arrow
+
+Selection of scarves, gloves and ties from the Museum shop.
+https://emails.britishmuseum.org/c/141Oo0sAyoaVijPjI7hmhuREmU5s
+
+Beat the chill
+
+Winter warmers
+
+Lean into chilly season with this eminently stylish new range of scarves, gloves and other cold-weather accessories.
+
+Shop now
+https://emails.britishmuseum.org/c/141OofEFI42pIjDflYUR6JdU9JJP
+
+black_arrow
+
+Connect with us
+
+Connect with us on Facebook
+https://emails.britishmuseum.org/c/141OouQKRJTU8jraZQylVXA9Wzoc
+Connect with us on X
+https://emails.britishmuseum.org/c/141OoK2Q1pLoyjf6DIbQLbWpJp2z
+Connect with us on Instagram
+https://emails.britishmuseum.org/c/141OoZeVb5CSYj32hzPlAqiFweGW
+Connect with us on YouTube
+https://emails.britishmuseum.org/c/141Oper0kLunoiQXVrsQpEEVj4lj
+
+Unsubscribe https://emails.britishmuseum.org/u/17ik7Jdz5v2wVmCOJLLIbSM | Update preferences https://emails.britishmuseum.org/k/12SAaBSWyb6iEaKIqeyUdCbo | Privacy policy
+https://emails.britishmuseum.org/c/141OpIPaE7dmeisPdaJQ47nqSJE3
+
+Images:
+
+Suit of armour. Steel, russet iron, mail, and lacquered iron and leather sheet with textile, Japan, 1600–1700.
+
+Utagawa Kuniyoshi (1797–1861), Tomoe Gozen riding away after the Battle of Awazu. Colour woodblock print, 1852.
+
+Woman's firefighting jacket. Wool, satin-weave silk appliqué, and silk- and gold-thread embroidery, Japan, 1800–50. John C. Weber Collection. Photo © John Bigelow Taylor.
+
+Mahiole hulu manu (feathered helmet), ‘ie‘ie rootlet, olonā fibre and feathers (ʻiʻiwi, ʻōʻō, mamo), Hawaiʻi, possibly late 1700s.
+
+Folding screen. Ink, silver and gold on paper, Japan, 1500–1600.
+
+Mamma Andersson (b. 1962), The Fallow Deer. Woodcut on rice paper, 2016. Reproduced by permission of the artist. Acquisition supported by the AKO Foundation.
+
+Heart-shaped pendant. Gold and enamel, England, about 1518.
+
+© 2025 The Trustees of the British Museum
+`,accountEmail:"demo@demo.com",messageId:"<demo-mock-1305@homerow.dev>"},{id:1306,seq:1306,threadId:"thread-mock-1306",subject:"Noitão (hoje), pré estreia de Sirât e Ghibli Fest agitam o Cine Belas Artes!",from:"Cine Belas Artes",fromAddress:"news@cinebelasartes.veloxtickets.com.br",to:["demo@demo.com"],date:"2026-02-13T15:10:01.000Z",flags:["\\Seen"],snippet:"Noitão (hoje), pré estreia de Sirât e Ghibli Fest agitam o Cine Belas Artes! Confira as novidades! 13.02 Noitão Morro dos Pecadores Horário: a partir das 23h30 Unimos um ",hasAttachments:!1,folderPath:"INBOX",html:`<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> <html dir="ltr" xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="pt"> <head> <meta charset="UTF-8"> <meta content="width=device-width, initial-scale=1" name="viewport"> <meta name="x-apple-disable-message-reformatting"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta content="telephone=no" name="format-detection"> <title>Noitão (hoje), pré estreia de Sirât e Ghibli Fest agitam o Cine Belas Artes!</title><!--[if (mso 16)]><style type="text/css">     a {text-decoration: none;}     </style><![endif]--><!--[if gte mso 9]><style>sup { font-size: 100% !important; }</style><![endif]--><!--[if gte mso 9]><noscript> <xml> <o:OfficeDocumentSettings> <o:AllowPNG></o:AllowPNG> <o:PixelsPerInch>96</o:PixelsPerInch> </o:OfficeDocumentSettings> </xml> </noscript>
+<![endif]--><!--[if !mso]><!-- --> <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap" rel="stylesheet"> <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap"> <link rel="stylesheet" href="https://use.typekit.net/nuf3sew.css"><!--<![endif]--><!--[if mso]><xml> <w:WordDocument xmlns:w="urn:schemas-microsoft-com:office:word"> <w:DontUseAdvancedTypographyReadingMail/> </w:WordDocument> </xml>
+<![endif]--> <style type="text/css">.rollover:hover .rollover-first { max-height:0px!important; display:none!important; } .rollover:hover .rollover-second { max-height:none!important; display:block!important; } .rollover span { font-size:0px; } u + .body img ~ div div { display:none; } #outlook a { padding:0; } span.MsoHyperlink, span.MsoHyperlinkFollowed { color:inherit; mso-style-priority:99; } a.y { mso-style-priority:100!important; text-decoration:none!important; } a[x-apple-data-detectors], #MessageViewBody a { color:inherit!important; text-decoration:none!important; font-size:inherit!important; font-family:inherit!important; font-weight:inherit!important; line-height:inherit!important; } .m { display:none; float:left; overflow:hidden; width:0; max-height:0; line-height:0; mso-hide:all; } @media only screen and (max-width:600px) {.bn { padding-bottom:20px!important } *[class="gmail-fix"] { display:none!important }
+ p, a { line-height:150%!important } h1, h1 a { line-height:120%!important } h2, h2 a { line-height:120%!important } h3, h3 a { line-height:120%!important } h4, h4 a { line-height:120%!important } h5, h5 a { line-height:120%!important } h6, h6 a { line-height:120%!important } .bk p { } .bj p { } h1 { font-size:50px!important; text-align:left } h2 { font-size:36px!important; text-align:left } h3 { font-size:20px!important; text-align:left } h4 { font-size:24px!important; text-align:left } h5 { font-size:20px!important; text-align:left } h6 { font-size:16px!important; text-align:left } .bk p, .bk a { font-size:14px!important } .bj p, .bj a { font-size:14px!important } .bf, .bf h1, .bf h2, .bf h3, .bf h4, .bf h5, .bf h6 { text-align:center!important } .be img, .bf img, .bg img { display:inline!important }
+ .be .rollover:hover .rollover-second, .bf .rollover:hover .rollover-second, .bg .rollover:hover .rollover-second { display:inline!important } a.y, button.y { font-size:18px!important; padding:10px 20px 10px 20px!important; line-height:120%!important } a.y, button.y, .bc { display:inline-block!important } .x, .x .y, .z, .z td, .k.j { display:inline-block!important } .u table, .v, .w { width:100%!important } .r table, .s table, .t table, .r, .t, .s { width:100%!important; max-width:600px!important } .adapt-img { width:100%!important; height:auto!important } table.j, .esd-block-html table { width:auto!important } .h-auto { height:auto!important } .f .e, .f .e * { font-size:24px!important; line-height:150%!important } .d .e, .d .e * { font-size:24px!important; line-height:150%!important } .c .b, .c .b * { font-size:14px!important } .a .b, .a .b * { line-height:150%!important; font-size:14px!important } }
+ @media screen and (max-width:384px) {.mail-message-content { width:414px!important } }</style>
+ </head>
+ <body class="body" style="width:100%;height:100%;font-family:'Tenor Sans', sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;padding:0;Margin:0"> <div dir="ltr" class="es-wrapper-color" lang="pt" style="background-color:#053264"><!--[if gte mso 9]><v:background xmlns:v="urn:schemas-microsoft-com:vml" fill="t"> <v:fill type="tile" color="#053264" origin="0.5, 0" position="0.5, 0"></v:fill> </v:background><![endif]--> <table width="100%" cellspacing="0" cellpadding="0" class="es-wrapper" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;padding:0;Margin:0;width:100%;height:100%;background-repeat:repeat;background-position:center top;background-color:#053264"> <tr> <td valign="top" style="padding:0;Margin:0"> <table cellspacing="0" cellpadding="0" align="center" class="r" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%;table-layout:fixed !important"> <tr> <td align="center" bgcolor="#ffec00" style="padding:0;Margin:0;background-color:#ffec00"> <table cellspacing="0" cellpadding="0" bgcolor="#007070" align="center" class="bk" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:#007070;width:600px" role="none"> <tr> <td align="left" bgcolor="#ffec00" style="Margin:0;padding-top:35px;padding-right:20px;padding-bottom:35px;padding-left:20px;background-color:#ffec00"> <table cellpadding="0" cellspacing="0" align="right" class="w" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:right"> <tr> <td align="left" style="padding:0;Margin:0;width:560px"> <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> <tr> <td align="center" style="padding:0;Margin:0;font-size:0"><img src="https://fergzwx.stripocdn.email/content/guids/CABINET_9b066e79b6d963e88ef119877d7313ec261d3ae1ad0c3b6e27c079faf1ee4d78/images/banner_news_3.png" alt="" width="560" class="adapt-img" style="display:block;font-size:14px;border:0;outline:none;text-decoration:none;margin:0"></td>
+ </tr> </table></td> </tr> </table></td> </tr> </table></td> </tr> </table>
+ <table cellpadding="0" cellspacing="0" align="center" class="r" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%;table-layout:fixed !important"> <tr> <td align="center" bgcolor="#007070" style="padding:0;Margin:0;background-color:#007070"> <table bgcolor="#ffffff" align="center" cellpadding="0" cellspacing="0" class="bk" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:#FFFFFF;width:600px"> <tr> <td align="left" style="Margin:0;padding-right:20px;padding-left:20px;padding-top:30px;padding-bottom:20px"> <table cellpadding="0" cellspacing="0" width="100%" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> <tr> <td align="center" valign="top" style="padding:0;Margin:0;width:560px"> <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> <tr> <td align="center" style="padding:0;Margin:0"><h2 style="Margin:0;font-family:Oswald, sans-serif;mso-line-height-rule:exactly;letter-spacing:0;font-size:36px;font-style:normal;font-weight:normal;line-height:43.2px;color:#007070">Confira as novidades!</h2>
+</td> </tr> </table></td> </tr> </table></td> </tr> <tr> <td align="left" style="Margin:0;padding-right:20px;padding-left:20px;padding-top:20px;padding-bottom:40px"><!--[if mso]><table style="width:560px" cellpadding="0" cellspacing="0"><tr>
+<td style="width:270px" valign="top"><![endif]--> <table cellpadding="0" cellspacing="0" align="left" class="v" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:left"> <tr> <td align="left" class="bn" style="padding:0;Margin:0;width:270px"> <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> <tr> <td align="center" style="padding:0;Margin:0;font-size:0px"><img src="https://fergzwx.stripocdn.email/content/guids/CABINET_e8c031823d9c2c38e1d55b4e1346532ed629211022582880ba552a91cb0b6c08/images/feed_noitao_morro_dos_pecadores_1.jpg" alt="" width="270" class="adapt-img p_image" style="display:block;font-size:14px;border:0;outline:none;text-decoration:none;margin:0;border-radius:20px"></td> </tr> </table></td> </tr> </table><!--[if mso]></td><td style="width:20px"></td>
+<td style="width:270px" valign="top"><![endif]--> <table align="right" cellpadding="0" cellspacing="0" class="w" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:right"> <tr> <td align="left" style="padding:0;Margin:0;width:270px"> <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> <tr> <td align="left" style="padding:0;Margin:0"><h4 class="p_name" style="Margin:0;font-family:Oswald, sans-serif;mso-line-height-rule:exactly;letter-spacing:0;font-size:24px;font-style:normal;font-weight:normal;line-height:28.8px;color:#007070"><strong style="font-weight:700 !important">13.02</strong></h4>
+<h4 class="p_name" style="Margin:0;font-family:Oswald, sans-serif;mso-line-height-rule:exactly;letter-spacing:0;font-size:24px;font-style:normal;font-weight:normal;line-height:28.8px;color:#007070"><strong style="font-weight:700 !important">Noitão Morro dos Pecadores</strong></h4></td> </tr> <tr> <td align="left" class="c" style="padding:0;Margin:0;padding-top:10px"><p style="Margin:0;mso-line-height-rule:exactly;font-family:Sans-serif;line-height:21px;letter-spacing:0;color:#333333;font-size:14px"><strong style="font-weight:700 !important"> Horário: a partir das 23h30</strong></p><p style="Margin:0;mso-line-height-rule:exactly;font-family:Sans-serif;line-height:21px;letter-spacing:0;color:#020733;font-size:14px"><strong style="font-weight:700 !important"><br/></strong></p>
+<p style="Margin:0;mso-line-height-rule:exactly;font-family:Sans-serif;line-height:28px;letter-spacing:0;color:#333333;font-size:14px">Unimos um filmes mais pedidos pelo público com um dos lançamentos mais aguardados para um&nbsp;<em>Noitão Especial</em>. A&nbsp;<em>Sala 1,</em><strong style="font-weight:700 !important"><em> Amores Euphoricos</em>,</strong> traz a estreia de&nbsp;<em>O Morro dos Ventos Uivantes</em>&nbsp;seguido de&nbsp;<em>Romeu + Julieta.</em> Na <em>Sala 2, </em><strong style="font-weight:700 !important"><em>Morro do Pecadores</em>,</strong> traz o filme com mais indicações ao Oscar,&nbsp;<em>Pecadores</em>, seguido de&nbsp;<em>Um Drink no Inferno</em>&nbsp;</p>
+<p style="Margin:0;mso-line-height-rule:exactly;font-family:Sans-serif;line-height:21px;letter-spacing:0;color:#333333;font-size:14px"><br class="b"> <strong style="font-weight:700 !important;font-family:Sans-serif;color:#020733">Ingresso:&nbsp; R$80 (inteira) e R$40 (meia)</strong><strong style="font-weight:700 !important"> <br/></strong></p><p style="Margin:0;mso-line-height-rule:exactly;font-family:Sans-serif;line-height:21px;letter-spacing:0;color:#333333;font-size:14px"><br/></p></td> </tr>
+ <tr> <td align="center" style="padding:0;Margin:0"><!--[if mso]><a href="https://u7952464.ct.sendgrid.net/ls/click?upn=u001.i8LwQ7Haevd8SeCoWv0Mn8YHF7x-2BKQASYtyp-2Bkn05PJlpUgiK19z1hShUJlwQID1OgzQJrATDqDCLQjgnTU3uL-2FYvO-2BB9-2BGOHAj5FLb53z7K6yP0osFxZnn2hsc3ZdeRuhZmhHTrZ0J6DmFFUznLDi6qJe1uEvOgWAa4EMok97AghPJ4Zsr9GVN3DFQsqf0clTmaGYt-2F0-2FDI-2BzLfs7KUAkKGvbG9lofy-2BjPAsunCO8k9KE4p7eXlt9Xv7J7-2FxMt5ycELle4bHcQ-2FF5TDgWgQ4vifGIK32kpnIxLxL9FDPIk-2BYSh-2BTUdK4xbxoWfudm-2Bn9YL3PbcIRL7cH1xZpnpq7Nbkm22sFaWA7llv2R-2BCAo-2F8GyGjcygmdS1-2FjUkARxPZi1JUay3b2pziRQSxIFtG4E6g7YgUElbxO7OFpEj-2BgQ3xfzug9bS73lb7LH33LicHwl0K_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP5FEgQhEVUHmcxDP6Mhnin07bTwD6eFDpRNtbj0T3Te-2FAQo3XdPvScilZiy5XbQkf3ym8CcwlLG1JttzbrUZeEpn-2BlEDPfS7dnWaMNbw6SLqH2-2Fh0-2FQNey6WgQqpN793RXrsa-2BEOFgLpZ5leEFcq0fvlav1KYVzXpIESJyGtWchDA-3D-3D" target="_blank" hidden> <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" esdevVmlButton href="https://belasartes-mautic.consciencia.net.br/r/58dea557267caacd7a496c23e?ct=YTo1OntzOjY6InNvdXJjZSI7YToyOntpOjA7czoxNDoiY2FtcGFpZ24uZXZlbnQiO2k6MTtpOjg1O31zOjU6ImVtYWlsIjtpOjg5O3M6NDoic3RhdCI7czoyMjoiNjk4ZjM4NWFkZDkyNTEzODk3MzA4MSI7czo0OiJsZWFkIjtzOjU6IjY0MjA4IjtzOjc6ImNoYW5uZWwiO2E6MTp7czo1OiJlbWFpbCI7aTo4OTt9fQ%3D%3D&" style="height:41px; v-text-anchor:middle; width:203px" arcsize="49%" stroke="f" fillcolor="#007070"> <w:anchorlock></w:anchorlock> <center style='color:#ffec00; font-family:Oswald, sans-serif; font-size:15px; font-weight:400; line-height:15px; mso-text-raise:1px'>Compre seu ingresso</center> </v:roundrect></a>
+<![endif]--><!--[if !mso]><!-- --><span class="bc msohide" style="border-style:solid;border-color:#2CB543;background:#007070;border-width:0px;display:inline-block;border-radius:20px;width:auto;mso-hide:all"><a target="_blank" href="https://u7952464.ct.sendgrid.net/ls/click?upn=u001.i8LwQ7Haevd8SeCoWv0Mn8YHF7x-2BKQASYtyp-2Bkn05PJlpUgiK19z1hShUJlwQID1OgzQJrATDqDCLQjgnTU3uL-2FYvO-2BB9-2BGOHAj5FLb53z7K6yP0osFxZnn2hsc3ZdeRuhZmhHTrZ0J6DmFFUznLDi6qJe1uEvOgWAa4EMok97AghPJ4Zsr9GVN3DFQsqf0clTmaGYt-2F0-2FDI-2BzLfs7KUAkKGvbG9lofy-2BjPAsunCO8k9KE4p7eXlt9Xv7J7-2FxMt5ycELle4bHcQ-2FF5TDgWgQ4vifGIK32kpnIxLxL9FDPIk-2BYSh-2BTUdK4xbxoWfudm-2Bn9YL3PbcIRL7cH1xZpnpq7Nbkm22sFaWA7llv2R-2BCAo-2F8GyGjcygmdS1-2FjUkARxPZi1JUay3b2pziRQSxIFtG4E6g7YgUElbxO7OFpEj-2BgQ3xfzug9bS73lb7LH33LicHCTKI_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP5FEgQhEVUHmcxDP6Mhnin07bTwD6eFDpRNtbj0T3Te-2FOXosyLYH8c2Z4psvePZHnNRsN4sFLZkntgyXl-2F0LbSLPgxDFqmbZgCzJt1-2FMcW87wm6AQ-2Fya1TKQiTshUxKVWPbLlkrLf-2FAp8zhQYY-2BqwZ7fT-2FRY1LkxufJnK-2BqoAc0oQ-3D-3D" class="y" style="mso-style-priority:100 !important;text-decoration:none !important;mso-line-height-rule:exactly;color:#ffec00;font-size:18px;padding:10px 20px 10px 20px;display:inline-block;background:#007070;border-radius:20px;font-family:Oswald, sans-serif;font-weight:normal;font-style:normal;line-height:21.6px;width:auto;text-align:center;letter-spacing:0;mso-padding-alt:0;mso-border-alt:10px solid #007070">Compre seu ingresso</a></span><!--<![endif]--></td> </tr> </table></td> </tr> </table><!--[if mso]></td></tr></table><![endif]--></td> </tr>
+ <tr> <td align="left" style="Margin:0;padding-right:20px;padding-left:20px;padding-top:20px;padding-bottom:40px"><!--[if mso]><table style="width:560px" cellpadding="0" cellspacing="0"><tr>
+<td style="width:270px" valign="top"><![endif]--> <table cellspacing="0" align="left" cellpadding="0" class="v" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:left"> <tr> <td align="left" class="bn" style="padding:0;Margin:0;width:270px"> <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> <tr> <td align="center" style="padding:0;Margin:0;font-size:0px"><img src="https://fergzwx.stripocdn.email/content/guids/CABINET_e8c031823d9c2c38e1d55b4e1346532ed629211022582880ba552a91cb0b6c08/images/cartaz_site_ghibli_fest_2.jpg" alt="" width="270" class="adapt-img p_image" style="display:block;font-size:14px;border:0;outline:none;text-decoration:none;margin:0;border-radius:20px"></td> </tr> </table></td> </tr> </table><!--[if mso]></td><td style="width:20px"></td>
+<td style="width:270px" valign="top"><![endif]--> <table cellpadding="0" cellspacing="0" align="right" class="w" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:right"> <tr> <td align="left" style="padding:0;Margin:0;width:270px"> <table cellspacing="0" width="100%" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> <tr> <td align="left" style="padding:0;Margin:0"><h3 class="p_name" style="Margin:0;font-family:Oswald, sans-serif;mso-line-height-rule:exactly;letter-spacing:0;font-size:20px;font-style:normal;font-weight:normal;line-height:24px;color:#007070"></h3>
+<h4 style="Margin:0;font-family:Oswald, sans-serif;mso-line-height-rule:exactly;letter-spacing:0;font-size:24px;font-style:normal;font-weight:normal;line-height:28.8px;color:#007070"><strong style="font-weight:700 !important">19.02 a 04.03 Ghibli Fest 2026</strong></h4></td> </tr> <tr> <td align="left" class="es-text-5723" style="padding:0;Margin:0;padding-top:10px"><p style="Margin:0;mso-line-height-rule:exactly;font-family:Sans-serif;line-height:21px;letter-spacing:0;color:#020733;font-size:14px"><strong style="font-weight:700 !important">Horário: 18h20</strong></p><p style="Margin:0;mso-line-height-rule:exactly;font-family:Sans-serif;line-height:21px;letter-spacing:0;color:#020733;font-size:14px"><strong style="font-weight:700 !important"><br/></strong></p>
+<span style="font-family:Sans-serif;line-height:200%">Nesta etapa serão exibidos 14 longas-metragens, sendo sete títulos inéditos na programação da mostra em relação à primeira parte realizada em 2025. Entre os filmes confirmados estão&nbsp;<em>O Conto da Princesa Kaguya</em>,&nbsp;<em>Da Colina Kokuriko</em>,&nbsp;<em>As Memórias de Marnie</em>,&nbsp;<em>O Castelo no Céu</em>,&nbsp;<em>Contos de Terramar</em>,&nbsp;<em>O Reino dos Gatos</em>&nbsp;e&nbsp;<em>Princesa Mononoke</em>. </span><p style="Margin:0;mso-line-height-rule:exactly;font-family:'Tenor Sans', sans-serif;line-height:21px;letter-spacing:0;color:#333333;font-size:14px"><span style="font-family:Sans-serif;line-height:200%"><br/></span></p>
+<p style="Margin:0;mso-line-height-rule:exactly;font-family:Sans-serif;line-height:21px;letter-spacing:0;color:#333333;font-size:14px"><span style="line-height:200%"></span><strong style="font-weight:700 !important">Ingresso:&nbsp;R$24 e R$12</strong></p><br></td> </tr> <tr> <td align="center" style="padding:0;Margin:0"><!--[if mso]><a href="https://u7952464.ct.sendgrid.net/ls/click?upn=u001.i8LwQ7Haevd8SeCoWv0Mn8YHF7x-2BKQASYtyp-2Bkn05PJlpUgiK19z1hShUJlwQID1nu-2FWBknIhUpiIlK4uppmSKAoY7aGK8N-2BQT9otCoyt53T-2FnKcTIB-2FlFSfj6Y4jQvMU-2FSCgUOVPeVoXcZE9v8VXK6qBk3e7ifw9QROpeTJipSHPuY7exoUahYHlkchwM080liPkFUw1CanPKAm6ciVWTz2znfsft6U6dhRYkfUgT7RX-2FLaI0i04fVVF-2Bi-2FY9a2kvgW1dtgpRNtubiFKumxVJEhwK6KO1WsBjk7iV1sveJXuGzTwAcU8T9oVaN7BSRDFksEgrvWQ5HfrIthXbyZdgvZ6WlHeCabR98KLpO-2FtRuIOm-2BEN9OKOAwei87IVy0HM-2B-2FG-2Ff1yo4TFd4nA0ZFXxRYW7UAHknSbg5OV-2FjY6mfBLOMVcf5-2FzXQqtDfJ2j2-2FfpEkb_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP5FEgQhEVUHmcxDP6Mhnin07bTwD6eFDpRNtbj0T3Te-2FLBh-2FdVwE7x60-2BRU3LMGSDKbmY7M6qNunGmD1l3osWPdkh2-2B8dncHvxygMo7R9UTR3EUK1H0sm79MX3sjgKAgzkY6l9QytSUOFMIu7fUcXynZ8xHhXCAyjttZZT9bvANCQ-3D-3D" target="_blank" hidden> <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" esdevVmlButton href="https://belasartes-mautic.consciencia.net.br/r/2914fcc2e264226e668541841?ct=YTo1OntzOjY6InNvdXJjZSI7YToyOntpOjA7czoxNDoiY2FtcGFpZ24uZXZlbnQiO2k6MTtpOjg1O31zOjU6ImVtYWlsIjtpOjg5O3M6NDoic3RhdCI7czoyMjoiNjk4ZjM4NWFkZDkyNTEzODk3MzA4MSI7czo0OiJsZWFkIjtzOjU6IjY0MjA4IjtzOjc6ImNoYW5uZWwiO2E6MTp7czo1OiJlbWFpbCI7aTo4OTt9fQ%3D%3D&" style="height:41px; v-text-anchor:middle; width:203px" arcsize="49%" stroke="f" fillcolor="#007070"> <w:anchorlock></w:anchorlock> <center style='color:#ffec00; font-family:Oswald, sans-serif; font-size:15px; font-weight:400; line-height:15px; mso-text-raise:1px'>Compre seu ingresso</center> </v:roundrect></a>
+<![endif]--><!--[if !mso]><!-- --><span class="bc msohide" style="border-style:solid;border-color:#2CB543;background:#007070;border-width:0px;display:inline-block;border-radius:20px;width:auto;mso-hide:all"><a href="https://u7952464.ct.sendgrid.net/ls/click?upn=u001.i8LwQ7Haevd8SeCoWv0Mn8YHF7x-2BKQASYtyp-2Bkn05PJlpUgiK19z1hShUJlwQID1nu-2FWBknIhUpiIlK4uppmSKAoY7aGK8N-2BQT9otCoyt53T-2FnKcTIB-2FlFSfj6Y4jQvMU-2FSCgUOVPeVoXcZE9v8VXK6qBk3e7ifw9QROpeTJipSHPuY7exoUahYHlkchwM080liPkFUw1CanPKAm6ciVWTz2znfsft6U6dhRYkfUgT7RX-2FLaI0i04fVVF-2Bi-2FY9a2kvgW1dtgpRNtubiFKumxVJEhwK6KO1WsBjk7iV1sveJXuGzTwAcU8T9oVaN7BSRDFksEgrvWQ5HfrIthXbyZdgvZ6WlHeCabR98KLpO-2FtRuIOm-2BEN9OKOAwei87IVy0HM-2B-2FG-2Ff1yo4TFd4nA0ZFXxRYW7UAHknSbg5OV-2FjY6mfBLOMVcf5-2FzXQqtDfJ2j2-2Ff2EeL_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP5FEgQhEVUHmcxDP6Mhnin07bTwD6eFDpRNtbj0T3Te-2FEjIqWmugpYhVVWaNzLq8IbUgxs9IG8FmtauJoaM9VAO6QmBZmSCWijbQHyh3m7kIEP3LfyavgHR4pEhBfc-2FD9W4bGgz1GTH5f6qELny0xrNK9Vg-2F4TdW9Tq-2F6a1Kd-2BohA-3D-3D" target="_blank" class="y" style="mso-style-priority:100 !important;text-decoration:none !important;mso-line-height-rule:exactly;color:#ffec00;font-size:18px;padding:10px 20px 10px 20px;display:inline-block;background:#007070;border-radius:20px;font-family:Oswald, sans-serif;font-weight:normal;font-style:normal;line-height:21.6px;width:auto;text-align:center;letter-spacing:0;mso-padding-alt:0;mso-border-alt:10px solid #007070">Compre seu ingresso</a></span><!--<![endif]--></td> </tr> </table></td> </tr> </table><!--[if mso]></td></tr></table><![endif]--></td> </tr>
+ <tr> <td align="left" style="Margin:0;padding-right:20px;padding-left:20px;padding-top:20px;padding-bottom:40px"><!--[if mso]><table style="width:560px" cellpadding="0" cellspacing="0"><tr>
+<td style="width:270px" valign="top"><![endif]--> <table cellspacing="0" align="left" cellpadding="0" class="v" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:left"> <tr> <td align="left" class="bn" style="padding:0;Margin:0;width:270px"> <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> <tr> <td align="center" style="padding:0;Margin:0;font-size:0px"><img src="https://fergzwx.stripocdn.email/content/guids/CABINET_9b066e79b6d963e88ef119877d7313ec261d3ae1ad0c3b6e27c079faf1ee4d78/images/st_presirat.jpg" alt="" width="270" class="adapt-img p_image" style="display:block;font-size:14px;border:0;outline:none;text-decoration:none;margin:0;border-radius:20px"></td> </tr> </table></td> </tr> </table><!--[if mso]></td><td style="width:20px"></td>
+<td style="width:270px" valign="top"><![endif]--> <table cellpadding="0" cellspacing="0" align="right" class="w" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:right"> <tr> <td align="left" style="padding:0;Margin:0;width:270px"> <table cellspacing="0" width="100%" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> <tr> <td align="left" style="padding:0;Margin:0"><h3 class="p_name" style="Margin:0;font-family:Oswald, sans-serif;mso-line-height-rule:exactly;letter-spacing:0;font-size:20px;font-style:normal;font-weight:normal;line-height:24px;color:#007070"></h3>
+<h4 style="Margin:0;font-family:Oswald, sans-serif;mso-line-height-rule:exactly;letter-spacing:0;font-size:24px;font-style:normal;font-weight:normal;line-height:28.8px;color:#007070"><strong style="font-weight:700 !important">Pré-estreia Sirat</strong></h4></td> </tr> <tr> <td align="left" class="es-text-1645" style="padding:0;Margin:0;padding-top:10px"><p style="Margin:0;mso-line-height-rule:exactly;font-family:Sans-serif;line-height:21px;letter-spacing:0;color:#020733;font-size:14px"><strong style="font-weight:700 !important">Horário: 20h</strong></p><p style="Margin:0;mso-line-height-rule:exactly;font-family:Sans-serif;line-height:21px;letter-spacing:0;color:#020733;font-size:14px"><strong style="font-weight:700 !important"><br/></strong></p>
+<p style="Margin:0;mso-line-height-rule:exactly;font-family:'Tenor Sans', sans-serif;line-height:21px;letter-spacing:0;color:#333333;font-size:14px">Nesta pré-estreia o&nbsp;<em>Belas</em>&nbsp;entra no clima do verão brasileiro — que, vamos combinar, não tem nada a ver com sapato! Por isso, quem vier de sandália ou chinelo paga meia-entrada nesta exibição exclusiva!</p><p style="Margin:0;mso-line-height-rule:exactly;font-family:'Tenor Sans', sans-serif;line-height:21px;letter-spacing:0;color:#333333;font-size:14px"><br/></p>
+<p style="Margin:0;mso-line-height-rule:exactly;font-family:'Tenor Sans', sans-serif;line-height:21px;letter-spacing:0;color:#333333;font-size:14px">Indicado a dois&nbsp;<em>Oscars</em>&nbsp;(<em>Melhor Filme Internacional</em>&nbsp;e&nbsp;<em>Melhor Som</em>) e vencedor de um dos prêmios mais prestigiados de&nbsp;<em>Cannes</em>&nbsp;(<em>Prêmio do Júri</em>), o longa acompanha a jornada de um pai e um filho que chegam a uma rave nas montanhas do sul de Marrocos. Ambos buscam por Mar — filha e irmã —, que desapareceu meses antes em uma dessas festas intermináveis.&nbsp;</p><p style="Margin:0;mso-line-height-rule:exactly;font-family:'Tenor Sans', sans-serif;line-height:21px;letter-spacing:0;color:#333333;font-size:14px"><br/></p>
+<p style="Margin:0;mso-line-height-rule:exactly;font-family:'Tenor Sans', sans-serif;line-height:21px;letter-spacing:0;color:#333333;font-size:14px"><strong style="font-weight:700 !important"><em>Sirât&nbsp;</em>chega aos cinemas no dia 26 de fevereiro, vem pro&nbsp;<em>Belas</em>&nbsp;assistir antes de todos!</strong></p><p style="Margin:0;mso-line-height-rule:exactly;font-family:'Tenor Sans', sans-serif;line-height:21px;letter-spacing:0;color:#333333;font-size:14px"><strong style="font-weight:700 !important"><br/></strong></p><span style="font-family:Sans-serif;line-height:200%"></span><p style="Margin:0;mso-line-height-rule:exactly;font-family:Sans-serif;line-height:21px;letter-spacing:0;color:#333333;font-size:14px"><strong style="font-weight:700 !important">Ingresso:&nbsp;R$40 e 20&nbsp;</strong></p>
+<p style="Margin:0;mso-line-height-rule:exactly;font-family:Sans-serif;line-height:21px;letter-spacing:0;color:#333333;font-size:14px"><strong style="font-weight:700 !important">*COM MEIA ENTRADA PARA VIER DE CHINELO OU SANDÁLIA&nbsp;</strong></p><br></td> </tr> <tr> <td align="center" style="padding:0;Margin:0"><!--[if mso]><a href="https://u7952464.ct.sendgrid.net/ls/click?upn=u001.i8LwQ7Haevd8SeCoWv0Mn8YHF7x-2BKQASYtyp-2Bkn05PJlpUgiK19z1hShUJlwQID1wR7xaoUdBJcce-2F1qT2z2yYT8jUDq2GW8Gok7EAvUYiVwftONbExi66WYpYzD8XBwN-2FGhGtDKFbGgPpT-2BdRq3kw2ZBwvRu2QgbEs-2BGEsHiWbKuUjajncX4KLq4ncLlrtkgRqHFdpodmTyYJ0pwj-2BhHLMAW5pmrQm-2F0pZd73uC5Pa6a71AfjSKpBzqHMcliXyVykY2Vx9AgSvazb-2FOExdKmcZ4W4vrfgL-2FTQEwnWosvgcDMaa5LXZ8HGrp9pmOzzhLHTb7TgOLhGoySorDwuNRgWVlQBlq7UVN63IS2eb7xGezeg8bu7zr0znKW4th91vJrT-2BMkPPLIBiCl51qwJDBqlWXxOx7sV3CcLuiIO-2FryC5Z-2BX7TyrySfZVqqDSo4CR5K863_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP5FEgQhEVUHmcxDP6Mhnin07bTwD6eFDpRNtbj0T3Te-2FHAymzEkCgihEEFhCXbwDrIfHOcs-2Fj1e382Ba-2FGBRvyALjajXI-2B1cj9epvNMy5wROZ67wJQmRPhtwRjawa8il1zVaK0MBpqTaLC7d3HDiAg27wH9k8TVL07i0eLkrFvUcw-3D-3D" target="_blank" hidden> <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" esdevVmlButton href="https://belasartes-mautic.consciencia.net.br/r/0fe631fe5767cb3760961c646?ct=YTo1OntzOjY6InNvdXJjZSI7YToyOntpOjA7czoxNDoiY2FtcGFpZ24uZXZlbnQiO2k6MTtpOjg1O31zOjU6ImVtYWlsIjtpOjg5O3M6NDoic3RhdCI7czoyMjoiNjk4ZjM4NWFkZDkyNTEzODk3MzA4MSI7czo0OiJsZWFkIjtzOjU6IjY0MjA4IjtzOjc6ImNoYW5uZWwiO2E6MTp7czo1OiJlbWFpbCI7aTo4OTt9fQ%3D%3D&" style="height:41px; v-text-anchor:middle; width:203px" arcsize="49%" stroke="f" fillcolor="#007070"> <w:anchorlock></w:anchorlock> <center style='color:#ffec00; font-family:Oswald, sans-serif; font-size:15px; font-weight:400; line-height:15px; mso-text-raise:1px'>Compre seu ingresso</center> </v:roundrect></a>
+<![endif]--><!--[if !mso]><!-- --><span class="bc msohide" style="border-style:solid;border-color:#2CB543;background:#007070;border-width:0px;display:inline-block;border-radius:20px;width:auto;mso-hide:all"><a href="https://u7952464.ct.sendgrid.net/ls/click?upn=u001.i8LwQ7Haevd8SeCoWv0Mn8YHF7x-2BKQASYtyp-2Bkn05PJlpUgiK19z1hShUJlwQID1wR7xaoUdBJcce-2F1qT2z2yYT8jUDq2GW8Gok7EAvUYiVwftONbExi66WYpYzD8XBwN-2FGhGtDKFbGgPpT-2BdRq3kw2ZBwvRu2QgbEs-2BGEsHiWbKuUjajncX4KLq4ncLlrtkgRqHFdpodmTyYJ0pwj-2BhHLMAW5pmrQm-2F0pZd73uC5Pa6a71AfjSKpBzqHMcliXyVykY2Vx9AgSvazb-2FOExdKmcZ4W4vrfgL-2FTQEwnWosvgcDMaa5LXZ8HGrp9pmOzzhLHTb7TgOLhGoySorDwuNRgWVlQBlq7UVN63IS2eb7xGezeg8bu7zr0znKW4th91vJrT-2BMkPPLIBiCl51qwJDBqlWXxOx7sV3CcLuiIO-2FryC5Z-2BX7TyrySfZVqqDSo4CR5PMNK_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP5FEgQhEVUHmcxDP6Mhnin07bTwD6eFDpRNtbj0T3Te-2FOmxqoCkAA60CNf4-2B7icCdDPp2QpkvrRTvZTacnsGPWFgf3Fb7g67L3zibD3ZQ8lQ80-2B5lvgnBl6mBzCP1XGu86hachWyqe0Ma-2BIvlgZujPtUJwHJNeBCxDdzwzInBFtdQ-3D-3D" target="_blank" class="y" style="mso-style-priority:100 !important;text-decoration:none !important;mso-line-height-rule:exactly;color:#ffec00;font-size:18px;padding:10px 20px 10px 20px;display:inline-block;background:#007070;border-radius:20px;font-family:Oswald, sans-serif;font-weight:normal;font-style:normal;line-height:21.6px;width:auto;text-align:center;letter-spacing:0;mso-padding-alt:0;mso-border-alt:10px solid #007070">Compre seu ingresso</a></span><!--<![endif]--></td> </tr> </table></td> </tr> </table><!--[if mso]></td></tr></table><![endif]--></td> </tr>
+ <tr> <td align="left" style="Margin:0;padding-right:20px;padding-left:20px;padding-top:20px;padding-bottom:40px"><!--[if mso]><table style="width:560px" cellpadding="0" cellspacing="0"><tr>
+<td style="width:270px" valign="top"><![endif]--> <table cellspacing="0" align="left" cellpadding="0" class="v" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:left"> <tr> <td align="left" class="bn" style="padding:0;Margin:0;width:270px"> <table cellspacing="0" width="100%" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> <tr> <td align="center" style="padding:0;Margin:0;font-size:0px"><a href="https://u7952464.ct.sendgrid.net/ls/click?upn=u001.i8LwQ7Haevd8SeCoWv0Mn8YHF7x-2BKQASYtyp-2Bkn05PJlpUgiK19z1hShUJlwQID1PEzeQYnmgMcN2-2FRNYBpadThqwNqJ7R22eymNseFmxwEZBxKtLMSDxjpHq9KrPMfpo2b5BgROR-2B9zOxQCoXPlT-2Bb3uFCHYHckSnbeg-2FDWTqlU4zSHyVK0QKmS25hUM1NGL9EPQ6wkg6L6Neu8psbPdRE7n83HOMdHdCzkipJK8RmxQ21K7qfHUyTVXkBpXZC3qN8RkJo31HRmskrst4CC0aFP-2B4QihyQAeLJKeVpKh4v29tM5MYmlRSqcWw-2BriWWukB3pPsTKWkgeRzfCwtGZXFP7WWPv0fp43HCpfjovzLGzNDphUlCllZ-2B7ehr6pvvO29-2B2CWnguoNfXA6HLfD4mb6S4nC8fkO0zFvx0NDmNhGqkkL7FhnlPWvGM14O-2FMrdO03i_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP5FEgQhEVUHmcxDP6Mhnin07bTwD6eFDpRNtbj0T3Te-2FEwFPsHauAANRIj5RjyzMFzdYWrmTZf9jehRJU45DnVS5eZYV55hxwD-2BVwcWTAiOkiJtzNxF0JFPjtGZ-2F4UfRmqPIGVDL-2B2AvpXy0GudYD9a0yGsG3wciBU5gDdmyT0YdQ-3D-3D" target="_blank" style="mso-line-height-rule:exactly;text-decoration:underline;color:#2CB543;font-size:14px"><img src="https://fergzwx.stripocdn.email/content/guids/CABINET_9b066e79b6d963e88ef119877d7313ec261d3ae1ad0c3b6e27c079faf1ee4d78/images/frankenstein_feed_ciencia_no_cinema_2.png" alt="" width="270" class="adapt-img p_image" style="display:block;font-size:14px;border:0;outline:none;text-decoration:none;margin:0;border-radius:20px"></a>
+</td> </tr> </table></td> </tr> </table><!--[if mso]></td><td style="width:20px"></td><td style="width:270px" valign="top"><![endif]--> <table cellspacing="0" align="right" cellpadding="0" class="w" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:right"> <tr> <td align="left" style="padding:0;Margin:0;width:270px"> <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> <tr> <td align="left" style="padding:0;Margin:0"><h4 style="Margin:0;font-family:Oswald, sans-serif;mso-line-height-rule:exactly;letter-spacing:0;font-size:24px;font-style:normal;font-weight:normal;line-height:28.8px;color:#007070"><strong style="font-weight:700 !important">24.02</strong></h4>
+<h4 style="Margin:0;font-family:Oswald, sans-serif;mso-line-height-rule:exactly;letter-spacing:0;font-size:24px;font-style:normal;font-weight:normal;line-height:28.8px;color:#007070"><strong style="font-weight:700 !important"><em> <strong style="font-weight:700 !important">Ciência no Cinema:&nbsp;<em>Frankenstein</em></strong> </em></strong></h4></td> </tr> <tr> <td align="left" style="padding:0;Margin:0;padding-top:10px"><p style="Margin:0;mso-line-height-rule:exactly;font-family:Sans-serif;line-height:28px;letter-spacing:0;color:#333333;font-size:14px"><strong style="font-weight:700 !important;font-family:Sans-serif"> </strong></p><p style="Margin:0;mso-line-height-rule:exactly;font-family:Sans-serif;line-height:28px;letter-spacing:0;color:#333333;font-size:14px"><strong style="font-weight:700 !important"> Horário: 19h</strong></p>
+<p style="Margin:0;mso-line-height-rule:exactly;font-family:Sans-serif;line-height:28px;letter-spacing:0;color:#333333;font-size:14px"><strong style="font-weight:700 !important;font-family:Sans-serif"></strong><span style="font-family:Sans-serif">Realizada em parceria com o&nbsp;<em>ICTP-SAIFR</em>, a programação, que tem como foco promover a ciência fora do ambiente acadêmico, exibe mensalmente um filme seguido de debate com professores de física e outras áreas da ciência. Este mês o filme selecionado é&nbsp;<em>Frankenstein</em>.&nbsp;</span><strong style="font-weight:700 !important;font-family:Sans-serif"> </strong></p><p style="Margin:0;mso-line-height-rule:exactly;font-family:Sans-serif;line-height:21px;letter-spacing:0;color:#020733;font-size:14px"><strong style="font-weight:700 !important"><br/></strong></p>
+<p style="Margin:0;mso-line-height-rule:exactly;font-family:Sans-serif;line-height:21px;letter-spacing:0;color:#020733;font-size:14px"><strong style="font-weight:700 !important">Ingresso:&nbsp;R$34 e 17&nbsp;<br/><br/></strong></p><p style="Margin:0;mso-line-height-rule:exactly;font-family:Sans-serif;line-height:21px;letter-spacing:0;color:#020733;font-size:14px"><strong style="font-weight:700 !important"><br/></strong></p></td> </tr>
+ <tr> <td align="center" style="padding:0;Margin:0"><!--[if mso]><a href="https://u7952464.ct.sendgrid.net/ls/click?upn=u001.i8LwQ7Haevd8SeCoWv0Mn8YHF7x-2BKQASYtyp-2Bkn05PJlpUgiK19z1hShUJlwQID1ioSsAY1opWBaIERWLDRNxwEDAK6QK-2BAXQ-2Bg6VZ4wQQZ0YXMqpZq4ZRh8rSsXFd1vEMDJe-2FLHf6AE-2Bjhpsw6h0g-2BsFKFP3vjMNS0wAiA6Fz8Km2mcVcJn1r2-2F8i9nezmU7qd9SRckaAUXDsM2nplCU5eMjWrSX4wo1TyeBcur0r4UH6XXcqkFvfQCiX0DBnmkJMlVMyUMEJk3oaYVrPv4GyTMJM6F2czgnR7i1dPjF-2Bt-2BSEiOCWmsdTlCnsx8QkTgsmgVTUYNAswb8bwxnflOtxLV3J9Rg5E2hgk6M5Zd33MT8R395UmPbUX2tH9n-2BSiE6A1fJpJFu6nc1VCz36vBJ127HD7wsh-2F0H1iE3AX321W4pKZy9xyfZYvgSYucq1Xeu2JZ_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP5FEgQhEVUHmcxDP6Mhnin07bTwD6eFDpRNtbj0T3Te-2FPGc0Hq-2Fqi6Mh70fXSj4xNhaTfOCrhNdcTy3uYfBk384mtJEnIGRDXs5u7CLj-2FS1E2MU0TMzzYQqrYlIuLwco2zf-2F-2FHZpAqVoqz6fxvKQAzEHG42CC25QIBlwZsFngGrCA-3D-3D" target="_blank" hidden> <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" esdevVmlButton href="https://belasartes-mautic.consciencia.net.br/r/618e37fa0d4a79ee640a725a0?ct=YTo1OntzOjY6InNvdXJjZSI7YToyOntpOjA7czoxNDoiY2FtcGFpZ24uZXZlbnQiO2k6MTtpOjg1O31zOjU6ImVtYWlsIjtpOjg5O3M6NDoic3RhdCI7czoyMjoiNjk4ZjM4NWFkZDkyNTEzODk3MzA4MSI7czo0OiJsZWFkIjtzOjU6IjY0MjA4IjtzOjc6ImNoYW5uZWwiO2E6MTp7czo1OiJlbWFpbCI7aTo4OTt9fQ%3D%3D&" style="height:41px; v-text-anchor:middle; width:203px" arcsize="49%" stroke="f" fillcolor="#007070"> <w:anchorlock></w:anchorlock> <center style='color:#ffec00; font-family:Oswald, sans-serif; font-size:15px; font-weight:400; line-height:15px; mso-text-raise:1px'>Compre seu ingresso</center> </v:roundrect></a>
+<![endif]--><!--[if !mso]><!-- --><span class="bc msohide" style="border-style:solid;border-color:#2CB543;background:#007070;border-width:0px;display:inline-block;border-radius:20px;width:auto;mso-hide:all"><a href="https://u7952464.ct.sendgrid.net/ls/click?upn=u001.i8LwQ7Haevd8SeCoWv0Mn8YHF7x-2BKQASYtyp-2Bkn05PJlpUgiK19z1hShUJlwQID1ioSsAY1opWBaIERWLDRNxwEDAK6QK-2BAXQ-2Bg6VZ4wQQZ0YXMqpZq4ZRh8rSsXFd1vEMDJe-2FLHf6AE-2Bjhpsw6h0g-2BsFKFP3vjMNS0wAiA6Fz8Km2mcVcJn1r2-2F8i9nezmU7qd9SRckaAUXDsM2nplCU5eMjWrSX4wo1TyeBcur0r4UH6XXcqkFvfQCiX0DBnmkJMlVMyUMEJk3oaYVrPv4GyTMJM6F2czgnR7i1dPjF-2Bt-2BSEiOCWmsdTlCnsx8QkTgsmgVTUYNAswb8bwxnflOtxLV3J9Rg5E2hgk6M5Zd33MT8R395UmPbUX2tH9n-2BSiE6A1fJpJFu6nc1VCz36vBJ127HD7wsh-2F0H1iE3AX321W4pKZy9xyfZYvgSYucq1XeNSDr_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP5FEgQhEVUHmcxDP6Mhnin07bTwD6eFDpRNtbj0T3Te-2FMWGMjQGVsMmvH2CPL3-2B-2B6pimJbhg9wWAPMRZ03HQNuFqBUYUyQDREPEp6qZWP3AIZFjAWCTzqZZch35YsxiWkgXAfP5VV-2FIh-2Bm1uPSNEBxmuPfiwVgnnF0HHSBzuXEx8A-3D-3D" target="_blank" class="y" style="mso-style-priority:100 !important;text-decoration:none !important;mso-line-height-rule:exactly;color:#ffec00;font-size:18px;padding:10px 20px 10px 20px;display:inline-block;background:#007070;border-radius:20px;font-family:Oswald, sans-serif;font-weight:normal;font-style:normal;line-height:21.6px;width:auto;text-align:center;letter-spacing:0;mso-padding-alt:0;mso-border-alt:10px solid #007070">Compre seu ingresso</a></span><!--<![endif]--></td> </tr> </table></td> </tr> </table><!--[if mso]></td></tr></table><![endif]--></td> </tr>
+ <tr> <td align="left" style="Margin:0;padding-right:20px;padding-left:20px;padding-top:20px;padding-bottom:40px"><!--[if mso]><table style="width:560px" cellpadding="0" cellspacing="0"><tr>
+<td style="width:270px" valign="top"><![endif]--> <table cellpadding="0" cellspacing="0" align="left" class="v" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:left"> <tr> <td align="left" class="bn" style="padding:0;Margin:0;width:270px"> <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> <tr> <td align="center" style="padding:0;Margin:0;font-size:0px"><a target="_blank" href="https://u7952464.ct.sendgrid.net/ls/click?upn=u001.i8LwQ7Haevd8SeCoWv0Mn8YHF7x-2BKQASYtyp-2Bkn05PJlpUgiK19z1hShUJlwQID1PEzeQYnmgMcN2-2FRNYBpadThqwNqJ7R22eymNseFmxwEZBxKtLMSDxjpHq9KrPMfpo2b5BgROR-2B9zOxQCoXPlT-2Bb3uFCHYHckSnbeg-2FDWTqlU4zSHyVK0QKmS25hUM1NGL9EPQ6wkg6L6Neu8psbPdRE7n83HOMdHdCzkipJK8RmxQ21K7qfHUyTVXkBpXZC3qN8RkJo31HRmskrst4CC0aFP-2B4QihyQAeLJKeVpKh4v29tM5MYmlRSqcWw-2BriWWukB3pPsTKWkgeRzfCwtGZXFP7WWPv0fp43HCpfjovzLGzNDphUlCllZ-2B7ehr6pvvO29-2B2CWnguoNfXA6HLfD4mb6S4nC8fkO0zFvx0NDmNhGqkkL7FhnlPWvGM14O-2FMrdgX9h_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP5FEgQhEVUHmcxDP6Mhnin07bTwD6eFDpRNtbj0T3Te-2FAyiIKE1NpjJlXnDW8ofRB23sFX8k7p7XFv-2FdhYCQu1R-2BvT11ERINZMCPdwXQIKjhLkp931MpCwDQcNA1kBzyeJHucCNmzEJz-2FfqDTlSel-2F4oD-2FV9wWAMdrUxdmvY1Usnw-3D-3D" style="mso-line-height-rule:exactly;text-decoration:underline;color:#2CB543;font-size:14px"><img alt="" width="270" src="https://fergzwx.stripocdn.email/content/guids/CABINET_e8c031823d9c2c38e1d55b4e1346532ed629211022582880ba552a91cb0b6c08/images/feed_nausicaa_sessao_especialv.png" class="adapt-img p_image" style="display:block;font-size:14px;border:0;outline:none;text-decoration:none;margin:0;border-radius:20px"></a>
+</td> </tr> </table></td> </tr> </table><!--[if mso]></td><td style="width:20px"></td><td style="width:270px" valign="top"><![endif]--> <table cellpadding="0" cellspacing="0" align="right" class="w" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:right"> <tr> <td align="left" style="padding:0;Margin:0;width:270px"> <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> <tr> <td align="left" class="f" style="padding:0;Margin:0"><h3 class="p_name e" style="Margin:0;font-family:Oswald, sans-serif;mso-line-height-rule:exactly;letter-spacing:0;font-size:24px;font-style:normal;font-weight:normal;line-height:28.8px;color:#171731"></h3>
+<h4 style="Margin:0;font-family:Oswald, sans-serif;mso-line-height-rule:exactly;letter-spacing:0;font-size:24px;font-style:normal;font-weight:normal;line-height:28.8px;color:#007070"><strong style="font-weight:700 !important">25.02</strong></h4><h4 style="Margin:0;font-family:Oswald, sans-serif;mso-line-height-rule:exactly;letter-spacing:0;font-size:24px;font-style:normal;font-weight:normal;line-height:28.8px;color:#007070"><strong style="font-weight:700 !important"> Sessão especial (filme + mangá):&nbsp;<em>Nausicaä do Vale do Vento</em> </strong></h4><h3 class="p_name e" style="Margin:0;font-family:Oswald, sans-serif;mso-line-height-rule:exactly;letter-spacing:0;font-size:24px;font-style:normal;font-weight:normal;line-height:28.8px;color:#171731"><strong style="font-weight:700 !important"> </strong></h3></td> </tr>
+ <tr> <td align="left" style="padding:0;Margin:0;padding-top:10px"><p style="Margin:0;mso-line-height-rule:exactly;font-family:Sans-serif;line-height:21px;letter-spacing:0;color:#020733;font-size:14px"><strong style="font-weight:700 !important"> Horário: 20h30</strong></p><p style="Margin:0;mso-line-height-rule:exactly;font-family:Sans-serif;line-height:21px;letter-spacing:0;color:#333333;font-size:14px">Em fevereiro o Belas e a Companhia das Letras realizam um evento especial do mangá <strong style="font-weight:700 !important"><i>Nausicaä do Vale do Vento.</i></strong></p><p style="Margin:0;mso-line-height-rule:exactly;font-family:Sans-serif;line-height:21px;letter-spacing:0;color:#333333;font-size:14px"><strong style="font-weight:700 !important"><i></i></strong> O evento também conta com o lançamento da &nbsp;última obra, o volume número 7, de uma das grandes sagas do mundo dos mangás, além da exibição da animação homônima.&nbsp;</p>
+<p style="Margin:0;mso-line-height-rule:exactly;font-family:Sans-serif;line-height:21px;letter-spacing:0;color:#333333;font-size:14px"><br/></p><p style="Margin:0;mso-line-height-rule:exactly;font-family:Sans-serif;line-height:21px;letter-spacing:0;color:#333333;font-size:14px">Após a sessão haverá um debate com editores da Editora JBC, selo de mangás e cultura japonesa da Companhia das Letras, e com Chris Tex, diretor de <i>Wind Princes</i>s, curta-metragem que homenageia a obra. O público também poderá adquirir outras obras da JBC com descontos especiais que estarão à venda no mezanino.&nbsp;</p><br><p style="Margin:0;mso-line-height-rule:exactly;font-family:Sans-serif;line-height:21px;letter-spacing:0;color:#020733;font-size:14px"></p><p style="Margin:0;mso-line-height-rule:exactly;font-family:Sans-serif;line-height:21px;letter-spacing:0;color:#020733;font-size:14px"></p>
+<p style="Margin:0;mso-line-height-rule:exactly;font-family:'Tenor Sans', sans-serif;line-height:21px;letter-spacing:0;color:#333333;font-size:14px"><br/></p></td> </tr> <tr> <td align="center" style="padding:0;Margin:0"><!--[if mso]><a href="https://u7952464.ct.sendgrid.net/ls/click?upn=u001.i8LwQ7Haevd8SeCoWv0Mn8YHF7x-2BKQASYtyp-2Bkn05PJlpUgiK19z1hShUJlwQID1yZopmloH4OaascGYNtGHikEEXlL2wuRCXOWXBgg8i7WUCrpFRz0fZzjLbsN-2BSpWEPAIctjFu-2B1i2p8oTAtXuG5HEj85X7hdnpjKvwfT9tPe-2F3nNnMzOpXK9GElbcBldYP1wtInTvVxsjaj60jTXlBMv7oBEFqb6UrcJ8WsaFYVJ3DbK9IAhay7KUbDNMyVSUDaUeGhVenqXb8t8loLBPuFmfGOmOH5wYWJGZq3-2BKEOche-2BA0LH-2BbruZofZFxd0oYI4eMdQ7FjTLf9mO-2FJs1bSRbJB5Q-2FUS58CEo7NySqQLLBD-2B7qr7Ib5pAprSN34C-2BXFoRk0-2Fo8TjCOzVB7PdCiUA2eN5TgzFyMn3Xn-2F9uxYvrfQLst1NfJG6gs-2FBhEpKgT_nvl_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP5FEgQhEVUHmcxDP6Mhnin07bTwD6eFDpRNtbj0T3Te-2FMqxwGAgs2HgW9xT5bEu-2FTA2jbAtKQeUnb9vcQzL63MJMuORhYkmwhPTtb-2Bav6InX-2FpZzY8-2BPoLPSxx8LK406ENWKRQYU1-2BaZ0VbX4e19u3UCGhZ-2Bp5iK0LRTZ4gA8k5BoRRRh2SndxPIu-2BsG8Ux-2F78-3D" target="_blank" hidden> <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" esdevVmlButton href="https://belasartes-mautic.consciencia.net.br/r/65299085f14ee7c90d390ef7c?ct=YTo1OntzOjY6InNvdXJjZSI7YToyOntpOjA7czoxNDoiY2FtcGFpZ24uZXZlbnQiO2k6MTtpOjg1O31zOjU6ImVtYWlsIjtpOjg5O3M6NDoic3RhdCI7czoyMjoiNjk4ZjM4NWFkZDkyNTEzODk3MzA4MSI7czo0OiJsZWFkIjtzOjU6IjY0MjA4IjtzOjc6ImNoYW5uZWwiO2E6MTp7czo1OiJlbWFpbCI7aTo4OTt9fQ%3D%3D&" style="height:41px; v-text-anchor:middle; width:203px" arcsize="49%" stroke="f" fillcolor="#007070"> <w:anchorlock></w:anchorlock> <center style='color:#ffec00; font-family:Oswald, sans-serif; font-size:15px; font-weight:400; line-height:15px; mso-text-raise:1px'>Compre seu ingresso</center> </v:roundrect></a>
+<![endif]--><!--[if !mso]><!-- --><span class="bc msohide" style="border-style:solid;border-color:#2CB543;background:#007070;border-width:0px;display:inline-block;border-radius:20px;width:auto;mso-hide:all"><a href="https://u7952464.ct.sendgrid.net/ls/click?upn=u001.i8LwQ7Haevd8SeCoWv0Mn8YHF7x-2BKQASYtyp-2Bkn05PJlpUgiK19z1hShUJlwQID1yZopmloH4OaascGYNtGHikEEXlL2wuRCXOWXBgg8i7WUCrpFRz0fZzjLbsN-2BSpWEPAIctjFu-2B1i2p8oTAtXuG5HEj85X7hdnpjKvwfT9tPe-2F3nNnMzOpXK9GElbcBldYP1wtInTvVxsjaj60jTXlBMv7oBEFqb6UrcJ8WsaFYVJ3DbK9IAhay7KUbDNMyVSUDaUeGhVenqXb8t8loLBPuFmfGOmOH5wYWJGZq3-2BKEOche-2BA0LH-2BbruZofZFxd0oYI4eMdQ7FjTLf9mO-2FJs1bSRbJB5Q-2FUS58CEo7NySqQLLBD-2B7qr7Ib5pAprSN34C-2BXFoRk0-2Fo8TjCOzVB7PdCiUA2eN5TgzFyMn3Xn-2F9uxYvrfQLst1NfJG6gs-2FBhEpKgTxNqq_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP5FEgQhEVUHmcxDP6Mhnin07bTwD6eFDpRNtbj0T3Te-2FAtAeb5AqXnv1jl2fRwvdrwmBSW6hHy4ZzcxY9vSFzCr8bMVyGhyQLDy5jaN-2Bcd2zxH1ICB-2BW8Kgmp2AgcmiP5OIsjUgiSpMC1-2B07f5-2BkE0-2FrqTQLPxLPYfqNx7I0M6JTPO8VuYDdpY3B1J4-2BurCVFY-3D" target="_blank" class="y" style="mso-style-priority:100 !important;text-decoration:none !important;mso-line-height-rule:exactly;color:#ffec00;font-size:18px;padding:10px 20px 10px 20px;display:inline-block;background:#007070;border-radius:20px;font-family:Oswald, sans-serif;font-weight:normal;font-style:normal;line-height:21.6px;width:auto;text-align:center;letter-spacing:0;mso-padding-alt:0;mso-border-alt:10px solid #007070">Compre seu ingresso</a></span><!--<![endif]--></td> </tr> </table></td> </tr> </table><!--[if mso]></td></tr></table><![endif]--></td> </tr> </table></td> </tr> </table>
+ <table cellpadding="0" cellspacing="0" align="center" class="t" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%;table-layout:fixed !important;background-color:transparent;background-repeat:repeat;background-position:center top"> <tr> <td bgcolor="#007070" align="center" style="padding:0;Margin:0;background-color:#007070"> <table cellpadding="0" bgcolor="#c9f5b8" align="center" cellspacing="0" class="bj" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:#c9f5b8;width:600px" role="none"> <tr> <td align="left" bgcolor="#ffffff" style="Margin:0;padding-right:20px;padding-left:20px;padding-top:20px;padding-bottom:40px;background-color:#ffffff"><!--[if mso]><table style="width:560px" cellpadding="0" cellspacing="0"><tr>
+<td style="width:270px" valign="top"><![endif]--> <table align="left" cellpadding="0" cellspacing="0" class="v" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:left"> <tr> <td align="left" class="bn" style="padding:0;Margin:0;width:270px"> <table cellspacing="0" width="100%" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> <tr> <td align="center" style="padding:0;Margin:0;font-size:0px"><a href="https://u7952464.ct.sendgrid.net/ls/click?upn=u001.i8LwQ7Haevd8SeCoWv0Mn8YHF7x-2BKQASYtyp-2Bkn05PJlpUgiK19z1hShUJlwQID1PEzeQYnmgMcN2-2FRNYBpadThqwNqJ7R22eymNseFmxwEZBxKtLMSDxjpHq9KrPMfpo2b5BgROR-2B9zOxQCoXPlT-2Bb3uFCHYHckSnbeg-2FDWTqlU4zSHyVK0QKmS25hUM1NGL9EPQ6wkg6L6Neu8psbPdRE7n83HOMdHdCzkipJK8RmxQ21K7qfHUyTVXkBpXZC3qN8RkJo31HRmskrst4CC0aFP-2B4QihyQAeLJKeVpKh4v29tM5MYmlRSqcWw-2BriWWukB3pPsTKWkgeRzfCwtGZXFP7WWPv0fp43HCpfjovzLGzNDphUlCllZ-2B7ehr6pvvO29-2B2CWnguoNfXA6HLfD4mb6S4nC8fkO0zFvx0NDmNhGqkkL7FhnlPWvGM14O-2FMrdaTsZ_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP5FEgQhEVUHmcxDP6Mhnin07bTwD6eFDpRNtbj0T3Te-2FFWMzrBMFBf-2FGZnMW3C6bQcFXogA5e9a3oA70VIzveZtP3Sykb05a3B85Ka7KzaTRaYhRDB-2FJhOP46-2FiBfVzTBsbF-2FBXyzuNYYo6uayu8MXWLg6IDGX4zMND4NDs0JqPmvY-2B3meJZBsd3lgXZzM7Y3Y-3D" target="_blank" style="mso-line-height-rule:exactly;text-decoration:underline;color:#FFFFFF;font-size:12px"><img src="https://fergzwx.stripocdn.email/content/guids/CABINET_9b066e79b6d963e88ef119877d7313ec261d3ae1ad0c3b6e27c079faf1ee4d78/images/porao_do_belas_o_abutre_story_1.jpg" alt="" width="270" class="adapt-img p_image" style="display:block;font-size:14px;border:0;outline:none;text-decoration:none;margin:0;border-radius:20px"></a>
+</td> </tr> </table></td> </tr> </table><!--[if mso]></td><td style="width:20px"></td><td style="width:270px" valign="top"><![endif]--> <table align="right" cellpadding="0" cellspacing="0" class="w" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:right"> <tr> <td align="left" style="padding:0;Margin:0;width:270px"> <table cellspacing="0" width="100%" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> <tr> <td align="left" class="d" style="padding:0;Margin:0"><h4 class="p_name" style="Margin:0;font-family:Oswald, sans-serif;mso-line-height-rule:exactly;letter-spacing:0;font-size:24px;font-style:normal;font-weight:normal;line-height:28.8px;color:#38094d"></h4>
+<h5 class="e" style="Margin:0;font-family:Oswald, sans-serif;mso-line-height-rule:exactly;letter-spacing:0;font-size:24px;font-style:normal;font-weight:normal;line-height:28.8px;color:#007070"><strong style="font-weight:700 !important">Porão do Belas – A morte num flash</strong></h5><h5 class="e" style="Margin:0;font-family:Oswald, sans-serif;mso-line-height-rule:exactly;letter-spacing:0;font-size:24px;font-style:normal;font-weight:normal;line-height:28.8px;color:#333333"><strong style="font-weight:700 !important"><br/></strong></h5></td> </tr> <tr> <td align="left" class="a" style="padding:0;Margin:0;padding-top:10px"><p class="b" style="Margin:0;mso-line-height-rule:exactly;font-family:Sans-serif;line-height:21px;letter-spacing:0;color:#020733;font-size:14px"><strong style="font-weight:700 !important">Horário: 21h&nbsp;</strong></p>
+<p class="b" style="Margin:0;mso-line-height-rule:exactly;font-family:Sans-serif;line-height:21px;letter-spacing:0;color:#020733;font-size:14px"><strong style="font-weight:700 !important"><br/></strong></p><p class="b" style="Margin:0;mso-line-height-rule:exactly;font-family:Sans-serif;line-height:21px;letter-spacing:0;color:#333333;font-size:14px">🩸O horror está está a um fOtO de distância!<br/><br/>O que você veria se revelasse seus medos mais profundos? 🎞️ No Porão do Belas, a fotografia é o portal para o horror em fevereiro!</p><p class="b" style="Margin:0;mso-line-height-rule:exactly;font-family:Sans-serif;line-height:21px;letter-spacing:0;color:#020733;font-size:14px"><br/></p>
+<p class="b" style="Margin:0;mso-line-height-rule:exactly;font-family:Sans-serif;line-height:21px;letter-spacing:0;color:#333333;font-size:14px"><strong style="font-weight:700 !important">Ingresso:</strong>&nbsp;R$ 30,00 (promocional: filme + pipoca), R$ 30 (meia) e R$ 60 (inteira)</p><p class="b" style="Margin:0;mso-line-height-rule:exactly;font-family:Sans-serif;line-height:21px;letter-spacing:0;color:#020733;font-size:14px"><br/></p><p class="b" style="Margin:0;mso-line-height-rule:exactly;font-family:Sans-serif;line-height:21px;letter-spacing:0;color:#333333;font-size:14px"><strong style="font-weight:700 !important">18.02 | O Abutre&nbsp;<em>(Nightcrawler)</em></strong>Direção: Dan Gilroy, 2014, 117 min, 16 anos, Thriller, Drama, EUA, Inglês (legendado)</p>
+<p class="b" style="Margin:0;mso-line-height-rule:exactly;font-family:Sans-serif;line-height:21px;letter-spacing:0;color:#333333;font-size:14px"><strong style="font-weight:700 !important"><br/></strong></p><p class="b" style="Margin:0;mso-line-height-rule:exactly;font-family:Sans-serif;line-height:21px;letter-spacing:0;color:#333333;font-size:14px"><strong style="font-weight:700 !important">25.02 | Os Olhos de Laura Mars&nbsp;<em>(Eyes of Laura Mars)</em></strong><br/>Direção: Irvin Kershner, 1978, 104 min, 16 anos, Terror, Thriller, EUA, Inglês (legendado)</p><strong class="b" style="font-weight:700 !important;color:#333333;font-family:Sans-serif;font-size:14px"><br></strong><strong class="b" style="font-weight:700 !important;color:#333333;font-family:Sans-serif;font-size:14px"><br></strong></td> </tr>
+ <tr> <td align="center" style="padding:0;Margin:0"><!--[if mso]><a href="https://u7952464.ct.sendgrid.net/ls/click?upn=u001.i8LwQ7Haevd8SeCoWv0Mn8YHF7x-2BKQASYtyp-2Bkn05PJlpUgiK19z1hShUJlwQID1JLjw8G7G6jc1ki6Eo9T1OJj3nK6xNFMn0qus-2BvziTaecl3IDTpWJQZcUulTmZORjK0K7GbPcyaytmjeaUgc-2Bc5efRDSWbno-2FJmkd-2FnKEKsq1pbBnIFd1-2BYIQK86Jso-2FyXa1oOvMNNr4ldaG-2Bjc4HYNTJQla2hILMJFPviUQhx-2B-2Fxr0y3f-2BuFpEAjl8T-2Fryxm5QqgE7b-2BcSDIXyBKtnK6rUF8u4b6Q1-2Fz63OqAbyQxHmTWB8aNG62mLatqHwYvewGXYwOF8uRWjGtymgqTFkvxPN1AsoiQXwm4jQFdZgL6CQljfuDi5OhCH2ZkZrhSqTBUHdRgJPbtHxfUW0CBsQSgGRPdPQv-2BFkeqZHMjWcKJDqrxXQHxCN-2Fv9CHlzv7jxtd_wCj_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP5FEgQhEVUHmcxDP6Mhnin07bTwD6eFDpRNtbj0T3Te-2FINrAIPBrIF2a8HJ6WpjxLOaLxuPqwpafhwFgZQHN8c0mJlI8-2F1F0jFNHIliqc4FIma0FruhHxhm-2FhOYXeoyLZPwkrk0OvirhqgsQ4-2BYC-2Befso7Sj7MfJdCTKZDKAkvTkprTKgnMNbJoHHXkO1mQ9mE-3D" target="_blank" hidden> <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" esdevVmlButton href="https://belasartes-mautic.consciencia.net.br/r/c4bb55c6945469d36fa7e91df?ct=YTo1OntzOjY6InNvdXJjZSI7YToyOntpOjA7czoxNDoiY2FtcGFpZ24uZXZlbnQiO2k6MTtpOjg1O31zOjU6ImVtYWlsIjtpOjg5O3M6NDoic3RhdCI7czoyMjoiNjk4ZjM4NWFkZDkyNTEzODk3MzA4MSI7czo0OiJsZWFkIjtzOjU6IjY0MjA4IjtzOjc6ImNoYW5uZWwiO2E6MTp7czo1OiJlbWFpbCI7aTo4OTt9fQ%3D%3D&" style="height:41px; v-text-anchor:middle; width:203px" arcsize="49%" stroke="f" fillcolor="#007070"> <w:anchorlock></w:anchorlock> <center style='color:#ffec00; font-family:Oswald, sans-serif; font-size:15px; font-weight:400; line-height:15px; mso-text-raise:1px'>Compre seu ingresso</center> </v:roundrect></a>
+<![endif]--><!--[if !mso]><!-- --><span class="bc msohide" style="border-style:solid;border-color:#2CB543;background:#007070;border-width:0px;display:inline-block;border-radius:20px;width:auto;mso-hide:all"><a href="https://u7952464.ct.sendgrid.net/ls/click?upn=u001.i8LwQ7Haevd8SeCoWv0Mn8YHF7x-2BKQASYtyp-2Bkn05PJlpUgiK19z1hShUJlwQID1JLjw8G7G6jc1ki6Eo9T1OJj3nK6xNFMn0qus-2BvziTaecl3IDTpWJQZcUulTmZORjK0K7GbPcyaytmjeaUgc-2Bc5efRDSWbno-2FJmkd-2FnKEKsq1pbBnIFd1-2BYIQK86Jso-2FyXa1oOvMNNr4ldaG-2Bjc4HYNTJQla2hILMJFPviUQhx-2B-2Fxr0y3f-2BuFpEAjl8T-2Fryxm5QqgE7b-2BcSDIXyBKtnK6rUF8u4b6Q1-2Fz63OqAbyQxHmTWB8aNG62mLatqHwYvewGXYwOF8uRWjGtymgqTFkvxPN1AsoiQXwm4jQFdZgL6CQljfuDi5OhCH2ZkZrhSqTBUHdRgJPbtHxfUW0CBsQSgGRPdPQv-2BFkeqZHMjWcKJDqrxXQHxCN-2Fv9CHlzv7jxtdvyAl_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP5FEgQhEVUHmcxDP6Mhnin07bTwD6eFDpRNtbj0T3Te-2FCkbiSCnIzedAVNehcQp5tyfEpjUmBcBncmcZXhpG-2BnekI1i46btHugdFphvB4-2BjZNpCZnitx-2BLosExqd4-2BVcyKM64OaNBt-2FujiwtqNlH8GgFz1Vp8Btsiu1wFAxdcS57ZxFNr-2FKoJlfr0hUZ8KvJy8-3D" target="_blank" class="y" style="mso-style-priority:100 !important;text-decoration:none !important;mso-line-height-rule:exactly;color:#ffec00;font-size:18px;padding:10px 20px 10px 20px;display:inline-block;background:#007070;border-radius:20px;font-family:Oswald, sans-serif;font-weight:normal;font-style:normal;line-height:21.6px;width:auto;text-align:center;letter-spacing:0;mso-padding-alt:0;mso-border-alt:10px solid #007070">Compre seu ingresso</a></span><!--<![endif]--></td> </tr> </table></td> </tr> </table><!--[if mso]></td></tr></table><![endif]--></td> </tr> </table></td> </tr> </table>
+ <table align="center" cellpadding="0" cellspacing="0" class="r" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%;table-layout:fixed !important"> </table>
+ <table cellpadding="0" cellspacing="0" align="center" class="t" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%;table-layout:fixed !important;background-color:transparent;background-repeat:repeat;background-position:center top"> <tr> <td align="center" bgcolor="#ffec00" style="padding:0;Margin:0;background-color:#ffec00"> <table cellspacing="0" cellpadding="0" bgcolor="#38094d" align="center" class="bj" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:#38094d;width:600px" role="none"> <tr> <td align="left" bgcolor="#ffec00" style="Margin:0;padding-right:20px;padding-left:20px;padding-top:40px;padding-bottom:30px;background-color:#ffec00"><!--[if mso]><table style="width:560px" cellpadding="0" cellspacing="0"><tr>
+<td style="width:270px" valign="top"><![endif]--> <table cellspacing="0" cellpadding="0" align="left" class="v" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:left"> <tr> <td align="left" class="bn" style="padding:0;Margin:0;width:270px"> <table width="100%" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> <tr> <td align="left" class="bf" style="padding:0;Margin:0;padding-top:5px;padding-bottom:5px;font-size:0px"><a target="_blank" href="https://u7952464.ct.sendgrid.net/ls/click?upn=u001.i8LwQ7Haevd8SeCoWv0Mn8YHF7x-2BKQASYtyp-2Bkn05PJlpUgiK19z1hShUJlwQID1PEzeQYnmgMcN2-2FRNYBpadThqwNqJ7R22eymNseFmxwEZBxKtLMSDxjpHq9KrPMfpo2b5BgROR-2B9zOxQCoXPlT-2Bb3uFCHYHckSnbeg-2FDWTqlU4zSHyVK0QKmS25hUM1NGL9EPQ6wkg6L6Neu8psbPdRE7n83HOMdHdCzkipJK8RmxQ21K7qfHUyTVXkBpXZC3qN8RkJo31HRmskrst4CC0aFP-2B4QihyQAeLJKeVpKh4v29tM5MYmlRSqcWw-2BriWWukB3pPsTKWkgeRzfCwtGZXFP7WWPv0fp43HCpfjovzLGzNDphUlCllZ-2B7ehr6pvvO29-2B2CWnguoNfXA6HLfD4mb6S4nC8fkO0zFvx0NDmNhGqkkL7FhnlPWvGM14O-2FMrdy8GR_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP5FEgQhEVUHmcxDP6Mhnin07bTwD6eFDpRNtbj0T3Te-2FMUXxB5LelvqlzXAEDuZhKAwLz8KKYBo5-2FyDQLM-2BtP3baNokovN3032gBDlR7Di8nB1q8uKa-2Bu-2FbT2Lh3DHHbmg8hsEDwj-2FgUDzRKAs-2FrayldHemhxKOGX30pmJ53bVGLCYKt3A69-2FV3rDwPrHmlGU8-3D" style="mso-line-height-rule:exactly;text-decoration:underline;color:#FFFFFF;font-size:12px"><img src="https://fergzwx.stripocdn.email/content/guids/CABINET_9b066e79b6d963e88ef119877d7313ec261d3ae1ad0c3b6e27c079faf1ee4d78/images/banner_news_3.png" alt="Logo" title="Logo" height="40" class="adapt-img" style="display:block;font-size:14px;border:0;outline:none;text-decoration:none;margin:0"></a>
+</td> </tr> </table></td> </tr> </table><!--[if mso]></td><td style="width:20px"></td>
+<td style="width:270px" valign="top"><![endif]--> <table cellspacing="0" cellpadding="0" align="right" class="w" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:right"> <tr> <td align="left" style="padding:0;Margin:0;width:270px"> <table width="100%" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> <tr> <td align="right" class="bf" style="padding:0;Margin:0;padding-top:10px;font-size:0"> <table cellpadding="0" cellspacing="0" class="j z" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> <tr> <td align="center" valign="top" style="padding:0;Margin:0;padding-right:20px"><a target="_blank" href="https://u7952464.ct.sendgrid.net/ls/click?upn=u001.i8LwQ7Haevd8SeCoWv0Mn8YHF7x-2BKQASYtyp-2Bkn05PJlpUgiK19z1hShUJlwQID1JOxJaI88XjtIyN0fUZ2ZusSg58vuTiimzMGa9FlAjw1DpK-2BrcqSGeVpNheXConCfa0XKe0zvN9e7N2RAgLc8IiCBYVW2QQnMu2EPIEqYvU6geoSQfS8EEIDa21a7AsScTBuPWmZvB1OgiSRMZiapXp9v-2BsPHxyMlyb211fAv9xPukESrQUV4eqj9fAtSzlDNWvmiXZM9i3V6LTlhRyE0pVr4Q1H3S9Uz37hPUijKhJAPiKk1uo7bqd13vQDW8NA6aH539ydytYot47v5kKmLDmWxbaYBgDFv9KRnu4qdTaIh6d4X7ZUrfAYZA1Bx4sFuknbLobViIVqFPxye7wxuZixcByGHDVQI0xsmVAJtGTJL1J57wieT5nI2s2-2BfUE48Q5Cz_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP5FEgQhEVUHmcxDP6Mhnin07bTwD6eFDpRNtbj0T3Te-2FJfTIOFTac8or0wfgYUMBXh2EegGBx1EtXfc5Wc32Vsn7hxY8A5Foi9WFwg2Jlo6hv0-2BxZmy14pZGjZLpM89QxL3T9BlMbkW5qBz2SgRhrTT1UGUyCKGznrJSDj-2F3wsLHImYF6Si18NdyDpMf-2FpmcPY-3D" style="mso-line-height-rule:exactly;text-decoration:underline;color:#FFFFFF;font-size:12px"><img src="https://fergzwx.stripocdn.email/content/assets/img/social-icons/logo-black/facebook-logo-black.png" alt="Fb" title="Facebook" width="32" height="32" style="display:block;font-size:14px;border:0;outline:none;text-decoration:none;margin:0"></a>
+</td> <td align="center" valign="top" style="padding:0;Margin:0;padding-right:20px"><a target="_blank" href="https://u7952464.ct.sendgrid.net/ls/click?upn=u001.i8LwQ7Haevd8SeCoWv0Mn8YHF7x-2BKQASYtyp-2Bkn05PJlpUgiK19z1hShUJlwQID19x8v8dpvUeXulzmLItaL7ZdkrE8NJ9q9f-2FO42Knpxks7wBKcic9qdN1n5wSVMNXx-2FCfgnNh1QSXkmDjl-2B5mWW09K5c37-2F5foNn03HXEWkDwmM5exgpEbr-2FMaeq-2FIteTL44dVrXt1rZ-2B-2FcFty9mkDAoZuCOPNwepO9dal1-2FLM6xtH69HChoHHv331R8I2F0oYfF3Kfxqk2YtPpmV0paTsJa-2B91u9SUu6sAc-2Fvw-2BOvPcX7jg-2Fv3SNvgLEIltvZjDkn-2FAbPpRw6TpENOiixIw-2FhWEfHASkzfkycPjNgBNYKYICNJKBrmgxkce9EPZsASrQ29MUIILa1yZnmxEeIknguk3wMP8TUYRHRsgIBCbBa1gx17wo-2B0H7OPuBJw6BsiB0BT2pp_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP5FEgQhEVUHmcxDP6Mhnin07bTwD6eFDpRNtbj0T3Te-2FNNm6tkfNt32Kwzmc99tihtN6N7ibINc2mZ1m2Hkqhd2ndAlZBiDsKzN-2FiuZUoj2UyHlye7aF-2BNGFxK-2BLc5AWtyISv7ZeR3L5Lj5bi5-2BZ8QDOhB94J9My6BTqkl-2BudJt3TOpXP32B6ygoNWsC1YSABk-3D" style="mso-line-height-rule:exactly;text-decoration:underline;color:#FFFFFF;font-size:12px"><img src="https://fergzwx.stripocdn.email/content/assets/img/social-icons/logo-black/instagram-logo-black.png" alt="Ig" title="Instagram" width="32" height="32" style="display:block;font-size:14px;border:0;outline:none;text-decoration:none;margin:0"></a></td>
+ <td align="center" valign="top" style="padding:0;Margin:0"><a target="_blank" href="https://u7952464.ct.sendgrid.net/ls/click?upn=u001.i8LwQ7Haevd8SeCoWv0Mn8YHF7x-2BKQASYtyp-2Bkn05PJlpUgiK19z1hShUJlwQID1CEJ7w1L74qrUB-2FSmAw-2F-2BrPkG-2ByC3yvciV6CmsVFvz4wvNy3SkK2Ygp9uq6GumXuLuHtc-2B82R9wDXOCkSpSNaTJn5tM29EXTAgeZW83iler4GisB5O1RbAg91f1G3xQLS1bq1S3zVNvf5VEb1LA6i3Xp3hU-2FdkxAMWEHcRMpMsVkJoBr-2FqmA4OcvMhlpS6vgvFcifPSSHp5xD2HaRkEb0od6t6GfdsbjP-2Fn-2FhJ5LOQ6Fd7Q6oxS05FC30Hy7TPFsyHHScSKwyguUAo5RcDIVyxFE2bJ51T2kcz1UW2inbMEwXLMgopAcChaBZHvhbgiIOuvWouNWKaDzLlQ8t84m5WiT2wUOL9t8vCq-2Ffu-2FZXnj0xITEbooRxvIjNGmsPLAiFYvXd_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP5FEgQhEVUHmcxDP6Mhnin07bTwD6eFDpRNtbj0T3Te-2FDb48HZg-2B9xqG6UO-2BQGOjwkTyCZAJy6WzkM3-2FNDKDPsUe5lOjJqhEnu8y2w7nAdIRYVv-2BYrAV8oR-2Fwr4G-2Fc3du-2BKUx5JFzAy9827PUXEjSkfdBg9Mj1ppw9yvfvTgnB08GUDo9OtqJY56sZlZeIMbPU-3D" style="mso-line-height-rule:exactly;text-decoration:underline;color:#FFFFFF;font-size:12px"><img src="https://fergzwx.stripocdn.email/content/assets/img/social-icons/logo-black/x-logo-black.png" alt="X" title="X.com" width="32" height="32" style="display:block;font-size:14px;border:0;outline:none;text-decoration:none;margin:0"></a></td> </tr> </table></td> </tr> </table></td> </tr> </table><!--[if mso]></td></tr></table><![endif]--></td> </tr> </table></td> </tr> </table></td> </tr> </table> </div> <img height="1" width="1" src="https://belasartes-mautic.consciencia.net.br/email/698f385add925138973081.gif" alt="" /><img src="https://u7952464.ct.sendgrid.net/wf/open?upn=u001.Cma6FVq4ouo4ilBf4u2yz6fzduoU-2FBBy6HYkQyxiakXj-2BGKVBQTzRQ-2FPf-2Bmu1taHkGfhx-2BfTJJrH6StcawdpfEpHebOCyxnSXh-2FgwN0FtotLeDVbYzbC1uxwOSiya5lHdwOh22HxqU8r37nri23G7WvxlpTUU8LUkVjTJk-2FK5syi2-2FCvVxQY14zr0d4y0-2Fm-2BTlwYT3lzvvukFKZsswAGB16pZVyhRs5KTAEl2x61fUI-3D" alt="" width="1" height="1" border="0" style="height:1px !important;width:1px !important;border-width:0 !important;margin-top:0 !important;margin-bottom:0 !important;margin-right:0 !important;margin-left:0 !important;padding-top:0 !important;padding-bottom:0 !important;padding-right:0 !important;padding-left:0 !important;"/></body> </html>
+
+`,text:`Noitão (hoje), pré estreia de Sirât e Ghibli Fest agitam o Cine Belas Artes! Confira as novidades! 13.02 Noitão Morro dos Pecadores Horário: a partir das 23h30 Unimos um filmes mais pedidos pelo público com um dos lançamentos mais aguardados para um Noitão Especial. A Sala 1, Amores Euphoricos, traz a estreia de O Morro dos Ventos Uivantes seguido de Romeu + Julieta. Na Sala 2, Morro do Pecadores, traz o filme com mais indicações ao Oscar, Pecadores, seguido de Um Drink no Inferno Ingresso: R$80 (inteira) e R$40 (meia) Compre seu ingresso 19.02 a 04.03 Ghibli Fest 2026 Horário: 18h20 Nesta etapa serão exibidos 14 longas-metragens, sendo sete títulos inéditos na programação da mostra em relação à primeira parte realizada em 2025. Entre os filmes confirmados estão O Conto da Princesa Kaguya, Da Colina Kokuriko, As Memórias de Marnie, O Castelo no Céu, Contos de Terramar, O Reino dos Gatos e Princesa Mononoke. Ingresso: R$24 e R$12 Compre seu ingresso Pré-estreia Sirat Horário: 20h Nesta pré-estreia o Belas entra no clima do verão brasileiro — que, vamos combinar, não tem nada a ver com sapato! Por isso, quem vier de sandália ou chinelo paga meia-entrada nesta exibição exclusiva! Indicado a dois Oscars (Melhor Filme Internacional e Melhor Som) e vencedor de um dos prêmios mais prestigiados de Cannes (Prêmio do Júri), o longa acompanha a jornada de um pai e um filho que chegam a uma rave nas montanhas do sul de Marrocos. Ambos buscam por Mar — filha e irmã —, que desapareceu meses antes em uma dessas festas intermináveis. Sirât chega aos cinemas no dia 26 de fevereiro, vem pro Belas assistir antes de todos! Ingresso: R$40 e 20 *COM MEIA ENTRADA PARA VIER DE CHINELO OU SANDÁLIA Compre seu ingresso 24.02 Ciência no Cinema: Frankenstein Horário: 19h Realizada em parceria com o ICTP-SAIFR, a programação, que tem como foco promover a ciência fora do ambiente acadêmico, exibe mensalmente um filme seguido de debate com professores de física e outras áreas da ciência. Este mês o filme selecionado é Frankenstein. Ingresso: R$34 e 17 Compre seu ingresso 25.02 Sessão especial (filme + mangá): Nausicaä do Vale do Vento Horário: 20h30 Em fevereiro o Belas e a Companhia das Letras realizam um evento especial do mangá Nausicaä do Vale do Vento. O evento também conta com o lançamento da última obra, o volume número 7, de uma das grandes sagas do mundo dos mangás, além da exibição da animação homônima. Após a sessão haverá um debate com editores da Editora JBC, selo de mangás e cultura japonesa da Companhia das Letras, e com Chris Tex, diretor de Wind Princess, curta-metragem que homenageia a obra. O público também poderá adquirir outras obras da JBC com descontos especiais que estarão à venda no mezanino. Compre seu ingresso Porão do Belas – A morte num flash Horário: 21h U+1FA78O horror está está a um fOtO de distância! O que você veria se revelasse seus medos mais profundos? U+1F39E️ No Porão do Belas, a fotografia é o portal para o horror em fevereiro! Ingresso: R$ 30,00 (promocional: filme + pipoca), R$ 30 (meia) e R$ 60 (inteira) 18.02 | O Abutre (Nightcrawler)Direção: Dan Gilroy, 2014, 117 min, 16 anos, Thriller, Drama, EUA, Inglês (legendado) 25.02 | Os Olhos de Laura Mars (Eyes of Laura Mars) Direção: Irvin Kershner, 1978, 104 min, 16 anos, Terror, Thriller, EUA, Inglês (legendado) Compre seu ingresso
+
+`,accountEmail:"demo@demo.com",messageId:"<demo-mock-1306@homerow.dev>"},{id:1307,seq:1307,threadId:"thread-mock-1307",subject:"Redditors are asking questions that your brand could be answering",from:"Reddit for Business",fromAddress:"no-reply@redditads.com",to:["demo@demo.com"],date:"2026-02-25T18:00:48.000Z",flags:["\\Seen"],snippet:"Your industry is being discussed in real time on Reddit. Jump back in and be part of the conversations shaping your space. Reddit_Business_Short (https://marketing.reddit",hasAttachments:!1,folderPath:"INBOX",html:`<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" lang="en"><head>
+    <title>Redditors are asking questions that your brand could be answering</title>
+    <meta property="og:title" content="Redditors are asking questions that your brand could be answering">
+    <meta name="twitter:title" content="Redditors are asking questions that your brand could be answering">
+    
+    
+    
+<meta name="x-apple-disable-message-reformatting">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--[if gte mso 9]>
+  <xml>
+    <o:OfficeDocumentSettings>
+      <o:AllowPNG/>
+      <o:PixelsPerInch>96</o:PixelsPerInch>
+    </o:OfficeDocumentSettings>
+    <w:WordDocument xmlns:w="urn:schemas-microsoft-com:office:word">
+      <w:DontUseAdvancedTypographyReadingMail/>
+    </w:WordDocument>
+  </xml>
+  
+  <style>
+    ul > li {
+      text-indent: -1em;
+    }
+  </style>
+<![endif]-->
+<!--[if mso]>
+<style type="text/css">
+ body, td {font-family: Arial, Helvetica, sans-serif;}
+ .hse-body-wrapper-table {background-color: #F2F6F7;}
+</style>
+<![endif]-->
+<!--[if mso | IE]>
+  <style type="text/css">
+    .hse-column-container { border: none !important; padding: 0 !important; }
+  </style>
+<![endif]-->
+    
+      
+  
+  
+    
+  <meta name="generator" content="HubSpot"><meta property="og:url" content="https://marketing.redditforbusiness.com/-temporary-slug-f533749a-ef61-4447-942f-d4bcd493e5b4"><meta name="robots" content="noindex,follow"><!--[if !((mso)|(IE))]><!-- --><style type="text/css">@media only screen and (max-width:639px){img.stretch-on-mobile,.hs_rss_email_entries_table img,.hs-stretch-cta .hs-cta-img{height:auto !important;width:100% !important}
+.display_block_on_small_screens{display:block}.hs_padded{padding-left:20px !important;padding-right:20px !important}
+.hs-hm,table.hs-hm{display:none}.hs-hd{display:block !important}table.hs-hd{display:table !important}
+}@media only screen and (max-width:639px){.hse-border-m{border-left:1px solid #cbd6e2 !important;border-right:1px solid #cbd6e2 !important;box-sizing:border-box}
+.hse-border-bottom-m{border-bottom:1px solid #cbd6e2 !important}.hse-border-top-m{border-top:1px solid #cbd6e2 !important}
+.hse-border-top-hm{border-top:none !important}.hse-border-bottom-hm{border-bottom:none !important}
+}.moz-text-html .hse-column-container{max-width:600px !important;width:600px !important}
+.moz-text-html .hse-column{display:table-cell;vertical-align:top}.moz-text-html .hse-section .hse-size-12{max-width:600px !important;width:600px !important}
+@media only screen and (min-width:640px){.hse-column-container{max-width:600px !important;width:600px !important}
+.hse-column{display:table-cell;vertical-align:top}.hse-section .hse-size-12{max-width:600px !important;width:600px !important}
+}@media only screen and (max-width:639px){.hse-body-wrapper-td{padding-top:20px !important}
+#section-0 .hse-column-container{padding-top:0px !important;padding-bottom:0px !important}
+#section-0 .hse-column-container{background-color:#f2f6f7 !important} }@media only screen and (max-width:639px){ #section-1 .hse-column-container{padding-top:0px !important;padding-bottom:0px !important}
+#section-1 .hse-column-container{background-color:#fff !important} }@media only screen and (max-width:639px){ #section-2 .hse-column-container{padding-top:10px !important;padding-bottom:0px !important}
+#section-2 .hse-column-container{background-color:#fff !important} }@media only screen and (max-width:639px){.hse-body-wrapper-td{padding-bottom:20px !important}
+#section-6 .hse-column-container{padding-top:0px !important;padding-bottom:0px !important}
+#section-6 .hse-column-container{background-color:#fff !important} }</style><!--<![endif]--><style type="text/css">#hs_body #hs_cos_wrapper_main a[x-apple-data-detectors]{color:inherit !important;text-decoration:none !important;font-size:inherit !important;font-family:inherit !important;font-weight:inherit !important;line-height:inherit !important}
+a{text-decoration:underline}p{margin:0}body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;moz-osx-font-smoothing:grayscale}
+table{border-spacing:0;mso-table-lspace:0;mso-table-rspace:0}table,td{border-collapse:collapse}
+img{-ms-interpolation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exactly}
+.ShadowHTML p,.sh-modified-inline p{margin:0}</style></head>
+  <body id="hs_body" bgcolor="#F2F6F7" style="margin:0 !important; padding:0 !important; font-family:Arial, sans-serif; font-size:15px; color:#172e35; word-break:break-word">
+    <div id="preview_text" style="display:none;font-size:1px;color:#F2F6F7;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;" lang="en">Your industry is being discussed in real time on Reddit. Jump back in and be part of the conversations shaping your space.</div>
+    
+<!--[if gte mso 9]>
+<v:background xmlns:v="urn:schemas-microsoft-com:vml" fill="t">
+    <v:fill type="tile" size="100%,100%" color="#ffffff"/>
+</v:background>
+<![endif]-->
+    <div class="hse-body-background" lang="en" style="background-color:#f2f6f7" bgcolor="#f2f6f7">
+      <table role="presentation" class="hse-body-wrapper-table" cellpadding="0" cellspacing="0" style="margin:0; padding:0; width:100% !important; min-width:320px !important; height:100% !important" width="100%" height="100%">
+        <tbody><tr>
+          <td class="hse-body-wrapper-td" valign="top" style="font-family:Arial, sans-serif; font-size:15px; color:#172e35; word-break:break-word; padding-top:20px; padding-bottom:20px">
+            <div id="hs_cos_wrapper_main" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_dnd_area" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="dnd_area">  <div id="section-0" class="hse-section hse-section-first" style="padding-left:10px; padding-right:10px">
+    
+    
+      <div class="hse-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#f2f6f7" bgcolor="#f2f6f7">
+    
+    <!--[if (mso)|(IE)]>
+      <table align="center" style="width:600px;" cellpadding="0" cellspacing="0" role="presentation" width="600" bgcolor="#f2f6f7">
+      <tr style="background-color:#f2f6f7;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign="top" style="width:600px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px">
+<![endif]-->
+<div id="column-0-0" class="hse-column hse-size-12">
+  <div id="hs_cos_wrapper_module-0-0-0" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><table class="hse-image-wrapper" role="presentation" width="100%" cellpadding="0" cellspacing="0">
+  <tbody>
+    <tr>
+      <td class="hs_padded" align="left" valign="top" style="font-family:Arial, sans-serif; color:#172e35; word-break:break-word; text-align:left; padding:20px 20px 20px 10px; font-size:0px">
+        <a href="https://marketing.redditforbusiness.com/e3t/Ctc/I7+113/d2lxfW04/VVDzsg2kQDSlVYF7Yv4XPfwyW35KrPN5KZFSBN6L2ZsF3qgz0W95jsWP6lZ3mnW6k932F1Rn9ZCW6Ssv-m2szBv6W7qxVJ88pMRJQW6HLdL72fS2j7W8-XcF93Pp_n9W7LrPVf5Nx-K7W6kpZhF7VK3DZW5NB5hM3CdmdGN4CZ1ThZK1CcW3S9pRC6tKj_kW3QWdrv7QcXTwW7QWhgT78qH2rW26gMQN3DFkMKW2-GcLy1wcC4PW3P07zj2ydwnpW8038x71jjZFTW2Dgggx3HQ8GhW2-h0-k3BJmSSW4C5h-87qrgGGW2cc4dK1CZDl-MzfdlRBnsp8W8NFzZq4Tt_17W5Fpp3C7Flzt-W5q5Lzk4WQKbTVnWRzt3whDXJW1qpTBh8p60-HW6-8zsL5PZBT8W4xb6ry2r5NNMW5QfMJ0418792W4BvtlD5CdLcLf8hrMWM04" target="_blank" style="color:#00a4bd" data-hs-link-id="0" data-hs-link-id-v2="06pDsYUX">
+        <img alt="Reddit_Business_Short" src="https://marketing.redditforbusiness.com/hs-fs/hubfs/Reddit_Business_Short.png?width=400&amp;upscale=true&amp;name=Reddit_Business_Short.png" style="outline:none; text-decoration:none; border:none; max-width:100%; font-size:16px" width="200" align="middle">
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+   
+  </div>
+  <div id="section-1" class="hse-section" style="padding-left:10px; padding-right:10px">
+    
+    
+      <div class="hse-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#ffffff" bgcolor="#ffffff">
+    
+    <!--[if (mso)|(IE)]>
+      <table align="center" style="width:600px;" cellpadding="0" cellspacing="0" role="presentation" width="600" bgcolor="#ffffff">
+      <tr style="background-color:#ffffff;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign="top" style="width:600px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px">
+<![endif]-->
+<div id="column-1-0" class="hse-column hse-size-12">
+  <div id="hs_cos_wrapper_module-1-0-0" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><table class="hse-image-wrapper" role="presentation" width="100%" cellpadding="0" cellspacing="0">
+  <tbody>
+    <tr>
+      <td align="center" valign="top" style="font-family:Arial, sans-serif; color:#172e35; word-break:break-word; text-align:center; padding:0px; font-size:0px">
+        <a href="https://marketing.redditforbusiness.com/e3t/Ctc/I7+113/d2lxfW04/VVDzsg2kQDSlVYF7Yv4XPfwyW35KrPN5KZFSBN6L2Zqz5nR3bW50kH_H6lZ3l1W8P51X_1Z8W4GVjsTQ34ckj59W6syfhC6w2tgnW2Hww9c3-v6MfN1vHVh_x_zWXW3jcP3Q86ylHqW2NLN_M61Mcn6W5F0csW1QGnlZW4gw5TJ3cnKp-W78Vfvg60c8YbW6H-RZx8Hgj7PW6QQcMg4LWV6FN8YyBClD2R7qW2jlYR-6RvTsgW4m_DVg1TX0QhW8j-21s3p2YS5W93RYmN4w_KkpVzyHqd1-4ZQ5W1zcrw420xLCfN932n7V1B7xqN20ZD4BXjXffW3kjbf-3pqTLCW2p2lr_5Wz0bxW6p7cQf99jSQmW60y3TS4S8LWwN5s3D4RX4SK7W3dmS9W9fNKWDN4xT88_X2Ly8VY_mzP2qY2C0W3B_DRf277pyWW4P3T6C3DHWZxV8106r7bCWftf6GjfrF04" target="_blank" style="color:#00a4bd" data-hs-link-id="0" data-hs-link-id-v2="TcojVvKY">
+        <img alt="Your industry is talking" src="https://marketing.redditforbusiness.com/hs-fs/hubfs/12100%20Collective%20(43).png?width=1200&amp;upscale=true&amp;name=12100%20Collective%20(43).png" style="outline:none; text-decoration:none; border:none; max-width:100%; font-size:16px" width="600" align="middle">
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+   
+  </div>
+  <div id="section-2" class="hse-section" style="padding-left:10px; padding-right:10px">
+    
+    
+      <div class="hse-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#ffffff; padding-top:10px" bgcolor="#ffffff">
+    
+    <!--[if (mso)|(IE)]>
+      <table align="center" style="width:600px;" cellpadding="0" cellspacing="0" role="presentation" width="600" bgcolor="#ffffff">
+      <tr style="background-color:#ffffff;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign="top" style="width:600px;padding-top:10px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px">
+<![endif]-->
+<div id="column-2-0" class="hse-column hse-size-12">
+    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#172e35; word-break:break-word; padding:10px 20px"><div id="hs_cos_wrapper_module-2-0-1" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><div id="hs_cos_wrapper_module-2-0-1_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="rich_text"><p style="font-size:15px; line-height:202%">Hi [redacted],&nbsp;</p></div></div></td></tr></tbody></table>
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#172e35; word-break:break-word; padding:10px 20px 0px"><div id="hs_cos_wrapper_module_17623538765801" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><div id="hs_cos_wrapper_module_17623538765801_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="rich_text"><p style="line-height:175%">Reddit is still discussing News, but you haven't been there to take part.&nbsp;</p>
+<ul style="line-height:175%"></ul></div></div></td></tr></tbody></table>
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#172e35; word-break:break-word; padding:10px 20px 0px"><div id="hs_cos_wrapper_module_17634158169481" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><div id="hs_cos_wrapper_module_17634158169481_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="rich_text"><p style="line-height:175%">New conversations are happening in real time, and the brands that stay active are the ones <span style="font-weight: bold; color: #ff4500;">sharping perception, building trust, and earning visibility.&nbsp;</span></p>
+<ul style="line-height:175%"></ul></div></div></td></tr></tbody></table>
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#172e35; word-break:break-word; padding:10px 20px"><div id="hs_cos_wrapper_module-2-0-3" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate!important">
+    <tbody><tr>
+      <td align="center" valign="middle" bgcolor="#FF4500" style="font-family:Arial, sans-serif; font-size:15px; color:#172e35; word-break:break-word; border-radius:8px; cursor:auto; background-color:#FF4500; mso-padding-alt:12px 18px">
+        <a href="https://marketing.redditforbusiness.com/e3t/Ctc/I7+113/d2lxfW04/VVDzsg2kQDSlVYF7Yv4XPfwyW35KrPN5KZFSBN6L2Zqz5nR3bW50kH_H6lZ3pTN9kKTbjbsGtvW1lPQMG76yJDHW5rQHJY4sYC_nN26vxgv2DwBZW4vpkgH1c7BK3VRXS1d6Wl5VxW7Pcw_V72DYRMW3D0Tq_4w4TBfW2xXfMX85SjZcW8pBvw66G7fxdW6l2g7Z8S5B68W1ZtffT18RF5QN63y7sT3VWqXW8WgfNh4yy5-bW1FfKr82DW-f1W5T-YTH2mypp_W17Y_Zr4FHWVxW7Lb9bw65-zK6W9hRKN87pj1xXW3FZV4l51mc_9W84BRB86GFYbhW3gBxj43s4_jHW7Bs17z35scMKW8dNDkl55nMvTN3g0DzZK6pVMW51_hPB1v6NFFVCr9lD1kxhP3W7HdKw07BgpwWW19LyQK6ZSJ0vW1DJKwh19_36FW92DQp_96jW_kW1DZrxq5CMsThf4XkfZ204" target="_blank" style="color:#00a4bd; font-size:15px; font-family:Arial, sans-serif; Margin:0; text-transform:none; text-decoration:none; padding:12px 18px; display:block" data-hs-link-id="1" data-hs-link-id-v2="pYYh79CZ">
+          <strong style="color:#ffffff;font-weight:bold;text-decoration:none;font-style:normal;">Find new conversations</strong>
+        </a>
+      </td>
+    </tr>
+  </tbody></table></div></td></tr></tbody></table>
+<div id="hs_cos_wrapper_module_17630581690923" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><table class="hse-image-wrapper" role="presentation" width="100%" cellpadding="0" cellspacing="0">
+  <tbody>
+    <tr>
+      <td class="hs_padded" align="center" valign="top" style="font-family:Arial, sans-serif; color:#172e35; word-break:break-word; text-align:center; padding:10px 20px; font-size:0px">
+        <a href="https://marketing.redditforbusiness.com/e3t/Ctc/I7+113/d2lxfW04/VVDzsg2kQDSlVYF7Yv4XPfwyW35KrPN5KZFSBN6L2Zqz5nR3bW50kH_H6lZ3krW3jRqkQ6K2T9FW5wDP5f25X36YW4MgnSp1Tyz1-W2wZP--7QMflyN6-MqtX1yRQfW5vFFw36nk1P5W1lx3t53g6P9wW6vrCsK7s6b59N6-2Sl8Jx5GDW29nJgf3DN54JW55hPz25tFy4DW6lp6Sz8S16nFW7SpWTc13DsHBW3GgjnG1skWc4W4Ps4Wp8C9y0ZW68HlRK4QTR6PW5zK7jL5RV2KHW665h5S6ltj9HW6DlX7t3L8FD-W3RVlFj4ZcP4NW2HPgx84fFPMBW2bl8s62BxzCqW10qLmh3gsVGQW1c23VS7gYb2GW6TmCYH2spqTLVVFg119cCqNmW2_dPCT1tKHWNW7tsCzF5-pDjhW5l8wLN6nQ43BW6n1q4p3P5H7RW5V0qTk8RqkmXW92Q1kv83KZqPd2vgVg04" target="_blank" style="color:#00a4bd" data-hs-link-id="2" data-hs-link-id-v2="KL7zJHHM">
+        <img alt="Image depicts how to find conversations" src="https://marketing.redditforbusiness.com/hs-fs/hubfs/find%20comments.png?width=1120&amp;upscale=true&amp;name=find%20comments.png" style="outline:none; text-decoration:none; border:none; max-width:100%; font-size:16px" width="560" align="middle">
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table></div>
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#172e35; word-break:break-word; padding:10px 20px 25px"><div id="hs_cos_wrapper_module_17630582008565" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate!important">
+    <tbody><tr>
+      <td align="center" valign="middle" bgcolor="#FF4500" style="font-family:Arial, sans-serif; font-size:15px; color:#172e35; word-break:break-word; border-radius:8px; cursor:auto; background-color:#FF4500; mso-padding-alt:12px 18px">
+        <a href="https://marketing.redditforbusiness.com/e3t/Ctc/I7+113/d2lxfW04/VVDzsg2kQDSlVYF7Yv4XPfwyW35KrPN5KZFSBN6L2Zqz5nR3bW50kH_H6lZ3m1VhssNB4wv_ZrW1Q0vH46-B_gKW9dSLZl8_C7pDW3Pjj8Y28B4BqN6-3Lq-J4Nz8N7Zxc6ttnJRJW1ybby04-NL1DW6SMJc482XlPwW2-6Nfl5D5s3yW7YZcsv7hb9GkVW7LtW5T8wXrW2Mv6wL90ythqW7sNv6b2KM16jW6xSt8r1VFqvkW6MKpSp1DFRJ0W1cDN508DTGQ_W8nJm-w8XzllTW3lR5058ZHFmlW4tL_Lw4N0RxXW6fYHS58KG8jvN7q8R80zPnKvN25VgrDT0vJqW5phT054wwK8dVPjWV01gbtsDN1HWRRmshdRHVPJCTG8m1b3GW26GfsW71gQl4N7_6NL_XrFdyW6gylP98R76K3My-NlJfhFCCV_4j8q1fFyFGW6f6kxf6jBJ7_f78H8cg04" target="_blank" style="color:#00a4bd; font-size:15px; font-family:Arial, sans-serif; Margin:0; text-transform:none; text-decoration:none; padding:12px 18px; display:block" data-hs-link-id="3" data-hs-link-id-v2="dWsdLDy3">
+          <strong style="color:#ffffff;font-weight:bold;text-decoration:none;font-style:normal;">Find new conversations</strong>
+        </a>
+      </td>
+    </tr>
+  </tbody></table></div></td></tr></tbody></table>
+  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" class="" style=""><tbody><tr><td class="hs_padded" style="font-family:Arial, sans-serif; font-size:15px; color:#172e35; word-break:break-word; padding:10px 20px 0px"><div id="hs_cos_wrapper_module_17630584569911" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><div id="hs_cos_wrapper_module_17630584569911_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="rich_text"><p style="line-height:175%">Reddit Pro shows you exactly which threads are worth joining, where your audience is active, and which topics need your voice.&nbsp;</p>
+<p style="line-height:175%">&nbsp;</p>
+<p style="line-height:175%">You don't need to start a conversation; you just need to show up in the<span style="font-weight: bold; color: #ff4500;"> right </span>ones.&nbsp;</p>
+<ul style="line-height:175%"></ul></div></div></td></tr></tbody></table>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+   
+  </div>
+  <div id="section-6" class="hse-section hse-section-last" style="padding-left:10px; padding-right:10px">
+    
+    
+      <div class="hse-column-container" style="min-width:280px; max-width:600px; margin:0 auto; background-color:#ffffff" bgcolor="#ffffff">
+    
+    <!--[if (mso)|(IE)]>
+      <table align="center" style="width:600px;" cellpadding="0" cellspacing="0" role="presentation" width="600" bgcolor="#ffffff">
+      <tr style="background-color:#ffffff;">
+    <![endif]-->
+    <!--[if (mso)|(IE)]>
+  <td valign="top" style="width:600px;">
+<![endif]-->
+<!--[if gte mso 9]>
+  <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px">
+<![endif]-->
+<div id="column-6-0" class="hse-column hse-size-12">
+  <div id="hs_cos_wrapper_module-6-0-0" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="color: inherit; font-size: inherit; line-height: inherit;" data-hs-cos-general-type="widget" data-hs-cos-type="module"><div style="line-height: 1.15rem; font-size: 12px; font-family: Arial; text-align: center; background:#f2f6f7; padding: 10px 0;">
+<a href="https://marketing.redditforbusiness.com/e3t/Ctc/I7+113/d2lxfW04/VVDzsg2kQDSlVYF7Yv4XPfwyW35KrPN5KZFSBN6L2Zqz5nR3bW50kH_H6lZ3p8W6M6K3V81c5-qVm7gZ53l34xGW6LXbPK8cFvh5W3pNXxJ3PWjq-W218XKZ6nfx9BW29wD9x4zrvgHW3jJ3_j3xpFpVW3JJpmF49Bw31W5mG64C6PR2XJW4Gf70F38RkqnW5QMgrQ84QgHhW2ckmSv8YqdhxW7Gk-JC913MSnVfwK5H4RKbQQVWHSMV7XwVD8VjYLnB6wyKq3W4qwXpK86XL0XW41PM2h7l-rPcW5TKB0d5P37BhW4x9c2D5_16_bN4zTnQP35cw_W8Z4tz22BPwcCW9lq6zs1drQlJW7bCYkv56s12mW2_nngT2NNl2qW7S_0my6V50VRW2yKQVj6vfQgvW65-VPc6dTjv7N3FmnP0LHr0ZW948WY16rJWdbW6GrwHx3tF2z3W10P49d19RpV0f8Md7vM04" alt="a orange red circle with Snoo, the reddit alien inside with the words reddit next to it" style="color:#00a4bd" data-hs-link-id="0" data-hs-link-id-v2="AWObo35E" target="_blank">
+  <img style="outline:none; text-decoration:none; border:none; padding:10px" src="https://marketing.redditforbusiness.com/hs-fs/hubfs/RedditForBusiness_Logo%20(1).png?width=500&amp;upscale=true&amp;name=RedditForBusiness_Logo%20(1).png" width="250">
+  </a>
+<p><a href="https://marketing.redditforbusiness.com/e3t/Ctc/I7+113/d2lxfW04/VVDzsg2kQDSlVYF7Yv4XPfwyW35KrPN5KZFSBN6L2Zsl3qgz0W8wLKSR6lZ3nTW28zx_M6_kkm4W6--pkX3qpy58W2pPMl38yHTFxN2FQtVRtcywSVhvcWF1v0FJVW8yJ_Mr2CNjvFN8kHrKQBj4QgW1wWBm882Sk-vW4TqlV05-Lf67W1DZw4B5Y4wwkW3XRWtL6tTDzPW97qZG178k_97W38hDzc486Bx0W4x3N5F8cMH0-W2S4z566zt-xpVPKkkN144BLMW7gJwDg6bmXPWW1RfhQ75bbHC8W5kMVqH1WfXY5W3v1J5V7jH1yxW65l7VP6jhNgxW3mZJwr2jHRkdW90QPg42V5TXNW22kSdh1XPK8wW9803D81p2WBJVyYY7y3lGW__MJ4f1HLsNmSV33G6b6TXwV_f5l6Zv804" style="color:#7a9299; font-weight:bold; text-decoration:none" rel="noopener" data-hs-link-id="0" data-hs-link-id-v2="k3NPSdmf" target="_blank">Ads Manager</a> &nbsp; <a href="https://marketing.redditforbusiness.com/e3t/Ctc/I7+113/d2lxfW04/VVDzsg2kQDSlVYF7Yv4XPfwyW35KrPN5KZFSBN6L2ZsF3qgz0W95jsWP6lZ3kzW8wfCrF7pYzczW5T2pWG5Wh3fxW3bxQfM57H2QSW5rGGD_1vxFrMN5FZVLJcZMmrW6s5Tmm4JxzgHTJ3TX7HkjLFVD7WCf7DsZRbW4CXf2F4GYXynVT2wq78vb4mNVzz8Vx4VKsBVW39xm0h4849_gW2lcnJb36WWg7W3s-xYC2y8dKCW5CY7zm6tC1M9W6yQ9R06LDRP9W2Z-HJl90kvg9VKlrVF7trtv1N6FFvH2xVhljW1w-NVP3yj7lrW6GwJXk8_rcJfW50qpPw3QtvMkW30zLQ17PpPjtW3j4Nws1rljnlW7hqWPb3jf2WMN4_Cy5R1BlD2N7zw0crnzhGQW4RRfT21Mj_0MV6xr138--2rRW8PFWtP6p70ggf7_G6zx04" style="color:#7a9299; font-weight:bold; text-decoration:none" rel="noopener" data-hs-link-id="0" data-hs-link-id-v2="H4t+//aN" target="_blank">Reddit Help</a> &nbsp; <a href="https://marketing.redditforbusiness.com/e3t/Ctc/I7+113/d2lxfW04/VVDzsg2kQDSlVYF7Yv4XPfwyW35KrPN5KZFSBN6L2ZsF3qgz0W95jsWP6lZ3lsN874-BxslhKCW6fs8bz1GVMrTN6H2DS5rrS3yW4JNh3J7Ld5PvW10JnNm4TfBdvW9ksXg-5HhsPbW28_rRC7Ks0dQW6mY0_D8Twl_-W6-6xts11vvD5W3KMQzD6XCX-xW6qrkvz7SSKfZW4zH8Nf6-k1smW3B9_4Q1g86VsW2kX3jc9d4gXWW3sXQlS58QNfrW3NN2cn5TvyQMW2MqRdx5l4yG_N91RfD_fcC6CW330pdk1g_4wQW2GYGL258Jzs1VNSX8L5qxZR9W8V2r2G1ccD25F20TWD4-mdZW7K0vXf4kbX35W73xfFd2SzpqdW6cvQPg71HpvlW71cRlY87XBfYW969x_65Tm-Z4W96vC9x998cjbW7RgmGH61BvBsf6zx7XT04" style="color:#7a9299; font-weight:bold; text-decoration:none" rel="noopener" data-hs-link-id="0" data-hs-link-id-v2="fgPilu1k" target="_blank">Reddit Ads Formula</a> &nbsp;<a href="https://marketing.redditforbusiness.com/e3t/Ctc/I7+113/d2lxfW04/VVDzsg2kQDSlVYF7Yv4XPfwyW35KrPN5KZFSBN6L2ZsF3qgz0W95jsWP6lZ3mgW6Kjxk-2rTmj6W5--XLX1Tngj1W2qtTmm10gx1cW5vfz7G3HlynFW4-Xp316WNssDW3ZWq5S5D40lGW31RpgT3ypwv9W7vYBBl3QL8ZHW50rDt89cg2FpW6M-xRZ2DWsKlN38lQK0pQnJ4N5TW1CNr2tJKW7V1l_b6P_pQ2W9lj8Cq6-cfPxW4d4v2671FYXwMBD8pf9TbTrN987rnfGb7mNW5R4BGf588lwVW5WVC4H6BKHsCV-LXP711f2cjW39B2cF8VCBQGW7d3kdh8rgLpfW4XdN9m8WjSBvVZlYDC3cyj83W96TLXq7fmGs2W6_CKjx6pfkbZW8FWMGt2xMV5pW6vNfcj2S1DHVW93SG6Q19BjdBW893py77Pd-V-f6Z9rd-04" style="color:#7a9299; font-weight:bold; text-decoration:none" rel="noopener" data-hs-link-id="0" data-hs-link-id-v2="bdlCz+F2" target="_blank">Policies</a></p>
+<p><strong>Reddit Inc.</strong> 548 Market St #16093,  San Francisco, CA 94104</p>
+<p>This email was sent to: [redacted-email]</p>
+<p>If you’d prefer not to receive communications about Reddit Ads, you can <a href="https://marketing.redditforbusiness.com/hs/preferences-center/en/page?data=W2nXS-N30h-GSW4mJryD3LVbvrW49DVrh41G6sKW30D2M71V2YtQW2PQ0Zf2nR21TW38tyW63LTMl1W3V_mwT1S5dD0W2w0hJV2WnpY2W2TxVSQ32xHjxW1Lpd4w1XgKlqW3XYGx42HTBlsW38ymBv3Y3pqhW2MT58S2CH7XmW3SMH323j84xjW3dbCPw1-ZMDZW2PNmYp41V7j-W2B2l6T3SLTHFW3R38Jt3jsQL5W1X9Rx33d7g6fW3dr1qZ47Fzp-W2RKddc43WdhQW2FMXdD34DWDzW2zY6kf3SB9g6W38ddTC2YfwC9W4pBnqM309mx6W41RKZH3SLRMjW1V95FV49sLC2W4fLh723SMGC-W1S34L91BGngnW3K1LBd2F_1lLW3g6JnT3NR1-QW3DYGJk41D15qW3W36p62HR2RGW2HBBnT43Ggq-W36sWqy3LGXtHW2KY5ct2zJ6x2W2PPFwV2sNYT0W4ktwTP2YLj2gW2r8BX445SZ1xW3XYJZW2xPNJnW3_vFK54mB7QjW216hWk2Rrf2yW2sQB8J3LZktHW2MHCP_4fM8Q2W4fFlkw32B-rGW3VNQ7q3F1Hw_W32BB552PS96qW36CX7Z3T2xbJW3M153R2MvZq_W1ZrdCW43syskW4kpnJH1Qdt_-W4txZZj45r1qZW32rcMy2y2V_GW2Pv1bG4cgXMGW38tD2P2vxX9VW3b3KX_3bksk3W3g0RxX4cPTh70&amp;utm_campaign=38651211-Reddit%20Pro%20Resurrection%20MCB&amp;utm_source=hs_automation&amp;utm_medium=email&amp;utm_content=390903042&amp;_hsenc=p2ANqtz-_zZOea6zVSSy_qRfEuWyP51hjeKaTeaR0Nrjin7M1NzYrzP0s1hrZgu6JJ79Rg4hnBs2-Ld6iNPE9AAx4HxH-0Xt_DcFiPkBlmSsIW81qwEOyOeeE&amp;_hsmi=390903042" style="color:#7a9299; font-weight:bold" rel="noopener" data-unsubscribe="true" data-hs-link-id="0" data-hs-link-id-v2="qjPJqCop" target="_blank">unsubscribe here</a>.</p>
+      <hr width="50%" size="2">
+  <p>Book time to speak to a Reddit Ads expert <a  href="https://marketing.redditforbusiness.com/e3t/Ctc/I7+113/d2lxfW04/VVDzsg2kQDSlVYF7Yv4XPfwyW35KrPN5KZFSBN6L2Zqz5nR3bW50kH_H6lZ3ldW3vfnKr5n061RW21V6Z81Hb8VbW529zR491F7HwW1dmf1B20P_ZjW93-3yR5pGBqvW7v81tb40n_C6W2XBXNC3twWk5W7mdHhY1BXSG3W4XxQgW3B4QbkW5xqlj83PbfYhVdZf545GMmCvW1V0VTH7-wdTCW68zvkt74n41yW5mVV3w8Cq7wqW6RRs8C7J2974W9hJcs_2zPRQrW4YtzV52LC6S2N5WzdCh-r3v8W4srZg45VdJS3W975Hm46SGLyQV4tqTf4kpPVNW3X3b_m499_H9W6Jvmn_8Wyl9zW6Y9V3Y3DQyhfW6zL5cX3mJ3g5W2z1l5x21gFd3W9h2tkn4G5hZcVYkzSh16h4l1W46H-S85MQwGRW8K-JMW4pKrj1N5DSPyH7kLBLW4gT5LR5YXCcsf8pVv-M04" style="color:#7a9299; font-weight:bold" rel="noopener" data-unsubscribe="true" data-hs-link-id="0" data-hs-link-id-v2="EalTUVB6" target="_blank">here</a>.</p>
+</div></div>
+</div>
+<!--[if gte mso 9]></table><![endif]-->
+<!--[if (mso)|(IE)]></td><![endif]-->
+    <!--[if (mso)|(IE)]></tr></table><![endif]-->
+    </div>
+   
+  </div></div>
+          </td>
+        </tr>
+      </tbody></table>
+    </div>
+  
+<img src="https://marketing.redditforbusiness.com/e3t/Cto/I7+113/d2lxfW04/VVDzsg2kQDSlVYF7Yv4XPfwyW35KrPN5KZFSBW6L2Zby3CKnn7192" alt="" width="1" height="1" border="0" style="display:none!important;min-height:1px!important;width:1px!important;border-width:0!important;margin-top:0!important;margin-bottom:0!important;margin-right:0!important;margin-left:0!important;padding-top:0!important;padding-bottom:0!important;padding-right:0!important;padding-left:0!important"></body></html>
+`,text:`Your industry is being discussed in real time on Reddit. Jump back in and be part of the conversations shaping your space.
+
+Reddit_Business_Short (https://marketing.redditforbusiness.com/e3t/Ctc/I7+113/d2lxfW04/VVDzsg2kQDSlVYF7Yv4XPfwyW35KrPN5KZFSBN6L2Zsl3prCCW8wLKSR6lZ3n-W4mtbtx1gx_XbW546HMJ4__hH0W1qr92952fY_KW2wZG2g3Ms_4YW48HCnh2nbRpcN32YsHv31XtJN2lC-3dYczDLW5BVws73J5dPtW6kNxf83h1sHGW2MNG8b16rVWTN5sHClHLk7NSW2TnJhQ9f5dcjW6xtYNG750S0bW7Xv3XL3lm82qW29r1F73yVSmjW7G2CK16qXS3JW4dPHSL2j5_XWW7HwVb57KG6b4W2xD2L13d8MwZW6NNyLP5JkgSzW6vc80K42xZMvW8WbbxX2GQfDNW7LCLXy8T5W0YN8BQ8z0xVGtYW8Ld0FY9lgTg6W6ncskv7mZ9ZGN2ckF17QBKZxW8LzB6q1GsxLkf6WYqM804 )
+
+Your industry is talking (https://marketing.redditforbusiness.com/e3t/Ctc/I7+113/d2lxfW04/VVDzsg2kQDSlVYF7Yv4XPfwyW35KrPN5KZFSBN6L2ZsF3prCCW95jsWP6lZ3pkW3MD-Ly1-jGFRW2yjn-D31mttNW3h-lww1Sgs4tW1dHkcG4zGHKjW4BsDcw2fWfj9W6Nb0Jz1sXJplW4ygh685Jxt94W59SqSD7xlwn4VVC1jf60t-JcW1B9WLj1LR_24W3NxjMT5Vc9ppW5b3b162gyWRxW4tB15R8NwCpHW1kVBHy42CcqxW6_j_Nb8XHKBXW1rvDGt8wyQDjW5BxQT66Cyg6nMPPgMdqP4zSW5_1ZYn3yn7F1VdYBZf7MBPVJW2prN4G8mlXkLVpdpHs6k_wCLW1dyd1K6WlgjkW8-JHPt6gzGBgW1ZhP2b7GCTfmW11q0w32yT8tMW3YLbKP3RNS1jW6wGqpS5f4gZDV4dW7g56rhWzN2DVFZYWchg8f8CGGK804 )
+
+Hi [redacted],
+
+Reddit is still discussing News, but you haven't been there to take part.
+
+New conversations are happening in real time, and the brands that stay active are the ones sharping perception, building trust, and earning visibility.
+
+Find new conversations
+(https://marketing.redditforbusiness.com/e3t/Ctc/I7+113/d2lxfW04/VVDzsg2kQDSlVYF7Yv4XPfwyW35KrPN5KZFSBN6L2ZsF3prCCW95jsWP6lZ3pkW3MD-Ly1-jGFRW2yjn-D31mttNW3h-lww1Sgs4tW1dHkcG4zGHKjW4BsDcw2fWfj9W6Nb0Jz1sXJplW4ygh685Jxt94W59SqSD7xlwn4VVC1jf60t-JcW1B9WLj1LR_24W3NxjMT5Vc9ppW5b3b162gyWRxW4tB15R8NwCpHW1kVBHy42CcqxW6_j_Nb8XHKBXW1rvDGt8wyQDjW5BxQT66Cyg6nMPPgMdqP4zSW5_1ZYn3yn7F1VdYBZf7MBPVJW2prN4G8mlXkLVpdpHs6k_wCLW1dyd1K6WlgjkW8-JHPt6gzGBgW1ZhP2b7GCTfmW11q0w32yT8tMW3YLbKP3RNS1jW6wGqpS5f4gZDV4dW7g56rhWzN2DVFZYWchg8f8CGGK804 )
+
+Image depicts how to find conversations (https://marketing.redditforbusiness.com/e3t/Ctc/I7+113/d2lxfW04/VVDzsg2kQDSlVYF7Yv4XPfwyW35KrPN5KZFSBN6L2ZsF3prCCW95jsWP6lZ3pkW3MD-Ly1-jGFRW2yjn-D31mttNW3h-lww1Sgs4tW1dHkcG4zGHKjW4BsDcw2fWfj9W6Nb0Jz1sXJplW4ygh685Jxt94W59SqSD7xlwn4VVC1jf60t-JcW1B9WLj1LR_24W3NxjMT5Vc9ppW5b3b162gyWRxW4tB15R8NwCpHW1kVBHy42CcqxW6_j_Nb8XHKBXW1rvDGt8wyQDjW5BxQT66Cyg6nMPPgMdqP4zSW5_1ZYn3yn7F1VdYBZf7MBPVJW2prN4G8mlXkLVpdpHs6k_wCLW1dyd1K6WlgjkW8-JHPt6gzGBgW1ZhP2b7GCTfmW11q0w32yT8tMW3YLbKP3RNS1jW6wGqpS5f4gZDV4dW7g56rhWzN2DVFZYWchg8f8CGGK804 )
+
+Find new conversations
+(https://marketing.redditforbusiness.com/e3t/Ctc/I7+113/d2lxfW04/VVDzsg2kQDSlVYF7Yv4XPfwyW35KrPN5KZFSBN6L2ZsF3prCCW95jsWP6lZ3pkW3MD-Ly1-jGFRW2yjn-D31mttNW3h-lww1Sgs4tW1dHkcG4zGHKjW4BsDcw2fWfj9W6Nb0Jz1sXJplW4ygh685Jxt94W59SqSD7xlwn4VVC1jf60t-JcW1B9WLj1LR_24W3NxjMT5Vc9ppW5b3b162gyWRxW4tB15R8NwCpHW1kVBHy42CcqxW6_j_Nb8XHKBXW1rvDGt8wyQDjW5BxQT66Cyg6nMPPgMdqP4zSW5_1ZYn3yn7F1VdYBZf7MBPVJW2prN4G8mlXkLVpdpHs6k_wCLW1dyd1K6WlgjkW8-JHPt6gzGBgW1ZhP2b7GCTfmW11q0w32yT8tMW3YLbKP3RNS1jW6wGqpS5f4gZDV4dW7g56rhWzN2DVFZYWchg8f8CGGK804 )
+
+Reddit Pro shows you exactly which threads are worth joining, where your audience is active, and which topics need your voice.
+
+You don't need to start a conversation; you just need to show up in the right ones.
+
+Ads Manager (https://marketing.redditforbusiness.com/e3t/Ctc/I7+113/d2lxfW04/VVDzsg2kQDSlVYF7Yv4XPfwyW35KrPN5KZFSBN6L2Zs23prCCW7Y8-PT6lZ3kRVK95-f6XylTlVDwbpp5Nj0MJN3Zf_3gVbmyrW5GM9z_4XvKcmW8jwFPZ8TBq6lW6XHm7Q5DtSyqW5Bjgzp3d-gxpW1b0G6h39_QzhW3r_hHX7pMwJ3W7QxrRS2y1r57W8DPQ2T5WDL0hW51_Bnr7RF8qcW19fMRM2wnKmWW6rzRy43N7__9W1fxRXG2V71XwW1YhRnY2LQ7CwTL_0P4hKpY4W4Pllw55tBYXJVzydD93fqhHqW6KKzqW83XlnLW8Dt9Qw86zt9FN8yGZK_16YNQW9cpQWg5tQ51fW2zdxSj7gTy0gW2PW9yB4YC0DvW9jF5vD4nGdnpf1QmmT804 )   Reddit Help (https://marketing.redditforbusiness.com/e3t/Ctc/I7+113/d2lxfW04/VVDzsg2kQDSlVYF7Yv4XPfwyW35KrPN5KZFSBN6L2Zsl3prCCW8wLKSR6lZ3psW64tYkd4CKHHgW5kYTFM3cfCGdW17vqsd22DxjjW8mXt7s45jMs3W6YdRbn8_YTm_W68dTY82XmfVDW7MTggm6tnRQ2W2PmX4_6NL9gpW39k2hG5sM-v6W4kVc7L7mYT0WW1WSJNL2k-3hFN99zZBn91xs8N2yC8Ts6t7CkW7yvcBl2HP296W3TqlFk3LVYs4W60v7157cVm04W1fQGC-9fb2ZbW1LRCPY5RsMZVW3Pz1Bv80zSwKW33bfLy3YVdPKW3HYWQr5VVgT7W7pHv4r754-RnVsZt5c2kbRf_W22lVD_6pVCG0W4PCzr998lQJqN7kS-GyxVVzVW5zklB03NH77mW4Kblcv1l_7jBf1yTF_b04 )   Reddit Ads Formula (https://marketing.redditforbusiness.com/e3t/Ctc/I7+113/d2lxfW04/VVDzsg2kQDSlVYF7Yv4XPfwyW35KrPN5KZFSBN6L2Zsl3prCCW8wLKSR6lZ3ppW2TzJ5S5zy9BTW5l3rsB73RKgXW15SKB_5TzQHqW92821q824rfpN4N5srkclz1vW9fhHqn86ZkRJW5s0-7Z17lFbxVt5JsJ600Zy0W44khms4-R5YxW3QnN-F3KdHhTW6qyZty7PgS-CN5yCPMc2L1qnW6CjgQm3-VNv5W51fPtp4VbJqfW6JH_Mv5plW-QW6wQvK42tdl25VlhYvy8_VNBdW8W7zd48y2h1dN3MCWZ25Kfv5N2BYJflRcjbwN92tshtPqY2yVH2rZF52RGb8W7vsv9V8nJlXwW5ScTxP1PnsT4W98HhDt6gKLWCV22Ly42w36jrW7Yb4yY8M5T1wW64tfYQ46vGmsf2NdbSP04 )  Policies (https://marketing.redditforbusiness.com/e3t/Ctc/I7+113/d2lxfW04/VVDzsg2kQDSlVYF7Yv4XPfwyW35KrPN5KZFSBN6L2Zsl3prCCW8wLKSR6lZ3l5W7W6l3d7S59D4W5nySts2G-RwkMChjj0HGDWpW16901-93mY_3MM2wxZ687XhW3snJj81V9c90W71P7Dm2HjXXSW2P-CHf6_Svj9V8k6Gm6TXfVYW4mJmGx8vy3D9N9ktB2CmrYzhW3-sYfB4L9cpzW17rd0k8L94sSW8T7XzY32l7n2W878YXb6ZgRWjW8PRnzL2Sd3q9VR7c0T3LC7wsW4Tbyxl5v7rhMW5V-gm22hwrwJW3vZXmc1VRS5nW648Q8j1F4lQtW2BfWGW36QbS4VGpWdC1-kkdbW7X2v4r4g4Pc2W1-Q9cY3VLv-1W8NmPMw96JyYFW2rPJjR4f5tqxW3jQ09z777JXpf8w2BVv04 )
+
+Reddit Inc. 548 Market St #16093,  San Francisco, CA 94104
+
+This email was sent to: [redacted-email]
+
+If you’d prefer not to receive communications about Reddit Ads, you can unsubscribe here (https://marketing.redditforbusiness.com/hs/preferences-center/en/page?data=W2nXS-N30h-GSW4mJryD3LVbvrW49DVrh41G6sKW30D2M71V2YtQW2PQ0Zf2nR21TW38tyW63LTMl1W3V_mwT1S5dD0W2w0hJV2WnpY2W2TxVSQ32xHjxW1Lpd4w1XgKlqW3XYGx42HTBlsW38ymBv3Y3pqhW2MT58S2CH7XmW3SMH323j84xjW3dbCPw1-ZMDZW2PNmYp41V7j-W2B2l6T3SLTHFW3R38Jt3jsQL5W1X9Rx33d7g6fW3dr1qZ47Fzp-W2RKddc43WdhQW2FMXdD34DWDzW2zY6kf3SB9g6W38ddTC2YfwC9W4pBnqM309mx6W41RKZH3SLRMjW1V95FV49sLC2W4fLh723SMGC-W1S34L91BGngnW3K1LBd2F_1lLW3g6JnT3NR1-QW3DYGJk41D15qW3W36p62HR2RGW2HBBnT43Ggq-W36sWqy3LGXtHW2KY5ct2zJ6x2W2PPFwV2sNYT0W4ktwTP2YLj2gW2r8BX445SZ1xW3XYJZW2xPNJnW3_vFK54mB7QjW216hWk2Rrf2yW2sQB8J3LZktHW2MHCP_4fM8Q2W4fFlkw32B-rGW3VNQ7q3F1Hw_W32BB552PS96qW36CX7Z3T2xbJW3M153R2MvZq_W1ZrdCW43syskW4kpnJH1Qdt_-W4txZZj45r1qZW32rcMy2y2V_GW2Pv1bG4cgXMGW38tD2P2vxX9VW3b3KX_3bksk3W3g0RxX4cPTh70&_hsenc=p2ANqtz-9YVy8tySc92lN2scRvMsYD7LYueyCyh6xKQfqIY0ekcd9dIy_JSr2wepCxgTGFcPI48Gdxk8RvadhjkSGPK3g7UjPN3JBTo-RWWpIfr0_AuLoJYnk&_hsmi=390903042 ) .
+
+Book time to speak to a Reddit Ads expert here (https://marketing.redditforbusiness.com/e3t/Ctc/I7+113/d2lxfW04/VVDzsg2kQDSlVYF7Yv4XPfwyW35KrPN5KZFSBN6L2ZsF3prCCW95jsWP6lZ3phW90pss13KrKvBW28g-T977dlRBW42JvKn5nDfDTW6PTyt_1PJt7SVcbV5R2-_8gzW8h7kQy1CQpWZW2wPnfx1TNWQsW5BGpVl59g7XXW8hVTs71pHvRsW7W11RG8-RFdjW8RR7vC7FXvmDVQxV9y1QrCXVW5SfkbW1r4XPlN9kczL939s_lW1zC3sr6PZ8gMW4dxPck4TFhmdW31TDnK4M-gCjW38DHkN7-ckJ9VfPXH14r7VkTW5Bjtdr85ZNH_N8wWjQy-vRBDN35zPtFMlyhrVbcnyG7JQwc6W1dDwMk4QLKwyW6NJmzl2PcQg9W6CGWdh957wS6W2XZWJQ23VT68W4JMrK075Y8PlW6YjC944L9dYHW62Wq0484vd65f4nlYDl04 ) .
+`,accountEmail:"demo@demo.com",messageId:"<demo-mock-1307@homerow.dev>"},{id:1308,seq:1308,threadId:"thread-mock-1308",subject:"Share Wise and start earning rewards",from:"Wise (formerly TransferWise)",fromAddress:"noreply@info.wise.com",to:["demo@demo.com"],date:"2026-02-23T18:45:08.000Z",flags:["\\Seen"],snippet:"email 2- card_or_transfer_never_invited 96 What could you do with an extra 115 USD? ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ",hasAttachments:!1,folderPath:"INBOX",html:`<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+
+
+
+
+
+
+
+
+
+
+
+--><html dir="ltr" lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office">
+ <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta name="x-apple-disable-message-reformatting">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="telephone=no" name="format-detection">
+  <title>email 2-  card_or_transfer_never_invited</title>
+<!--[if (mso 16)]>
+    <style type="text/css">
+    a {text-decoration: none;}
+    </style>
+    <![endif]--><!--[if gte mso 9]><style>sup { font-size: 100% !important; }</style><![endif]--><!--[if gte mso 9]>
+<noscript>
+         <xml>
+           <o:OfficeDocumentSettings>
+           <o:AllowPNG></o:AllowPNG>
+           <o:PixelsPerInch>96</o:PixelsPerInch>
+           </o:OfficeDocumentSettings>
+         </xml>
+      </noscript>
+<![endif]--><!--[if mso]><xml>
+    <w:WordDocument xmlns:w="urn:schemas-microsoft-com:office:word">
+      <w:DontUseAdvancedTypographyReadingMail></w:DontUseAdvancedTypographyReadingMail>
+    </w:WordDocument>
+    </xml><![endif]--><!--[if !mso]><!-- -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;display=swap" rel="stylesheet">
+<!--<![endif]-->
+  <style type="text/css">.rollover:hover .rollover-first {
+  max-height:0px!important;
+  display:none!important;
+}
+.rollover:hover .rollover-second {
+  max-height:none!important;
+  display:block!important;
+}
+.rollover span {
+  font-size:0px;
+}
+u + .body img ~ div div {
+  display:none;
+}
+#outlook a {
+  padding:0;
+}
+span.MsoHyperlink,
+span.MsoHyperlinkFollowed {
+  color:inherit;
+  mso-style-priority:99;
+}
+a.v {
+  mso-style-priority:100!important;
+  text-decoration:none!important;
+}
+a[x-apple-data-detectors],
+#MessageViewBody a {
+  color:inherit!important;
+  text-decoration:none!important;
+  font-size:inherit!important;
+  font-family:inherit!important;
+  font-weight:inherit!important;
+  line-height:inherit!important;
+}
+.bb {
+  display:none;
+  float:left;
+  overflow:hidden;
+  width:0;
+  max-height:0;
+  line-height:0;
+  mso-hide:all;
+}
+@media only screen and (max-width:600px) {.cg { padding-right:25px!important } .cf { padding-left:25px!important } .ce { padding-top:20px!important } .cd { padding-bottom:20px!important } .cc { padding-right:0px!important } .cb { padding-left:0px!important } .ca { padding-top:10px!important } .bz { padding-top:15px!important }  *[class="gmail-fix"] { display:none!important } p, a { line-height:150%!important } h1, h1 a { line-height:120%!important } h2, h2 a { line-height:120%!important } h3, h3 a { line-height:120%!important } h4, h4 a { line-height:120%!important } h5, h5 a { line-height:120%!important } h6, h6 a { line-height:120%!important }  .bw p { }   h1 { font-size:26px!important; text-align:left } h2 { font-size:22px!important; text-align:left } h3 { font-size:16px!important; text-align:left } h4 { font-size:24px!important; text-align:left } h5 { font-size:20px!important; text-align:left } h6 { font-size:16px!important; text-align:left }   .bx h3 a, .bw h3 a, .bv h3 a { font-size:16px!important }      .bw p, .bw a { font-size:14px!important }   .br, .br h1, .br h2, .br h3, .br h4, .br h5, .br h6 { text-align:center!important }     .bq .rollover:hover .rollover-second, .br .rollover:hover .rollover-second, .bs .rollover:hover .rollover-second { display:inline!important }   a.v, button.v { font-size:16px!important; padding:10px 20px 10px 20px!important; line-height:120%!important; padding-left:0px!important; padding-right:0px!important } a.v, button.v, .bo { display:block!important }    .be table, .bf table, .bg table, .be, .bg, .bf { width:100%!important; max-width:600px!important } .adapt-img { width:100%!important; height:auto!important }        .h-auto { height:auto!important } .w .x, .w .x * { font-size:26px!important; line-height:150%!important } a.v, button.v { padding-right:0px!important; padding-left:0px!important; padding-top:20px!important; padding-bottom:20px!important } a.v, button.v { padding-right:0px!important; padding-left:0px!important; padding-top:20px!important; padding-bottom:20px!important }             .h .b, .h .b * { font-size:16px!important; line-height:150%!important } .i .b, .i .b * { font-size:16px!important; line-height:150%!important } .h .b.f, .h .b.f * { font-size:16px!important; line-height:150%!important } .g .b.f, .g .b.f * { font-size:16px!important; line-height:150%!important } .d .e.f, .d .e.f * { font-size:22px!important; line-height:150%!important } .c .b, .c .b * { font-size:16px!important; line-height:150%!important } .a .b, .a .b * { font-size:16px!important; line-height:150%!important } }
+@media screen and (max-width:384px) {.mail-message-content { width:414px!important } }</style>
+ </head>
+ <body class="body" style="width:100%;height:100%;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;padding:0;Margin:0"><img src="https://ablink.info.wise.com/wf/open?upn=u001.Cma6FVq4ouo4ilBf4u2yz6fzduoU-2FBBy6HYkQyxiakUt3kGkG0FhRxLXTsZJe-2F5GmvOIa2AMoluuyadCdjXCTdKmtKnUeei-2FUigA2mPTEKg52fKjFo8yjyN3UpPmlBTiG6Ef4WBYxzkmJXjXy5wZQWU5mSnc3yjPAM05SK-2FG9wu-2FPzk-2FmET-2BGn84UfFX6vu5iNIOWkBrCI935kHhEehNGT-2FCxlcI3KxnmWsih7bpn901rO8oDDnw-2FIrZf3mi78H4-2Fh0lvXza-2Bkw-2F-2FIxKiMzpTDjJkU9CQ6Km6lAJgCS0mbDF3nhhbftUfS2otRYcybi1VyhHQ9mKTdQsEYhIQuWxJhk03hAsRIyOO0ZLbnhhCRCsEoTt-2BAty1xSUq-2B-2FfYrVTLfnWQq4OjQHMuH5A9cYMhhwRTudhvjNyMA1yT4u4VPEXnPEpozxJ3DOeKYkFlgorg67hTpo-2BEJf4tyj3zvDkn0ZGah81G0WHnGka2wwTIGw2fVWZ4xvtljDWa41V61rbvJMJOV7zU-2B-2B9WSavRwlDxNm-2BDaWOimv1GEQhZ3dObj6hU3UpOUcAu2YXm2HWVbHG8MeazV6jrZwNrIOG0rKKXeIPAyyEv71HrADNE2LoJ4wQ7GBCXS2Nha-2B44KGtZq3hiPdxvnu3Ky76Aw6-2B0xS1O4JZqBAs2XNIqaF2eBlbHtH-2Bqf5ORv2uLXGppJjuFqpAWyPRtbPaeGI-2BCm0IJjRUB6nCaoB4y5MXdkqlmEtNosxqz0JBV7QLOX-2BaoKJje4i-2F7IWzauQFYd-2FrO8ptUz6-2B4w-3D-3D" alt="" width="1" height="1" border="0" style="height:1px !important;width:1px !important;border-width:0 !important;margin-top:0 !important;margin-bottom:0 !important;margin-right:0 !important;margin-left:0 !important;padding-top:0 !important;padding-bottom:0 !important;padding-right:0 !important;padding-left:0 !important;"/>
+<div style="display:none !important;visibility:hidden;mso-hide:all;font-size:1px;color:#ffffff;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;">What could you do with an extra 115 USD?</div>
+<div style="display:none !important;visibility:hidden;mso-hide:all;font-size:1px;color:#ffffff;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;">͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF ͏ ‌     \uFEFF </div>
+  <div dir="ltr" lang="en" class="es-wrapper-color" style="background-color:#F6F6F6">
+<!--[if gte mso 9]>
+			<v:background xmlns:v="urn:schemas-microsoft-com:vml" fill="t">
+				<v:fill type="tile" color="#f6f6f6"></v:fill>
+			</v:background>
+		<![endif]-->
+   <table cellpadding="0" width="100%" cellspacing="0" class="es-wrapper" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;padding:0;Margin:0;width:100%;height:100%;background-repeat:repeat;background-position:center top;background-color:#F6F6F6">
+     <tr>
+      <td valign="top" style="padding:0;Margin:0">
+       <table align="center" cellspacing="0" cellpadding="0" class="be" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%;table-layout:fixed !important">
+       </table>
+       <table cellpadding="0" cellspacing="0" align="center" class="be" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%;table-layout:fixed !important">
+         <tr>
+          <td align="center" style="padding:0;Margin:0">
+           <table cellspacing="0" cellpadding="0" bgcolor="#ffffff" align="center" class="bw" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:#FFFFFF;width:600px">
+             <tr>
+              <td align="left" style="padding:0;Margin:0">
+<!--
+
+
+
+
+
+
+
+-->
+
+      <table cellspacing="0" cellpadding="0" align="center" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse;border-spacing: 0px;width: 100%;max-width: 600px!important;">
+        <!-- Comms code - section start --><!--  --><!-- Comms code - section end --><!-- Nav bar - section start -->
+        <tr>
+          <td align="center" style="Margin:0;padding-top:16px;padding-bottom:16px;padding-left:16px;padding-right:16px;width:100%;max-width:520px;background:transparent">
+            <a href="https://ablink.info.wise.com/ls/click?upn=u001.JwhTX56o1twZ4Z4wwlm-2F9VSjW73gzPL0UQxotBN-2B-2Fbc-3Dsi-h_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP4TbfdkVOlABtJnbFpXqO8EvOLmX296aE0khG0ssKGJQh2CqkuCui4VsK2LahUiGG5rifcmU1rNHWiT74729-2Bv2Ss3mNONjMa74W1jjs6vAZMUj1E9A-2F8V94TrObgMdzllEMD3Cb7nYOiliZz5Q66txH8cggKAhxTtgY-2BpLWGV8OCO9lcIzmEt9cgnw7i-2Fn3LGgs3Mo0y7w-2FFjb0Yvl5MwSKa8INvPEXha3flQTGfLHunZcr7xdvF7WPc0z1bwXORxKpudLhTfT-2Bhd4L9DdITCVmKFa7owbAcvIl2Oz-2Fu-2Fj5Xu2EtwdPIQuB85OWeuf-2BG7mE1kCvkCKjSyaAXmt9GBh6uQbKTiEZ-2BpTZBmMYsaFBYnhVyPkPAwQha4c9L7b5bH-2F-2BwFNHzeaDsakeOMZkVap11XQtLtPlw85z20l1mtN1zuyHyfTuXpqCka6vM2hn41qW6azuGUjuH8DEtlHSa-2BU23QTh6txgH7nLQZyo3cIcV2CoeYh-2Bx7SKR6TjarodsZTOU96ZiKlKkGvp4j5TW78cHQRnp8eiBYe0x3t8OoiNPtaQEWbJrJvcuHI1C-2Bf5-2BN-2B91Kdrflo-2BNtXLdxv65MGNZTpk-2BQbvv-2Brht3buPGoFGhjVN-2FgiKk5-2B60fqJxomUk-2BWsoFwfdUkGgZKHiQ3Osy3ol2p6mJPrEkY4RY-2FOXEDo-2BTpBadXMVp5pUYRg8LnOY-2FHQBBn-2FT2DEXtKm6DdOHfzNqZEIANMxzYg-2F1-2F0V9vCg-3D-3D" target="_blank" style="-webkit-text-size-adjust: none;-ms-text-size-adjust: none;mso-line-height-rule: exactly;text-decoration: underline;color: #00B9FF;font-size: 16px;line-height: 150%!important;"><img src="https://cdn.braze.eu/appboy/communication/assets/image_assets/images/67b32beb83a8db0276305e24/original.png?1739795435" alt style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;width:auto;max-width:160px;height:auto;max-height:37px"></a>
+          </td>
+        </tr>
+        <!-- Nav bar - section ends -->
+      </table>
+               <table cellpadding="0" cellspacing="0" width="100%" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                 <tr>
+                  <td align="center" valign="top" style="padding:0;Margin:0;width:600px">
+                   <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                     <tr>
+                      <td align="center" style="padding:0;Margin:0;padding-top:20px;padding-right:20px;padding-left:20px;font-size:0px"><a target="_blank" href="https://ablink.info.wise.com/ls/click?upn=u001.JwhTX56o1twZ4Z4wwlm-2F9YnQ3rGvtEn5yydJ3TQJaSTk6QT6LbympF92dXYu9LzBjZ02OQPhT7-2BlUR5UJA-2BVSg-3D-3D-jkX_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP4TbfdkVOlABtJnbFpXqO8EvOLmX296aE0khG0ssKGJQh2CqkuCui4VsK2LahUiGG5rifcmU1rNHWiT74729-2Bv2Ss3mNONjMa74W1jjs6vAZMUj1E9A-2F8V94TrObgMdzllEMD3Cb7nYOiliZz5Q66txH8cggKAhxTtgY-2BpLWGV8OCO9lcIzmEt9cgnw7i-2Fn3LGgs3Mo0y7w-2FFjb0Yvl5MwSKa8INvPEXha3flQTGfLHunZcr7xdvF7WPc0z1bwXORxKpudLhTfT-2Bhd4L9DdITCVmKFa7owbAcvIl2Oz-2Fu-2Fj5Xu2EtwdPIQuB85OWeuf-2BG7mE1kCvkCKjSyaAXmt9GBh6uQbKTiEZ-2BpTZBmMYsaFBYnhVyPkPAwQha4c9L7b5bH-2F-2BwFNHzeaDsakeOMZkVap11XQtLtPlw85z20l1mtN1zuyHyfTuXpqCka6vM2hn41qW6azuGUjuH8DEtlHSa-2BU23QTh6txgH7nLQZyo3cIcV2CoeYh-2Bx7SKR6TjarodsZTOU96ZiKlKkGvp4j5TW78cHQRnp8eiBYe0x3t8OoiNPtaQEWbJrJvcuHI1C-2Bf5-2BN-2B91Kdrflo-2BNtXLdxv65MGCvmuJNBENA9GyZyU0nIeki4pdUs0-2B0YkqiL4O8-2BYfy0fILqX8OLw9as-2BYUZXyvnQN7SNDA-2Be58Hhj2edgn02wbfaSViDLh9tnWKWjCAazieiRnywhx7UtfMozhsr4Oa6ha-2Bcfecj6Wb9ThVaSHvTcg-3D-3D" style="mso-line-height-rule:exactly;text-decoration:underline;color:#163300;font-size:16px"><img src="https://nvsrpq.stripocdn.email/content/guids/CABINET_b5e091a73771f85fde3e8a58cf6dc423dbcf04d3dce3679e458654df8be9e4ae/images/email_2_heromin_xCg.png" alt="Two people looking at phone, heart, woman kissing dog." width="560" title="Two people looking at phone, heart, woman kissing dog." class="adapt-img" style="display:block;font-size:16px;border:0;outline:none;text-decoration:none" height="280"></a></td>
+                     </tr>
+                   </table>
+</td>
+                 </tr>
+               </table>
+</td>
+             </tr>
+             <tr>
+              <td align="left" class="cg cf" style="Margin:0;padding-top:20px;padding-right:40px;padding-bottom:20px;padding-left:40px">
+               <table width="100%" cellspacing="0" cellpadding="0" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                 <tr>
+                  <td valign="top" align="center" style="padding:0;Margin:0;width:520px">
+                   <table width="100%" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                     <tr>
+                      <td align="center" style="padding:0;Margin:0"><h1 class="br" style="Margin:0;font-family:inter, helvetica, arial, sans-serif;mso-line-height-rule:exactly;letter-spacing:0;font-size:30px;font-style:normal;font-weight:normal;line-height:36px;color:#0e0f0c"><b>115 USD could be all yours</b></h1></td>
+                     </tr>
+                     <tr>
+                      <td align="center" class="ce cd h" style="padding:0;Margin:0;padding-top:25px;padding-bottom:30px">
+<p class="b f" style="Margin:0;mso-line-height-rule:exactly;font-family:Inter, Helvetica, Arial, sans-serif;line-height:24px;letter-spacing:0;color:#454745;font-size:16px">Tell your friends and family why you love Wise and you could both earn rewards.&nbsp;</p>
+<p class="b f" style="Margin:0;mso-line-height-rule:exactly;font-family:Inter, Helvetica, Arial, sans-serif;line-height:24px;letter-spacing:0;color:#454745;font-size:16px"><br></p>
+<p class="b f" style="Margin:0;mso-line-height-rule:exactly;font-family:Inter, Helvetica, Arial, sans-serif;line-height:24px;letter-spacing:0;color:#454745;font-size:16px">When your friends join Wise using your referral link, they can <strong style="color:#163300">send their first transfer of up to 600 USD without paying any fees</strong>.</p>
+<p class="b f" style="Margin:0;mso-line-height-rule:exactly;font-family:Inter, Helvetica, Arial, sans-serif;line-height:24px;letter-spacing:0;color:#454745;font-size:16px"><br></p>
+<p class="b f" style="Margin:0;mso-line-height-rule:exactly;font-family:Inter, Helvetica, Arial, sans-serif;line-height:24px;letter-spacing:0;color:#454745;font-size:16px">When <strong style="color:#163300">3</strong> of your friends either make a cross-currency transfer over&nbsp;<b style="color:#163300">300 USD</b>, or spend over&nbsp;<strong style="color:#163300">300 USD</strong>&nbsp;with a Wise card, you'll unlock a <strong style="color:#163300">115 USD</strong>&nbsp;reward. What’s not to love?</p>
+</td>
+                     </tr>
+                     <tr>
+                      <td align="center" class="cc cb" style="padding:0;Margin:0;padding-right:40px;padding-left:40px">
+<!--[if mso]><a href="https://ablink.info.wise.com/ls/click?upn=u001.JwhTX56o1twZ4Z4wwlm-2F9YnQ3rGvtEn5yydJ3TQJaSQ4k5p5BSb0Mmwoo0nRcUuYTDAKxBQ7zNI5NksfKla55w-3D-3D7rsl_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP4TbfdkVOlABtJnbFpXqO8EvOLmX296aE0khG0ssKGJQh2CqkuCui4VsK2LahUiGG5rifcmU1rNHWiT74729-2Bv2Ss3mNONjMa74W1jjs6vAZMUj1E9A-2F8V94TrObgMdzllEMD3Cb7nYOiliZz5Q66txH8cggKAhxTtgY-2BpLWGV8OCO9lcIzmEt9cgnw7i-2Fn3LGgs3Mo0y7w-2FFjb0Yvl5MwSKa8INvPEXha3flQTGfLHunZcr7xdvF7WPc0z1bwXORxKpudLhTfT-2Bhd4L9DdITCVmKFa7owbAcvIl2Oz-2Fu-2Fj5Xu2EtwdPIQuB85OWeuf-2BG7mE1kCvkCKjSyaAXmt9GBh6uQbKTiEZ-2BpTZBmMYsaFBYnhVyPkPAwQha4c9L7b5bH-2F-2BwFNHzeaDsakeOMZkVap11XQtLtPlw85z20l1mtN1zuyHyfTuXpqCka6vM2hn41qW6azuGUjuH8DEtlHSa-2BU23QTh6txgH7nLQZyo3cIcV2CoeYh-2Bx7SKR6TjarodsZTOU96ZiKlKkGvp4j5TW78cHQRnp8eiBYe0x3t8OoiNPtaQEWbJrJvcuHI1C-2Bf5-2BN-2B91Kdrflo-2BNtXLdxv65MGLRAUp3XZl1CCx9qiViIHpYZuCC2q9vnMmpSo9xeNDMlZ8IdKRp5JV1Zo5RSoQWmZMxh2AoXpZSv36q9ZCTmHaIqT3r7dYDWUVks-2BvIuI2dpcIoFzToT2rjxM4f-2FUJQ-2BcIkdVaHHHyYLm9FPUK-2FtDNg-3D-3D" target="_blank" hidden>
+	<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" esdevVmlButton href="https://wise.com/invite?lid=yyv1ga9ii0mu" 
+                style="height:49px; v-text-anchor:middle; width:440px" arcsize="50%" stroke="f"  fillcolor="#9fe870">
+		<w:anchorlock></w:anchorlock>
+		<center style='color:#163300; font-family:Inter, Helvetica, Arial, sans-serif; font-size:16px; font-weight:700; line-height:16px;  mso-text-raise:1px'>Share Wise with friends</center>
+	</v:roundrect></a>
+<![endif]--><!--[if !mso]><!-- --><span class="bo msohide" style="border-style:solid;border-color:#2cb543;background:#9fe870;border-width:0px;display:block;border-radius:30px;width:auto;mso-hide:all"><a href="https://ablink.info.wise.com/ls/click?upn=u001.JwhTX56o1twZ4Z4wwlm-2F9YnQ3rGvtEn5yydJ3TQJaSRzdfCv80SFT0kvaThSlk7FG1DpnrZVrzLqp0BHcs7vZA-3D-3D8Yhx_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP4TbfdkVOlABtJnbFpXqO8EvOLmX296aE0khG0ssKGJQh2CqkuCui4VsK2LahUiGG5rifcmU1rNHWiT74729-2Bv2Ss3mNONjMa74W1jjs6vAZMUj1E9A-2F8V94TrObgMdzllEMD3Cb7nYOiliZz5Q66txH8cggKAhxTtgY-2BpLWGV8OCO9lcIzmEt9cgnw7i-2Fn3LGgs3Mo0y7w-2FFjb0Yvl5MwSKa8INvPEXha3flQTGfLHunZcr7xdvF7WPc0z1bwXORxKpudLhTfT-2Bhd4L9DdITCVmKFa7owbAcvIl2Oz-2Fu-2Fj5Xu2EtwdPIQuB85OWeuf-2BG7mE1kCvkCKjSyaAXmt9GBh6uQbKTiEZ-2BpTZBmMYsaFBYnhVyPkPAwQha4c9L7b5bH-2F-2BwFNHzeaDsakeOMZkVap11XQtLtPlw85z20l1mtN1zuyHyfTuXpqCka6vM2hn41qW6azuGUjuH8DEtlHSa-2BU23QTh6txgH7nLQZyo3cIcV2CoeYh-2Bx7SKR6TjarodsZTOU96ZiKlKkGvp4j5TW78cHQRnp8eiBYe0x3t8OoiNPtaQEWbJrJvcuHI1C-2Bf5-2BN-2B91Kdrflo-2BNtXLdxv65MGVyhR3rarzBoUoHaQ6WybRKhs22gK7CSEQpmnsbcViGJCa38NzC2pPzK9MMx6bdFomyxbrMhjEAPd-2FS380GNNrRd2k05lRnsGODON-2BcQufHDAljxvcB6id29rVDgiAAtdIsrniOoRJPp2U2DoRMb6Aw-3D-3D" target="_blank" class="v msohide" style="mso-style-priority:100 !important;text-decoration:none !important;mso-line-height-rule:exactly;color:#163300;font-size:16px;padding:15px 5px;display:block;background:#9fe870;border-radius:30px;font-family:Inter, Helvetica, Arial, sans-serif;font-weight:bold;font-style:normal;line-height:19.2px;width:auto;text-align:center;letter-spacing:0;mso-padding-alt:0;mso-border-alt:10px solid #9fe870;mso-hide:all">Share Wise with friends</a></span><!--<![endif]-->
+</td>
+                     </tr>
+                   </table>
+</td>
+                 </tr>
+               </table>
+</td>
+             </tr>
+           </table>
+</td>
+         </tr>
+       </table>
+       <table align="center" cellpadding="0" cellspacing="0" class="be" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%;table-layout:fixed !important">
+       </table>
+       <table cellpadding="0" cellspacing="0" align="center" class="be" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%;table-layout:fixed !important">
+       </table>
+       <table cellpadding="0" cellspacing="0" align="center" class="be" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%;table-layout:fixed !important">
+       </table>
+       <table cellspacing="0" cellpadding="0" align="center" class="be" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%;table-layout:fixed !important">
+       </table>
+       <table cellspacing="0" cellpadding="0" align="center" class="be" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%;table-layout:fixed !important">
+         <tr>
+          <td align="center" style="padding:0;Margin:0">
+           <table cellpadding="0" bgcolor="#ffffff" align="center" cellspacing="0" class="bw" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:#FFFFFF;width:600px">
+             <tr>
+              <td align="left" class="cg cf" style="Margin:0;padding-top:20px;padding-right:40px;padding-bottom:20px;padding-left:40px">
+               <table cellpadding="0" width="100%" cellspacing="0" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                 <tr>
+                  <td valign="top" align="center" style="padding:0;Margin:0;width:520px">
+                   <table width="100%" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                     <tr>
+                      <td align="center" class="d" style="padding:0;Margin:0"><h2 class="br f e" style="Margin:0;font-family:inter, helvetica, arial, sans-serif;mso-line-height-rule:exactly;letter-spacing:0;font-size:24px;font-style:normal;font-weight:normal;line-height:28.8px;color:#0e0f0c"><strong><b>Rewards that work for everyone</b></strong></h2></td>
+                     </tr>
+                     <tr>
+                      <td align="center" class="i ca" style="padding:0;Margin:0;padding-top:20px"><h3 class="br b" style="Margin:0;font-family:inter, helvetica, arial, sans-serif;mso-line-height-rule:exactly;letter-spacing:0;font-size:16px;font-style:normal;font-weight:normal;line-height:24px;color:#454745">Want to know how our referral program works? It’s simple — just follow these 3 easy steps.</h3></td>
+                     </tr>
+                   </table>
+</td>
+                 </tr>
+               </table>
+</td>
+             </tr>
+             <tr>
+              <td align="left" class="cg cf" style="padding:0;Margin:0;padding-right:20px;padding-left:20px;padding-bottom:20px">
+               <table cellpadding="0" width="100%" cellspacing="0" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                 <tr>
+                  <td valign="top" align="center" style="padding:0;Margin:0;width:560px">
+                   <table bgcolor="#ecefeb" width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:separate;border-spacing:0px;background-color:#ecefeb;border-radius:15px" role="presentation">
+                     <tr>
+                      <td align="center" style="padding:25px;Margin:0;font-size:0px"><a target="_blank" href="https://ablink.info.wise.com/ls/click?upn=u001.JwhTX56o1twZ4Z4wwlm-2F9YnQ3rGvtEn5yydJ3TQJaSR4ZLnnpSDtMaQTfGGksVZCQwmLgqmJn5yJ74YH0lHasg-3D-3DW_t__Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP4TbfdkVOlABtJnbFpXqO8EvOLmX296aE0khG0ssKGJQh2CqkuCui4VsK2LahUiGG5rifcmU1rNHWiT74729-2Bv2Ss3mNONjMa74W1jjs6vAZMUj1E9A-2F8V94TrObgMdzllEMD3Cb7nYOiliZz5Q66txH8cggKAhxTtgY-2BpLWGV8OCO9lcIzmEt9cgnw7i-2Fn3LGgs3Mo0y7w-2FFjb0Yvl5MwSKa8INvPEXha3flQTGfLHunZcr7xdvF7WPc0z1bwXORxKpudLhTfT-2Bhd4L9DdITCVmKFa7owbAcvIl2Oz-2Fu-2Fj5Xu2EtwdPIQuB85OWeuf-2BG7mE1kCvkCKjSyaAXmt9GBh6uQbKTiEZ-2BpTZBmMYsaFBYnhVyPkPAwQha4c9L7b5bH-2F-2BwFNHzeaDsakeOMZkVap11XQtLtPlw85z20l1mtN1zuyHyfTuXpqCka6vM2hn41qW6azuGUjuH8DEtlHSa-2BU23QTh6txgH7nLQZyo3cIcV2CoeYh-2Bx7SKR6TjarodsZTOU96ZiKlKkGvp4j5TW78cHQRnp8eiBYe0x3t8OoiNPtaQEWbJrJvcuHI1C-2Bf5-2BN-2B91Kdrflo-2BNtXLdxv65MGo9aVYrhSlXmve3qHPrSoaeGl7BiB5277-2BSzUtcrdVtz2O8IzQQMxesrRpl9bqcZ5fRxAeSdKa2KQy1lrtQo9BZLkzfYjtk1r8gwyu7vrwaHXRkfV8btQGpjHV-2BwkbgEB1XRCu0XnFE2Szy5C1mD2KA-3D-3D" style="mso-line-height-rule:exactly;text-decoration:underline;color:#163300;font-size:16px"><img src="https://nvsrpq.stripocdn.email/content/guids/CABINET_b5e091a73771f85fde3e8a58cf6dc423dbcf04d3dce3679e458654df8be9e4ae/images/megaphonemedium2x.png" alt="Colorful megaphone with coins flying out" width="150" title="Colorful megaphone with coins flying out" style="display:block;font-size:16px;border:0;outline:none;text-decoration:none" height="150"></a></td>
+                     </tr>
+                     <tr>
+                      <td align="center" class="cg cf" style="padding:0;Margin:0;padding-right:40px;padding-left:40px"><h2 class="br" style="Margin:0;font-family:inter, helvetica, arial, sans-serif;mso-line-height-rule:exactly;letter-spacing:0;font-size:24px;font-style:normal;font-weight:normal;line-height:28.8px;color:#0e0f0c"><strong><b>Spread the word</b></strong></h2></td>
+                     </tr>
+                     <tr>
+                      <td align="center" class="cg cf a" style="Margin:0;padding-top:20px;padding-right:40px;padding-left:40px;padding-bottom:30px"><h3 class="br f b" style="Margin:0;font-family:inter, helvetica, arial, sans-serif;mso-line-height-rule:exactly;letter-spacing:0;font-size:16px;font-style:normal;font-weight:normal;line-height:24px;color:#454745">Share your unique Wise referral link with friends and family. The more the merrier.</h3></td>
+                     </tr>
+                   </table>
+</td>
+                 </tr>
+               </table>
+</td>
+             </tr>
+             <tr>
+              <td align="left" class="cg cf" style="padding:0;Margin:0;padding-right:20px;padding-left:20px;padding-bottom:20px">
+               <table cellspacing="0" cellpadding="0" width="100%" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                 <tr>
+                  <td valign="top" align="center" style="padding:0;Margin:0;width:560px">
+                   <table cellspacing="0" cellpadding="0" bgcolor="#ecefeb" width="100%" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:separate;border-spacing:0px;background-color:#ecefeb;border-radius:15px" role="presentation">
+                     <tr>
+                      <td align="center" style="padding:25px;Margin:0;font-size:0px"><a target="_blank" href="https://ablink.info.wise.com/ls/click?upn=u001.JwhTX56o1twZ4Z4wwlm-2F9YnQ3rGvtEn5yydJ3TQJaSQgGSF458s0HuD7WcMGWtZ2Up4BzlfjKOP4jrr-2Fda-2B3bg-3D-3DoVwJ_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP4TbfdkVOlABtJnbFpXqO8EvOLmX296aE0khG0ssKGJQh2CqkuCui4VsK2LahUiGG5rifcmU1rNHWiT74729-2Bv2Ss3mNONjMa74W1jjs6vAZMUj1E9A-2F8V94TrObgMdzllEMD3Cb7nYOiliZz5Q66txH8cggKAhxTtgY-2BpLWGV8OCO9lcIzmEt9cgnw7i-2Fn3LGgs3Mo0y7w-2FFjb0Yvl5MwSKa8INvPEXha3flQTGfLHunZcr7xdvF7WPc0z1bwXORxKpudLhTfT-2Bhd4L9DdITCVmKFa7owbAcvIl2Oz-2Fu-2Fj5Xu2EtwdPIQuB85OWeuf-2BG7mE1kCvkCKjSyaAXmt9GBh6uQbKTiEZ-2BpTZBmMYsaFBYnhVyPkPAwQha4c9L7b5bH-2F-2BwFNHzeaDsakeOMZkVap11XQtLtPlw85z20l1mtN1zuyHyfTuXpqCka6vM2hn41qW6azuGUjuH8DEtlHSa-2BU23QTh6txgH7nLQZyo3cIcV2CoeYh-2Bx7SKR6TjarodsZTOU96ZiKlKkGvp4j5TW78cHQRnp8eiBYe0x3t8OoiNPtaQEWbJrJvcuHI1C-2Bf5-2BN-2B91Kdrflo-2BNtXLdxv65MGnKSPPOdSu6SOQStSn1rPLhMTI0fva5uD58lgPt5Nx-2FeMmceqM1qf2R7mASxpW4UfWl5L22yjx24BAFrSRgquhJqxdxnt-2BdGsPDJZS9-2B5tjRjeRZwSESUTLSv8W9kev-2BtXg15g2pFSLcEGndl3NwBkw-3D-3D" style="mso-line-height-rule:exactly;text-decoration:underline;color:#163300;font-size:16px"><img alt="Colorful heart with abstract textures" width="150" src="https://nvsrpq.stripocdn.email/content/guids/CABINET_b5e091a73771f85fde3e8a58cf6dc423dbcf04d3dce3679e458654df8be9e4ae/images/heart4medium2x_1.png" title="Colorful heart with abstract textures" style="display:block;font-size:16px;border:0;outline:none;text-decoration:none" height="150"></a></td>
+                     </tr>
+                     <tr>
+                      <td align="center" class="cg cf" style="padding:0;Margin:0;padding-right:40px;padding-left:40px"><h2 class="br" style="Margin:0;font-family:inter, helvetica, arial, sans-serif;mso-line-height-rule:exactly;letter-spacing:0;font-size:24px;font-style:normal;font-weight:normal;line-height:28.8px;color:#0e0f0c"><strong><b>Treat them like VIPs</b></strong></h2></td>
+                     </tr>
+                     <tr>
+                      <td align="center" class="cg cf c" style="Margin:0;padding-top:20px;padding-right:40px;padding-left:40px;padding-bottom:30px"><h3 class="br f b" style="Margin:0;font-family:inter, helvetica, arial, sans-serif;mso-line-height-rule:exactly;letter-spacing:0;font-size:16px;font-style:normal;font-weight:normal;line-height:24px;color:#454745">When your friends sign up using your referral link, they’ll get an exclusive Wise perk — <strong style="color:#163300">  they can send their first transfer of up to 600 USD without paying any fees</strong>. It’s the perfect way to kickstart their Wise experience.</h3></td>
+                     </tr>
+                   </table>
+</td>
+                 </tr>
+               </table>
+</td>
+             </tr>
+             <tr>
+              <td align="left" class="cg cf" style="padding:0;Margin:0;padding-right:20px;padding-left:20px;padding-bottom:30px">
+               <table width="100%" cellspacing="0" cellpadding="0" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                 <tr>
+                  <td valign="top" align="center" style="padding:0;Margin:0;width:560px">
+                   <table bgcolor="#ecefeb" width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:separate;border-spacing:0px;background-color:#ecefeb;border-radius:15px" role="presentation">
+                     <tr>
+                      <td align="center" style="padding:25px;Margin:0;font-size:0px"><a target="_blank" href="https://ablink.info.wise.com/ls/click?upn=u001.JwhTX56o1twZ4Z4wwlm-2F9YnQ3rGvtEn5yydJ3TQJaSTRjkbGCgTyTFsAWknZxajtR3Nx3YLePNX515e6ZVlWfQ-3D-3DCGZ2_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP4TbfdkVOlABtJnbFpXqO8EvOLmX296aE0khG0ssKGJQh2CqkuCui4VsK2LahUiGG5rifcmU1rNHWiT74729-2Bv2Ss3mNONjMa74W1jjs6vAZMUj1E9A-2F8V94TrObgMdzllEMD3Cb7nYOiliZz5Q66txH8cggKAhxTtgY-2BpLWGV8OCO9lcIzmEt9cgnw7i-2Fn3LGgs3Mo0y7w-2FFjb0Yvl5MwSKa8INvPEXha3flQTGfLHunZcr7xdvF7WPc0z1bwXORxKpudLhTfT-2Bhd4L9DdITCVmKFa7owbAcvIl2Oz-2Fu-2Fj5Xu2EtwdPIQuB85OWeuf-2BG7mE1kCvkCKjSyaAXmt9GBh6uQbKTiEZ-2BpTZBmMYsaFBYnhVyPkPAwQha4c9L7b5bH-2F-2BwFNHzeaDsakeOMZkVap11XQtLtPlw85z20l1mtN1zuyHyfTuXpqCka6vM2hn41qW6azuGUjuH8DEtlHSa-2BU23QTh6txgH7nLQZyo3cIcV2CoeYh-2Bx7SKR6TjarodsZTOU96ZiKlKkGvp4j5TW78cHQRnp8eiBYe0x3t8OoiNPtaQEWbJrJvcuHI1C-2Bf5-2BN-2B91Kdrflo-2BNtXLdxv65MGvM1Dn3-2BZDcafLtNlN4YGWSUwiYih74-2BAHqDY7XDhdJ31E-2FAW8PMw8ax6IIVfJJt0fbyUIzRJDAolJAbATjBk0gn4YRVipyZI5uEB5Tav7nlCynYwwd0wBzUER7r5nkGYW-2Fb0Zl7pcSrby8hnjUH37g-3D-3D" style="mso-line-height-rule:exactly;text-decoration:underline;color:#163300;font-size:16px"><img width="150" src="https://nvsrpq.stripocdn.email/content/guids/CABINET_b5e091a73771f85fde3e8a58cf6dc423dbcf04d3dce3679e458654df8be9e4ae/images/confettimedium2x.png" alt="Colorful swirling ribbon with confetti." title="Colorful swirling ribbon with confetti." style="display:block;font-size:16px;border:0;outline:none;text-decoration:none" height="150"></a></td>
+                     </tr>
+                     <tr>
+                      <td align="center" class="cg cf" style="padding:0;Margin:0;padding-right:40px;padding-left:40px"><h2 class="br" style="Margin:0;font-family:inter, helvetica, arial, sans-serif;mso-line-height-rule:exactly;letter-spacing:0;font-size:24px;font-style:normal;font-weight:normal;line-height:28.8px;color:#0e0f0c"><strong><b>Unlock your 115 USD reward</b></strong></h2></td>
+                     </tr>
+                     <tr>
+                      <td align="center" class="cg cf g" style="Margin:0;padding-top:20px;padding-right:40px;padding-left:40px;padding-bottom:30px">
+<h3 class="br f b" style="Margin:0;font-family:inter, helvetica, arial, sans-serif;mso-line-height-rule:exactly;letter-spacing:0;font-size:16px;font-style:normal;font-weight:normal;line-height:24px;color:#454745">Once&nbsp;<strong style="color:#163300">3</strong>&nbsp;of your friends have either made a cross-currency transfer over&nbsp;<b style="color:#163300">300 USD</b>, or spent over<span style="color:#163300">&nbsp;<strong>300 USD</strong></span> with a Wise card, you can claim a&nbsp;<strong style="color:#163300">115 USD</strong>&nbsp;reward.&nbsp;</h3>
+<p class="br f b" style="Margin:0;mso-line-height-rule:exactly;font-family:inter, helvetica, arial, sans-serif;line-height:24px;letter-spacing:0;color:#454745;font-size:16px"><br></p>
+<p class="br f b" style="Margin:0;mso-line-height-rule:exactly;font-family:inter, helvetica, arial, sans-serif;line-height:24px;letter-spacing:0;color:#454745;font-size:16px">Whether you want to save it, treat yourself to something special, or put it towards your next adventure — it’s yours to enjoy.</p>
+</td>
+                     </tr>
+                   </table>
+</td>
+                 </tr>
+               </table>
+</td>
+             </tr>
+           </table>
+</td>
+         </tr>
+       </table>
+       <table cellpadding="0" cellspacing="0" align="center" class="be" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%;table-layout:fixed !important">
+         <tr>
+          <td align="center" style="padding:0;Margin:0">
+           <table cellspacing="0" cellpadding="0" bgcolor="#ffffff" align="center" class="bw" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:#FFFFFF;width:600px">
+             <tr>
+              <td align="left" class="cg cf" style="padding:0;Margin:0;padding-right:40px;padding-left:40px;padding-bottom:30px">
+               <table cellspacing="0" cellpadding="0" width="100%" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                 <tr>
+                  <td valign="top" align="center" style="padding:0;Margin:0;width:520px">
+                   <table width="100%" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                     <tr>
+                      <td align="center" class="cc cb" style="padding:0;Margin:0;padding-right:40px;padding-left:40px">
+<!--[if mso]><a href="https://ablink.info.wise.com/ls/click?upn=u001.JwhTX56o1twZ4Z4wwlm-2F9YnQ3rGvtEn5yydJ3TQJaSS4x6z-2F5wiT6VhUBIqltJ5M0JKL6snzgG3UrYxavpmntA-3D-3DX_Km_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP4TbfdkVOlABtJnbFpXqO8EvOLmX296aE0khG0ssKGJQh2CqkuCui4VsK2LahUiGG5rifcmU1rNHWiT74729-2Bv2Ss3mNONjMa74W1jjs6vAZMUj1E9A-2F8V94TrObgMdzllEMD3Cb7nYOiliZz5Q66txH8cggKAhxTtgY-2BpLWGV8OCO9lcIzmEt9cgnw7i-2Fn3LGgs3Mo0y7w-2FFjb0Yvl5MwSKa8INvPEXha3flQTGfLHunZcr7xdvF7WPc0z1bwXORxKpudLhTfT-2Bhd4L9DdITCVmKFa7owbAcvIl2Oz-2Fu-2Fj5Xu2EtwdPIQuB85OWeuf-2BG7mE1kCvkCKjSyaAXmt9GBh6uQbKTiEZ-2BpTZBmMYsaFBYnhVyPkPAwQha4c9L7b5bH-2F-2BwFNHzeaDsakeOMZkVap11XQtLtPlw85z20l1mtN1zuyHyfTuXpqCka6vM2hn41qW6azuGUjuH8DEtlHSa-2BU23QTh6txgH7nLQZyo3cIcV2CoeYh-2Bx7SKR6TjarodsZTOU96ZiKlKkGvp4j5TW78cHQRnp8eiBYe0x3t8OoiNPtaQEWbJrJvcuHI1C-2Bf5-2BN-2B91Kdrflo-2BNtXLdxv65MGT691WWY7LeZXohW56r-2FOA-2FUW88v1FABJqhaqhg57QJZk7BLmPNDWglZEnyf8f3CBAQwLeAxgGWU63hbDQJEt8X6dpqFfEpvhcogDM8uf4iBXWlCGPaF8w88mZGwxrZ1DZnRz7I7Jrr9PH2Ie3GQ47w-3D-3D" target="_blank" hidden>
+	<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" esdevVmlButton href="https://wise.com/invite?lid=3c2y43vz6l87" style="height:49px; v-text-anchor:middle; width:440px" arcsize="50%" stroke="f"  fillcolor="#9fe870">
+		<w:anchorlock></w:anchorlock>
+		<center style='color:#163300; font-family:Inter, Helvetica, Arial, sans-serif; font-size:16px; font-weight:700; line-height:16px;  mso-text-raise:1px'>Share your referral link</center>
+	</v:roundrect></a>
+<![endif]--><!--[if !mso]><!-- --><span class="bo msohide" style="border-style:solid;border-color:#2cb543;background:#9fe870;border-width:0px;display:block;border-radius:30px;width:auto;mso-hide:all"><a href="https://ablink.info.wise.com/ls/click?upn=u001.JwhTX56o1twZ4Z4wwlm-2F9YnQ3rGvtEn5yydJ3TQJaSSaP7ZuAz-2BVSn4zN0QEfPqWrcHE59fvjwLjc0C9z7BOQQ-3D-3DgjFt_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP4TbfdkVOlABtJnbFpXqO8EvOLmX296aE0khG0ssKGJQh2CqkuCui4VsK2LahUiGG5rifcmU1rNHWiT74729-2Bv2Ss3mNONjMa74W1jjs6vAZMUj1E9A-2F8V94TrObgMdzllEMD3Cb7nYOiliZz5Q66txH8cggKAhxTtgY-2BpLWGV8OCO9lcIzmEt9cgnw7i-2Fn3LGgs3Mo0y7w-2FFjb0Yvl5MwSKa8INvPEXha3flQTGfLHunZcr7xdvF7WPc0z1bwXORxKpudLhTfT-2Bhd4L9DdITCVmKFa7owbAcvIl2Oz-2Fu-2Fj5Xu2EtwdPIQuB85OWeuf-2BG7mE1kCvkCKjSyaAXmt9GBh6uQbKTiEZ-2BpTZBmMYsaFBYnhVyPkPAwQha4c9L7b5bH-2F-2BwFNHzeaDsakeOMZkVap11XQtLtPlw85z20l1mtN1zuyHyfTuXpqCka6vM2hn41qW6azuGUjuH8DEtlHSa-2BU23QTh6txgH7nLQZyo3cIcV2CoeYh-2Bx7SKR6TjarodsZTOU96ZiKlKkGvp4j5TW78cHQRnp8eiBYe0x3t8OoiNPtaQEWbJrJvcuHI1C-2Bf5-2BN-2B91Kdrflo-2BNtXLdxv65MGuuCz0t-2FvIOdWu0onjiBVM4ga7tlNGChWDIrBm-2BhfUIupMtY9DqKgGzd88F4AysPAbJI-2BI5qT3WBphyKagWNCGHSRm22oG2DRHlC3i-2Btlq987ukRhM8CEOjgI4-2FTQoR-2Blzh1RAax8w3UfyC0NPcI-2FwA-3D-3D" target="_blank" class="v msohide" style="mso-style-priority:100 !important;text-decoration:none !important;mso-line-height-rule:exactly;color:#163300;font-size:16px;padding:15px 5px;display:block;background:#9fe870;border-radius:30px;font-family:Inter, Helvetica, Arial, sans-serif;font-weight:bold;font-style:normal;line-height:19.2px;width:auto;text-align:center;letter-spacing:0;mso-padding-alt:0;mso-border-alt:10px solid #9fe870;mso-hide:all">Share your referral link</a></span><!--<![endif]-->
+</td>
+                     </tr>
+                     <tr>
+                      <td align="center" class="cg cf" style="padding:0;Margin:0;padding-right:40px;padding-left:40px;padding-top:25px"><p style="Margin:0;mso-line-height-rule:exactly;font-family:inter, helvetica, arial, sans-serif;line-height:21px;letter-spacing:0;color:#163300;font-size:14px"><a target="_blank" href="https://ablink.info.wise.com/ls/click?upn=u001.JwhTX56o1twZ4Z4wwlm-2F9fpfxPwabbfVYKvAymvbMPdp9u2XYGOEAFDmwZ5TPYF-2Fa-2FkAEcW7e4ODu3BjyREZretInt06I2knD8n-2FCCrKhJw-3DTnI4_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP4TbfdkVOlABtJnbFpXqO8EvOLmX296aE0khG0ssKGJQh2CqkuCui4VsK2LahUiGG5rifcmU1rNHWiT74729-2Bv2Ss3mNONjMa74W1jjs6vAZMUj1E9A-2F8V94TrObgMdzllEMD3Cb7nYOiliZz5Q66txH8cggKAhxTtgY-2BpLWGV8OCO9lcIzmEt9cgnw7i-2Fn3LGgs3Mo0y7w-2FFjb0Yvl5MwSKa8INvPEXha3flQTGfLHunZcr7xdvF7WPc0z1bwXORxKpudLhTfT-2Bhd4L9DdITCVmKFa7owbAcvIl2Oz-2Fu-2Fj5Xu2EtwdPIQuB85OWeuf-2BG7mE1kCvkCKjSyaAXmt9GBh6uQbKTiEZ-2BpTZBmMYsaFBYnhVyPkPAwQha4c9L7b5bH-2F-2BwFNHzeaDsakeOMZkVap11XQtLtPlw85z20l1mtN1zuyHyfTuXpqCka6vM2hn41qW6azuGUjuH8DEtlHSa-2BU23QTh6txgH7nLQZyo3cIcV2CoeYh-2Bx7SKR6TjarodsZTOU96ZiKlKkGvp4j5TW78cHQRnp8eiBYe0x3t8OoiNPtaQEWbJrJvcuHI1C-2Bf5-2BN-2B91Kdrflo-2BNtXLdxv65MGOkQ5R40SBbs4tMPZuff0R7vQV-2BBUhCK7-2FBasaRKtPc-2FdFf06QG99PBXuvMngw8cZa6kRaMcDCA6khg8sowfF98f7wVE7Y3mND-2BqNm1T-2FPsFmylsCGftIS21sVqSaNdh60oGsDHIpWx5M3RTiPEB5Iw-3D-3D" style="mso-line-height-rule:exactly;text-decoration:underline;color:#163300;font-size:14px;font-family:inter, helvetica, arial, sans-serif">Referral Program T&amp;Cs</a></p></td>
+                     </tr>
+                   </table>
+</td>
+                 </tr>
+               </table>
+</td>
+             </tr>
+           </table>
+</td>
+         </tr>
+       </table>
+       <table cellpadding="0" align="center" cellspacing="0" class="be" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%;table-layout:fixed !important">
+       </table>
+       <table cellpadding="0" align="center" cellspacing="0" class="be" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%;table-layout:fixed !important">
+       </table>
+       <table cellspacing="0" cellpadding="0" align="center" class="be" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%;table-layout:fixed !important">
+       </table>
+       <table align="center" cellspacing="0" cellpadding="0" class="be" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%;table-layout:fixed !important">
+       </table>
+       <table align="center" cellspacing="0" cellpadding="0" class="be" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%;table-layout:fixed !important">
+         <tr>
+          <td align="center" style="padding:0;Margin:0">
+           <table bgcolor="#ecefeb" align="center" cellspacing="0" cellpadding="0" class="bw" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:#ecefeb;width:600px" role="none">
+             <tr>
+              <td align="left" class="cg cf" style="Margin:0;padding-top:20px;padding-right:40px;padding-bottom:20px;padding-left:40px">
+               <table cellspacing="0" cellpadding="0" width="100%" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                 <tr>
+                  <td valign="top" align="center" style="padding:0;Margin:0;width:520px">
+                   <table width="100%" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                     <tr>
+                      <td align="center" class="w" style="padding:0;Margin:0"><h1 class="br x" style="Margin:0;font-family:Inter, Helvetica, Arial, sans-serif;mso-line-height-rule:exactly;letter-spacing:0;font-size:26px;font-style:normal;font-weight:normal;line-height:31.2px;color:#0E0F0C"><strong>Your questions answered</strong></h1></td>
+                     </tr>
+                   </table>
+</td>
+                 </tr>
+               </table>
+</td>
+             </tr>
+             <tr>
+              <td align="left" class="cg cf" style="Margin:0;padding-right:40px;padding-left:40px;padding-top:5px;padding-bottom:5px">
+               <table cellpadding="0" cellspacing="0" width="100%" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                 <tr>
+                  <td align="center" valign="top" style="padding:0;Margin:0;width:520px">
+                   <table cellspacing="0" width="100%" bgcolor="#dbe0d8" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:separate;border-spacing:0px;background-color:#dbe0d8;border-radius:50px" role="presentation">
+                     <tr>
+                      <td align="center" class="cg cf" style="Margin:0;padding-right:40px;padding-left:40px;padding-top:15px;padding-bottom:15px"><h3 class="br" style="Margin:0;font-family:Inter, Helvetica, Arial, sans-serif;mso-line-height-rule:exactly;letter-spacing:0;font-size:16px;font-style:normal;font-weight:normal;line-height:24px;color:#0E0F0C"><strong><a target="_blank" href="https://ablink.info.wise.com/ls/click?upn=u001.JwhTX56o1twZ4Z4wwlm-2F9UGATdROznh99-2BqtK9n1wohgz18bcY3jW5VAEPyRnNgXY237U1ac6ExRKYU-2BWx2VGTC7Eu0BvEwuP01OUNDNo8-2FSKhzTqxx1Ln6ZRQu5vPkT85YsYJtouVfVD-2BHO7r4neA-3D-3Dx-2H_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP4TbfdkVOlABtJnbFpXqO8EvOLmX296aE0khG0ssKGJQh2CqkuCui4VsK2LahUiGG5rifcmU1rNHWiT74729-2Bv2Ss3mNONjMa74W1jjs6vAZMUj1E9A-2F8V94TrObgMdzllEMD3Cb7nYOiliZz5Q66txH8cggKAhxTtgY-2BpLWGV8OCO9lcIzmEt9cgnw7i-2Fn3LGgs3Mo0y7w-2FFjb0Yvl5MwSKa8INvPEXha3flQTGfLHunZcr7xdvF7WPc0z1bwXORxKpudLhTfT-2Bhd4L9DdITCVmKFa7owbAcvIl2Oz-2Fu-2Fj5Xu2EtwdPIQuB85OWeuf-2BG7mE1kCvkCKjSyaAXmt9GBh6uQbKTiEZ-2BpTZBmMYsaFBYnhVyPkPAwQha4c9L7b5bH-2F-2BwFNHzeaDsakeOMZkVap11XQtLtPlw85z20l1mtN1zuyHyfTuXpqCka6vM2hn41qW6azuGUjuH8DEtlHSa-2BU23QTh6txgH7nLQZyo3cIcV2CoeYh-2Bx7SKR6TjarodsZTOU96ZiKlKkGvp4j5TW78cHQRnp8eiBYe0x3t8OoiNPtaQEWbJrJvcuHI1C-2Bf5-2BN-2B91Kdrflo-2BNtXLdxv65MG-2Fj2C4-2FS66VCGgMSE-2B1-2FoIVMrvKeMvn9gEfMQWO-2Fmte7SHQPV7IyOxbSupKRBRMLbrjMXobKvkHZsx82fRqIyBnjESw8HoTHlgh58MqSJ2yto7Q67iJAwN2xFrC-2BZEwFOEqGVrT0qCOjWAkHZ3nqzEQ-3D-3D" style="mso-line-height-rule:exactly;text-decoration:none;color:#163300;font-size:16px;line-height:24px">How does the Wise referral program work?</a></strong></h3></td>
+                     </tr>
+                   </table>
+</td>
+                 </tr>
+               </table>
+</td>
+             </tr>
+             <tr>
+              <td align="left" class="cg cf" style="Margin:0;padding-right:40px;padding-left:40px;padding-top:5px;padding-bottom:5px">
+               <table cellspacing="0" width="100%" cellpadding="0" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                 <tr>
+                  <td valign="top" align="center" style="padding:0;Margin:0;width:520px">
+                   <table cellspacing="0" width="100%" bgcolor="#dbe0d8" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:separate;border-spacing:0px;border-radius:50px;background-color:#dbe0d8" role="presentation">
+                     <tr>
+                      <td align="center" class="cg cf" style="Margin:0;padding-right:40px;padding-left:40px;padding-top:15px;padding-bottom:15px"><h3 class="br" style="Margin:0;font-family:Inter, Helvetica, Arial, sans-serif;mso-line-height-rule:exactly;letter-spacing:0;font-size:16px;font-style:normal;font-weight:normal;line-height:24px;color:#0E0F0C"><strong><a target="_blank" href="https://ablink.info.wise.com/ls/click?upn=u001.JwhTX56o1twZ4Z4wwlm-2F9UGATdROznh99-2BqtK9n1wogj-2B-2B6QrDtLowT7nl6Fy7GgODYimlLx0-2Bl8DdpegIDVa5-2FHElfqp7RbwcvwOPhzfWySOcBBEz1OavsVimPoVLs3i45xPuD1-2B2GY3PIKiRWB3Q-3D-3DHaz__Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP4TbfdkVOlABtJnbFpXqO8EvOLmX296aE0khG0ssKGJQh2CqkuCui4VsK2LahUiGG5rifcmU1rNHWiT74729-2Bv2Ss3mNONjMa74W1jjs6vAZMUj1E9A-2F8V94TrObgMdzllEMD3Cb7nYOiliZz5Q66txH8cggKAhxTtgY-2BpLWGV8OCO9lcIzmEt9cgnw7i-2Fn3LGgs3Mo0y7w-2FFjb0Yvl5MwSKa8INvPEXha3flQTGfLHunZcr7xdvF7WPc0z1bwXORxKpudLhTfT-2Bhd4L9DdITCVmKFa7owbAcvIl2Oz-2Fu-2Fj5Xu2EtwdPIQuB85OWeuf-2BG7mE1kCvkCKjSyaAXmt9GBh6uQbKTiEZ-2BpTZBmMYsaFBYnhVyPkPAwQha4c9L7b5bH-2F-2BwFNHzeaDsakeOMZkVap11XQtLtPlw85z20l1mtN1zuyHyfTuXpqCka6vM2hn41qW6azuGUjuH8DEtlHSa-2BU23QTh6txgH7nLQZyo3cIcV2CoeYh-2Bx7SKR6TjarodsZTOU96ZiKlKkGvp4j5TW78cHQRnp8eiBYe0x3t8OoiNPtaQEWbJrJvcuHI1C-2Bf5-2BN-2B91Kdrflo-2BNtXLdxv65MGn3BOwDYbIdtAdYtWK7mKTEbF8WEL1d8EBBLPL64G-2BKTIqtF7AkHz2S4lluuObYZ-2BuY1IVW-2BPdkFZ6r-2FaNm9NkWQT2ZHTHqle09rmXLSh6C2HXHhUx-2Bz98ZEoJdi6au-2B9lyCOLC3lAVfY5X9HV9eh6w-3D-3D" style="mso-line-height-rule:exactly;text-decoration:none;color:#163300;font-size:16px;line-height:24px">How does the free transfer referral program work?</a></strong></h3></td>
+                     </tr>
+                   </table>
+</td>
+                 </tr>
+               </table>
+</td>
+             </tr>
+             <tr>
+              <td align="left" class="cg cf" style="Margin:0;padding-right:40px;padding-left:40px;padding-top:5px;padding-bottom:5px">
+               <table cellspacing="0" width="100%" cellpadding="0" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                 <tr>
+                  <td align="center" valign="top" style="padding:0;Margin:0;width:520px">
+                   <table cellspacing="0" width="100%" bgcolor="#dbe0d8" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:separate;border-spacing:0px;background-color:#dbe0d8;border-radius:50px" role="presentation">
+                     <tr>
+                      <td align="center" class="cg cf" style="Margin:0;padding-right:40px;padding-left:40px;padding-top:15px;padding-bottom:15px"><h3 class="br" style="Margin:0;font-family:Inter, Helvetica, Arial, sans-serif;mso-line-height-rule:exactly;letter-spacing:0;font-size:16px;font-style:normal;font-weight:normal;line-height:24px;color:#0E0F0C"><strong><a target="_blank" href="https://ablink.info.wise.com/ls/click?upn=u001.JwhTX56o1twZ4Z4wwlm-2F9UGATdROznh99-2BqtK9n1wogAQHXhNwYp4hjPrQbEniaFa9Fz0AStyxfgL1rgUVfAEh39NSScF2NaFzdAhBfw9-2FAGim2zEiPKtd8TQ-2BOW4VSMjpWD_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP4TbfdkVOlABtJnbFpXqO8EvOLmX296aE0khG0ssKGJQh2CqkuCui4VsK2LahUiGG5rifcmU1rNHWiT74729-2Bv2Ss3mNONjMa74W1jjs6vAZMUj1E9A-2F8V94TrObgMdzllEMD3Cb7nYOiliZz5Q66txH8cggKAhxTtgY-2BpLWGV8OCO9lcIzmEt9cgnw7i-2Fn3LGgs3Mo0y7w-2FFjb0Yvl5MwSKa8INvPEXha3flQTGfLHunZcr7xdvF7WPc0z1bwXORxKpudLhTfT-2Bhd4L9DdITCVmKFa7owbAcvIl2Oz-2Fu-2Fj5Xu2EtwdPIQuB85OWeuf-2BG7mE1kCvkCKjSyaAXmt9GBh6uQbKTiEZ-2BpTZBmMYsaFBYnhVyPkPAwQha4c9L7b5bH-2F-2BwFNHzeaDsakeOMZkVap11XQtLtPlw85z20l1mtN1zuyHyfTuXpqCka6vM2hn41qW6azuGUjuH8DEtlHSa-2BU23QTh6txgH7nLQZyo3cIcV2CoeYh-2Bx7SKR6TjarodsZTOU96ZiKlKkGvp4j5TW78cHQRnp8eiBYe0x3t8OoiNPtaQEWbJrJvcuHI1C-2Bf5-2BN-2B91Kdrflo-2BNtXLdxv65MGRp5RmCrT1P4fOyJiiPLHXcBpvD6-2Be85V-2BA8yAnubaDXOwNNQuLZ7jYwSXc0ke6gCuimG9Yj1K5tcYanU2kQVlFcDSwXuDG-2BJdKLYkJIgwsPx3MN6XAJklrWS4wMvs3gnqQXaJhgw-2BuedwVjYtLsVSg-3D-3D" style="mso-line-height-rule:exactly;text-decoration:none;color:#163300;font-size:16px;line-height:24px">How do I get my reward?</a></strong></h3></td>
+                     </tr>
+                   </table>
+</td>
+                 </tr>
+               </table>
+</td>
+             </tr>
+             <tr>
+              <td align="left" class="cg cf" style="padding:0;Margin:0;padding-right:40px;padding-left:40px;padding-bottom:30px">
+               <table cellspacing="0" width="100%" cellpadding="0" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                 <tr>
+                  <td align="center" valign="top" style="padding:0;Margin:0;width:520px">
+                   <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                     <tr>
+                      <td align="center" class="br bz cc cb" style="padding:0;Margin:0;padding-top:20px;padding-right:40px;padding-left:40px">
+<!--[if mso]><a href="https://ablink.info.wise.com/ls/click?upn=u001.JwhTX56o1twZ4Z4wwlm-2F9QJyiKFSFxCuFYFsqFqY2YLzRa9Ko7aoGy-2BgbCUP7wlYQQd9_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP4TbfdkVOlABtJnbFpXqO8EvOLmX296aE0khG0ssKGJQh2CqkuCui4VsK2LahUiGG5rifcmU1rNHWiT74729-2Bv2Ss3mNONjMa74W1jjs6vAZMUj1E9A-2F8V94TrObgMdzllEMD3Cb7nYOiliZz5Q66txH8cggKAhxTtgY-2BpLWGV8OCO9lcIzmEt9cgnw7i-2Fn3LGgs3Mo0y7w-2FFjb0Yvl5MwSKa8INvPEXha3flQTGfLHunZcr7xdvF7WPc0z1bwXORxKpudLhTfT-2Bhd4L9DdITCVmKFa7owbAcvIl2Oz-2Fu-2Fj5Xu2EtwdPIQuB85OWeuf-2BG7mE1kCvkCKjSyaAXmt9GBh6uQbKTiEZ-2BpTZBmMYsaFBYnhVyPkPAwQha4c9L7b5bH-2F-2BwFNHzeaDsakeOMZkVap11XQtLtPlw85z20l1mtN1zuyHyfTuXpqCka6vM2hn41qW6azuGUjuH8DEtlHSa-2BU23QTh6txgH7nLQZyo3cIcV2CoeYh-2Bx7SKR6TjarodsZTOU96ZiKlKkGvp4j5TW78cHQRnp8eiBYe0x3t8OoiNPtaQEWbJrJvcuHI1C-2Bf5-2BN-2B91Kdrflo-2BNtXLdxv65MG7BhGN1VLrCD3kb3aWhUsNA-2FaRQ-2FfC8eG8m75DlxqEA-2Fv24yi87ml7TjZPkUBBJZ8bo-2F6sQVwKZaKTQYl1qJbRugVN2Eb-2FehchoMUdG3mTK-2Bs7Am7oT47u1xadQKcMDFC9f9iM-2FXJQIsJl5msL5RKXg-3D-3D" target="_blank" hidden>
+	<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" esdevVmlButton href="https://wise.com/help/?lid=rmi47a7rn7fa" style="height:49px; v-text-anchor:middle; width:440px" arcsize="50%" stroke="f"  fillcolor="#9fe870">
+		<w:anchorlock></w:anchorlock>
+		<center style='color:#163300; font-family:Inter, Helvetica, Arial, sans-serif; font-size:16px; font-weight:700; line-height:16px;  mso-text-raise:1px'>Go to help centre</center>
+	</v:roundrect></a>
+<![endif]--><!--[if !mso]><!-- --><span class="bo msohide" style="border-style:solid;border-color:#2CB543;background:#9fe870;border-width:0px;display:block;border-radius:30px;width:auto;mso-hide:all"><a href="https://ablink.info.wise.com/ls/click?upn=u001.JwhTX56o1twZ4Z4wwlm-2F9QJyiKFSFxCuFYFsqFqY2YJ5nrt5MiiGrYo7JfcNjY5CL-W7_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP4TbfdkVOlABtJnbFpXqO8EvOLmX296aE0khG0ssKGJQh2CqkuCui4VsK2LahUiGG5rifcmU1rNHWiT74729-2Bv2Ss3mNONjMa74W1jjs6vAZMUj1E9A-2F8V94TrObgMdzllEMD3Cb7nYOiliZz5Q66txH8cggKAhxTtgY-2BpLWGV8OCO9lcIzmEt9cgnw7i-2Fn3LGgs3Mo0y7w-2FFjb0Yvl5MwSKa8INvPEXha3flQTGfLHunZcr7xdvF7WPc0z1bwXORxKpudLhTfT-2Bhd4L9DdITCVmKFa7owbAcvIl2Oz-2Fu-2Fj5Xu2EtwdPIQuB85OWeuf-2BG7mE1kCvkCKjSyaAXmt9GBh6uQbKTiEZ-2BpTZBmMYsaFBYnhVyPkPAwQha4c9L7b5bH-2F-2BwFNHzeaDsakeOMZkVap11XQtLtPlw85z20l1mtN1zuyHyfTuXpqCka6vM2hn41qW6azuGUjuH8DEtlHSa-2BU23QTh6txgH7nLQZyo3cIcV2CoeYh-2Bx7SKR6TjarodsZTOU96ZiKlKkGvp4j5TW78cHQRnp8eiBYe0x3t8OoiNPtaQEWbJrJvcuHI1C-2Bf5-2BN-2B91Kdrflo-2BNtXLdxv65MGGAGD51l6YS08my0iXX69HKxYJeo2T7462037tmpa9U7jzmMCt-2FXZANyQ28qa3IoOo3DP5gPpcTvyFu9gNRWMNKZsbjGMDhTDzdb8Yd3Id96EmszL5ytRFmzPYmmkRXlekWN9ei370edPPb8yDijmAw-3D-3D" target="_blank" class="v msohide v-1700179943660" style="mso-style-priority:100 !important;text-decoration:none !important;mso-line-height-rule:exactly;color:#163300;font-size:16px;padding:15px 5px;display:block;background:#9fe870;border-radius:30px;font-family:Inter, Helvetica, Arial, sans-serif;font-weight:bold;font-style:normal;line-height:19.2px;width:auto;text-align:center;letter-spacing:0;mso-padding-alt:0;mso-border-alt:10px solid #9fe870;mso-hide:all">Go to help centre</a></span><!--<![endif]-->
+</td>
+                     </tr>
+                   </table>
+</td>
+                 </tr>
+               </table>
+</td>
+             </tr>
+           </table>
+</td>
+         </tr>
+       </table>
+       <table align="center" cellspacing="0" cellpadding="0" class="be" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%;table-layout:fixed !important">
+       </table>
+       <table align="center" cellspacing="0" cellpadding="0" class="be" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%;table-layout:fixed !important">
+       </table>
+       <table cellspacing="0" cellpadding="0" align="center" class="be" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%;table-layout:fixed !important">
+       </table>
+       <table align="center" cellpadding="0" cellspacing="0" class="be" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%;table-layout:fixed !important">
+       </table>
+       <table align="center" cellpadding="0" cellspacing="0" class="be" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%;table-layout:fixed !important">
+       </table>
+       <table cellpadding="0" cellspacing="0" align="center" class="be" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%;table-layout:fixed !important">
+       </table>
+       <table cellspacing="0" cellpadding="0" align="center" class="be" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%;table-layout:fixed !important">
+       </table>
+       <table cellpadding="0" cellspacing="0" align="center" class="be" role="none" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%;table-layout:fixed !important">
+       </table>
+</td>
+     </tr>
+   </table>
+         <!--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+
+
+
+
+
+-->
+
+
+<table cellpadding="0" cellspacing="0" class="footer es-footer" align="center" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;table-layout:fixed;width:100%;background-color:transparent;background-repeat:repeat;background-position:center top">
+  <tr>
+   <td align="center" style="padding:0;Margin:0">
+    <table class="footer-body es-footer-body" cellspacing="0" cellpadding="0" align="center" bgcolor="#163300" style="background:#163300;mso-table-lspace:0pt;mso-table-rspace:0pt;width:100%;max-width:600px;border-collapse:collapse;border-spacing:0px;background-color:#163300;">
+      
+       
+      <tr>
+       <td class="esdev-adapt-off es-m-p25r es-m-p25l" align="left" style="Margin:0;padding-bottom:0;padding-top:40px;padding-left:40px;padding-right:40px;">
+        <table cellpadding="0" cellspacing="0" class="esdev-mso-table" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%;max-width:530px">
+          <tr>
+           <td class="esdev-mso-td" valign="top" style="padding:0;Margin:0">
+            <table cellpadding="0" cellspacing="0" class="es-left" align="left" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse;border-spacing: 0px;float: left;width:100%;">
+              <tr>
+               <td align="center" style="padding:0;Margin:0;width:145px">
+                <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                  <tr>
+                   <td align="center" style="padding:20px;Margin:0;font-size:0">
+                    <table border="0" width="100%" height="100%" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                      <tr>
+                       <td style="padding:0;Margin:0;border-bottom:0px solid #cccccc;background:none;height:1px;width:100%;margin:0px"></td>
+                      </tr>
+                    </table>
+</td>
+                  </tr>
+                </table>
+</td>
+              </tr>
+            </table>
+</td>
+           <td style="padding:0;Margin:0;width:15px"></td>
+           <td class="esdev-mso-td" valign="top" style="padding:0;Margin:0">
+            <table cellpadding="0" cellspacing="0" class="es-left" align="left" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse;border-spacing: 0px;float: left;width: 100%;">
+              <tr>
+               <td align="center" style="padding:3px;Margin:0;width:30px;">
+                <table cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                  <tr>
+                    <td align="center" style="padding:0;Margin:0;font-size:0px"><a target="_blank" href="https://ablink.info.wise.com/ls/click?upn=u001.JwhTX56o1twZ4Z4wwlm-2F9ecmzYtiAqcpXnz4H0CQ1gxIfU12bMeMl5BRDNjFbxHVS1xy_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP4TbfdkVOlABtJnbFpXqO8EvOLmX296aE0khG0ssKGJQh2CqkuCui4VsK2LahUiGG5rifcmU1rNHWiT74729-2Bv2Ss3mNONjMa74W1jjs6vAZMUj1E9A-2F8V94TrObgMdzllEMD3Cb7nYOiliZz5Q66txH8cggKAhxTtgY-2BpLWGV8OCO9lcIzmEt9cgnw7i-2Fn3LGgs3Mo0y7w-2FFjb0Yvl5MwSKa8INvPEXha3flQTGfLHunZcr7xdvF7WPc0z1bwXORxKpudLhTfT-2Bhd4L9DdITCVmKFa7owbAcvIl2Oz-2Fu-2Fj5Xu2EtwdPIQuB85OWeuf-2BG7mE1kCvkCKjSyaAXmt9GBh6uQbKTiEZ-2BpTZBmMYsaFBYnhVyPkPAwQha4c9L7b5bH-2F-2BwFNHzeaDsakeOMZkVap11XQtLtPlw85z20l1mtN1zuyHyfTuXpqCka6vM2hn41qW6azuGUjuH8DEtlHSa-2BU23QTh6txgH7nLQZyo3cIcV2CoeYh-2Bx7SKR6TjarodsZTOU96ZiKlKkGvp4j5TW78cHQRnp8eiBYe0x3t8OoiNPtaQEWbJrJvcuHI1C-2Bf5-2BN-2B91Kdrflo-2BNtXLdxv65MGT1DkxpyqYgoVSmYXtGBdbCXxuJ71nUos2zfD7AAFr2nExhRlvglh3Z1-2FUEshQYZVlnDAE7axYWgje5ezHGDySzK1aZ5bA7b68P2k4hk-2BdJgmaozsqN0uwjOUC16VkMaKItG3XWt7nXEIUYLcwnyXrw-3D-3D" style="-webkit-text-size-adjust: none;-ms-text-size-adjust: none;mso-line-height-rule: exactly;text-decoration: underline;color: #9fe870;font-size: 9px;line-height: 150%;"><img src="https://cdn.braze.eu/appboy/communication/assets/image_assets/images/68f8d9274cd47b00718d3a13/original.png?1761138983" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic" width="30" height="30"></a></td>
+                  </tr>
+                </table>
+</td>
+              </tr>
+            </table>
+</td>
+           <td style="padding:0;Margin:0;width:15px"></td>
+           <td class="esdev-mso-td" valign="top" style="padding:0;Margin:0">
+            <table cellpadding="0" cellspacing="0" class="es-left" align="left" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse;border-spacing: 0px;float: left;width:100%;">
+              <tr>
+               <td align="left" style="padding:3px;Margin:0;width:30px;">
+                <table cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                  <tr>
+                    <td align="center" style="padding:0;Margin:0;font-size:0px"><a target="_blank" href="https://ablink.info.wise.com/ls/click?upn=u001.JwhTX56o1twZ4Z4wwlm-2F9WsL6Gdn1R0XRYXYK4zwGHPYUK5kl1EFfI9Lolj-2B5vzoRNp7_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP4TbfdkVOlABtJnbFpXqO8EvOLmX296aE0khG0ssKGJQh2CqkuCui4VsK2LahUiGG5rifcmU1rNHWiT74729-2Bv2Ss3mNONjMa74W1jjs6vAZMUj1E9A-2F8V94TrObgMdzllEMD3Cb7nYOiliZz5Q66txH8cggKAhxTtgY-2BpLWGV8OCO9lcIzmEt9cgnw7i-2Fn3LGgs3Mo0y7w-2FFjb0Yvl5MwSKa8INvPEXha3flQTGfLHunZcr7xdvF7WPc0z1bwXORxKpudLhTfT-2Bhd4L9DdITCVmKFa7owbAcvIl2Oz-2Fu-2Fj5Xu2EtwdPIQuB85OWeuf-2BG7mE1kCvkCKjSyaAXmt9GBh6uQbKTiEZ-2BpTZBmMYsaFBYnhVyPkPAwQha4c9L7b5bH-2F-2BwFNHzeaDsakeOMZkVap11XQtLtPlw85z20l1mtN1zuyHyfTuXpqCka6vM2hn41qW6azuGUjuH8DEtlHSa-2BU23QTh6txgH7nLQZyo3cIcV2CoeYh-2Bx7SKR6TjarodsZTOU96ZiKlKkGvp4j5TW78cHQRnp8eiBYe0x3t8OoiNPtaQEWbJrJvcuHI1C-2Bf5-2BN-2B91Kdrflo-2BNtXLdxv65MGfafBpnOG-2Fv1rIoJC8vvTcQKZcKRCfN3RZhSe7W5UTfxXVCbzoqOdyZo5vE38wkp2vJDAUk2oTd6GQa1HEVVaiD4-2BXeMKqgxUOSSmvBaiSH596e0aSAyNfux1yVtfvISUDL41UStgjFMZnwa-2FrDnaoA-3D-3D" style="-webkit-text-size-adjust: none;-ms-text-size-adjust: none;mso-line-height-rule: exactly;text-decoration: underline;color: #9fe870;font-size: 9px;line-height: 150%;"><img src="https://cdn.braze.eu/appboy/communication/assets/image_assets/images/68f8d9274cd47b007f8d2a86/original.png?1761138983" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic" width="30" height="30"></a></td>
+                  </tr>
+                </table>
+</td>
+              </tr>
+            </table>
+</td>
+           <td style="padding:0;Margin:0;width:15px"></td>
+           <td class="esdev-mso-td" valign="top" style="padding:0;Margin:0">
+            <table cellpadding="0" cellspacing="0" class="es-left" align="left" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse;border-spacing: 0px;float: left;width: 100%;">
+              <tr>
+               <td align="left" style="padding:3px;Margin:0;width:30px;">
+                <table cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                  <tr>
+                    <td align="center" style="padding:0;Margin:0;font-size:0px"><a target="_blank" href="https://ablink.info.wise.com/ls/click?upn=u001.JwhTX56o1twZ4Z4wwlm-2F9QfcQIXyOi0j6FL-2FZBz8wCRBZVghl1ZO4Oj5T8Mv-2F5RV_sBV_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP4TbfdkVOlABtJnbFpXqO8EvOLmX296aE0khG0ssKGJQh2CqkuCui4VsK2LahUiGG5rifcmU1rNHWiT74729-2Bv2Ss3mNONjMa74W1jjs6vAZMUj1E9A-2F8V94TrObgMdzllEMD3Cb7nYOiliZz5Q66txH8cggKAhxTtgY-2BpLWGV8OCO9lcIzmEt9cgnw7i-2Fn3LGgs3Mo0y7w-2FFjb0Yvl5MwSKa8INvPEXha3flQTGfLHunZcr7xdvF7WPc0z1bwXORxKpudLhTfT-2Bhd4L9DdITCVmKFa7owbAcvIl2Oz-2Fu-2Fj5Xu2EtwdPIQuB85OWeuf-2BG7mE1kCvkCKjSyaAXmt9GBh6uQbKTiEZ-2BpTZBmMYsaFBYnhVyPkPAwQha4c9L7b5bH-2F-2BwFNHzeaDsakeOMZkVap11XQtLtPlw85z20l1mtN1zuyHyfTuXpqCka6vM2hn41qW6azuGUjuH8DEtlHSa-2BU23QTh6txgH7nLQZyo3cIcV2CoeYh-2Bx7SKR6TjarodsZTOU96ZiKlKkGvp4j5TW78cHQRnp8eiBYe0x3t8OoiNPtaQEWbJrJvcuHI1C-2Bf5-2BN-2B91Kdrflo-2BNtXLdxv65MG19bzTFqR3IEB2FfIrNnquGIYDQqffLsffPa4b7A3yq3ZWd0L9HJG0VpyAJxXbCxLHlU9PHov5kg0jP2bydvIg-2BYVipwfJkFtHrdotXjKu12I9u9Uq0iByRLnkUD7iXBPWpI3iVTLe68rktr4NENtuA-3D-3D" style="-webkit-text-size-adjust: none;-ms-text-size-adjust: none;mso-line-height-rule: exactly;text-decoration: underline;color: #9fe870;font-size: 9px;line-height: 150%;"><img src="https://cdn.braze.eu/appboy/communication/assets/image_assets/images/68f8d927a978d00070f8168b/original.png?1761138983" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic" width="30" height="30"></a></td>
+                  </tr>
+                </table>
+</td>
+              </tr>
+            </table>
+</td>
+           <td style="padding:0;Margin:0;width:15px"></td>
+           <td class="esdev-mso-td" valign="top" style="padding:0;Margin:0">
+            <table cellpadding="0" cellspacing="0" class="es-left" align="left" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse;border-spacing: 0px;float: left;width: 100%;">
+              <tr>
+               <td align="left" style="padding:3px;Margin:0;width:30px;">
+                <table cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                  <tr>
+                    <td align="center" style="padding:0;Margin:0;font-size:0px"><a target="_blank" href="https://ablink.info.wise.com/ls/click?upn=u001.JwhTX56o1twZ4Z4wwlm-2F9egOpYVNp8gsTh7IT0x-2FFmxd2VMF0Mn2QX-2BoOPwBhkf2KA4bHb52-2FMTvXoydZVNHUA-3D-3Ds79Y_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP4TbfdkVOlABtJnbFpXqO8EvOLmX296aE0khG0ssKGJQh2CqkuCui4VsK2LahUiGG5rifcmU1rNHWiT74729-2Bv2Ss3mNONjMa74W1jjs6vAZMUj1E9A-2F8V94TrObgMdzllEMD3Cb7nYOiliZz5Q66txH8cggKAhxTtgY-2BpLWGV8OCO9lcIzmEt9cgnw7i-2Fn3LGgs3Mo0y7w-2FFjb0Yvl5MwSKa8INvPEXha3flQTGfLHunZcr7xdvF7WPc0z1bwXORxKpudLhTfT-2Bhd4L9DdITCVmKFa7owbAcvIl2Oz-2Fu-2Fj5Xu2EtwdPIQuB85OWeuf-2BG7mE1kCvkCKjSyaAXmt9GBh6uQbKTiEZ-2BpTZBmMYsaFBYnhVyPkPAwQha4c9L7b5bH-2F-2BwFNHzeaDsakeOMZkVap11XQtLtPlw85z20l1mtN1zuyHyfTuXpqCka6vM2hn41qW6azuGUjuH8DEtlHSa-2BU23QTh6txgH7nLQZyo3cIcV2CoeYh-2Bx7SKR6TjarodsZTOU96ZiKlKkGvp4j5TW78cHQRnp8eiBYe0x3t8OoiNPtaQEWbJrJvcuHI1C-2Bf5-2BN-2B91Kdrflo-2BNtXLdxv65MGUXpkUZueM3Qv6ptE8gHeshqbPkcy5ZvfEacAFCrjETOZDeghO-2FuAQ8Bf4ZtxRLoYmSIrAB3fD85mumiTY-2Be-2BgXqttveP2mqUUyU9eG1NpYqJirF0giSnbZOQKc-2ByVMUKzpJ-2FsIkEHNNLd42D4e2kYA-3D-3D" style="-webkit-text-size-adjust: none;-ms-text-size-adjust: none;mso-line-height-rule: exactly;text-decoration: underline;color: #9fe870;font-size: 9px;line-height: 150%;"><img src="https://cdn.braze.eu/appboy/communication/assets/image_assets/images/68f8d9275dc9cb007e15a389/original.png?1761138983" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic" width="30" height="30"></a></td>
+                  </tr>
+                </table>
+</td>
+              </tr>
+            </table>
+</td>
+           <td style="padding:0;Margin:0;width:15px"></td>
+           <td class="esdev-mso-td" valign="top" style="padding:0;Margin:0">
+            <table cellpadding="0" cellspacing="0" class="es-left" align="left" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse;border-spacing: 0px;float: left;width:100%;">
+              <tr>
+               <td align="left" style="padding:3px;Margin:0;width:30px;">
+                <table cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                  <tr>
+                    <td align="center" style="padding:0;Margin:0;font-size:0px"><a target="_blank" href="https://ablink.info.wise.com/ls/click?upn=u001.JwhTX56o1twZ4Z4wwlm-2F9ScsGVCrA9ExnUYfEkbtmq9qJ5u5TsO6KKgcq1sACUXa9hdDbI6xXjRKSlLitKs-2FgK7-2FSXS837JVA6law913yNA-3DtqUb_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP4TbfdkVOlABtJnbFpXqO8EvOLmX296aE0khG0ssKGJQh2CqkuCui4VsK2LahUiGG5rifcmU1rNHWiT74729-2Bv2Ss3mNONjMa74W1jjs6vAZMUj1E9A-2F8V94TrObgMdzllEMD3Cb7nYOiliZz5Q66txH8cggKAhxTtgY-2BpLWGV8OCO9lcIzmEt9cgnw7i-2Fn3LGgs3Mo0y7w-2FFjb0Yvl5MwSKa8INvPEXha3flQTGfLHunZcr7xdvF7WPc0z1bwXORxKpudLhTfT-2Bhd4L9DdITCVmKFa7owbAcvIl2Oz-2Fu-2Fj5Xu2EtwdPIQuB85OWeuf-2BG7mE1kCvkCKjSyaAXmt9GBh6uQbKTiEZ-2BpTZBmMYsaFBYnhVyPkPAwQha4c9L7b5bH-2F-2BwFNHzeaDsakeOMZkVap11XQtLtPlw85z20l1mtN1zuyHyfTuXpqCka6vM2hn41qW6azuGUjuH8DEtlHSa-2BU23QTh6txgH7nLQZyo3cIcV2CoeYh-2Bx7SKR6TjarodsZTOU96ZiKlKkGvp4j5TW78cHQRnp8eiBYe0x3t8OoiNPtaQEWbJrJvcuHI1C-2Bf5-2BN-2B91Kdrflo-2BNtXLdxv65MGXyBLEW2jUpiauTTflfCQCJLNscgL-2Fqu2Hnt2-2FoB-2Ft0Sw-2B12M0-2Fkm8-2FFBSsfpbzzgpNHd-2FUedYE3RrDWV8uKvyE1V27-2BlEHdXdSh-2F22a2oO8hMsfQMpJt1NzE9MITydtGzmUfHAjx0X1cyRTzyYw-2Ftw-3D-3D" style="-webkit-text-size-adjust: none;-ms-text-size-adjust: none;mso-line-height-rule: exactly;text-decoration: underline;color: #9fe870;font-size: 9px;line-height: 150%;"><img src="https://cdn.braze.eu/appboy/communication/assets/image_assets/images/68f8d9272ee36800644faf4e/original.png?1761138983" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic" width="30" height="30"></a></td>
+                  </tr>
+                </table>
+</td>
+              </tr>
+            </table>
+</td>
+           <td style="padding:0;Margin:0;width:15px"></td>
+           <td class="esdev-mso-td" valign="top" style="padding:0;Margin:0">
+            <table cellpadding="0" cellspacing="0" class="es-right" align="right" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: collapse;border-spacing: 0px;float: right;width: 100%;">
+              <tr>
+               <td align="left" style="padding:0;Margin:0;width:145px">
+                <table cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                  <tr>
+                   <td align="center" style="padding:20px;Margin:0;font-size:0">
+                    <table border="0" height="100%" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                      <tr>
+                       <td style="padding:0;Margin:0;border-bottom:0px solid #cccccc;background:none;height:1px;width:100%;margin:0px"></td>
+                      </tr>
+                    </table>
+</td>
+                  </tr>
+                </table>
+</td>
+              </tr>
+            </table>
+</td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+      
+
+      
+      <tr>
+       <td class="es-m-p30r es-m-p30l" align="center" style="Margin:0;padding-top:20px;padding-bottom:0px;padding-left:40px;padding-right:40px;">
+        <table cellpadding="0" cellspacing="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+          <tr>
+           <td align="center" valign="top" style="padding:0;Margin:0;">
+            <table cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+              <tr>
+               <td align="center" style="padding:0;Margin:0;">
+                <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:Inter, helvetica, arial, sans-serif;line-height:22px;color:#e8ebe6;font-size:14px;"><a id="help_center" target="_blank" style="color:#9fe870;text-decoration:underline;font-size:14px;font-family:averta, helvetica, arial, sans-serif;line-height:22px;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;" href="https://ablink.info.wise.com/ls/click?upn=u001.JwhTX56o1twZ4Z4wwlm-2F9QJyiKFSFxCuFYFsqFqY2YLpDq9Sp7XbTK4PTO-2BByY6bFCeT_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP4TbfdkVOlABtJnbFpXqO8EvOLmX296aE0khG0ssKGJQh2CqkuCui4VsK2LahUiGG5rifcmU1rNHWiT74729-2Bv2Ss3mNONjMa74W1jjs6vAZMUj1E9A-2F8V94TrObgMdzllEMD3Cb7nYOiliZz5Q66txH8cggKAhxTtgY-2BpLWGV8OCO9lcIzmEt9cgnw7i-2Fn3LGgs3Mo0y7w-2FFjb0Yvl5MwSKa8INvPEXha3flQTGfLHunZcr7xdvF7WPc0z1bwXORxKpudLhTfT-2Bhd4L9DdITCVmKFa7owbAcvIl2Oz-2Fu-2Fj5Xu2EtwdPIQuB85OWeuf-2BG7mE1kCvkCKjSyaAXmt9GBh6uQbKTiEZ-2BpTZBmMYsaFBYnhVyPkPAwQha4c9L7b5bH-2F-2BwFNHzeaDsakeOMZkVap11XQtLtPlw85z20l1mtN1zuyHyfTuXpqCka6vM2hn41qW6azuGUjuH8DEtlHSa-2BU23QTh6txgH7nLQZyo3cIcV2CoeYh-2Bx7SKR6TjarodsZTOU96ZiKlKkGvp4j5TW78cHQRnp8eiBYe0x3t8OoiNPtaQEWbJrJvcuHI1C-2Bf5-2BN-2B91Kdrflo-2BNtXLdxv65MGayDVqxJAszmpMBGZVQpbCXhMIx1IUAvkcBuT-2BVi5oNkjdskDB59KwjtdkEdJltRZLVcAHJnM2PkeKr49dWWBv12pa464fISIsJ84CPQavps9TdnFGc-2FWElsDcBHOa1feATpVZnGhsI-2BD0wYev8u8-2BA-3D-3D">Help centre</a></p>
+               </td>
+              </tr>
+              <tr>
+               <td align="center" style="padding:0;Margin:0;">
+<p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:Inter, helvetica, arial, sans-serif;line-height:22px;color:#e8ebe6;font-size:14px;"><a id="unsubscribe" target="_blank" style="color:#9fe870;text-decoration:underline;font-size:14px;font-family:averta, helvetica, arial, sans-serif;line-height:22px;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;" href="https://ablink.info.wise.com/ls/click?upn=u001.JwhTX56o1twZ4Z4wwlm-2F9dDlERdmdllxvGdsYtMjKzi7D9pcVFZOnXGlHl5WshsdjihM2dtJetZFVpekyDqATfIsW8YD244rRY3kFN-2BC9A-2BIODe2q6Mrd6zTgerANkLHyty4nsAMgtgDOKoVBao63IS8jsLu2Q-2FbHKW3lrxDC-2BG4kpEtmxr1etKpBisHQQOvWHpN1VVQoe5mHXiSDwNMcfCErPJSZkUoLuueH8b7qunJfH1Dj7QXaHWpR-2FAm-2FK4DKC5NOpDLJdb51fxcZo5I24i8lE9RC-2FB0ERr6w9xnbEGxRFxbdtsFhpOBAegqOD-2FosjRVTLkI1v0OrGIkpOEMUXeacvE6avOfaPpP2VxQkollPT0oIoSBHawcqfbp9poRlT-2B1AmnqnYjHlpMnhQJXie7oWIvvR14cur66m1T9IPM-3DCVVD_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP4TbfdkVOlABtJnbFpXqO8EvOLmX296aE0khG0ssKGJQh2CqkuCui4VsK2LahUiGG5rifcmU1rNHWiT74729-2Bv2Ss3mNONjMa74W1jjs6vAZMUj1E9A-2F8V94TrObgMdzllEMD3Cb7nYOiliZz5Q66txH8cggKAhxTtgY-2BpLWGV8OCO9lcIzmEt9cgnw7i-2Fn3LGgs3Mo0y7w-2FFjb0Yvl5MwSKa8INvPEXha3flQTGfLHunZcr7xdvF7WPc0z1bwXORxKpudLhTfT-2Bhd4L9DdITCVmKFa7owbAcvIl2Oz-2Fu-2Fj5Xu2EtwdPIQuB85OWeuf-2BG7mE1kCvkCKjSyaAXmt9GBh6uQbKTiEZ-2BpTZBmMYsaFBYnhVyPkPAwQha4c9L7b5bH-2F-2BwFNHzeaDsakeOMZkVap11XQtLtPlw85z20l1mtN1zuyHyfTuXpqCka6vM2hn41qW6azuGUjuH8DEtlHSa-2BU23QTh6txgH7nLQZyo3cIcV2CoeYh-2Bx7SKR6TjarodsZTOU96ZiKlKkGvp4j5TW78cHQRnp8eiBYe0x3t8OoiNPtaQEWbJrJvcuHI1C-2Bf5-2BN-2B91Kdrflo-2BNtXLdxv65MGNcZvIBRUtBUrRUtGfXjYF792pzlHZvAA7326LDzhSZD64dzzh2vOd0lJfBKbO0cMAv9ivcKx344a-2BswXO9mEWFTA31GKjSl7gV4gsPJ-2FfHiurUyLF6Hc6nad9bJNneDoFHtJwtFNULHqEK5oQtBG-2Bw-3D-3D">Unsubscribe</a></p>
+               </td>
+              </tr>
+              <tr>
+               <td align="center" style="padding:0;Margin:0;">
+<p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:Inter, helvetica, arial, sans-serif;line-height:22px;color:#e8ebe6;font-size:14px;"><a id="refer_a_friend" target="_blank" style="color:#9fe870;text-decoration:underline;font-size:14px;font-family:averta, helvetica, arial, sans-serif;line-height:22px;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;" href="https://ablink.info.wise.com/ls/click?upn=u001.JwhTX56o1twZ4Z4wwlm-2F9YnQ3rGvtEn5yydJ3TQJaSRa4u2E9CB6P1MR2uNSIAldzX25_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP4TbfdkVOlABtJnbFpXqO8EvOLmX296aE0khG0ssKGJQh2CqkuCui4VsK2LahUiGG5rifcmU1rNHWiT74729-2Bv2Ss3mNONjMa74W1jjs6vAZMUj1E9A-2F8V94TrObgMdzllEMD3Cb7nYOiliZz5Q66txH8cggKAhxTtgY-2BpLWGV8OCO9lcIzmEt9cgnw7i-2Fn3LGgs3Mo0y7w-2FFjb0Yvl5MwSKa8INvPEXha3flQTGfLHunZcr7xdvF7WPc0z1bwXORxKpudLhTfT-2Bhd4L9DdITCVmKFa7owbAcvIl2Oz-2Fu-2Fj5Xu2EtwdPIQuB85OWeuf-2BG7mE1kCvkCKjSyaAXmt9GBh6uQbKTiEZ-2BpTZBmMYsaFBYnhVyPkPAwQha4c9L7b5bH-2F-2BwFNHzeaDsakeOMZkVap11XQtLtPlw85z20l1mtN1zuyHyfTuXpqCka6vM2hn41qW6azuGUjuH8DEtlHSa-2BU23QTh6txgH7nLQZyo3cIcV2CoeYh-2Bx7SKR6TjarodsZTOU96ZiKlKkGvp4j5TW78cHQRnp8eiBYe0x3t8OoiNPtaQEWbJrJvcuHI1C-2Bf5-2BN-2B91Kdrflo-2BNtXLdxv65MGasJvBmLLiAgAdzi4YuBJaidN4WwGg3Yv1vN6Gyu4lvFeXnvzJW-2FLw5Lfg3g8e8QqdojwDXsjLxfq-2FWScepZHA0hemu7pN2XDo9nZe-2BEJ8Hl-2Fw3v-2B2Rdj-2B2UsMqAvFWMMaWfEUBDwRLkCf2OcG7bJmw-3D-3D">Refer a friend</a></p>
+               </td>
+              </tr>
+            </table>
+           </td>
+          </tr>
+        </table>
+       </td>
+      </tr>
+      
+
+      <tr>
+       <td class="es-m-p30r es-m-p30l" align="center" style="Margin:0;padding-top:20px;padding-bottom:40px;padding-left:40px;padding-right:40px;">
+        <table cellpadding="0" cellspacing="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+          <tr>
+           <td align="center" valign="top" style="padding:0px;Margin:0;">
+            <table cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+              <tr>
+               <td align="center" style="Margin:0;padding:0;">
+                <p id="wise_registered_office" style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:interregular, helvetica, arial, sans-serif;line-height:22px;color:#e8ebe6;font-size:14px">Wise registered office:</p>
+<p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:Inter, helvetica, arial, sans-serif;line-height:22px;color:#e8ebe6;font-size:14px;">Rue du Trône 100, 3rd floor, 1050 Brussels, Belgium</p>
+               </td>
+              </tr>
+              
+        
+
+              <tr>
+               <td align="center" style="padding:0;Margin:0;">
+<p id="this_email_was_sent" style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:interregular, helvetica, arial, sans-serif;line-height:22px;color:#e8ebe6;font-size:14px">This email was sent to you by Wise.</p>
+               </td>
+              </tr>
+
+              
+              <tr>
+               <td align="center" style="padding:0;Margin:0;">
+                 
+                <p id="by_using_our_services" style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:interregular, helvetica, arial, sans-serif;line-height:22px;color:#e8ebe6;font-size:14px">By using our services, you agree to our <a href="https://ablink.info.wise.com/ls/click?upn=u001.JwhTX56o1twZ4Z4wwlm-2F9fbM37O4k93GF306PZErHsLkQCJI5lFsBi5Fjyja2LBOsty7sqziGiX4t7xJaCrFWg-3D-3DGI57_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP4TbfdkVOlABtJnbFpXqO8EvOLmX296aE0khG0ssKGJQh2CqkuCui4VsK2LahUiGG5rifcmU1rNHWiT74729-2Bv2Ss3mNONjMa74W1jjs6vAZMUj1E9A-2F8V94TrObgMdzllEMD3Cb7nYOiliZz5Q66txH8cggKAhxTtgY-2BpLWGV8OCO9lcIzmEt9cgnw7i-2Fn3LGgs3Mo0y7w-2FFjb0Yvl5MwSKa8INvPEXha3flQTGfLHunZcr7xdvF7WPc0z1bwXORxKpudLhTfT-2Bhd4L9DdITCVmKFa7owbAcvIl2Oz-2Fu-2Fj5Xu2EtwdPIQuB85OWeuf-2BG7mE1kCvkCKjSyaAXmt9GBh6uQbKTiEZ-2BpTZBmMYsaFBYnhVyPkPAwQha4c9L7b5bH-2F-2BwFNHzeaDsakeOMZkVap11XQtLtPlw85z20l1mtN1zuyHyfTuXpqCka6vM2hn41qW6azuGUjuH8DEtlHSa-2BU23QTh6txgH7nLQZyo3cIcV2CoeYh-2Bx7SKR6TjarodsZTOU96ZiKlKkGvp4j5TW78cHQRnp8eiBYe0x3t8OoiNPtaQEWbJrJvcuHI1C-2Bf5-2BN-2B91Kdrflo-2BNtXLdxv65MGR96-2FvsfVVBXkkUt06xXV7RAa-2BbiO-2BG8gXVX6Ujbqo-2FLUmFR85EEHYx8u4BaN0fDOwY6sWziTvevCP7UtRv7kDnSKcKX34aDd6K0-2B0THLF80sx6-2BhV7aQz-2BgMl4orOHru-2BtiXHE7xW7fT1Uncjws8Yw-3D-3D" style="color:#9fe870;text-decoration:underline;font-size:14px;font-family:averta, helvetica, arial, sans-serif;line-height:22px;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;">customer agreements</a>.</p>
+                
+               </td>
+              </tr>
+              
+            
+
+              
+              <tr>
+               <td align="center" style="padding:0;Margin:0;">
+<p id="see_how_we_process_your_personal_data_in_our_privacy_notice" style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:interregular, helvetica, arial, sans-serif;line-height:22px;color:#e8ebe6;font-size:14px">See how we process your personal data in our <a href="https://ablink.info.wise.com/ls/click?upn=u001.JwhTX56o1twZ4Z4wwlm-2F9fpfxPwabbfVYKvAymvbMPcZkNXGA38T57YUFjwSEfcXw0fBEpH9BwZ7zGpbW8q7GA-3D-3DAY5x_Um4RzzbKTaE3q3bkolHgpF9qcq2i53cfIDtBWRFuHP4TbfdkVOlABtJnbFpXqO8EvOLmX296aE0khG0ssKGJQh2CqkuCui4VsK2LahUiGG5rifcmU1rNHWiT74729-2Bv2Ss3mNONjMa74W1jjs6vAZMUj1E9A-2F8V94TrObgMdzllEMD3Cb7nYOiliZz5Q66txH8cggKAhxTtgY-2BpLWGV8OCO9lcIzmEt9cgnw7i-2Fn3LGgs3Mo0y7w-2FFjb0Yvl5MwSKa8INvPEXha3flQTGfLHunZcr7xdvF7WPc0z1bwXORxKpudLhTfT-2Bhd4L9DdITCVmKFa7owbAcvIl2Oz-2Fu-2Fj5Xu2EtwdPIQuB85OWeuf-2BG7mE1kCvkCKjSyaAXmt9GBh6uQbKTiEZ-2BpTZBmMYsaFBYnhVyPkPAwQha4c9L7b5bH-2F-2BwFNHzeaDsakeOMZkVap11XQtLtPlw85z20l1mtN1zuyHyfTuXpqCka6vM2hn41qW6azuGUjuH8DEtlHSa-2BU23QTh6txgH7nLQZyo3cIcV2CoeYh-2Bx7SKR6TjarodsZTOU96ZiKlKkGvp4j5TW78cHQRnp8eiBYe0x3t8OoiNPtaQEWbJrJvcuHI1C-2Bf5-2BN-2B91Kdrflo-2BNtXLdxv65MGUVgylbQu4RULVtAo37fddUezK-2F0nS9IzMcROEa1z3g6XVci9ck4T5kppRE2rzzFX4sDuUUKNpCw42-2FzZTEW8YSP1NmcQNFO-2B-2BwMlPgq9hNdDd3vcfzklJSlpIBfnPz-2Fe18dxe-2B5NU2woA-2F8-2BMyxUhw-3D-3D" style="color:#9fe870;text-decoration:underline;font-size:14px;font-family:averta, helvetica, arial, sans-serif;line-height:22px;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;">Privacy notice</a></p>
+               </td>
+              </tr>
+              
+
+              
+
+              
+
+              
+
+              <tr>
+               <td align="center" style="padding:0;Margin:0;">
+                <p id="all_rights_reserved" style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:interregular, helvetica, arial, sans-serif;line-height:22px;color:#e8ebe6;font-size:14px">© Wise 2026. All rights reserved.</p>
+              </td>
+              </tr>
+
+            </table>
+</td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+</td>
+  </tr>
+</table>
+
+  </div>
+ </body>
+</html>
+`,text:"email 2- card_or_transfer_never_invited 96 What could you do with an extra 115 USD? ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ ͏ ‌ 115 USD could be all yours Tell your friends and family why you love Wise and you could both earn rewards. When your friends join Wise using your referral link, they can send their first transfer of up to 600 USD without paying any fees . When 3 of your friends either make a cross-currency transfer over 300 USD , or spend over 300 USD with a Wise card, you'll unlock a 115 USD reward. What’s not to love? Share Wise with friends Share Wise with friends Rewards that work for everyone Want to know how our referral program works? It’s simple — just follow these 3 easy steps. Spread the word Share your unique Wise referral link with friends and family. The more the merrier. Treat them like VIPs When your friends sign up using your referral link, they’ll get an exclusive Wise perk — they can send their first transfer of up to 600 USD without paying any fees . It’s the perfect way to kickstart their Wise experience. Unlock your 115 USD reward Once 3 of your friends have either made a cross-currency transfer over 300 USD , or spent over 300 USD with a Wise card, you can claim a 115 USD reward. Whether you want to save it, treat yourself to something special, or put it towards your next adventure — it’s yours to enjoy. Share your referral link Share your referral link Referral Program T&Cs Your questions answered How does the Wise referral program work? How does the free transfer referral program work? How do I get my reward? Go to help centre Go to help centre Help centre Unsubscribe Refer a friend Wise registered office: Rue du Trône 100, 3rd floor, 1050 Brussels, Belgium This email was sent to you by Wise. By using our services, you agree to our customer agreements . See how we process your personal data in our Privacy notice © Wise 2026. All rights reserved.",accountEmail:"demo@demo.com",messageId:"<demo-mock-1308@homerow.dev>"}];function dt(){return{messages:[{id:1201,seq:1201,threadId:"thread-demo-welcome",subject:"Welcome to Homerow demo mode",from:"Homerow Team",fromAddress:"team@homerow.dev",to:[g],cc:[],date:v(12),flags:[],snippet:"This inbox is running entirely on mocked data, with no backend required.",hasAttachments:!1,folderPath:"INBOX",html:"<p>This inbox is running entirely on <strong>mocked data</strong>, with no backend required.</p>",text:"This inbox is running entirely on mocked data, with no backend required.",accountEmail:g,messageId:"<demo-welcome@homerow.dev>"},{id:1202,seq:1202,threadId:"thread-demo-welcome",subject:"Re: Welcome to Homerow demo mode",from:"You",fromAddress:g,to:["team@homerow.dev"],date:v(6),flags:["\\Seen"],snippet:"Looks great. We can show this in docs as a live demo.",hasAttachments:!1,folderPath:"Sent",html:"<p>Looks great. We can show this in docs as a live demo.</p>",text:"Looks great. We can show this in docs as a live demo.",accountEmail:g,messageId:"<demo-reply@homerow.dev>",inReplyTo:"<demo-welcome@homerow.dev>",references:["<demo-welcome@homerow.dev>"]},{id:1203,seq:1203,threadId:"thread-billing",subject:"Invoice for February",from:"Billing",fromAddress:"billing@example.com",to:[g],date:v(40),flags:["\\Seen","Category Finance","Important"],snippet:"Your February invoice is available. Payment due in 7 days.",hasAttachments:!1,folderPath:"INBOX",html:"<p>Your February invoice is available. Payment due in 7 days.</p>",text:"Your February invoice is available. Payment due in 7 days.",accountEmail:g,messageId:"<demo-billing@homerow.dev>"},{id:1204,seq:1204,threadId:"thread-promotions",subject:"20% off your next order",from:"Acme Store",fromAddress:"promo@acme-store.dev",to:[g],date:v(95),flags:["Category Promotions"],snippet:"Limited time offer for demo users.",hasAttachments:!1,folderPath:"INBOX",html:"<p>Limited time offer for demo users.</p>",text:"Limited time offer for demo users.",accountEmail:g,messageId:"<demo-promo@homerow.dev>"},{id:1205,seq:1205,threadId:"thread-social",subject:"Someone mentioned you",from:"Social Network",fromAddress:"notify@social.example",to:[g],date:v(180),flags:["\\Seen","Category Social"],snippet:"You have new activity waiting.",hasAttachments:!1,folderPath:"INBOX",html:"<p>You have new activity waiting.</p>",text:"You have new activity waiting.",accountEmail:g,messageId:"<demo-social@homerow.dev>"},{id:1206,seq:1206,threadId:"thread-draft",subject:"Draft: Product launch notes",from:"You",fromAddress:g,to:["team@homerow.dev"],date:v(260),flags:["\\Draft","\\Seen"],snippet:"Draft content for launch notes.",hasAttachments:!1,folderPath:"Drafts",html:"<p>Draft content for launch notes.</p>",text:"Draft content for launch notes.",accountEmail:g,messageId:"<demo-draft@homerow.dev>"},{id:1207,seq:1207,threadId:"thread-archive",subject:"Architecture review notes",from:"Engineering",fromAddress:"eng@homerow.dev",to:[g],date:v(520),flags:["\\Seen"],snippet:"Notes from last architecture review.",hasAttachments:!1,folderPath:"Archive",html:"<p>Notes from last architecture review.</p>",text:"Notes from last architecture review.",accountEmail:g,messageId:"<demo-archive@homerow.dev>"},{id:1208,seq:1208,threadId:"thread-snoozed",subject:"Reminder: Follow up next week",from:"Project Tracker",fromAddress:"tracker@example.dev",to:[g],date:v(700),flags:["\\Seen"],snippet:"This item is snoozed for later.",hasAttachments:!1,folderPath:"Snoozed",snoozedUntil:new Date(M+1728e5).toISOString(),html:"<p>This item is snoozed for later.</p>",text:"This item is snoozed for later.",accountEmail:g,messageId:"<demo-snoozed@homerow.dev>"},{id:1209,seq:1209,threadId:"thread-scheduled",subject:"Scheduled: Launch announcement",from:"To: team@homerow.dev",fromAddress:g,to:["team@homerow.dev"],date:new Date(M+18e6).toISOString(),flags:["\\Seen","__scheduled"],snippet:"Scheduled on demo mailbox",hasAttachments:!1,folderPath:"Scheduled",scheduledFor:new Date(M+18e6).toISOString(),html:"<p>Scheduled launch announcement</p>",text:"Scheduled launch announcement",accountEmail:g,messageId:"<demo-scheduled@homerow.dev>"},{id:1210,seq:1210,threadId:"thread-product-update",subject:"Platform update: keyboard shortcuts",from:"Homerow Product",fromAddress:"product@homerow.dev",to:[g],date:v(28),flags:["Category Updates","Important"],snippet:"New command palette and keyboard flow improvements.",hasAttachments:!1,folderPath:"INBOX",html:"<p>New command palette and keyboard flow improvements.</p>",text:"New command palette and keyboard flow improvements.",accountEmail:g,messageId:"<demo-product-update@homerow.dev>"},{id:1211,seq:1211,threadId:"thread-support",subject:"Ticket #4312 has been resolved",from:"Support",fromAddress:"support@service.dev",to:[g],date:v(65),flags:["\\Seen","Category Updates"],snippet:"Your support ticket has been marked resolved.",hasAttachments:!1,folderPath:"INBOX",html:"<p>Your support ticket has been marked resolved.</p>",text:"Your support ticket has been marked resolved.",accountEmail:g,messageId:"<demo-support@service.dev>"},{id:1212,seq:1212,threadId:"thread-standup",subject:"Daily standup notes",from:"You",fromAddress:g,to:["eng@homerow.dev"],date:v(85),flags:["\\Seen"],snippet:"Sent from demo mailbox.",hasAttachments:!1,folderPath:"Sent",html:"<p>Sent from demo mailbox.</p>",text:"Sent from demo mailbox.",accountEmail:g,messageId:"<demo-standup@homerow.dev>"},{id:1213,seq:1213,threadId:"thread-weekly",subject:"Weekly report (starred)",from:"Analytics",fromAddress:"analytics@homerow.dev",to:[g],date:v(110),flags:["\\Seen","\\Flagged","Category Updates"],snippet:"KPI summary for this week.",hasAttachments:!1,folderPath:"INBOX",html:"<p>KPI summary for this week.</p>",text:"KPI summary for this week.",accountEmail:g,messageId:"<demo-weekly@homerow.dev>"},{id:1214,seq:1214,threadId:"thread-promo-2",subject:"Weekend sale starts now",from:"Acme Store",fromAddress:"promo@acme-store.dev",to:[g],date:v(145),flags:["\\Seen","Category Promotions"],snippet:"Top offers for this weekend.",hasAttachments:!1,folderPath:"INBOX",html:"<p>Top offers for this weekend.</p>",text:"Top offers for this weekend.",accountEmail:g,messageId:"<demo-promo-2@acme-store.dev>"},{id:1215,seq:1215,threadId:"thread-social-2",subject:"New followers this week",from:"Social Network",fromAddress:"notify@social.example",to:[g],date:v(210),flags:["Category Social"],snippet:"You gained 12 followers.",hasAttachments:!1,folderPath:"INBOX",html:"<p>You gained 12 followers.</p>",text:"You gained 12 followers.",accountEmail:g,messageId:"<demo-social-2@social.example>"},{id:1216,seq:1216,threadId:"thread-spam",subject:"You won a mystery prize",from:"Unknown Sender",fromAddress:"prize@spam.example",to:[g],date:v(400),flags:[],snippet:"This message is in spam for demo purposes.",hasAttachments:!1,folderPath:"Spam",html:"<p>This message is in spam for demo purposes.</p>",text:"This message is in spam for demo purposes.",accountEmail:g,messageId:"<demo-spam@spam.example>"},{id:1217,seq:1217,threadId:"thread-trash",subject:"Old notification",from:"System",fromAddress:"system@homerow.dev",to:[g],date:v(900),flags:["\\Seen"],snippet:"Moved to trash in demo dataset.",hasAttachments:!1,folderPath:"Trash",html:"<p>Moved to trash in demo dataset.</p>",text:"Moved to trash in demo dataset.",accountEmail:g,messageId:"<demo-trash@homerow.dev>"},...st].map(H),blockedSenders:[],contacts:[{id:"demo-contact-1",email:"team@homerow.dev",displayName:"Homerow Team",frequency:7,lastContactedAt:v(20),source:"manual"},{id:"demo-contact-2",email:"billing@example.com",displayName:"Billing",frequency:3,lastContactedAt:v(40),source:"import"}],autoReplySettings:{enabled:!1,subject:"",bodyHtml:"",bodyText:"",startDate:null,endDate:null},nextSeq:2e3,nextBlockedSenderId:1}}let m=dt();function z(i){const a=i.trim().toLowerCase();return a==="inbox"?"inbox":a==="sent"||a==="sent items"||a==="sent mail"?"sent":a==="draft"||a==="drafts"?"drafts":a==="archive"||a==="all mail"?"archive":a==="spam"||a==="junk"?"spam":a==="trash"||a==="bin"?"trash":a==="snoozed"?"snoozed":a==="scheduled"||a==="scheduled send"||a==="scheduled sends"?"scheduled":a}function W(i,a){return i.flags.some(e=>e.toLowerCase()===a.toLowerCase())}function E(i,a){const e=z(a);return z(i.folderPath||"INBOX")===e}function R(i,a){if(!E(i,"INBOX"))return!1;if(a.length===0)return!0;const e=a.map(t=>t.toLowerCase());return!i.flags.some(t=>e.includes(t.toLowerCase()))}function B(i="INBOX"){const a=i.trim(),e=a.toLowerCase();let t;if(e==="starred")t=m.messages.filter(n=>W(n,"\\Flagged"));else if(e==="important")t=m.messages.filter(n=>W(n,"Important"));else if(e==="inbox:primary")t=m.messages.filter(n=>R(n,[]));else if(e.startsWith("inbox:primary:")){const n=a.slice(14).split("|").map(o=>o.trim()).filter(Boolean);t=m.messages.filter(o=>R(o,n))}else if(e.startsWith("label:")){const n=a.slice(6).trim();t=m.messages.filter(o=>W(o,n))}else t=m.messages.filter(n=>E(n,a));return[...t].sort((n,o)=>Date.parse(o.date)-Date.parse(n.date))}function N(i){return{id:i.id,seq:i.seq,subject:i.subject,from:i.from,fromAddress:i.fromAddress,to:i.to?[...i.to]:void 0,cc:i.cc?[...i.cc]:void 0,deliveredTo:i.deliveredTo?[...i.deliveredTo]:void 0,date:i.date,flags:[...i.flags],snippet:i.snippet,hasAttachments:i.hasAttachments,threadId:i.threadId,messageCount:i.messageCount,unreadCount:i.unreadCount,participants:i.participants?[...i.participants]:void 0,isNew:i.isNew,syncStatus:i.syncStatus,folderPath:i.folderPath,snoozedUntil:i.snoozedUntil,scheduledFor:i.scheduledFor,spamScore:i.spamScore}}function P(i){return H(i)}function pt(i){return Number.parseInt(i,10)}function w(i,a){const e=pt(i);if(!Number.isFinite(e))return;const t=a?z(a):null;return m.messages.find(n=>n.seq!==e?!1:t?z(n.folderPath||"INBOX")===t:!0)}function G(i){W(i,"\\Seen")||(i.flags=[...i.flags,"\\Seen"])}function C(i,a){i.flags=i.flags.filter(e=>e.toLowerCase()!==a.toLowerCase())}async function ct(){const i=new Date().toISOString();for(const a of m.messages)a.snoozedUntil&&a.snoozedUntil<=i&&(a.snoozedUntil=void 0,a.folderPath="INBOX")}async function gt(i){const a={};for(const e of i){const t=B(e);a[e]={total:t.length,unread:t.filter(n=>!W(n,"\\Seen")).length}}return a}async function ht(i){return B(i).filter(a=>!W(a,"\\Seen")).length}async function L(i="INBOX"){return B(i).map(N)}async function mt(i="INBOX",a=1,e=50){const t=B(i),n=Math.max(1,a),o=Math.max(1,e),r=(n-1)*o,s=t.slice(r,r+o);return{emails:s.map(N),total:t.length,nextCursor:null,hasMore:r+s.length<t.length}}async function bt(i="INBOX",a=1,e=50){const t=B(i),n=new Map;for(const y of t){const u=y.threadId||`solo-${y.seq}`,k=n.get(u);k?k.push(y):n.set(u,[y])}const o=Array.from(n.entries()).map(([y,u])=>{const k=[...u].sort((F,A)=>Date.parse(A.date)-Date.parse(F.date))[0],T=u.filter(F=>!W(F,"\\Seen")).length,_=Array.from(new Set(u.map(F=>F.from).filter(Boolean)));return{...k,threadId:y.startsWith("solo-")?void 0:y,messageCount:u.length,unreadCount:T,participants:_}}).sort((y,u)=>Date.parse(u.date)-Date.parse(y.date)),r=Math.max(1,a),s=Math.max(1,e),h=(r-1)*s,x=o.slice(h,h+s);return{emails:x.map(N),total:o.length,nextCursor:null,hasMore:h+x.length<o.length}}async function ft(i,a="INBOX"){const e=w(i,a)||w(i);return e?P(e):null}async function xt(i,a="INBOX"){const e=i.trim().toLowerCase();return e?B(a).filter(n=>[n.subject,n.from,n.fromAddress,n.snippet,n.text,n.html].filter(Boolean).join(`
+`).toLowerCase().includes(e)).map(N):L(a)}async function ut(){return m.contacts.map(i=>i.email)}async function yt(){return m.contacts.map(i=>({...i}))}async function wt(i,a){const e=i.trim().toLowerCase();if(!e)return;const t=m.contacts.find(n=>n.email.toLowerCase()===e);if(t){t.displayName=a?.trim()||t.displayName,t.lastContactedAt=new Date().toISOString(),t.frequency=Math.max(1,t.frequency);return}m.contacts.unshift({id:`demo-contact-${m.nextSeq}`,email:e,displayName:a?.trim()||null,frequency:1,lastContactedAt:new Date().toISOString(),source:"manual"})}async function vt(i){const a=m.contacts.findIndex(e=>e.id===i);a>=0&&m.contacts.splice(a,1)}async function kt(i,a="INBOX"){const e=w(i,a)||w(i);e&&G(e)}async function Ft(i,a="INBOX"){const e=w(i,a)||w(i);e&&C(e,"\\Seen")}async function Wt(i,a,e="INBOX"){const t=w(i,e)||w(i);if(t){if(a){W(t,"\\Flagged")||(t.flags=[...t.flags,"\\Flagged"]);return}C(t,"\\Flagged")}}async function Y(i,a="INBOX"){const e=w(i,a)||w(i);if(!e)return;if(z(e.folderPath||"INBOX")==="trash"){m.messages=m.messages.filter(n=>n.seq!==e.seq);return}e.folderPath="Trash"}async function _t(i,a="INBOX"){await Promise.all(i.map(e=>Y(e,a)))}async function zt(i,a="INBOX"){for(const e of i){const t=w(e,a)||w(e);t&&(t.folderPath="Archive")}}async function Bt(i,a,e="INBOX"){const t=w(i,e)||w(i);t&&(W(t,a)||(t.flags=[...t.flags,a]))}async function Tt(i,a,e="INBOX"){const t=w(i,e)||w(i);t&&C(t,a)}async function Q(i){const a=w(i,"Scheduled")||w(i);a&&(m.messages=m.messages.filter(e=>e.seq!==a.seq))}async function Mt(i){await Promise.all(i.map(a=>Q(a)))}async function Nt(i,a,e,t,n,o,r,s,h){const x=h?.scheduledAt?new Date(h.scheduledAt):null,y=m.nextSeq;m.nextSeq+=1;const u=i.split(",").map(F=>F.trim()).filter(Boolean),k=(t||"").split(",").map(F=>F.trim()).filter(Boolean),T=(n||"").split(",").map(F=>F.trim()).filter(Boolean),_={id:y,seq:y,subject:a||"(No Subject)",from:s?.trim()||"You",fromAddress:g,to:u,cc:k,bcc:T,date:(x&&Number.isFinite(x.getTime())?x:new Date).toISOString(),flags:["\\Seen"],snippet:e.replace(/<[^>]+>/g," ").replace(/\s+/g," ").trim().slice(0,180),hasAttachments:!!(o&&o.length>0),folderPath:"Sent",html:e,text:e.replace(/<[^>]+>/g," ").replace(/\s+/g," ").trim(),accountEmail:g,messageId:`<demo-${y}@homerow.dev>`,inReplyTo:r?.inReplyTo,references:r?.references};return x&&Number.isFinite(x.getTime())&&x.getTime()>Date.now()?(_.folderPath="Scheduled",_.scheduledFor=x.toISOString(),_.flags.push("__scheduled"),m.messages.push(_),{status:"scheduled",scheduledFor:x.toISOString()}):(m.messages.push(_),{status:"sent"})}async function St(i,a,e,t,n){const o=i.split(",").map(u=>u.trim()).filter(Boolean),r=(t||"").split(",").map(u=>u.trim()).filter(Boolean),s=(n||"").split(",").map(u=>u.trim()).filter(Boolean),h=m.messages.find(u=>z(u.folderPath||"INBOX")==="drafts"&&W(u,"\\Draft")&&(u.fromAddress||"").toLowerCase()===g.toLowerCase());if(h){h.to=o,h.cc=r,h.bcc=s,h.subject=a||"(No Subject)",h.html=e,h.text=e.replace(/<[^>]+>/g," ").replace(/\s+/g," ").trim(),h.snippet=h.text.slice(0,180),h.date=new Date().toISOString();return}const x=m.nextSeq;m.nextSeq+=1;const y=e.replace(/<[^>]+>/g," ").replace(/\s+/g," ").trim();m.messages.push({id:x,seq:x,subject:a||"(No Subject)",from:"You",fromAddress:g,to:o,cc:r,bcc:s,date:new Date().toISOString(),flags:["\\Seen","\\Draft"],snippet:y.slice(0,180),hasAttachments:!1,folderPath:"Drafts",html:e,text:y,accountEmail:g,messageId:`<demo-draft-${x}@homerow.dev>`})}async function jt(i){return m.messages.filter(a=>a.threadId===i).sort((a,e)=>Date.parse(a.date)-Date.parse(e.date)).map(P)}async function Ct(i,a){return(w(String(i),a)||w(String(i)))?.threadId||null}async function Zt(i,a="INBOX",e){for(const t of i){const n=w(t,a)||w(t);n&&(n.folderPath="Snoozed",n.snoozedUntil=e,G(n))}}async function It(i,a,e){const t=w(i,a)||w(i);t&&(t.folderPath=e,z(e)!=="snoozed"&&(t.snoozedUntil=void 0))}async function Vt(i){const a=w(i,"Trash")||w(i);return a&&(a.folderPath="INBOX"),"Inbox"}async function Dt(){return m.blockedSenders.map(i=>({...i}))}async function Rt(i,a){const e=i.trim().toLowerCase();if(!e)return;const t=m.blockedSenders.find(n=>n.senderEmail===e);if(t){t.displayName=a?.trim()||null,t.blockedAt=new Date().toISOString();return}m.blockedSenders.unshift({id:m.nextBlockedSenderId,senderEmail:e,displayName:a?.trim()||null,blockedAt:new Date().toISOString()}),m.nextBlockedSenderId+=1}async function Ht(i){const a=i.trim().toLowerCase();m.blockedSenders=m.blockedSenders.filter(e=>e.senderEmail!==a)}async function Et(){return{...m.autoReplySettings}}async function Pt(i){m.autoReplySettings={...i}}let S=null;function b(){return at()&&it()}async function f(){return S||(S=rt(()=>import("./mail-client-C9iB1n2d.js"),__vite__mapDeps([0,1,2]))),S}async function Gt(){return b()?ct():(await f()).runSnoozeSweep()}async function Lt(i){return b()?gt(i):(await f()).getFolderCounts(i)}async function Yt(i){return b()?ht(i):(await f()).getUnreadCountForSection(i)}async function Qt(i="INBOX"){return b()?L(i):(await f()).fetchEmails(i)}async function Kt(i="INBOX",a=1,e=50){return b()?mt(i,a,e):(await f()).fetchEmailsPaginated(i,a,e)}async function At(i="INBOX",a=1,e=50){return b()?bt(i,a,e):(await f()).fetchThreadsPaginated(i,a,e)}async function Jt(i,a="INBOX"){return b()?ft(i,a):(await f()).getEmail(i,a)}async function Ot(i,a="INBOX"){return b()?xt(i,a):(await f()).searchEmails(i,a)}async function qt(){return b()?ut():(await f()).fetchSentContacts()}async function Xt(){return b()?yt():(await f()).fetchAllContacts()}async function Ut(i,a){return b()?wt(i,a):(await f()).addContactToDb(i,a)}async function $t(i){return b()?vt(i):(await f()).deleteContact(i)}async function te(i,a="INBOX"){return b()?kt(i,a):(await f()).markAsRead(i,a)}async function ee(i,a="INBOX"){return b()?Ft(i,a):(await f()).markAsUnread(i,a)}async function ae(i,a,e="INBOX"){return b()?Wt(i,a,e):(await f()).toggleStar(i,a,e)}async function ie(i,a="INBOX"){return b()?Y(i,a):(await f()).deleteEmail(i,a)}async function ne(i,a="INBOX"){return b()?_t(i,a):(await f()).deleteEmailsBatch(i,a)}async function le(i,a="INBOX"){return b()?zt(i,a):(await f()).archiveEmails(i,a)}async function oe(i,a,e="INBOX"){return b()?Bt(i,a,e):(await f()).addEmailLabel(i,a,e)}async function re(i,a,e="INBOX"){return b()?Tt(i,a,e):(await f()).removeEmailLabel(i,a,e)}async function se(i){return b()?Q(i):(await f()).cancelScheduledEmail(i)}async function de(i){return b()?Mt(i):(await f()).cancelScheduledEmails(i)}async function pe(i,a,e,t,n,o,r,s,h){return b()?Nt(i,a,e,t,n,o,r,s,h):(await f()).sendEmail(i,a,e,t,n,o,r,s,h)}async function ce(i){return b()?jt(i):(await f()).getThreadMessages(i)}async function ge(i,a){return b()?Ct(i,a):(await f()).getThreadIdForMessage(i,a)}async function he(i,a,e,t,n){return b()?St(i,a,e,t,n):(await f()).saveDraft(i,a,e,t,n)}async function me(i,a="INBOX",e){return b()?Zt(i,a,e):(await f()).snoozeEmails(i,a,e)}async function be(i,a,e){return b()?It(i,a,e):(await f()).moveToFolder(i,a,e)}async function fe(i,a="Trash"){return b()?Vt(i)||a:(await f()).restoreFromTrash(i,a)}async function xe(){return b()?Dt():(await f()).getBlockedSenders()}async function ue(i,a){return b()?Rt(i,a):(await f()).blockSender(i,a)}async function ye(i){return b()?Ht(i):(await f()).unblockSender(i)}function we(i,a){return!i&&a}async function ve(){return b()?Et():(await f()).getAutoReplySettings()}async function ke(i){return b()?Pt(i):(await f()).saveAutoReplySettings(i)}const za=Object.freeze(Object.defineProperty({__proto__:null,addContactToDb:Ut,addEmailLabel:oe,archiveEmails:le,blockSender:ue,cancelScheduledEmail:se,cancelScheduledEmails:de,deleteContact:$t,deleteEmail:ie,deleteEmailsBatch:ne,fetchAllContacts:Xt,fetchEmails:Qt,fetchEmailsPaginated:Kt,fetchSentContacts:qt,fetchThreadsPaginated:At,getAutoReplySettings:ve,getBlockedSenders:xe,getEmail:Jt,getFolderCounts:Lt,getThreadIdForMessage:ge,getThreadMessages:ce,getUnreadCountForSection:Yt,markAsRead:te,markAsUnread:ee,moveToFolder:be,removeEmailLabel:re,restoreFromTrash:fe,runSnoozeSweep:Gt,saveAutoReplySettings:ke,saveDraft:he,searchEmails:Ot,sendEmail:pe,shouldResetAutoReplyDedup:we,snoozeEmails:me,toggleStar:ae,unblockSender:ye},Symbol.toStringTag,{value:"Module"}));var Fe=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z">'),We=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6">'),_e=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="M21.2 8.4c.5.38.8.97.8 1.6v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V10a2 2 0 0 1 .8-1.6l8-6a2 2 0 0 1 2.4 0l8 6Z"></path><path d="m22 10-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 10">'),ze=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="m22 2-7 20-4-9-9-4Z"></path><path d="M22 2 11 13">'),Be=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="m21 3-6.5 18-3.8-8-8-3.8Z"></path><path d="M21 3 10.7 13.3"></path><circle cx=18 cy=18 r=4></circle><path d="M18 16.5V18l1.1 1.1">'),Te=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path><line x1=10 y1=11 x2=10 y2=17></line><line x1=14 y1=11 x2=14 y2=17>'),Me=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><circle cx=11 cy=11 r=8></circle><line x1=21 y1=21 x2=16.65 y2=16.65>'),Ne=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="M12 20h9"></path><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z">'),Se=d('<svg viewBox="0 0 24 24"stroke=currentColor stroke-linecap=round stroke-linejoin=round><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">'),je=d('<svg viewBox="0 0 24 24"stroke=currentColor stroke-linecap=round stroke-linejoin=round><polygon points="3 4 12 12 3 20 12 20 21 12 12 4">'),Ce=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><rect width=20 height=5 x=2 y=3 rx=1></rect><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8"></path><path d="M10 12h4">'),Ze=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"></path><line x1=12 y1=9 x2=12 y2=13></line><line x1=12 y1=17 x2=12.01 y2=17>'),Ie=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"></path><path d="M16 16h5v5">'),Ve=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="m12 19-7-7 7-7"></path><path d="M19 12H5">'),De=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="M18 6 6 18"></path><path d="m6 6 12 12">'),Re=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><rect width=20 height=16 x=2 y=4 rx=2></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7">'),He=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path><circle cx=12 cy=12 r=3>'),Ee=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><line x1=4 y1=21 x2=4 y2=14></line><line x1=4 y1=10 x2=4 y2=3></line><line x1=12 y1=21 x2=12 y2=12></line><line x1=12 y1=8 x2=12 y2=3></line><line x1=20 y1=21 x2=20 y2=16></line><line x1=20 y1=12 x2=20 y2=3></line><line x1=1 y1=14 x2=7 y2=14></line><line x1=9 y1=8 x2=15 y2=8></line><line x1=17 y1=16 x2=23 y2=16>'),Pe=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="M9 19c-4.5 1.5-4.5-2.5-6-3m12 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3-.3 6.2-1.5 6.2-6.8a5.2 5.2 0 0 0-1.4-3.6 4.9 4.9 0 0 0-.1-3.6s-1.1-.3-3.8 1.4a13.4 13.4 0 0 0-7 0C5.2 1.2 4 1.5 4 1.5a4.9 4.9 0 0 0-.1 3.6 5.2 5.2 0 0 0-1.4 3.6c0 5.3 3.2 6.5 6.2 6.8a3.4 3.4 0 0 0-.9 2.6V22">'),Ge=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><circle cx=12 cy=12 r=10></circle><polyline points="12 6 12 12 16 14">'),Le=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><circle cx=12 cy=12 r=10></circle><line x1=12 y1=10 x2=12 y2=16></line><circle cx=12 cy=7 r=0.6 fill=currentColor>'),Ye=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="M12 3l1.2 3.3L16.5 7.5l-3.3 1.2L12 12l-1.2-3.3L7.5 7.5l3.3-1.2Z"></path><path d="M19 12l.7 1.8 1.8.7-1.8.7L19 17l-.7-1.8-1.8-.7 1.8-.7Z"></path><path d="M6 14l.9 2.1L9 17l-2.1.9L6 20l-.9-2.1L3 17l2.1-.9Z">'),Qe=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><rect x=3 y=7 width=18 height=13 rx=2></rect><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><path d="M3 12h18">'),Ke=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><circle cx=9 cy=20 r=1.3></circle><circle cx=18 cy=20 r=1.3></circle><path d="M2 3h2l2.4 11.2a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 2-1.6L21 7H6">'),Ae=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="M4 3v18l2-1.5L8 21l2-1.5L12 21l2-1.5 2 1.5 2-1.5 2 1.5V3z"></path><path d="M8 8h8M8 12h8M8 16h5">'),Je=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="M20.8 8.6a5 5 0 0 0-8.1-3.3L12 6l-.7-.7a5 5 0 0 0-8.1 3.3c0 2.2 1 4.2 2.7 5.6L12 20l6.1-5.8a7.5 7.5 0 0 0 2.7-5.6z">'),Oe=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="m8 9-4 3 4 3"></path><path d="m16 9 4 3-4 3"></path><path d="m14 4-4 16">'),qe=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="M13 2 4 14h6l-1 8 9-12h-6z">'),Xe=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48">'),Ue=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="M9 15 3 9l6-6"></path><path d="M3 9h12a6 6 0 0 1 0 12h-3">'),$e=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="M7 17l-5-5 5-5"></path><path d="M2 12h13a8 8 0 0 1 0 16h-3"></path><polyline points="13 7 13 17"></polyline><path d="M12 7l5-5 5 5"style=display:none></path><polyline points="7 17 2 12 7 7"></polyline><polyline points="12 17 7 12 12 7"></polyline><path d="M22 18v-2a4 4 0 0 0-4-4H7">'),ta=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="m15 15 6-6-6-6"></path><path d="M21 9H9a6 6 0 0 0 0 12h3">'),ea=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1=21 y1=3 x2=14 y2=10></line><line x1=3 y1=21 x2=10 y2=14>'),aa=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="M8 3v3a2 2 0 0 1-2 2H3"></path><path d="M21 8h-3a2 2 0 0 1-2-2V3"></path><path d="M3 16h3a2 2 0 0 1 2 2v3"></path><path d="M16 21v-3a2 2 0 0 1 2-2h3">'),ia=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="M5 12h14">'),na=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="M5 12h14"></path><path d="M12 5v14">'),la=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"></path><circle cx=7.5 cy=7.5 r=.5 fill=currentColor>'),oa=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><rect x=3 y=4 width=8 height=6 rx=1.4></rect><rect x=13 y=4 width=8 height=6 rx=1.4></rect><rect x=3 y=14 width=8 height=6 rx=1.4></rect><rect x=13 y=14 width=8 height=6 rx=1.4>'),ra=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="m18 15-6-6-6 6">'),sa=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="m6 9 6 6 6-6">'),da=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="m15 18-6-6 6-6">'),pa=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="m9 18 6-6-6-6">'),ca=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="M20 6 9 17l-5-5">'),ga=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">'),K=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path><path d="m15 5 4 4">'),ha=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><circle cx=9 cy=12 r=1 fill=currentColor></circle><circle cx=9 cy=5 r=1 fill=currentColor></circle><circle cx=9 cy=19 r=1 fill=currentColor></circle><circle cx=15 cy=12 r=1 fill=currentColor></circle><circle cx=15 cy=5 r=1 fill=currentColor></circle><circle cx=15 cy=19 r=1 fill=currentColor>'),ma=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z">'),ba=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="M12 2v10"></path><path d="m8 8 4 4 4-4"></path><path d="M20 14v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-5"></path><path d="M4 16h5l1.5 2h3L15 16h5">'),fa=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx=9 cy=7 r=4></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75">'),xa=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="M15 3h6v6"></path><path d="M9 21H3v-6"></path><path d="M21 3l-7 7"></path><path d="M3 21l7-7">'),ua=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="M4 14h6v6"></path><path d="M20 10h-6V4"></path><path d="M14 10l7-7"></path><path d="M3 21l7-7">'),ya=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><path d="M2 17c1.5-1.5 3-2 5-2s3 1.5 5 0 2-2.5 4-2.5 3 1 4.5 2.5"></path><path d="M2 21h20">'),wa=d('<svg viewBox="0 0 24 24"fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round><circle cx=12 cy=12 r=10></circle><line x1=4.93 y1=4.93 x2=19.07 y2=19.07>');const c=i=>({size:i.size??20,strokeWidth:i.strokeWidth??1.75,class:i.class??""});function Ba(i){const a=c(i);return(()=>{var e=Fe();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function Ta(i){const a=c(i);return(()=>{var e=We();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function Ma(i){const a=c(i);return(()=>{var e=_e();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function Na(i){const a=c(i);return(()=>{var e=ze();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function Sa(i){const a=c(i);return(()=>{var e=Be();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function ja(i){const a=c(i);return(()=>{var e=Te();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function Ca(i){const a=c(i);return(()=>{var e=Me();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function Za(i){const a=c(i);return(()=>{var e=Ne();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function Ia(i){const a=c(i);return(()=>{var e=Se();return p(t=>{var n=a.size,o=a.size,r=i.filled?"currentColor":"none",s=a.strokeWidth,h=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"fill",t.a=r),s!==t.o&&l(e,"stroke-width",t.o=s),h!==t.i&&l(e,"class",t.i=h),t},{e:void 0,t:void 0,a:void 0,o:void 0,i:void 0}),e})()}function Va(i){const a=c(i);return(()=>{var e=je();return p(t=>{var n=a.size,o=a.size,r=i.filled?"currentColor":"none",s=a.strokeWidth,h=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"fill",t.a=r),s!==t.o&&l(e,"stroke-width",t.o=s),h!==t.i&&l(e,"class",t.i=h),t},{e:void 0,t:void 0,a:void 0,o:void 0,i:void 0}),e})()}function Da(i){const a=c(i);return(()=>{var e=Ce();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function Ra(i){const a=c(i);return(()=>{var e=Ze();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function Ha(i){const a=c(i);return(()=>{var e=Ie();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function Ea(i){const a=c(i);return(()=>{var e=Ve();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function Pa(i){const a=c(i);return(()=>{var e=De();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function Ga(i){const a=c(i);return(()=>{var e=Re();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function La(i){const a=c(i);return(()=>{var e=He();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function Ya(i){const a=c(i);return(()=>{var e=Ee();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function Qa(i){const a=c(i);return(()=>{var e=Pe();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function Ka(i){const a=c(i);return(()=>{var e=Ge();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function Aa(i){const a=c(i);return(()=>{var e=Le();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function Ja(i){const a=c(i);return(()=>{var e=Ye();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function Oa(i){const a=c(i);return(()=>{var e=Qe();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function qa(i){const a=c(i);return(()=>{var e=Ke();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function Xa(i){const a=c(i);return(()=>{var e=Ae();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function Ua(i){const a=c(i);return(()=>{var e=Je();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function $a(i){const a=c(i);return(()=>{var e=Oe();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function ti(i){const a=c(i);return(()=>{var e=qe();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function ei(i){const a=c(i);return(()=>{var e=Xe();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function ai(i){const a=c(i);return(()=>{var e=Ue();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function ii(i){const a=c(i);return(()=>{var e=$e(),t=e.firstChild,n=t.nextSibling,o=n.nextSibling;return o.nextSibling,p(r=>{var s=a.size,h=a.size,x=a.strokeWidth,y=a.class;return s!==r.e&&l(e,"width",r.e=s),h!==r.t&&l(e,"height",r.t=h),x!==r.a&&l(e,"stroke-width",r.a=x),y!==r.o&&l(e,"class",r.o=y),r},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function ni(i){const a=c(i);return(()=>{var e=ta();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function li(i){const a=c(i);return(()=>{var e=ea();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function oi(i){const a=c(i);return(()=>{var e=aa();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function ri(i){const a=c(i);return(()=>{var e=ia();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function si(i){const a=c(i);return(()=>{var e=na();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function di(i){const a=c(i);return(()=>{var e=la();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function pi(i){const a=c(i);return(()=>{var e=oa();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function ci(i){const a=c(i);return(()=>{var e=ra();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function gi(i){const a=c(i);return(()=>{var e=sa();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function hi(i){const a=c(i);return(()=>{var e=da();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function mi(i){const a=c(i);return(()=>{var e=pa();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function bi(i){const a=c(i);return(()=>{var e=ca();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function fi(i){const a=c(i);return(()=>{var e=ga();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function xi(i){const a=c(i);return(()=>{var e=K();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function ui(i){const a=c(i);return(()=>{var e=ha();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function yi(i){const a=c(i);return(()=>{var e=K();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function wi(i){const a=c(i);return(()=>{var e=ma();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function vi(i){const a=c(i);return(()=>{var e=ba();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function ki(i){const a=c(i);return(()=>{var e=fa();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function Fi(i){const a=c(i);return(()=>{var e=xa();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function Wi(i){const a=c(i);return(()=>{var e=ua();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function _i(i){const a=c(i);return(()=>{var e=ya();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}function zi(i){const a=c(i);return(()=>{var e=wa();return p(t=>{var n=a.size,o=a.size,r=a.strokeWidth,s=a.class;return n!==t.e&&l(e,"width",t.e=n),o!==t.t&&l(e,"height",t.t=o),r!==t.a&&l(e,"stroke-width",t.a=r),s!==t.o&&l(e,"class",t.o=s),t},{e:void 0,t:void 0,a:void 0,o:void 0}),e})()}const[Bi,Z]=X([]);let va=0;const j=new Map;function Ti(i,a="info",e=4e3,t){const n=`toast-${++va}`;if(Z(o=>[...o,{id:n,message:i,type:a,actionLabel:t?.label,onAction:t?.onClick}]),e>0){const o=setTimeout(()=>{ka(n)},e);j.set(n,o)}return n}function Mi(i,a){Z(e=>e.map(t=>t.id===i?{...t,...a}:t))}function ka(i){const a=j.get(i);a&&(clearTimeout(a),j.delete(i)),Z(e=>e.filter(t=>t.id!==i))}export{be as $,_a as A,hi as B,Ca as C,Ya as D,Qa as E,ei as F,ri as G,oi as H,Pa as I,li as J,pe as K,Ti as L,Bi as M,ka as N,Yt as O,ve as P,Ea as Q,Xt as R,si as S,$t as T,le as U,Jt as V,te as W,zi as X,Ta as Y,Ma as Z,rt as _,xi as a,ue as a0,ee as a1,ie as a2,me as a3,At as a4,Kt as a5,Ha as a6,wi as a7,oe as a8,fe as a9,he as aA,ct as aB,za as aC,de as aa,ne as ab,se as ac,re as ad,ae,ai as af,xe as ag,bi as ah,Ga as ai,Ot as aj,ui as ak,ge as al,ce as am,Wi as an,Fi as ao,ci as ap,ii as aq,ni as ar,fi as as,qt as at,Mi as au,pi as av,_i as aw,vi as ax,ke as ay,ye as az,ja as b,Za as c,Ba as d,gi as e,mi as f,Lt as g,Ia as h,Va as i,yi as j,Na as k,Sa as l,Da as m,Ka as n,Ra as o,ki as p,di as q,La as r,Aa as s,Ja as t,Oa as u,qa as v,Xa as w,Ua as x,$a as y,ti as z};

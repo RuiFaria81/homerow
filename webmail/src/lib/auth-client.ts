@@ -78,7 +78,7 @@ const createDemoAuthClient = (alwaysAuthenticated: boolean) => {
 
 export const authClient =
   isDemoModeEnabled()
-    ? createDemoAuthClient(isDemoModeEnabled() && !isDemoStaticModeEnabled())
+    ? createDemoAuthClient(true)
     : createAuthClient({
         plugins: [twoFactorClient()],
       });
