@@ -598,10 +598,10 @@ export function IconImport(props: IconProps): JSX.Element {
   const d = defaults(props);
   return (
     <svg width={d.size} height={d.size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width={d.strokeWidth} stroke-linecap="round" stroke-linejoin="round" class={d.class}>
-      <path d="M12 3v12" />
-      <path d="m8 11 4 4 4-4" />
-      <path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4" />
-      <path d="M8 7h8" />
+      <path d="M12 2v10" />
+      <path d="m8 8 4 4 4-4" />
+      <path d="M20 14v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-5" />
+      <path d="M4 16h5l1.5 2h3L15 16h5" />
     </svg>
   );
 }

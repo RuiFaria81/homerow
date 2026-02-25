@@ -560,12 +560,12 @@ test.describe("Requested feature regressions", () => {
     await page.goto("/settings");
     await expect(page.getByRole("heading", { name: "Settings", exact: true })).toBeVisible();
 
-    const importIconPath = await page
+    const importIconPaths = await page
       .getByTestId("settings-tab-icon-import")
       .locator("path")
-      .first()
-      .getAttribute("d");
+      .evaluateAll((paths) => paths.map((path) => path.getAttribute("d") ?? ""));
 
-    expect(importIconPath ?? "").toContain("M12 3");
+    expect(importIconPaths).toContain("M4 16h5l1.5 2h3L15 16h5");
+    expect(importIconPaths).not.toContain("M8 7h8");
   });
 });

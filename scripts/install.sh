@@ -354,13 +354,30 @@ upsert_tfvar_string() {
 
 write_dns_tfvars() {
     local output_file="$1"
+    local effective_dkim_selector="${DKIM_SELECTOR}"
+    local effective_dkim_public_key="${DKIM_PUBLIC_KEY}"
+
+    # Preserve previously synchronized DKIM values when env vars are empty.
+    # This avoids a transient DNS apply that destroys DKIM before re-sync.
+    if [ -f "${output_file}" ] && [ -z "${effective_dkim_public_key}" ]; then
+        local existing_selector existing_public_key
+        existing_selector="$(sed -nE 's/^[[:space:]]*dkim_selector[[:space:]]*=[[:space:]]*"([^"]*)"[[:space:]]*$/\1/p' "${output_file}" | tail -n1)"
+        existing_public_key="$(sed -nE 's/^[[:space:]]*dkim_public_key[[:space:]]*=[[:space:]]*"([^"]*)"[[:space:]]*$/\1/p' "${output_file}" | tail -n1)"
+        if [ -n "${existing_public_key}" ]; then
+            effective_dkim_public_key="${existing_public_key}"
+            if [ -n "${existing_selector}" ]; then
+                effective_dkim_selector="${existing_selector}"
+            fi
+        fi
+    fi
+
     cat > "${output_file}" <<EOF
 domain = "${DOMAIN}"
 cloudflare_token = "${CLOUDFLARE_TOKEN}"
 cloudflare_zone_id = "${CLOUDFLARE_ZONE_ID}"
 webmail_subdomain = "${WEBMAIL_SUBDOMAIN}"
-dkim_selector = "${DKIM_SELECTOR}"
-dkim_public_key = "${DKIM_PUBLIC_KEY}"
+dkim_selector = "${effective_dkim_selector}"
+dkim_public_key = "${effective_dkim_public_key}"
 EOF
 }
 
@@ -376,12 +393,12 @@ cloudflare_find_record_id() {
     [ -n "${CLOUDFLARE_TOKEN:-}" ] || return 0
     command -v curl >/dev/null 2>&1 || return 0
     command -v jq >/dev/null 2>&1 || return 0
-    log "Cloudflare lookup: type=${type} name=${name}"
+    log "Cloudflare lookup: type=${type} name=${name}" >&2
 
     local response=""
     local attempt
     for ((attempt = 1; attempt <= cf_retries; attempt++)); do
-        log "Cloudflare API request (${attempt}/${cf_retries}) for ${type} ${name}"
+        log "Cloudflare API request (${attempt}/${cf_retries}) for ${type} ${name}" >&2
         response="$(curl -fsSL \
             --connect-timeout "${cf_connect_timeout}" \
             --max-time "${cf_max_time}" \

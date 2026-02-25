@@ -35,4 +35,14 @@ if ! grep -Fq 'run_timed_step "terraform apply (${DNS_STACK_DIR}, dkim sync)"' "
   exit 1
 fi
 
+if ! grep -Fq 'Preserve previously synchronized DKIM values when env vars are empty.' "${INSTALL_SCRIPT}"; then
+  echo "expected install.sh to preserve existing dkim tfvars to avoid transient record deletion" >&2
+  exit 1
+fi
+
+if ! grep -Fq 'Cloudflare lookup: type=${type} name=${name}" >&2' "${INSTALL_SCRIPT}"; then
+  echo "expected cloudflare lookup logs to go to stderr so stdout returns only record ids" >&2
+  exit 1
+fi
+
 echo "install dns deliverability test: ok"
