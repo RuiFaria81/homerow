@@ -25,17 +25,17 @@ export default defineConfig({
           ],
         },
         {
-          label: "Architecture",
-          items: [
-            { label: "Overview", slug: "architecture/overview" },
-            { label: "Sync Engine", slug: "architecture/sync-engine" },
-          ],
-        },
-        {
           label: "Deploy",
           items: [
             { label: "GitHub Actions", slug: "deploy/github-actions" },
             { label: "Local", slug: "deploy/local" },
+          ],
+        },
+        {
+          label: "Architecture",
+          items: [
+            { label: "Overview", slug: "architecture/overview" },
+            { label: "Sync Engine", slug: "architecture/sync-engine" },
           ],
         },
         {
