@@ -77,6 +77,16 @@ Nix/NixOS:
 - Providers and stack notes: [infra/PROVIDERS.md](infra/PROVIDERS.md)
 - Infra module details: [infra/README.md](infra/README.md)
 
+## Thanks
+
+- SMS "Simple NixOS Mailserver": https://gitlab.com/simple-nixos-mailserver/nixos-mailserver
+
+## Alternatives / Inspiration
+
+- Roundcube Webmail: https://github.com/roundcube/roundcubemail
+- SnappyMail: https://github.com/the-djmaze/snappymail
+- Docker Mailserver: https://github.com/docker-mailserver/docker-mailserver
+
 ## License
 
 This project is licensed under the GNU Affero General Public License v3.0 only (`AGPL-3.0-only`). See the [LICENSE](LICENSE) file.
