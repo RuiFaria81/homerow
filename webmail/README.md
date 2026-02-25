@@ -63,8 +63,8 @@ WEBMAIL_DEMO_MODE=true npm run build
 
 Demo credentials:
 
-- Email: `demo@homerow.dev`
-- Password: `demo123`
+- Email: `demo@demo.com`
+- Password: `demo`
 
 In demo mode, mailbox state is reset on full page reload to keep demos deterministic.
 

@@ -39,7 +39,7 @@ async function main() {
   const clientEntryContents = await Promise.all(clientEntryFiles.map((file) => readFile(file, "utf8")));
   const combinedClientEntryJs = clientEntryContents.join("\n");
 
-  if (!combinedJs.includes("demo@homerow.dev")) {
+  if (!combinedJs.includes("demo@demo.com")) {
     throw new Error("Demo credentials are missing from static webmail bundle.");
   }
   if (!combinedJs.includes("__WEBMAIL_DEMO_STATIC_MODE__")) {
