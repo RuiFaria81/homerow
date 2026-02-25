@@ -50,11 +50,15 @@ export default defineConfig({
           label: "Guides",
           items: [
             { label: "After Deploy", slug: "guides/after-deploy" },
-            { label: "Gmail Migration", slug: "guides/gmail-migration" },
             {
               label: "Hetzner Post-Install",
               slug: "guides/hetzner-post-install",
             },
+            {
+              label: "Post-Install Deliverability",
+              slug: "guides/post-install-deliverability",
+            },
+            { label: "Gmail Migration", slug: "guides/gmail-migration" },
           ],
         },
         {

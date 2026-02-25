@@ -1,0 +1,58 @@
+---
+title: Post-Install Deliverability
+description: Provider-agnostic post-install steps to validate and improve inbox placement.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Use this guide after any deploy, regardless of VPS or DNS provider.
+
+## 1. Validate with Mail-Tester
+
+Use [Mail-Tester](https://www.mail-tester.com/) as a baseline external score.
+
+<Steps>
+1. Open Mail-Tester and copy the temporary address shown.
+2. Log in to your webmail (`https://<WEBMAIL_SUBDOMAIN>.<domain>`).
+3. Send a realistic message (normal subject/body; avoid only "test" or "hello").
+4. Click **Check your score**.
+</Steps>
+
+## 2. Check Blocklists
+
+Mail-Tester checks common blocklists. If your sender IP is listed, inbox placement can still be affected.
+
+### Barracuda delist template
+
+If listed in Barracuda, submit a removal request at [BarracudaCentral](https://www.barracudacentral.org/rbl/removal-request).
+
+Template:
+
+```text
+Hello Barracuda Team,
+
+Please review and delist the IP <YOUR_IP>.
+
+Context:
+- This IP is used by a self-hosted mail server for domain <YOUR_DOMAIN>.
+- The server is configured with SPF, DKIM, and DMARC.
+- Reverse DNS is configured for the sending host.
+- We do not send unsolicited bulk email and enforce authenticated sending only.
+
+Request:
+Please remove this IP from the Barracuda blocklist if no active abuse is detected.
+
+Thank you.
+```
+
+## 3. Smoke Test Across Providers
+
+After DNS/auth updates and blocklist cleanup:
+
+1. Send tests to Gmail and Outlook.
+2. Confirm acceptance and placement behavior.
+3. Re-run Mail-Tester after each major mail/DNS change.
+
+:::tip
+If authentication is correct but inboxing is still weak, warm up sending volume gradually.
+:::
