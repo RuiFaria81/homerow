@@ -1,8 +1,10 @@
-# Homerow Email
+# 🏠 Homerow Mail
 
 Self-hosted email with full control and a modern webmail experience.
 
 This repository provides a practical path to provision infrastructure, deploy a NixOS mail server, and run a custom webmail stack.
+
+![Homerow Webmail](docs/public/mocklight.png)
 
 ## Documentation
 
