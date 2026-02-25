@@ -24,7 +24,7 @@ async function main() {
   await mustExist("login/index.html");
   await mustExist("_build");
   await mustExist("logo.svg");
-  await mustExist("demo-avatar.svg");
+  await mustExist("human-avatar.jpg");
 
   const indexHtml = await readFile(path.join(base, "index.html"), "utf8");
   if (!indexHtml.includes("/webmail-demo/_build/")) {

@@ -1,4 +1,4 @@
-const demoImagePath = `${import.meta.env.BASE_URL}demo-avatar.svg`;
+const demoImagePath = `${import.meta.env.BASE_URL}human-avatar.jpg`;
 
 export const DEMO_USER_PROFILE = {
   name: "Demo User",

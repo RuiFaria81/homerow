@@ -13,5 +13,6 @@ test.describe("Demo mode", () => {
     const demoSubject = page.locator(".email-row").filter({ hasText: "Welcome to Homerow demo mode" }).first();
     await expect(demoSubject).toBeVisible();
     await expect(page.locator(".email-row").filter({ hasText: "Invoice for February" }).first()).toBeVisible();
+    await expect(page.locator(".email-row").filter({ hasText: "Celebrate Black History month" }).first()).toBeVisible();
   });
 });

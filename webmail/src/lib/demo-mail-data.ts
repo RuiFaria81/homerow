@@ -43,6 +43,193 @@ function cloneMessage(message: DemoMessage): DemoMessage {
   };
 }
 
+const importedMockMessages: DemoMessage[] = [
+  {
+    "id": 1301,
+    "seq": 1301,
+    "threadId": "thread-mock-1301",
+    "subject": "‼️ 仅剩 5 天：立省 OpenSearchCon China 门票优惠",
+    "from": "The Linux Foundation",
+    "fromAddress": "no-reply@linuxfoundation.org",
+    "to": [
+      "demo@homerow.dev"
+    ],
+    "date": "2026-02-25T01:03:26.000Z",
+    "flags": [
+      "\\Seen",
+      "Category Promotions"
+    ],
+    "snippet": "3月17-18日，上海：50+ 场技术分享 · 专业交流机会 View in browser ([link] ) OSC China 2026 - Chinese - Email Banner - EB Registration Ending ([link] ) 最后 5 天，把握机会购买 OpenSearchCon ",
+    "hasAttachments": false,
+    "folderPath": "INBOX",
+    "html": "<p>3月17-18日，上海：50+ 场技术分享 · 专业交流机会 View in browser ([link] ) OSC China 2026 - Chinese - Email Banner - EB Registration Ending ([link] ) 最后 5 天，把握机会购买 OpenSearchCon 优惠门票！ 早鸟注册优惠将于 3 月 1 日截止 您参加 OpenSearchCon China 2026 ([link] ) 的门票正在等您! 大会将于 3 月 17–18 日 在上海虹桥希尔顿酒店 ([link] ) 举办，早鸟优惠即将结束！请于 3 月 1 日（周日）前完成注册，锁定早鸟价格。 查看日程 &gt;&gt; ([link] ) 立即注册并享优惠 &gt;&gt; ([link] ) 直接向 OpenSearch 社区专家学习 OpenSearchCon 不仅仅是一系列演讲，更是一个让您提问、解决挑战、与每天大规模部署 OpenSearch 的工程师和架构师面对面交流。一次与对的人深入对话，可能就能解决您团队数月未解的难题！ 大会设有 50+ 场技术专题分享 ([link] ) ，涵盖四大核心方向：分析 + 安全 + 可观测性、搜索 + Apache Lucene、OpenSearch 运维实践，以及安全教育 + 社区发展。 查看完整日程 &gt;&gt; ([link] ) 与引领 OpenSearch 未来的组织建立联系 现场将汇聚来自阿里云、字节跳动、Eliatra、微软、SAP、瞻博网络（Juniper Networks）、红帽、Zalando 等企业的团队代表，以及包括 温州商学院、上海大学在内的创新机构。 此外，还可参加两场专属交流活动：Better Together 午餐会 ([link] ) 和 Search Party 欢迎招待会 ([link] ) 。 查看参会名单 &gt;&gt; ([link] ) 3月1日前注册即可享受优惠 在3月1日前 注册参加 OpenSearchCon China ([link] ) ，仅需 ¥149，立省 ¥50。 您的门票包含：主题</p>",
+    "text": "3月17-18日，上海：50+ 场技术分享 · 专业交流机会 View in browser ([link] ) OSC China 2026 - Chinese - Email Banner - EB Registration Ending ([link] ) 最后 5 天，把握机会购买 OpenSearchCon 优惠门票！ 早鸟注册优惠将于 3 月 1 日截止 您参加 OpenSearchCon China 2026 ([link] ) 的门票正在等您! 大会将于 3 月 17–18 日 在上海虹桥希尔顿酒店 ([link] ) 举办，早鸟优惠即将结束！请于 3 月 1 日（周日）前完成注册，锁定早鸟价格。 查看日程 >> ([link] ) 立即注册并享优惠 >> ([link] ) 直接向 OpenSearch 社区专家学习 OpenSearchCon 不仅仅是一系列演讲，更是一个让您提问、解决挑战、与每天大规模部署 OpenSearch 的工程师和架构师面对面交流。一次与对的人深入对话，可能就能解决您团队数月未解的难题！ 大会设有 50+ 场技术专题分享 ([link] ) ，涵盖四大核心方向：分析 + 安全 + 可观测性、搜索 + Apache Lucene、OpenSearch 运维实践，以及安全教育 + 社区发展。 查看完整日程 >> ([link] ) 与引领 OpenSearch 未来的组织建立联系 现场将汇聚来自阿里云、字节跳动、Eliatra、微软、SAP、瞻博网络（Juniper Networks）、红帽、Zalando 等企业的团队代表，以及包括 温州商学院、上海大学在内的创新机构。 此外，还可参加两场专属交流活动：Better Together 午餐会 ([link] ) 和 Search Party 欢迎招待会 ([link] ) 。 查看参会名单 >> ([link] ) 3月1日前注册即可享受优惠 在3月1日前 注册参加 OpenSearchCon China ([link] ) ，仅需 ¥149，立省 ¥50。 您的门票包含：主题",
+    "accountEmail": "demo@homerow.dev",
+    "messageId": "<demo-mock-1301@homerow.dev>"
+  },
+  {
+    "id": 1302,
+    "seq": 1302,
+    "threadId": "thread-mock-1302",
+    "subject": "★★★★★ 'Scintillating' | Samurai now open",
+    "from": "British Museum",
+    "fromAddress": "emails@britishmuseum.org",
+    "to": [
+      "demo@homerow.dev"
+    ],
+    "date": "2026-02-03T16:32:45.000Z",
+    "flags": [
+      "\\Seen",
+      "Category Updates"
+    ],
+    "snippet": "★★★★★ 'Scintillating' | Samurai now open 'Extraordinary' – The Guardian View this email online [link] [link] Visit the British Museum website. [link] Exhibition",
+    "hasAttachments": false,
+    "folderPath": "INBOX",
+    "html": "<p>★★★★★ 'Scintillating' | Samurai now open 'Extraordinary' – The Guardian View this email online [link] [link] Visit the British Museum website. [link] Exhibitions [link] Membership [link] Shop [link] Inside the Samurai exhibition. [link] Samurai Now open ★★★★★ 'A ravishing, riveting exhibition' – The Times ★★★★★ 'An extraordinary encounter' – The Guardian Unravel 1,000 years of myth and reality in our new blockbuster exhibition, that 'challenges everything you thought you knew about the Japanese warriors' (The Telegraph). Special late openings now on sale: 7, 12 and 14 February. Book now [link] black_arrow Supported by The Huo Family Foundation Curator Joe Nickols with a selection of samurai swords. [link] Curator's Corner Samurai swords Join Project Curator Joe Nickols as they get to grips with some fearsome weaponry, spanning 1,000 years of Japanese history. Watch the video [link] black</p>",
+    "text": "★★★★★ 'Scintillating' | Samurai now open 'Extraordinary' – The Guardian View this email online [link] [link] Visit the British Museum website. [link] Exhibitions [link] Membership [link] Shop [link] Inside the Samurai exhibition. [link] Samurai Now open ★★★★★ 'A ravishing, riveting exhibition' – The Times ★★★★★ 'An extraordinary encounter' – The Guardian Unravel 1,000 years of myth and reality in our new blockbuster exhibition, that 'challenges everything you thought you knew about the Japanese warriors' (The Telegraph). Special late openings now on sale: 7, 12 and 14 February. Book now [link] black_arrow Supported by The Huo Family Foundation Curator Joe Nickols with a selection of samurai swords. [link] Curator's Corner Samurai swords Join Project Curator Joe Nickols as they get to grips with some fearsome weaponry, spanning 1,000 years of Japanese history. Watch the video [link] black",
+    "accountEmail": "demo@homerow.dev",
+    "messageId": "<demo-mock-1302@homerow.dev>"
+  },
+  {
+    "id": 1303,
+    "seq": 1303,
+    "threadId": "thread-mock-1303",
+    "subject": "Battlefield 6 | Jetzt live: Saison 2 von REDSEC",
+    "from": "PlayStation",
+    "fromAddress": "email@email.playstation.com",
+    "to": [
+      "demo@homerow.dev"
+    ],
+    "date": "2026-02-24T20:04:09.000Z",
+    "flags": [
+      "\\Seen",
+      "Category Promotions"
+    ],
+    "snippet": "96 PlayStation Stelle dich dem Nebel des Krieges PlayStation Zeit für drastische Maßnahmen In Saison 2 von Battlefield 6 und REDSEC nimmt der Krieg gegen Pax Ar",
+    "hasAttachments": false,
+    "folderPath": "INBOX",
+    "html": "<p>96 PlayStation Stelle dich dem Nebel des Krieges PlayStation Zeit für drastische Maßnahmen In Saison 2 von Battlefield 6 und REDSEC nimmt der Krieg gegen Pax Armata globale Dimensionen an und erreicht im Zuge eines zermürbenden Angriffs zur Rückeroberung eines NATO-Luftwaffenstützpunkts deutsches Gebirge. Saison 2 bringt das kompromisslose Kriegsgeschehen in puncto Nervenkitzel auf die nächste Stufe. Mit ihr werden neben dem psychoaktiven VL-7-Rauch, der den Orientierungssinn auf dem Schlachtfeld verzerrt, die neue Karte „Contaminated“ sowie neue Waffen eingeführt, zudem erlebt der legendäre AH-6 Little Bird sein Comeback. Jetzt spielen Schalte mit Battlefield Pro noch mehr Inhalte frei Mit dem Battle Pass von Saison 2 schaltest du sofort sechs Belohnungen frei und erhältst Zugriff auf vier brandneue Themenpfade mit neuer Ausrüstung, Waffenpaketen, Soldaten-Skins, EP-Boosts und mehr. Upg</p>",
+    "text": "96 PlayStation Stelle dich dem Nebel des Krieges PlayStation Zeit für drastische Maßnahmen In Saison 2 von Battlefield 6 und REDSEC nimmt der Krieg gegen Pax Armata globale Dimensionen an und erreicht im Zuge eines zermürbenden Angriffs zur Rückeroberung eines NATO-Luftwaffenstützpunkts deutsches Gebirge. Saison 2 bringt das kompromisslose Kriegsgeschehen in puncto Nervenkitzel auf die nächste Stufe. Mit ihr werden neben dem psychoaktiven VL-7-Rauch, der den Orientierungssinn auf dem Schlachtfeld verzerrt, die neue Karte „Contaminated“ sowie neue Waffen eingeführt, zudem erlebt der legendäre AH-6 Little Bird sein Comeback. Jetzt spielen Schalte mit Battlefield Pro noch mehr Inhalte frei Mit dem Battle Pass von Saison 2 schaltest du sofort sechs Belohnungen frei und erhältst Zugriff auf vier brandneue Themenpfade mit neuer Ausrüstung, Waffenpaketen, Soldaten-Skins, EP-Boosts und mehr. Upg",
+    "accountEmail": "demo@homerow.dev",
+    "messageId": "<demo-mock-1303@homerow.dev>"
+  },
+  {
+    "id": 1304,
+    "seq": 1304,
+    "threadId": "thread-mock-1304",
+    "subject": "Celebrate Black History month",
+    "from": "Amazon Business",
+    "fromAddress": "no-reply@business.amazon.com",
+    "to": [
+      "demo@homerow.dev"
+    ],
+    "date": "2026-02-24T15:06:43.000Z",
+    "flags": [
+      "\\Seen",
+      "Category Promotions"
+    ],
+    "snippet": "96 Support Black entrepreneurs Support Black entrepreneurs Explore Black-owned Diversify your business procurement Amazon Business makes it simple to diversify ",
+    "hasAttachments": false,
+    "folderPath": "INBOX",
+    "html": "<p>96 Support Black entrepreneurs Support Black entrepreneurs Explore Black-owned Diversify your business procurement Amazon Business makes it simple to diversify your supply chain with business supplies from credentialed small and diverse sellers. Celebrate this Black History month by shopping Black-owned businesses as you procure IT essentials, Office supplies, and more. Learn how to set up your business procurement to support small and diverse sellers. Features Certification Are you a Black-owned business? Upload your certification Business procurement Purchase from certified diverse sellers. Set up your business procurement Supplier diversity Shop thousands of products from small and diverse sellers. Learn more Learn more Contact us | Manage account If you'd rather not receive future emails of this sort from Amazon Business, please let us know your email preferences . © 2026 Amazon.com,</p>",
+    "text": "96 Support Black entrepreneurs Support Black entrepreneurs Explore Black-owned Diversify your business procurement Amazon Business makes it simple to diversify your supply chain with business supplies from credentialed small and diverse sellers. Celebrate this Black History month by shopping Black-owned businesses as you procure IT essentials, Office supplies, and more. Learn how to set up your business procurement to support small and diverse sellers. Features Certification Are you a Black-owned business? Upload your certification Business procurement Purchase from certified diverse sellers. Set up your business procurement Supplier diversity Shop thousands of products from small and diverse sellers. Learn more Learn more Contact us | Manage account If you'd rather not receive future emails of this sort from Amazon Business, please let us know your email preferences . © 2026 Amazon.com,",
+    "accountEmail": "demo@homerow.dev",
+    "messageId": "<demo-mock-1304@homerow.dev>"
+  },
+  {
+    "id": 1305,
+    "seq": 1305,
+    "threadId": "thread-mock-1305",
+    "subject": "New exhibition | Samurai",
+    "from": "British Museum",
+    "fromAddress": "emails@britishmuseum.org",
+    "to": [
+      "demo@homerow.dev"
+    ],
+    "date": "2025-11-10T13:41:40.000Z",
+    "flags": [
+      "\\Seen",
+      "Category Updates"
+    ],
+    "snippet": "New exhibition | Samurai Unmask the reality behind the myth View this email online [link] [link] Visit the British Museum website. [link] Exhibitions [link] Mem",
+    "hasAttachments": false,
+    "folderPath": "INBOX",
+    "html": "<p>New exhibition | Samurai Unmask the reality behind the myth View this email online [link] [link] Visit the British Museum website. [link] Exhibitions [link] Membership [link] Shop [link] An imposing samurai helmet and facemask with a bristling moustache. [link] Samurai Opens 3 February From medieval battlefields to modern blockbusters, discover the real story of the samurai. Book discounted early bird tickets and save at least 20%, or become a Member [link] today to enjoy entry to all our exhibitions. Book now and save [link] black_arrow Supported by Huo Family Foundation logo Woodblock print of a female samurai galloping away from a battle, arrows piercing their armour. [link] Who were the samurai? Curator's introduction Explore how samurai have played many – often surprising – roles over their 1,000-year history. Read the blog [link] black_arrow Red and gold firefighter's cloak with wa</p>",
+    "text": "New exhibition | Samurai Unmask the reality behind the myth View this email online [link] [link] Visit the British Museum website. [link] Exhibitions [link] Membership [link] Shop [link] An imposing samurai helmet and facemask with a bristling moustache. [link] Samurai Opens 3 February From medieval battlefields to modern blockbusters, discover the real story of the samurai. Book discounted early bird tickets and save at least 20%, or become a Member [link] today to enjoy entry to all our exhibitions. Book now and save [link] black_arrow Supported by Huo Family Foundation logo Woodblock print of a female samurai galloping away from a battle, arrows piercing their armour. [link] Who were the samurai? Curator's introduction Explore how samurai have played many – often surprising – roles over their 1,000-year history. Read the blog [link] black_arrow Red and gold firefighter's cloak with wa",
+    "accountEmail": "demo@homerow.dev",
+    "messageId": "<demo-mock-1305@homerow.dev>"
+  },
+  {
+    "id": 1306,
+    "seq": 1306,
+    "threadId": "thread-mock-1306",
+    "subject": "Noitão (hoje), pré estreia de Sirât e Ghibli Fest agitam o Cine Belas Artes!",
+    "from": "Cine Belas Artes",
+    "fromAddress": "news@cinebelasartes.veloxtickets.com.br",
+    "to": [
+      "demo@homerow.dev"
+    ],
+    "date": "2026-02-13T15:10:01.000Z",
+    "flags": [
+      "\\Seen",
+      "Category Updates"
+    ],
+    "snippet": "Noitão (hoje), pré estreia de Sirât e Ghibli Fest agitam o Cine Belas Artes! Confira as novidades! 13.02 Noitão Morro dos Pecadores Horário: a partir das 23h30 ",
+    "hasAttachments": false,
+    "folderPath": "INBOX",
+    "html": "<p>Noitão (hoje), pré estreia de Sirât e Ghibli Fest agitam o Cine Belas Artes! Confira as novidades! 13.02 Noitão Morro dos Pecadores Horário: a partir das 23h30 Unimos um filmes mais pedidos pelo público com um dos lançamentos mais aguardados para um Noitão Especial. A Sala 1, Amores Euphoricos, traz a estreia de O Morro dos Ventos Uivantes seguido de Romeu + Julieta. Na Sala 2, Morro do Pecadores, traz o filme com mais indicações ao Oscar, Pecadores, seguido de Um Drink no Inferno Ingresso: R$80 (inteira) e R$40 (meia) Compre seu ingresso 19.02 a 04.03 Ghibli Fest 2026 Horário: 18h20 Nesta etapa serão exibidos 14 longas-metragens, sendo sete títulos inéditos na programação da mostra em relação à primeira parte realizada em 2025. Entre os filmes confirmados estão O Conto da Princesa Kaguya, Da Colina Kokuriko, As Memórias de Marnie, O Castelo no Céu, Contos de Terramar, O Reino dos Gatos </p>",
+    "text": "Noitão (hoje), pré estreia de Sirât e Ghibli Fest agitam o Cine Belas Artes! Confira as novidades! 13.02 Noitão Morro dos Pecadores Horário: a partir das 23h30 Unimos um filmes mais pedidos pelo público com um dos lançamentos mais aguardados para um Noitão Especial. A Sala 1, Amores Euphoricos, traz a estreia de O Morro dos Ventos Uivantes seguido de Romeu + Julieta. Na Sala 2, Morro do Pecadores, traz o filme com mais indicações ao Oscar, Pecadores, seguido de Um Drink no Inferno Ingresso: R$80 (inteira) e R$40 (meia) Compre seu ingresso 19.02 a 04.03 Ghibli Fest 2026 Horário: 18h20 Nesta etapa serão exibidos 14 longas-metragens, sendo sete títulos inéditos na programação da mostra em relação à primeira parte realizada em 2025. Entre os filmes confirmados estão O Conto da Princesa Kaguya, Da Colina Kokuriko, As Memórias de Marnie, O Castelo no Céu, Contos de Terramar, O Reino dos Gatos ",
+    "accountEmail": "demo@homerow.dev",
+    "messageId": "<demo-mock-1306@homerow.dev>"
+  },
+  {
+    "id": 1307,
+    "seq": 1307,
+    "threadId": "thread-mock-1307",
+    "subject": "Redditors are asking questions that your brand could be answering",
+    "from": "Reddit for Business",
+    "fromAddress": "no-reply@redditads.com",
+    "to": [
+      "demo@homerow.dev"
+    ],
+    "date": "2026-02-25T18:00:48.000Z",
+    "flags": [
+      "\\Seen",
+      "Category Social"
+    ],
+    "snippet": "Your industry is being discussed in real time on Reddit. Jump back in and be part of the conversations shaping your space. Reddit_Business_Short ([link] ) Your ",
+    "hasAttachments": false,
+    "folderPath": "INBOX",
+    "html": "<p>Your industry is being discussed in real time on Reddit. Jump back in and be part of the conversations shaping your space. Reddit_Business_Short ([link] ) Your industry is talking ([link] ) Hi [redacted], Reddit is still discussing News, but you haven't been there to take part. New conversations are happening in real time, and the brands that stay active are the ones sharping perception, building trust, and earning visibility. Find new conversations ([link] ) Image depicts how to find conversations ([link] ) Find new conversations ([link] ) Reddit Pro shows you exactly which threads are worth joining, where your audience is active, and which topics need your voice. You don't need to start a conversation; you just need to show up in the right ones. Ads Manager ([link] ) Reddit Help ([link] ) Reddit Ads Formula ([link] ) Policies ([link] ) Reddit Inc. 548 Market St #16093, San Francisco, C</p>",
+    "text": "Your industry is being discussed in real time on Reddit. Jump back in and be part of the conversations shaping your space. Reddit_Business_Short ([link] ) Your industry is talking ([link] ) Hi [redacted], Reddit is still discussing News, but you haven't been there to take part. New conversations are happening in real time, and the brands that stay active are the ones sharping perception, building trust, and earning visibility. Find new conversations ([link] ) Image depicts how to find conversations ([link] ) Find new conversations ([link] ) Reddit Pro shows you exactly which threads are worth joining, where your audience is active, and which topics need your voice. You don't need to start a conversation; you just need to show up in the right ones. Ads Manager ([link] ) Reddit Help ([link] ) Reddit Ads Formula ([link] ) Policies ([link] ) Reddit Inc. 548 Market St #16093, San Francisco, C",
+    "accountEmail": "demo@homerow.dev",
+    "messageId": "<demo-mock-1307@homerow.dev>"
+  },
+  {
+    "id": 1308,
+    "seq": 1308,
+    "threadId": "thread-mock-1308",
+    "subject": "Share Wise and start earning rewards",
+    "from": "Wise (formerly TransferWise)",
+    "fromAddress": "noreply@info.wise.com",
+    "to": [
+      "demo@homerow.dev"
+    ],
+    "date": "2026-02-23T18:45:08.000Z",
+    "flags": [
+      "\\Seen",
+      "Category Promotions"
+    ],
+    "snippet": "email 2- card_or_transfer_never_invited 96 What could you do with an extra 115 USD? 115 USD could be all yours Tell your friends and family why you love Wise an",
+    "hasAttachments": false,
+    "folderPath": "INBOX",
+    "html": "<p>email 2- card_or_transfer_never_invited 96 What could you do with an extra 115 USD? 115 USD could be all yours Tell your friends and family why you love Wise and you could both earn rewards. When your friends join Wise using your referral link, they can send their first transfer of up to 600 USD without paying any fees . When 3 of your friends either make a cross-currency transfer over 300 USD , or spend over 300 USD with a Wise card, you'll unlock a 115 USD reward. What’s not to love? Share Wise with friends Share Wise with friends Rewards that work for everyone Want to know how our referral program works? It’s simple — just follow these 3 easy steps. Spread the word Share your unique Wise referral link with friends and family. The more the merrier. Treat them like VIPs When your friends sign up using your referral link, they’ll get an exclusive Wise perk — they can send their first tra</p>",
+    "text": "email 2- card_or_transfer_never_invited 96 What could you do with an extra 115 USD? 115 USD could be all yours Tell your friends and family why you love Wise and you could both earn rewards. When your friends join Wise using your referral link, they can send their first transfer of up to 600 USD without paying any fees . When 3 of your friends either make a cross-currency transfer over 300 USD , or spend over 300 USD with a Wise card, you'll unlock a 115 USD reward. What’s not to love? Share Wise with friends Share Wise with friends Rewards that work for everyone Want to know how our referral program works? It’s simple — just follow these 3 easy steps. Spread the word Share your unique Wise referral link with friends and family. The more the merrier. Treat them like VIPs When your friends sign up using your referral link, they’ll get an exclusive Wise perk — they can send their first tra",
+    "accountEmail": "demo@homerow.dev",
+    "messageId": "<demo-mock-1308@homerow.dev>"
+  }
+];
+
 function createInitialState(): DemoState {
   const baseMessages: DemoMessage[] = [
     {
@@ -356,6 +543,7 @@ function createInitialState(): DemoState {
       accountEmail: DEMO_USER_EMAIL,
       messageId: "<demo-trash@homerow.dev>",
     },
+    ...importedMockMessages,
   ];
 
   return {
