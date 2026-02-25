@@ -10,7 +10,7 @@ When code changes are made, run this exact flow:
 1. Deploy:
    - You can skip hash verification if no new dependencies was added SKIP_NPM_DEPS_HASH_VERIFICATION
    - Always check if the behaviour variables are set in config.env before set your own 
-   - `./scripts/install.sh`
+   - to deploy use the ./hrow
 2. Run Playwright regression tests against production:
    - `cd webmail`
    - `E2E_BASE_URL='https://webmail.inout.email' E2E_EMAIL='admin@inout.email' E2E_PASSWORD='<password>' npm run e2e`
