@@ -1,17 +1,22 @@
 ---
 const { siteTitleHref } = Astro.locals.starlightRoute;
+const isDocsHome = Astro.url.pathname === "/";
 ---
 
-<a href={siteTitleHref} class="site-title" aria-label="Go to docs home">
-  <img src="/logo-app.svg" alt="" aria-hidden="true" class="brand-logo" />
-  <span class="brand-copy">
-    <span class="brand-overline">Homerow</span>
-    <span class="brand-title">
-      <span>Mail</span>
-      <span class="brand-beta">beta</span>
-    </span>
-  </span>
-</a>
+{
+  !isDocsHome && (
+    <a href={siteTitleHref} class="site-title" aria-label="Go to docs home">
+      <img src="/logo-app.svg" alt="" aria-hidden="true" class="brand-logo" />
+      <span class="brand-copy">
+        <span class="brand-overline">Homerow</span>
+        <span class="brand-title">
+          <span>Mail</span>
+          <span class="brand-beta">beta</span>
+        </span>
+      </span>
+    </a>
+  )
+}
 
 <style>
   .site-title {

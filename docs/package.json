@@ -8,6 +8,7 @@
     "start": "astro dev",
     "build": "astro build",
     "test:mermaid": "node ./scripts/test-mermaid-build.mjs",
+    "test:homepage-branding": "node ./scripts/test-homepage-branding.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },

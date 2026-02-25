@@ -184,6 +184,60 @@ site-search button[data-open-modal]:hover {
   max-width: 70ch;
 }
 
+.hero .copy .home-hero-title {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.45rem;
+  max-width: 100%;
+}
+
+.hero .copy .home-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  width: 4.4rem;
+  height: 4.4rem;
+  padding: 0;
+  border-radius: 999px;
+  border: 1px solid var(--sl-color-hairline);
+  background: color-mix(in oklab, var(--app-search-bg) 72%, transparent);
+}
+
+.hero .copy .home-hero-title-logo {
+  width: 3.2rem;
+  height: 3.2rem;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
+.hero .copy .home-hero-main-title {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.34rem;
+  line-height: 0.96;
+  white-space: nowrap;
+}
+
+.hero .copy .home-hero-main-brand {
+  font-size: 0.76em;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--app-foreground);
+}
+
+.hero .copy .home-hero-main-product {
+  font-size: 0.44em;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--app-text-secondary);
+}
+
+.hero .copy .tagline {
+  line-height: 1.5;
+}
+
 .hero > img,
 .hero > .hero-html {
   width: min(100%, 96rem);
