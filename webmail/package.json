@@ -1,5 +1,6 @@
 {
   "name": "example-basic",
+  "license": "AGPL-3.0-only",
   "type": "module",
   "scripts": {
     "dev": "vinxi dev",

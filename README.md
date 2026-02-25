@@ -73,3 +73,7 @@ Nix/NixOS:
 - Never commit `config.env`, private keys, or provider secrets.
 - Providers and stack notes: [infra/PROVIDERS.md](infra/PROVIDERS.md)
 - Infra module details: [infra/README.md](infra/README.md)
+
+## License
+
+This project is licensed under the GNU Affero General Public License v3.0 only (`AGPL-3.0-only`). See the [LICENSE](LICENSE) file.
