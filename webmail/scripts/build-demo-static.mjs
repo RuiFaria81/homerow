@@ -9,7 +9,7 @@ const webmailRoot = path.resolve(__dirname, "..");
 const builtPublicDir = path.join(webmailRoot, ".output", "public");
 const outDir = process.env.DEMO_STATIC_OUT_DIR
   ? path.resolve(webmailRoot, process.env.DEMO_STATIC_OUT_DIR)
-  : path.resolve(webmailRoot, "..", "docs", "public", "webmail-demo");
+  : path.resolve(webmailRoot, "..", "docs", "public", "demo");
 
 async function runBuild() {
   await new Promise((resolve, reject) => {
@@ -23,7 +23,7 @@ async function runBuild() {
           ...process.env,
           WEBMAIL_DEMO_MODE: "true",
           WEBMAIL_DEMO_STATIC: "true",
-          WEBMAIL_BASE_PATH: "/webmail-demo/",
+          WEBMAIL_BASE_PATH: "/demo/",
         },
       },
     );

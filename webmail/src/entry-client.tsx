@@ -2,7 +2,10 @@
 import { mount, StartClient } from "@solidjs/start/client";
 
 const parseBooleanEnv = (value?: string) => !!value && ["1", "true", "yes", "on"].includes(value.trim().toLowerCase());
-const demoStatic = import.meta.env.BASE_URL.includes("/webmail-demo/") || parseBooleanEnv(import.meta.env.WEBMAIL_DEMO_STATIC);
+const demoStatic =
+  import.meta.env.BASE_URL.includes("/demo/") ||
+  import.meta.env.BASE_URL.includes("/webmail-demo/") ||
+  parseBooleanEnv(import.meta.env.WEBMAIL_DEMO_STATIC);
 
 if (typeof window !== "undefined" && "serviceWorker" in navigator) {
   if (demoStatic) {

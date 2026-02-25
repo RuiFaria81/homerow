@@ -1,7 +1,7 @@
 import { access, readFile, readdir } from "node:fs/promises";
 import path from "node:path";
 
-const base = path.resolve(process.cwd(), "public", "webmail-demo");
+const base = path.resolve(process.cwd(), "public", "demo");
 
 async function mustExist(file) {
   await access(path.join(base, file));
@@ -27,8 +27,8 @@ async function main() {
   await mustExist("human-avatar.jpg");
 
   const indexHtml = await readFile(path.join(base, "index.html"), "utf8");
-  if (!indexHtml.includes("/webmail-demo/_build/")) {
-    throw new Error("Static webmail build is not using /webmail-demo base path.");
+  if (!indexHtml.includes("/demo/_build/")) {
+    throw new Error("Static webmail build is not using /demo base path.");
   }
 
   const allFiles = await collectFiles(base);

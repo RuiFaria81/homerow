@@ -7,7 +7,7 @@ function parseBooleanEnv(value: string | undefined): boolean {
 
 export function isDemoModeEnabled(): boolean {
   const baseUrl = (import.meta as { env?: Record<string, string | undefined> }).env?.BASE_URL || "";
-  if (baseUrl.includes("/webmail-demo/")) {
+  if (baseUrl.includes("/demo/") || baseUrl.includes("/webmail-demo/")) {
     return true;
   }
   const metaEnv = (import.meta as { env?: Record<string, string | undefined> }).env;
@@ -22,7 +22,7 @@ export function isDemoModeEnabled(): boolean {
 
 export function isDemoStaticModeEnabled(): boolean {
   const baseUrl = (import.meta as { env?: Record<string, string | undefined> }).env?.BASE_URL || "";
-  if (baseUrl.includes("/webmail-demo/")) {
+  if (baseUrl.includes("/demo/") || baseUrl.includes("/webmail-demo/")) {
     return true;
   }
   const metaEnv = (import.meta as { env?: Record<string, string | undefined> }).env;

@@ -3,7 +3,10 @@ import { createHandler, StartServer } from "@solidjs/start/server";
 
 const assetPath = (value: string) => `${import.meta.env.BASE_URL}${value.replace(/^\/+/, "")}`;
 const parseBooleanEnv = (value?: string) => !!value && ["1", "true", "yes", "on"].includes(value.trim().toLowerCase());
-const demoStatic = import.meta.env.BASE_URL.includes("/webmail-demo/") || parseBooleanEnv(import.meta.env.WEBMAIL_DEMO_STATIC);
+const demoStatic =
+  import.meta.env.BASE_URL.includes("/demo/") ||
+  import.meta.env.BASE_URL.includes("/webmail-demo/") ||
+  parseBooleanEnv(import.meta.env.WEBMAIL_DEMO_STATIC);
 
 export default createHandler(() => (
   <StartServer

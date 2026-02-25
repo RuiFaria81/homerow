@@ -65,10 +65,10 @@ In demo mode, mailbox state is reset on full page reload to keep demos determini
 
 ## Static Demo Build (GitHub Pages)
 
-Build the actual webmail app in demo mode as a static bundle (no backend) and copy it to `docs/public/webmail-demo`:
+Build the actual webmail app in demo mode as a static bundle (no backend) and copy it to `docs/public/demo`:
 
 ```bash
 npm run build:demo-static
 ```
 
-After docs deployment, it will be available at `/webmail-demo/`.
+After docs deployment, it will be available at `/demo/`.

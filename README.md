@@ -9,7 +9,7 @@ This repository provides a practical path to provision infrastructure, deploy a 
 ## Documentation
 
 Full docs: https://homerow.email
-Demo: https://homerow.email/webmail-demo/
+Demo: https://homerow.email/demo/
 
 Key pages:
 - Quick start: https://homerow.email/getting-started/quick-start/
