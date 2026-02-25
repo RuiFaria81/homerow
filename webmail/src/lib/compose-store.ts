@@ -1,7 +1,7 @@
 // src/lib/compose-store.ts
 import { createSignal } from "solid-js";
 import { settings } from "./settings-store";
-import { saveDraft } from "./mail-client";
+import { saveDraft } from "~/lib/mail-client-browser";
 
 export interface AttachmentFile {
   id: string;

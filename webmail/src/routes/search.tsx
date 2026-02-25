@@ -11,7 +11,7 @@ import {
   searchEmails,
   toggleStar,
   type EmailMessage,
-} from "~/lib/mail-client";
+} from "~/lib/mail-client-browser";
 import EmailRow from "~/components/EmailRow";
 import ReadingPane from "~/components/ReadingPane";
 import { IconSearch, IconRefresh, IconBack } from "~/components/Icons";

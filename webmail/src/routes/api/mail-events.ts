@@ -7,6 +7,7 @@
 import type { APIEvent } from "@solidjs/start/server";
 import pg from "pg";
 import { runSnoozeSweep } from "~/lib/mail-client";
+import { isDemoModeEnabled } from "~/lib/demo-mode";
 
 // Shared LISTEN client — one per server process, fans out to all SSE clients.
 // This avoids opening one PG connection per browser tab.
@@ -85,6 +86,38 @@ function cleanupPgListener() {
 }
 
 export async function GET({ request }: APIEvent) {
+  if (isDemoModeEnabled()) {
+    const stream = new ReadableStream({
+      start(controller) {
+        const encoder = new TextEncoder();
+        controller.enqueue(encoder.encode(`event: connected\ndata: ${JSON.stringify({ status: "ok" })}\n\n`));
+        const heartbeat = setInterval(() => {
+          try {
+            controller.enqueue(encoder.encode(": heartbeat\n\n"));
+          } catch {
+            clearInterval(heartbeat);
+          }
+        }, 30_000);
+        request.signal.addEventListener("abort", () => {
+          clearInterval(heartbeat);
+          try {
+            controller.close();
+          } catch {
+            // Already closed
+          }
+        });
+      },
+    });
+    return new Response(stream, {
+      headers: {
+        "Content-Type": "text/event-stream",
+        "Cache-Control": "no-cache",
+        Connection: "keep-alive",
+        "X-Accel-Buffering": "no",
+      },
+    });
+  }
+
   // Set up SSE response
   const stream = new ReadableStream({
     start(controller) {

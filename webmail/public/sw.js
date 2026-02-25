@@ -1,7 +1,12 @@
 const CACHE_VERSION = "homerow-v3";
 const SHELL_CACHE = `${CACHE_VERSION}-shell`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
-const APP_SHELL = ["/", "/manifest.webmanifest", "/favicon.svg", "/favicon.ico", "/pwa-192.png", "/pwa-512.png"];
+const scopePath = new URL(self.registration.scope).pathname.replace(/\/$/, "");
+const withBase = (value) => {
+  const path = value.startsWith("/") ? value : `/${value}`;
+  return `${scopePath}${path}`;
+};
+const APP_SHELL = [withBase("/"), withBase("/manifest.webmanifest"), withBase("/favicon.svg"), withBase("/favicon.ico"), withBase("/pwa-192.png"), withBase("/pwa-512.png")];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -38,7 +43,7 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  if (url.pathname.startsWith("/api/")) {
+  if (url.pathname.startsWith(withBase("/api/"))) {
     return;
   }
 
@@ -53,7 +58,7 @@ self.addEventListener("fetch", (event) => {
         .catch(async () => {
           const cached = await caches.match(request);
           if (cached) return cached;
-          return caches.match("/");
+          return caches.match(withBase("/"));
         })
     );
     return;

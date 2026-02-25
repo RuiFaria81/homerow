@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "@solidjs/router";
 import { IconSearch } from "./Icons";
 import { commandPaletteOpen, closeCommandPalette } from "~/lib/command-palette-store";
 import { composeState } from "~/lib/compose-store";
+import { isDemoModeEnabled } from "~/lib/demo-mode";
 import {
   SHORTCUT_ACTIONS,
   type ShortcutActionId,
@@ -118,6 +119,7 @@ function matchesQuery(text: string, query: string): boolean {
 export default function CommandPalette() {
   const navigate = useNavigate();
   const location = useLocation();
+  const demoMode = isDemoModeEnabled();
   let inputRef: HTMLInputElement | undefined;
   let listRef: HTMLDivElement | undefined;
 
@@ -159,6 +161,7 @@ export default function CommandPalette() {
 
     // Settings tab commands
     for (const tab of SETTINGS_TAB_COMMANDS) {
+      if (demoMode && tab.tab === "import") continue;
       items.push({
         id: `settings:${tab.tab}:${tab.label}`,
         label: tab.label,

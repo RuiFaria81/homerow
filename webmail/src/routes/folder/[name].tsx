@@ -1,7 +1,7 @@
 import { createResource, For, Show, createSignal, createMemo, createEffect, onMount, onCleanup } from "solid-js";
 import { isServer } from "solid-js/web";
 import { useParams, useNavigate } from "@solidjs/router";
-import { fetchEmailsPaginated, fetchThreadsPaginated, getEmail, deleteEmail, deleteEmailsBatch, archiveEmails, addEmailLabel, removeEmailLabel, toggleStar, markAsRead, markAsUnread, moveToFolder, restoreFromTrash, snoozeEmails, cancelScheduledEmail, cancelScheduledEmails, type EmailMessage } from "~/lib/mail-client";
+import { fetchEmailsPaginated, fetchThreadsPaginated, getEmail, deleteEmail, deleteEmailsBatch, archiveEmails, addEmailLabel, removeEmailLabel, toggleStar, markAsRead, markAsUnread, moveToFolder, restoreFromTrash, snoozeEmails, cancelScheduledEmail, cancelScheduledEmails, type EmailMessage } from "~/lib/mail-client-browser";
 import { settings } from "~/lib/settings-store";
 import { refreshCounts } from "~/lib/sidebar-store";
 import { labelsState, addLabel, LABEL_COLORS, getVisibleLabels } from "~/lib/labels-store";

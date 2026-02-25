@@ -2,7 +2,7 @@ import { createEffect, createMemo, For, Show } from "solid-js";
 import { createVirtualizer } from "@tanstack/solid-virtual";
 import { settings, DENSITY_CONFIG } from "~/lib/settings-store";
 import EmailRow from "./EmailRow";
-import type { EmailMessage } from "~/lib/mail-client";
+import type { EmailMessage } from "~/lib/mail-client-browser";
 
 /** Pixel heights for each density setting, matching the Tailwind h-* classes in DENSITY_CONFIG */
 const ROW_HEIGHT: Record<string, number> = {

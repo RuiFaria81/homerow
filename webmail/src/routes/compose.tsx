@@ -1,6 +1,6 @@
 import { createSignal, Show, onMount, onCleanup } from "solid-js";
 import { A, useNavigate } from "@solidjs/router";
-import { sendEmail } from "~/lib/mail-client";
+import { sendEmail } from "~/lib/mail-client-browser";
 import { contacts, loadContacts, addContact } from "~/lib/contacts-store";
 import { IconBack, IconSend, IconPaperclip } from "~/components/Icons";
 import TipTapEditor from "~/components/TipTapEditor";

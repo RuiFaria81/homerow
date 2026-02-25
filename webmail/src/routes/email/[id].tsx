@@ -1,6 +1,6 @@
 import { createResource, Show, Suspense, createSignal, createMemo, For } from "solid-js";
 import { useParams, A, useNavigate, useSearchParams } from "@solidjs/router";
-import { getEmail, deleteEmail, archiveEmails, markAsRead, markAsUnread, moveToFolder, snoozeEmails, blockSender } from "~/lib/mail-client";
+import { getEmail, deleteEmail, archiveEmails, markAsRead, markAsUnread, moveToFolder, snoozeEmails, blockSender } from "~/lib/mail-client-browser";
 import { sanitizeEmailHtml } from "~/lib/sanitize-html";
 import { linkifyPlainText } from "~/lib/plain-text-links";
 import { IconBack, IconTrash, IconArchive, IconPaperclip, IconClock, IconSpam, IconBlock, IconEnvelope, IconEnvelopeOpen } from "~/components/Icons";

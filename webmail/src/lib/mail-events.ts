@@ -9,6 +9,7 @@ import { createSignal, onCleanup } from "solid-js";
 import { isServer } from "solid-js/web";
 import { settings } from "~/lib/settings-store";
 import { isBlockedSenderCandidate } from "~/lib/blocked-senders-cache";
+import { isDemoStaticModeEnabled } from "./demo-mode";
 
 export interface MailEvent {
   type: "new_message" | "flags_changed" | "expunge" | "folder_synced";
@@ -42,6 +43,7 @@ const MAX_NOTIFICATIONS_PER_WINDOW = 3;
 // -------------------------------------------------------------------------
 
 let notificationsPermission: NotificationPermission = "default";
+const assetPath = (value: string) => `${import.meta.env.BASE_URL}${value.replace(/^\/+/, "")}`;
 
 function initNotifications() {
   if (isServer || !("Notification" in window)) return;
@@ -87,8 +89,8 @@ function showBrowserNotification(event: MailEvent) {
 
     const notification = new Notification(title, {
       body,
-      icon: "/pwa-192.png",
-      badge: "/pwa-192.png",
+      icon: assetPath("/pwa-192.png"),
+      badge: assetPath("/pwa-192.png"),
       tag: `mail-${event.uid}`, // Deduplicate by UID
       silent: false,
     });
@@ -112,6 +114,7 @@ function showBrowserNotification(event: MailEvent) {
 
 function connect() {
   if (isServer || eventSource) return;
+  if (isDemoStaticModeEnabled()) return;
 
   initNotifications();
 

@@ -51,3 +51,29 @@ npm install
 npm run e2e:install
 npm run e2e
 ```
+
+## Demo mode (mocked backend)
+
+Run or build the webmail with in-memory mocked data and no auth/DB dependencies:
+
+```bash
+WEBMAIL_DEMO_MODE=true npm run dev
+WEBMAIL_DEMO_MODE=true npm run build
+```
+
+Demo credentials:
+
+- Email: `demo@homerow.dev`
+- Password: `demo123`
+
+In demo mode, mailbox state is reset on full page reload to keep demos deterministic.
+
+## Static Demo Build (GitHub Pages)
+
+Build the actual webmail app in demo mode as a static bundle (no backend) and copy it to `docs/public/webmail-demo`:
+
+```bash
+npm run build:demo-static
+```
+
+After docs deployment, it will be available at `/webmail-demo/`.

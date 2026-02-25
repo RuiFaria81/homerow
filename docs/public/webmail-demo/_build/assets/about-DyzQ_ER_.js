@@ -1,0 +1,1 @@
+import{k as e,b as a,t as o}from"./web-BodMEUbZ.js";import{T as i}from"./index-DmCM5nP8.js";var n=o("<main><h1>About");function s(){return(()=>{var t=n(),r=t.firstChild;return e(t,a(i,{children:"About"}),r),t})()}export{s as default};

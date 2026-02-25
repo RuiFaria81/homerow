@@ -9,6 +9,7 @@ import {
 } from "~/lib/takeout-import-filenames";
 import { createTakeoutImportJob, ensureImportTempDir, listRecentTakeoutImportJobs } from "~/lib/takeout-import-jobs";
 import { kickTakeoutImportWorker } from "~/lib/takeout-import-worker";
+import { isDemoModeEnabled } from "~/lib/demo-mode";
 
 interface CreateJobBody {
   filename?: string;
@@ -27,6 +28,9 @@ interface ArchivePartOption {
 const MAX_FILE_SIZE_BYTES = 15 * 1024 * 1024 * 1024; // 15 GiB
 
 export async function GET() {
+  if (isDemoModeEnabled()) {
+    return Response.json({ jobs: [] });
+  }
   void kickTakeoutImportWorker();
   const jobs = await listRecentTakeoutImportJobs(20);
   return Response.json({ jobs });

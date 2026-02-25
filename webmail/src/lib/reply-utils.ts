@@ -1,5 +1,5 @@
 // src/lib/reply-utils.ts
-import { FullEmail } from "./mail-client";
+import type { FullEmail } from "~/lib/mail-client-browser";
 
 const CURRENT_USER =
   (typeof process !== "undefined" ? process.env?.ADMIN_EMAIL : undefined) ||

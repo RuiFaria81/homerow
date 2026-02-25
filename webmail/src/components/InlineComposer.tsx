@@ -1,6 +1,6 @@
 import { createSignal, Show, createEffect, For, onCleanup } from "solid-js";
 import { useNavigate } from "@solidjs/router";
-import { FullEmail, sendEmail, type EmailAttachment } from "~/lib/mail-client";
+import { sendEmail, type EmailAttachment, type FullEmail } from "~/lib/mail-client-browser";
 import { formatReplySubject, formatForwardSubject, getForwardQuoteParts, getReplyQuoteParts, getReplyAllRecipients, getReplyRecipients } from "~/lib/reply-utils";
 import type { QuotedEmail } from "./LexicalEditor";
 import { openCompose, toggleMinimize, type AttachmentFile } from "~/lib/compose-store";

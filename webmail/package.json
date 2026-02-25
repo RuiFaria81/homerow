@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vinxi dev",
     "build": "vinxi build",
+    "build:demo-static": "node scripts/build-demo-static.mjs",
     "start": "vinxi start",
     "e2e": "playwright test",
     "e2e:headed": "playwright test --headed",

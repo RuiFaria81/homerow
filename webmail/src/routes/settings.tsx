@@ -18,7 +18,9 @@ import { signatureState, addSignature, updateSignature, removeSignature, setDefa
 import { clearPaginationCache, getPaginationCacheStats } from "~/lib/pagination-cache";
 import { showToast } from "~/lib/toast-store";
 import { authClient } from "~/lib/auth-client";
-import { getBlockedSenders, unblockSender, blockSender, getAutoReplySettings, saveAutoReplySettings, type AutoReplySettings } from "~/lib/mail-client";
+import { isDemoModeEnabled } from "~/lib/demo-mode";
+import { DEMO_USER_PROFILE } from "~/lib/demo-user";
+import { getBlockedSenders, unblockSender, blockSender, getAutoReplySettings, saveAutoReplySettings, type AutoReplySettings } from "~/lib/mail-client-browser";
 import { cacheBlockedSenderEmails } from "~/lib/blocked-senders-cache";
 import { getUpdateStatusClient } from "~/lib/update-status-client";
 import hotkeys from "hotkeys-js";
@@ -195,10 +197,11 @@ export default function Settings() {
   const [twoFactorSetupUri, setTwoFactorSetupUri] = createSignal("");
   const [twoFactorQrDataUrl, setTwoFactorQrDataUrl] = createSignal("");
   const [backupCodes, setBackupCodes] = createSignal<string[]>([]);
+  const demoMode = isDemoModeEnabled();
 
-  const userEmail = () => session().data?.user?.email || "admin@local";
-  const userName = () => session().data?.user?.name || "Admin";
-  const userImage = () => session().data?.user?.image || "";
+  const userEmail = () => session().data?.user?.email || (demoMode ? DEMO_USER_PROFILE.email : "admin@local");
+  const userName = () => session().data?.user?.name || (demoMode ? DEMO_USER_PROFILE.name : "Admin");
+  const userImage = () => session().data?.user?.image || (demoMode ? DEMO_USER_PROFILE.image : "");
   const isTwoFactorEnabled = () =>
     Boolean((session().data?.user as { twoFactorEnabled?: boolean } | undefined)?.twoFactorEnabled);
   const userInitial = () => (profileName().trim() || userEmail()).slice(0, 1).toUpperCase() || "A";
@@ -409,7 +412,7 @@ export default function Settings() {
     { id: "accounts" as SettingsTab, label: "Accounts", icon: IconMail },
     { id: "blocked" as SettingsTab, label: "Blocked Senders", icon: IconBlock },
     { id: "auto-reply" as SettingsTab, label: "Auto Reply", icon: IconSend },
-  ];
+  ].filter((tab) => !(demoMode && tab.id === "import"));
   const shortcutConflictEntries = createMemo(() => Array.from(getShortcutConflictMap().entries()));
   const shortcutConflictLookup = createMemo(() => new Map(shortcutConflictEntries()));
   const isShortcutSlotConflicted = (actionId: ShortcutActionId) => {
@@ -477,6 +480,10 @@ export default function Settings() {
 
   createEffect(() => {
     const requestedTab = searchParams.tab;
+    if (requestedTab === "import" && demoMode) {
+      setActiveTab("general");
+      return;
+    }
     if (requestedTab === "general" || requestedTab === "shortcuts" || requestedTab === "appearance" || requestedTab === "labels" || requestedTab === "categories" || requestedTab === "signature" || requestedTab === "import" || requestedTab === "accounts" || requestedTab === "blocked" || requestedTab === "auto-reply") {
       setActiveTab(requestedTab);
     }

@@ -1,5 +1,5 @@
 import { createResource, Show, createSignal, For, createMemo, createEffect, onCleanup } from "solid-js";
-import { getEmail, getThreadMessages, getThreadIdForMessage, deleteEmail, archiveEmails, type FullEmail } from "~/lib/mail-client";
+import { getEmail, getThreadMessages, getThreadIdForMessage, deleteEmail, archiveEmails, type FullEmail } from "~/lib/mail-client-browser";
 import { refreshCounts } from "~/lib/sidebar-store";
 import { labelsState, isCategoryLabelName } from "~/lib/labels-store";
 import { settings, setSettings } from "~/lib/settings-store";

@@ -1,9 +1,14 @@
 import { createEffect, createSignal, Show } from "solid-js";
 import { useNavigate } from "@solidjs/router";
 import { authClient } from "~/lib/auth-client";
+import { isDemoModeEnabled, isDemoStaticModeEnabled } from "~/lib/demo-mode";
+import { DEMO_USER_PASSWORD, DEMO_USER_PROFILE } from "~/lib/demo-user";
 
 export default function Login() {
   const navigate = useNavigate();
+  const demoMode = isDemoModeEnabled();
+  const demoStaticMode = isDemoStaticModeEnabled();
+  const assetPath = (value: string) => `${import.meta.env.BASE_URL}${value.replace(/^\/+/, "")}`;
   const session = authClient.useSession();
   const [email, setEmail] = createSignal("");
   const [password, setPassword] = createSignal("");
@@ -15,6 +20,7 @@ export default function Login() {
   const [loading, setLoading] = createSignal(false);
 
   createEffect(() => {
+    if (demoMode) return;
     if (session().data?.session) {
       navigate("/");
     }
@@ -26,6 +32,37 @@ export default function Login() {
     setLoading(true);
 
     try {
+      if (demoMode) {
+        if (demoStaticMode) {
+          const result = await authClient.signIn.email({
+            email: email(),
+            password: password(),
+            callbackURL: "/",
+          });
+          if (result.error) {
+            setError("Invalid demo credentials");
+            return;
+          }
+          navigate("/");
+          return;
+        }
+
+        const response = await fetch("/api/demo-auth/login", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            email: email(),
+            password: password(),
+          }),
+        });
+        if (!response.ok) {
+          setError("Invalid demo credentials");
+          return;
+        }
+        navigate("/");
+        return;
+      }
+
       const result = await authClient.signIn.email({
         email: email(),
         password: password(),
@@ -87,7 +124,7 @@ export default function Login() {
       <div class="w-full max-w-sm">
         <div class="flex items-center justify-center mb-8">
           <div class="relative flex items-center gap-2.5 rounded-xl px-1.5 py-1 text-left text-[var(--foreground)]">
-            <img src="/logo.svg" alt="" aria-hidden="true" class="h-10 w-auto max-w-[40px] object-contain shrink-0" />
+            <img src={assetPath("/logo.svg")} alt="" aria-hidden="true" class="h-10 w-auto max-w-[40px] object-contain shrink-0" />
             <div class="flex flex-col leading-none">
               <span class="text-[9px] font-medium uppercase tracking-[0.08em] text-[var(--text-muted)] opacity-75">Homerow</span>
               <span class="inline-flex items-baseline gap-1 text-[26px] font-semibold tracking-tight text-[var(--foreground)]">
@@ -107,6 +144,12 @@ export default function Login() {
               ? "Enter the code from your authenticator app or a backup code"
               : "Enter your credentials to access your mailbox"}
           </p>
+
+          <Show when={demoMode && !requiresTwoFactor()}>
+            <div class="mb-4 px-3 py-2.5 rounded-lg bg-blue-50 border border-blue-200 text-sm text-blue-800">
+              {`Demo login: ${DEMO_USER_PROFILE.email} / ${DEMO_USER_PASSWORD}`}
+            </div>
+          </Show>
 
           <Show when={error()}>
             <div class="mb-4 px-3 py-2.5 rounded-lg bg-red-50 border border-red-200 text-sm text-red-700">
@@ -129,6 +172,7 @@ export default function Login() {
                     id="email"
                     type="email"
                     required
+                    autocomplete="username"
                     placeholder="you@example.com"
                     value={email()}
                     onInput={(e) => setEmail(e.currentTarget.value)}
@@ -147,6 +191,7 @@ export default function Login() {
                     id="password"
                     type="password"
                     required
+                    autocomplete="current-password"
                     placeholder="Enter your password"
                     value={password()}
                     onInput={(e) => setPassword(e.currentTarget.value)}

@@ -11,12 +11,14 @@ import ToastContainer from "~/components/ToastContainer";
 import { IconSend } from "~/components/Icons";
 import { settings, THEMES, FONTS } from "~/lib/settings-store";
 import { folderCounts } from "~/lib/sidebar-store";
-import { getUnreadCountForSection, getAutoReplySettings } from "~/lib/mail-client";
+import { getUnreadCountForSectionClient, getAutoReplySettingsClient } from "~/lib/app-shell-client";
+import { isDemoModeEnabled, isDemoStaticModeEnabled } from "~/lib/demo-mode";
 import { categoryKeyFromFilterId, getCategoryTabs, getConfiguredCategories, isCategoryFilterId, labelsState, PRIMARY_CATEGORY_KEY } from "~/lib/labels-store";
 import { SHORTCUT_ACTIONS, type ShortcutActionId, getEffectiveActionShortcuts, splitShortcutSteps, formatShortcut } from "~/lib/keyboard-shortcuts-store";
 import { showToast } from "~/lib/toast-store";
 import { toggleCommandPalette, commandPaletteOpen } from "~/lib/command-palette-store";
 import { getUpdateStatusClient } from "~/lib/update-status-client";
+import { authClient } from "~/lib/auth-client";
 import "./app.css";
 
 interface ImportBannerJob {
@@ -45,12 +47,18 @@ interface AutoReplyBannerSettings {
 }
 
 export default function App() {
+  const demoModeEnabled = isDemoModeEnabled();
+  const demoStaticModeEnabled = isDemoStaticModeEnabled();
+  const routerBase = import.meta.env.BASE_URL === "/" ? "" : import.meta.env.BASE_URL.replace(/\/$/, "");
+  const assetPath = (value: string) => `${import.meta.env.BASE_URL}${value.replace(/^\/+/, "")}`;
+  const isLoginPath = (pathname: string) => pathname === "/login" || pathname.endsWith("/login");
   const SIDEBAR_COLLAPSED_KEY = "sidebarCollapsed";
   const [quickSettingsOpen, setQuickSettingsOpen] = createSignal(false);
   const [searchTerm, setSearchTerm] = createSignal("");
   const [sidebarCollapsed, setSidebarCollapsed] = createSignal(false);
   const [importBannerJob, setImportBannerJob] = createSignal<ImportBannerJob | null>(null);
-  const [autoReplySettings, { refetch: refetchAutoReplySettings }] = createResource(getAutoReplySettings);
+  const fetchAutoReplySettings = async () => getAutoReplySettingsClient();
+  const [autoReplySettings, { refetch: refetchAutoReplySettings }] = createResource(fetchAutoReplySettings);
   const [updateStatus, { refetch: refetchUpdateStatus }] = createResource(getUpdateStatusClient);
   const autoReplySettingsLatest = createMemo(
     () => (autoReplySettings.latest as AutoReplyBannerSettings | null | undefined) ?? null,
@@ -65,7 +73,12 @@ export default function App() {
     if (saved === "true") {
       setSidebarCollapsed(true);
     }
-    if (window.location.pathname === "/login") {
+    if (demoStaticModeEnabled) {
+      setImportBannerJob(null);
+      localStorage.setItem("takeoutImportActive", "false");
+      return;
+    }
+    if (isLoginPath(window.location.pathname)) {
       return;
     }
 
@@ -127,7 +140,7 @@ export default function App() {
   });
 
   onMount(() => {
-    if (window.location.pathname === "/login") return;
+    if (isLoginPath(window.location.pathname)) return;
     const handleAutoReplyUpdated = () => {
       void refetchAutoReplySettings();
     };
@@ -143,7 +156,7 @@ export default function App() {
 
   onMount(() => {
     if (typeof window === "undefined") return;
-    if (window.location.pathname === "/login") return;
+    if (isLoginPath(window.location.pathname)) return;
     void refetchUpdateStatus();
     const timer = setInterval(() => {
       void refetchUpdateStatus();
@@ -247,7 +260,7 @@ export default function App() {
     return 0;
   };
 
-  const shouldShowImportBanner = () => !!importBannerJob();
+  const shouldShowImportBanner = () => !demoModeEnabled && !!importBannerJob();
   const bannerMode = (): "upload" | "analysis" | "import" => {
     const job = importBannerJob();
     if (!job) return "upload";
@@ -541,7 +554,7 @@ export default function App() {
     };
 
     const executeAction = (actionId: ShortcutActionId, e: KeyboardEvent): boolean => {
-      if (window.location.pathname === "/login") return false;
+      if (isLoginPath(window.location.pathname)) return false;
       if (actionId === "openCommandPalette") {
         e.preventDefault();
         toggleCommandPalette();
@@ -628,18 +641,26 @@ export default function App() {
 
   return (
     <MetaProvider>
-      <Link rel="manifest" href="/manifest.webmanifest" />
-      <Link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-      <Link rel="icon" href="/pwa-192.png" sizes="192x192" />
-      <Link rel="apple-touch-icon" href="/pwa-192.png" />
-      <Meta name="theme-color" content="#0f766e" />
-      <Meta name="mobile-web-app-capable" content="yes" />
-      <Meta name="apple-mobile-web-app-capable" content="yes" />
-      <Meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+      <script>{`window.__WEBMAIL_DEMO_MODE__ = ${demoModeEnabled ? "true" : "false"};`}</script>
+      <script>{`window.__WEBMAIL_DEMO_STATIC_MODE__ = ${demoStaticModeEnabled ? "true" : "false"};`}</script>
+      {!demoStaticModeEnabled && (
+        <>
+          <Link rel="manifest" href={assetPath("/manifest.webmanifest")} />
+          <Link rel="icon" href={assetPath("/favicon.svg")} type="image/svg+xml" />
+          <Link rel="icon" href={assetPath("/pwa-192.png")} sizes="192x192" />
+          <Link rel="apple-touch-icon" href={assetPath("/pwa-192.png")} />
+          <Meta name="theme-color" content="#0f766e" />
+          <Meta name="mobile-web-app-capable" content="yes" />
+          <Meta name="apple-mobile-web-app-capable" content="yes" />
+          <Meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        </>
+      )}
       <Router
+        base={routerBase}
         root={(props) => {
           const navigate = useNavigate();
           const location = useLocation();
+          const session = authClient.useSession();
 
           const handleSearch = (query: string) => {
             if (query.trim()) {
@@ -730,9 +751,13 @@ export default function App() {
             const unreadSection = context?.unreadSection;
             setActiveUnreadCount(null);
             if (!unreadSection) return;
+            if (demoStaticModeEnabled) {
+              setActiveUnreadCount(0);
+              return;
+            }
 
             let cancelled = false;
-            void getUnreadCountForSection(unreadSection)
+            void getUnreadCountForSectionClient(unreadSection)
               .then((value) => {
                 if (!cancelled) setActiveUnreadCount(Math.max(0, Number(value) || 0));
               })
@@ -758,7 +783,14 @@ export default function App() {
             document.title = `${unreadPrefix}${context.title} - Homerow`;
           });
 
-          const isAuthPage = () => location.pathname === "/login";
+          const isAuthPage = () => isLoginPath(location.pathname);
+          createEffect(() => {
+            if (!demoModeEnabled || !demoStaticModeEnabled) return;
+            const authenticated = Boolean(session().data?.session);
+            if (!authenticated && !isLoginPath(location.pathname)) {
+              navigate("/login", { replace: true });
+            }
+          });
           const globalBannerCount = () =>
             Number(shouldShowImportBanner()) + Number(shouldShowAutoReplyBanner());
           const headerRowStart = () => globalBannerCount() + 1;

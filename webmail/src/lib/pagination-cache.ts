@@ -33,6 +33,16 @@ function makeKey(namespace: string, page: number) {
   return `${namespace}::${page}`;
 }
 
+function isValidCachedPageData(data: unknown): data is CachedPageData {
+  if (!data || typeof data !== "object") return false;
+  const candidate = data as Partial<CachedPageData>;
+  if (!Array.isArray(candidate.emails)) return false;
+  if (typeof candidate.total !== "number" || !Number.isFinite(candidate.total)) return false;
+  if (candidate.nextCursor !== null && typeof candidate.nextCursor !== "string") return false;
+  if (typeof candidate.hasMore !== "boolean") return false;
+  return true;
+}
+
 async function withStore<T>(
   mode: IDBTransactionMode,
   work: (store: IDBObjectStore) => void | Promise<T>,
@@ -145,6 +155,10 @@ export async function getCachedPage(
   const record = await getRecord(key);
   if (!record) return null;
   if (Date.now() - record.updatedAt > TTL_MS) {
+    await deleteRecord(key);
+    return null;
+  }
+  if (!isValidCachedPageData(record.data)) {
     await deleteRecord(key);
     return null;
   }

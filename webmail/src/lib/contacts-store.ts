@@ -1,6 +1,6 @@
 // src/lib/contacts-store.ts
 import { createSignal } from "solid-js";
-import { fetchSentContacts } from "./mail-client";
+import { fetchSentContacts } from "~/lib/mail-client-browser";
 
 const [contacts, setContacts] = createSignal<string[]>([]);
 let loaded = false;

@@ -4,7 +4,7 @@ import { For, createResource, createEffect, Show, createSignal, onCleanup, creat
 import { openCompose } from "~/lib/compose-store";
 import { labelsState, setActiveFilter, IMPORTANT_FILTER_ID, getVisibleLabels, isCategoryFilterId, getCategoryTabs, PRIMARY_CATEGORY_KEY, type CategoryIconId } from "~/lib/labels-store";
 import { settings, DENSITY_CONFIG } from "~/lib/settings-store";
-import { getFolderCounts } from "~/lib/mail-client";
+import { getFolderCounts } from "~/lib/mail-client-browser";
 import { triggerUpdate, refreshCounts, publishFolderCounts } from "~/lib/sidebar-store";
 import { useMailEvents, requestNotificationPermission } from "~/lib/mail-events";
 import { IconInbox, IconSend, IconSendClock, IconTrash, IconCompose, IconArchive, IconSpam, IconLabel, IconStar, IconSettings, IconDrafts, IconUsers, IconImportant, IconChevronDown, IconChevronRight, IconInfo, IconSparkles, IconBriefcase, IconCart, IconReceipt, IconHeart, IconCode, IconBolt, IconClock } from "./Icons";

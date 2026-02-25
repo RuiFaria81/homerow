@@ -1,6 +1,6 @@
 import { createSignal, createResource, Show, For, createMemo } from "solid-js";
 import { A } from "@solidjs/router";
-import { fetchAllContacts, deleteContact, type ContactEntry } from "~/lib/mail-client";
+import { fetchAllContacts, deleteContact, type ContactEntry } from "~/lib/mail-client-browser";
 import { openCompose } from "~/lib/compose-store";
 import { IconBack, IconUsers, IconSearch, IconTrash, IconSend, IconPlus, IconClose } from "~/components/Icons";
 import { showToast } from "~/lib/toast-store";
@@ -41,7 +41,7 @@ export default function Contacts() {
     if (!email) return;
     // Add via the mail-client server function
     try {
-      const { addContactToDb } = await import("~/lib/mail-client");
+      const { addContactToDb } = await import("~/lib/mail-client-browser");
       await addContactToDb(email, newName().trim() || undefined);
       setNewEmail("");
       setNewName("");

@@ -1,9 +1,43 @@
 "use server";
-import { ImapFlow, ImapFlowOptions } from 'imapflow';
-import nodemailer from 'nodemailer';
+import type { ImapFlowOptions } from 'imapflow';
 import crypto from "node:crypto";
 import { getPool } from './db';
 import { buildListUnsubscribeHeaders } from "./outgoing-mail-headers";
+import { isDemoModeEnabled } from "./demo-mode";
+import {
+  demoAddEmailLabel,
+  demoArchiveEmails,
+  demoBlockSender,
+  demoCancelScheduledEmail,
+  demoCancelScheduledEmails,
+  demoDeleteContact,
+  demoDeleteEmail,
+  demoDeleteEmailsBatch,
+  demoFetchAllContacts,
+  demoFetchEmails,
+  demoFetchEmailsPaginated,
+  demoFetchSentContacts,
+  demoFetchThreadsPaginated,
+  demoGetAutoReplySettings,
+  demoGetBlockedSenders,
+  demoGetEmail,
+  demoGetFolderCounts,
+  demoGetThreadIdForMessage,
+  demoGetThreadMessages,
+  demoGetUnreadCountForSection,
+  demoMarkAsRead,
+  demoMarkAsUnread,
+  demoMoveToFolder,
+  demoRemoveEmailLabel,
+  demoRestoreFromTrash,
+  demoRunSnoozeSweep,
+  demoSaveAutoReplySettings,
+  demoSearchEmails,
+  demoSendEmail,
+  demoSnoozeEmails,
+  demoToggleStar,
+  demoUnblockSender,
+} from "./demo-mail-data";
 
 export type MessageSyncStatus = "staged" | "imap_syncing" | "imap_synced" | "sync_error";
 
@@ -130,6 +164,14 @@ const getImapConfig = (): ImapFlowOptions => {
   };
 };
 
+async function createImapClient() {
+  if (typeof window !== "undefined") {
+    throw new Error("IMAP client is not available in the browser runtime.");
+  }
+  const { ImapFlow } = await import("imapflow");
+  return new ImapFlow(getImapConfig());
+}
+
 const CURRENT_USER = process.env.ADMIN_EMAIL || 'admin@local';
 const DEFAULT_SENDER_NAME = "Me";
 
@@ -243,7 +285,11 @@ async function runBackgroundSweepTick(): Promise<void> {
   if (backgroundSweepTickInFlight) return;
   backgroundSweepTickInFlight = true;
   try {
-    await runSnoozeSweep();
+    if (isDemoModeEnabled()) {
+      await demoRunSnoozeSweep();
+    } else {
+      await releaseDueSnoozedEmails();
+    }
   } catch (err) {
     console.error("[Sweep Error] background tick failed:", err);
   } finally {
@@ -252,6 +298,7 @@ async function runBackgroundSweepTick(): Promise<void> {
 }
 
 function ensureBackgroundSweepTimer(): void {
+  if (typeof window !== "undefined") return;
   const state = getBackgroundSweepState();
   if (state.timer) return;
   state.timer = setInterval(() => {
@@ -381,7 +428,7 @@ async function deleteMessagesFromDbByUids(folderPath: string, uids: number[]): P
 async function permanentlyDeleteUids(folderPath: string, uids: number[]): Promise<void> {
   if (!uids.length) return;
   try {
-    const client = new ImapFlow(getImapConfig());
+    const client = await createImapClient();
     await client.connect();
     try {
       const lock = await client.getMailboxLock(folderPath);
@@ -601,10 +648,16 @@ async function releaseDueSnoozedEmails(): Promise<void> {
 }
 
 export async function runSnoozeSweep(): Promise<void> {
+  if (isDemoModeEnabled()) {
+    await demoRunSnoozeSweep();
+    return;
+  }
   await releaseDueSnoozedEmails();
 }
 
-ensureBackgroundSweepTimer();
+if (typeof window === "undefined") {
+  ensureBackgroundSweepTimer();
+}
 
 function normalizeMessageId(value: string): string {
   const trimmed = value.trim();
@@ -981,6 +1034,9 @@ function emailDedupKey(email: FullEmail): string {
 export async function getFolderCounts(
   folders: string[]
 ): Promise<Record<string, { unread: number; total: number }>> {
+  if (isDemoModeEnabled()) {
+    return demoGetFolderCounts(folders);
+  }
   const pool = getPool();
   const counts: Record<string, { unread: number; total: number }> = {};
 
@@ -1079,6 +1135,9 @@ export async function getFolderCounts(
 }
 
 export async function getUnreadCountForSection(section: string): Promise<number> {
+  if (isDemoModeEnabled()) {
+    return demoGetUnreadCountForSection(section);
+  }
   const pool = getPool();
   try {
     await releaseDueSnoozedEmails();
@@ -1148,6 +1207,9 @@ export async function getUnreadCountForSection(section: string): Promise<number>
 }
 
 export async function fetchEmails(folder = "INBOX"): Promise<EmailMessage[]> {
+  if (isDemoModeEnabled()) {
+    return demoFetchEmails(folder);
+  }
   const pool = getPool();
   try {
     await releaseDueSnoozedEmails();
@@ -1246,6 +1308,9 @@ export async function fetchEmailsPaginated(
   perPage = 50,
   cursor?: string | null
 ): Promise<{ emails: EmailMessage[]; total: number; nextCursor: string | null; hasMore: boolean }> {
+  if (isDemoModeEnabled()) {
+    return demoFetchEmailsPaginated(folder, page, perPage);
+  }
   const pool = getPool();
   try {
     await ensureSpamScoreColumn();
@@ -1575,6 +1640,9 @@ export async function fetchThreadsPaginated(
   page = 1,
   perPage = 50
 ): Promise<{ emails: EmailMessage[]; total: number; nextCursor: string | null; hasMore: boolean }> {
+  if (isDemoModeEnabled()) {
+    return demoFetchThreadsPaginated(folder, page, perPage);
+  }
   const pool = getPool();
   try {
     await releaseDueSnoozedEmails();
@@ -1796,6 +1864,9 @@ export async function fetchThreadsPaginated(
 }
 
 export async function getEmail(seq: string, folder = "INBOX"): Promise<FullEmail | null> {
+  if (isDemoModeEnabled()) {
+    return demoGetEmail(seq, folder);
+  }
   const pool = getPool();
   try {
     await ensureSpamScoreColumn();
@@ -2039,6 +2110,9 @@ function buildWebSearchExpression(terms: string[]): string {
 }
 
 export async function searchEmails(query: string, folder = "INBOX"): Promise<EmailMessage[]> {
+  if (isDemoModeEnabled()) {
+    return demoSearchEmails(query, folder);
+  }
   if (!query.trim()) return fetchEmails(folder);
 
   const pool = getPool();
@@ -2137,6 +2211,9 @@ export async function searchEmails(query: string, folder = "INBOX"): Promise<Ema
 }
 
 export async function fetchSentContacts(): Promise<string[]> {
+  if (isDemoModeEnabled()) {
+    return demoFetchSentContacts();
+  }
   const pool = getPool();
   try {
     const result = await pool.query(
@@ -2169,6 +2246,9 @@ export interface ContactEntry {
 }
 
 export async function fetchAllContacts(): Promise<ContactEntry[]> {
+  if (isDemoModeEnabled()) {
+    return demoFetchAllContacts();
+  }
   const pool = getPool();
   try {
     const result = await pool.query(
@@ -2212,6 +2292,10 @@ export async function addContactToDb(email: string, displayName?: string): Promi
 }
 
 export async function deleteContact(contactId: string): Promise<void> {
+  if (isDemoModeEnabled()) {
+    await demoDeleteContact(contactId);
+    return;
+  }
   const pool = getPool();
   try {
     await pool.query(
@@ -2233,6 +2317,10 @@ export async function deleteContact(contactId: string): Promise<void> {
 // =============================================================================
 
 export async function markAsRead(seq: string, folder = "INBOX"): Promise<void> {
+  if (isDemoModeEnabled()) {
+    await demoMarkAsRead(seq, folder);
+    return;
+  }
   const pool = getPool();
   const uid = parseInt(seq, 10);
   const path = await resolveFolderPath(folder);
@@ -2262,7 +2350,7 @@ export async function markAsRead(seq: string, folder = "INBOX"): Promise<void> {
 
   // Also update via IMAP for upstream sync
   try {
-    const client = new ImapFlow(getImapConfig());
+    const client = await createImapClient();
     await client.connect();
     try {
       const lock = await client.getMailboxLock(path);
@@ -2280,6 +2368,10 @@ export async function markAsRead(seq: string, folder = "INBOX"): Promise<void> {
 }
 
 export async function markAsUnread(seq: string, folder = "INBOX"): Promise<void> {
+  if (isDemoModeEnabled()) {
+    await demoMarkAsUnread(seq, folder);
+    return;
+  }
   const pool = getPool();
   const uid = parseInt(seq, 10);
   const path = await resolveFolderPath(folder);
@@ -2308,7 +2400,7 @@ export async function markAsUnread(seq: string, folder = "INBOX"): Promise<void>
 
   // Also update via IMAP for upstream sync
   try {
-    const client = new ImapFlow(getImapConfig());
+    const client = await createImapClient();
     await client.connect();
     try {
       const lock = await client.getMailboxLock(path);
@@ -2326,6 +2418,10 @@ export async function markAsUnread(seq: string, folder = "INBOX"): Promise<void>
 }
 
 export async function toggleStar(seq: string, starred: boolean, folder = "INBOX"): Promise<void> {
+  if (isDemoModeEnabled()) {
+    await demoToggleStar(seq, starred, folder);
+    return;
+  }
   const pool = getPool();
   const uid = parseInt(seq, 10);
   const path = await resolveFolderPath(folder);
@@ -2360,7 +2456,7 @@ export async function toggleStar(seq: string, starred: boolean, folder = "INBOX"
 
   // Also update via IMAP for upstream sync
   try {
-    const client = new ImapFlow(getImapConfig());
+    const client = await createImapClient();
     await client.connect();
     try {
       const lock = await client.getMailboxLock(path);
@@ -2382,6 +2478,10 @@ export async function toggleStar(seq: string, starred: boolean, folder = "INBOX"
 }
 
 export async function deleteEmail(seq: string, currentFolder = "INBOX"): Promise<void> {
+  if (isDemoModeEnabled()) {
+    await demoDeleteEmail(seq, currentFolder);
+    return;
+  }
   const pool = getPool();
   const uid = parseInt(seq, 10);
   const sourcePath = await resolveFolderPath(currentFolder);
@@ -2443,7 +2543,7 @@ export async function deleteEmail(seq: string, currentFolder = "INBOX"): Promise
 
   // Move to Trash via IMAP for upstream sync
   try {
-    const client = new ImapFlow(getImapConfig());
+    const client = await createImapClient();
     await client.connect();
     try {
       const lock = await client.getMailboxLock(sourcePath);
@@ -2466,6 +2566,10 @@ export async function deleteEmail(seq: string, currentFolder = "INBOX"): Promise
 }
 
 export async function deleteEmailsBatch(seqs: string[], currentFolder = "INBOX"): Promise<void> {
+  if (isDemoModeEnabled()) {
+    await demoDeleteEmailsBatch(seqs, currentFolder);
+    return;
+  }
   if (seqs.length === 0) return;
   const pool = getPool();
   const uids = seqs.map(s => parseInt(s, 10));
@@ -2528,7 +2632,7 @@ export async function deleteEmailsBatch(seqs: string[], currentFolder = "INBOX")
 
   // Move to Trash via IMAP for upstream sync
   try {
-    const client = new ImapFlow(getImapConfig());
+    const client = await createImapClient();
     await client.connect();
     try {
       const lock = await client.getMailboxLock(sourcePath);
@@ -2551,6 +2655,10 @@ export async function deleteEmailsBatch(seqs: string[], currentFolder = "INBOX")
 }
 
 export async function archiveEmails(seqs: string[], currentFolder = "INBOX"): Promise<void> {
+  if (isDemoModeEnabled()) {
+    await demoArchiveEmails(seqs, currentFolder);
+    return;
+  }
   if (seqs.length === 0) return;
   const pool = getPool();
   const uids = seqs.map(s => parseInt(s, 10));
@@ -2598,7 +2706,7 @@ export async function archiveEmails(seqs: string[], currentFolder = "INBOX"): Pr
 
   // Move to Archive via IMAP for upstream sync
   try {
-    const client = new ImapFlow(getImapConfig());
+    const client = await createImapClient();
     await client.connect();
     try {
       const lock = await client.getMailboxLock(sourcePath);
@@ -2621,6 +2729,10 @@ export async function archiveEmails(seqs: string[], currentFolder = "INBOX"): Pr
 }
 
 export async function addEmailLabel(seq: string, label: string, folder = "INBOX"): Promise<void> {
+  if (isDemoModeEnabled()) {
+    await demoAddEmailLabel(seq, label, folder);
+    return;
+  }
   const pool = getPool();
   const uid = parseInt(seq, 10);
   const path = await resolveFolderPath(folder);
@@ -2643,7 +2755,7 @@ export async function addEmailLabel(seq: string, label: string, folder = "INBOX"
 
   // Also update via IMAP for upstream sync
   try {
-    const client = new ImapFlow(getImapConfig());
+    const client = await createImapClient();
     await client.connect();
     try {
       const lock = await client.getMailboxLock(path);
@@ -2661,6 +2773,10 @@ export async function addEmailLabel(seq: string, label: string, folder = "INBOX"
 }
 
 export async function removeEmailLabel(seq: string, label: string, folder = "INBOX"): Promise<void> {
+  if (isDemoModeEnabled()) {
+    await demoRemoveEmailLabel(seq, label, folder);
+    return;
+  }
   const pool = getPool();
   const uid = parseInt(seq, 10);
   const path = await resolveFolderPath(folder);
@@ -2682,7 +2798,7 @@ export async function removeEmailLabel(seq: string, label: string, folder = "INB
 
   // Also update via IMAP for upstream sync
   try {
-    const client = new ImapFlow(getImapConfig());
+    const client = await createImapClient();
     await client.connect();
     try {
       const lock = await client.getMailboxLock(path);
@@ -2815,6 +2931,10 @@ async function queueScheduledEmail(payload: ScheduledSendPayload, sendAt: Date):
 }
 
 export async function cancelScheduledEmail(seq: string): Promise<void> {
+  if (isDemoModeEnabled()) {
+    await demoCancelScheduledEmail(seq);
+    return;
+  }
   await ensureScheduledSendsTable();
   const id = Math.abs(parseInt(seq, 10));
   if (!Number.isFinite(id) || id <= 0) return;
@@ -2832,6 +2952,10 @@ export async function cancelScheduledEmail(seq: string): Promise<void> {
 }
 
 export async function cancelScheduledEmails(seqs: string[]): Promise<void> {
+  if (isDemoModeEnabled()) {
+    await demoCancelScheduledEmails(seqs);
+    return;
+  }
   await ensureScheduledSendsTable();
   const ids = Array.from(
     new Set(
@@ -2926,7 +3050,8 @@ async function sendEmailNow(
   fromName?: string,
 ): Promise<void> {
   const port = parseInt(process.env.SMTP_PORT || '465');
-  const transporter = nodemailer.createTransport({
+  const nodemailer = await import("nodemailer");
+  const transporter = nodemailer.default.createTransport({
     host: process.env.SMTP_HOST || '127.0.0.1',
     port,
     secure: process.env.SMTP_SECURE === 'true' || port === 465,
@@ -2983,7 +3108,7 @@ async function sendEmailNow(
 
   // Persist a copy in Sent for providers that don't auto-save SMTP messages.
   const sentPath = await resolveFolderPath("Sent");
-  const client = new ImapFlow(getImapConfig());
+  const client = await createImapClient();
   try {
     await client.connect();
     const mailboxes = await client.list();
@@ -3038,6 +3163,9 @@ export async function sendEmail(
   fromName?: string,
   options?: SendEmailOptions,
 ): Promise<SendEmailResult> {
+  if (isDemoModeEnabled()) {
+    return demoSendEmail(to, subject, body, cc, bcc, attachments, threading, fromName, options);
+  }
   const scheduledAt = parseScheduledAt(options?.scheduledAt);
   if (scheduledAt) {
     if (scheduledAt.getTime() <= Date.now()) {
@@ -3059,6 +3187,9 @@ export async function sendEmail(
 // =============================================================================
 
 export async function getThreadMessages(threadId: string): Promise<FullEmail[]> {
+  if (isDemoModeEnabled()) {
+    return demoGetThreadMessages(threadId);
+  }
   const pool = getPool();
   try {
     const baseResult = await pool.query(
@@ -3253,6 +3384,9 @@ export async function getThreadMessages(threadId: string): Promise<FullEmail[]> 
 }
 
 export async function getThreadIdForMessage(uid: number, folder: string): Promise<string | null> {
+  if (isDemoModeEnabled()) {
+    return demoGetThreadIdForMessage(uid, folder);
+  }
   const pool = getPool();
   try {
     const path = await resolveFolderPath(folder);
@@ -3277,7 +3411,7 @@ export async function saveDraft(to: string, subject: string, body: string, cc?: 
   const draftsPath = await resolveFolderPath("Drafts");
   const isHtml = body.trimStart().startsWith("<");
   const plainText = isHtml ? htmlToPlainText(body) : body;
-  const client = new ImapFlow(getImapConfig());
+  const client = await createImapClient();
   await client.connect();
   try {
     const mailboxes = await client.list();
@@ -3311,7 +3445,7 @@ export async function saveDraft(to: string, subject: string, body: string, cc?: 
 
 export async function deleteDraft(seq: string): Promise<void> {
   const draftsPath = await resolveFolderPath("Drafts");
-  const client = new ImapFlow(getImapConfig());
+  const client = await createImapClient();
   await client.connect();
   try {
     const lock = await client.getMailboxLock(draftsPath);
@@ -3335,6 +3469,10 @@ export async function snoozeEmails(
   currentFolder = "INBOX",
   untilISO: string,
 ): Promise<void> {
+  if (isDemoModeEnabled()) {
+    await demoSnoozeEmails(seqs, currentFolder, untilISO);
+    return;
+  }
   if (!seqs.length) return;
   const until = new Date(untilISO);
   if (Number.isNaN(until.getTime()) || until.getTime() <= Date.now()) {
@@ -3393,6 +3531,10 @@ export async function snoozeEmails(
 }
 
 export async function moveToFolder(seq: string, fromFolder: string, toFolder: string): Promise<void> {
+  if (isDemoModeEnabled()) {
+    await demoMoveToFolder(seq, fromFolder, toFolder);
+    return;
+  }
   const pool = getPool();
   const uid = parseInt(seq, 10);
   const sourcePath = await resolveFolderPath(fromFolder);
@@ -3451,7 +3593,7 @@ export async function moveToFolder(seq: string, fromFolder: string, toFolder: st
     return;
   }
 
-  const client = new ImapFlow(getImapConfig());
+  const client = await createImapClient();
   await client.connect();
   try {
     const lock = await client.getMailboxLock(sourcePath);
@@ -3474,6 +3616,9 @@ export async function moveToFolder(seq: string, fromFolder: string, toFolder: st
 }
 
 export async function restoreFromTrash(seq: string, folder = "Trash"): Promise<string> {
+  if (isDemoModeEnabled()) {
+    return demoRestoreFromTrash(seq);
+  }
   const pool = getPool();
   const trashPath = await resolveFolderPath(folder);
   const trashCanonical = await resolveFolderPath("Trash");
@@ -3517,6 +3662,9 @@ export interface BlockedSender {
 }
 
 export async function getBlockedSenders(): Promise<BlockedSender[]> {
+  if (isDemoModeEnabled()) {
+    return demoGetBlockedSenders();
+  }
   await ensureBlockedSendersTable();
   const pool = getPool();
   try {
@@ -3540,6 +3688,10 @@ export async function getBlockedSenders(): Promise<BlockedSender[]> {
 }
 
 export async function blockSender(senderEmail: string, displayName: string): Promise<void> {
+  if (isDemoModeEnabled()) {
+    await demoBlockSender(senderEmail, displayName);
+    return;
+  }
   if (!senderEmail) return;
   await ensureBlockedSendersTable();
   const pool = getPool();
@@ -3558,6 +3710,10 @@ export async function blockSender(senderEmail: string, displayName: string): Pro
 }
 
 export async function unblockSender(senderEmail: string): Promise<void> {
+  if (isDemoModeEnabled()) {
+    await demoUnblockSender(senderEmail);
+    return;
+  }
   if (!senderEmail) return;
   await ensureBlockedSendersTable();
   const pool = getPool();
@@ -3625,6 +3781,9 @@ export function shouldResetAutoReplyDedup(wasEnabled: boolean, nextEnabled: bool
 }
 
 export async function getAutoReplySettings(): Promise<AutoReplySettings> {
+  if (isDemoModeEnabled()) {
+    return demoGetAutoReplySettings();
+  }
   await ensureAutoReplyTables();
   const pool = getPool();
   try {
@@ -3653,6 +3812,10 @@ export async function getAutoReplySettings(): Promise<AutoReplySettings> {
 }
 
 export async function saveAutoReplySettings(settings: AutoReplySettings): Promise<void> {
+  if (isDemoModeEnabled()) {
+    await demoSaveAutoReplySettings(settings);
+    return;
+  }
   await ensureAutoReplyTables();
   const pool = getPool();
   const client = await pool.connect();

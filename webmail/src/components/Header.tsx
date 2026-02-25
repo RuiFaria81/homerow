@@ -2,6 +2,8 @@ import { createSignal, onCleanup, onMount, Show, type Accessor, type Setter } fr
 import { useNavigate } from "@solidjs/router";
 import { IconSearch, IconSettings, IconChevronLeft, IconChevronRight, IconChevronDown, IconSlidersHorizontal, IconClose, IconGithub } from "./Icons";
 import { authClient } from "~/lib/auth-client";
+import { isDemoModeEnabled, isDemoStaticModeEnabled } from "~/lib/demo-mode";
+import { DEMO_USER_PROFILE } from "~/lib/demo-user";
 import { toggleCommandPalette } from "~/lib/command-palette-store";
 import { setActiveFilter } from "~/lib/labels-store";
 import { formatShortcut, getActionShortcutHint, getPreferredActionShortcut } from "~/lib/keyboard-shortcuts-store";
@@ -24,6 +26,9 @@ export default function Header(props: HeaderProps) {
   const [isUserMenuOpen, setIsUserMenuOpen] = createSignal(false);
   const [isGithubMenuOpen, setIsGithubMenuOpen] = createSignal(false);
   const [isSearchFiltersOpen, setIsSearchFiltersOpen] = createSignal(false);
+  const demoMode = isDemoModeEnabled();
+  const demoStaticMode = isDemoStaticModeEnabled();
+  const assetPath = (value: string) => `${import.meta.env.BASE_URL}${value.replace(/^\/+/, "")}`;
   const [fromFilter, setFromFilter] = createSignal("");
   const [toFilter, setToFilter] = createSignal("");
   const [subjectFilter, setSubjectFilter] = createSignal("");
@@ -129,9 +134,9 @@ export default function Header(props: HeaderProps) {
     setIsStarred(false);
   };
 
-  const userEmail = () => session().data?.user?.email || "";
+  const userEmail = () => session().data?.user?.email || (demoMode ? DEMO_USER_PROFILE.email : "");
   const userInitial = () => userEmail().slice(0, 1).toUpperCase() || "U";
-  const userAvatarImage = () => session().data?.user?.image || "";
+  const userAvatarImage = () => session().data?.user?.image || (demoMode ? DEMO_USER_PROFILE.image : "");
   const commandPaletteShortcutLabel = () => {
     const shortcut = getPreferredActionShortcut("openCommandPalette");
     return shortcut ? formatShortcut(shortcut) : "Set shortcut";
@@ -139,14 +144,23 @@ export default function Header(props: HeaderProps) {
 
   const handleSignOut = async () => {
     setIsUserMenuOpen(false);
+    if (demoMode) {
+      if (demoStaticMode) {
+        await authClient.signOut();
+        navigate("/login");
+        return;
+      }
+      try {
+        await fetch("/api/demo-auth/logout", { method: "POST" });
+      } finally {
+        navigate("/login");
+      }
+      return;
+    }
     try {
       await authClient.signOut();
     } finally {
-      if (typeof window !== "undefined") {
-        window.location.replace("/login");
-      } else {
-        navigate("/login");
-      }
+      navigate("/login");
     }
   };
 
@@ -218,7 +232,7 @@ export default function Header(props: HeaderProps) {
             navigate("/");
           }}
         >
-          <img src="/logo.svg" alt="" aria-hidden="true" class="h-8 w-auto max-w-[40px] object-contain shrink-0" />
+          <img src={assetPath("/logo.svg")} alt="" aria-hidden="true" class="h-8 w-auto max-w-[40px] object-contain shrink-0" />
           <div class="flex flex-col leading-none">
             <span class="text-[9px] font-medium uppercase tracking-[0.08em] text-[var(--text-muted)] opacity-75">Homerow</span>
             <span class="inline-flex items-baseline gap-1 text-xl font-semibold tracking-tight text-[var(--foreground)]">

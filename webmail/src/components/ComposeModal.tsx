@@ -1,7 +1,7 @@
 // src/components/ComposeModal.tsx
 import { createSignal, Show, createEffect, onMount, onCleanup, For } from "solid-js";
 import { isServer } from "solid-js/web";
-import { sendEmail, type EmailAttachment } from "~/lib/mail-client";
+import { sendEmail, type EmailAttachment } from "~/lib/mail-client-browser";
 import { composeState, closeCompose, toggleMinimize, toggleFullscreen, updateComposeField, toggleCc, toggleBcc, startAutoSave, stopAutoSave, addAttachments, removeAttachment, discardComposeDraft, saveComposeDraftNow } from "~/lib/compose-store";
 import { contacts, loadContacts, addContact } from "~/lib/contacts-store";
 import { IconClose, IconSend, IconPaperclip, IconMinimize, IconMaximize, IconWindowMinimize, IconTrash } from "./Icons";
