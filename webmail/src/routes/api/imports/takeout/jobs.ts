@@ -1,7 +1,12 @@
 import type { APIEvent } from "@solidjs/start/server";
 import { stat } from "node:fs/promises";
 import path from "node:path";
-import { isTakeoutArchiveFilename, normalizeTakeoutServerFilename } from "~/lib/takeout-import-filenames";
+import { listTakeoutServerArchives } from "~/lib/takeout-import-files";
+import {
+  detectTakeoutMultipartSet,
+  isTakeoutArchiveFilename,
+  normalizeTakeoutServerFilename,
+} from "~/lib/takeout-import-filenames";
 import { createTakeoutImportJob, ensureImportTempDir, listRecentTakeoutImportJobs } from "~/lib/takeout-import-jobs";
 import { kickTakeoutImportWorker } from "~/lib/takeout-import-worker";
 
@@ -11,6 +16,12 @@ interface CreateJobBody {
   existingServerFilename?: string;
   deleteServerFileAfterImport?: boolean;
   options?: Record<string, unknown>;
+}
+
+interface ArchivePartOption {
+  sourceFilename: string;
+  tempFilePath: string;
+  fileSizeBytes: number;
 }
 
 const MAX_FILE_SIZE_BYTES = 15 * 1024 * 1024 * 1024; // 15 GiB
@@ -45,20 +56,35 @@ export async function POST({ request }: APIEvent) {
     }
 
     const tempDir = await ensureImportTempDir();
-    const resolvedPath = path.join(tempDir, baseName);
+    const availableFiles = (await listTakeoutServerArchives(1000)).map((file) => file.filename);
+    const selectedParts = detectTakeoutMultipartSet(baseName, availableFiles);
+    const archiveParts: ArchivePartOption[] = [];
 
-    let fileStat;
-    try {
-      fileStat = await stat(resolvedPath);
-    } catch {
-      return new Response("Server file not found", { status: 404 });
+    for (const partFilename of selectedParts) {
+      const resolvedPath = path.join(tempDir, partFilename);
+
+      let fileStat;
+      try {
+        fileStat = await stat(resolvedPath);
+      } catch {
+        return new Response(`Server file not found: ${partFilename}`, { status: 404 });
+      }
+      if (!fileStat.isFile()) return new Response(`Server path is not a file: ${partFilename}`, { status: 400 });
+
+      archiveParts.push({
+        sourceFilename: partFilename,
+        tempFilePath: resolvedPath,
+        fileSizeBytes: Number(fileStat.size),
+      });
     }
-    if (!fileStat.isFile()) return new Response("Server path is not a file", { status: 400 });
 
-    filename = requestedFilename || baseName;
-    fileSizeBytes = Number(fileStat.size);
-    tempFilePath = resolvedPath;
+    if (archiveParts.length === 0) return new Response("Server file not found", { status: 404 });
+
+    filename = requestedFilename || archiveParts[0].sourceFilename;
+    fileSizeBytes = archiveParts.reduce((total, part) => total + part.fileSizeBytes, 0);
+    tempFilePath = archiveParts[0].tempFilePath;
     uploadedBytes = fileSizeBytes;
+    options.archiveParts = archiveParts;
     const deleteAfterSuccess = body.deleteServerFileAfterImport === true;
     options.deleteSourceFileOnSuccess = deleteAfterSuccess;
     options.keepSourceFile = !deleteAfterSuccess;

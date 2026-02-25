@@ -7,7 +7,7 @@ import {
   setTakeoutImportEstimatedTotalMessages,
   updateTakeoutImportEstimationProgress,
 } from "~/lib/takeout-import-jobs";
-import { analyzeTakeoutArchive } from "~/lib/takeout-import-worker";
+import { analyzeTakeoutArchives, getTakeoutArchivePartsFromJob } from "~/lib/takeout-import-worker";
 
 interface AnalyzeJobBody {
   force?: boolean;
@@ -34,14 +34,15 @@ function kickTakeoutArchiveAnalysis(id: string): void {
     if (job.uploadedBytes < job.fileSizeBytes) return;
 
     try {
+      const archiveParts = getTakeoutArchivePartsFromJob(job);
       await beginTakeoutImportEstimation({
         id: job.id,
-        estimationTotalBytes: job.fileSizeBytes,
+        estimationTotalBytes: archiveParts.reduce((total, part) => total + part.fileSizeBytes, 0),
       });
 
       let lastProgressWrite = 0;
-      const analysis = await analyzeTakeoutArchive({
-        tgzPath: job.tempFilePath,
+      const analysis = await analyzeTakeoutArchives({
+        archiveParts,
         onProgress: async (bytesRead, totalBytes) => {
           const now = Date.now();
           if (now - lastProgressWrite < 1000) return;

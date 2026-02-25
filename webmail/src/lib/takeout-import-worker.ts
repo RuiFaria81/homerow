@@ -85,6 +85,12 @@ export interface TakeoutArchiveAnalysis {
   blockedSenders: string[];
 }
 
+export interface TakeoutArchivePart {
+  sourceFilename: string;
+  tempFilePath: string;
+  fileSizeBytes: number;
+}
+
 interface ImportCustomLabelMapping {
   sourceName: string;
   targetName: string;
@@ -152,6 +158,37 @@ function loadConfigEnv(): Record<string, string> {
   } catch {
     return {};
   }
+}
+
+function parseArchivePartOption(value: unknown): TakeoutArchivePart | null {
+  if (!value || typeof value !== "object") return null;
+  const parsed = value as Record<string, unknown>;
+  const sourceFilename = typeof parsed.sourceFilename === "string" ? parsed.sourceFilename.trim() : "";
+  const tempFilePath = typeof parsed.tempFilePath === "string" ? parsed.tempFilePath.trim() : "";
+  const fileSizeBytes = typeof parsed.fileSizeBytes === "number" ? parsed.fileSizeBytes : Number(parsed.fileSizeBytes);
+  if (!sourceFilename || !tempFilePath || !Number.isFinite(fileSizeBytes) || fileSizeBytes <= 0) return null;
+  return { sourceFilename, tempFilePath, fileSizeBytes };
+}
+
+export function getTakeoutArchivePartsFromJob(job: {
+  sourceFilename: string;
+  tempFilePath: string;
+  fileSizeBytes: number;
+  options?: Record<string, unknown>;
+}): TakeoutArchivePart[] {
+  const rawParts = job.options?.archiveParts;
+  if (Array.isArray(rawParts)) {
+    const parsed = rawParts
+      .map(parseArchivePartOption)
+      .filter((part): part is TakeoutArchivePart => Boolean(part));
+    if (parsed.length > 0) return parsed;
+  }
+
+  return [{
+    sourceFilename: job.sourceFilename,
+    tempFilePath: job.tempFilePath,
+    fileSizeBytes: job.fileSizeBytes,
+  }];
 }
 
 function mapLabel(label: string, preferences?: ImportLabelPreferences): LabelMapping {
@@ -469,6 +506,70 @@ export async function analyzeTakeoutArchive(options: {
   };
 }
 
+export async function analyzeTakeoutArchives(options: {
+  archiveParts: TakeoutArchivePart[];
+  onProgress?: (bytesRead: number, totalBytes: number) => void;
+}): Promise<TakeoutArchiveAnalysis> {
+  if (!Array.isArray(options.archiveParts) || options.archiveParts.length === 0) {
+    throw new Error("No Takeout archive parts provided");
+  }
+
+  const totalBytes = options.archiveParts.reduce((total, part) => total + part.fileSizeBytes, 0);
+  let bytesCompleted = 0;
+  const customLabelCounts = new Map<string, number>();
+  const systemLabels = {
+    sent: 0,
+    spam: 0,
+    trash: 0,
+    drafts: 0,
+    inbox: 0,
+    archive: 0,
+  };
+  let estimatedTotalMessages = 0;
+  const signatures = new Map<string, TakeoutAnalyzedSignature>();
+  const blockedSenders = new Set<string>();
+
+  for (const part of options.archiveParts) {
+    const analysis = await analyzeTakeoutArchive({
+      tgzPath: part.tempFilePath,
+      onProgress: (bytesRead, partTotalBytes) => {
+        if (!options.onProgress) return;
+        const aggregate = Math.min(totalBytes, bytesCompleted + Math.min(bytesRead, partTotalBytes));
+        options.onProgress(aggregate, totalBytes);
+      },
+    });
+
+    estimatedTotalMessages += analysis.estimatedTotalMessages;
+    systemLabels.sent += analysis.systemLabels.sent;
+    systemLabels.spam += analysis.systemLabels.spam;
+    systemLabels.trash += analysis.systemLabels.trash;
+    systemLabels.drafts += analysis.systemLabels.drafts;
+    systemLabels.inbox += analysis.systemLabels.inbox;
+    systemLabels.archive += analysis.systemLabels.archive;
+
+    for (const label of analysis.customLabels) {
+      customLabelCounts.set(label.name, (customLabelCounts.get(label.name) ?? 0) + label.count);
+    }
+    for (const signature of analysis.signatures) {
+      signatures.set(`${signature.title}\n${signature.text}`, signature);
+    }
+    for (const blocked of analysis.blockedSenders) blockedSenders.add(blocked);
+
+    bytesCompleted += part.fileSizeBytes;
+    if (options.onProgress) options.onProgress(Math.min(bytesCompleted, totalBytes), totalBytes);
+  }
+
+  return {
+    estimatedTotalMessages: Math.max(1, estimatedTotalMessages),
+    customLabels: Array.from(customLabelCounts.entries())
+      .map(([name, count]) => ({ name, count }))
+      .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name)),
+    systemLabels,
+    signatures: Array.from(signatures.values()),
+    blockedSenders: Array.from(blockedSenders).sort((a, b) => a.localeCompare(b)),
+  };
+}
+
 async function* parseMbox(stream: Readable): AsyncGenerator<Buffer> {
   const rl = createInterface({ input: stream, crlfDelay: Infinity });
   let messageLines: string[] = [];
@@ -538,6 +639,29 @@ async function estimateTotalMessagesInTakeout(
     if (line.startsWith("From ")) total += 1;
   }
   return Math.max(1, total);
+}
+
+async function estimateTotalMessagesInTakeoutArchives(
+  archiveParts: TakeoutArchivePart[],
+  onProgress?: (bytesRead: number, totalBytes: number) => void,
+): Promise<number> {
+  if (archiveParts.length === 0) return 0;
+  const totalBytes = archiveParts.reduce((total, part) => total + part.fileSizeBytes, 0);
+  let bytesCompleted = 0;
+  let totalMessages = 0;
+
+  for (const part of archiveParts) {
+    const estimate = await estimateTotalMessagesInTakeout(part.tempFilePath, (bytesRead, partTotalBytes) => {
+      if (!onProgress) return;
+      const aggregate = Math.min(totalBytes, bytesCompleted + Math.min(bytesRead, partTotalBytes));
+      onProgress(aggregate, totalBytes);
+    });
+    totalMessages += estimate;
+    bytesCompleted += part.fileSizeBytes;
+    if (onProgress) onProgress(Math.min(bytesCompleted, totalBytes), totalBytes);
+  }
+
+  return Math.max(1, totalMessages);
 }
 
 function checkpointBaseName(tgzPath: string): string {
@@ -1306,6 +1430,59 @@ async function importTakeoutArchive(options: {
   return { ...progress, cancelled };
 }
 
+async function importTakeoutArchives(options: {
+  archiveParts: TakeoutArchivePart[];
+  maxImapAppendConcurrency: number;
+  phaseOneBodyParseCount: number;
+  labelPreferences: ImportLabelPreferences;
+  onProgress: (progress: ImportProgress) => Promise<void>;
+  shouldCancel: () => Promise<boolean>;
+}): Promise<ImportResult> {
+  const total: ImportProgress = {
+    processed: 0,
+    imported: 0,
+    dbImported: 0,
+    imapSynced: 0,
+    skipped: 0,
+    errors: 0,
+  };
+
+  for (const part of options.archiveParts) {
+    const result = await importTakeoutArchive({
+      tgzPath: part.tempFilePath,
+      maxImapAppendConcurrency: options.maxImapAppendConcurrency,
+      phaseOneBodyParseCount: options.phaseOneBodyParseCount,
+      labelPreferences: options.labelPreferences,
+      onProgress: async (partProgress) => {
+        await options.onProgress({
+          processed: total.processed + partProgress.processed,
+          imported: total.imported + partProgress.imported,
+          dbImported: total.dbImported + partProgress.dbImported,
+          imapSynced: total.imapSynced + partProgress.imapSynced,
+          skipped: total.skipped + partProgress.skipped,
+          errors: total.errors + partProgress.errors,
+        });
+      },
+      shouldCancel: options.shouldCancel,
+    });
+
+    total.processed += result.processed;
+    total.imported += result.imported;
+    total.dbImported += result.dbImported;
+    total.imapSynced += result.imapSynced;
+    total.skipped += result.skipped;
+    total.errors += result.errors;
+
+    if (result.cancelled || await options.shouldCancel()) {
+      await options.onProgress({ ...total });
+      return { ...total, cancelled: true };
+    }
+  }
+
+  await options.onProgress({ ...total });
+  return { ...total, cancelled: false };
+}
+
 async function safeCleanupFile(filePath: string): Promise<void> {
   try {
     await unlink(filePath);
@@ -1371,19 +1548,20 @@ function buildImportLabelPreferences(options: Record<string, unknown> | undefine
 type ImportJobCleanupOutcome = "completed" | "failed" | "cancelled";
 
 async function cleanupJobSourceFile(
-  job: { tempFilePath: string; options: Record<string, unknown> },
+  archiveParts: TakeoutArchivePart[],
+  job: { options: Record<string, unknown> },
   outcome: ImportJobCleanupOutcome,
 ): Promise<void> {
   const deleteOnSuccess = readBooleanOption(job.options, "deleteSourceFileOnSuccess", false);
   if (deleteOnSuccess) {
     if (outcome !== "completed") return;
-    await safeCleanupFile(job.tempFilePath);
+    await Promise.all(archiveParts.map((part) => safeCleanupFile(part.tempFilePath)));
     return;
   }
 
   // Backward compatibility for older jobs that still use keepSourceFile.
   if (readBooleanOption(job.options, "keepSourceFile", false)) return;
-  await safeCleanupFile(job.tempFilePath);
+  await Promise.all(archiveParts.map((part) => safeCleanupFile(part.tempFilePath)));
 }
 
 async function runSingleJob(): Promise<boolean> {
@@ -1391,6 +1569,7 @@ async function runSingleJob(): Promise<boolean> {
   if (!job) return false;
 
   activeJobId = job.id;
+  const archiveParts = getTakeoutArchivePartsFromJob(job);
 
   const persist = async (progress: ImportProgress) => {
     await updateTakeoutImportProgress({
@@ -1417,11 +1596,11 @@ async function runSingleJob(): Promise<boolean> {
     if (shouldEstimateBeforeImport) {
       await beginTakeoutImportEstimation({
         id: job.id,
-        estimationTotalBytes: job.fileSizeBytes,
+        estimationTotalBytes: archiveParts.reduce((total, part) => total + part.fileSizeBytes, 0),
       });
 
       let lastEstimateWrite = 0;
-      const estimate = await estimateTotalMessagesInTakeout(job.tempFilePath, async (bytesRead, totalBytes) => {
+      const estimate = await estimateTotalMessagesInTakeoutArchives(archiveParts, async (bytesRead, totalBytes) => {
         const now = Date.now();
         if (now - lastEstimateWrite < 1000) return;
         lastEstimateWrite = now;
@@ -1447,8 +1626,8 @@ async function runSingleJob(): Promise<boolean> {
     // Using MAX_SAFE_INTEGER avoids dependence on estimate accuracy.
     const phaseOneBodyParseCount = Number.MAX_SAFE_INTEGER;
 
-    const result = await importTakeoutArchive({
-      tgzPath: job.tempFilePath,
+    const result = await importTakeoutArchives({
+      archiveParts,
       maxImapAppendConcurrency: imapAppendConcurrency,
       phaseOneBodyParseCount,
       labelPreferences,
@@ -1465,7 +1644,7 @@ async function runSingleJob(): Promise<boolean> {
 
     if (wasCancelled) {
       await clearTakeoutImportEstimationState(job.id);
-      await cleanupJobSourceFile(job, "cancelled");
+      await cleanupJobSourceFile(archiveParts, job, "cancelled");
       cancelRequested.delete(job.id);
       return true;
     }
@@ -1480,14 +1659,14 @@ async function runSingleJob(): Promise<boolean> {
       errorCount: result.errors,
     });
     await clearTakeoutImportEstimationState(job.id);
-    await cleanupJobSourceFile(job, "completed");
+    await cleanupJobSourceFile(archiveParts, job, "completed");
     cancelRequested.delete(job.id);
     return true;
   } catch (error) {
     const message = error instanceof Error ? error.message : "Import worker failed.";
     await clearTakeoutImportEstimationState(job.id);
     await failTakeoutImportJob({ id: job.id, message });
-    await cleanupJobSourceFile(job, "failed");
+    await cleanupJobSourceFile(archiveParts, job, "failed");
     cancelRequested.delete(job.id);
     return true;
   } finally {

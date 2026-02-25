@@ -1636,6 +1636,20 @@ export default function Settings() {
     return `${job.imapSyncedMessages}/${Math.max(1, job.dbImportedMessages || 1)}`;
   };
 
+  const takeoutArchivePartCount = () => {
+    const job = takeoutJob();
+    if (!job) return 1;
+    const raw = job.options?.archiveParts;
+    if (!Array.isArray(raw) || raw.length === 0) return 1;
+    let count = 0;
+    for (const part of raw) {
+      if (!part || typeof part !== "object") continue;
+      const value = part as Record<string, unknown>;
+      if (typeof value.tempFilePath === "string" && value.tempFilePath.trim()) count += 1;
+    }
+    return Math.max(1, count);
+  };
+
   const activeImportStatuses: TakeoutImportJob["status"][] = ["created", "uploading", "queued", "running"];
 
   const importStatusStyle = (status: TakeoutImportJob["status"]) => {
@@ -3397,6 +3411,9 @@ export default function Settings() {
 
                   <div class="rounded-lg border border-[var(--border)] bg-[var(--search-bg)] px-3 py-2 text-xs text-[var(--text-muted)]">
                     Source file: <span class="text-[var(--foreground)] font-medium">{takeoutJob()!.sourceFilename}</span> ({formatBytes(takeoutJob()!.fileSizeBytes)})
+                    <Show when={takeoutArchivePartCount() > 1}>
+                      <span> · {takeoutArchivePartCount()} split archives detected</span>
+                    </Show>
                   </div>
 
                   <Show when={takeoutJob()!.lastError}>
