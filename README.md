@@ -1,4 +1,4 @@
-# 🏠 Homerow Mail
+# 🏠 Homerow Mail - Beta
 
 Self-hosted email with full control and a modern webmail experience.
 
