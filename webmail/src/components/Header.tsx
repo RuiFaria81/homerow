@@ -145,16 +145,8 @@ export default function Header(props: HeaderProps) {
   const handleSignOut = async () => {
     setIsUserMenuOpen(false);
     if (demoMode) {
-      if (demoStaticMode) {
-        await authClient.signOut();
-        navigate("/login");
-        return;
-      }
-      try {
-        await fetch("/api/demo-auth/logout", { method: "POST" });
-      } finally {
-        navigate("/login");
-      }
+      if (demoStaticMode) await authClient.signOut();
+      navigate("/");
       return;
     }
     try {

@@ -2,7 +2,6 @@ import { createEffect, createSignal, Show } from "solid-js";
 import { useNavigate } from "@solidjs/router";
 import { authClient } from "~/lib/auth-client";
 import { isDemoModeEnabled, isDemoStaticModeEnabled } from "~/lib/demo-mode";
-import { DEMO_USER_PASSWORD, DEMO_USER_PROFILE } from "~/lib/demo-user";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -20,7 +19,10 @@ export default function Login() {
   const [loading, setLoading] = createSignal(false);
 
   createEffect(() => {
-    if (demoMode) return;
+    if (demoMode) {
+      navigate("/", { replace: true });
+      return;
+    }
     if (session().data?.session) {
       navigate("/");
     }
@@ -144,12 +146,6 @@ export default function Login() {
               ? "Enter the code from your authenticator app or a backup code"
               : "Enter your credentials to access your mailbox"}
           </p>
-
-          <Show when={demoMode && !requiresTwoFactor()}>
-            <div class="mb-4 px-3 py-2.5 rounded-lg bg-blue-50 border border-blue-200 text-sm text-blue-800">
-              {`Demo login: ${DEMO_USER_PROFILE.email} / ${DEMO_USER_PASSWORD}`}
-            </div>
-          </Show>
 
           <Show when={error()}>
             <div class="mb-4 px-3 py-2.5 rounded-lg bg-red-50 border border-red-200 text-sm text-red-700">

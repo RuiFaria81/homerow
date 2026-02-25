@@ -1,1 +1,0 @@
-import{j as a}from"./demo-mode-MfayHDlL.js";async function n(){if(a())return null;try{const t=await fetch("/api/system/update-status",{headers:{accept:"application/json"}});return t.ok?await t.json():null}catch{return null}}export{n as g};

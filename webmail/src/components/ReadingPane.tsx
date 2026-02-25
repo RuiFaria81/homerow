@@ -718,6 +718,47 @@ function buildCollapsibleReaderHtml(rawHtml: string, allowCollapse = true): stri
   return doc.documentElement.outerHTML;
 }
 
+function bindIframeAutoResize(frame: HTMLIFrameElement, resize: () => void) {
+  if (frame.dataset.resizeBound === "1") return;
+  frame.dataset.resizeBound = "1";
+  try {
+    const doc = frame.contentDocument;
+    if (!doc) return;
+
+    const scheduleResize = () => {
+      requestAnimationFrame(resize);
+      setTimeout(resize, 60);
+    };
+
+    doc.addEventListener("load", scheduleResize, true);
+    doc.addEventListener("error", scheduleResize, true);
+    doc.addEventListener("transitionend", scheduleResize, true);
+    doc.addEventListener("animationend", scheduleResize, true);
+
+    const mutationObserver = new MutationObserver(scheduleResize);
+    mutationObserver.observe(doc.documentElement, {
+      subtree: true,
+      childList: true,
+      attributes: true,
+      characterData: true,
+    });
+
+    if (typeof ResizeObserver !== "undefined" && doc.body) {
+      const resizeObserver = new ResizeObserver(() => scheduleResize());
+      resizeObserver.observe(doc.documentElement);
+      resizeObserver.observe(doc.body);
+    }
+
+    // Late-loading newsletter assets can shift layout well after iframe load.
+    setTimeout(resize, 250);
+    setTimeout(resize, 800);
+    setTimeout(resize, 1500);
+    setTimeout(resize, 2500);
+  } catch {
+    // Ignore
+  }
+}
+
 /** Iframe wrapper for individual thread messages — auto-sizes independently */
 function ThreadMessageIframe(props: { html: string; allowHistoryCollapse?: boolean }) {
   const [height, setHeight] = createSignal(200);
@@ -776,6 +817,7 @@ function ThreadMessageIframe(props: { html: string; allowHistoryCollapse?: boole
       onLoad={(e) => {
         const frame = e.currentTarget as HTMLIFrameElement;
         bindHistoryToggleResize(frame);
+        bindIframeAutoResize(frame, () => resize(frame));
         resize(frame);
         setTimeout(() => resize(frame), 150);
         setTimeout(() => resize(frame), 700);
@@ -898,6 +940,7 @@ function SingleEmailView(props: {
               onLoad={(e) => {
                 const frame = e.currentTarget as HTMLIFrameElement;
                 bindHistoryToggleResize(frame);
+                bindIframeAutoResize(frame, () => props.resizeIframeToContent(frame));
                 props.resizeIframeToContent(frame);
                 setTimeout(() => props.resizeIframeToContent(frame), 150);
                 setTimeout(() => props.resizeIframeToContent(frame), 700);

@@ -3,18 +3,6 @@ import { redirect } from "@solidjs/router";
 import { auth } from "~/lib/auth";
 import { isDemoModeEnabled, isDemoStaticModeEnabled } from "~/lib/demo-mode";
 import { resetDemoState } from "~/lib/demo-mail-data";
-import { DEMO_AUTH_COOKIE } from "~/lib/demo-user";
-
-function getCookieValue(cookieHeader: string, name: string): string | null {
-  const prefix = `${name}=`;
-  for (const part of cookieHeader.split(";")) {
-    const trimmed = part.trim();
-    if (trimmed.startsWith(prefix)) {
-      return trimmed.slice(prefix.length);
-    }
-  }
-  return null;
-}
 
 export default createMiddleware({
   onRequest: async (event) => {
@@ -58,19 +46,6 @@ export default createMiddleware({
       if (wantsHtmlDocument) {
         // Demo should always start from a clean state after hard reload.
         resetDemoState();
-      }
-      const cookieHeader = event.request.headers.get("cookie") || "";
-      const demoCookie = getCookieValue(cookieHeader, DEMO_AUTH_COOKIE);
-      const isDemoAuthenticated = demoCookie === "1";
-
-      if (!isDemoAuthenticated) {
-        if (isApiRequest || !wantsHtmlDocument) {
-          return new Response(JSON.stringify({ error: "Unauthorized" }), {
-            status: 401,
-            headers: { "content-type": "application/json" },
-          });
-        }
-        return redirect("/login");
       }
       return;
     }

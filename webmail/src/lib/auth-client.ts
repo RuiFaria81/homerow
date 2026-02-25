@@ -9,8 +9,8 @@ type SessionValue = {
   user: { email: string; name: string; image?: string | null };
 } | null;
 
-const createDemoStaticAuthClient = () => {
-  let authenticated = false;
+const createDemoAuthClient = (alwaysAuthenticated: boolean) => {
+  let authenticated = alwaysAuthenticated;
   const [session, setSession] = createSignal<{ data: SessionValue; error: null; isPending: false }>({
     data: null,
     error: null,
@@ -41,6 +41,10 @@ const createDemoStaticAuthClient = () => {
     },
     signIn: {
       email: async ({ email, password }: { email: string; password: string }) => {
+        if (alwaysAuthenticated) {
+          hydrate();
+          return { data: { session: { id: "demo-session" } }, error: null };
+        }
         const validEmail = email.trim().toLowerCase() === DEMO_USER_PROFILE.email.toLowerCase();
         const validPassword = password === DEMO_USER_PASSWORD;
         if (!validEmail || !validPassword) {
@@ -52,6 +56,10 @@ const createDemoStaticAuthClient = () => {
       },
     },
     signOut: async () => {
+      if (alwaysAuthenticated) {
+        hydrate();
+        return { error: null };
+      }
       authenticated = false;
       hydrate();
       return { error: null };
@@ -69,8 +77,8 @@ const createDemoStaticAuthClient = () => {
 };
 
 export const authClient =
-  isDemoModeEnabled() && isDemoStaticModeEnabled()
-    ? createDemoStaticAuthClient()
+  isDemoModeEnabled()
+    ? createDemoAuthClient(isDemoModeEnabled() && !isDemoStaticModeEnabled())
     : createAuthClient({
         plugins: [twoFactorClient()],
       });
