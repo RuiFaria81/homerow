@@ -2,7 +2,13 @@ import { createEffect } from "solid-js";
 import { createStore, produce } from "solid-js/store";
 
 export type DestinationMatchType = "exact" | "contains" | "regex";
-export type DestinationTargetField = "destinationAddress" | "destinationLocalPart" | "destinationPlusTag";
+export type DestinationTargetField =
+  | "destinationAddress"
+  | "destinationLocalPart"
+  | "destinationPlusTag"
+  | "originAddress"
+  | "originLocalPart"
+  | "emailSubject";
 export type LabelResolutionMode = "fixed" | "template";
 
 export interface DestinationLabelRule {
@@ -129,4 +135,3 @@ export const updateAutoLabelRulesSettings = (updates: Partial<Pick<AutoLabelRule
     setAutoLabelRulesState("autoCreateLabelsFromTemplate", updates.autoCreateLabelsFromTemplate);
   }
 };
-

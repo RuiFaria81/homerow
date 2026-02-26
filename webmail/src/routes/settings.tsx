@@ -14,6 +14,13 @@ import {
   type DestinationMatchType,
   type LabelResolutionMode,
 } from "~/lib/auto-label-rules-store";
+import {
+  autoWebhookRulesState,
+  addAutoWebhookRule,
+  removeAutoWebhookRule,
+  updateAutoWebhookRule,
+  updateAutoWebhookRulesSettings,
+} from "~/lib/auto-webhook-rules-store";
 import { signatureState, addSignature, updateSignature, removeSignature, setDefaultSignature } from "~/lib/signature-store";
 import { clearPaginationCache, getPaginationCacheStats } from "~/lib/pagination-cache";
 import { showToast } from "~/lib/toast-store";
@@ -28,7 +35,7 @@ import { SHORTCUT_ACTIONS, shortcutBindings, setShortcutBinding, restoreDefaultS
 import QRCode from "qrcode";
 import LexicalEditor from "~/components/LexicalEditor";
 
-type SettingsTab = "general" | "shortcuts" | "appearance" | "labels" | "categories" | "signature" | "import" | "accounts" | "blocked" | "auto-reply";
+type SettingsTab = "general" | "shortcuts" | "appearance" | "labels" | "automation" | "categories" | "signature" | "import" | "accounts" | "blocked" | "auto-reply";
 type ImportSourceMode = "upload" | "server";
 type TakeoutImportMode = "label" | "category";
 
@@ -406,6 +413,7 @@ export default function Settings() {
     { id: "shortcuts" as SettingsTab, label: "Keyboard Shortcuts", icon: IconBolt },
     { id: "appearance" as SettingsTab, label: "Appearance", icon: IconSparkles },
     { id: "labels" as SettingsTab, label: "Labels", icon: IconLabel },
+    { id: "automation" as SettingsTab, label: "Automation", icon: IconCode },
     { id: "categories" as SettingsTab, label: "Categories", icon: IconCategories },
     { id: "signature" as SettingsTab, label: "Signature", icon: IconSignature },
     { id: "import" as SettingsTab, label: "Import", icon: IconImport },
@@ -652,10 +660,36 @@ export default function Settings() {
     });
   };
 
+  const handleAddWebhookRule = () => {
+    addAutoWebhookRule({
+      targetField: "destinationAddress",
+      matchType: "exact",
+    });
+  };
+
+  const handleAddWebhookAliasPresetRule = () => {
+    addAutoWebhookRule({
+      targetField: "destinationAddress",
+      matchType: "regex",
+      pattern: "^([^+@]+)@inout\\.email$",
+    });
+  };
+
+  const handleAddWebhookPlusTagPresetRule = () => {
+    addAutoWebhookRule({
+      targetField: "destinationAddress",
+      matchType: "regex",
+      pattern: "^[^+]+\\+webhook:([^@]+)@inout\\.email$",
+    });
+  };
+
   const targetFieldDisplay = (field: DestinationTargetField): string => {
     if (field === "destinationAddress") return "destination address";
     if (field === "destinationLocalPart") return "destination local-part";
-    return "plus-tag";
+    if (field === "destinationPlusTag") return "plus-tag";
+    if (field === "originAddress") return "origin address";
+    if (field === "originLocalPart") return "origin local-part";
+    return "email subject";
   };
 
   const matchTypeDisplay = (value: DestinationMatchType): string => {
@@ -669,6 +703,17 @@ export default function Settings() {
     try {
       void new RegExp(pattern, caseSensitive ? "" : "i");
       return true;
+    } catch {
+      return false;
+    }
+  };
+
+  const isHttpUrl = (value: string) => {
+    const trimmed = value.trim();
+    if (!trimmed) return false;
+    try {
+      const parsed = new URL(trimmed);
+      return parsed.protocol === "http:" || parsed.protocol === "https:";
     } catch {
       return false;
     }
@@ -2380,14 +2425,18 @@ export default function Settings() {
                   )}
                 </For>
               </div>
+            </div>
+          </Show>
 
+          <Show when={activeTab() === "automation"}>
+            <div class="flex flex-col gap-6">
               {/* Auto-label rules */}
               <div class="flex flex-col gap-3 pt-3 border-t border-[var(--border-light)]">
                 <div class="flex items-start justify-between gap-3">
                   <div>
-                    <h3 class="text-base font-semibold text-[var(--foreground)]">Destination label rules</h3>
+                    <h3 class="text-base font-semibold text-[var(--foreground)]">Label rules</h3>
                     <p class="text-xs text-[var(--text-muted)] mt-1">
-                      Create rules like: "when destination matches X, apply label Y".
+                      Create rules like: "when field matches X, apply label Y".
                     </p>
                     <div class="flex flex-wrap gap-2 mt-2">
                       <button
@@ -2416,7 +2465,7 @@ export default function Settings() {
 
                 <Show when={visibleLabels().length === 0}>
                   <div class="text-xs text-[var(--text-muted)] p-3 rounded-lg border border-[var(--border)] bg-[var(--search-bg)]">
-                    Create at least one label before adding destination rules.
+                    Create at least one label before adding automation rules.
                   </div>
                 </Show>
 
@@ -2552,6 +2601,9 @@ export default function Settings() {
                                   <option value="destinationAddress">Destination address</option>
                                   <option value="destinationLocalPart">Local-part</option>
                                   <option value="destinationPlusTag">Plus-tag</option>
+                                  <option value="originAddress">Origin address</option>
+                                  <option value="originLocalPart">Origin local-part</option>
+                                  <option value="emailSubject">Email subject</option>
                                 </select>
                                 <select
                                   class="h-9 px-2 rounded border border-[var(--border)] bg-[var(--card)] text-xs text-[var(--foreground)] outline-none"
@@ -2622,6 +2674,172 @@ export default function Settings() {
                               <Show when={!regexOk()}>
                                 <span class="text-[11px] text-red-500">Invalid regex pattern</span>
                               </Show>
+                            </div>
+                          </div>
+                        );
+                      }}
+                    </For>
+                  </div>
+                </Show>
+              </div>
+
+              {/* Auto-webhook rules */}
+              <div class="flex flex-col gap-3 pt-3 border-t border-[var(--border-light)]">
+                <div class="flex items-start justify-between gap-3">
+                  <div>
+                    <h3 class="text-base font-semibold text-[var(--foreground)]">Webhook rules</h3>
+                    <p class="text-xs text-[var(--text-muted)] mt-1">
+                      Create rules like: "when field matches X, POST email metadata to webhook URL Y".
+                    </p>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                      <button
+                        onClick={handleAddWebhookAliasPresetRule}
+                        class="px-2 py-1 rounded-md border border-[var(--border)] bg-[var(--card)] text-[11px] text-[var(--text-secondary)] cursor-pointer hover:bg-[var(--hover-bg)]"
+                      >
+                        Preset: alias@inout.email -&gt; webhook
+                      </button>
+                      <button
+                        onClick={handleAddWebhookPlusTagPresetRule}
+                        class="px-2 py-1 rounded-md border border-[var(--border)] bg-[var(--card)] text-[11px] text-[var(--text-secondary)] cursor-pointer hover:bg-[var(--hover-bg)]"
+                      >
+                        Preset: +webhook:orders -&gt; endpoint
+                      </button>
+                    </div>
+                  </div>
+                  <button
+                    onClick={handleAddWebhookRule}
+                    class="flex items-center gap-2 px-3 py-2 rounded-lg bg-[var(--primary)] text-white text-xs font-medium border-none cursor-pointer hover:brightness-110 transition-all"
+                  >
+                    <IconPlus size={14} />
+                    New webhook rule
+                  </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                  <label class="inline-flex items-center gap-2 text-xs text-[var(--text-secondary)] p-2 rounded-lg border border-[var(--border)] bg-[var(--card)]">
+                    <input
+                      type="checkbox"
+                      class="w-4 h-4 accent-[var(--primary)]"
+                      checked={autoWebhookRulesState.stopAfterFirstMatch}
+                      onChange={(e) => updateAutoWebhookRulesSettings({ stopAfterFirstMatch: e.currentTarget.checked })}
+                    />
+                    Stop after first matching webhook rule
+                  </label>
+                </div>
+
+                <Show when={autoWebhookRulesState.rules.length > 0} fallback={
+                  <div class="text-xs text-[var(--text-muted)] p-3 rounded-lg border border-[var(--border)] bg-[var(--search-bg)]">
+                    No webhook rules yet.
+                  </div>
+                }>
+                  <div class="flex flex-col gap-2">
+                    <For each={autoWebhookRulesState.rules}>
+                      {(rule) => {
+                        const regexOk = () => isRegexValid(rule.matchType, rule.pattern, rule.caseSensitive);
+                        const endpointOk = () => isHttpUrl(rule.endpointUrl);
+                        const preview = () => {
+                          const left = `"${targetFieldDisplay(rule.targetField)} ${matchTypeDisplay(rule.matchType)} ${rule.pattern || "…"}"`;
+                          const right = rule.endpointUrl || "endpoint URL";
+                          return `${left} -> ${right}`;
+                        };
+                        return (
+                          <div class={`flex flex-col gap-3 p-3 rounded-xl border ${rule.enabled ? "border-[var(--border)]" : "border-dashed border-[var(--border)] opacity-70"} bg-[var(--card)]`}>
+                            <div class="flex items-center justify-between gap-2">
+                              <div class="flex items-center gap-2 min-w-0">
+                                <input
+                                  type="checkbox"
+                                  checked={rule.enabled}
+                                  onChange={(e) => updateAutoWebhookRule(rule.id, { enabled: e.currentTarget.checked })}
+                                  class="w-4 h-4 accent-[var(--primary)] cursor-pointer"
+                                  title="Enable webhook rule"
+                                />
+                                <span class="text-xs font-semibold text-[var(--foreground)]">{`Webhook ${rule.priority}`}</span>
+                                <span class="text-[11px] text-[var(--text-muted)] truncate">{preview()}</span>
+                              </div>
+                              <div class="flex items-center gap-2">
+                                <select
+                                  class="h-8 px-2 rounded border border-[var(--border)] bg-[var(--card)] text-[11px] text-[var(--foreground)] outline-none"
+                                  value={String(rule.priority)}
+                                  onChange={(e) => updateAutoWebhookRule(rule.id, { priority: Number(e.currentTarget.value) || 1 })}
+                                  title="Priority"
+                                >
+                                  <For each={Array.from({ length: Math.max(10, autoWebhookRulesState.rules.length + 2) }, (_, i) => i + 1)}>
+                                    {(num) => <option value={String(num)}>{`#${num}`}</option>}
+                                  </For>
+                                </select>
+                                <button
+                                  onClick={() => removeAutoWebhookRule(rule.id)}
+                                  class="w-8 h-8 rounded border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-muted)] hover:bg-red-50 hover:text-[var(--destructive)] transition-all"
+                                  title="Delete webhook rule"
+                                >
+                                  <IconTrash size={14} />
+                                </button>
+                              </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-[52px_1fr] gap-2 items-center">
+                              <span class="text-[11px] font-semibold text-[var(--text-muted)] uppercase tracking-wide">When</span>
+                              <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
+                                <select
+                                  class="h-9 px-2 rounded border border-[var(--border)] bg-[var(--card)] text-xs text-[var(--foreground)] outline-none"
+                                  value={rule.targetField}
+                                  onChange={(e) => updateAutoWebhookRule(rule.id, { targetField: e.currentTarget.value as DestinationTargetField })}
+                                >
+                                  <option value="destinationAddress">Destination address</option>
+                                  <option value="destinationLocalPart">Local-part</option>
+                                  <option value="destinationPlusTag">Plus-tag</option>
+                                  <option value="originAddress">Origin address</option>
+                                  <option value="originLocalPart">Origin local-part</option>
+                                  <option value="emailSubject">Email subject</option>
+                                </select>
+                                <select
+                                  class="h-9 px-2 rounded border border-[var(--border)] bg-[var(--card)] text-xs text-[var(--foreground)] outline-none"
+                                  value={rule.matchType}
+                                  onChange={(e) => updateAutoWebhookRule(rule.id, { matchType: e.currentTarget.value as DestinationMatchType })}
+                                >
+                                  <option value="exact">is exactly</option>
+                                  <option value="contains">contains</option>
+                                  <option value="regex">matches regex</option>
+                                </select>
+                                <input
+                                  type="text"
+                                  placeholder={rule.matchType === "regex" ? "e.g. ^admin\\+webhook:([^@]+)@inout\\.email$" : "Pattern"}
+                                  value={rule.pattern}
+                                  onInput={(e) => updateAutoWebhookRule(rule.id, { pattern: e.currentTarget.value })}
+                                  class={`${regexOk() ? "border-[var(--border)]" : "border-red-400"} h-9 px-3 rounded border bg-[var(--card)] text-xs text-[var(--foreground)] outline-none`}
+                                />
+                              </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-[52px_1fr] gap-2 items-center">
+                              <span class="text-[11px] font-semibold text-[var(--text-muted)] uppercase tracking-wide">Then</span>
+                              <input
+                                type="url"
+                                placeholder="https://example.com/webhooks/inbound"
+                                value={rule.endpointUrl}
+                                onInput={(e) => updateAutoWebhookRule(rule.id, { endpointUrl: e.currentTarget.value })}
+                                class={`${endpointOk() || !rule.endpointUrl.trim() ? "border-[var(--border)]" : "border-red-400"} h-9 px-3 rounded border bg-[var(--card)] text-xs text-[var(--foreground)] outline-none`}
+                              />
+                            </div>
+
+                            <div class="flex items-center justify-between">
+                              <label class="inline-flex items-center gap-2 text-xs text-[var(--text-secondary)]">
+                                <input
+                                  type="checkbox"
+                                  class="w-4 h-4 accent-[var(--primary)]"
+                                  checked={rule.caseSensitive}
+                                  onChange={(e) => updateAutoWebhookRule(rule.id, { caseSensitive: e.currentTarget.checked })}
+                                />
+                                Case sensitive
+                              </label>
+                              <div class="flex items-center gap-3">
+                                <Show when={!regexOk()}>
+                                  <span class="text-[11px] text-red-500">Invalid regex pattern</span>
+                                </Show>
+                                <Show when={rule.endpointUrl.trim() && !endpointOk()}>
+                                  <span class="text-[11px] text-red-500">Invalid webhook URL</span>
+                                </Show>
+                              </div>
                             </div>
                           </div>
                         );
