@@ -2,7 +2,7 @@
 import { createSignal, Show, For, createEffect, onCleanup, createMemo, untrack, createResource, onMount } from "solid-js";
 import { A, useSearchParams } from "@solidjs/router";
 import { settings, setSettings, ReadingPanePosition, THEMES, FONTS, type ThemeId, type FontId } from "~/lib/settings-store";
-import { IconBack, IconInbox, IconLabel, IconMail, IconClose, IconPlus, IconEdit, IconTrash, IconSignature, IconFolder, IconUsers, IconInfo, IconSparkles, IconBriefcase, IconCart, IconReceipt, IconHeart, IconCode, IconBolt, IconCategories, IconChevronDown, IconBlock, IconSend, IconImport } from "~/components/Icons";
+import { IconBack, IconInbox, IconLabel, IconMail, IconClose, IconPlus, IconEdit, IconTrash, IconSignature, IconFolder, IconUsers, IconInfo, IconSparkles, IconBriefcase, IconCart, IconReceipt, IconHeart, IconCode, IconBolt, IconCategories, IconChevronDown, IconBlock, IconSend, IconImport, IconClock } from "~/components/Icons";
 import { addLabel, updateLabel, removeLabel, LABEL_COLORS, getVisibleLabels, getConfiguredCategories, addCategory, removeCategory, updateCategory, normalizeCategoryNameToKey, type CategoryIconId } from "~/lib/labels-store";
 import {
   autoLabelRulesState,
@@ -10,6 +10,7 @@ import {
   removeAutoLabelRule,
   updateAutoLabelRule,
   updateAutoLabelRulesSettings,
+  replaceAutoLabelRulesState,
   type DestinationTargetField,
   type DestinationMatchType,
   type LabelResolutionMode,
@@ -20,6 +21,7 @@ import {
   removeAutoWebhookRule,
   updateAutoWebhookRule,
   updateAutoWebhookRulesSettings,
+  replaceAutoWebhookRulesState,
 } from "~/lib/auto-webhook-rules-store";
 import { signatureState, addSignature, updateSignature, removeSignature, setDefaultSignature } from "~/lib/signature-store";
 import { clearPaginationCache, getPaginationCacheStats } from "~/lib/pagination-cache";
@@ -27,7 +29,19 @@ import { showToast } from "~/lib/toast-store";
 import { authClient } from "~/lib/auth-client";
 import { isDemoModeEnabled } from "~/lib/demo-mode";
 import { DEMO_USER_PROFILE } from "~/lib/demo-user";
-import { getBlockedSenders, unblockSender, blockSender, getAutoReplySettings, saveAutoReplySettings, type AutoReplySettings } from "~/lib/mail-client-browser";
+import {
+  getBlockedSenders,
+  unblockSender,
+  blockSender,
+  getAutoReplySettings,
+  saveAutoReplySettings,
+  getAutomationRules,
+  saveAutomationRules,
+  getWebhookDeliveryHistory,
+  clearWebhookDeliveryHistory,
+  type AutoReplySettings,
+  type WebhookDeliveryHistoryItem,
+} from "~/lib/mail-client-browser";
 import { cacheBlockedSenderEmails } from "~/lib/blocked-senders-cache";
 import { getUpdateStatusClient } from "~/lib/update-status-client";
 import hotkeys from "hotkeys-js";
@@ -192,6 +206,9 @@ export default function Settings() {
   const [serverTakeoutFiles, setServerTakeoutFiles] = createSignal<ServerTakeoutArchiveFile[]>([]);
   const [serverTakeoutFilesLoading, setServerTakeoutFilesLoading] = createSignal(false);
   const [serverTakeoutFilesUnavailable, setServerTakeoutFilesUnavailable] = createSignal(false);
+  const [webhookHistoryEntries, setWebhookHistoryEntries] = createSignal<WebhookDeliveryHistoryItem[]>([]);
+  const [automationLoaded, setAutomationLoaded] = createSignal(false);
+  const [automationSaving, setAutomationSaving] = createSignal(false);
   const [clearingCache, setClearingCache] = createSignal(false);
   const [cacheStats, setCacheStats] = createSignal<{ pages: number; bytes: number } | null>(null);
   const [loadingCacheStats, setLoadingCacheStats] = createSignal(false);
@@ -205,6 +222,7 @@ export default function Settings() {
   const [twoFactorQrDataUrl, setTwoFactorQrDataUrl] = createSignal("");
   const [backupCodes, setBackupCodes] = createSignal<string[]>([]);
   const demoMode = isDemoModeEnabled();
+  let automationSaveTimer: ReturnType<typeof setTimeout> | undefined;
 
   const userEmail = () => session().data?.user?.email || (demoMode ? DEMO_USER_PROFILE.email : "admin@local");
   const userName = () => session().data?.user?.name || (demoMode ? DEMO_USER_PROFILE.name : "Admin");
@@ -556,6 +574,32 @@ export default function Settings() {
   createEffect(() => {
     cacheBlockedSenderEmails((blockedSendersList() ?? []).map((sender) => sender.senderEmail));
   });
+  onMount(() => {
+    void hydrateAutomationFromServer();
+    void refreshWebhookHistory();
+  });
+  createEffect(() => {
+    if (!automationLoaded()) return;
+    const signature = JSON.stringify(serializeAutomationStateForSave());
+    void signature;
+    if (automationSaveTimer) clearTimeout(automationSaveTimer);
+    automationSaveTimer = setTimeout(() => {
+      automationSaveTimer = undefined;
+      void persistAutomationRules();
+    }, 500);
+  });
+  onCleanup(() => {
+    if (!automationLoaded()) return;
+    if (automationSaveTimer) {
+      clearTimeout(automationSaveTimer);
+      automationSaveTimer = undefined;
+    }
+    void persistAutomationRules();
+  });
+  createEffect(() => {
+    if (activeTab() !== "automation") return;
+    void refreshWebhookHistory();
+  });
   createEffect(() => {
     const available = new Set(normalizedBlockedSenders().map((sender) => sender.senderEmail));
     setSelectedBlockedSenders((prev) => {
@@ -584,8 +628,10 @@ export default function Settings() {
 
   const handleAddAutoRule = () => {
     const firstLabelId = visibleLabels()[0]?.id || "";
+    const firstLabelName = visibleLabels()[0]?.name || "";
     addAutoLabelRule({
       labelId: firstLabelId,
+      labelName: firstLabelName,
       targetField: "destinationAddress",
       matchType: "exact",
       labelMode: "fixed",
@@ -628,6 +674,7 @@ export default function Settings() {
         pattern: "import@inout.email",
         labelMode: "fixed",
         labelId: ensureLabelIdByName("import"),
+        labelName: "import",
       });
       return;
     }
@@ -638,6 +685,7 @@ export default function Settings() {
         pattern: "receipts@inout.email",
         labelMode: "fixed",
         labelId: ensureLabelIdByName("receipts"),
+        labelName: "receipts",
       });
       return;
     }
@@ -717,6 +765,131 @@ export default function Settings() {
     } catch {
       return false;
     }
+  };
+
+  const serializeAutomationStateForSave = () => ({
+    labelRules: autoLabelRulesState.rules.map((rule) => ({
+      id: rule.id,
+      enabled: rule.enabled,
+      priority: rule.priority,
+      targetField: rule.targetField,
+      matchType: rule.matchType,
+      pattern: rule.pattern,
+      caseSensitive: rule.caseSensitive,
+      labelMode: rule.labelMode,
+      labelName: rule.labelMode === "fixed"
+        ? (visibleLabels().find((label) => label.id === rule.labelId)?.name || rule.labelName || "")
+        : "",
+      labelTemplate: rule.labelTemplate,
+    })),
+    webhookRules: autoWebhookRulesState.rules.map((rule) => ({
+      id: rule.id,
+      enabled: rule.enabled,
+      priority: rule.priority,
+      targetField: rule.targetField,
+      matchType: rule.matchType,
+      pattern: rule.pattern,
+      caseSensitive: rule.caseSensitive,
+      endpointUrl: rule.endpointUrl,
+    })),
+    labelSettings: {
+      stopAfterFirstMatch: autoLabelRulesState.stopAfterFirstMatch,
+      autoCreateLabelsFromTemplate: autoLabelRulesState.autoCreateLabelsFromTemplate,
+    },
+    webhookSettings: {
+      stopAfterFirstMatch: autoWebhookRulesState.stopAfterFirstMatch,
+    },
+  });
+
+  const hydrateAutomationFromServer = async () => {
+    try {
+      let payload = await getAutomationRules();
+      const hasServerRules = payload.labelRules.length > 0 || payload.webhookRules.length > 0;
+      const hasLocalRules = autoLabelRulesState.rules.length > 0 || autoWebhookRulesState.rules.length > 0;
+      if (!hasServerRules && hasLocalRules) {
+        await saveAutomationRules(serializeAutomationStateForSave());
+        payload = await getAutomationRules();
+      }
+
+      replaceAutoLabelRulesState({
+        rules: payload.labelRules.map((rule) => ({
+          id: rule.id,
+          enabled: rule.enabled,
+          priority: rule.priority,
+          targetField: rule.targetField,
+          matchType: rule.matchType,
+          pattern: rule.pattern,
+          caseSensitive: rule.caseSensitive,
+          labelMode: rule.labelMode,
+          labelId: rule.labelMode === "fixed"
+            ? (visibleLabels().find((label) => label.name.trim().toLowerCase() === rule.labelName.trim().toLowerCase())?.id || "")
+            : "",
+          labelName: rule.labelName || "",
+          labelTemplate: rule.labelTemplate || "",
+        })),
+        stopAfterFirstMatch: payload.labelSettings.stopAfterFirstMatch,
+        autoCreateLabelsFromTemplate: payload.labelSettings.autoCreateLabelsFromTemplate,
+      });
+
+      replaceAutoWebhookRulesState({
+        rules: payload.webhookRules.map((rule) => ({
+          id: rule.id,
+          enabled: rule.enabled,
+          priority: rule.priority,
+          targetField: rule.targetField,
+          matchType: rule.matchType,
+          pattern: rule.pattern,
+          caseSensitive: rule.caseSensitive,
+          endpointUrl: rule.endpointUrl,
+        })),
+        stopAfterFirstMatch: payload.webhookSettings.stopAfterFirstMatch,
+      });
+    } catch (err) {
+      console.error("Failed to load automation rules", err);
+      showToast("Failed to load automation rules", "error");
+    } finally {
+      setAutomationLoaded(true);
+    }
+  };
+
+  const refreshWebhookHistory = async () => {
+    try {
+      const entries = await getWebhookDeliveryHistory(200);
+      setWebhookHistoryEntries(entries);
+    } catch (err) {
+      console.error("Failed to load webhook delivery history", err);
+    }
+  };
+
+  const persistAutomationRules = async () => {
+    if (!automationLoaded()) return;
+    setAutomationSaving(true);
+    try {
+      await saveAutomationRules(serializeAutomationStateForSave());
+    } catch (err) {
+      console.error("Failed to save automation rules", err);
+      showToast("Failed to save automation rules", "error");
+    } finally {
+      setAutomationSaving(false);
+    }
+  };
+
+  const webhookStatusLabel = (status: "success" | "http_error" | "network_error") => {
+    if (status === "success") return "Success";
+    if (status === "http_error") return "HTTP error";
+    return "Network error";
+  };
+
+  const webhookStatusClass = (status: "success" | "http_error" | "network_error") => {
+    if (status === "success") return "text-green-700 bg-green-50 border-green-200";
+    if (status === "http_error") return "text-amber-700 bg-amber-50 border-amber-200";
+    return "text-red-700 bg-red-50 border-red-200";
+  };
+
+  const formatWebhookHistoryDate = (value: string) => {
+    const parsed = new Date(value);
+    if (Number.isNaN(parsed.getTime())) return value;
+    return parsed.toLocaleString();
   };
 
   const parseError = async (response: Response): Promise<string> => {
@@ -2430,6 +2603,11 @@ export default function Settings() {
 
           <Show when={activeTab() === "automation"}>
             <div class="flex flex-col gap-6">
+              <div class="text-[11px] text-[var(--text-muted)]">
+                <Show when={!automationLoaded()} fallback={<Show when={automationSaving()}>Saving automation rules...</Show>}>
+                  Loading automation rules...
+                </Show>
+              </div>
               {/* Auto-label rules */}
               <div class="flex flex-col gap-3 pt-3 border-t border-[var(--border-light)]">
                 <div class="flex items-start justify-between gap-3">
@@ -2551,7 +2729,7 @@ export default function Settings() {
                           const preview = () => {
                             const left = `"${targetFieldDisplay(rule.targetField)} ${matchTypeDisplay(rule.matchType)} ${rule.pattern || "…"}"`;
                             const right = rule.labelMode === "fixed"
-                            ? `label "${visibleLabels().find((l) => l.id === rule.labelId)?.name || "…"}"`
+                            ? `label "${visibleLabels().find((l) => l.id === rule.labelId)?.name || rule.labelName || "…"}"`
                             : `template "${rule.labelTemplate || "…"}"`;
                           return `${left} -> ${right}`;
                         };
@@ -2650,7 +2828,11 @@ export default function Settings() {
                                   <select
                                     class="h-9 px-2 rounded border border-[var(--border)] bg-[var(--card)] text-xs text-[var(--foreground)] outline-none"
                                     value={rule.labelId}
-                                    onChange={(e) => updateAutoLabelRule(rule.id, { labelId: e.currentTarget.value })}
+                                    onChange={(e) => {
+                                      const labelId = e.currentTarget.value;
+                                      const labelName = visibleLabels().find((label) => label.id === labelId)?.name || "";
+                                      updateAutoLabelRule(rule.id, { labelId, labelName });
+                                    }}
                                   >
                                     <option value="">Select label</option>
                                     <For each={visibleLabels()}>
@@ -2844,6 +3026,73 @@ export default function Settings() {
                           </div>
                         );
                       }}
+                    </For>
+                  </div>
+                </Show>
+              </div>
+
+              <div class="flex flex-col gap-3 pt-3 border-t border-[var(--border-light)]">
+                <div class="flex items-start justify-between gap-3">
+                  <div>
+                    <h3 class="text-base font-semibold text-[var(--foreground)]">Webhook history</h3>
+                    <p class="text-xs text-[var(--text-muted)] mt-1">
+                      Track each webhook attempt with status, matched value, and payload preview.
+                    </p>
+                  </div>
+                  <button
+                    onClick={async () => {
+                      await clearWebhookDeliveryHistory();
+                      await refreshWebhookHistory();
+                    }}
+                    disabled={webhookHistoryEntries().length === 0}
+                    class="h-8 px-3 rounded-lg border border-[var(--border)] bg-[var(--card)] text-xs text-[var(--text-secondary)] cursor-pointer hover:bg-[var(--hover-bg)] disabled:opacity-50 disabled:cursor-not-allowed"
+                    data-testid="clear-webhook-history"
+                  >
+                    Clear history
+                  </button>
+                </div>
+
+                <Show when={webhookHistoryEntries().length > 0} fallback={
+                  <div class="text-xs text-[var(--text-muted)] p-3 rounded-lg border border-[var(--border)] bg-[var(--search-bg)]">
+                    No webhook deliveries recorded yet.
+                  </div>
+                }>
+                  <div class="flex flex-col gap-2">
+                    <For each={webhookHistoryEntries()}>
+                      {(entry) => (
+                        <div class="flex flex-col gap-2 p-3 rounded-xl border border-[var(--border)] bg-[var(--card)]" data-testid="webhook-history-item">
+                          <div class="flex flex-wrap items-center justify-between gap-2">
+                            <div class="flex items-center gap-2 min-w-0">
+                              <IconClock size={14} class="text-[var(--text-muted)] shrink-0" />
+                              <span class="text-[11px] text-[var(--text-muted)]">{formatWebhookHistoryDate(entry.createdAt)}</span>
+                              <span class={`px-2 py-0.5 rounded-full border text-[10px] font-semibold uppercase tracking-wide ${webhookStatusClass(entry.status)}`}>
+                                {webhookStatusLabel(entry.status)}
+                              </span>
+                            </div>
+                            <span class="text-[11px] text-[var(--text-muted)]">{`Rule #${entry.rulePriority} (${entry.ruleId})`}</span>
+                          </div>
+
+                          <div class="text-xs text-[var(--foreground)] break-all">
+                            Endpoint: <a href={entry.endpointUrl} target="_blank" rel="noreferrer" class="text-[var(--primary)]">{entry.endpointUrl}</a>
+                          </div>
+                          <div class="text-xs text-[var(--foreground)]">{`Subject: ${entry.emailSubject || "(no subject)"}`}</div>
+                          <div class="text-xs text-[var(--text-secondary)]">{`Matched: ${entry.targetField} ${matchTypeDisplay(entry.matchType as DestinationMatchType)} "${entry.matchedValue}"`}</div>
+                          <div class="text-xs text-[var(--text-secondary)]">{`Folder: ${entry.folder}`}</div>
+                          <Show when={entry.httpStatus !== null}>
+                            <div class="text-xs text-[var(--text-secondary)]">{`HTTP status: ${entry.httpStatus}`}</div>
+                          </Show>
+                          <Show when={entry.responsePreview}>
+                            <div class="text-xs text-[var(--text-secondary)] break-words">{`Response: ${entry.responsePreview}`}</div>
+                          </Show>
+                          <Show when={entry.errorMessage}>
+                            <div class="text-xs text-red-600 break-words">{`Error: ${entry.errorMessage}`}</div>
+                          </Show>
+                          <details class="text-xs text-[var(--text-secondary)]">
+                            <summary class="cursor-pointer">Payload preview</summary>
+                            <pre class="mt-2 p-2 rounded border border-[var(--border)] bg-[var(--search-bg)] overflow-x-auto whitespace-pre-wrap break-words text-[11px] text-[var(--foreground)]">{entry.requestBodyPreview}</pre>
+                          </details>
+                        </div>
+                      )}
                     </For>
                   </div>
                 </Show>

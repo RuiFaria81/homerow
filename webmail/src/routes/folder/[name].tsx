@@ -4,9 +4,7 @@ import { useParams, useNavigate } from "@solidjs/router";
 import { fetchEmailsPaginated, fetchThreadsPaginated, getEmail, deleteEmail, deleteEmailsBatch, archiveEmails, addEmailLabel, removeEmailLabel, toggleStar, markAsRead, markAsUnread, moveToFolder, restoreFromTrash, snoozeEmails, cancelScheduledEmail, cancelScheduledEmails, type EmailMessage } from "~/lib/mail-client-browser";
 import { settings } from "~/lib/settings-store";
 import { refreshCounts } from "~/lib/sidebar-store";
-import { labelsState, addLabel, LABEL_COLORS, getVisibleLabels } from "~/lib/labels-store";
-import { autoLabelRulesState } from "~/lib/auto-label-rules-store";
-import { autoWebhookRulesState } from "~/lib/auto-webhook-rules-store";
+import { labelsState, getVisibleLabels } from "~/lib/labels-store";
 import { buildPaginationNamespace, getCachedPage, setCachedPage } from "~/lib/pagination-cache";
 import VirtualEmailList from "~/components/VirtualEmailList";
 import ReadingPane from "~/components/ReadingPane";
@@ -34,9 +32,6 @@ export default function FolderView() {
   const [pageCache, setPageCache] = createSignal<Map<string, Awaited<ReturnType<typeof fetchEmailsPaginated>>>>(new Map());
   const [lastPageNavAt, setLastPageNavAt] = createSignal(0);
   const [newConversationKeys, setNewConversationKeys] = createSignal<Set<string>>(new Set());
-  const attemptedAutoLabelKeys = new Set<string>();
-  const attemptedAutoWebhookKeys = new Set<string>();
-  let autoLabelQueue: Promise<void> = Promise.resolve();
   let activeResizePointerId: number | null = null;
   const prefetchInFlight = new Set<number>();
 
@@ -141,307 +136,6 @@ export default function FolderView() {
       next.delete(key);
       return next;
     });
-  };
-
-  const shouldSkipAutoLabelingForFolder = () => {
-    const normalized = (params.name || "").toLowerCase();
-    return normalized === "drafts" || normalized === "draft" || normalized === "sent" || normalized === "sent items" || normalized === "sent mail" || normalized === "sent messages" || normalized === "trash" || normalized === "bin" || normalized === "deleted items" || normalized === "deleted messages";
-  };
-
-  const normalizeEmailAddress = (input: string) => input.trim().toLowerCase();
-
-  const getDestinationAddresses = (email: EmailMessage) => {
-    const all = [...(email.deliveredTo || []), ...(email.to || []), ...(email.cc || [])]
-      .map(normalizeEmailAddress)
-      .filter((v) => v.includes("@"));
-    return Array.from(new Set(all));
-  };
-
-  const extractOriginAddress = (email: EmailMessage) => {
-    const direct = (email.fromAddress || "").trim();
-    if (direct.includes("@")) return normalizeEmailAddress(direct);
-    const from = (email.from || "").trim();
-    const angleMatch = from.match(/<([^>]+)>/);
-    const candidate = (angleMatch?.[1] || from).trim();
-    if (!candidate.includes("@")) return "";
-    return normalizeEmailAddress(candidate);
-  };
-
-  const getRuleTargetValues = (
-    email: EmailMessage,
-    targetField:
-      | "destinationAddress"
-      | "destinationLocalPart"
-      | "destinationPlusTag"
-      | "originAddress"
-      | "originLocalPart"
-      | "emailSubject",
-  ) => {
-    if (targetField === "emailSubject") {
-      const subject = (email.subject || "").trim();
-      return subject ? [subject] : [];
-    }
-
-    if (targetField === "originAddress") {
-      const origin = extractOriginAddress(email);
-      return origin ? [origin] : [];
-    }
-
-    if (targetField === "originLocalPart") {
-      const origin = extractOriginAddress(email);
-      if (!origin) return [];
-      const localPart = origin.split("@")[0] || "";
-      return localPart ? [localPart] : [];
-    }
-
-    const addresses = getDestinationAddresses(email);
-    if (targetField === "destinationAddress") return addresses;
-
-    if (targetField === "destinationLocalPart") {
-      const values = addresses.map((addr) => addr.split("@")[0] || "").filter(Boolean);
-      return Array.from(new Set(values));
-    }
-
-    const plusTags = addresses
-      .map((addr) => {
-        const local = addr.split("@")[0] || "";
-        const plusIdx = local.indexOf("+");
-        return plusIdx >= 0 ? local.slice(plusIdx + 1).trim() : "";
-      })
-      .filter(Boolean);
-    return Array.from(new Set(plusTags));
-  };
-
-  const matchDestinationRule = (
-    values: string[],
-    pattern: string,
-    matchType: "exact" | "contains" | "regex",
-    caseSensitive: boolean,
-  ): { candidate: string; regexMatch: RegExpExecArray | null } | null => {
-    if (!pattern || values.length === 0) return null;
-    if (matchType === "regex") {
-      try {
-        const regex = new RegExp(pattern, caseSensitive ? "" : "i");
-        for (const value of values) {
-          const match = regex.exec(value);
-          if (match) return { candidate: value, regexMatch: match };
-        }
-      } catch {
-        return null;
-      }
-      return null;
-    }
-
-    const needle = caseSensitive ? pattern : pattern.toLowerCase();
-    for (const value of values) {
-      const haystack = caseSensitive ? value : value.toLowerCase();
-      if (matchType === "exact" && haystack === needle) return { candidate: value, regexMatch: null };
-      if (matchType === "contains" && haystack.includes(needle)) return { candidate: value, regexMatch: null };
-    }
-    return null;
-  };
-
-  const renderLabelTemplate = (
-    template: string,
-    candidate: string,
-    regexMatch: RegExpExecArray | null,
-  ) => template
-    .replace(/\$0/g, candidate)
-    .replace(/\$(\d+)/g, (_, num) => {
-      const idx = Number(num);
-      if (!Number.isFinite(idx) || idx < 1) return "";
-      return regexMatch?.[idx] ?? "";
-    })
-    .trim();
-
-  const findLabelByNameInsensitive = (name: string) =>
-    labelsState.labels.find((label) => label.name.trim().toLowerCase() === name.trim().toLowerCase());
-
-  const dispatchWebhookForRule = async (
-    email: EmailMessage,
-    rule: {
-      id: string;
-      endpointUrl: string;
-      targetField:
-        | "destinationAddress"
-        | "destinationLocalPart"
-        | "destinationPlusTag"
-        | "originAddress"
-        | "originLocalPart"
-        | "emailSubject";
-      matchType: "exact" | "contains" | "regex";
-      pattern: string;
-      caseSensitive: boolean;
-      priority: number;
-    },
-    folder: string,
-    match: { candidate: string; regexMatch: RegExpExecArray | null },
-    fullEmail: Awaited<ReturnType<typeof getEmail>> | null,
-  ) => {
-    const endpoint = rule.endpointUrl.trim();
-    if (!endpoint) return;
-    try {
-      const parsed = new URL(endpoint);
-      if (parsed.protocol !== "http:" && parsed.protocol !== "https:") return;
-    } catch {
-      return;
-    }
-
-    const attemptKey = `${folder.toLowerCase()}::${email.seq}::${rule.id}::${endpoint}`;
-    if (attemptedAutoWebhookKeys.has(attemptKey)) return;
-    attemptedAutoWebhookKeys.add(attemptKey);
-
-    try {
-      const response = await fetch(endpoint, {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({
-          source: "homerow-webmail",
-          kind: "destination_webhook_rule",
-          triggeredAt: new Date().toISOString(),
-          rule: {
-            id: rule.id,
-            priority: rule.priority,
-            targetField: rule.targetField,
-            matchType: rule.matchType,
-            pattern: rule.pattern,
-            caseSensitive: rule.caseSensitive,
-          },
-          match: {
-            candidate: match.candidate,
-            captures: match.regexMatch ? Array.from(match.regexMatch) : [],
-          },
-          folder,
-          email: {
-            id: email.id,
-            seq: email.seq,
-            subject: email.subject,
-            from: email.from,
-            fromAddress: email.fromAddress ?? null,
-            to: email.to ?? [],
-            cc: email.cc ?? [],
-            deliveredTo: email.deliveredTo ?? [],
-            date: email.date,
-            threadId: email.threadId ?? null,
-            folderPath: email.folderPath ?? folder,
-            text: fullEmail?.text ?? null,
-            html: fullEmail?.html ?? null,
-          },
-        }),
-      });
-      if (!response.ok) {
-        console.error("[AutoWebhook Error] Webhook responded with non-OK status:", response.status, endpoint);
-      }
-    } catch (err) {
-      console.error("[AutoWebhook Error] Failed to post webhook:", err);
-    }
-  };
-
-  const enqueueAutoLabeling = (emails: EmailMessage[], folder: string) => {
-    autoLabelQueue = autoLabelQueue
-      .then(async () => {
-        if (shouldSkipAutoLabelingForFolder()) return;
-        if (!emails.length) return;
-        const rules = [...autoLabelRulesState.rules]
-          .filter((rule) => rule.enabled && rule.pattern.trim().length > 0)
-          .sort((a, b) => a.priority - b.priority);
-        const webhookRules = [...autoWebhookRulesState.rules]
-          .filter((rule) =>
-            rule.enabled &&
-            rule.pattern.trim().length > 0 &&
-            rule.endpointUrl.trim().length > 0
-          )
-          .sort((a, b) => a.priority - b.priority);
-        if (!rules.length && !webhookRules.length) return;
-
-        let appliedAny = false;
-
-        for (const email of emails) {
-          let mutableFlags = [...email.flags];
-          for (const rule of rules) {
-            const values = getRuleTargetValues(email, rule.targetField);
-            const match = matchDestinationRule(values, rule.pattern, rule.matchType, rule.caseSensitive);
-            if (!match) continue;
-
-            let labelName = "";
-            if (rule.labelMode === "fixed") {
-              const fixedLabel = labelsState.labels.find((l) => l.id === rule.labelId);
-              if (!fixedLabel) continue;
-              labelName = fixedLabel.name;
-            } else {
-              labelName = renderLabelTemplate(rule.labelTemplate, match.candidate, match.regexMatch);
-              if (!labelName) continue;
-            }
-
-            if (mutableFlags.includes(labelName)) {
-              if (autoLabelRulesState.stopAfterFirstMatch) break;
-              continue;
-            }
-
-            let label = findLabelByNameInsensitive(labelName);
-            if (!label) {
-              if (!autoLabelRulesState.autoCreateLabelsFromTemplate) continue;
-              const createdId = addLabel(labelName, LABEL_COLORS[0]);
-              label = labelsState.labels.find((l) => l.id === createdId) || findLabelByNameInsensitive(labelName);
-            }
-            if (!label) continue;
-
-            const attemptKey = `${folder.toLowerCase()}::${email.seq}::${rule.id}::${label.name}`;
-            if (attemptedAutoLabelKeys.has(attemptKey)) continue;
-            attemptedAutoLabelKeys.add(attemptKey);
-
-            try {
-              await addEmailLabel(String(email.seq), label.name, folder);
-              appliedAny = true;
-              mutableFlags = [...mutableFlags, label.name];
-              mutate((prev) => {
-                if (!prev) return prev;
-                return {
-                  ...prev,
-                  emails: prev.emails.map((row) =>
-                    row.seq === email.seq && !row.flags.includes(label.name)
-                      ? { ...row, flags: [...row.flags, label.name] }
-                      : row
-                  ),
-                };
-              });
-              if (autoLabelRulesState.stopAfterFirstMatch) break;
-            } catch (err) {
-              console.error("[AutoLabel Error] Failed to apply label:", err);
-            }
-          }
-
-          let fullEmail: Awaited<ReturnType<typeof getEmail>> | null | undefined = undefined;
-          for (const webhookRule of webhookRules) {
-            const webhookValues = getRuleTargetValues(email, webhookRule.targetField);
-            const webhookMatch = matchDestinationRule(
-              webhookValues,
-              webhookRule.pattern,
-              webhookRule.matchType,
-              webhookRule.caseSensitive,
-            );
-            if (!webhookMatch) continue;
-            if (fullEmail === undefined) {
-              try {
-                fullEmail = await getEmail(String(email.seq), email.folderPath || folder);
-              } catch {
-                fullEmail = null;
-              }
-            }
-            await dispatchWebhookForRule(email, webhookRule, folder, webhookMatch, fullEmail);
-            if (autoWebhookRulesState.stopAfterFirstMatch) break;
-          }
-        }
-
-        if (appliedAny) {
-          refreshCounts();
-        }
-      })
-      .catch((err) => {
-        console.error("[AutoLabel Error] Queue failure:", err);
-      });
   };
 
   const filteredEmails = createMemo(() => {
@@ -971,7 +665,6 @@ export default function FolderView() {
       if (evt?.type !== "new_message" || !evt.uid || selectedFolder !== eventFolder) return;
       const found = data?.emails?.find((e: any) => e.seq === evt.uid);
       if (!found) return;
-      enqueueAutoLabeling([found], params.name || "INBOX");
       const key = conversationKey(found);
       setNewConversationKeys((prev) => {
         const next = new Set(prev);
@@ -980,21 +673,6 @@ export default function FolderView() {
       });
     })();
     refreshCounts();
-  });
-
-  createEffect(() => {
-    const folder = params.name || "INBOX";
-    const rulesSignature = autoLabelRulesState.rules
-      .map((r) => `${r.id}:${r.enabled ? 1 : 0}:${r.priority}:${r.targetField}:${r.matchType}:${r.caseSensitive ? 1 : 0}:${r.labelMode}:${r.labelId}:${r.labelTemplate}:${r.pattern}`)
-      .join("|") + `|stop=${autoLabelRulesState.stopAfterFirstMatch ? 1 : 0}|create=${autoLabelRulesState.autoCreateLabelsFromTemplate ? 1 : 0}`;
-    const webhookRulesSignature = autoWebhookRulesState.rules
-      .map((r) => `${r.id}:${r.enabled ? 1 : 0}:${r.priority}:${r.targetField}:${r.matchType}:${r.caseSensitive ? 1 : 0}:${r.pattern}:${r.endpointUrl}`)
-      .join("|") + `|stop=${autoWebhookRulesState.stopAfterFirstMatch ? 1 : 0}`;
-    void rulesSignature;
-    void webhookRulesSignature;
-    const data = paginatedData();
-    if (!data?.emails?.length) return;
-    enqueueAutoLabeling(data.emails, folder);
   });
 
   createEffect(() => {

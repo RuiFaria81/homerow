@@ -578,7 +578,7 @@ test.describe("Requested feature regressions", () => {
     await expect(page.getByRole("heading", { name: "Webhook rules" })).toBeVisible();
   });
 
-  test("posts matching destination emails to configured webhook endpoint", async ({ page }) => {
+  test("executes webhook rules server-side and records delivery history", async ({ page }) => {
     const stamp = Date.now();
     const mailbox = requiredEnv("E2E_EMAIL");
     const [localPart, host] = mailbox.split("@");
@@ -586,23 +586,16 @@ test.describe("Requested feature regressions", () => {
 
     const aliasTag = `webhooke2e${stamp}`;
     const aliasAddress = `${localPart}+${aliasTag}@${host}`;
-    const base = new URL(requiredEnv("E2E_BASE_URL"));
-    const webhookUrl = `${base.origin}/e2e-test-webhook`;
+    const webhookUrl = "http://127.0.0.1:1/e2e-unreachable";
     const subject = `Webhook destination rule e2e ${stamp}`;
 
-    const webhookPayloads: unknown[] = [];
-    await page.route("**/e2e-test-webhook", async (route) => {
-      const raw = route.request().postData() || "";
-      try {
-        webhookPayloads.push(JSON.parse(raw));
-      } catch {
-        webhookPayloads.push(raw);
-      }
-      await route.fulfill({ status: 200, body: "ok", contentType: "text/plain" });
-    });
-
     await page.evaluate(
-      ({ aliasAddress: inputAlias, webhookUrl: inputWebhook, subject: inputSubject }) => {
+      ({ webhookUrl: inputWebhook, subject: inputSubject }) => {
+        localStorage.setItem("autoLabelRules", JSON.stringify({
+          stopAfterFirstMatch: false,
+          autoCreateLabelsFromTemplate: true,
+          rules: [],
+        }));
         localStorage.setItem("autoWebhookRules", JSON.stringify({
           stopAfterFirstMatch: true,
           rules: [
@@ -619,30 +612,26 @@ test.describe("Requested feature regressions", () => {
           ],
         }));
       },
-      { aliasAddress, webhookUrl, subject },
+      { webhookUrl, subject },
     );
-    await page.reload();
-    await expect(page.getByRole("heading", { name: "Inbox" })).toBeVisible();
+    await page.goto("/settings");
+    await expect(page.getByRole("heading", { name: "Settings", exact: true })).toBeVisible();
+    await page.getByTestId("settings-tab-automation").click();
+    await expect(page.getByRole("heading", { name: "Webhook rules" })).toBeVisible();
+    await expect(page.getByText("Webhook history")).toBeVisible();
+
+    await expect.poll(async () => !(await page.getByText("Loading automation rules...").isVisible())).toBeTruthy();
+    await page.waitForTimeout(1200);
 
     await sendInboundEmail({
       to: aliasAddress,
       subject,
       text: `Webhook trigger payload ${stamp}`,
     });
-
-    await openInboxFolder(page);
-    await waitForRowBySubject(page, subject);
-
-    await expect
-      .poll(() =>
-        webhookPayloads.find((payload) => {
-          if (!payload || typeof payload !== "object") return false;
-          const asRecord = payload as Record<string, unknown>;
-          const email = asRecord.email;
-          if (!email || typeof email !== "object") return false;
-          return (email as Record<string, unknown>).subject === subject;
-        }) !== undefined
-      )
-      .toBeTruthy();
+    await page.reload();
+    await page.getByTestId("settings-tab-automation").click();
+    await expect(page.getByText("Webhook history")).toBeVisible();
+    await expect(page.getByText(subject)).toBeVisible();
+    await expect(page.getByText("Network error")).toBeVisible();
   });
 });

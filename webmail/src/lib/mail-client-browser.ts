@@ -127,6 +127,71 @@ export interface AutoReplySettings {
   endDate: string | null;
 }
 
+export type DestinationMatchType = "exact" | "contains" | "regex";
+export type DestinationTargetField =
+  | "destinationAddress"
+  | "destinationLocalPart"
+  | "destinationPlusTag"
+  | "originAddress"
+  | "originLocalPart"
+  | "emailSubject";
+export type LabelResolutionMode = "fixed" | "template";
+
+export interface AutomationLabelRule {
+  id: string;
+  enabled: boolean;
+  priority: number;
+  targetField: DestinationTargetField;
+  matchType: DestinationMatchType;
+  pattern: string;
+  caseSensitive: boolean;
+  labelMode: LabelResolutionMode;
+  labelName: string;
+  labelTemplate: string;
+}
+
+export interface AutomationWebhookRule {
+  id: string;
+  enabled: boolean;
+  priority: number;
+  targetField: DestinationTargetField;
+  matchType: DestinationMatchType;
+  pattern: string;
+  caseSensitive: boolean;
+  endpointUrl: string;
+}
+
+export interface AutomationRulesPayload {
+  labelRules: AutomationLabelRule[];
+  webhookRules: AutomationWebhookRule[];
+  labelSettings: {
+    stopAfterFirstMatch: boolean;
+    autoCreateLabelsFromTemplate: boolean;
+  };
+  webhookSettings: {
+    stopAfterFirstMatch: boolean;
+  };
+}
+
+export interface WebhookDeliveryHistoryItem {
+  id: number;
+  createdAt: string;
+  endpointUrl: string;
+  status: "success" | "http_error" | "network_error";
+  httpStatus: number | null;
+  errorMessage: string | null;
+  responsePreview: string | null;
+  requestBodyPreview: string;
+  folder: string;
+  ruleId: string;
+  rulePriority: number;
+  targetField: string;
+  matchType: string;
+  matchedValue: string;
+  emailSubject: string;
+  emailFromAddress: string | null;
+}
+
 type ServerMailClient = typeof import("./mail-client");
 let serverMailClientPromise: Promise<ServerMailClient> | null = null;
 
@@ -371,4 +436,35 @@ export async function saveAutoReplySettings(settings: AutoReplySettings): Promis
   if (useStaticDemoClient()) return demoSaveAutoReplySettings(settings);
   const server = await getServerMailClient();
   return server.saveAutoReplySettings(settings);
+}
+
+export async function getAutomationRules(): Promise<AutomationRulesPayload> {
+  if (useStaticDemoClient()) {
+    return {
+      labelRules: [],
+      webhookRules: [],
+      labelSettings: { stopAfterFirstMatch: false, autoCreateLabelsFromTemplate: true },
+      webhookSettings: { stopAfterFirstMatch: false },
+    };
+  }
+  const server = await getServerMailClient();
+  return server.getAutomationRules();
+}
+
+export async function saveAutomationRules(payload: AutomationRulesPayload): Promise<void> {
+  if (useStaticDemoClient()) return;
+  const server = await getServerMailClient();
+  return server.saveAutomationRules(payload);
+}
+
+export async function getWebhookDeliveryHistory(limit = 100): Promise<WebhookDeliveryHistoryItem[]> {
+  if (useStaticDemoClient()) return [];
+  const server = await getServerMailClient();
+  return server.getWebhookDeliveryHistory(limit);
+}
+
+export async function clearWebhookDeliveryHistory(): Promise<void> {
+  if (useStaticDemoClient()) return;
+  const server = await getServerMailClient();
+  return server.clearWebhookDeliveryHistory();
 }

@@ -21,6 +21,7 @@ export interface DestinationLabelRule {
   caseSensitive: boolean;
   labelMode: LabelResolutionMode;
   labelId: string;
+  labelName: string;
   labelTemplate: string;
 }
 
@@ -48,6 +49,7 @@ function looksLikeDestinationRule(input: unknown): input is DestinationLabelRule
     typeof candidate.caseSensitive === "boolean" &&
     typeof candidate.labelMode === "string" &&
     typeof candidate.labelId === "string" &&
+    (typeof candidate.labelName === "string" || typeof candidate.labelName === "undefined") &&
     typeof candidate.labelTemplate === "string";
 }
 
@@ -85,6 +87,16 @@ createEffect(() => {
 
 export { autoLabelRulesState };
 
+export const replaceAutoLabelRulesState = (next: {
+  rules: DestinationLabelRule[];
+  stopAfterFirstMatch: boolean;
+  autoCreateLabelsFromTemplate: boolean;
+}) => {
+  setAutoLabelRulesState("rules", next.rules);
+  setAutoLabelRulesState("stopAfterFirstMatch", next.stopAfterFirstMatch);
+  setAutoLabelRulesState("autoCreateLabelsFromTemplate", next.autoCreateLabelsFromTemplate);
+};
+
 export const addAutoLabelRule = (partial?: Partial<Omit<DestinationLabelRule, "id">>) => {
   const nextPriority = autoLabelRulesState.rules.length + 1;
   const rule: DestinationLabelRule = {
@@ -97,6 +109,7 @@ export const addAutoLabelRule = (partial?: Partial<Omit<DestinationLabelRule, "i
     caseSensitive: partial?.caseSensitive ?? false,
     labelMode: partial?.labelMode ?? "fixed",
     labelId: partial?.labelId ?? "",
+    labelName: partial?.labelName ?? "",
     labelTemplate: partial?.labelTemplate ?? "",
   };
 

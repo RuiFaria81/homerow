@@ -220,4 +220,74 @@ CREATE TABLE sync_log (
 CREATE INDEX idx_sync_log_account ON sync_log (account_id, created_at DESC);
 CREATE INDEX idx_sync_log_type    ON sync_log (event_type);
 
+-- ---------------------------------------------------------------------------
+-- automation rule settings + rules
+-- ---------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS automation_rule_settings (
+    account_email                    TEXT        PRIMARY KEY,
+    label_stop_after_first_match     BOOLEAN     NOT NULL DEFAULT false,
+    label_auto_create_from_template  BOOLEAN     NOT NULL DEFAULT true,
+    webhook_stop_after_first_match   BOOLEAN     NOT NULL DEFAULT false,
+    updated_at                       TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE TABLE IF NOT EXISTS automation_label_rules (
+    id               TEXT        PRIMARY KEY,
+    account_email    TEXT        NOT NULL,
+    enabled          BOOLEAN     NOT NULL DEFAULT true,
+    priority         INTEGER     NOT NULL DEFAULT 1,
+    target_field     TEXT        NOT NULL,
+    match_type       TEXT        NOT NULL,
+    pattern          TEXT        NOT NULL DEFAULT '',
+    case_sensitive   BOOLEAN     NOT NULL DEFAULT false,
+    label_mode       TEXT        NOT NULL,
+    label_name       TEXT        NOT NULL DEFAULT '',
+    label_template   TEXT        NOT NULL DEFAULT '',
+    created_at       TIMESTAMPTZ NOT NULL DEFAULT now(),
+    updated_at       TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS idx_automation_label_rules_account_priority
+  ON automation_label_rules (account_email, priority, created_at);
+
+CREATE TABLE IF NOT EXISTS automation_webhook_rules (
+    id               TEXT        PRIMARY KEY,
+    account_email    TEXT        NOT NULL,
+    enabled          BOOLEAN     NOT NULL DEFAULT true,
+    priority         INTEGER     NOT NULL DEFAULT 1,
+    target_field     TEXT        NOT NULL,
+    match_type       TEXT        NOT NULL,
+    pattern          TEXT        NOT NULL DEFAULT '',
+    case_sensitive   BOOLEAN     NOT NULL DEFAULT false,
+    endpoint_url     TEXT        NOT NULL DEFAULT '',
+    created_at       TIMESTAMPTZ NOT NULL DEFAULT now(),
+    updated_at       TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS idx_automation_webhook_rules_account_priority
+  ON automation_webhook_rules (account_email, priority, created_at);
+
+CREATE TABLE IF NOT EXISTS webhook_delivery_history (
+    id                    BIGSERIAL   PRIMARY KEY,
+    account_email         TEXT        NOT NULL,
+    created_at            TIMESTAMPTZ NOT NULL DEFAULT now(),
+    endpoint_url          TEXT        NOT NULL,
+    status                TEXT        NOT NULL,
+    http_status           INTEGER,
+    error_message         TEXT,
+    response_preview      TEXT,
+    request_body_preview  TEXT        NOT NULL,
+    folder                TEXT        NOT NULL DEFAULT '',
+    rule_id               TEXT        NOT NULL DEFAULT '',
+    rule_priority         INTEGER     NOT NULL DEFAULT 0,
+    target_field          TEXT        NOT NULL DEFAULT '',
+    match_type            TEXT        NOT NULL DEFAULT '',
+    matched_value         TEXT        NOT NULL DEFAULT '',
+    email_subject         TEXT        NOT NULL DEFAULT '',
+    email_from_address    TEXT
+);
+
+CREATE INDEX IF NOT EXISTS idx_webhook_delivery_history_account_created
+  ON webhook_delivery_history (account_email, created_at DESC);
+
 COMMIT;

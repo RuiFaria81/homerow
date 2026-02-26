@@ -67,6 +67,14 @@ createEffect(() => {
 
 export { autoWebhookRulesState };
 
+export const replaceAutoWebhookRulesState = (next: {
+  rules: DestinationWebhookRule[];
+  stopAfterFirstMatch: boolean;
+}) => {
+  setAutoWebhookRulesState("rules", next.rules);
+  setAutoWebhookRulesState("stopAfterFirstMatch", next.stopAfterFirstMatch);
+};
+
 export const addAutoWebhookRule = (partial?: Partial<Omit<DestinationWebhookRule, "id">>) => {
   const nextPriority = autoWebhookRulesState.rules.length + 1;
   const rule: DestinationWebhookRule = {

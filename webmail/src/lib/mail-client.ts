@@ -264,6 +264,7 @@ let backgroundSweepTickInFlight = false;
 let spamScoreColumnEnsured = false;
 let blockedSendersTableEnsured = false;
 let autoReplyTablesEnsured = false;
+let automationTablesEnsured = false;
 
 type BackgroundSweepState = {
   timer: ReturnType<typeof setInterval> | null;
@@ -3726,6 +3727,366 @@ export async function unblockSender(senderEmail: string): Promise<void> {
     );
   } catch (err) {
     console.error("[DB Error] unblockSender:", err);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Automation Rules
+// ---------------------------------------------------------------------------
+
+export type DestinationMatchType = "exact" | "contains" | "regex";
+export type DestinationTargetField =
+  | "destinationAddress"
+  | "destinationLocalPart"
+  | "destinationPlusTag"
+  | "originAddress"
+  | "originLocalPart"
+  | "emailSubject";
+export type LabelResolutionMode = "fixed" | "template";
+
+export interface AutomationLabelRule {
+  id: string;
+  enabled: boolean;
+  priority: number;
+  targetField: DestinationTargetField;
+  matchType: DestinationMatchType;
+  pattern: string;
+  caseSensitive: boolean;
+  labelMode: LabelResolutionMode;
+  labelName: string;
+  labelTemplate: string;
+}
+
+export interface AutomationWebhookRule {
+  id: string;
+  enabled: boolean;
+  priority: number;
+  targetField: DestinationTargetField;
+  matchType: DestinationMatchType;
+  pattern: string;
+  caseSensitive: boolean;
+  endpointUrl: string;
+}
+
+export interface AutomationRulesPayload {
+  labelRules: AutomationLabelRule[];
+  webhookRules: AutomationWebhookRule[];
+  labelSettings: {
+    stopAfterFirstMatch: boolean;
+    autoCreateLabelsFromTemplate: boolean;
+  };
+  webhookSettings: {
+    stopAfterFirstMatch: boolean;
+  };
+}
+
+export interface WebhookDeliveryHistoryItem {
+  id: number;
+  createdAt: string;
+  endpointUrl: string;
+  status: "success" | "http_error" | "network_error";
+  httpStatus: number | null;
+  errorMessage: string | null;
+  responsePreview: string | null;
+  requestBodyPreview: string;
+  folder: string;
+  ruleId: string;
+  rulePriority: number;
+  targetField: string;
+  matchType: string;
+  matchedValue: string;
+  emailSubject: string;
+  emailFromAddress: string | null;
+}
+
+async function ensureAutomationTables(): Promise<void> {
+  if (automationTablesEnsured) return;
+  const pool = getPool();
+  try {
+    await pool.query(
+      `CREATE TABLE IF NOT EXISTS automation_rule_settings (
+         account_email                   TEXT        PRIMARY KEY,
+         label_stop_after_first_match    BOOLEAN     NOT NULL DEFAULT false,
+         label_auto_create_from_template BOOLEAN     NOT NULL DEFAULT true,
+         webhook_stop_after_first_match  BOOLEAN     NOT NULL DEFAULT false,
+         updated_at                      TIMESTAMPTZ NOT NULL DEFAULT now()
+       )`,
+    );
+    await pool.query(
+      `CREATE TABLE IF NOT EXISTS automation_label_rules (
+         id             TEXT        PRIMARY KEY,
+         account_email  TEXT        NOT NULL,
+         enabled        BOOLEAN     NOT NULL DEFAULT true,
+         priority       INTEGER     NOT NULL DEFAULT 1,
+         target_field   TEXT        NOT NULL,
+         match_type     TEXT        NOT NULL,
+         pattern        TEXT        NOT NULL DEFAULT '',
+         case_sensitive BOOLEAN     NOT NULL DEFAULT false,
+         label_mode     TEXT        NOT NULL,
+         label_name     TEXT        NOT NULL DEFAULT '',
+         label_template TEXT        NOT NULL DEFAULT '',
+         created_at     TIMESTAMPTZ NOT NULL DEFAULT now(),
+         updated_at     TIMESTAMPTZ NOT NULL DEFAULT now()
+       )`,
+    );
+    await pool.query(
+      `CREATE INDEX IF NOT EXISTS idx_automation_label_rules_account_priority
+       ON automation_label_rules (account_email, priority, created_at)`,
+    );
+    await pool.query(
+      `CREATE TABLE IF NOT EXISTS automation_webhook_rules (
+         id             TEXT        PRIMARY KEY,
+         account_email  TEXT        NOT NULL,
+         enabled        BOOLEAN     NOT NULL DEFAULT true,
+         priority       INTEGER     NOT NULL DEFAULT 1,
+         target_field   TEXT        NOT NULL,
+         match_type     TEXT        NOT NULL,
+         pattern        TEXT        NOT NULL DEFAULT '',
+         case_sensitive BOOLEAN     NOT NULL DEFAULT false,
+         endpoint_url   TEXT        NOT NULL DEFAULT '',
+         created_at     TIMESTAMPTZ NOT NULL DEFAULT now(),
+         updated_at     TIMESTAMPTZ NOT NULL DEFAULT now()
+       )`,
+    );
+    await pool.query(
+      `CREATE INDEX IF NOT EXISTS idx_automation_webhook_rules_account_priority
+       ON automation_webhook_rules (account_email, priority, created_at)`,
+    );
+    await pool.query(
+      `CREATE TABLE IF NOT EXISTS webhook_delivery_history (
+         id                   BIGSERIAL   PRIMARY KEY,
+         account_email        TEXT        NOT NULL,
+         created_at           TIMESTAMPTZ NOT NULL DEFAULT now(),
+         endpoint_url         TEXT        NOT NULL,
+         status               TEXT        NOT NULL,
+         http_status          INTEGER,
+         error_message        TEXT,
+         response_preview     TEXT,
+         request_body_preview TEXT        NOT NULL,
+         folder               TEXT        NOT NULL DEFAULT '',
+         rule_id              TEXT        NOT NULL DEFAULT '',
+         rule_priority        INTEGER     NOT NULL DEFAULT 0,
+         target_field         TEXT        NOT NULL DEFAULT '',
+         match_type           TEXT        NOT NULL DEFAULT '',
+         matched_value        TEXT        NOT NULL DEFAULT '',
+         email_subject        TEXT        NOT NULL DEFAULT '',
+         email_from_address   TEXT
+       )`,
+    );
+    await pool.query(
+      `CREATE INDEX IF NOT EXISTS idx_webhook_delivery_history_account_created
+       ON webhook_delivery_history (account_email, created_at DESC)`,
+    );
+    automationTablesEnsured = true;
+  } catch (err) {
+    console.error("[DB Error] ensureAutomationTables:", err);
+  }
+}
+
+export async function getAutomationRules(): Promise<AutomationRulesPayload> {
+  if (isDemoModeEnabled()) {
+    return {
+      labelRules: [],
+      webhookRules: [],
+      labelSettings: { stopAfterFirstMatch: false, autoCreateLabelsFromTemplate: true },
+      webhookSettings: { stopAfterFirstMatch: false },
+    };
+  }
+  await ensureAutomationTables();
+  const pool = getPool();
+  try {
+    const [settingsResult, labelRulesResult, webhookRulesResult] = await Promise.all([
+      pool.query(
+        `SELECT label_stop_after_first_match, label_auto_create_from_template, webhook_stop_after_first_match
+         FROM automation_rule_settings
+         WHERE account_email = $1`,
+        [CURRENT_USER],
+      ),
+      pool.query(
+        `SELECT id, enabled, priority, target_field, match_type, pattern, case_sensitive, label_mode, label_name, label_template
+         FROM automation_label_rules
+         WHERE account_email = $1
+         ORDER BY priority ASC, created_at ASC`,
+        [CURRENT_USER],
+      ),
+      pool.query(
+        `SELECT id, enabled, priority, target_field, match_type, pattern, case_sensitive, endpoint_url
+         FROM automation_webhook_rules
+         WHERE account_email = $1
+         ORDER BY priority ASC, created_at ASC`,
+        [CURRENT_USER],
+      ),
+    ]);
+
+    const settingsRow = settingsResult.rows[0];
+    return {
+      labelRules: labelRulesResult.rows.map((row) => ({
+        id: String(row.id),
+        enabled: Boolean(row.enabled),
+        priority: Number(row.priority || 1),
+        targetField: row.target_field as DestinationTargetField,
+        matchType: row.match_type as DestinationMatchType,
+        pattern: String(row.pattern || ""),
+        caseSensitive: Boolean(row.case_sensitive),
+        labelMode: row.label_mode as LabelResolutionMode,
+        labelName: String(row.label_name || ""),
+        labelTemplate: String(row.label_template || ""),
+      })),
+      webhookRules: webhookRulesResult.rows.map((row) => ({
+        id: String(row.id),
+        enabled: Boolean(row.enabled),
+        priority: Number(row.priority || 1),
+        targetField: row.target_field as DestinationTargetField,
+        matchType: row.match_type as DestinationMatchType,
+        pattern: String(row.pattern || ""),
+        caseSensitive: Boolean(row.case_sensitive),
+        endpointUrl: String(row.endpoint_url || ""),
+      })),
+      labelSettings: {
+        stopAfterFirstMatch: Boolean(settingsRow?.label_stop_after_first_match),
+        autoCreateLabelsFromTemplate: settingsRow?.label_auto_create_from_template ?? true,
+      },
+      webhookSettings: {
+        stopAfterFirstMatch: Boolean(settingsRow?.webhook_stop_after_first_match),
+      },
+    };
+  } catch (err) {
+    console.error("[DB Error] getAutomationRules:", err);
+    return {
+      labelRules: [],
+      webhookRules: [],
+      labelSettings: { stopAfterFirstMatch: false, autoCreateLabelsFromTemplate: true },
+      webhookSettings: { stopAfterFirstMatch: false },
+    };
+  }
+}
+
+export async function saveAutomationRules(payload: AutomationRulesPayload): Promise<void> {
+  if (isDemoModeEnabled()) return;
+  await ensureAutomationTables();
+  const pool = getPool();
+  const client = await pool.connect();
+  try {
+    await client.query("BEGIN");
+    await client.query(
+      `INSERT INTO automation_rule_settings
+         (account_email, label_stop_after_first_match, label_auto_create_from_template, webhook_stop_after_first_match, updated_at)
+       VALUES ($1, $2, $3, $4, now())
+       ON CONFLICT (account_email) DO UPDATE SET
+         label_stop_after_first_match = EXCLUDED.label_stop_after_first_match,
+         label_auto_create_from_template = EXCLUDED.label_auto_create_from_template,
+         webhook_stop_after_first_match = EXCLUDED.webhook_stop_after_first_match,
+         updated_at = now()`,
+      [
+        CURRENT_USER,
+        Boolean(payload.labelSettings.stopAfterFirstMatch),
+        payload.labelSettings.autoCreateLabelsFromTemplate ?? true,
+        Boolean(payload.webhookSettings.stopAfterFirstMatch),
+      ],
+    );
+
+    await client.query(`DELETE FROM automation_label_rules WHERE account_email = $1`, [CURRENT_USER]);
+    for (const rule of payload.labelRules) {
+      await client.query(
+        `INSERT INTO automation_label_rules
+           (id, account_email, enabled, priority, target_field, match_type, pattern, case_sensitive, label_mode, label_name, label_template, updated_at)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, now())`,
+        [
+          rule.id,
+          CURRENT_USER,
+          Boolean(rule.enabled),
+          Number(rule.priority || 1),
+          rule.targetField,
+          rule.matchType,
+          String(rule.pattern || ""),
+          Boolean(rule.caseSensitive),
+          rule.labelMode,
+          String(rule.labelName || ""),
+          String(rule.labelTemplate || ""),
+        ],
+      );
+    }
+
+    await client.query(`DELETE FROM automation_webhook_rules WHERE account_email = $1`, [CURRENT_USER]);
+    for (const rule of payload.webhookRules) {
+      await client.query(
+        `INSERT INTO automation_webhook_rules
+           (id, account_email, enabled, priority, target_field, match_type, pattern, case_sensitive, endpoint_url, updated_at)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, now())`,
+        [
+          rule.id,
+          CURRENT_USER,
+          Boolean(rule.enabled),
+          Number(rule.priority || 1),
+          rule.targetField,
+          rule.matchType,
+          String(rule.pattern || ""),
+          Boolean(rule.caseSensitive),
+          String(rule.endpointUrl || ""),
+        ],
+      );
+    }
+
+    await client.query("COMMIT");
+  } catch (err) {
+    await client.query("ROLLBACK");
+    console.error("[DB Error] saveAutomationRules:", err);
+    throw err;
+  } finally {
+    client.release();
+  }
+}
+
+export async function getWebhookDeliveryHistory(limit = 100): Promise<WebhookDeliveryHistoryItem[]> {
+  if (isDemoModeEnabled()) return [];
+  await ensureAutomationTables();
+  const pool = getPool();
+  try {
+    const safeLimit = Math.max(1, Math.min(500, Math.trunc(limit) || 100));
+    const result = await pool.query(
+      `SELECT id, created_at, endpoint_url, status, http_status, error_message, response_preview, request_body_preview,
+              folder, rule_id, rule_priority, target_field, match_type, matched_value, email_subject, email_from_address
+       FROM webhook_delivery_history
+       WHERE account_email = $1
+       ORDER BY created_at DESC
+       LIMIT $2`,
+      [CURRENT_USER, safeLimit],
+    );
+    return result.rows.map((row) => ({
+      id: Number(row.id),
+      createdAt: row.created_at instanceof Date ? row.created_at.toISOString() : String(row.created_at),
+      endpointUrl: String(row.endpoint_url || ""),
+      status: (row.status || "network_error") as "success" | "http_error" | "network_error",
+      httpStatus: typeof row.http_status === "number" ? row.http_status : null,
+      errorMessage: row.error_message ? String(row.error_message) : null,
+      responsePreview: row.response_preview ? String(row.response_preview) : null,
+      requestBodyPreview: String(row.request_body_preview || ""),
+      folder: String(row.folder || ""),
+      ruleId: String(row.rule_id || ""),
+      rulePriority: Number(row.rule_priority || 0),
+      targetField: String(row.target_field || ""),
+      matchType: String(row.match_type || ""),
+      matchedValue: String(row.matched_value || ""),
+      emailSubject: String(row.email_subject || ""),
+      emailFromAddress: row.email_from_address ? String(row.email_from_address) : null,
+    }));
+  } catch (err) {
+    console.error("[DB Error] getWebhookDeliveryHistory:", err);
+    return [];
+  }
+}
+
+export async function clearWebhookDeliveryHistory(): Promise<void> {
+  if (isDemoModeEnabled()) return;
+  await ensureAutomationTables();
+  const pool = getPool();
+  try {
+    await pool.query(
+      `DELETE FROM webhook_delivery_history WHERE account_email = $1`,
+      [CURRENT_USER],
+    );
+  } catch (err) {
+    console.error("[DB Error] clearWebhookDeliveryHistory:", err);
   }
 }
 

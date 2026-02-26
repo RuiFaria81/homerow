@@ -16,6 +16,7 @@ import { query, queryOne } from './db.js';
 import { log } from './logger.js';
 import { parseEmail, storeAttachment } from './parser.js';
 import { assignThread, refreshThreadCounts } from './threading.js';
+import { applyAutomationForMessage } from './automation.js';
 
 interface AutoReplyInlineAttachment {
   filename: string;
@@ -398,6 +399,15 @@ export class IdleListener {
             if (folderPath.toUpperCase() === 'INBOX') {
               await this.maybeSendAutoReply(parsed);
             }
+
+            await applyAutomationForMessage({
+              accountId: this.accountId,
+              accountEmail: this.config.imap.user,
+              folderId: folder.id,
+              folderPath,
+              uid: msg.uid,
+              parsed,
+            });
 
             // Notify webmail of new message via PostgreSQL LISTEN/NOTIFY
             const fromName = typeof parsed.from === 'object' && parsed.from !== null
@@ -816,6 +826,15 @@ export class IdleListener {
                 (msg.source as Buffer).byteLength,
               ],
             );
+
+            await applyAutomationForMessage({
+              accountId: this.accountId,
+              accountEmail: this.config.imap.user,
+              folderId,
+              folderPath,
+              uid: msg.uid,
+              parsed,
+            });
           } catch (err) {
             log.error('Failed to process message in quick sync', {
               uid: msg.uid,

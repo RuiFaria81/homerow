@@ -16,6 +16,7 @@ import { log } from './logger.js';
 import { parseEmail, storeAttachment } from './parser.js';
 import { assignThread } from './threading.js';
 import { RateLimitedQueue } from './queue.js';
+import { applyAutomationForMessage } from './automation.js';
 import type pg from 'pg';
 
 // ---------------------------------------------------------------------------
@@ -96,6 +97,7 @@ function guessSpecialUse(path: string): string | null {
 export async function backfillFolder(
   client: ImapFlow,
   accountId: string,
+  accountEmail: string,
   folderPath: string,
   batchSize: number,
   attachmentDir: string,
@@ -232,7 +234,7 @@ export async function backfillFolder(
       // Process in batches
       if (batchBuffer.length >= batchSize) {
         await queue.run(() =>
-          processBatch(batchBuffer.splice(0), accountId, folder.id, attachmentDir),
+          processBatch(batchBuffer.splice(0), accountId, accountEmail, folder.id, folderPath, attachmentDir),
         );
         synced += batchSize;
         log.info('Backfill progress', {
@@ -246,7 +248,7 @@ export async function backfillFolder(
     // Process remaining messages
     if (batchBuffer.length > 0) {
       await queue.run(() =>
-        processBatch(batchBuffer, accountId, folder.id, attachmentDir),
+        processBatch(batchBuffer, accountId, accountEmail, folder.id, folderPath, attachmentDir),
       );
       synced += batchBuffer.length;
     }
@@ -284,7 +286,9 @@ export async function backfillFolder(
 async function processBatch(
   batch: Array<{ uid: number; source: Buffer; flags: Set<string> }>,
   accountId: string,
+  accountEmail: string,
   folderId: string,
+  folderPath: string,
   attachmentDir: string,
 ): Promise<void> {
   for (const msg of batch) {
@@ -399,6 +403,16 @@ async function processBatch(
 
       // Extract contacts
       await upsertContacts(accountId, parsed);
+
+      // Run server-side automation rules.
+      await applyAutomationForMessage({
+        accountId,
+        accountEmail,
+        folderId,
+        folderPath,
+        uid: msg.uid,
+        parsed,
+      });
     } catch (err) {
       log.error('Failed to process message', {
         uid: msg.uid,
@@ -486,6 +500,12 @@ export async function runBackfill(
   config: Config,
   queue: RateLimitedQueue,
 ): Promise<void> {
+  const accountResult = await queryOne<{ email: string }>(
+    `SELECT email FROM accounts WHERE id = $1`,
+    [accountId],
+  );
+  const accountEmail = accountResult?.email || config.imap.user;
+
   // 1. Sync folder list
   await syncFolders(client, accountId);
 
@@ -505,6 +525,7 @@ export async function runBackfill(
       await backfillFolder(
         client,
         accountId,
+        accountEmail,
         folder.path,
         config.backfillBatchSize,
         config.attachmentDir,
