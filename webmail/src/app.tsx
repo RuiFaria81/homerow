@@ -659,8 +659,8 @@ export default function App() {
         <>
           <Link rel="manifest" href={assetPath("/manifest.webmanifest")} />
           <Link rel="icon" href={assetPath("/favicon.svg")} type="image/svg+xml" />
-          <Link rel="icon" href={assetPath("/pwa-192.png")} sizes="192x192" />
-          <Link rel="apple-touch-icon" href={assetPath("/pwa-192.png")} />
+          <Link rel="icon" href={assetPath("/pwa-192-minimal.png")} sizes="192x192" />
+          <Link rel="apple-touch-icon" href={assetPath("/pwa-192-minimal.png")} />
           <Meta name="theme-color" content="#0f766e" />
           <Meta name="mobile-web-app-capable" content="yes" />
           <Meta name="apple-mobile-web-app-capable" content="yes" />

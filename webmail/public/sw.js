@@ -1,4 +1,4 @@
-const CACHE_VERSION = "homerow-v4";
+const CACHE_VERSION = "homerow-v5";
 const SHELL_CACHE = `${CACHE_VERSION}-shell`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 const scopePath = new URL(self.registration.scope).pathname.replace(/\/$/, "");
@@ -6,7 +6,14 @@ const withBase = (value) => {
   const path = value.startsWith("/") ? value : `/${value}`;
   return `${scopePath}${path}`;
 };
-const APP_SHELL = [withBase("/"), withBase("/manifest.webmanifest"), withBase("/favicon.svg"), withBase("/favicon.ico"), withBase("/pwa-192.png"), withBase("/pwa-512.png")];
+const APP_SHELL = [
+  withBase("/"),
+  withBase("/manifest.webmanifest"),
+  withBase("/favicon.svg"),
+  withBase("/favicon.ico"),
+  withBase("/pwa-192-minimal.png"),
+  withBase("/pwa-512-full.png"),
+];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(

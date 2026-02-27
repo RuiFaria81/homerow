@@ -26,9 +26,9 @@ export default createHandler(() => (
             </>
           )}
           <link rel="icon" type="image/svg+xml" href={assetPath("/favicon.svg")} />
-          {!demoStatic && <link rel="icon" sizes="192x192" href={assetPath("/pwa-192.png")} />}
+          {!demoStatic && <link rel="icon" sizes="192x192" href={assetPath("/pwa-192-minimal.png")} />}
           <link rel="icon" href={assetPath("/favicon.ico")} />
-          {!demoStatic && <link rel="apple-touch-icon" href={assetPath("/pwa-192.png")} />}
+          {!demoStatic && <link rel="apple-touch-icon" href={assetPath("/pwa-192-minimal.png")} />}
           <link rel="icon" type="image/x-icon" href={assetPath("/favicon.ico")} />
           {assets}
         </head>

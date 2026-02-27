@@ -89,8 +89,8 @@ function showBrowserNotification(event: MailEvent) {
 
     const notification = new Notification(title, {
       body,
-      icon: assetPath("/pwa-192.png"),
-      badge: assetPath("/pwa-192.png"),
+      icon: assetPath("/pwa-192-minimal.png"),
+      badge: assetPath("/pwa-192-minimal.png"),
       tag: `mail-${event.uid}`, // Deduplicate by UID
       silent: false,
     });

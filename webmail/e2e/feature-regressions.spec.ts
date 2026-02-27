@@ -552,7 +552,7 @@ test.describe("Requested feature regressions", () => {
       // @ts-expect-error test shim
       return window.__notificationRecords[0]?.options?.icon;
     });
-    expect(icon).toBe("/pwa-192.png");
+    expect(icon).toBe("/pwa-192-minimal.png");
 
     await notifPage.close();
   });
@@ -568,6 +568,16 @@ test.describe("Requested feature regressions", () => {
 
     expect(importIconPaths).toContain("M4 16h5l1.5 2h3L15 16h5");
     expect(importIconPaths).not.toContain("M8 7h8");
+  });
+
+  test("manifest references cache-busted pwa icon assets", async ({ page }) => {
+    const response = await page.request.get("/manifest.webmanifest");
+    expect(response.ok()).toBeTruthy();
+    const manifest = await response.json() as { icons?: Array<{ src?: string; sizes?: string }> };
+    const iconSources = new Set((manifest.icons ?? []).map((icon) => icon.src));
+
+    expect(iconSources.has("pwa-192-minimal.png")).toBeTruthy();
+    expect(iconSources.has("pwa-512-full.png")).toBeTruthy();
   });
 
   test("settings exposes Automation tab for label/webhook rules", async ({ page }) => {
