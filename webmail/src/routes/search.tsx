@@ -195,6 +195,7 @@ export default function SearchView() {
     }
     const current = selectedEmail();
     if (!current || !list.some((item) => emailKey(item) === emailKey(current))) {
+      if (isMobile() && !current) return;
       openSearchEmail(list[0]);
     }
   });

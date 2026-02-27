@@ -1851,16 +1851,16 @@ export default function Home() {
         <Show
           when={isMobile() && selectedEmails().size > 0}
           fallback={
-            <div class="flex items-center justify-between px-4 md:px-6 py-3 md:py-4 border-b border-[var(--border-light)] bg-[var(--card)] shrink-0">
-              <div class="flex items-center gap-3">
-                <h1 class="text-xl font-semibold text-[var(--foreground)]">{heading()}</h1>
+            <div class="flex items-center justify-between px-3 md:px-6 py-2.5 md:py-4 border-b border-[var(--border-light)] bg-[var(--card)] shrink-0 min-h-[50px] md:min-h-[64px]">
+              <div class="flex items-center gap-2 md:gap-3 min-w-0">
+                <h1 class="text-base md:text-xl font-semibold text-[var(--foreground)] truncate max-w-[140px] md:max-w-none">{heading()}</h1>
                 <Show when={labelsState.activeFilter}>
                   <button
                     onClick={() => {
                       setActiveFilter(null);
                       void navigate("/");
                     }}
-                    class="flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium text-[var(--text-secondary)] bg-[var(--search-bg)] hover:bg-[var(--hover-bg)] border-none cursor-pointer transition-colors"
+                    class="flex items-center gap-1 px-2 py-0.5 md:py-1 rounded-full text-[11px] md:text-xs font-medium text-[var(--text-secondary)] bg-[var(--search-bg)] hover:bg-[var(--hover-bg)] border-none cursor-pointer transition-colors shrink-0"
                   >
                     <IconClose size={12} />
                     Clear filter

@@ -1,6 +1,6 @@
 import { createSignal, Show, onMount, onCleanup } from "solid-js";
 import { A, useNavigate } from "@solidjs/router";
-import { sendEmail } from "~/lib/mail-client-browser";
+import { sendEmail, type EmailAttachment } from "~/lib/mail-client-browser";
 import { contacts, loadContacts, addContact } from "~/lib/contacts-store";
 import { IconBack, IconSend, IconPaperclip } from "~/components/Icons";
 import TipTapEditor from "~/components/TipTapEditor";
@@ -21,7 +21,15 @@ export default function Compose() {
   const [showCc, setShowCc] = createSignal(false);
   const [showBcc, setShowBcc] = createSignal(false);
   const [subject, setSubject] = createSignal("");
+  const [attachments, setAttachments] = createSignal<Array<{
+    id: string;
+    name: string;
+    size: number;
+    type: string;
+    dataUrl: string;
+  }>>([]);
   let delayedSendController: DelayedSendController | null = null;
+  let fileInputRef: HTMLInputElement | undefined;
 
   onMount(() => {
     loadContacts();
@@ -29,6 +37,57 @@ export default function Compose() {
     const sig = getSignatureHtml();
     if (sig) setBodyHtml(sig);
   });
+
+  const formatFileSize = (bytes: number) => {
+    if (bytes < 1024) return `${bytes} B`;
+    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+    return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+  };
+
+  const addAttachmentFiles = (files: File[]) => {
+    if (!files.length) return;
+    const tasks = files.map((file) => new Promise<{
+      id: string;
+      name: string;
+      size: number;
+      type: string;
+      dataUrl: string;
+    }>((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const id = typeof crypto !== "undefined" && "randomUUID" in crypto
+          ? crypto.randomUUID()
+          : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+        resolve({
+          id,
+          name: file.name,
+          size: file.size,
+          type: file.type || "application/octet-stream",
+          dataUrl: String(reader.result || ""),
+        });
+      };
+      reader.onerror = () => reject(reader.error || new Error("Failed to read file"));
+      reader.readAsDataURL(file);
+    }));
+    Promise.all(tasks)
+      .then((prepared) => setAttachments((prev) => [...prev, ...prepared]))
+      .catch(() => showToast("Failed to read one or more attachments", "error"));
+  };
+
+  const removeAttachment = (id: string) => {
+    setAttachments((prev) => prev.filter((att) => att.id !== id));
+  };
+
+  const openAttachmentPicker = () => {
+    fileInputRef?.click();
+  };
+
+  const handleAttachmentInput = (e: Event) => {
+    const input = e.target as HTMLInputElement;
+    if (!input.files) return;
+    addAttachmentFiles(Array.from(input.files));
+    input.value = "";
+  };
 
   const handleSubmit = async (e: Event) => {
     e.preventDefault();
@@ -39,17 +98,32 @@ export default function Compose() {
     const ccStr = ccEmails().length > 0 ? ccEmails().join(", ") : undefined;
     const bccStr = bccEmails().length > 0 ? bccEmails().join(", ") : undefined;
     const senderDisplayName = session().data?.user?.name?.trim() || undefined;
+    const emailAttachments: EmailAttachment[] = attachments().map((att) => ({
+      filename: att.name,
+      contentType: att.type,
+      content: att.dataUrl.split(",")[1] || "",
+    }));
 
     delayedSendController?.cancel(false);
     delayedSendController = startDelayedSendWithUndo({
       onCommit: async () => {
         delayedSendController = null;
         try {
-          await sendEmail(toStr, subject(), bodyHtml(), ccStr, bccStr, undefined, undefined, senderDisplayName);
+          await sendEmail(
+            toStr,
+            subject(),
+            bodyHtml(),
+            ccStr,
+            bccStr,
+            emailAttachments.length > 0 ? emailAttachments : undefined,
+            undefined,
+            senderDisplayName,
+          );
           for (const email of [...toEmails(), ...ccEmails(), ...bccEmails()]) {
             addContact(email);
           }
           showToast("Message sent!", "success");
+          setAttachments([]);
           navigate("/");
         } catch {
           showToast("Failed to send email", "error");
@@ -70,6 +144,14 @@ export default function Compose() {
 
   return (
     <div class="flex flex-col flex-1 h-full bg-[var(--card)]">
+      <input
+        ref={fileInputRef}
+        data-testid="compose-mobile-file-input"
+        type="file"
+        multiple
+        class="hidden"
+        onChange={handleAttachmentInput}
+      />
       {/* Header */}
       <div class="flex items-center gap-3 px-4 py-3 border-b border-[var(--border-light)] shrink-0 min-h-[56px]">
         <A
@@ -176,8 +258,10 @@ export default function Compose() {
           <div class="flex gap-1">
             <button
               type="button"
+              data-testid="compose-mobile-attach-files"
               class="w-9 h-9 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-secondary)] transition-colors hover:bg-[var(--hover-bg)]"
               title="Attach file"
+              onClick={openAttachmentPicker}
             >
               <IconPaperclip size={18} />
             </button>
@@ -188,12 +272,37 @@ export default function Compose() {
         <div class="flex md:hidden items-center gap-2 px-4 py-3 border-t border-[var(--border-light)] bg-[var(--card)]" style={{ "padding-bottom": "max(12px, env(safe-area-inset-bottom))" }}>
           <button
             type="button"
+            data-testid="compose-mobile-attach-files"
             class="w-11 h-11 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-secondary)] transition-colors hover:bg-[var(--hover-bg)]"
             title="Attach file"
+            onClick={openAttachmentPicker}
           >
             <IconPaperclip size={20} />
           </button>
         </div>
+        <Show when={attachments().length > 0}>
+          <div class="px-4 pb-3 border-t border-[var(--border-light)] bg-[var(--card)]">
+            <div class="flex flex-col gap-2 pt-3">
+              <For each={attachments()}>
+                {(att) => (
+                  <div data-testid="compose-mobile-attachment-chip" class="flex items-center justify-between gap-2 rounded-lg border border-[var(--border)] bg-[var(--search-bg)] px-3 py-2">
+                    <div class="min-w-0">
+                      <div class="text-sm font-medium text-[var(--foreground)] truncate">{att.name}</div>
+                      <div class="text-xs text-[var(--text-muted)]">{formatFileSize(att.size)}</div>
+                    </div>
+                    <button
+                      type="button"
+                      class="h-7 px-2 rounded-md border border-[var(--border)] bg-transparent text-xs text-[var(--text-secondary)] cursor-pointer hover:bg-[var(--hover-bg)]"
+                      onClick={() => removeAttachment(att.id)}
+                    >
+                      Remove
+                    </button>
+                  </div>
+                )}
+              </For>
+            </div>
+          </div>
+        </Show>
       </form>
     </div>
   );

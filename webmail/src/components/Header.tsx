@@ -205,7 +205,7 @@ export default function Header(props: HeaderProps) {
   });
 
   return (
-    <header class="col-span-full flex items-center px-4 py-2 min-h-[68px] bg-[var(--card)] border-b border-[var(--border-light)] shadow-[0_1px_2px_rgba(0,0,0,0.04)] z-10 gap-4">
+    <header class="col-span-full flex items-center px-4 py-2 min-h-[68px] bg-[var(--card)] md:border-b md:border-[var(--border-light)] md:shadow-[0_1px_2px_rgba(0,0,0,0.04)] z-10 gap-4">
       {/* Logo */}
       <div class="flex items-center gap-2 md:w-[214px] shrink-0">
         <button
@@ -250,6 +250,7 @@ export default function Header(props: HeaderProps) {
         />
         <button
           ref={searchFiltersButtonRef}
+          data-testid="search-filters-button"
           class={`absolute right-11 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center transition-colors ${
             isSearchFiltersOpen()
               ? "text-[var(--primary)] bg-[var(--active-bg)]"
@@ -271,7 +272,8 @@ export default function Header(props: HeaderProps) {
         <Show when={isSearchFiltersOpen()}>
           <div
             ref={searchFiltersRef}
-            class="absolute right-0 top-[calc(100%+8px)] w-[min(760px,calc(100vw-2rem))] rounded-xl border border-[var(--border-light)] bg-[var(--card)] shadow-xl p-5 z-40"
+            data-testid="search-filters-panel"
+            class="fixed inset-x-3 top-[76px] bottom-3 rounded-xl border border-[var(--border-light)] bg-[var(--card)] shadow-xl p-4 z-40 overflow-y-auto md:absolute md:inset-auto md:right-0 md:top-[calc(100%+8px)] md:w-[min(760px,calc(100vw-2rem))] md:max-h-[min(78vh,820px)] md:p-5"
           >
             <div class="flex items-center justify-between gap-2 pb-3">
               <div class="text-sm font-medium text-[var(--text-secondary)]">Search options</div>

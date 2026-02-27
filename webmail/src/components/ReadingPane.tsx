@@ -150,6 +150,7 @@ const ReadingPane = (props: ReadingPaneProps) => {
   const [allowHeavyRender, setAllowHeavyRender] = createSignal(false);
   const [heavyRenderWarmed, setHeavyRenderWarmed] = createSignal(false);
   const [mobileReaderChromeVisible, setMobileReaderChromeVisible] = createSignal(true);
+  let mobileReaderScrollContainer: HTMLDivElement | undefined;
   let lastMobileScrollTop = 0;
   let warmRafA: number | undefined;
   let warmRafB: number | undefined;
@@ -196,6 +197,13 @@ const ReadingPane = (props: ReadingPaneProps) => {
     }
     setMobileReaderChromeVisible(true);
     lastMobileScrollTop = 0;
+    if (!isMobile()) return;
+    const resetScroll = () => {
+      if (!mobileReaderScrollContainer) return;
+      mobileReaderScrollContainer.scrollTop = 0;
+    };
+    resetScroll();
+    requestAnimationFrame(resetScroll);
   });
 
   const shouldHideMobileReaderChrome = createMemo(
@@ -369,22 +377,57 @@ const ReadingPane = (props: ReadingPaneProps) => {
   // Swipe left/right to navigate between emails on touch devices
   let swipeTouchStartX = 0;
   let swipeTouchStartY = 0;
-  const SWIPE_THRESHOLD = 60;
+  const SWIPE_COMMIT_THRESHOLD = 52;
+  const SWIPE_PREVIEW_MAX = 34;
+  const SWIPE_ANGLE_RATIO = 1.3;
   const [swipeAnimatingDirection, setSwipeAnimatingDirection] = createSignal<"next" | "previous" | null>(null);
+  const [swipeDragOffset, setSwipeDragOffset] = createSignal(0);
+  const [swipeDragging, setSwipeDragging] = createSignal(false);
 
   const handleSwipeTouchStart = (e: TouchEvent) => {
     swipeTouchStartX = e.touches[0].clientX;
     swipeTouchStartY = e.touches[0].clientY;
+    setSwipeDragOffset(0);
+    setSwipeDragging(false);
   };
 
   const animateSwipeTransition = (direction: "next" | "previous") => {
+    setSwipeDragOffset(0);
+    setSwipeDragging(false);
     setSwipeAnimatingDirection(direction);
-    setTimeout(() => setSwipeAnimatingDirection(null), 180);
+    setTimeout(() => setSwipeAnimatingDirection(null), 240);
+  };
+
+  const canSwipeDirection = (dx: number) => {
+    if (dx > 0) return Boolean(props.onPrevious);
+    if (dx < 0) return Boolean(props.onNext);
+    return false;
+  };
+
+  const handleSwipeTouchMove = (e: TouchEvent) => {
+    if (!isMobile()) return;
+    const touch = e.touches[0];
+    if (!touch) return;
+    const dx = touch.clientX - swipeTouchStartX;
+    const dy = touch.clientY - swipeTouchStartY;
+    if (!canSwipeDirection(dx)) {
+      setSwipeDragOffset(0);
+      return;
+    }
+    if (Math.abs(dx) < 8) {
+      setSwipeDragOffset(0);
+      return;
+    }
+    if (Math.abs(dx) <= Math.abs(dy) * 1.05) return;
+    e.preventDefault();
+    const preview = Math.max(-SWIPE_PREVIEW_MAX, Math.min(SWIPE_PREVIEW_MAX, dx * 0.26));
+    setSwipeDragging(true);
+    setSwipeDragOffset(preview);
   };
 
   const handleSwipeGesture = (dx: number, dy: number) => {
     // Only trigger on mostly-horizontal swipes
-    if (Math.abs(dx) > SWIPE_THRESHOLD && Math.abs(dx) > Math.abs(dy) * 2) {
+    if (Math.abs(dx) > SWIPE_COMMIT_THRESHOLD && Math.abs(dx) > Math.abs(dy) * SWIPE_ANGLE_RATIO) {
       if (dx > 0 && props.onPrevious) {
         animateSwipeTransition("previous");
         props.onPrevious();
@@ -398,20 +441,32 @@ const ReadingPane = (props: ReadingPaneProps) => {
   const handleSwipeTouchEnd = (e: TouchEvent) => {
     const dx = e.changedTouches[0].clientX - swipeTouchStartX;
     const dy = e.changedTouches[0].clientY - swipeTouchStartY;
+    setSwipeDragging(false);
+    setSwipeDragOffset(0);
     handleSwipeGesture(dx, dy);
   };
 
   return (
     <div
       data-testid="reading-pane-root"
-      class={`flex flex-col h-full bg-white border-l border-[var(--border)] transition-transform duration-180 ease-out ${
+      class={`flex flex-col h-full bg-white border-l border-[var(--border)] overflow-x-hidden transition-transform duration-200 ease-out will-change-transform ${
+        swipeDragging() ? "reading-pane-swipe-dragging" : ""
+      } ${
         swipeAnimatingDirection() === "next"
-          ? "-translate-x-2"
+          ? "reading-pane-swipe-next"
           : swipeAnimatingDirection() === "previous"
-            ? "translate-x-2"
-            : "translate-x-0"
+            ? "reading-pane-swipe-previous"
+            : ""
       }`}
+      style={
+        swipeDragOffset() !== 0
+          ? {
+              transform: `translate3d(${swipeDragOffset()}px,0,0) rotate(${(swipeDragOffset() * 0.03).toFixed(2)}deg)`,
+            }
+          : undefined
+      }
       onTouchStart={handleSwipeTouchStart}
+      onTouchMove={handleSwipeTouchMove}
       onTouchEnd={handleSwipeTouchEnd}
     >
       {/* Toolbar */}
@@ -543,7 +598,14 @@ const ReadingPane = (props: ReadingPaneProps) => {
             fallback={<div class="p-8 text-center text-gray-500">{props.emailSeq ? "Loading email..." : "Select an email to read"}</div>}
           >
             <div class="relative flex-1 overflow-hidden">
-              <div data-testid="mobile-reader-scroll-container" class="h-full overflow-y-auto p-6 pb-28" onScroll={handleReaderScroll}>
+              <div
+                data-testid="mobile-reader-scroll-container"
+                class="h-full overflow-y-auto p-6 pb-28"
+                ref={(el) => {
+                  mobileReaderScrollContainer = el;
+                }}
+                onScroll={handleReaderScroll}
+              >
                 <SingleEmailView
                   email={safeSingleEmail()!}
                   emailLabels={emailLabels(safeSingleEmail()!)}
@@ -556,6 +618,7 @@ const ReadingPane = (props: ReadingPaneProps) => {
                   allowHeavyRender={allowHeavyRender()}
                   onSwipeTouchStart={handleSwipeTouchStart}
                   onSwipeTouchEnd={handleSwipeTouchEnd}
+                  onSwipeGesture={handleSwipeGesture}
                 />
               </div>
               <div class="absolute inset-x-0 bottom-0 z-20 pointer-events-none">
@@ -577,7 +640,14 @@ const ReadingPane = (props: ReadingPaneProps) => {
           {/* Thread / conversation view */}
           <div class="relative flex-1 overflow-hidden">
             <Show when={visibleThreadMessages().length > 0} fallback={<div class="h-full" />}>
-            <div data-testid="mobile-reader-scroll-container" class="h-full overflow-y-auto pb-28" onScroll={handleReaderScroll}>
+            <div
+              data-testid="mobile-reader-scroll-container"
+              class="h-full overflow-y-auto pb-28"
+              ref={(el) => {
+                mobileReaderScrollContainer = el;
+              }}
+              onScroll={handleReaderScroll}
+            >
               {/* Thread subject header */}
               <div class="px-6 pt-6 pb-3 border-b border-gray-100">
                 <div class="flex items-center gap-2 flex-wrap">
@@ -710,6 +780,7 @@ const ReadingPane = (props: ReadingPaneProps) => {
                                     allowHistoryCollapse={index() > 0}
                                     onSwipeTouchStart={handleSwipeTouchStart}
                                     onSwipeTouchEnd={handleSwipeTouchEnd}
+                                    onSwipeGesture={handleSwipeGesture}
                                   />
                                 </Show>
                               </Show>
@@ -890,12 +961,45 @@ function bindIframeAutoResize(frame: HTMLIFrameElement, resize: () => void) {
   }
 }
 
+function bindIframeSwipeBridge(frame: HTMLIFrameElement, onSwipe: (dx: number, dy: number) => void) {
+  try {
+    const doc = frame.contentDocument;
+    if (!doc) return;
+    let startX = 0;
+    let startY = 0;
+
+    doc.addEventListener(
+      "touchstart",
+      (event) => {
+        const touch = event.touches?.[0];
+        if (!touch) return;
+        startX = touch.clientX;
+        startY = touch.clientY;
+      },
+      { passive: true },
+    );
+
+    doc.addEventListener(
+      "touchend",
+      (event) => {
+        const touch = event.changedTouches?.[0];
+        if (!touch) return;
+        onSwipe(touch.clientX - startX, touch.clientY - startY);
+      },
+      { passive: true },
+    );
+  } catch {
+    // Ignore
+  }
+}
+
 /** Iframe wrapper for individual thread messages — auto-sizes independently */
 function ThreadMessageIframe(props: {
   html: string;
   allowHistoryCollapse?: boolean;
   onSwipeTouchStart?: (e: TouchEvent) => void;
   onSwipeTouchEnd?: (e: TouchEvent) => void;
+  onSwipeGesture?: (dx: number, dy: number) => void;
 }) {
   const [height, setHeight] = createSignal(200);
   const srcdoc = createMemo(() =>
@@ -956,6 +1060,7 @@ function ThreadMessageIframe(props: {
         const frame = e.currentTarget as HTMLIFrameElement;
         bindHistoryToggleResize(frame);
         bindIframeAutoResize(frame, () => resize(frame));
+        if (props.onSwipeGesture) bindIframeSwipeBridge(frame, props.onSwipeGesture);
         resize(frame);
         setTimeout(() => resize(frame), 150);
         setTimeout(() => resize(frame), 700);
@@ -978,6 +1083,7 @@ function SingleEmailView(props: {
   allowHeavyRender: boolean;
   onSwipeTouchStart?: (e: TouchEvent) => void;
   onSwipeTouchEnd?: (e: TouchEvent) => void;
+  onSwipeGesture?: (dx: number, dy: number) => void;
 }) {
   const srcdoc = createMemo(() => buildCollapsibleReaderHtml(props.email.html || ""));
   const bindHistoryToggleResize = (frame: HTMLIFrameElement) => {
@@ -1083,6 +1189,7 @@ function SingleEmailView(props: {
                 const frame = e.currentTarget as HTMLIFrameElement;
                 bindHistoryToggleResize(frame);
                 bindIframeAutoResize(frame, () => props.resizeIframeToContent(frame));
+                if (props.onSwipeGesture) bindIframeSwipeBridge(frame, props.onSwipeGesture);
                 props.resizeIframeToContent(frame);
                 setTimeout(() => props.resizeIframeToContent(frame), 150);
                 setTimeout(() => props.resizeIframeToContent(frame), 700);

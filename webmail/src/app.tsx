@@ -212,6 +212,10 @@ export default function App() {
     root.style.setProperty("--text-secondary", v.textSecondary);
     root.style.setProperty("--text-muted", v.textMuted);
     root.style.setProperty("--border-light", v.borderLight);
+    const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+    if (themeColorMeta) {
+      themeColorMeta.setAttribute("content", v.card);
+    }
   });
 
   // Apply font family and dynamically load Google Fonts if needed
@@ -985,17 +989,24 @@ export default function App() {
                   onClose={() => setQuickSettingsOpen(false)}
                 />
 
-                {/* Mobile FAB: floating compose button — hidden on the compose screen itself */}
-                <Show when={isMobile() && !mobileReaderOpen() && !location.pathname.endsWith("/compose")}>
+                {/* Mobile FAB: floating compose button */}
+                <Show
+                  when={
+                    isMobile() &&
+                    !mobileReaderOpen() &&
+                    !location.pathname.endsWith("/compose") &&
+                    !location.pathname.startsWith("/settings")
+                  }
+                >
                   <button
                     data-testid="mobile-compose-fab"
-                    class="fixed bottom-6 right-4 z-50 h-12 px-4 rounded-xl bg-[var(--compose-bg)] text-[var(--foreground)] shadow-[0_4px_16px_rgba(0,0,0,0.25)] flex items-center gap-2 justify-center border border-[var(--border-light)] cursor-pointer transition-transform duration-150 active:scale-95 hover:bg-[var(--compose-hover)]"
+                    class="fixed bottom-5 right-4 z-50 h-12 pl-4 pr-5 rounded-full bg-[var(--compose-bg)] text-[var(--foreground)] shadow-[0_10px_28px_rgba(0,0,0,0.22)] flex items-center gap-2.5 justify-center border border-[var(--border)] cursor-pointer transition-[transform,filter,background-color] duration-150 active:scale-95 hover:bg-[var(--compose-hover)] hover:brightness-105"
                     aria-label="Compose new email"
                     title="Compose new email"
                     onClick={() => navigate("/compose")}
                   >
                     <IconCompose size={18} />
-                    <span class="text-sm font-semibold">Composer</span>
+                    <span class="text-sm font-semibold tracking-[0.01em]">Compose</span>
                   </button>
                 </Show>
 

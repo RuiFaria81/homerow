@@ -60,10 +60,11 @@ async function swipeReaderIframe(page: Page, fromX: number, toX: number, y = 220
   return page.evaluate(
     ({ fromX: startX, toX: endX, y: posY }) => {
       const frame = document.querySelector<HTMLIFrameElement>('[data-testid="reading-pane-root"] iframe');
-      if (!frame) return false;
+      const frameDoc = frame?.contentDocument;
+      if (!frame || !frameDoc) return false;
       const createTouchLike = (x: number, yPos: number) => ({
         identifier: 1,
-        target: frame,
+        target: frameDoc.body || frameDoc.documentElement,
         clientX: x,
         clientY: yPos,
         pageX: x,
@@ -77,11 +78,11 @@ async function swipeReaderIframe(page: Page, fromX: number, toX: number, y = 220
 
       const touchStart = new Event("touchstart", { bubbles: true, cancelable: true });
       Object.defineProperty(touchStart, "touches", { configurable: true, value: [startTouch] });
-      frame.dispatchEvent(touchStart);
+      frameDoc.dispatchEvent(touchStart);
 
       const touchEnd = new Event("touchend", { bubbles: true, cancelable: true });
       Object.defineProperty(touchEnd, "changedTouches", { configurable: true, value: [endTouch] });
-      frame.dispatchEvent(touchEnd);
+      frameDoc.dispatchEvent(touchEnd);
       return true;
     },
     { fromX, toX, y },
@@ -100,7 +101,12 @@ test.describe("Mobile reader chrome", () => {
 
   test("hides global mobile chrome while reading and restores only on upward scroll", async ({ page }) => {
     await expect(page.getByTestId("mobile-compose-fab")).toBeVisible();
-    await expect(page.getByTestId("mobile-compose-fab")).toContainText("Composer");
+    await expect(page.getByTestId("mobile-compose-fab")).toContainText("Compose");
+    await page.goto("/settings");
+    await expect(page.getByRole("heading", { name: "Settings", exact: true })).toBeVisible();
+    await expect(page.getByTestId("mobile-compose-fab")).toHaveCount(0);
+    await page.goto("/");
+    await expect(page.getByRole("heading", { name: "Inbox" })).toBeVisible();
 
     await expect(page.getByTestId("mail-category-tabs")).toBeHidden();
 
@@ -169,13 +175,28 @@ test.describe("Mobile reader chrome", () => {
     await expect(counter).toBeVisible();
     const initial = parseCounter((await counter.textContent()) || "");
     test.skip(!initial || initial.total < 2, "Need at least two messages in reader context");
+    const scrollContainer = page.getByTestId("mobile-reader-scroll-container").first();
+    await scrollContainer.evaluate((el) => {
+      const filler = document.createElement("div");
+      filler.style.height = "2200px";
+      filler.setAttribute("data-e2e-swipe-filler", "true");
+      el.appendChild(filler);
+      el.scrollTop = 260;
+      el.dispatchEvent(new Event("scroll", { bubbles: true }));
+    });
 
+    const paneRoot = page.getByTestId("reading-pane-root");
     await swipeReader(page, 320, 90);
+    await expect(paneRoot).toHaveClass(/reading-pane-swipe-next/);
     await expect
       .poll(async () => parseCounter((await counter.textContent()) || "")?.current ?? 0, { timeout: 6_000 })
       .toBe(Math.min(initial.current + 1, initial.total));
+    await expect
+      .poll(async () => scrollContainer.evaluate((el) => el.scrollTop), { timeout: 6_000 })
+      .toBeLessThan(8);
 
     await swipeReader(page, 80, 300);
+    await expect(paneRoot).toHaveClass(/reading-pane-swipe-previous/);
     await expect
       .poll(async () => parseCounter((await counter.textContent()) || "")?.current ?? 0, { timeout: 6_000 })
       .toBe(initial.current);
@@ -185,5 +206,13 @@ test.describe("Mobile reader chrome", () => {
     await expect
       .poll(async () => parseCounter((await counter.textContent()) || "")?.current ?? 0, { timeout: 6_000 })
       .toBeGreaterThan(initial.current);
+
+    const afterFirstIframeSwipe = parseCounter((await counter.textContent()) || "");
+    test.skip(!afterFirstIframeSwipe, "Missing reader counter after first iframe swipe");
+
+    await swipeReaderIframe(page, 80, 300);
+    await expect
+      .poll(async () => parseCounter((await counter.textContent()) || "")?.current ?? 0, { timeout: 6_000 })
+      .toBe(afterFirstIframeSwipe.current - 1);
   });
 });

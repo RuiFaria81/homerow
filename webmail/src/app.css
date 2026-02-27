@@ -215,6 +215,32 @@
   animation: slideInRight 200ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+@keyframes readerSwipeNext {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  35% { transform: translate3d(-28px, 0, 0) rotate(-0.45deg); }
+  100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+}
+
+@keyframes readerSwipePrevious {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  35% { transform: translate3d(28px, 0, 0) rotate(0.45deg); }
+  100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+}
+
+.reading-pane-swipe-next {
+  animation: readerSwipeNext 240ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.reading-pane-swipe-previous {
+  animation: readerSwipePrevious 240ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.reading-pane-swipe-dragging {
+  transition: none !important;
+}
+
 /* ─── Loading skeleton ─── */
 @keyframes shimmer {
   0% { background-position: -200% 0; }

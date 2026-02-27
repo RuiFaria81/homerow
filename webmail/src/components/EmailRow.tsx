@@ -176,6 +176,17 @@ export default function EmailRow(props: EmailRowProps) {
     return participants.length > 3 ? `${visible} and more` : visible;
   };
 
+  const getInitial = (value: string) => (value.charAt(0) || "?").toUpperCase();
+
+  const avatarColorHex = (value: string) => {
+    const palette = ["#3b82f6", "#22c55e", "#eab308", "#ef4444", "#6366f1", "#a855f7", "#ec4899"];
+    let hash = 0;
+    for (let i = 0; i < value.length; i += 1) {
+      hash = value.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    return palette[Math.abs(hash) % palette.length];
+  };
+
   return (
     <div
       data-testid="row-drag-handle"
@@ -248,31 +259,20 @@ export default function EmailRow(props: EmailRowProps) {
             }}
           />
         </Show>
-        {/* Mobile: checkmark badge when selected, otherwise star */}
+        {/* Mobile: star only */}
         <div class="flex md:hidden items-center justify-center w-8">
-          <Show
-            when={props.checked}
-            fallback={
-              <Show when={props.onStar}>
-                <button
-                  class={`border-none bg-transparent p-0 cursor-pointer transition-colors flex items-center justify-center ${
-                    isStarred() ? "text-[#fbbc04]" : "text-[var(--text-muted)]"
-                  }`}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    props.onStar?.(props.email.seq, !isStarred());
-                  }}
-                >
-                  <IconStar size={18} strokeWidth={1.75} filled={isStarred()} />
-                </button>
-              </Show>
-            }
-          >
-            <div class="w-5 h-5 rounded-full bg-[var(--primary)] flex items-center justify-center shrink-0">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M2 6.5l2.5 2.5 5.5-5.5" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
+          <Show when={props.onStar}>
+            <button
+              class={`border-none bg-transparent p-0 cursor-pointer transition-colors flex items-center justify-center ${
+                isStarred() ? "text-[#fbbc04]" : "text-[var(--text-muted)]"
+              }`}
+              onClick={(e) => {
+                e.stopPropagation();
+                props.onStar?.(props.email.seq, !isStarred());
+              }}
+            >
+              <IconStar size={18} strokeWidth={1.75} filled={isStarred()} />
+            </button>
           </Show>
         </div>
         {/* Desktop: star */}
@@ -306,30 +306,39 @@ export default function EmailRow(props: EmailRowProps) {
         </Show>
       </div>
 
-      {/* Col 2 MOBILE ONLY: stacked sender + date (row 1) and subject (row 2) */}
-      <div class="flex flex-col min-w-0 py-2.5 pr-3 md:hidden">
-        <div class="flex items-center justify-between gap-2 mb-1">
-          <span
-            class={`text-[14px] overflow-hidden text-ellipsis whitespace-nowrap leading-snug ${
-              isUnread() ? "font-bold text-[var(--foreground)]" : "font-medium text-[var(--text-secondary)]"
-            }`}
-          >
-            {props.email.messageCount && props.email.messageCount > 1
-              ? participantSummary()
-              : props.email.from}
-            <Show when={props.email.messageCount && props.email.messageCount > 1}>
-              <span class="inline-flex items-center justify-center min-w-[18px] h-[16px] px-1 rounded-full text-[10px] font-semibold bg-[var(--text-muted)] text-white ml-1 leading-none">
-                {props.email.messageCount}
-              </span>
-            </Show>
-          </span>
-          <span class={`text-[12px] whitespace-nowrap shrink-0 ${isUnread() ? "font-semibold text-[var(--foreground)]" : "text-[var(--text-muted)]"}`}>
-            {formatDate(props.email.date)}
-          </span>
+      {/* Col 2 MOBILE ONLY: avatar column + sender/date row + subject row */}
+      <div class="grid min-w-0 py-2.5 pr-3 md:hidden grid-cols-[auto_1fr_auto] grid-rows-[auto_auto] gap-x-2 gap-y-0.5 items-start">
+        <div
+          data-testid="mobile-email-row-avatar"
+          class="row-span-2 w-9 h-9 rounded-full shrink-0 inline-flex items-center justify-center text-white text-[13px] font-bold mt-0.5"
+          style={{ background: avatarColorHex(props.email.from || "") }}
+        >
+          {getInitial(props.email.from || "")}
         </div>
-        <span class={`text-[13px] overflow-hidden text-ellipsis whitespace-nowrap leading-snug ${
-          isUnread() ? "font-semibold text-[var(--foreground)]" : "text-[var(--text-secondary)]"
-        }`}>
+        <span
+          data-testid="mobile-email-row-sender"
+          class={`text-[14px] overflow-hidden text-ellipsis whitespace-nowrap leading-snug min-w-0 ${
+            isUnread() ? "font-bold text-[var(--foreground)]" : "font-medium text-[var(--text-secondary)]"
+          }`}
+        >
+          {props.email.messageCount && props.email.messageCount > 1
+            ? participantSummary()
+            : props.email.from}
+          <Show when={props.email.messageCount && props.email.messageCount > 1}>
+            <span class="inline-flex items-center justify-center min-w-[18px] h-[16px] px-1 rounded-full text-[10px] font-semibold bg-[var(--text-muted)] text-white ml-1 leading-none">
+              {props.email.messageCount}
+            </span>
+          </Show>
+        </span>
+        <span class={`text-[12px] whitespace-nowrap shrink-0 ${isUnread() ? "font-semibold text-[var(--foreground)]" : "text-[var(--text-muted)]"}`}>
+          {formatDate(props.email.date)}
+        </span>
+        <span
+          data-testid="mobile-email-row-subject"
+          class={`col-span-2 text-[13px] overflow-hidden text-ellipsis whitespace-nowrap leading-snug min-w-0 ${
+            isUnread() ? "font-semibold text-[var(--foreground)]" : "text-[var(--text-secondary)]"
+          }`}
+        >
           {props.email.subject || "(No Subject)"}
         </span>
       </div>
