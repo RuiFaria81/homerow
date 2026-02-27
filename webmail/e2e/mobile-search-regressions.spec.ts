@@ -69,6 +69,27 @@ test.describe("Mobile search regressions", () => {
   });
 
   test("hides row checkboxes on mobile and shows sender avatars in list rows", async ({ page }) => {
+    await page.addInitScript(() => {
+      (window as Window & { __sawMobileRowCheckbox?: boolean }).__sawMobileRowCheckbox = false;
+      const sawCheckbox = () => {
+        const found = document.querySelector(".email-row input[type='checkbox']");
+        if (found) {
+          (window as Window & { __sawMobileRowCheckbox?: boolean }).__sawMobileRowCheckbox = true;
+        }
+      };
+      const observer = new MutationObserver(sawCheckbox);
+      const startObserver = () => {
+        sawCheckbox();
+        observer.observe(document.documentElement, { childList: true, subtree: true });
+      };
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", startObserver, { once: true });
+      } else {
+        startObserver();
+      }
+      window.addEventListener("beforeunload", () => observer.disconnect(), { once: true });
+    });
+
     await page.goto("/");
     await expect(page.getByRole("heading", { name: "Inbox" })).toBeVisible();
 
@@ -92,6 +113,12 @@ test.describe("Mobile search regressions", () => {
     expect(senderBounds).not.toBeNull();
     expect(subjectBounds).not.toBeNull();
     expect(Math.abs((senderBounds?.x ?? 0) - (subjectBounds?.x ?? 0))).toBeLessThanOrEqual(2);
+
+    await page.waitForTimeout(2500);
+    const sawLoadTimeCheckbox = await page.evaluate(
+      () => (window as Window & { __sawMobileRowCheckbox?: boolean }).__sawMobileRowCheckbox ?? false,
+    );
+    expect(sawLoadTimeCheckbox).toBeFalsy();
   });
 
   test("removes mobile top separator styling from header", async ({ page }) => {

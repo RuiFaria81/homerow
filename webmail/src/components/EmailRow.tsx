@@ -1,4 +1,4 @@
-import { createSignal, Show, For, onCleanup } from "solid-js";
+import { createSignal, Show, For, onCleanup, onMount } from "solid-js";
 import { Portal } from "solid-js/web";
 import { IconStar, IconArchive, IconTrash, IconLabel, IconEnvelope, IconEnvelopeOpen, IconImportant, IconClock, IconSpam, IconDrag, IconPaperclip } from "./Icons";
 import { labelsState, IMPORTANT_LABEL_NAME, isCategoryLabelName } from "~/lib/labels-store";
@@ -46,6 +46,7 @@ interface EmailRowProps {
 
 export default function EmailRow(props: EmailRowProps) {
   const isMobile = useIsMobile();
+  const [isClient, setIsClient] = createSignal(false);
   const [showLabelMenu, setShowLabelMenu] = createSignal(false);
   const [menuPos, setMenuPos] = createSignal({ top: 0, left: 0 });
   let labelBtnRef: HTMLButtonElement | undefined;
@@ -58,6 +59,10 @@ export default function EmailRow(props: EmailRowProps) {
   const LONG_PRESS_MS = 500;
   let longPressTimer: ReturnType<typeof setTimeout> | null = null;
   let longPressStartPos = { x: 0, y: 0 };
+
+  onMount(() => {
+    setIsClient(true);
+  });
 
   const cancelLongPress = () => {
     if (longPressTimer !== null) {
@@ -248,10 +253,10 @@ export default function EmailRow(props: EmailRowProps) {
           </div>
         </Show>
         {/* Desktop: checkbox */}
-        <Show when={props.onCheckedChange}>
+        <Show when={props.onCheckedChange && isClient() && !isMobile()}>
           <input
             type="checkbox"
-            class="mail-checkbox hidden md:block cursor-pointer"
+            class="mail-checkbox cursor-pointer"
             checked={props.checked ?? false}
             onClick={(e) => e.stopPropagation()}
             onChange={(e) => {
