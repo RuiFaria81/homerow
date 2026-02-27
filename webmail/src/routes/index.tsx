@@ -3,6 +3,7 @@ import { isServer } from "solid-js/web";
 import { fetchEmailsPaginated, fetchThreadsPaginated, deleteEmail, deleteEmailsBatch, archiveEmails, addEmailLabel, removeEmailLabel, toggleStar, markAsRead, markAsUnread, moveToFolder, snoozeEmails, getBlockedSenders, blockSender, getEmail } from "~/lib/mail-client-browser";
 import { useNavigate, useLocation } from "@solidjs/router";
 import { settings } from "~/lib/settings-store";
+import { useIsMobile } from "~/hooks/use-mobile";
 import { refreshCounts } from "~/lib/sidebar-store";
 import {
   labelsState,
@@ -40,6 +41,7 @@ import { formatForwardSubject, formatReplySubject, getForwardQuoteParts, getRepl
 export default function Home() {
   const navigate = useNavigate();
   const location = useLocation();
+  const isMobile = useIsMobile();
   const [searchTerm, setSearchTerm] = createSignal("");
   const [selectedEmail, setSelectedEmail] = createSignal<number | null>(null);
   const [selectedThreadId, setSelectedThreadId] = createSignal<string | null>(null);
@@ -85,10 +87,12 @@ export default function Home() {
   let categoryTabRects: Array<{ key: string; rect: DOMRect }> = [];
   let pointerDragCleanup: (() => void) | null = null;
 
-  const perPage = () => parseInt(settings.emailsPerPage) || 50;
+  // On mobile: always load 100 emails — no pagination UI shown
+  const perPage = () => isMobile() ? 100 : (parseInt(settings.emailsPerPage) || 50);
   const configuredCategories = createMemo(() => getConfiguredCategories());
   const categoryTabs = createMemo(() => getCategoryTabs());
   const shouldShowCategoryTabs = createMemo(() => {
+    if (isMobile()) return false;
     const filter = labelsState.activeFilter;
     if (!settings.enableCategories) return false;
     return !filter || isCategoryFilterId(filter);
@@ -833,6 +837,20 @@ export default function Home() {
       });
   };
 
+  // Mobile: long-press starts selection mode
+  const handleLongPress = (seq: number) => {
+    handleCheckedChange(seq, true);
+  };
+
+  // Mobile: while in selection mode, tap toggles selection instead of opening
+  const handleEmailClickWithMobileSelection = (seq: number) => {
+    if (isMobile() && selectedEmails().size > 0) {
+      handleCheckedChange(seq, !selectedEmails().has(seq));
+      return;
+    }
+    handleEmailClick(seq);
+  };
+
   const handleEmailClick = (seq: number) => {
     const folder = folderForSeq(seq);
     if (settings.readingPane === "none") {
@@ -1012,7 +1030,14 @@ export default function Home() {
   const allSelected = () => { const list = filteredEmails(); return list.length > 0 && selectedEmails().size === list.length; };
   const someSelected = () => { const sel = selectedEmails(); return sel.size > 0 && sel.size < filteredEmails().length; };
   const toggleSelectAll = () => { if (allSelected()) setSelectedEmails(new Set()); else setSelectedEmails(new Set(filteredEmails().map(e => e.seq))); };
-  const handleCheckedChange = (seq: number, checked: boolean) => { setSelectedEmails(prev => { const next = new Set(prev); if (checked) next.add(seq); else next.delete(seq); return next; }); };
+  const handleCheckedChange = (seq: number, checked: boolean) => {
+    setSelectedEmails(prev => {
+      const next = new Set(prev);
+      if (checked) next.add(seq);
+      else next.delete(seq);
+      return next;
+    });
+  };
   const getActionSeqs = () => {
     const selected = Array.from(selectedEmails());
     if (selected.length > 0) return selected;
@@ -1767,6 +1792,23 @@ export default function Home() {
   // When full-space mode is on, hide email list and show reading pane full width
   const isFullSpace = () => fullSpacePane() && selectedEmail() !== null;
 
+  createEffect(() => {
+    if (typeof window === "undefined") return;
+    const mobileReaderOpen = isMobile() && showPane();
+    window.dispatchEvent(
+      new CustomEvent("webmail-mobile-reader-open-change", {
+        detail: { open: mobileReaderOpen },
+      }),
+    );
+    onCleanup(() => {
+      window.dispatchEvent(
+        new CustomEvent("webmail-mobile-reader-open-change", {
+          detail: { open: false },
+        }),
+      );
+    });
+  });
+
   // Reset full-space when email is deselected
   const handleCloseEmail = () => {
     setFullSpacePane(false);
@@ -1797,63 +1839,101 @@ export default function Home() {
     >
       {/* Email List Panel */}
       <div
-        class={`flex flex-col overflow-hidden ${isFullSpace() ? "hidden" : ""}`}
+        class={`flex flex-col overflow-hidden ${isFullSpace() ? "hidden" : ""} ${isMobile() && showPane() ? "hidden" : ""}`}
         data-testid="mail-list-panel"
         style={{
-          width: !isVertical() && showPane() && !isFullSpace() ? `calc(100% - ${paneSize()}px)` : "100%",
-          height: isVertical() && showPane() && !isFullSpace() ? `calc(100% - ${paneSize()}px)` : "100%",
+          width: isMobile() ? "100%" : (!isVertical() && showPane() && !isFullSpace() ? `calc(100% - ${paneSize()}px)` : "100%"),
+          height: isMobile() ? "100%" : (isVertical() && showPane() && !isFullSpace() ? `calc(100% - ${paneSize()}px)` : "100%"),
           "flex-shrink": 0,
         }}
       >
-        {/* Inbox Header */}
-        <div class="flex items-center justify-between px-6 py-4 border-b border-[var(--border-light)] bg-[var(--card)] shrink-0">
-          <div class="flex items-center gap-3">
-            <h1 class="text-xl font-semibold text-[var(--foreground)]">{heading()}</h1>
-            <Show when={labelsState.activeFilter}>
-              <button
-                onClick={() => {
-                  setActiveFilter(null);
-                  void navigate("/");
-                }}
-                class="flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium text-[var(--text-secondary)] bg-[var(--search-bg)] hover:bg-[var(--hover-bg)] border-none cursor-pointer transition-colors"
-              >
-                <IconClose size={12} />
-                Clear filter
-              </button>
-            </Show>
-          </div>
-          <div class="flex items-center gap-2">
-            <div class="relative">
-              <svg class="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--text-muted)] pointer-events-none" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
-              <input type="text" placeholder="Filter emails..." value={searchTerm()} onInput={(e) => setSearchTerm(e.currentTarget.value)} class="h-9 pl-10 pr-4 border border-[var(--border)] rounded-full bg-transparent text-sm text-[var(--foreground)] outline-none transition-all focus:border-[var(--primary)] focus:shadow-sm placeholder:text-[var(--text-muted)]" />
-            </div>
-            <button
-              onClick={() => void requestInboxRefresh(true)}
-              class={`w-9 h-9 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center transition-colors ${
-                refreshIndicatorState() === "success"
-                  ? "text-emerald-600 bg-emerald-100/70 hover:bg-emerald-100/90"
-                  : "text-[var(--text-secondary)] hover:bg-[var(--hover-bg)]"
-              }`}
-              data-testid="inbox-refresh-button"
-              data-state={refreshIndicatorState()}
-              title={`Refresh${getActionShortcutHint("refreshEmails")}`}
-            >
-              <Show
-                when={refreshIndicatorState() === "refreshing"}
-                fallback={
-                  <Show when={refreshIndicatorState() === "success"} fallback={<span data-testid="inbox-refresh-idle-icon"><IconRefresh size={18} /></span>}>
-                    <span data-testid="inbox-refresh-success-icon"><IconCheck size={18} /></span>
+        {/* Inbox Header / Mobile selection bar */}
+        <Show
+          when={isMobile() && selectedEmails().size > 0}
+          fallback={
+            <div class="flex items-center justify-between px-4 md:px-6 py-3 md:py-4 border-b border-[var(--border-light)] bg-[var(--card)] shrink-0">
+              <div class="flex items-center gap-3">
+                <h1 class="text-xl font-semibold text-[var(--foreground)]">{heading()}</h1>
+                <Show when={labelsState.activeFilter}>
+                  <button
+                    onClick={() => {
+                      setActiveFilter(null);
+                      void navigate("/");
+                    }}
+                    class="flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium text-[var(--text-secondary)] bg-[var(--search-bg)] hover:bg-[var(--hover-bg)] border-none cursor-pointer transition-colors"
+                  >
+                    <IconClose size={12} />
+                    Clear filter
+                  </button>
+                </Show>
+              </div>
+              {/* Desktop: filter + refresh */}
+              <div class="hidden md:flex items-center gap-2">
+                <div class="relative">
+                  <svg class="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--text-muted)] pointer-events-none" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
+                  <input type="text" placeholder="Filter emails..." value={searchTerm()} onInput={(e) => setSearchTerm(e.currentTarget.value)} class="h-9 pl-10 pr-4 border border-[var(--border)] rounded-full bg-transparent text-sm text-[var(--foreground)] outline-none transition-all focus:border-[var(--primary)] focus:shadow-sm placeholder:text-[var(--text-muted)]" />
+                </div>
+                <button
+                  onClick={() => void requestInboxRefresh(true)}
+                  class={`w-9 h-9 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center transition-colors ${
+                    refreshIndicatorState() === "success"
+                      ? "text-emerald-600 bg-emerald-100/70 hover:bg-emerald-100/90"
+                      : "text-[var(--text-secondary)] hover:bg-[var(--hover-bg)]"
+                  }`}
+                  data-testid="inbox-refresh-button"
+                  data-state={refreshIndicatorState()}
+                  title={`Refresh${getActionShortcutHint("refreshEmails")}`}
+                >
+                  <Show
+                    when={refreshIndicatorState() === "refreshing"}
+                    fallback={
+                      <Show when={refreshIndicatorState() === "success"} fallback={<span data-testid="inbox-refresh-idle-icon"><IconRefresh size={18} /></span>}>
+                        <span data-testid="inbox-refresh-success-icon"><IconCheck size={18} /></span>
+                      </Show>
+                    }
+                  >
+                    <span data-testid="inbox-refresh-spinning-icon"><IconRefresh size={18} class="animate-spin" /></span>
                   </Show>
-                }
-              >
-                <span data-testid="inbox-refresh-spinning-icon"><IconRefresh size={18} class="animate-spin" /></span>
-              </Show>
+                </button>
+              </div>
+            </div>
+          }
+        >
+          {/* Mobile selection action bar */}
+          <div class="flex items-center gap-1 px-3 py-2 border-b border-[var(--border-light)] bg-[var(--card)] shrink-0 min-h-[56px]">
+            <button
+              onClick={() => setSelectedEmails(new Set())}
+              class="w-9 h-9 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-secondary)] hover:bg-[var(--hover-bg)] shrink-0"
+              title="Clear selection"
+            >
+              <IconClose size={18} />
             </button>
+            <span class="text-sm font-semibold text-[var(--foreground)] mx-1 shrink-0">
+              {selectedEmails().size}
+            </span>
+            {/* Select-all */}
+            <label class="flex items-center gap-1.5 ml-1 shrink-0 cursor-pointer select-none">
+              <input
+                type="checkbox"
+                class="mail-checkbox cursor-pointer"
+                checked={allSelected()}
+                ref={(el) => { createMemo(() => { el.indeterminate = someSelected(); }); }}
+                onChange={toggleSelectAll}
+              />
+              <span class="text-xs font-medium text-[var(--text-secondary)]">All</span>
+            </label>
+            <div class="ml-auto flex items-center gap-0.5">
+              <button class="w-10 h-10 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-muted)] hover:bg-[var(--hover-bg)] hover:text-[var(--primary)] transition-colors" title="Archive" onClick={handleBatchArchive}><IconArchive size={20} /></button>
+              <button class="w-10 h-10 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-muted)] hover:bg-[var(--hover-bg)] hover:text-[var(--destructive)] transition-colors" title="Delete" onClick={handleBatchDelete}><IconTrash size={20} /></button>
+              <button class="w-10 h-10 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-muted)] hover:bg-[var(--hover-bg)] hover:text-[var(--primary)] transition-colors" title="Mark as spam" onClick={handleBatchMoveToSpam}><IconSpam size={20} /></button>
+              <button class="w-10 h-10 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-muted)] hover:bg-[var(--hover-bg)] hover:text-[var(--primary)] transition-colors" title="Mark as read" onClick={() => handleBatchMarkRead(true)}><IconEnvelopeOpen size={20} /></button>
+              <button class="w-10 h-10 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-muted)] hover:bg-[var(--hover-bg)] hover:text-[var(--primary)] transition-colors" title="Mark as unread" onClick={() => handleBatchMarkRead(false)}><IconEnvelope size={20} /></button>
+            </div>
           </div>
-        </div>
+        </Show>
 
         <Show when={shouldShowCategoryTabs()}>
-          <div class="flex flex-col w-full border-b border-[var(--border-light)] bg-[var(--card)] shrink-0" data-testid="mail-category-tabs">
+          <div class="hidden md:flex flex-col w-full border-b border-[var(--border-light)] bg-[var(--card)] shrink-0" data-testid="mail-category-tabs">
             <div class="flex items-center w-full">
             <For each={categoryTabs()}>
               {(tab) => {
@@ -1905,8 +1985,8 @@ export default function Home() {
           </div>
         </Show>
 
-        {/* Toolbar */}
-        <div class="flex items-center gap-1 px-4 py-2 border-b border-[var(--border-light)] bg-[var(--card)] min-h-10 shrink-0" data-testid="mail-actions-toolbar">
+        {/* Toolbar - desktop only (mobile uses long-press action bar) */}
+        <div class="hidden md:flex items-center gap-1 px-4 py-2 border-b border-[var(--border-light)] bg-[var(--card)] min-h-10 shrink-0" data-testid="mail-actions-toolbar">
           <div class="flex items-center gap-0.5 mr-2">
             <input type="checkbox" class="mail-checkbox cursor-pointer" checked={allSelected()} ref={(el) => { createMemo(() => { el.indeterminate = someSelected(); }); }} onChange={toggleSelectAll} />
           </div>
@@ -1994,7 +2074,7 @@ export default function Home() {
                 emails={filteredEmails()}
                 selectedEmail={selectedEmail()}
                 selectedEmails={selectedEmails()}
-                onEmailClick={handleEmailClick}
+                onEmailClick={handleEmailClickWithMobileSelection}
                 onCheckedChange={handleCheckedChange}
                 onDelete={handleDeleteFromList}
                 onArchive={handleArchiveFromList}
@@ -2003,8 +2083,9 @@ export default function Home() {
                 onLabelAdd={handleLabelAdd}
                 onLabelRemove={handleLabelRemove}
                 onToggleRead={handleToggleRead}
-                onPointerDragStart={handlePointerDragStart}
-                onContextMenu={handleContextMenu}
+                onPointerDragStart={isMobile() ? undefined : handlePointerDragStart}
+                onLongPress={isMobile() ? handleLongPress : undefined}
+                onContextMenu={isMobile() ? undefined : handleContextMenu}
               />
             </Show>
           </Show>
@@ -2012,7 +2093,7 @@ export default function Home() {
       </div>
 
       {/* Resize Handle */}
-      <Show when={showPane() && !isFullSpace()}>
+      <Show when={showPane() && !isFullSpace() && !isMobile()}>
         <div
           class={`relative group shrink-0 transition-colors z-20 ${
             isVertical()
@@ -2032,12 +2113,16 @@ export default function Home() {
           class={`flex-shrink-0 min-w-0 overflow-hidden ${showPane() ? "" : "pointer-events-none"}`}
           aria-hidden={!showPane()}
           style={{
-            width: showPane()
-              ? (isFullSpace() ? "100%" : (!isVertical() ? `${paneSize()}px` : "100%"))
-              : (!isVertical() ? "0px" : "100%"),
-            height: showPane()
-              ? (isFullSpace() ? "100%" : (isVertical() ? `${paneSize()}px` : "100%"))
-              : (isVertical() ? "0px" : "100%"),
+            width: isMobile()
+              ? (showPane() ? "100%" : "0px")
+              : (showPane()
+                ? (isFullSpace() ? "100%" : (!isVertical() ? `${paneSize()}px` : "100%"))
+                : (!isVertical() ? "0px" : "100%")),
+            height: isMobile()
+              ? "100%"
+              : (showPane()
+                ? (isFullSpace() ? "100%" : (isVertical() ? `${paneSize()}px` : "100%"))
+                : (isVertical() ? "0px" : "100%")),
             opacity: showPane() ? 1 : 0,
           }}
         >

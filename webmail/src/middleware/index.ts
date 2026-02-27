@@ -6,7 +6,7 @@ import { resetDemoState } from "~/lib/demo-mail-data";
 
 export default createMiddleware({
   onRequest: async (event) => {
-    const { pathname } = new URL(event.request.url);
+    const { pathname, search } = new URL(event.request.url);
     const accept = event.request.headers.get("accept") || "";
     const isApiRequest =
       pathname.startsWith("/api/") ||
@@ -19,6 +19,16 @@ export default createMiddleware({
         resetDemoState();
       }
       return;
+    }
+
+    // Support older cached clients that still request hashed chunks from
+    // /assets/* instead of /_build/assets/*.
+    if (pathname.startsWith("/assets/")) {
+      const target = pathname.replace("/assets/", "/_build/assets/");
+      return new Response(null, {
+        status: 307,
+        headers: { location: `${target}${search}` },
+      });
     }
 
     // Skip auth check for login page, auth API routes, and static assets

@@ -1,6 +1,7 @@
 import { createResource, For, Show, createSignal, createMemo, createEffect, onMount, onCleanup } from "solid-js";
 import { isServer } from "solid-js/web";
 import { useParams, useNavigate } from "@solidjs/router";
+import { useIsMobile } from "~/hooks/use-mobile";
 import { fetchEmailsPaginated, fetchThreadsPaginated, getEmail, deleteEmail, deleteEmailsBatch, archiveEmails, addEmailLabel, removeEmailLabel, toggleStar, markAsRead, markAsUnread, moveToFolder, restoreFromTrash, snoozeEmails, cancelScheduledEmail, cancelScheduledEmails, type EmailMessage } from "~/lib/mail-client-browser";
 import { settings } from "~/lib/settings-store";
 import { refreshCounts } from "~/lib/sidebar-store";
@@ -18,6 +19,7 @@ import { useMailEvents } from "~/lib/mail-events";
 export default function FolderView() {
   const params = useParams();
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
   const [searchTerm, setSearchTerm] = createSignal("");
   const [selectedEmail, setSelectedEmail] = createSignal<number | null>(null);
   const [selectedThreadId, setSelectedThreadId] = createSignal<string | null>(null);
@@ -772,6 +774,23 @@ export default function FolderView() {
   const isVertical = () => settings.readingPane === "bottom";
   const isNone = () => settings.readingPane === "none";
   const showPane = () => !isNone() && selectedEmail() !== null;
+
+  createEffect(() => {
+    if (typeof window === "undefined") return;
+    const mobileReaderOpen = isMobile() && showPane();
+    window.dispatchEvent(
+      new CustomEvent("webmail-mobile-reader-open-change", {
+        detail: { open: mobileReaderOpen },
+      }),
+    );
+    onCleanup(() => {
+      window.dispatchEvent(
+        new CustomEvent("webmail-mobile-reader-open-change", {
+          detail: { open: false },
+        }),
+      );
+    });
+  });
 
   return (
     <div

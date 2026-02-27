@@ -207,7 +207,7 @@ export default function Header(props: HeaderProps) {
   return (
     <header class="col-span-full flex items-center px-4 py-2 min-h-[68px] bg-[var(--card)] border-b border-[var(--border-light)] shadow-[0_1px_2px_rgba(0,0,0,0.04)] z-10 gap-4">
       {/* Logo */}
-      <div class="flex items-center gap-2 w-[214px] shrink-0">
+      <div class="flex items-center gap-2 md:w-[214px] shrink-0">
         <button
           class="w-9 h-9 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-secondary)] transition-colors duration-200 hover:bg-[var(--hover-bg)] hover:text-[var(--foreground)]"
           title={`${props.sidebarCollapsed ? "Expand menu" : "Collapse menu"}${getActionShortcutHint("openLeftMenu")}`}
@@ -216,7 +216,7 @@ export default function Header(props: HeaderProps) {
           {props.sidebarCollapsed ? <IconChevronRight size={18} /> : <IconChevronLeft size={18} />}
         </button>
         <button
-          class="relative flex items-center gap-2.5 border-none bg-transparent rounded-xl px-1.5 py-1 cursor-pointer text-left text-[var(--foreground)] hover:bg-[var(--hover-bg)] transition-colors"
+          class="relative hidden md:flex items-center gap-2.5 border-none bg-transparent rounded-xl px-1.5 py-1 cursor-pointer text-left text-[var(--foreground)] hover:bg-[var(--hover-bg)] transition-colors"
           title={`Go to Inbox${getActionShortcutHint("gotoInbox")}`}
           aria-label="Go to Inbox"
           onClick={() => {
@@ -411,7 +411,7 @@ export default function Header(props: HeaderProps) {
             <span>{commandPaletteShortcutLabel()}</span>
           </span>
         </button>
-        <div class="relative">
+        <div class="relative hidden md:block">
           <button
             ref={githubMenuButtonRef}
             data-testid="github-menu-button"
@@ -485,7 +485,7 @@ export default function Header(props: HeaderProps) {
           </Show>
         </div>
         <button
-          class="w-10 h-10 rounded-full border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-secondary)] transition-colors duration-200 hover:bg-[var(--hover-bg)] hover:text-[var(--foreground)]"
+          class="hidden md:flex w-10 h-10 rounded-full border-none bg-transparent cursor-pointer items-center justify-center text-[var(--text-secondary)] transition-colors duration-200 hover:bg-[var(--hover-bg)] hover:text-[var(--foreground)]"
           title={`Settings${getActionShortcutHint("openRightMenu")}`}
           onClick={props.onOpenSettings}
         >

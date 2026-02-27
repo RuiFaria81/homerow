@@ -3,6 +3,7 @@ import { Portal } from "solid-js/web";
 import { IconStar, IconArchive, IconTrash, IconLabel, IconEnvelope, IconEnvelopeOpen, IconImportant, IconClock, IconSpam, IconDrag, IconPaperclip } from "./Icons";
 import { labelsState, IMPORTANT_LABEL_NAME, isCategoryLabelName } from "~/lib/labels-store";
 import { settings, DENSITY_CONFIG } from "~/lib/settings-store";
+import { useIsMobile } from "~/hooks/use-mobile";
 
 export interface EmailLabel {
   name: string;
@@ -36,6 +37,7 @@ interface EmailRowProps {
   onLabelRemove?: (seq: number, label: string) => void;
   onToggleRead?: (seq: number, currentRead: boolean) => void;
   onPointerDragStart?: (seq: number, e: PointerEvent, suppressClick: () => void) => void;
+  onLongPress?: (seq: number) => void;
   active?: boolean;
   checked?: boolean;
   onCheckedChange?: (seq: number, checked: boolean) => void;
@@ -43,6 +45,7 @@ interface EmailRowProps {
 }
 
 export default function EmailRow(props: EmailRowProps) {
+  const isMobile = useIsMobile();
   const [showLabelMenu, setShowLabelMenu] = createSignal(false);
   const [menuPos, setMenuPos] = createSignal({ top: 0, left: 0 });
   let labelBtnRef: HTMLButtonElement | undefined;
@@ -50,6 +53,20 @@ export default function EmailRow(props: EmailRowProps) {
   let suppressClickUntil = 0;
   const density = () => DENSITY_CONFIG[settings.density];
   const DRAG_CLICK_SUPPRESS_MS = 600;
+
+  // Long-press detection for mobile selection
+  const LONG_PRESS_MS = 500;
+  let longPressTimer: ReturnType<typeof setTimeout> | null = null;
+  let longPressStartPos = { x: 0, y: 0 };
+
+  const cancelLongPress = () => {
+    if (longPressTimer !== null) {
+      clearTimeout(longPressTimer);
+      longPressTimer = null;
+    }
+  };
+
+  onCleanup(cancelLongPress);
 
   const openLabelMenu = (e: MouseEvent) => {
     e.stopPropagation();
@@ -162,18 +179,39 @@ export default function EmailRow(props: EmailRowProps) {
   return (
     <div
       data-testid="row-drag-handle"
-      class={`email-row group grid grid-cols-[auto_200px_1fr_auto] items-center pl-2 pr-4 ${density().rowHeight} cursor-pointer transition-[background-color,color,box-shadow] duration-150 relative border-b border-transparent select-none touch-none ${
+      class={`email-row group grid grid-cols-[auto_1fr] md:grid-cols-[auto_200px_1fr_auto] items-center pl-2 pr-4 min-h-[68px] md:min-h-0 ${isMobile() ? "" : density().rowHeight} cursor-pointer transition-[background-color,color,box-shadow] duration-150 relative border-b border-transparent select-none ${
+        props.onPointerDragStart ? "touch-none" : ""
+      } ${
         props.active ? "email-row-active" : props.checked ? "bg-[var(--active-bg)]" : isUnread() ? "bg-white dark:bg-[var(--card)]" : ""
       } hover:bg-[var(--hover-bg)] hover:shadow-[inset_3px_0_0_var(--primary)]`}
       style={{ "z-index": undefined }}
       onPointerDown={(e) => {
-        if (e.button !== 0 || !props.onPointerDragStart) return;
-        if (isInteractiveTarget(e.target)) return;
-        // Record for potential drag — click suppression happens only if drag actually activates
-        props.onPointerDragStart(props.email.seq, e, () => {
-          suppressClickUntil = Date.now() + DRAG_CLICK_SUPPRESS_MS;
-        });
+        if (e.button !== 0) return;
+        // Desktop: DnD
+        if (props.onPointerDragStart && !isInteractiveTarget(e.target)) {
+          props.onPointerDragStart(props.email.seq, e, () => {
+            suppressClickUntil = Date.now() + DRAG_CLICK_SUPPRESS_MS;
+          });
+        }
+        // Mobile: long-press selection
+        if (props.onLongPress && !isInteractiveTarget(e.target)) {
+          longPressStartPos = { x: e.clientX, y: e.clientY };
+          longPressTimer = setTimeout(() => {
+            longPressTimer = null;
+            suppressClickUntil = Date.now() + DRAG_CLICK_SUPPRESS_MS;
+            props.onLongPress!(props.email.seq);
+          }, LONG_PRESS_MS);
+        }
       }}
+      onPointerMove={(e) => {
+        if (longPressTimer !== null) {
+          const dx = e.clientX - longPressStartPos.x;
+          const dy = e.clientY - longPressStartPos.y;
+          if (dx * dx + dy * dy > 100) cancelLongPress();
+        }
+      }}
+      onPointerUp={cancelLongPress}
+      onPointerCancel={cancelLongPress}
       onClick={(e) => {
         if (Date.now() < suppressClickUntil) {
           e.preventDefault();
@@ -190,17 +228,19 @@ export default function EmailRow(props: EmailRowProps) {
         }
       }}
     >
-      {/* Drag indicator + Checkbox + Star */}
-      <div class="flex items-center gap-1 pr-3">
+      {/* Col 1: Icons — mobile: selection indicator or star only; desktop: drag+checkbox+star+important */}
+      <div class="flex items-center pr-2 md:pr-3 self-center">
+        {/* Desktop: drag handle */}
         <Show when={props.onPointerDragStart}>
-          <div class="w-3 flex items-center justify-center text-[var(--text-muted)] opacity-0 group-hover:opacity-100 transition-opacity shrink-0">
+          <div class="hidden md:flex w-3 items-center justify-center text-[var(--text-muted)] opacity-0 group-hover:opacity-100 transition-opacity shrink-0">
             <IconDrag size={12} />
           </div>
         </Show>
+        {/* Desktop: checkbox */}
         <Show when={props.onCheckedChange}>
           <input
             type="checkbox"
-            class="mail-checkbox cursor-pointer"
+            class="mail-checkbox hidden md:block cursor-pointer"
             checked={props.checked ?? false}
             onClick={(e) => e.stopPropagation()}
             onChange={(e) => {
@@ -208,9 +248,37 @@ export default function EmailRow(props: EmailRowProps) {
             }}
           />
         </Show>
+        {/* Mobile: checkmark badge when selected, otherwise star */}
+        <div class="flex md:hidden items-center justify-center w-8">
+          <Show
+            when={props.checked}
+            fallback={
+              <Show when={props.onStar}>
+                <button
+                  class={`border-none bg-transparent p-0 cursor-pointer transition-colors flex items-center justify-center ${
+                    isStarred() ? "text-[#fbbc04]" : "text-[var(--text-muted)]"
+                  }`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    props.onStar?.(props.email.seq, !isStarred());
+                  }}
+                >
+                  <IconStar size={18} strokeWidth={1.75} filled={isStarred()} />
+                </button>
+              </Show>
+            }
+          >
+            <div class="w-5 h-5 rounded-full bg-[var(--primary)] flex items-center justify-center shrink-0">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2 6.5l2.5 2.5 5.5-5.5" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </Show>
+        </div>
+        {/* Desktop: star */}
         <Show when={props.onStar}>
           <button
-            class={`border-none bg-transparent p-0 cursor-pointer transition-colors flex items-center justify-center ${
+            class={`hidden md:flex border-none bg-transparent p-0 cursor-pointer transition-colors items-center justify-center ${
               isStarred() ? "text-[#fbbc04]" : "text-[var(--text-muted)] hover:text-[#fbbc04]"
             }`}
             onClick={(e) => {
@@ -221,9 +289,10 @@ export default function EmailRow(props: EmailRowProps) {
             <IconStar size={16} strokeWidth={1.75} filled={isStarred()} />
           </button>
         </Show>
+        {/* Desktop: important */}
         <Show when={props.onImportantToggle}>
           <button
-            class={`border-none bg-transparent p-0 cursor-pointer transition-colors flex items-center justify-center ${
+            class={`hidden md:flex border-none bg-transparent p-0 cursor-pointer transition-colors items-center justify-center ${
               isImportant() ? "text-[#f29900]" : "text-[var(--text-muted)] hover:text-[#f29900]"
             }`}
             onClick={(e) => {
@@ -237,9 +306,37 @@ export default function EmailRow(props: EmailRowProps) {
         </Show>
       </div>
 
-      {/* From */}
+      {/* Col 2 MOBILE ONLY: stacked sender + date (row 1) and subject (row 2) */}
+      <div class="flex flex-col min-w-0 py-2.5 pr-3 md:hidden">
+        <div class="flex items-center justify-between gap-2 mb-1">
+          <span
+            class={`text-[14px] overflow-hidden text-ellipsis whitespace-nowrap leading-snug ${
+              isUnread() ? "font-bold text-[var(--foreground)]" : "font-medium text-[var(--text-secondary)]"
+            }`}
+          >
+            {props.email.messageCount && props.email.messageCount > 1
+              ? participantSummary()
+              : props.email.from}
+            <Show when={props.email.messageCount && props.email.messageCount > 1}>
+              <span class="inline-flex items-center justify-center min-w-[18px] h-[16px] px-1 rounded-full text-[10px] font-semibold bg-[var(--text-muted)] text-white ml-1 leading-none">
+                {props.email.messageCount}
+              </span>
+            </Show>
+          </span>
+          <span class={`text-[12px] whitespace-nowrap shrink-0 ${isUnread() ? "font-semibold text-[var(--foreground)]" : "text-[var(--text-muted)]"}`}>
+            {formatDate(props.email.date)}
+          </span>
+        </div>
+        <span class={`text-[13px] overflow-hidden text-ellipsis whitespace-nowrap leading-snug ${
+          isUnread() ? "font-semibold text-[var(--foreground)]" : "text-[var(--text-secondary)]"
+        }`}>
+          {props.email.subject || "(No Subject)"}
+        </span>
+      </div>
+
+      {/* Col 2 DESKTOP: From (200px) */}
       <div
-        class={`flex items-center gap-1.5 ${density().fontSize} whitespace-nowrap overflow-hidden pr-3 ${
+        class={`hidden md:flex items-center gap-1.5 ${density().fontSize} whitespace-nowrap overflow-hidden pr-3 ${
           isUnread() ? "font-bold text-[var(--foreground)]" : "font-medium text-[var(--text-secondary)]"
         }`}
       >
@@ -256,8 +353,8 @@ export default function EmailRow(props: EmailRowProps) {
         </Show>
       </div>
 
-      {/* Subject + Labels */}
-      <div class="flex items-center gap-1.5 min-w-0 overflow-hidden">
+      {/* Col 3 DESKTOP: Subject + Labels (1fr) */}
+      <div class="hidden md:flex items-center gap-1.5 min-w-0 overflow-hidden">
         <span
           class={`${density().fontSize} whitespace-nowrap overflow-hidden text-ellipsis ${
             isUnread() ? "font-semibold text-[var(--foreground)]" : "font-medium text-[var(--foreground)]"
@@ -322,8 +419,8 @@ export default function EmailRow(props: EmailRowProps) {
         </Show>
       </div>
 
-      {/* Date + hover actions */}
-      <div class="flex items-center gap-2 pl-3 shrink-0">
+      {/* Col 4 DESKTOP: Date + hover actions */}
+      <div class="hidden md:flex items-center gap-2 pl-3 shrink-0">
         <Show when={props.email.hasAttachments}>
           <span
             class="inline-flex items-center justify-center text-[var(--text-muted)]"

@@ -1,7 +1,8 @@
 // src/components/Sidebar.tsx
-import { A, useLocation } from "@solidjs/router";
+import { A, useLocation, useNavigate } from "@solidjs/router";
 import { For, createResource, createEffect, Show, createSignal, onCleanup, createMemo } from "solid-js";
 import { openCompose } from "~/lib/compose-store";
+import { useIsMobile } from "~/hooks/use-mobile";
 import { labelsState, setActiveFilter, IMPORTANT_FILTER_ID, getVisibleLabels, isCategoryFilterId, getCategoryTabs, PRIMARY_CATEGORY_KEY, type CategoryIconId } from "~/lib/labels-store";
 import { settings, DENSITY_CONFIG } from "~/lib/settings-store";
 import { getFolderCounts } from "~/lib/mail-client-browser";
@@ -14,6 +15,8 @@ export default function Sidebar() {
   const SIDEBAR_CATEGORIES_EXPANDED_KEY = "sidebarCategoriesExpanded";
   const SIDEBAR_SENT_EXPANDED_KEY = "sidebarSentExpanded";
   const location = useLocation();
+  const navigate = useNavigate();
+  const isMobile = useIsMobile();
   const [showLabelModal, setShowLabelModal] = createSignal(false);
   const [categoriesExpanded, setCategoriesExpanded] = createSignal(true);
   const [sentExpanded, setSentExpanded] = createSignal(true);
@@ -169,7 +172,7 @@ export default function Sidebar() {
       {/* Compose Button */}
       <div class="p-3 pb-2">
         <button
-          onClick={() => openCompose()}
+          onClick={() => isMobile() ? navigate("/compose") : openCompose()}
           class="w-full flex items-center gap-3 px-5 py-3 rounded-2xl border-none cursor-pointer text-sm font-semibold transition-all duration-200 bg-[var(--compose-bg)] text-[var(--foreground)] hover:bg-[var(--compose-hover)] hover:shadow-md active:scale-[0.98]"
         >
           <IconCompose size={20} />

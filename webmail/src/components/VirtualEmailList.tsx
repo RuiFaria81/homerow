@@ -3,6 +3,7 @@ import { createVirtualizer } from "@tanstack/solid-virtual";
 import { settings, DENSITY_CONFIG } from "~/lib/settings-store";
 import EmailRow from "./EmailRow";
 import type { EmailMessage } from "~/lib/mail-client-browser";
+import { useIsMobile } from "~/hooks/use-mobile";
 
 /** Pixel heights for each density setting, matching the Tailwind h-* classes in DENSITY_CONFIG */
 const ROW_HEIGHT: Record<string, number> = {
@@ -10,6 +11,7 @@ const ROW_HEIGHT: Record<string, number> = {
   default: 44,
   comfortable: 56,
 };
+const MOBILE_ROW_HEIGHT = 72;
 
 interface VirtualEmailListProps {
   emails: EmailMessage[];
@@ -26,12 +28,14 @@ interface VirtualEmailListProps {
   onToggleRead?: (seq: number, makeRead: boolean) => void;
   onContextMenu?: (seq: number, flags: string[], e: MouseEvent) => void;
   onPointerDragStart?: (seq: number, e: PointerEvent, suppressClick: () => void) => void;
+  onLongPress?: (seq: number) => void;
 }
 
 export default function VirtualEmailList(props: VirtualEmailListProps) {
   let scrollRef: HTMLDivElement | undefined;
+  const isMobile = useIsMobile();
 
-  const rowHeight = createMemo(() => ROW_HEIGHT[settings.density] || 44);
+  const rowHeight = createMemo(() => isMobile() ? MOBILE_ROW_HEIGHT : (ROW_HEIGHT[settings.density] || 44));
 
   const virtualizer = createVirtualizer({
     get count() {
@@ -71,18 +75,21 @@ export default function VirtualEmailList(props: VirtualEmailListProps) {
       email={email}
       active={props.selectedEmail === email.seq}
       checked={props.selectedEmails.has(email.seq)}
-      onCheckedChange={props.onCheckedChange}
+      // Desktop: checkbox; Mobile: hidden (long-press triggers selection)
+      onCheckedChange={isMobile() ? undefined : props.onCheckedChange}
       onClick={() => props.onEmailClick(email.seq)}
       onDelete={props.onDelete}
       onArchive={props.onArchive}
       onStar={props.onStar}
       onImportantToggle={props.onImportantToggle}
-      onLabelAdd={props.onLabelAdd}
-      onLabelRemove={props.onLabelRemove}
+      onLabelAdd={isMobile() ? undefined : props.onLabelAdd}
+      onLabelRemove={isMobile() ? undefined : props.onLabelRemove}
       onToggleRead={props.onToggleRead}
       onPointerDragStart={props.onPointerDragStart}
+      onLongPress={props.onLongPress}
+      // Context menu is desktop-only; mobile uses long-press action bar
       onContextMenu={
-        props.onContextMenu
+        !isMobile() && props.onContextMenu
           ? (e: MouseEvent) => props.onContextMenu!(email.seq, email.flags || [], e)
           : undefined
       }

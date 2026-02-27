@@ -4,11 +4,12 @@ import { Suspense, Show, createSignal, createEffect, createMemo, createResource,
 import { Link, Meta, MetaProvider } from "@solidjs/meta";
 import Sidebar from "~/components/Sidebar";
 import Header from "~/components/Header";
+import { useIsMobile } from "~/hooks/use-mobile";
 import ComposeModal from "~/components/ComposeModal";
 import CommandPalette from "~/components/CommandPalette";
 import QuickSettings from "~/components/QuickSettings";
 import ToastContainer from "~/components/ToastContainer";
-import { IconSend } from "~/components/Icons";
+import { IconSend, IconCompose } from "~/components/Icons";
 import { settings, THEMES, FONTS } from "~/lib/settings-store";
 import { folderCounts } from "~/lib/sidebar-store";
 import { getUnreadCountForSectionClient, getAutoReplySettingsClient } from "~/lib/app-shell-client";
@@ -56,6 +57,7 @@ export default function App() {
   const [quickSettingsOpen, setQuickSettingsOpen] = createSignal(false);
   const [searchTerm, setSearchTerm] = createSignal("");
   const [sidebarCollapsed, setSidebarCollapsed] = createSignal(false);
+  const [mobileReaderOpen, setMobileReaderOpen] = createSignal(false);
   const [importBannerJob, setImportBannerJob] = createSignal<ImportBannerJob | null>(null);
   const fetchAutoReplySettings = async () => getAutoReplySettingsClient();
   const [autoReplySettings, { refetch: refetchAutoReplySettings }] = createResource(fetchAutoReplySettings);
@@ -133,9 +135,15 @@ export default function App() {
     const handleClearSearchInput = () => {
       setSearchTerm("");
     };
+    const handleMobileReaderOpenChange = (event: Event) => {
+      const detail = (event as CustomEvent<{ open?: boolean }>).detail;
+      setMobileReaderOpen(Boolean(detail?.open));
+    };
     window.addEventListener("webmail-clear-search-input", handleClearSearchInput);
+    window.addEventListener("webmail-mobile-reader-open-change", handleMobileReaderOpenChange as EventListener);
     onCleanup(() => {
       window.removeEventListener("webmail-clear-search-input", handleClearSearchInput);
+      window.removeEventListener("webmail-mobile-reader-open-change", handleMobileReaderOpenChange as EventListener);
     });
   });
 
@@ -661,6 +669,14 @@ export default function App() {
           const navigate = useNavigate();
           const location = useLocation();
           const session = authClient.useSession();
+          const isMobile = useIsMobile();
+
+          // Auto-close sidebar overlay when navigating on mobile
+          createEffect(() => {
+            location.pathname;
+            location.search;
+            if (isMobile()) setSidebarCollapsed(true);
+          });
 
           const handleSearch = (query: string) => {
             if (query.trim()) {
@@ -802,6 +818,7 @@ export default function App() {
           };
           const importBannerRowStart = () => 1;
           const autoReplyBannerRowStart = () => Number(shouldShowImportBanner()) + 1;
+          const shouldHideTopHeader = () => isMobile() && mobileReaderOpen();
 
           return (
             <Show
@@ -811,8 +828,14 @@ export default function App() {
               <div
                 class="grid h-screen bg-[var(--background)] overflow-hidden"
                 style={{
-                  "grid-template-columns": sidebarCollapsed() ? "0 1fr" : "256px 1fr",
-                  "grid-template-rows": gridTemplateRows(),
+                  "grid-template-columns": (isMobile() || sidebarCollapsed()) ? "0 1fr" : "256px 1fr",
+                  "grid-template-rows": shouldHideTopHeader()
+                    ? (() => {
+                        const count = globalBannerCount();
+                        if (count === 0) return "0px 1fr";
+                        return `${"58px ".repeat(count)}0px 1fr`.trim();
+                      })()
+                    : gridTemplateRows(),
                 }}
               >
                 <Show when={shouldShowImportBanner()}>
@@ -886,37 +909,56 @@ export default function App() {
                   </div>
                 </Show>
 
-                <div class="col-span-full" style={{ "grid-row-start": headerRowStart() }}>
-                  <Header
-                    searchTerm={searchTerm}
-                    setSearchTerm={setSearchTerm}
-                    onSearch={handleSearch}
-                    onOpenSettings={() => setQuickSettingsOpen(true)}
-                    sidebarCollapsed={sidebarCollapsed()}
-                    hasUpdateAvailable={Boolean(updateStatusLatest()?.updateAvailable && settings.updateNotifications)}
-                    updateStatus={updateStatusLatest() ?? undefined}
-                    onToggleSidebar={() => {
-                      const nextCollapsed = !sidebarCollapsed();
-                      setSidebarCollapsed(nextCollapsed);
-                      if (!nextCollapsed) {
-                        queueMicrotask(() => {
-                          const panel = document.querySelector<HTMLElement>('[data-shortcut-left-menu="true"]');
-                          const first = panel?.querySelector<HTMLElement>("a[href], button");
-                          first?.focus();
-                        });
-                      }
-                    }}
-                  />
-                </div>
+                <Show when={!shouldHideTopHeader()}>
+                  <div class="col-span-full" data-testid="app-top-header" style={{ "grid-row-start": headerRowStart() }}>
+                    <Header
+                      searchTerm={searchTerm}
+                      setSearchTerm={setSearchTerm}
+                      onSearch={handleSearch}
+                      onOpenSettings={() => setQuickSettingsOpen(true)}
+                      sidebarCollapsed={sidebarCollapsed()}
+                      hasUpdateAvailable={Boolean(updateStatusLatest()?.updateAvailable && settings.updateNotifications)}
+                      updateStatus={updateStatusLatest() ?? undefined}
+                      onToggleSidebar={() => {
+                        const nextCollapsed = !sidebarCollapsed();
+                        setSidebarCollapsed(nextCollapsed);
+                        if (!nextCollapsed) {
+                          queueMicrotask(() => {
+                            const panel = document.querySelector<HTMLElement>('[data-shortcut-left-menu="true"]');
+                            const first = panel?.querySelector<HTMLElement>("a[href], button");
+                            first?.focus();
+                          });
+                        }
+                      }}
+                    />
+                  </div>
+                </Show>
 
-                <div class="col-start-1 min-w-0 h-full overflow-hidden mt-1" style={{ "grid-row-start": contentRowStart() }}>
-                  <Show when={!sidebarCollapsed()}>
+                {/* Desktop sidebar: rendered in grid column */}
+                <Show when={!isMobile()}>
+                  <div class="col-start-1 min-w-0 h-full overflow-hidden mt-1" style={{ "grid-row-start": contentRowStart() }}>
+                    <Show when={!sidebarCollapsed()}>
+                      <Suspense fallback={<aside class="bg-[var(--card)] border-r border-[var(--border-light)] w-full h-full" />}>
+                        <Sidebar />
+                      </Suspense>
+                    </Show>
+                  </div>
+                </Show>
+
+                {/* Mobile sidebar: rendered as fixed overlay */}
+                <Show when={isMobile() && !sidebarCollapsed()}>
+                  <div
+                    class="fixed inset-0 z-30 bg-black/40"
+                    onClick={() => setSidebarCollapsed(true)}
+                    aria-label="Close menu"
+                  />
+                  <div class="fixed left-0 top-0 bottom-0 w-64 z-40 shadow-2xl">
                     <Suspense fallback={<aside class="bg-[var(--card)] border-r border-[var(--border-light)] w-full h-full" />}>
                       <Sidebar />
                     </Suspense>
-                  </Show>
-                </div>
-                <main class="col-start-2 overflow-hidden flex flex-col relative mt-1" style={{ "grid-row-start": contentRowStart() }}>
+                  </div>
+                </Show>
+                <main class={`col-start-2 overflow-hidden flex flex-col relative ${shouldHideTopHeader() ? "mt-0" : "mt-1"}`} style={{ "grid-row-start": contentRowStart() }}>
                   <Suspense
                     fallback={
                       <div class="p-8 flex flex-col gap-3">
@@ -931,13 +973,31 @@ export default function App() {
                   </Suspense>
                 </main>
 
-                <ComposeModal />
+                {/* Compose modal: desktop only */}
+                <Show when={!isMobile()}>
+                  <ComposeModal />
+                </Show>
+
                 <CommandPalette />
 
                 <QuickSettings
                   isOpen={quickSettingsOpen()}
                   onClose={() => setQuickSettingsOpen(false)}
                 />
+
+                {/* Mobile FAB: floating compose button — hidden on the compose screen itself */}
+                <Show when={isMobile() && !mobileReaderOpen() && !location.pathname.endsWith("/compose")}>
+                  <button
+                    data-testid="mobile-compose-fab"
+                    class="fixed bottom-6 right-4 z-50 h-12 px-4 rounded-xl bg-[var(--compose-bg)] text-[var(--foreground)] shadow-[0_4px_16px_rgba(0,0,0,0.25)] flex items-center gap-2 justify-center border border-[var(--border-light)] cursor-pointer transition-transform duration-150 active:scale-95 hover:bg-[var(--compose-hover)]"
+                    aria-label="Compose new email"
+                    title="Compose new email"
+                    onClick={() => navigate("/compose")}
+                  >
+                    <IconCompose size={18} />
+                    <span class="text-sm font-semibold">Composer</span>
+                  </button>
+                </Show>
 
                 <ToastContainer />
               </div>

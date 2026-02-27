@@ -48,6 +48,7 @@ import hotkeys from "hotkeys-js";
 import { SHORTCUT_ACTIONS, shortcutBindings, setShortcutBinding, restoreDefaultShortcuts, formatShortcut, normalizeShortcut, getShortcutConflictMap, type ShortcutActionId } from "~/lib/keyboard-shortcuts-store";
 import QRCode from "qrcode";
 import LexicalEditor from "~/components/LexicalEditor";
+import { useIsMobile } from "~/hooks/use-mobile";
 
 type SettingsTab = "general" | "shortcuts" | "appearance" | "labels" | "automation" | "categories" | "signature" | "import" | "accounts" | "blocked" | "auto-reply";
 type ImportSourceMode = "upload" | "server";
@@ -165,6 +166,7 @@ const toTakeoutMappingTargetName = (item: { sourceName: string; targetName: stri
 };
 
 export default function Settings() {
+  const isMobile = useIsMobile();
   let takeoutFileInputRef: HTMLInputElement | undefined;
   let profileAvatarInputRef: HTMLInputElement | undefined;
   const [searchParams] = useSearchParams();
@@ -439,6 +441,9 @@ export default function Settings() {
     { id: "blocked" as SettingsTab, label: "Blocked Senders", icon: IconBlock },
     { id: "auto-reply" as SettingsTab, label: "Auto Reply", icon: IconSend },
   ].filter((tab) => !(demoMode && tab.id === "import"));
+  const visibleTabs = createMemo(() =>
+    tabs.filter((tab) => !(isMobile() && (tab.id === "shortcuts" || tab.id === "import"))),
+  );
   const shortcutConflictEntries = createMemo(() => Array.from(getShortcutConflictMap().entries()));
   const shortcutConflictLookup = createMemo(() => new Map(shortcutConflictEntries()));
   const isShortcutSlotConflicted = (actionId: ShortcutActionId) => {
@@ -513,6 +518,11 @@ export default function Settings() {
     if (requestedTab === "general" || requestedTab === "shortcuts" || requestedTab === "appearance" || requestedTab === "labels" || requestedTab === "categories" || requestedTab === "signature" || requestedTab === "import" || requestedTab === "accounts" || requestedTab === "blocked" || requestedTab === "auto-reply") {
       setActiveTab(requestedTab);
     }
+  });
+  createEffect(() => {
+    const active = activeTab();
+    if (visibleTabs().some((tab) => tab.id === active)) return;
+    setActiveTab("general");
   });
   createEffect(() => {
     if (activeTab() !== "shortcuts" && recordingShortcut() !== null) {
@@ -1946,10 +1956,30 @@ export default function Settings() {
         <h1 class="text-lg font-semibold text-[var(--foreground)]">Settings</h1>
       </div>
 
+      {/* Mobile: horizontal scrollable tab bar */}
+      <div class="flex md:hidden overflow-x-auto border-b border-[var(--border-light)] shrink-0 bg-[var(--card)]" style={{ "scrollbar-width": "none" }}>
+        <For each={visibleTabs()}>
+          {(tab) => (
+            <button
+              data-testid={`settings-tab-${tab.id}`}
+              class={`flex items-center gap-2 px-4 py-3 text-sm font-medium border-none border-b-2 cursor-pointer transition-all whitespace-nowrap shrink-0 ${
+                activeTab() === tab.id
+                  ? "text-[var(--primary)] border-[var(--primary)] bg-[var(--active-bg)]"
+                  : "text-[var(--text-secondary)] border-transparent hover:bg-[var(--hover-bg)]"
+              }`}
+              onClick={() => setActiveTab(tab.id)}
+            >
+              <tab.icon size={16} />
+              {tab.label}
+            </button>
+          )}
+        </For>
+      </div>
+
       <div class="flex flex-1 min-h-0">
-        {/* Tabs sidebar */}
-        <div class="w-56 border-r border-[var(--border-light)] p-3 flex flex-col gap-0.5 shrink-0">
-          <For each={tabs}>
+        {/* Desktop: Tabs sidebar */}
+        <div class="hidden md:flex w-56 border-r border-[var(--border-light)] p-3 flex-col gap-0.5 shrink-0">
+          <For each={visibleTabs()}>
             {(tab) => (
               <button
                 data-testid={`settings-tab-${tab.id}`}
@@ -1970,7 +2000,7 @@ export default function Settings() {
         </div>
 
         {/* Tab Content */}
-        <div class="flex-1 overflow-y-auto p-8 max-w-3xl">
+        <div class="flex-1 overflow-y-auto p-4 md:p-8 max-w-3xl">
           <Show when={activeTab() === "general"}>
             <div class="flex flex-col gap-8">
               <h2 class="text-xl font-semibold text-[var(--foreground)]">General Settings</h2>

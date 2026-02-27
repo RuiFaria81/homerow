@@ -333,7 +333,7 @@ export default function InlineComposer(props: InlineComposerProps) {
   };
 
   return (
-    <div ref={containerRef} class="px-6 pb-8 pt-4" data-testid="inline-composer">
+    <div ref={containerRef} class="px-3 pb-5 pt-3 md:px-6 md:pb-8 md:pt-4" data-testid="inline-composer">
       <input
         ref={fileInputRef}
         type="file"
@@ -343,40 +343,40 @@ export default function InlineComposer(props: InlineComposerProps) {
       />
 
       <Show when={mode() === null}>
-        <div class="flex gap-3">
+        <div class="flex flex-wrap gap-2">
           <button
             onClick={initReply}
             title={`Reply${getActionShortcutHint("reply")}`}
-            class="flex items-center gap-2 px-6 py-3 rounded-full border border-[var(--border-light)] bg-[var(--card)] text-[var(--text-secondary)] font-medium text-sm transition-all hover:bg-[var(--hover-bg)] hover:text-[var(--foreground)] hover:border-[var(--border)] shadow-sm cursor-pointer"
+            class="flex items-center gap-1.5 px-4 py-2.5 md:px-6 md:py-3 rounded-full border border-[var(--border-light)] bg-[var(--card)] text-[var(--text-secondary)] font-medium text-sm transition-all hover:bg-[var(--hover-bg)] hover:text-[var(--foreground)] hover:border-[var(--border)] shadow-sm cursor-pointer"
           >
-            <IconReply size={18} />
+            <IconReply size={16} />
             Reply
           </button>
           <Show when={canReplyAll()}>
             <button
               onClick={initReplyAll}
               title={`Reply all${getActionShortcutHint("replyAll")}`}
-              class="flex items-center gap-2 px-6 py-3 rounded-full border border-[var(--border-light)] bg-[var(--card)] text-[var(--text-secondary)] font-medium text-sm transition-all hover:bg-[var(--hover-bg)] hover:text-[var(--foreground)] hover:border-[var(--border)] shadow-sm cursor-pointer"
+              class="flex items-center gap-1.5 px-4 py-2.5 md:px-6 md:py-3 rounded-full border border-[var(--border-light)] bg-[var(--card)] text-[var(--text-secondary)] font-medium text-sm transition-all hover:bg-[var(--hover-bg)] hover:text-[var(--foreground)] hover:border-[var(--border)] shadow-sm cursor-pointer"
             >
-              <IconReplyAll size={18} />
+              <IconReplyAll size={16} />
               Reply All
             </button>
           </Show>
           <button
             onClick={initForward}
             title={`Forward${getActionShortcutHint("forward")}`}
-            class="flex items-center gap-2 px-6 py-3 rounded-full border border-[var(--border-light)] bg-[var(--card)] text-[var(--text-secondary)] font-medium text-sm transition-all hover:bg-[var(--hover-bg)] hover:text-[var(--foreground)] hover:border-[var(--border)] shadow-sm cursor-pointer"
+            class="flex items-center gap-1.5 px-4 py-2.5 md:px-6 md:py-3 rounded-full border border-[var(--border-light)] bg-[var(--card)] text-[var(--text-secondary)] font-medium text-sm transition-all hover:bg-[var(--hover-bg)] hover:text-[var(--foreground)] hover:border-[var(--border)] shadow-sm cursor-pointer"
           >
-            <IconForward size={18} />
+            <IconForward size={16} />
             Forward
           </button>
         </div>
       </Show>
 
       <Show when={mode() !== null}>
-        <div class="flex gap-4">
+        <div class="flex gap-2 md:gap-4">
           <div
-            class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0"
+            class="hidden md:flex w-10 h-10 rounded-full items-center justify-center text-white font-bold text-sm shrink-0"
             style={{ background: avatarColor() }}
           >
             M

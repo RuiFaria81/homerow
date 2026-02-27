@@ -1,4 +1,4 @@
-const CACHE_VERSION = "homerow-v3";
+const CACHE_VERSION = "homerow-v4";
 const SHELL_CACHE = `${CACHE_VERSION}-shell`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 const scopePath = new URL(self.registration.scope).pathname.replace(/\/$/, "");
@@ -44,6 +44,22 @@ self.addEventListener("fetch", (event) => {
   }
 
   if (url.pathname.startsWith(withBase("/api/"))) {
+    return;
+  }
+
+  // Backward-compatibility for older cached bundles that still import from
+  // /assets/*. New builds serve hashed files under /_build/assets/*.
+  if (url.pathname.startsWith(withBase("/assets/"))) {
+    const rewritten = new URL(request.url);
+    rewritten.pathname = rewritten.pathname.replace(withBase("/assets/"), withBase("/_build/assets/"));
+    event.respondWith(
+      fetch(rewritten.toString())
+        .then((response) => {
+          if (!response || !response.ok) return fetch(request);
+          return response;
+        })
+        .catch(() => fetch(request))
+    );
     return;
   }
 

@@ -7,6 +7,7 @@ import { authClient } from "~/lib/auth-client";
 import { isCurrentUserSender } from "~/lib/sender-utils";
 import { linkifyPlainText } from "~/lib/plain-text-links";
 import { getActionShortcutHint } from "~/lib/keyboard-shortcuts-store";
+import { useIsMobile } from "~/hooks/use-mobile";
 import InlineComposer from "~/components/InlineComposer";
 import { IconClose, IconArchive, IconTrash, IconChevronLeft, IconChevronRight, IconExpand, IconCollapse, IconChevronDown, IconChevronUp, IconClock, IconSpam, IconBlock, IconPaperclip, IconEnvelope, IconEnvelopeOpen } from "./Icons";
 
@@ -29,6 +30,7 @@ interface ReadingPaneProps {
 }
 
 const ReadingPane = (props: ReadingPaneProps) => {
+  const isMobile = useIsMobile();
   const session = authClient.useSession();
   const userEmail = () => session().data?.user?.email || "";
   const userAvatarImage = () => session().data?.user?.image || "";
@@ -147,6 +149,8 @@ const ReadingPane = (props: ReadingPaneProps) => {
   const [deleting, setDeleting] = createSignal(false);
   const [allowHeavyRender, setAllowHeavyRender] = createSignal(false);
   const [heavyRenderWarmed, setHeavyRenderWarmed] = createSignal(false);
+  const [mobileReaderChromeVisible, setMobileReaderChromeVisible] = createSignal(true);
+  let lastMobileScrollTop = 0;
   let warmRafA: number | undefined;
   let warmRafB: number | undefined;
 
@@ -183,6 +187,38 @@ const ReadingPane = (props: ReadingPaneProps) => {
     if (warmRafA !== undefined) window.cancelAnimationFrame(warmRafA);
     if (warmRafB !== undefined) window.cancelAnimationFrame(warmRafB);
   });
+
+  createEffect(() => {
+    if (props.emailSeq === null) {
+      setMobileReaderChromeVisible(true);
+      lastMobileScrollTop = 0;
+      return;
+    }
+    setMobileReaderChromeVisible(true);
+    lastMobileScrollTop = 0;
+  });
+
+  const shouldHideMobileReaderChrome = createMemo(
+    () => isMobile() && props.emailSeq !== null && !mobileReaderChromeVisible(),
+  );
+
+  const handleReaderScroll = (event: Event) => {
+    if (!isMobile()) return;
+    const container = event.currentTarget as HTMLDivElement | null;
+    if (!container) return;
+    const currentTop = Math.max(0, container.scrollTop);
+    const delta = currentTop - lastMobileScrollTop;
+    const hasMeaningfulDelta = Math.abs(delta) >= 6;
+
+    if (hasMeaningfulDelta) {
+      if (delta > 0 && currentTop > 16) {
+        setMobileReaderChromeVisible(false);
+      } else if (delta < 0) {
+        setMobileReaderChromeVisible(true);
+      }
+      lastMobileScrollTop = currentTop;
+    }
+  };
 
   const handleComposerSent = (optimistic?: FullEmail) => {
     if (!optimistic) return;
@@ -330,12 +366,81 @@ const ReadingPane = (props: ReadingPaneProps) => {
       currentUserEmail: userEmail() || email.accountEmail || "",
     });
 
+  // Swipe left/right to navigate between emails on touch devices
+  let swipeTouchStartX = 0;
+  let swipeTouchStartY = 0;
+  const SWIPE_THRESHOLD = 60;
+  const [swipeAnimatingDirection, setSwipeAnimatingDirection] = createSignal<"next" | "previous" | null>(null);
+
+  const handleSwipeTouchStart = (e: TouchEvent) => {
+    swipeTouchStartX = e.touches[0].clientX;
+    swipeTouchStartY = e.touches[0].clientY;
+  };
+
+  const animateSwipeTransition = (direction: "next" | "previous") => {
+    setSwipeAnimatingDirection(direction);
+    setTimeout(() => setSwipeAnimatingDirection(null), 180);
+  };
+
+  const handleSwipeGesture = (dx: number, dy: number) => {
+    // Only trigger on mostly-horizontal swipes
+    if (Math.abs(dx) > SWIPE_THRESHOLD && Math.abs(dx) > Math.abs(dy) * 2) {
+      if (dx > 0 && props.onPrevious) {
+        animateSwipeTransition("previous");
+        props.onPrevious();
+      } else if (dx < 0 && props.onNext) {
+        animateSwipeTransition("next");
+        props.onNext();
+      }
+    }
+  };
+
+  const handleSwipeTouchEnd = (e: TouchEvent) => {
+    const dx = e.changedTouches[0].clientX - swipeTouchStartX;
+    const dy = e.changedTouches[0].clientY - swipeTouchStartY;
+    handleSwipeGesture(dx, dy);
+  };
+
   return (
-    <div class="flex flex-col h-full bg-white border-l border-[var(--border)]">
+    <div
+      data-testid="reading-pane-root"
+      class={`flex flex-col h-full bg-white border-l border-[var(--border)] transition-transform duration-180 ease-out ${
+        swipeAnimatingDirection() === "next"
+          ? "-translate-x-2"
+          : swipeAnimatingDirection() === "previous"
+            ? "translate-x-2"
+            : "translate-x-0"
+      }`}
+      onTouchStart={handleSwipeTouchStart}
+      onTouchEnd={handleSwipeTouchEnd}
+    >
       {/* Toolbar */}
-      <div class="flex items-center px-4 py-2 border-b border-[var(--border)] min-h-[56px] bg-[var(--card)]">
+      <div
+        data-testid="mobile-reader-toolbar"
+        class={`overflow-hidden transition-[max-height,opacity,transform,border-color] duration-200 ${
+          shouldHideMobileReaderChrome()
+            ? "max-h-0 opacity-0 -translate-y-2 pointer-events-none border-b border-transparent"
+            : "max-h-24 opacity-100 translate-y-0 border-b border-[var(--border)]"
+        }`}
+      >
+      <div class="flex items-center px-4 py-2 min-h-[56px] bg-[var(--card)]">
         <div class="flex items-center gap-1">
-          <button data-testid="reading-pane-close" onClick={props.onClose} class="w-8 h-8 rounded-lg border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-secondary)] hover:bg-[var(--hover-bg)] hover:text-[var(--foreground)] transition-colors">
+          {/* Back button — mobile only */}
+          <button
+            data-testid="reading-pane-close"
+            onClick={props.onClose}
+            class="md:hidden h-8 px-2 rounded-lg border-none bg-transparent cursor-pointer flex items-center gap-1.5 text-[var(--text-secondary)] hover:bg-[var(--hover-bg)] hover:text-[var(--foreground)] transition-colors"
+            aria-label="Back to email list"
+          >
+            <IconChevronLeft size={18} />
+            <span class="text-sm font-medium">Back</span>
+          </button>
+          {/* Close (X) button — desktop only */}
+          <button
+            data-testid="reading-pane-close-desktop"
+            onClick={props.onClose}
+            class="hidden md:flex w-8 h-8 rounded-lg border-none bg-transparent cursor-pointer items-center justify-center text-[var(--text-secondary)] hover:bg-[var(--hover-bg)] hover:text-[var(--foreground)] transition-colors"
+          >
             <IconClose size={18} />
           </button>
           <div class="w-[1px] h-5 bg-[var(--border)] mx-1" />
@@ -387,28 +492,36 @@ const ReadingPane = (props: ReadingPaneProps) => {
           </Show>
           <div class="w-[1px] h-5 bg-[var(--border)] mx-1" />
           <Show when={typeof props.currentIndex === "number" && typeof props.totalCount === "number" && props.totalCount! > 0}>
-            <span class="text-xs text-[var(--text-muted)] mr-1">{props.currentIndex} / {props.totalCount}</span>
+            <span
+              data-testid="reading-pane-position-counter"
+              class="text-[9px] md:text-xs text-[var(--text-muted)] mr-1 whitespace-nowrap leading-none tabular-nums shrink-0"
+            >
+              {props.currentIndex} / {props.totalCount}
+            </span>
           </Show>
           <button
+            data-testid="reading-pane-prev"
             onClick={() => props.onPrevious?.()}
             disabled={!canGoPrevious()}
-            class="w-8 h-8 rounded-lg border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-secondary)] hover:bg-[var(--hover-bg)] hover:text-[var(--foreground)] disabled:opacity-40 transition-colors"
+            class="hidden md:flex w-8 h-8 rounded-lg border-none bg-transparent cursor-pointer items-center justify-center text-[var(--text-secondary)] hover:bg-[var(--hover-bg)] hover:text-[var(--foreground)] disabled:opacity-40 transition-colors"
             title={`Previous email${getActionShortcutHint("previousConversation")}`}
           >
             <IconChevronLeft size={18} />
           </button>
           <button
+            data-testid="reading-pane-next"
             onClick={() => props.onNext?.()}
             disabled={!canGoNext()}
-            class="w-8 h-8 rounded-lg border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-secondary)] hover:bg-[var(--hover-bg)] hover:text-[var(--foreground)] disabled:opacity-40 transition-colors"
+            class="hidden md:flex w-8 h-8 rounded-lg border-none bg-transparent cursor-pointer items-center justify-center text-[var(--text-secondary)] hover:bg-[var(--hover-bg)] hover:text-[var(--foreground)] disabled:opacity-40 transition-colors"
             title={`Next email${getActionShortcutHint("nextConversation")}`}
           >
             <IconChevronRight size={18} />
           </button>
           <Show when={props.onToggleFullSpace}>
             <button
+              data-testid="reading-pane-fullspace"
               onClick={() => props.onToggleFullSpace?.()}
-              class="w-8 h-8 rounded-lg border-none bg-transparent cursor-pointer flex items-center justify-center text-[var(--text-secondary)] hover:bg-[var(--hover-bg)] hover:text-[var(--foreground)] transition-colors"
+              class="hidden md:flex w-8 h-8 rounded-lg border-none bg-transparent cursor-pointer items-center justify-center text-[var(--text-secondary)] hover:bg-[var(--hover-bg)] hover:text-[var(--foreground)] transition-colors"
               title={props.isFullSpace ? "Exit full space" : "Expand"}
             >
               <Show when={props.isFullSpace} fallback={<IconExpand size={16} />}>
@@ -417,6 +530,7 @@ const ReadingPane = (props: ReadingPaneProps) => {
             </button>
           </Show>
         </div>
+      </div>
       </div>
 
       {/* Content area */}
@@ -429,7 +543,7 @@ const ReadingPane = (props: ReadingPaneProps) => {
             fallback={<div class="p-8 text-center text-gray-500">{props.emailSeq ? "Loading email..." : "Select an email to read"}</div>}
           >
             <div class="relative flex-1 overflow-hidden">
-              <div class="h-full overflow-y-auto p-6 pb-28">
+              <div data-testid="mobile-reader-scroll-container" class="h-full overflow-y-auto p-6 pb-28" onScroll={handleReaderScroll}>
                 <SingleEmailView
                   email={safeSingleEmail()!}
                   emailLabels={emailLabels(safeSingleEmail()!)}
@@ -440,10 +554,17 @@ const ReadingPane = (props: ReadingPaneProps) => {
                   iframeHeight={iframeHeight()}
                   resizeIframeToContent={resizeIframeToContent}
                   allowHeavyRender={allowHeavyRender()}
+                  onSwipeTouchStart={handleSwipeTouchStart}
+                  onSwipeTouchEnd={handleSwipeTouchEnd}
                 />
               </div>
               <div class="absolute inset-x-0 bottom-0 z-20 pointer-events-none">
-                <div class="pointer-events-auto bg-[var(--card)] backdrop-blur border-t border-[var(--border)] shadow-[0_-8px_20px_rgba(0,0,0,0.08)]">
+                <div
+                  data-testid="mobile-reader-quick-reply"
+                  class={`pointer-events-auto bg-[var(--card)] backdrop-blur border-t border-[var(--border)] shadow-[0_-8px_20px_rgba(0,0,0,0.08)] transition-[transform,opacity] duration-200 ${
+                    shouldHideMobileReaderChrome() ? "translate-y-full opacity-0" : "translate-y-0 opacity-100"
+                  }`}
+                >
                   <Show when={allowHeavyRender()}>
                     <InlineComposer email={safeSingleEmail() as FullEmail} onSent={handleComposerSent} />
                   </Show>
@@ -456,7 +577,7 @@ const ReadingPane = (props: ReadingPaneProps) => {
           {/* Thread / conversation view */}
           <div class="relative flex-1 overflow-hidden">
             <Show when={visibleThreadMessages().length > 0} fallback={<div class="h-full" />}>
-            <div class="h-full overflow-y-auto pb-28">
+            <div data-testid="mobile-reader-scroll-container" class="h-full overflow-y-auto pb-28" onScroll={handleReaderScroll}>
               {/* Thread subject header */}
               <div class="px-6 pt-6 pb-3 border-b border-gray-100">
                 <div class="flex items-center gap-2 flex-wrap">
@@ -584,7 +705,12 @@ const ReadingPane = (props: ReadingPaneProps) => {
                                   when={allowHeavyRender()}
                                   fallback={<div class="h-28 rounded-md border border-[var(--border)] bg-[var(--search-bg)] animate-pulse" />}
                                 >
-                                  <ThreadMessageIframe html={msg.html!} allowHistoryCollapse={index() > 0} />
+                                  <ThreadMessageIframe
+                                    html={msg.html!}
+                                    allowHistoryCollapse={index() > 0}
+                                    onSwipeTouchStart={handleSwipeTouchStart}
+                                    onSwipeTouchEnd={handleSwipeTouchEnd}
+                                  />
                                 </Show>
                               </Show>
                             </div>
@@ -625,7 +751,12 @@ const ReadingPane = (props: ReadingPaneProps) => {
             {/* Reply composer at bottom */}
             <Show when={composerEmail() && allowHeavyRender()}>
               <div class="absolute inset-x-0 bottom-0 z-20 pointer-events-none">
-                <div class="pointer-events-auto bg-[var(--card)] backdrop-blur border-t border-[var(--border)] shadow-[0_-8px_20px_rgba(0,0,0,0.08)]">
+                <div
+                  data-testid="mobile-reader-quick-reply"
+                  class={`pointer-events-auto bg-[var(--card)] backdrop-blur border-t border-[var(--border)] shadow-[0_-8px_20px_rgba(0,0,0,0.08)] transition-[transform,opacity] duration-200 ${
+                    shouldHideMobileReaderChrome() ? "translate-y-full opacity-0" : "translate-y-0 opacity-100"
+                  }`}
+                >
                   <InlineComposer email={composerEmail() as FullEmail} onSent={handleComposerSent} />
                 </div>
               </div>
@@ -760,7 +891,12 @@ function bindIframeAutoResize(frame: HTMLIFrameElement, resize: () => void) {
 }
 
 /** Iframe wrapper for individual thread messages — auto-sizes independently */
-function ThreadMessageIframe(props: { html: string; allowHistoryCollapse?: boolean }) {
+function ThreadMessageIframe(props: {
+  html: string;
+  allowHistoryCollapse?: boolean;
+  onSwipeTouchStart?: (e: TouchEvent) => void;
+  onSwipeTouchEnd?: (e: TouchEvent) => void;
+}) {
   const [height, setHeight] = createSignal(200);
   const srcdoc = createMemo(() =>
     buildCollapsibleReaderHtml(props.html, props.allowHistoryCollapse !== false)
@@ -814,6 +950,8 @@ function ThreadMessageIframe(props: { html: string; allowHistoryCollapse?: boole
       class="w-full border-none block"
       style={{ height: `${height()}px` }}
       sandbox="allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+      onTouchStart={props.onSwipeTouchStart}
+      onTouchEnd={props.onSwipeTouchEnd}
       onLoad={(e) => {
         const frame = e.currentTarget as HTMLIFrameElement;
         bindHistoryToggleResize(frame);
@@ -838,6 +976,8 @@ function SingleEmailView(props: {
   iframeHeight: number;
   resizeIframeToContent: (frame: HTMLIFrameElement) => void;
   allowHeavyRender: boolean;
+  onSwipeTouchStart?: (e: TouchEvent) => void;
+  onSwipeTouchEnd?: (e: TouchEvent) => void;
 }) {
   const srcdoc = createMemo(() => buildCollapsibleReaderHtml(props.email.html || ""));
   const bindHistoryToggleResize = (frame: HTMLIFrameElement) => {
@@ -937,6 +1077,8 @@ function SingleEmailView(props: {
               class="w-full border-none block"
               style={{ height: `${props.iframeHeight}px` }}
               sandbox="allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+              onTouchStart={props.onSwipeTouchStart}
+              onTouchEnd={props.onSwipeTouchEnd}
               onLoad={(e) => {
                 const frame = e.currentTarget as HTMLIFrameElement;
                 bindHistoryToggleResize(frame);

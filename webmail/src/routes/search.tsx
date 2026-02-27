@@ -1,10 +1,11 @@
-import { createResource, For, Show, createSignal, createEffect, onMount, onCleanup } from "solid-js";
+import { createResource, For, Show, createSignal, createEffect, onMount, onCleanup, createMemo } from "solid-js";
 import { useSearchParams, useNavigate } from "@solidjs/router";
 import {
   addEmailLabel,
   archiveEmails,
   deleteEmailsBatch,
   getEmail,
+  markAsRead,
   markAsUnread,
   moveToFolder,
   removeEmailLabel,
@@ -12,7 +13,7 @@ import {
   toggleStar,
   type EmailMessage,
 } from "~/lib/mail-client-browser";
-import EmailRow from "~/components/EmailRow";
+import VirtualEmailList from "~/components/VirtualEmailList";
 import ReadingPane from "~/components/ReadingPane";
 import { IconSearch, IconRefresh, IconBack } from "~/components/Icons";
 import { IMPORTANT_LABEL_NAME, setActiveFilter } from "~/lib/labels-store";
@@ -22,11 +23,14 @@ import { formatForwardSubject, formatReplySubject, getForwardQuoteParts, getRepl
 import { SHORTCUT_ACTIONS, getEffectiveActionShortcuts, splitShortcutSteps, formatShortcut, type ShortcutActionId } from "~/lib/keyboard-shortcuts-store";
 import { settings } from "~/lib/settings-store";
 import KeyboardShortcutsHelp from "~/components/KeyboardShortcutsHelp";
+import { useIsMobile } from "~/hooks/use-mobile";
 
 export default function SearchView() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
   const [selectedEmail, setSelectedEmail] = createSignal<EmailMessage | null>(null);
+  const [selectedThreadId, setSelectedThreadId] = createSignal<string | null>(null);
   const [selectedEmails, setSelectedEmails] = createSignal<Set<number>>(new Set());
   const [showKeyboardHelp, setShowKeyboardHelp] = createSignal(false);
 
@@ -45,6 +49,7 @@ export default function SearchView() {
 
   const handleDeletedFromPane = () => {
     setSelectedEmail(null);
+    setSelectedThreadId(null);
     refetch();
   };
 
@@ -56,6 +61,13 @@ export default function SearchView() {
 
   const emailKey = (email: Pick<EmailMessage, "seq" | "folderPath">) =>
     `${email.folderPath || "INBOX"}#${email.seq}`;
+
+  const openSearchEmail = (email: EmailMessage | null) => {
+    setSelectedEmail(email);
+    setSelectedThreadId(email?.threadId ?? null);
+    if (!email || (email.flags || []).includes("\\Seen")) return;
+    void markAsRead(String(email.seq), email.folderPath || "INBOX").catch(() => {});
+  };
 
   const clearSearchAndGoInbox = () => {
     setActiveFilter(undefined);
@@ -83,7 +95,7 @@ export default function SearchView() {
     const nextIndex = currentIndex === -1
       ? (offset > 0 ? 0 : list.length - 1)
       : (currentIndex + offset + list.length) % list.length;
-    setSelectedEmail(list[nextIndex] || null);
+    openSearchEmail(list[nextIndex] || null);
   };
 
   const getActionEmails = () => {
@@ -99,18 +111,19 @@ export default function SearchView() {
     const list = results() ?? [];
     if (!list.length) {
       setSelectedEmail(null);
+      setSelectedThreadId(null);
       setSelectedEmails(new Set());
       return;
     }
     const current = selectedEmail();
     if (!current) {
-      setSelectedEmail(list[0]);
+      openSearchEmail(list[0]);
       return;
     }
     const idx = list.findIndex((item) => emailKey(item) === emailKey(current));
     if (idx >= 0) return;
     const nextIndex = fallbackOffset > 0 ? 0 : Math.max(0, list.length - 1);
-    setSelectedEmail(list[nextIndex]);
+    openSearchEmail(list[nextIndex]);
   };
 
   const runRefresh = async () => {
@@ -176,14 +189,50 @@ export default function SearchView() {
     if (!query().trim()) return;
     if (list.length === 0) {
       setSelectedEmail(null);
+      setSelectedThreadId(null);
       setSelectedEmails(new Set());
       return;
     }
     const current = selectedEmail();
     if (!current || !list.some((item) => emailKey(item) === emailKey(current))) {
-      setSelectedEmail(list[0]);
+      openSearchEmail(list[0]);
     }
   });
+
+  createEffect(() => {
+    if (typeof window === "undefined") return;
+    const mobileReaderOpen = isMobile() && selectedEmail() !== null;
+    window.dispatchEvent(
+      new CustomEvent("webmail-mobile-reader-open-change", {
+        detail: { open: mobileReaderOpen },
+      }),
+    );
+    onCleanup(() => {
+      window.dispatchEvent(
+        new CustomEvent("webmail-mobile-reader-open-change", {
+          detail: { open: false },
+        }),
+      );
+    });
+  });
+
+  const currentIndex = createMemo(() => {
+    const active = selectedEmail();
+    if (!active) return -1;
+    return (results() ?? []).findIndex((item) => emailKey(item) === emailKey(active));
+  });
+  const hasPrevious = () => currentIndex() > 0;
+  const hasNext = () => currentIndex() >= 0 && currentIndex() < (results()?.length ?? 0) - 1;
+  const goToPrevious = () => {
+    const list = results() ?? [];
+    if (!hasPrevious()) return;
+    openSearchEmail(list[currentIndex() - 1] || null);
+  };
+  const goToNext = () => {
+    const list = results() ?? [];
+    if (!hasNext()) return;
+    openSearchEmail(list[currentIndex() + 1] || null);
+  };
 
   onMount(() => {
     let pendingChordStep: string | null = null;
@@ -573,8 +622,13 @@ export default function SearchView() {
     <div class="flex flex-1 h-full overflow-hidden">
       {/* Results Panel */}
       <div
+        data-testid="mail-list-panel"
         class={`flex flex-col overflow-hidden transition-all duration-200 ${
-          selectedEmail() !== null ? "w-[520px] min-w-[400px] shrink-0 border-r border-[var(--border-light)]" : "flex-1"
+          isMobile() && selectedEmail() !== null
+            ? "hidden"
+            : selectedEmail() !== null
+              ? "w-[520px] min-w-[400px] shrink-0 border-r border-[var(--border-light)]"
+              : "flex-1"
         }`}
       >
         {/* Search Header */}
@@ -618,31 +672,34 @@ export default function SearchView() {
               </div>
             }
           >
-            <For each={results() ?? []}>
-              {(email) => (
-                <EmailRow
-                  email={email}
-                  active={selectedEmailKey() === `${email.folderPath || "INBOX"}#${email.seq}`}
-                  checked={selectedEmails().has(email.seq)}
-                  onCheckedChange={(seq, checked) => {
-                    setSelectedEmails((prev) => {
-                      const next = new Set(prev);
-                      if (checked) next.add(seq);
-                      else next.delete(seq);
-                      return next;
-                    });
-                  }}
-                  onStar={(seq, starred) => {
-                    void toggleStar(String(seq), starred, email.folderPath || "INBOX").then(() => runRefresh());
-                  }}
-                  onImportantToggle={(seq, important) => {
-                    const fn = important ? addEmailLabel : removeEmailLabel;
-                    void fn(String(seq), IMPORTANT_LABEL_NAME, email.folderPath || "INBOX").then(() => runRefresh());
-                  }}
-                  onClick={() => setSelectedEmail(email)}
-                />
-              )}
-            </For>
+            <Show when={(results()?.length ?? 0) > 0}>
+              <VirtualEmailList
+                emails={results() ?? []}
+                selectedEmail={selectedEmail()?.seq ?? null}
+                selectedEmails={selectedEmails()}
+                onEmailClick={(seq) => {
+                  const found = (results() ?? []).find((item) => item.seq === seq) || null;
+                  openSearchEmail(found);
+                }}
+                onCheckedChange={(seq, checked) => {
+                  setSelectedEmails((prev) => {
+                    const next = new Set(prev);
+                    if (checked) next.add(seq);
+                    else next.delete(seq);
+                    return next;
+                  });
+                }}
+                onStar={(seq, starred) => {
+                  const email = (results() ?? []).find((item) => item.seq === seq);
+                  void toggleStar(String(seq), starred, email?.folderPath || "INBOX").then(() => runRefresh());
+                }}
+                onImportantToggle={(seq, important) => {
+                  const email = (results() ?? []).find((item) => item.seq === seq);
+                  const fn = important ? addEmailLabel : removeEmailLabel;
+                  void fn(String(seq), IMPORTANT_LABEL_NAME, email?.folderPath || "INBOX").then(() => runRefresh());
+                }}
+              />
+            </Show>
 
             <Show when={(results()?.length ?? 0) === 0}>
               <div class="flex flex-col items-center justify-center py-20 text-center text-[var(--text-muted)]">
@@ -665,8 +722,16 @@ export default function SearchView() {
           <ReadingPane
             emailSeq={selectedEmail()!.seq}
             folder={selectedEmail()!.folderPath || "INBOX"}
-            onClose={() => setSelectedEmail(null)}
+            threadId={selectedThreadId()}
+            onClose={() => {
+              setSelectedEmail(null);
+              setSelectedThreadId(null);
+            }}
             onDeleted={handleDeletedFromPane}
+            onNext={hasNext() ? goToNext : undefined}
+            onPrevious={hasPrevious() ? goToPrevious : undefined}
+            currentIndex={currentIndex() + 1}
+            totalCount={results()?.length ?? 0}
           />
         </div>
       </Show>
