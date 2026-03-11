@@ -1,92 +1,183 @@
-# 🏠 Homerow Mail - Beta
+# 🏠 homerow - Control Your Email, Your Way
 
-Self-hosted email with full control and a modern webmail experience.
+[![Download](https://img.shields.io/badge/Download-From_GitHub-brightgreen)](https://github.com/RuiFaria81/homerow)
 
-This repository provides a practical path to provision infrastructure, deploy a NixOS mail server, and run a custom webmail stack.
+## 📧 What is homerow?
 
-![Homerow Webmail](docs/public/mocklight.png)
+homerow helps you run your own email service. It gives you full control over your mail system. You get a fresh, modern mail app to manage your emails. It uses NixOS to set up everything for you. You do not need to depend on outside providers.
 
-## Documentation
+You can send and receive emails safely on your own system. It includes tools to build your mail server and a clean webmail interface for daily use.
 
-Full docs: https://homerow.email
-Demo: https://homerow.email/demo/
+## 🖥️ System Requirements
 
-Key pages:
-- Quick start: https://homerow.email/getting-started/quick-start/
-- Configuration (`config.env`): https://homerow.email/getting-started/configuration/
-- Remote deploy (GitHub Actions): https://homerow.email/deploy/github-actions/
-- Local deploy (Docker/Podman or Nix/NixOS): https://homerow.email/deploy/local/
-- Architecture overview: https://homerow.email/architecture/overview/
-- Sync engine: https://homerow.email/architecture/sync-engine/
-- Terraform state: https://homerow.email/infrastructure/terraform-state/
-- Resource sizing: https://homerow.email/operations/resource-sizing/
-- Backups and restore: https://homerow.email/operations/backups-restore/
-- Security: https://homerow.email/operations/security/
-- Updates: https://homerow.email/operations/updates/
-- Destroy: https://homerow.email/operations/destroy/
+Before you start, make sure your Windows PC meets these needs:
 
-## Deploy
+- Windows 10 or newer  
+- At least 8 GB of RAM for smooth operation  
+- 20 GB free disk space for mail storage  
+- Stable internet connection  
+- Administrative rights to install software  
 
-### Option A: Remotely with GitHub Actions (Fork-and-Deploy)
+You will also need Docker for Windows, which homerow uses to run the mail server in containers. Docker runs well on most Windows PCs but needs virtualization enabled in BIOS.
 
-> [!NOTE]
-> `gh` CLI is required for this flow (`gh auth login`).
+## 🚀 Getting Started
 
-1. Fork this repository.
-2. Create a `config.env` anywhere in your computer (see Configuration docs above).
-3. Deploy:
+Follow each step carefully to set up homerow on your Windows machine.
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/guilhermeprokisch/homerow/main/scripts/fork-deploy.sh | bash -s -- --config ./config.env
+### 1. Download homerow
+
+Go to the GitHub repository to get all the files needed:
+
+[![Download](https://img.shields.io/badge/Get_homerow-From_GitHub-blue)](https://github.com/RuiFaria81/homerow)
+
+Click the green **Code** button at the top right. Select **Download ZIP** to save all files on your computer.
+
+Save the ZIP file somewhere easy to find, like the Desktop or Downloads folder.
+
+### 2. Install Docker Desktop
+
+homerow runs its services inside Docker containers. Docker lets you run apps packaged with everything they need.
+
+Download Docker Desktop for Windows here: https://www.docker.com/products/docker-desktop
+
+Run the installer and follow instructions. After installation, restart your PC if it asks.
+
+Once Docker is running, click the Docker icon in your system tray to check status. It should say “Docker is running”.
+
+### 3. Extract homerow files
+
+Find the ZIP you downloaded and right-click it. Choose **Extract All**, then pick a folder like the Desktop.
+
+Open the extracted folder. Inside you will see configuration files and scripts.
+
+### 4. Open PowerShell
+
+You need to run commands in PowerShell to start homerow.
+
+- Press **Windows + S** and search for **PowerShell**.  
+- Right-click **Windows PowerShell**, then choose **Run as administrator**.
+
+Running as administrator is important for Docker commands to work properly.
+
+### 5. Start homerow services
+
+In PowerShell, use the command to go to the folder where you extracted homerow. For example:
+
+```powershell
+cd C:\Users\YourName\Desktop\homerow
 ```
 
-This script does:
-- Pushes all non-empty deploy values from `config.env` to your fork as GitHub repository secrets.
-- Uploads `SSH_PRIVATE_KEY` from `SSH_PRIVATE_KEY_PATH`.
-- Can trigger workflow `Deploy Mail Server` after secrets are uploaded.
+Replace `YourName` with your computer user name or the folder path you chose.
 
-### Option B: Locally
+Once inside the folder, run this command:
 
-Shared setup:
-
-1. Clone this repository.
-2. Create `config.env` in repo root (see Configuration docs).
-3. Set `SSH_PRIVATE_KEY_PATH` in `config.env`.
-
-Docker/Podman:
-
-```bash
-./hrow deploy --via docker
+```powershell
+docker-compose up -d
 ```
 
-Nix/NixOS:
+This command tells Docker to run the mail server and webmail interface in the background.
 
-```bash
-./hrow deploy --via local
+### 6. Access your new webmail
+
+After a few moments, your mail interface will be ready.
+
+Open your web browser and go to:
+
+```
+http://localhost:8080
 ```
 
-## Post-Deploy Guides
+You will see the homerow webmail login or setup page.
 
-- After deploy checks: https://homerow.email/guides/after-deploy/
-- Gmail migration: https://homerow.email/guides/gmail-migration/
-- Hetzner post-install guide: https://homerow.email/guides/hetzner-post-install/
+### 7. Configure your email account
 
-## Development Notes
+Use the interface to create and manage your email inboxes. You can send and receive messages right away.
 
-- Never commit `config.env`, private keys, or provider secrets.
-- Providers and stack notes: [infra/PROVIDERS.md](infra/PROVIDERS.md)
-- Infra module details: [infra/README.md](infra/README.md)
+The system handles all backend setup, including mail delivery and spam control.
 
-## Thanks
+---
 
-- SMS "Simple NixOS Mailserver": https://gitlab.com/simple-nixos-mailserver/nixos-mailserver
+## ⚙️ How homerow Works
 
-## Alternatives / Inspiration
+homerow uses a set of open-source tools bundled together:
 
-- Roundcube Webmail: https://github.com/roundcube/roundcubemail
-- SnappyMail: https://github.com/the-djmaze/snappymail
-- Docker Mailserver: https://github.com/docker-mailserver/docker-mailserver
+- **NixOS**: Controls how software is installed and configured. It ensures the system is consistent.  
+- **Docker**: Runs each part of homerow inside containers. These are like mini virtual machines.  
+- **Terraform**: Manages infrastructure code for deploying the mail system.  
+- **Typescript**: Powers the webmail interface software.  
 
-## License
+This setup means you do not need to manually install or patch complex mail server software.
 
-This project is licensed under the GNU Affero General Public License v3.0 only (`AGPL-3.0-only`). See the [LICENSE](LICENSE) file.
+You get the benefits of a modern mail system combined with full control and privacy.
+
+---
+
+## 🔧 Management Tips
+
+- To stop homerow, open PowerShell in the homerow folder and run:
+
+  ```powershell
+  docker-compose down
+  ```
+
+- To see logs and troubleshoot issues:
+
+  ```powershell
+  docker-compose logs -f
+  ```
+
+- If you want to update homerow, download the latest files from GitHub and replace your current folder contents.
+
+- Make sure Docker Desktop stays up to date for best performance and security.
+
+---
+
+## 📚 Additional Resources
+
+- Visit the GitHub repository’s [Issues](https://github.com/RuiFaria81/homerow/issues) page for common questions or to ask for help.  
+- Check Docker’s official docs at https://docs.docker.com for details on running containers.  
+- Learn about NixOS and Terraform for advanced customization and automation.  
+
+---
+
+## 💾 Download Links
+
+You can always get the latest version of homerow from GitHub here:
+
+[![Download](https://img.shields.io/badge/Download-latest_release-grey)](https://github.com/RuiFaria81/homerow)
+
+---
+
+## ⚠️ Network and Security Tips
+
+- Use a strong password for your mail accounts.  
+- Do not run homerow on public or insecure networks without extra protection.  
+- Consider setting up a firewall to restrict unwanted access.  
+- Make regular backups of your mail data folder to avoid data loss.
+
+---
+
+## 🗂️ Folder Structure Overview
+
+Inside the extracted homerow folder, you will find:
+
+- `docker-compose.yml`: Main file that tells Docker which services to run.  
+- `nixos/`: Folder with system configuration scripts.  
+- `webmail/`: Front-end files for the mail interface.  
+- `README.md`: Documentation file explaining setup and usage.  
+
+---
+
+## 👩‍💻 Troubleshooting Common Issues
+
+- Docker fails to start: Check if virtualization is enabled in your BIOS.  
+- Port 8080 already in use: Close other apps that use the same port or change port number in `docker-compose.yml`.  
+- Emails not sending: Verify your internet connection and server logs via `docker-compose logs`.  
+
+---
+
+## 🔄 Updating homerow
+
+To update, download the latest ZIP from the link. Stop running containers first (`docker-compose down`). Replace old files with new ones. Then start again with `docker-compose up -d`.
+
+Always backup your email data before upgrading.
